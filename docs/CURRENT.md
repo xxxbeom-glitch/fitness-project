@@ -18,6 +18,7 @@ Confirmed:
 - one primary recommended routine is shown by default
 - initial recommendation onboarding is intentionally short: **goal + weekly training frequency/availability + workout duration**
 - weekly-frequency question copy is fixed as **`일주일에 몇 번 운동할 수 있나요?`**
+- workout-duration choices are fixed as **30 / 45 / 60 minutes**; no `75+` option in the initial recommendation flow
 - initial recommended-routine experience is **gym-first**; no separate home-workout recommendation branch in the first scope
 - training experience, equipment inventory, weekday assignment, and height/body weight are not required to receive the first recommendation
 - weekday scheduling remains optional and may be offered after recommendation
@@ -71,7 +72,7 @@ These should be decided after the exercise database and substitution relationshi
 
 ## Next bootstrap decisions
 
-1. finish the exact onboarding UX/copy for goal and workout duration around the three required inputs
+1. finish the exact onboarding UX/copy for the goal question and weekly-frequency selectable range
 2. define the recommendation result flow and optional post-recommend scheduling step
 3. define core workout execution UX in detail
 4. account/privacy/data architecture
@@ -96,9 +97,9 @@ Implementation should not begin as if the product were fully specified until the
 
 Complete the recommendation onboarding IA around:
 
-`goal -> "일주일에 몇 번 운동할 수 있나요?" -> workout duration -> recommended routine`
+`goal -> "일주일에 몇 번 운동할 수 있나요?" -> 30/45/60분 -> recommended routine`
 
-Then decide where the optional weekday scheduling step belongs and what the recommendation-result screen must communicate before moving into Figma low-fi/storyboard work.
+Next, finalize the goal-question copy/options and the selectable weekly-frequency range. Then decide where the optional weekday scheduling step belongs and what the recommendation-result screen must communicate before moving into Figma low-fi/storyboard work.
 
 Do not design the final template matrix yet. That work is intentionally deferred until the exercise database is ready.
 
