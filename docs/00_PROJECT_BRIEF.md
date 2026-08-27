@@ -1,7 +1,7 @@
 # 00 PROJECT BRIEF
 
 **Status:** BOOTSTRAP DRAFT
-**Updated:** 2026-08-27
+**Updated:** 2026-08-28
 
 ## Product definition — CONFIRMED
 
@@ -121,31 +121,37 @@ The IA must not assume weekday scheduling is mandatory.
 
 The recommendation path uses structured onboarding rather than open-ended chat.
 
-Inputs:
+### Required recommendation inputs for the initial product
 - goal: fat loss / muscle gain / fitness improvement
-- weekly availability: 1 to 7 days
-- preferred workout duration: 30 / 45 / 60 / 75+ minutes
-- training experience
-- training environment: gym / home / both
-- preferred workout weekdays: optional
-- height and body weight: optional
+- weekly training frequency / availability
+- preferred workout duration
 
-Body measurements must explain why they are useful and remain skippable. Users can enter or edit them later in Settings.
+The initial recommendation flow should stay intentionally short. Training experience, height/body weight, detailed weekday assignment, and equipment inventory are not required to obtain the first recommended routine.
 
-Specific weekday assignment is optional. Weekly availability can guide recommendation even when the user does not want a fixed Monday/Wednesday/Friday schedule.
+Specific weekday assignment may be offered after recommendation as an optional scheduling convenience. Height/body weight may be collected later as optional profile data when there is a clear product purpose.
+
+### Initial environment scope
+The initial recommended-routine experience is **gym-first**.
+
+Do not create a separate home-workout recommendation branch in the initial onboarding. Home-workout-specific program templates and equipment branching are deferred unless a later Decision promotes them.
+
+This does not mean the core tracker must reject bodyweight or home-style exercises; it means the curated recommendation product is not required to solve gym and home programming simultaneously in the first version.
 
 ## Recommended-program model — CONFIRMED
 
 Recommendation means **program matching**, not LLM-generated programming.
 
 The product should:
-1. maintain a small set of curated, QA-reviewed program templates
+1. maintain a curated, QA-reviewed program-template/variant library
 2. use onboarding inputs to select the most suitable template
-3. adjust practical parameters such as duration/volume where needed
-4. present **one primary recommended program** rather than forcing the user to compare multiple equally weighted choices
-5. allow the user to inspect and modify the recommendation before or after starting
+3. present **one primary recommended program** rather than forcing the user to compare multiple equally weighted choices
+4. allow the user to inspect and modify the recommendation before or after starting
 
-A user selecting 6 or 7 available days does not automatically require a 6- or 7-day resistance-training program. Availability is an input to the matching logic, not a direct command.
+The template library may contain multiple overlapping or similar variants when that improves coverage and predictability. Exact template count, exercise composition, and variant strategy will be decided after the exercise database and substitution relationships are available for review.
+
+Do not force every onboarding combination into a completely unique handcrafted program. Shared template families and controlled variants may be used internally where useful.
+
+A user's selected weekly frequency/availability is an input to the matching logic, not a reason to prescribe an unnecessarily high number of hard resistance-training sessions.
 
 ## Exercise-selection direction — CONFIRMED
 
@@ -190,8 +196,8 @@ The primary card should be the current action: today's workout when scheduled, o
 
 ### Recommended routine matching
 - recommendation / self-build first-run choice
-- structured recommendation onboarding
-- curated program-template matching
+- short structured recommendation onboarding: goal + weekly frequency + workout duration
+- gym-first curated program-template matching
 - one primary recommended routine result
 - ability to inspect and modify the recommended routine
 - no LLM required for program generation
@@ -250,6 +256,7 @@ Minimum fields:
 
 These must not block the first release unless a later decision promotes them:
 
+- home-workout-specific recommendation branch/templates
 - Apple Watch / Wear OS
 - MCP / external AI integration
 - InBody integration
