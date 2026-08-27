@@ -6,7 +6,7 @@
 
 `BOOTSTRAP MODE`
 
-The repository operating structure is initialized. Product discovery is now being converted into explicit product decisions before implementation begins.
+The repository operating structure is initialized. Product discovery is being converted into explicit product decisions before implementation begins.
 
 ## Current product state
 
@@ -36,42 +36,42 @@ Confirmed:
 
 Completed:
 - repository operating structure
-- `README.md`
-- `PROJECT_INSTRUCTIONS.md`
-- `PROJECT_BOOTSTRAP.md`
-- `PROJECT_FOLDER_SETUP.md`
-- `docs/00` through `docs/10`
-- `roles/PRODUCT_PM.md`
-- `roles/RESEARCH.md`
-- `roles/DESIGN.md`
-- `roles/DEVELOPMENT.md`
-- `roles/QA.md`
-- `templates/TASK.md`
-- `templates/HANDOFF.md`
-- `templates/DECISION.md`
-- `templates/QA_REPORT.md`
+- top-level `PROJECT_INSTRUCTIONS.md` upgraded from OnTalk lessons for Fitness
+- 8-role agent model defined: Product / Research-Evidence / UX / UI-Design / Dev / QA / Growth / Ops
+- Growth/Ops defined but intentionally dormant until useful
+- Evidence Gate defined for exercise/health/product claims
+- Decision Challenge Gate defined: strongest support / strongest objection / different framing
+- Regression & Impact Gate defined from OnTalk regression lessons
+- Fitness-specific Global Invariants added
+- Fitness-specific Regression Matrix added
+- engineering evidence split into Logic / Integration / Runtime(Device)
+- AI-assisted design pipeline defined:
+  `Product Decision -> UX IA/Storyboard -> Figma low-fi -> Mobbin/reference research -> UI synthesis -> Figma refinement -> Design QA -> Development`
+- Figma explicitly treated as visual artifact, not product-policy Source of Truth
+- Mobbin explicitly treated as pattern reference, not exact-token/screen-copy source
+- exercise/health research evidence hierarchy and counter-evidence rules defined
+- existing Fitness/Liftly design/code/data assets remain reuse candidates, not immutable product truth
 - product brief updated for recommendation/self-build model
 - decision log updated through `DEC-008`
 - optional body-data and medical-boundary policies documented
 
-Project OS v0.1 is **not frozen yet**. The structure is complete, but several product and implementation decisions remain intentionally open.
+Project OS v0.1 is **not frozen yet**. The operating model is now materially stronger, but several product/implementation decisions remain open.
 
 ## Next bootstrap decisions
 
 1. define the curated recommended-program template matrix and matching rules
 2. define core workout execution UX in detail
-3. finalize the ChatGPT Project fixed instructions for this fitness project
-4. account/privacy/data architecture
-5. monetization stance for the first release
-6. platform and technical stack
-7. minimum design-system rules and migration/reuse strategy for existing Figma/Liftly assets
-8. cross-document QA before Project OS v0.1 freeze
+3. account/privacy/data architecture
+4. monetization stance for the first release
+5. platform and technical stack
+6. finalize minimum design tokens/components after core IA is stable
+7. cross-document QA before Project OS v0.1 freeze
 
 ## Canonical source
 
 `GitHub Repository`
 
-Notion IDEA LAB remains useful as discovery/research provenance. Once a product decision is confirmed for execution, the maintained source of truth is GitHub.
+Notion IDEA LAB, old Figma, and Liftly remain useful as discovery/research/reuse provenance. Once a product decision is confirmed for execution, GitHub is the maintained source of truth.
 
 ## Current blocker
 
@@ -87,7 +87,7 @@ Define a small, evidence-based set of curated program templates and the matching
 
 Do not create a separate routine for every possible combination. Prefer reusable base templates with controlled adjustments for duration, volume, and equipment availability.
 
-After the template model is stable, move to the detailed workout-execution flow.
+After the template model is stable, move to the detailed workout-execution UX. That UX should follow the newly defined design pipeline: IA/storyboard first, low-fi Figma second, reference research third, visual refinement after.
 
 ## Operating rule
 
