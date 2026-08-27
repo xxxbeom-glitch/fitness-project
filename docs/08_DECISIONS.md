@@ -248,3 +248,58 @@ Capping the initial duration choices at 60 minutes keeps the recommendation spac
 - weekly availability choices are fixed as `1일 / 2일 / 3일 / 4일 / 5일 / 6일 / 7일`
 - workout-duration choices are fixed as `30분 / 45분 / 60분`
 - self-built routines and the exercise database may still include bodyweight or other exercises; this Decision limits the recommendation branch, not the entire tracker
+
+---
+
+## DEC-010 — First working weight is calibrated through actual performance, not sex/gender
+
+**Date:** 2026-08-28
+**Status:** CONFIRMED
+
+### Decision
+The initial recommendation onboarding does **not** collect sex/gender for the purpose of assigning a starting weight.
+
+For a weighted exercise with no prior-performance history, the app should help the user find an appropriate first working weight through a short, skippable in-workout guide rather than guessing a fixed kg value from demographics.
+
+The default first-load guidance is:
+
+1. start with a conservatively light weight
+2. aim for **8–12 repetitions** as the general first-calibration range when the program does not specify another rep range
+3. complete the first set
+4. ask the user how the weight felt:
+   - **가벼웠어요**
+   - **적당했어요**
+   - **무거웠어요**
+5. guide the next set accordingly:
+   - light → consider increasing slightly
+   - appropriate → keep the weight
+   - heavy → reduce the weight
+6. save the actual result as the user's own history
+7. on later sessions, prioritize previous kg/reps over population-based estimates
+
+### First-use UX direction
+The first workout should teach the interaction inside the real workout screen with short coach marks rather than a long tutorial before training.
+
+Example sequence:
+
+`중량 입력 → 목표 반복수 확인 → 세트 완료 → 체감 난이도 피드백`
+
+The guide must be skippable because experienced users may understand both training and the logging model already.
+
+### Rep-range rule
+`8–12 reps` is a practical default for first-load calibration, not a permanent rule for every exercise or program.
+
+The data model should allow a program/template or exercise prescription to provide its own target rep range, such as `6–8`, `8–12`, or `10–15`, without changing the workout UI architecture.
+
+### Why
+Sex/gender alone does not estimate an individual's usable starting load accurately enough for this product. Actual performance is more directly relevant and becomes increasingly useful after the first recorded session.
+
+This also preserves the intentionally short recommendation onboarding while creating a clear path from first-use guidance to the product's core strength: prior-performance-based logging.
+
+### Product impact
+- sex/gender is not required in the initial recommendation onboarding for starting-load logic
+- no fixed `male starting kg` / `female starting kg` table should drive the first workout
+- first-load guidance belongs in workout execution UX, not recommendation onboarding
+- exercises with no prior history need a clear `no-history` state
+- later sessions should surface prior performance inline and minimize repeated input
+- bodyweight, timed, assisted, or otherwise non-standard load exercises may require exercise-type-specific guidance rather than forcing the weighted-exercise calibration flow
