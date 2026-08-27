@@ -180,6 +180,18 @@ The initial recommended-routine onboarding should use only three required matchi
 2. weekly training availability
 3. preferred workout duration
 
+The goal question uses simple user-facing language.
+
+Approved user-facing wording:
+
+> **운동 목표가 무엇인가요?**
+
+Approved choices:
+
+- **체지방 감량**
+- **근육량 증가**
+- **체력 향상**
+
 The weekly-availability question should be framed as **realistic availability rather than aspiration** and expressed in days.
 
 Approved user-facing wording:
@@ -230,6 +242,8 @@ Capping the initial duration choices at 60 minutes keeps the recommendation spac
 - no home/gym/both question in the initial recommendation flow
 - no home-specific template matrix is required for first release
 - recommendation templates are finalized after exercise DB review rather than before it
+- goal copy is fixed as `운동 목표가 무엇인가요?`
+- goal choices are fixed as `체지방 감량 / 근육량 증가 / 체력 향상`
 - weekly availability copy is fixed as `일주일에 며칠 운동할 수 있나요?`
 - weekly availability choices are fixed as `1일 / 2일 / 3일 / 4일 / 5일 / 6일 / 7일`
 - workout-duration choices are fixed as `30분 / 45분 / 60분`
