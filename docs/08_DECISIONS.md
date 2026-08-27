@@ -177,16 +177,26 @@ A beginner should not need detailed equipment knowledge or programming theory ju
 The initial recommended-routine onboarding should use only three required matching inputs:
 
 1. goal
-2. weekly training frequency / availability
+2. weekly training availability
 3. preferred workout duration
 
-The weekly-frequency question should be framed as **availability rather than aspiration**.
+The weekly-availability question should be framed as **realistic availability rather than aspiration** and expressed in days.
 
 Approved user-facing wording:
 
-> **일주일에 몇 번 운동할 수 있나요?**
+> **일주일에 며칠 운동할 수 있나요?**
 
-This wording is preferred over “주 몇 회 운동하고 싶나요?” because the matcher needs the user's realistic available frequency, not only an aspirational target.
+Approved choices:
+
+- **1일**
+- **2일**
+- **3일**
+- **4일**
+- **5일**
+- **6일**
+- **7일**
+
+The selected number represents how many days the user can realistically make available for training. It does **not** require the matcher to prescribe resistance training on every selected available day.
 
 The preferred workout-duration choices for the initial recommendation flow are:
 
@@ -211,7 +221,7 @@ Adding home/gym branching, experience bands, body data, weekday details, and equ
 
 A gym-first scope also aligns with the immediate product context: common gym exercises, machines, substitutions, and fast workout logging are already core design concerns.
 
-Framing weekly frequency as availability reduces the risk that users choose an idealized number that does not reflect the time they can actually commit.
+Framing weekly availability as days makes the question concrete and closer to the actual scheduling constraint the matcher needs. It also avoids interpreting a user's available days as a requirement to prescribe the same number of hard training sessions.
 
 Capping the initial duration choices at 60 minutes keeps the recommendation space tighter and better aligned with the product's goal of practical, repeatable sessions rather than long-form program design.
 
@@ -220,6 +230,7 @@ Capping the initial duration choices at 60 minutes keeps the recommendation spac
 - no home/gym/both question in the initial recommendation flow
 - no home-specific template matrix is required for first release
 - recommendation templates are finalized after exercise DB review rather than before it
-- weekly frequency copy is fixed as `일주일에 몇 번 운동할 수 있나요?`
+- weekly availability copy is fixed as `일주일에 며칠 운동할 수 있나요?`
+- weekly availability choices are fixed as `1일 / 2일 / 3일 / 4일 / 5일 / 6일 / 7일`
 - workout-duration choices are fixed as `30분 / 45분 / 60분`
 - self-built routines and the exercise database may still include bodyweight or other exercises; this Decision limits the recommendation branch, not the entire tracker
