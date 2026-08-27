@@ -6,7 +6,7 @@
 
 `BOOTSTRAP MODE`
 
-The repository has been initialized from the AI Project OS operating model and is now being converted into a fitness-specific Project OS.
+The AI Project OS starter structure has been fully initialized for the Fitness Project. The repository now contains the common operating documents, fitness-specific product baseline, role guides, and execution/QA templates.
 
 ## Current product state
 
@@ -20,29 +20,52 @@ Confirmed:
 - active-session recovery is release-critical
 - Watch / AI / MCP / InBody / Health / gym equipment data / community are post-MVP unless promoted by a later decision
 
-## Current bootstrap focus
+## Project OS bootstrap status
 
-The Product phase is substantially defined.
+Completed:
+- repository operating structure
+- `README.md`
+- `PROJECT_INSTRUCTIONS.md`
+- `PROJECT_BOOTSTRAP.md`
+- `PROJECT_FOLDER_SETUP.md`
+- `docs/00` through `docs/10`
+- `roles/PRODUCT_PM.md`
+- `roles/RESEARCH.md`
+- `roles/DESIGN.md`
+- `roles/DEVELOPMENT.md`
+- `roles/QA.md`
+- `templates/TASK.md`
+- `templates/HANDOFF.md`
+- `templates/DECISION.md`
+- `templates/QA_REPORT.md`
 
-Next bootstrap decisions:
-1. account/privacy/data policy
-2. monetization stance for the first release
-3. platform and technical stack
-4. IA and core workout flows
-5. minimum design-system rules
-6. engineering/QA adaptation for mobile workout reliability
+Project OS v0.1 is **not frozen yet**. The structure is complete, but several product decisions remain intentionally open.
+
+## Next bootstrap decisions
+
+1. finalize the ChatGPT Project fixed instructions for this fitness project
+2. account/privacy/data policy
+3. monetization stance for the first release
+4. platform and technical stack
+5. IA and core workout flows
+6. minimum design-system rules
+7. cross-document QA before Project OS v0.1 freeze
 
 ## Canonical source
 
 `GitHub Repository`
 
+Notion IDEA LAB remains useful as discovery/research provenance. Once a product decision is confirmed for execution, the maintained source of truth is GitHub.
+
 ## Current blocker
 
-No implementation blocker. Project OS v0.1 is not yet frozen because Policy, Tech, and Design decisions are still incomplete.
+No repository-structure blocker.
+
+Implementation should not begin as if the product were fully specified until the remaining Bootstrap decisions are resolved or explicitly marked as assumptions/TBD.
 
 ## Next action
 
-Continue Bootstrap Phase 2 and Phase 3, then cross-check all documents before moving into Execution Mode.
+Review the uploaded OnTalk project instructions, decide what should be reused/modified/removed for Fitness, and produce the fixed project instructions without duplicating GitHub's detailed operating documents unnecessarily.
 
 ## Operating rule
 
