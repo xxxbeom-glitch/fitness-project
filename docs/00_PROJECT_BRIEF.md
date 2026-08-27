@@ -124,9 +124,15 @@ The recommendation path uses structured onboarding rather than open-ended chat.
 ### Required recommendation inputs for the initial product
 - goal: fat loss / muscle gain / fitness improvement
 - weekly training frequency / availability
-- preferred workout duration
+- preferred workout duration: **30 / 45 / 60 minutes**
 
 The initial recommendation flow should stay intentionally short. Training experience, height/body weight, detailed weekday assignment, and equipment inventory are not required to obtain the first recommended routine.
+
+The weekly-frequency question is framed as realistic availability:
+
+> **일주일에 몇 번 운동할 수 있나요?**
+
+The initial recommendation flow does not offer a duration longer than 60 minutes. Longer sessions may still be possible through self-built routines or later product expansion, but they are not part of the initial recommendation matching inputs.
 
 Specific weekday assignment may be offered after recommendation as an optional scheduling convenience. Height/body weight may be collected later as optional profile data when there is a clear product purpose.
 
@@ -197,6 +203,7 @@ The primary card should be the current action: today's workout when scheduled, o
 ### Recommended routine matching
 - recommendation / self-build first-run choice
 - short structured recommendation onboarding: goal + weekly frequency + workout duration
+- workout-duration choices: 30 / 45 / 60 minutes
 - gym-first curated program-template matching
 - one primary recommended routine result
 - ability to inspect and modify the recommended routine
