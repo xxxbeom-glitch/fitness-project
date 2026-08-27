@@ -93,21 +93,15 @@ Some users want a ready-to-use program, while others already know what they want
 ## DEC-006 — Recommended routines use curated program matching, not LLM generation
 
 **Date:** 2026-08-27
-**Status:** CONFIRMED
+**Status:** CONFIRMED — INPUT DETAILS REFINED BY DEC-009
 
 ### Decision
-Recommended routines will be selected from a small set of curated, QA-reviewed program templates using structured onboarding inputs.
+Recommended routines will be selected from a curated, QA-reviewed program-template system using structured onboarding inputs.
 
 The app should present **one primary recommended routine** by default instead of generating multiple competing options or asking an LLM to invent a new program for each user.
 
-### Recommendation inputs
-- goal: fat loss / muscle gain / fitness improvement
-- weekly availability: 1 to 7 days
-- preferred workout duration: 30 / 45 / 60 / 75+ minutes
-- training experience
-- training environment: gym / home / both
-- preferred workout weekdays: optional
-- height and body weight: optional
+### Original recommendation inputs
+The initial input list discussed on 2026-08-27 included goal, weekly availability, workout duration, experience, environment, optional weekdays, and optional height/body weight. The initial MVP input set is superseded by DEC-009.
 
 ### Why
 A curated matching system is:
@@ -121,9 +115,8 @@ Structured data already covers the first recommendation problem. An LLM is not r
 
 ### Product impact
 - build a reusable program-template library rather than a free-form generation prompt
-- onboarding inputs select and parameterize a suitable template
-- workout duration may adjust practical volume/exercise count without requiring a separate program for every possible combination
-- a user's available training days are an input, not a command to prescribe resistance training on every available day
+- onboarding inputs select a suitable template
+- a user's selected weekly frequency/availability is an input, not a command to prescribe an unnecessarily high number of hard resistance-training sessions
 - LLM/natural-language functionality may be considered later for explanation or complex exception handling where it materially improves UX
 
 ---
@@ -172,3 +165,40 @@ A beginner should not need detailed equipment knowledge or programming theory ju
 - onboarding should not quiz beginners on split terminology or every machine in their gym
 - if a user dislikes or cannot use an exercise, replacement/removal should be possible without requiring the app to diagnose why
 - medical diagnosis and condition-specific exercise safety judgments remain outside product scope
+
+---
+
+## DEC-009 — Initial recommendation onboarding is three inputs and gym-first
+
+**Date:** 2026-08-28
+**Status:** CONFIRMED
+
+### Decision
+The initial recommended-routine onboarding should use only three required matching inputs:
+
+1. goal
+2. weekly training frequency / availability
+3. preferred workout duration
+
+The initial recommendation experience is gym-first. A separate home-workout recommendation branch is not part of the initial scope.
+
+Training experience, detailed weekday assignment, height/body weight, and equipment inventory are not required to receive the first recommended routine.
+
+Weekday assignment may be offered later as an optional scheduling step. Height/body weight may be collected later as optional profile data when there is a clear product purpose.
+
+The curated template library does not need to be artificially small. It may contain multiple overlapping or similar variants to provide adequate coverage and predictable matching. Exact template count and exercise composition are deferred until the exercise database and substitution data are ready for review.
+
+### Why
+The recommendation flow should remove decisions, not replace them with a long questionnaire.
+
+Adding home/gym branching, experience bands, body data, weekday details, and equipment inventory at first entry creates additional combinations and design/QA scope before their incremental recommendation value is proven.
+
+A gym-first scope also aligns with the immediate product context: common gym exercises, machines, substitutions, and fast workout logging are already core design concerns.
+
+### Product impact
+- recommendation onboarding IA becomes shorter and easier to storyboard
+- no home/gym/both question in the initial recommendation flow
+- no home-specific template matrix is required for first release
+- recommendation templates are finalized after exercise DB review rather than before it
+- exact option labels/ranges for weekly frequency and workout duration can be finalized during onboarding UX design
+- self-built routines and the exercise database may still include bodyweight or other exercises; this Decision limits the recommendation branch, not the entire tracker
