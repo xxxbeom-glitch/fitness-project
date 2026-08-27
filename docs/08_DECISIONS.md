@@ -180,6 +180,14 @@ The initial recommended-routine onboarding should use only three required matchi
 2. weekly training frequency / availability
 3. preferred workout duration
 
+The weekly-frequency question should be framed as **availability rather than aspiration**.
+
+Approved user-facing wording:
+
+> **일주일에 몇 번 운동할 수 있나요?**
+
+This wording is preferred over “주 몇 회 운동하고 싶나요?” because the matcher needs the user's realistic available frequency, not only an aspirational target.
+
 The initial recommendation experience is gym-first. A separate home-workout recommendation branch is not part of the initial scope.
 
 Training experience, detailed weekday assignment, height/body weight, and equipment inventory are not required to receive the first recommended routine.
@@ -195,10 +203,13 @@ Adding home/gym branching, experience bands, body data, weekday details, and equ
 
 A gym-first scope also aligns with the immediate product context: common gym exercises, machines, substitutions, and fast workout logging are already core design concerns.
 
+Framing weekly frequency as availability reduces the risk that users choose an idealized number that does not reflect the time they can actually commit.
+
 ### Product impact
 - recommendation onboarding IA becomes shorter and easier to storyboard
 - no home/gym/both question in the initial recommendation flow
 - no home-specific template matrix is required for first release
 - recommendation templates are finalized after exercise DB review rather than before it
-- exact option labels/ranges for weekly frequency and workout duration can be finalized during onboarding UX design
+- weekly frequency copy is fixed as `일주일에 몇 번 운동할 수 있나요?`
+- exact selectable frequency range and workout-duration labels can be finalized during onboarding UX design
 - self-built routines and the exercise database may still include bodyweight or other exercises; this Decision limits the recommendation branch, not the entire tracker
