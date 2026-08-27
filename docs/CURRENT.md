@@ -17,6 +17,8 @@ Confirmed:
 - recommendation uses **curated program-template matching**, not LLM-generated routines
 - one primary recommended routine is shown by default
 - initial recommendation onboarding is intentionally short: **goal + weekly training availability + workout duration**
+- goal question copy is fixed as **`운동 목표가 무엇인가요?`**
+- goal choices are fixed as **체지방 감량 / 근육량 증가 / 체력 향상**
 - weekly-availability question copy is fixed as **`일주일에 며칠 운동할 수 있나요?`**
 - weekly-availability choices are fixed as **1일 / 2일 / 3일 / 4일 / 5일 / 6일 / 7일**
 - selected availability does not require prescribing resistance training on every available day
@@ -74,7 +76,7 @@ These should be decided after the exercise database and substitution relationshi
 
 ## Next bootstrap decisions
 
-1. finish the exact onboarding UX/copy for the goal question
+1. decide whether sex/gender is needed in onboarding or should be deferred, especially for initial load guidance
 2. define the recommendation result flow and optional post-recommend scheduling step
 3. define core workout execution UX in detail
 4. account/privacy/data architecture
@@ -97,11 +99,9 @@ Implementation should not begin as if the product were fully specified until the
 
 ## Next action
 
-Complete the recommendation onboarding IA around:
+Decide whether the product needs sex/gender in the initial recommendation flow. Do not add it only because average strength differs between populations; evaluate whether it materially improves first-session load guidance compared with exercise-specific calibration and prior-performance data.
 
-`goal -> "일주일에 며칠 운동할 수 있나요?" (1일~7일) -> 30/45/60분 -> recommended routine`
-
-Next, finalize the goal-question copy/options. Then decide where the optional weekday scheduling step belongs and what the recommendation-result screen must communicate before moving into Figma low-fi/storyboard work.
+After that, define where the optional weekday scheduling step belongs and what the recommendation-result screen must communicate before moving into Figma low-fi/storyboard work.
 
 Do not design the final template matrix yet. That work is intentionally deferred until the exercise database is ready.
 
