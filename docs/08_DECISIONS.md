@@ -188,6 +188,14 @@ Approved user-facing wording:
 
 This wording is preferred over “주 몇 회 운동하고 싶나요?” because the matcher needs the user's realistic available frequency, not only an aspirational target.
 
+The preferred workout-duration choices for the initial recommendation flow are:
+
+- **30분**
+- **45분**
+- **60분**
+
+The initial recommendation scope does not ask users to plan sessions longer than 60 minutes. `75분+` is removed from the initial onboarding.
+
 The initial recommendation experience is gym-first. A separate home-workout recommendation branch is not part of the initial scope.
 
 Training experience, detailed weekday assignment, height/body weight, and equipment inventory are not required to receive the first recommended routine.
@@ -205,11 +213,13 @@ A gym-first scope also aligns with the immediate product context: common gym exe
 
 Framing weekly frequency as availability reduces the risk that users choose an idealized number that does not reflect the time they can actually commit.
 
+Capping the initial duration choices at 60 minutes keeps the recommendation space tighter and better aligned with the product's goal of practical, repeatable sessions rather than long-form program design.
+
 ### Product impact
 - recommendation onboarding IA becomes shorter and easier to storyboard
 - no home/gym/both question in the initial recommendation flow
 - no home-specific template matrix is required for first release
 - recommendation templates are finalized after exercise DB review rather than before it
 - weekly frequency copy is fixed as `일주일에 몇 번 운동할 수 있나요?`
-- exact selectable frequency range and workout-duration labels can be finalized during onboarding UX design
+- workout-duration choices are fixed as `30분 / 45분 / 60분`
 - self-built routines and the exercise database may still include bodyweight or other exercises; this Decision limits the recommendation branch, not the entire tracker
