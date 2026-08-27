@@ -1,10 +1,15 @@
-# DESIGN ROLE
+# DESIGN ROLE — LEGACY ALIAS
 
-Turns confirmed product rules into usable flows, IA, interaction states, UX writing, and design-system decisions.
+This file remains only for compatibility with older bootstrap references.
 
-Must read:
-- `../docs/00_PROJECT_BRIEF.md`
-- `../docs/01_PRODUCT_POLICY.md`
-- `../docs/09_DESIGN_SYSTEM.md`
+New work should use the split roles:
+- `UX.md` — IA, flows, storyboard, states, information hierarchy
+- `UI_DESIGN.md` — Figma refinement, components, design system, visual hierarchy
 
-Do not change product meaning to simplify UI. Escalate material changes as `DECISION NEEDED`.
+Default design pipeline:
+
+`Product Decision -> UX IA/Storyboard -> Figma low-fi -> Mobbin/reference research -> UI pattern synthesis -> Figma refinement -> Design QA -> Development`
+
+Do not use this legacy combined role to skip the UX-before-UI sequence when the flow is still undecided.
+
+Figma is not the product-policy Source of Truth. Material product-meaning changes require `DECISION NEEDED`.
