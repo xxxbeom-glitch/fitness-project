@@ -24,7 +24,13 @@ Confirmed:
 - selected availability does not require prescribing resistance training on every available day
 - workout-duration choices are fixed as **30 / 45 / 60 minutes**; no `75+` option in the initial recommendation flow
 - initial recommended-routine experience is **gym-first**; no separate home-workout recommendation branch in the first scope
-- training experience, equipment inventory, weekday assignment, and height/body weight are not required to receive the first recommendation
+- training experience, equipment inventory, weekday assignment, height/body weight, and sex/gender are not required to receive the first recommendation
+- sex/gender is not used to assign a fixed first working weight
+- first working weight is calibrated from actual performance when prior history is absent
+- first-load guidance uses a short, skippable in-workout coach-mark flow rather than a long pre-workout tutorial
+- `8–12 reps` is the default first-calibration range only when a program does not define another target rep range
+- after the first set, the user can classify the load as **가벼웠어요 / 적당했어요 / 무거웠어요** and adjust the next set accordingly
+- later sessions prioritize actual prior kg/reps over population-based estimates
 - weekday scheduling remains optional and may be offered after recommendation
 - scheduled users can see **Today's workout**; unscheduled users can see **Next workout**
 - exact curated template count/composition is deferred until the exercise database and substitution data are reviewed
@@ -61,8 +67,9 @@ Completed:
 - exercise/health research evidence hierarchy and counter-evidence rules defined
 - existing Fitness/Liftly design/code/data assets remain reuse candidates, not immutable product truth
 - product brief updated for recommendation/self-build model
-- decision log updated through `DEC-009`
+- decision log updated through `DEC-010`
 - optional body-data and medical-boundary policies documented
+- first-load calibration direction confirmed without demographic kg guessing
 
 Project OS v0.1 is **not frozen yet**. The operating model is now materially stronger, but several product/implementation decisions remain open.
 
@@ -76,14 +83,13 @@ These should be decided after the exercise database and substitution relationshi
 
 ## Next bootstrap decisions
 
-1. decide whether sex/gender is needed in onboarding or should be deferred, especially for initial load guidance
-2. define the recommendation result flow and optional post-recommend scheduling step
-3. define core workout execution UX in detail
-4. account/privacy/data architecture
-5. monetization stance for the first release
-6. platform and technical stack
-7. finalize minimum design tokens/components after core IA is stable
-8. cross-document QA before Project OS v0.1 freeze
+1. define the recommendation result flow and optional post-recommend scheduling step
+2. define core workout execution UX in detail, including no-history states and first-use coach marks
+3. account/privacy/data architecture
+4. monetization stance for the first release
+5. platform and technical stack
+6. finalize minimum design tokens/components after core IA is stable
+7. cross-document QA before Project OS v0.1 freeze
 
 ## Canonical source
 
@@ -99,9 +105,9 @@ Implementation should not begin as if the product were fully specified until the
 
 ## Next action
 
-Decide whether the product needs sex/gender in the initial recommendation flow. Do not add it only because average strength differs between populations; evaluate whether it materially improves first-session load guidance compared with exercise-specific calibration and prior-performance data.
+Define what the **recommended-routine result screen** must communicate after the three-question onboarding, and decide whether optional weekday scheduling appears on that result screen or immediately after it.
 
-After that, define where the optional weekday scheduling step belongs and what the recommendation-result screen must communicate before moving into Figma low-fi/storyboard work.
+After that, move into detailed workout-execution UX, including the first-load coach-mark flow, no-history state, set-entry interaction, rest timer, and prior-performance behavior.
 
 Do not design the final template matrix yet. That work is intentionally deferred until the exercise database is ready.
 
