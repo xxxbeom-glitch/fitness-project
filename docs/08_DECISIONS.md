@@ -509,3 +509,59 @@ The user—not the app lifecycle—determines whether a workout is finished. Mob
 - attempting to start another workout while one is still active must first resolve the existing session: continue it, finish it, or deliberately discard it
 - normal elapsed-time presentation must not be used as evidence that the workout has ended; session status is authoritative
 - cross-device takeover is not required by this Decision and remains outside the MVP unless separately promoted
+
+---
+
+## DEC-019 — One Fitness account may link multiple authentication providers
+
+**Date:** 2026-08-28
+**Status:** CONFIRMED
+
+### Decision
+A single internal Fitness account may link multiple supported authentication providers.
+
+Profile/Settings exposes authentication-provider management with states such as **연결됨 / 연결하기**.
+
+Linking a provider requires successful authentication with that provider. Matching email addresses alone must not silently merge accounts.
+
+If the provider identity is already linked to another Fitness account, MVP blocks the link instead of merging the two accounts or combining workout histories. Duplicate-account history merge/recovery is deferred until real demand justifies the complexity.
+
+### Why
+The internal Fitness account—not an email string or one external provider—must remain the stable owner of workout history. Automatic email-based merging can incorrectly combine identities, while full account-history merge adds substantial conflict and recovery complexity for MVP.
+
+### Product impact
+- users may add another supported sign-in method to the same Fitness account
+- provider linking is explicit and authenticated
+- duplicate-account history merge is not an MVP requirement
+- account/provider state belongs in Account management
+
+---
+
+## DEC-020 — Account deletion removes all account-associated user data
+
+**Date:** 2026-08-28
+**Status:** CONFIRMED
+
+### Decision
+The product provides an in-app account-deletion entry point under **Settings → Account management → Delete account**.
+
+Deleting a Fitness account deletes all normal user data associated with that account, including:
+
+- workout history
+- routines
+- custom exercises
+- profile and optional body data
+- synchronized account data
+
+The product must not retain normal workout/profile data attached to the deleted account for future restoration.
+
+Exact deletion timing, re-authentication, legally required retention exceptions, external authentication-provider unlinking, and backend cleanup mechanics are separate policy/implementation decisions and remain TBD.
+
+### Why
+Workout and profile records are user-owned product data. Keeping those records after the user deletes the account creates unnecessary privacy, ownership, recovery, and support complexity unless retention is legally required.
+
+### Product impact
+- account deletion is destructive for account-associated product data
+- confirmation UX must clearly communicate that workout history and routines are included
+- local/cloud cleanup and provider unlinking need an implementation specification before release
+- legally required retention, if any, must be treated as a narrow documented exception rather than ordinary recoverable account storage
