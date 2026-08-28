@@ -4,9 +4,11 @@
 
 ## Current mode
 
-`BOOTSTRAP MODE — TONAL PHASE-A FIGMA F5 EXAMPLES READY`
+`BOOTSTRAP MODE — TONAL PHASE-A RECONSTRUCTION COMPLETE · FITNESS SCREEN CUSTOMIZATION READY`
 
-The Tonal Phase-A reconstruction baseline has passed F1–F4 independent QA. The next work is F5 representative Examples. Broad Fitness screen customization remains gated until F5 Examples and representative QA pass.
+The Tonal Phase-A reconstruction baseline has passed F1–F5 independent QA. The gate blocking broad Fitness-specific visual design is cleared.
+
+The next work is to create `10_FITNESS_SCREENS` and switch from **RECONSTRUCT** to **CUSTOMIZE** while preserving the passing system baseline.
 
 ## Product authority
 
@@ -31,7 +33,7 @@ Core product constraints remain unchanged:
 
 ## Visual-system authority
 
-- **Tonal = Phase-A visual-system reconstruction/replication baseline**
+- **Tonal = passing Phase-A visual-system baseline**
 - **Hevy = practical weight-training functionality / repeated interaction reference**
 - **Fitness GitHub Product/Policy/Decision docs = behavior and scope authority**
 
@@ -41,6 +43,11 @@ Canonical implementation / execution references:
 - `docs/17_FIGMA_AGENT_EXECUTION_QA.md`
 - `docs/21_TONAL_PRODUCT_PATTERNS_AUDIT.md`
 - `docs/22_TONAL_PREFIGMA_CONSOLIDATION_QA.md`
+
+Latest QA:
+- `docs/27_FIGMA_PHASE_F4_PRODUCT_PATTERNS_QA.md`
+- `docs/28_FIGMA_F4_SPACING_QA.md`
+- `docs/29_FIGMA_PHASE_F5_EXAMPLES_QA.md`
 
 Methodology / work-history checkpoint:
 - `docs/26_MOBBIN_FIGMA_RECONSTRUCTION_RETROSPECTIVE_DRAFT.md` — LIVING DRAFT
@@ -54,86 +61,97 @@ Current pages:
 - `01_FOUNDATIONS`
 - `02_COMPONENTS`
 - `03_PATTERNS`
+- `Examples`
 
 Not started:
-- `Examples`
 - `10_FITNESS_SCREENS`
 
 ## Completed phases
 
 ### F1 Foundations
+**PASS**
+
 Independent QA:
 - `docs/23_FIGMA_PHASE_F1_FOUNDATION_QA.md`
 
-**F1 RESULT: PASS**
-
 ### F2 Core Components
+**PASS**
+
 Independent QA:
 - `docs/24_FIGMA_PHASE_F2_COMPONENT_QA.md`
 
-**F2 RESULT: PASS**
+F5 integration QA found and corrected selected ChoiceCard indicator contrast on dark selected surfaces. Selected Single/Multi indicators now use inverse ink. Focused F2 regression remains PASS.
 
 ### F3 Navigation / Rows / Overlays
+**PASS**
+
 Independent QA:
 - `docs/25_FIGMA_PHASE_F3_PATTERN_QA.md`
 
-**F3 RESULT: PASS**
-
-F4 remediation corrected the contextual Overlay ink treatment while preserving the F3 TopBar geometry/API. F3 regression revalidation remains PASS.
+Later integration QA corrected Overlay TopBar inverse ink and restored Row/Settings parent component-property references for Destructive / Disabled variants. Focused F3 regression remains PASS.
 
 ### F4 Product Patterns
+**PASS**
+
 Independent QA:
 - `docs/27_FIGMA_PHASE_F4_PRODUCT_PATTERNS_QA.md`
+- `docs/28_FIGMA_F4_SPACING_QA.md`
 
-**F4 RESULT: PASS — READY FOR F5 EXAMPLES**
+Final F4 signals include:
+- top-level overlap = 0
+- unstyled text = 0
+- canonical spacing drift = 0
+- canonical spacing without Variable binding = 0
+- semantic color binding = PASS
+- representative 320 / 360 / 430 responsive QA = PASS
+- program/history direct Tonal visual comparison = PASS for Phase-A baseline
 
-Final verified F4 signals:
-- F4 top-level overlap = 0
-- unstyled F4 text = 0
-- suspicious text collapse = 0
-- avoidable raw canonical spacing = 0
-- semantic/chart/text color binding audit = PASS
-- component-set containment = PASS
-- Overlay TopBar legible over Hero/media with inverse ink
-- MediaCarousel heading aligned to 24pt page line while viewport remains full-width
-- History uses three actual Tab instances: Week / Month / Year
-- History DateRange no longer clips
-- History chart has representative sparse axis/grid + positive data marks
-- ExerciseSetTable column headers no longer clip
-- Program/DetailComposition includes supporting metadata, workout rail, related rail, and meaningful START action
-- Dashboard / Exercise representative copy cleaned
-- transient 320 / 360 / 430 width QA: non-intentional overflow = 0 on key F4 patterns
-- direct Tonal program-detail and history/statistics comparison = PASS for F4 Phase-A baseline
+### F5 Representative Examples
+**PASS — PHASE-A COMPLETE**
+
+Independent QA:
+- `docs/29_FIGMA_PHASE_F5_EXAMPLES_QA.md`
+
+Examples page includes:
+1. Onboarding / Choice Question
+2. Dashboard / Home
+3. Program / Hero Detail
+4. Workout / Movement Block
+5. Exercise Detail / Media
+6. Exercise Detail / No Media
+7. History / Chart + Table
+8. Settings / List Section
+
+F5 final QA:
+- QA-1 Structure / Auto Layout = PASS
+- QA-2 Binding / Reuse / API = PASS
+- QA-3 Visual / Reference / Product = PASS
+- example overlap = 0
+- unstyled text = 0
+- local non-scale spacing = 0
+- canonical spacing without Variable binding = 0
+- 8 examples x 320 / 360 / 430 responsive checks = PASS
+- no F5-local duplicate of existing reusable components
 
 ## Current next action
 
-Proceed to **F5 Examples**.
+Start **`10_FITNESS_SCREENS`**.
 
-F5 goal:
-- create a small representative example page/compositions from the passing F1–F4 system
-- prove that primitives + patterns combine into coherent real-screen examples
-- use the current Tonal reconstruction visual relationships, without importing Tonal product semantics into Fitness policy
-- run independent representative QA before broad Fitness customization
+This is the first broad Fitness-specific visual customization phase.
 
-Suggested representative example set should cover the highest-risk system relationships rather than every screen:
-1. Dashboard example
-2. Program detail example
-3. Exercise detail example with media
-4. Exercise detail example without media
-5. History/statistics example
-6. Workout block/list example
+Execution rule:
+1. read approved Fitness Product / Policy / Screen Decisions for each screen family
+2. use the passing Phase-A system as the visual baseline
+3. use Hevy where repeated weight-training interaction/functionality is the better reference
+4. customize product semantics for Fitness rather than copying Tonal behavior
+5. reuse existing foundations/components/patterns before creating new assets
+6. run structure QA + spacing-rhythm QA + binding/reuse QA + responsive QA + visual/product QA on each representative screen batch
 
-F5 should reuse existing components/patterns rather than redraw local duplicates.
+Do not treat the current Examples page as final Fitness product screens; it is the validated composition baseline.
 
-## Gate
+## Phase sequence
 
-**F5 Examples may now begin.**
-
-Do **not** start `10_FITNESS_SCREENS` until F5 Examples and representative QA pass.
-
-Phase sequence:
-
-`F1 PASS -> F2 PASS -> F3 PASS -> F4 PASS -> F5 Examples -> Representative QA -> 10_FITNESS_SCREENS`
+`F1 PASS -> F2 PASS -> F3 PASS -> F4 PASS -> F5 PASS -> 10_FITNESS_SCREENS READY`
 
 ## Canonical source rule
 
