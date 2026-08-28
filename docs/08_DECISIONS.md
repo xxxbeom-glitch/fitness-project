@@ -413,3 +413,51 @@ The recommendation flow is intentionally short. Requiring or prompting weekday a
 - an unscheduled recommended routine appears on Home as **`다음 운동`** and advances in program sequence
 - a user who later assigns weekdays may see **`오늘의 운동`** when a scheduled session applies
 - routine acceptance must not be blocked by calendar/schedule setup
+
+---
+
+## DEC-015 — Account login is required; supported providers are Google, Kakao, and Apple on iOS
+
+**Date:** 2026-08-28
+**Status:** CONFIRMED
+
+### Decision
+The MVP requires account authentication before normal product use. Guest mode is not part of the initial scope.
+
+Supported login providers:
+- Android: **Google / Kakao**
+- iOS: **Google / Kakao / Apple**
+
+Android and iOS are planned in parallel rather than treating iOS as a later port.
+
+### Why
+The product is intended to preserve workout history across reinstalls and devices, and cloud-backed identity provides a stable account boundary for synchronization and future paid/data features.
+
+### Product impact
+- first-run IA includes authentication before the recommendation/self-build entry split
+- account identity must be platform-independent internally even when the external login provider differs
+- authentication failures must not corrupt or partially create workout data
+- future account-linking/provider-linking behavior should avoid duplicate user identities
+
+---
+
+## DEC-016 — Workout records use offline-first local persistence with automatic cloud synchronization
+
+**Date:** 2026-08-28
+**Status:** CONFIRMED
+
+### Decision
+Workout recording must not depend on a live network connection.
+
+Core workout/session changes are written to durable local storage first. When connectivity is available, the app automatically synchronizes the user's data to the cloud account.
+
+### Why
+Gyms can have weak or intermittent connectivity, and workout-record loss is a trust-breaking failure. A network request must not sit on the critical path for completing a set or preserving an active session.
+
+### Product impact
+- set completion, kg/reps edits, session progress, and workout completion must remain usable offline
+- active-session recovery must use durable local state, not only server state
+- synchronization retries automatically after connectivity returns
+- UI may expose a lightweight sync/problem state when needed, but normal logging should not require manual sync
+- data architecture must include stable record identifiers and enough sync metadata to avoid duplicate writes and support deterministic conflict handling
+- exact multi-device conflict policy is a separate product/technical decision
