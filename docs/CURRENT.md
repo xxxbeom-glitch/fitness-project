@@ -1,12 +1,12 @@
 # CURRENT — Fitness Project
 
-**Updated:** 2026-08-28
+**Updated:** 2026-08-29
 
 ## Current mode
 
-`BOOTSTRAP MODE — TONAL PHASE-A FIGMA F3 ONE TOPBAR BLOCKER REMAINS`
+`BOOTSTRAP MODE — TONAL PHASE-A FIGMA F3 PASS / F4 PRODUCT PATTERNS READY`
 
-The current work is the Tonal reconstruction baseline. Broad Fitness screen visual customization remains gated until the staged Figma design-system build passes QA.
+The current work is the Tonal reconstruction baseline. Broad Fitness screen visual customization remains gated until the staged Figma design-system build passes representative QA.
 
 ## Product authority
 
@@ -50,7 +50,7 @@ Pre-Figma consolidation gate:
 Methodology / work-history checkpoint:
 - `docs/26_MOBBIN_FIGMA_RECONSTRUCTION_RETROSPECTIVE_DRAFT.md` — **LIVING DRAFT**
 - captures the current Mobbin -> reconstruction -> Figma -> independent-QA method, repeated Figma-Agent failure modes, measurable QA ideas, and prompt-design lessons
-- this is not a canonical implementation spec and must be updated again after F3 / Examples / representative QA
+- remains a draft until Examples / representative QA finish
 
 ## Current Figma file
 
@@ -80,98 +80,86 @@ Independent QA:
 
 **F2 RESULT: PASS**
 
-## Phase F3 — current result
+## Phase F3
 
 Independent QA:
 - `docs/25_FIGMA_PHASE_F3_PATTERN_QA.md`
 
-**F3 RESULT: FAIL — ONE TOPBAR STRUCTURAL BLOCKER REMAINS**
+**F3 RESULT: PASS — READY FOR F4 PRODUCT PATTERNS**
 
-### Latest cleanup now verified PASS
-
-- all expected F3 families remain present
+Final verified F3 state:
+- all expected F3 families present
 - top-level overlap = 0
+- TopBar parent variants = 6
+- TopBar Leading / Trailing parent-controllable INSTANCE_SWAP properties
+- Center TopBar Leading left anchored and Trailing right anchored
+- Center title remains at true center X=195 on 390 baseline
+- Trailing Text/Icon = 44 x 44
+- Trailing Multiple = 88 x 44 and right anchored
+- nested Leading / Trailing internal overlap = 0
 - BottomBar Active 1–5 API
 - Tab Active/Inactive outer height = 50
-- Settings Tone API
-- Settings nested Toggle = 52 x 32
+- Settings Tone API and nested Toggle = 52 x 32
 - Movement Leading / Trailing / Meta APIs
+- Settings / Movement component-set bounds contain all variants
 - BlockHeader = 342 x 54
 - Dialog Body / Secondary / Tone APIs
+- all 12 Dialog Scrims = 390 x 844
 - Dialog actions = 54pt
-- Sheet overlay = 390 x 844 and bottom aligned
-- Sheet actions = 54pt
-- raw canonical spacing = 0
-- unstyled F3 text = 0
-- text-collapse failures = 0
-- TopBar parent variants remain reduced at 6
-- TopBar Leading and Trailing are parent-controllable INSTANCE_SWAP properties
-- Leading single wrapper = 44 x 44
-- Trailing Text/Icon wrapper = 44 x 44
-- Trailing Multiple = 88 x 44
-- nested Leading internal overlap = 0
-- nested Trailing internal overlap = 0
-- Row/Settings set bounds = 1066 x 455 and contain all variants
-- Row/Movement set bounds = 1066 x 687 and contain all variants
-- all 12 Dialog Scrims = 390 x 844 at x=0/y=0
 - Sheet Scrim = 390 x 844
+- Sheet actions = 54pt
+- avoidable raw canonical spacing = 0
+- unstyled F3 text = 0
+- suspicious text collapse = 0
 - no later Phase page created
 
-### Remaining F3 blocker
-
-**`Navigation/TopBar` Center-mode side-action anchoring**
-
-The centered title itself is now correct:
-- TitleRegion is independent/absolute in Center mode
-- title center X = 195 on the 390 baseline
-
-But current Center variants place:
-- Leading x = 4
-- Trailing x = 48
-
-So the trailing action is packed directly after the leading action on the left instead of being pinned to the right edge.
-
-Contextual variants correctly place the trailing action at x = 342, proving this defect is specific to Center mode.
-
-Required fix:
-- keep Title center X = 195
-- keep Leading left-anchored
-- make Trailing right-anchored
-- preserve the 44pt interaction wrappers and current INSTANCE_SWAP API
-- verify Multiple (88 x 44) remains right-anchored
-
-F3 QA-1 Structure: **FAIL**
+F3 QA-1 Structure: **PASS**
 
 F3 QA-2 Design-system / Binding / API: **PASS**
 
-F3 visual sanity: **PARTIAL PASS**
+F3 visual sanity: **PASS FOR F3 SCOPE**
 
-## Current next action
+## Current next action — Phase F4
 
-Remain in **Phase F3** for a TopBar-only remediation.
+Build the higher-order Tonal product patterns on the existing `03_PATTERNS` page from passing F1/F2/F3 assets.
 
-After remediation verify Center mode with:
-- Back + Text
-- Back + Multiple
-- None + Text
-- None + Multiple
+Canonical F4 evidence/spec inputs:
+- `docs/15_TONAL_DESIGN_SYSTEM_SPEC.md`
+- `docs/16_FIGMA_TONAL_BUILD_INSTRUCTIONS.md`
+- `docs/17_FIGMA_AGENT_EXECUTION_QA.md`
+- `docs/21_TONAL_PRODUCT_PATTERNS_AUDIT.md`
+- `docs/25_FIGMA_PHASE_F3_PATTERN_QA.md`
 
-Required for every combination:
-- title center X = 195
-- Leading anchored left when present
-- Trailing anchored right when present
-- no action/title overlap
-- minimum interaction geometry preserved
+F4 must reuse current Variables, Text Styles, F2 components, and F3 patterns rather than rebuilding local duplicates.
 
-Then rerun F3 regression QA and STOP for independent review.
+F4 should cover the higher-order product-pattern baseline needed before representative Examples, including:
+- dashboard metric/module compositions
+- metric value + unit composition
+- stats/value list patterns
+- media card / carousel patterns
+- program/workout hero and detail structure
+- workout block-list composition
+- exercise detail with MediaPresent / NoMedia states
+- metric/chart history structure
+- exercise set-history table structure
+
+Active workout behavior remains Fitness/Hevy-led functionally; do not copy Tonal hardware/video behavior as product behavior.
+
+After F4:
+- run QA-1 Structure / responsive behavior
+- run QA-2 reuse / binding / API
+- run visual sanity against Tonal evidence
+- STOP for independent QA
 
 ## Gate
 
-Do **not** start `Examples` or `10_FITNESS_SCREENS` while F3 QA is failing.
+Do not create `Examples` until F4 product-pattern QA passes.
 
-Later sequence remains:
+Do not start broad `10_FITNESS_SCREENS` customization until representative Examples pass full QA-1 / QA-2 / QA-3.
 
-`01_FOUNDATIONS PASS -> 02_COMPONENTS PASS -> 03_PATTERNS PASS -> Examples -> representative QA -> 10_FITNESS_SCREENS`
+Phase sequence:
+
+`F1 Foundations PASS -> F2 Core Components PASS -> F3 Navigation/Rows/Overlays PASS -> F4 Product Patterns -> F5 Examples -> Representative QA -> 10_FITNESS_SCREENS`
 
 ## Canonical source rule
 
