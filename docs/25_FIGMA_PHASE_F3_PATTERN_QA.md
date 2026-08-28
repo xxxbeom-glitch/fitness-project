@@ -1,11 +1,11 @@
 # 25 FIGMA PHASE F3 PATTERN QA
 
-**Status:** FAIL — REMEDIATION REQUIRED BEFORE NEXT PHASE  
+**Status:** FAIL — SECOND REMEDIATION REQUIRED BEFORE NEXT PHASE  
 **Updated:** 2026-08-28
 
 ## Scope
 
-Independent QA of Phase F3 in Figma file `tracker-app3` (`tBpQfpAR1apJngF8a7qyH9`) after the Figma Agent reported `03_PATTERNS` complete.
+Independent QA of Phase F3 in Figma file `tracker-app3` (`tBpQfpAR1apJngF8a7qyH9`) after the Figma Agent completed the first F3 remediation pass.
 
 Canonical references:
 - `docs/15_TONAL_DESIGN_SYSTEM_SPEC.md`
@@ -13,7 +13,7 @@ Canonical references:
 - `docs/17_FIGMA_AGENT_EXECUTION_QA.md`
 - `docs/24_FIGMA_PHASE_F2_COMPONENT_QA.md`
 
-F3 is not complete until QA-1 Structure and QA-2 Design-system / Binding both pass.
+F3 remains gated until QA-1 Structure and QA-2 Design-system / Binding both pass.
 
 ---
 
@@ -24,13 +24,13 @@ Pages:
 - `02_COMPONENTS`
 - `03_PATTERNS`
 
-Later-phase pages are not present:
+Later-phase pages are still absent:
 - no `Examples`
 - no `10_FITNESS_SCREENS`
 
-STOP discipline therefore remains respected.
+STOP discipline remains respected.
 
-All expected F3 top-level families exist:
+All expected F3 families exist:
 - `Navigation/TopBar`
 - `Navigation/BottomBar`
 - `Tab/Underline`
@@ -43,222 +43,185 @@ All expected F3 top-level families exist:
 
 Missing canonical F3 families: **0**.
 
-General positives:
-- all 44 F3 text layers use Text Styles
-- character-by-character / near-zero-width text collapse: 0
-- F2 nested reuse exists in rows/dialog/sheet
-- descriptions are present on major F3 families
-- overall visual language remains neutral, low-radius, flat, and Tonal-aligned at a coarse level
+---
+
+## First-remediation items now verified PASS
+
+### 1. Top-level organization
+- top-level overlap count = **0**
+- previous `Tab/Underline` ↔ `Row/Settings` overlap is fixed
+
+### 2. `Navigation/BottomBar`
+- now a component set with `Active = 1 | 2 | 3 | 4 | 5`
+- 5 equal items remain intact
+- selected item uses inverse/high-contrast semantic color
+- inactive items use muted semantic color
+
+### 3. `Tab/Underline`
+- Active / Inactive variants now share the same outer height
+- all four variants are height **50**
+- layout jump is removed
+
+### 4. `Row/Settings`
+- `Tone = Default | Destructive | Disabled` now exists
+- nested `Control/Toggle` instances are restored to **52 x 32** in all tone variants
+
+### 5. `Row/Movement`
+- controlled `Trailing = Chevron | Drag | None` now exists
+- controlled `Meta = SingleLine | MultiLine` now exists
+
+### 6. `Workout/BlockHeader`
+- representative base geometry is now **342 x 54**
+- black surface, text hierarchy, meta, and overflow structure remain intact
+
+### 7. `Dialog/Center`
+- now a component set with:
+  - `Body = None | Text | CustomSlot`
+  - `Secondary = None | TextAction`
+  - `Tone = Default | DestructiveConfirmation`
+- each overlay variant uses the 390 x 844 reference viewport
+- dialog surface is 342 wide and centered
+- nested F2 actions are restored to **54pt** height
+- no collapsed 16/18pt action instances remain
+
+### 8. `Sheet/Action`
+- now uses a 390 x 844 overlay reference
+- sheet surface is bottom aligned
+- primary, destructive, and neutral nested F2 actions are all **54pt** high
+
+### 9. Spacing / typography sanity
+- avoidable raw canonical spacing = **0**
+- unstyled F3 text = **0**
+- suspicious near-zero-width / character-by-character text collapse = **0**
 
 ---
 
-## Blocking issue 1 — top-level overlap
+## Remaining blocking issue 1 — TopBar trailing text hit target is only 30 x 44
 
-Independent intersection check found:
-- `Tab/Underline` (`y=450`, height `280`)
-- `Row/Settings` (`y=700`, height `455`)
+The user-visible `Save` action looked too close to the right edge. Independent inspection shows the reason precisely:
 
-These overlap by about 30 pt vertically.
+For `Surface=Dark, Leading=Back, Trailing=Text, TitleMode=Center`:
+- component width = 390
+- outer left/right padding = **4**, correctly bound to `Space/4`
+- `TrailingSlot` = **30 x 44**, horizontal `HUG`
+- `Save` text width = 30
+- trailing slot starts at x=356 and ends at x=386
+- therefore the visible label ends only **4pt** from the right edge
 
-**QA-1 result:** FAIL.
+This means the parent padding is **not being ignored**. The current implementation is actually applying a 4pt outer edge inset.
+
+However, the canonical navigation contract requires leading/trailing interactive wrappers to remain at least **44 x 44**. The text trailing slot is only 30pt wide, so it fails the touch-target requirement and is visually too edge-close.
 
 Required remediation:
-- move top-level F3 families only; do not rebuild component internals
-- top-level overlap count must equal 0 after remediation
+- `Trailing=Text` must use a minimum/fixed **44 x 44** interaction wrapper
+- keep `TrailingLabel` content-driven inside the wrapper
+- do not make the text itself 44pt wide
+- preserve optical title behavior
+- do not automatically change the outer 4pt inset to 24pt; top-bar actions are not ordinary page content
+- treat the exact visual edge inset as still provisional and tune it later against representative Tonal reference screens if necessary
+
+Current verdict:
+- outer padding behavior: **working as implemented**
+- text-action touch wrapper: **FAIL**
+- exact 4pt edge inset: **not frozen as a final Tonal policy**
 
 ---
 
-## Blocking issue 2 — `Navigation/TopBar` API is incomplete
+## Remaining blocking issue 2 — TopBar variant explosion
 
-Canonical spec requires:
-- `Surface = Light | Dark | Overlay`
-- `Leading = Back | Close | None`
-- `Trailing = Text | IconSlot | Multiple | None`
-- `Title = Center | Contextual`
+`Navigation/TopBar` now contains **72 variants**:
 
-Current Figma API exposes:
-- `Surface = Light | Dark | Overlay`
-- `Leading = Boolean`
-- `Trailing = Boolean`
-- `Title = Text`
+`3 Surface x 3 Leading x 4 Trailing x 2 TitleMode = 72`
 
-The current component therefore cannot represent the canonical leading/trailing/title modes without local modification.
+The API is complete, but this violates the Figma execution rule to avoid theoretical Cartesian-product variant explosion when a smaller nested-property architecture can represent the same system.
 
-Positive:
-- 44x44 leading/trailing slots exist
-- title is centered in a dedicated region
-- visual 24x24 placeholders exist
+The result is a component set over 4,300pt tall and unnecessarily expensive for agents/designers to inspect and maintain.
 
 Required remediation:
-- convert leading/trailing/title-mode behavior into controlled variant/property structure matching the canonical spec
-- preserve 48pt height and 44pt action wrappers
-- do not use proprietary icons; placeholders remain valid
+- keep the same public semantic API
+- reduce the parent TopBar variant count substantially
+- recommended architecture:
+  - parent variants: `Surface` and `TitleMode` only, or similarly small stable axes
+  - nested reusable leading control: `Back | Close | None`
+  - nested reusable trailing control: `Text | IconSlot | Multiple | None`
+  - expose nested control/property choices through the parent where practical
+- preserve the existing 48pt bar, 44pt touch target, placeholders, and title behavior
+
+Do not reduce capability; reduce duplicated combinations.
 
 ---
 
-## Blocking issue 3 — `Navigation/BottomBar` has no controllable active state
+## Remaining blocking issue 3 — internal variants overlap inside Row component sets
 
-Current BottomBar:
-- 390x76
-- 5 equal items
-- dark surface
-- item labels exposed as text properties
-- Item 1 is visually active by default
+Top-level F3 families no longer overlap, but many variants **inside** two component sets are stacked on the same coordinates.
 
-However there is no `ActiveIndex` or equivalent controlled state/property. A screen using the component cannot switch the active item without local edits.
+Independent counts:
+- `Row/Settings`: 15 variants, **15 internal overlaps**
+- `Row/Movement`: 18 variants, **45 internal overlaps**
+
+Examples:
+- Settings Default / Destructive / Disabled variants for the same trailing mode occupy the same x/y position
+- Movement Trailing / Meta combinations for the same leading mode occupy the same x/y position
+
+The components can still function, but the library page is not inspectable and the component-set organization is not clean enough for the intended agent-readable design system.
 
 Required remediation:
-- add `Active = 1 | 2 | 3 | 4 | 5` or equivalent controlled variant/property structure
-- keep 5 equal FILL items and current visual icon placeholders
-- this remains a visual baseline and must not freeze final Fitness IA semantics
+- rearrange variants inside each component set into a non-overlapping grid or vertical sequence
+- do not change the variant API, visual geometry, bindings, or component internals
+- internal variant overlap count must become **0**
 
 ---
 
-## Blocking issue 4 — `Tab/Underline` state geometry is unstable
+## Remaining QA-2 issue 4 — Dialog/Sheet scrim is encoded as root fill, not a named Scrim layer
 
-Current variants:
-- Active / Equal = height 50
-- Active / Content = height 50
-- Inactive / Equal = height 40
-- Inactive / Content = height 40
+The remediation did add dimming visually:
+- Dialog overlay root uses 50% black fill
+- Sheet overlay root uses 50% black fill
 
-Switching Active ↔ Inactive therefore changes component height by 10 pt and can cause parent layout jump.
+So the visual scrim exists.
+
+However, the requested machine-readable anatomy was:
+
+`Overlay -> Scrim + DialogSurface`
+
+and
+
+`Overlay -> Scrim + SheetSurface`
+
+Current variants expose only `DialogSurface` / `SheetSurface` as child layers; the root component fill itself acts as the scrim.
+
+This is visually acceptable but weaker for agent readability and future overlay effects.
 
 Required remediation:
-- Active and Inactive states within the same layout mode must have the same outer height
-- reserve underline space in the inactive state instead of removing structural height
-- keep active underline 2–3 pt and inactive visually empty/transparent
+- prefer an explicit semantic child named `Scrim`
+- `Scrim` fills the viewport and carries the dim fill
+- `DialogSurface` / `SheetSurface` remain separate siblings
+- do not alter current surface size, radius, or nested action geometry
+
+This is a structural/machine-readability requirement, not a request for visual redesign.
 
 ---
 
-## Blocking issue 5 — `Row/Settings` API is incomplete and Toggle instance is distorted
+## Passed items that must not regress
 
-Canonical spec requires:
-- `Trailing = Chevron | Value | Toggle | External | None`
-- `Tone = Default | Destructive | Disabled`
-- `Helper = True | False`
-
-Current API has:
-- `Trailing` variants
-- `Helper` boolean
-- no `Tone` control
-
-Additionally, the nested F2 `Control/Toggle` instance is currently **32x32**, while its source component is **52x32**.
-
-The screenshot visually confirms this appears as a circular control rather than the intended switch.
-
-Required remediation:
-- add `Tone = Default | Destructive | Disabled`
-- preserve text/helper semantics per tone
-- restore nested Toggle instance to 52x32; do not redraw it locally
-- ensure row text remains FILL and trailing control does not shrink
-
----
-
-## Blocking issue 6 — `Row/Movement` API is incomplete
-
-Canonical spec requires:
-- `Leading = Thumbnail | Timer | Placeholder`
-- `Trailing = Chevron | Drag | None`
-- `Meta = SingleLine | MultiLine`
-
-Current API exposes:
-- `Leading = Thumbnail | Timer | Placeholder`
-- `Trailing = Boolean`
-- `Meta` is only a text property
-
-Required remediation:
-- add controlled trailing mode: `Chevron | Drag | None`
-- add controlled meta mode: `SingleLine | MultiLine`
-- preserve 48pt leading slot, 20–24pt trailing slot, FILL text column, and min-height behavior
-
----
-
-## Blocking issue 7 — `Workout/BlockHeader` is not full-width in its base geometry
-
-Canonical rule:
-- black full-width surface
-- width `FILL`
-- min/fixed height 54
-
-Current standalone component is only **175x54** and reports horizontal `HUG` behavior.
-
-Required remediation:
-- use a representative 342pt content-width base on the library page while keeping the component horizontally resizable/FILL when placed inside an Auto Layout parent
-- preserve current 54pt height, black surface, caps label, optional meta, and overflow slot
-
----
-
-## Blocking issue 8 — `Dialog/Center` canonical API and overlay anatomy are incomplete
-
-Canonical spec requires:
-- `Body = None | Text | CustomSlot`
-- `Secondary = None | TextAction`
-- `Tone = Default | DestructiveConfirmation`
-- dimmed scrim fills viewport
-- dialog max/reference width 342 on 390 baseline
-- vertical HUG
-
-Current component exposes only:
-- `Title` text
-- `Body` text
-- `SecondaryAction` boolean
-- no `Tone`
-- no body mode/custom slot
-- no scrim / viewport overlay structure
-
-Critical nested-instance sizing defect:
-- nested `Button/Primary/Compact` source = 192x54, current instance = **232x16**
-- nested `Button/Secondary/Outline` source = 192x54, current instance = **232x18**
-
-The screenshot confirms the dialog actions are visually collapsed into thin strips.
-
-Required remediation:
-- implement canonical Body / Secondary / Tone API or a direct equivalent
-- add viewport-fill scrim + centered dialog container structure
-- preserve nested F2 button intrinsic/min action height; do not shrink to text height
-- actions must remain actual nested F2 instances
-
----
-
-## Blocking issue 9 — `Sheet/Action` lacks scrim/overlay anatomy and collapses the primary button
-
-Canonical structure requires:
-- scrim
-- bottom-aligned sheet
-- width FILL
-- vertical HUG
-- top-only sheet radius
-- action stack
-
-Current component is only the sheet body; there is no viewport scrim/bottom-overlay structure.
-
-Nested primary action defect:
-- `Button/Primary/Content` source = 342x54
-- current nested instance = **350x16**
-
-Text actions remain 44pt, but the primary filled CTA is structurally collapsed.
-
-Required remediation:
-- add viewport-fill scrim + bottom-aligned sheet structure
-- restore primary nested button to 54pt action height
-- preserve F2 instances for destructive/cancel actions
-- do not redraw actions locally
-
----
-
-## QA-2 cleanup — raw canonical spacing remains
-
-Independent binding check found **16** avoidable raw canonical spacing properties:
-- TopBar left/right padding: 4 (6 occurrences across 3 surface variants)
-- BottomBar top/bottom padding: 8 (2 occurrences)
-- Tab top/bottom padding: 12 (8 occurrences across 4 variants)
-
-Corresponding `Space/4`, `Space/8`, and `Space/12` variables already exist.
-
-Required remediation:
-- bind those properties to the existing Foundation variables where Figma supports it
-- do not create duplicate Space variables
+- F1 PASS assets unchanged
+- F2 PASS assets unchanged
+- missing F3 families = 0
+- top-level overlap = 0
+- BottomBar Active 1–5 API
+- Tab equal state heights = 50
+- Settings `Tone` API
+- Settings nested Toggle = 52 x 32
+- Movement controlled trailing/meta modes
+- BlockHeader = 342 x 54
+- Dialog 12 canonical variants
+- Dialog nested actions = 54pt
+- Sheet bottom alignment
+- Sheet nested actions = 54pt
+- raw canonical spacing = 0
+- unstyled text = 0
+- text collapse = 0
+- no later-phase pages
 
 ---
 
@@ -267,45 +230,35 @@ Required remediation:
 ### QA-1 — Structure / Auto Layout
 **FAIL**
 
-Blocking reasons:
-- one top-level overlap
-- Tab state-height jump
-- Toggle nested instance shrunk to 32x32
-- Dialog nested action instances collapsed to 16/18pt heights
-- Sheet primary action collapsed to 16pt height
-- Dialog/Sheet overlay/scrim anatomy absent
-- Workout block header base geometry not representative of full-width behavior
-- several canonical mode/property structures missing
+Remaining blockers:
+- TopBar `Trailing=Text` wrapper is 30 x 44 instead of minimum 44 x 44
+- `Row/Settings` internal variant overlap = 15
+- `Row/Movement` internal variant overlap = 45
 
 ### QA-2 — Design-system / Binding
 **FAIL**
 
-Blocking reasons:
-- TopBar / BottomBar / Settings Row / Movement Row / Dialog APIs do not encode canonical controllable states
-- 16 raw canonical spacing properties remain despite existing variables
-- nested F2 instances are reused but several are manually distorted away from their source geometry
+Remaining blockers:
+- TopBar 72-variant Cartesian explosion conflicts with the no-variant-explosion rule
+- Dialog/Sheet scrim is visually present but not represented as an explicit semantic `Scrim` child layer
 
 ### Visual sanity
-**PARTIAL PASS**
+**PASS WITH ONE PROVISIONAL EDGE-INSET NOTE**
 
-The coarse Tonal reconstruction language is visible, but the collapsed nested controls and incomplete component APIs are not acceptable for a reusable system.
+The coarse Tonal reconstruction language is now coherent. The top-bar text action appears too close to the edge mainly because its wrapper hugs the 30pt label; fix the hit wrapper before judging the final visual inset.
 
 ### F3 status
 **NOT READY FOR NEXT PHASE**
-
-Do not start `Examples`, broader product patterns, or Fitness screens until remediation passes independent QA.
 
 ---
 
 ## Required next action
 
-Remain in F3 and remediate only the issues recorded above. Preserve all F1/F2 PASS assets and the F3 work that already conforms.
-
-After remediation:
-1. rerun F3 QA-1
-2. rerun F3 QA-2
-3. verify nested F2 instance geometry
-4. verify controlled variant/property APIs
-5. verify top-level overlap = 0
-6. verify raw canonical spacing = 0 where binding is supported
-7. STOP and request independent QA before moving on
+Remain in F3 for one focused cleanup pass:
+1. give TopBar text trailing actions a minimum 44 x 44 wrapper
+2. refactor the 72-variant TopBar architecture to avoid Cartesian variant explosion while preserving the same semantic API
+3. arrange `Row/Settings` and `Row/Movement` variants without internal overlap
+4. add explicit semantic `Scrim` child layers to Dialog and Sheet overlays
+5. rerun QA-1 / QA-2
+6. verify no regressions in all previously passed F3 remediation items
+7. STOP before `Examples` or Fitness screens
