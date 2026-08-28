@@ -4,199 +4,160 @@
 
 ## Current mode
 
-`BOOTSTRAP MODE`
+`BOOTSTRAP MODE — TONAL PHASE-A FIGMA BUILD READY`
 
-The repository operating structure is initialized. Product discovery is being converted into explicit product decisions before implementation begins.
+The product/policy baseline is sufficiently settled to proceed with design-system construction. The current work is **not broad Fitness screen production**; it is the Tonal reconstruction baseline that will be used before Fitness-specific customization.
 
-## Current product state
+## Product state — confirmed
 
-Confirmed:
+Canonical product decisions are maintained in `docs/08_DECISIONS.md` through `DEC-021`.
+
+Current product direction includes:
 - general-purpose weight-training tracker
-- primary first-run split: **recommended routine / build my own routine**
-- users are segmented more by desired guidance/control than by beginner vs experienced labels alone
-- recommendation uses **curated program-template matching**, not LLM-generated routines
-- one primary recommended routine is shown by default
-- initial recommendation onboarding is intentionally short: **goal + weekly training availability + workout duration**
-- goal question copy is fixed as **`운동 목표가 무엇인가요?`**
-- goal choices are fixed as **체지방 감량 / 근육량 증가 / 체력 향상**
-- weekly-availability question copy is fixed as **`일주일에 며칠 운동할 수 있나요?`**
-- weekly-availability choices are fixed as **1일 / 2일 / 3일 / 4일 / 5일 / 6일 / 7일**
-- selected availability does not require prescribing resistance training on every available day
-- workout-duration choices are fixed as **30 / 45 / 60 minutes**; no `75+` option in the initial recommendation flow
-- initial recommended-routine experience is **gym-first**; no separate home-workout recommendation branch in the first scope
-- training experience, equipment inventory, weekday assignment, height/body weight, and sex/gender are not required to receive the first recommendation
-- accepting a recommended routine goes directly to Home; no post-recommend weekday-scheduling step is inserted
-- weekday scheduling remains optional and can be configured later
-- scheduled users can see **Today's workout**; unscheduled users can see **Next workout**
-- first release requires account sign-in; guest mode is not in the initial scope
-- Android sign-in providers: **Google / Kakao**
-- iOS sign-in providers: **Google / Kakao / Apple**
-- first-entry authentication uses unified provider `계속하기` actions rather than separate `회원가입` and `로그인` paths; successful provider auth signs into an existing linked Fitness account or creates a new internal Fitness account for first-time users
-- Android and iOS are intended to proceed in parallel rather than treating iOS as a later port
-- application stack is **React Native + Expo + TypeScript**, developed from **Windows PC + Cursor**
-- Android and iOS share one primary codebase wherever practical
-- Android runtime/device QA is performed continuously during implementation
-- iOS-compatible code/configuration is maintained from the beginning, but iOS runtime/device QA remains **not complete** until an iPhone test device is available
-- once an iPhone is acquired, release-critical iOS flows must receive real-device QA before iOS release
-- a single internal Fitness account may link multiple supported sign-in providers
-- Profile/Settings includes account/authentication management with provider states such as **연결됨 / 연결하기**
-- provider linking requires real provider authentication; matching email alone must not silently merge accounts
-- if a provider is already attached to another Fitness account, MVP blocks the link rather than merging histories; duplicate-account history merge is deferred
-- workout recording is **offline-first**: every meaningful workout/session change is durably saved locally first
-- core workout logging must remain usable without a live network connection
-- server sync is **change-driven only**; no unsynchronized changes means no upload request
-- ordinary edits use a **3-second debounce** before synchronization so rapid edits can be coalesced
-- set completion, workout completion, app backgrounding, and network reconnection trigger an immediate sync attempt
-- failed/offline sync changes remain durably queued and retry automatically when connectivity returns
-- during an in-progress workout, the current active device's local state is authoritative for the latest unsynchronized changes
-- after successful synchronization, the cloud account record is the long-term canonical record for completed workouts, routines, custom exercises, profile data, and optional body data; local storage remains the offline working copy/replica
-- an active workout remains **in progress until the user explicitly finishes or discards it**
-- app close, force-kill, phone lock, network loss, or device reboot must not end the workout
-- reopening the app on the same device must recover the active session and preserve recorded session progress
-- routines and completed history may synchronize across multiple signed-in devices
-- an in-progress workout has **one active editing device at a time**; a second phone/tablet must not concurrently edit the same live session
-- future Watch support may be a paired companion exception while preserving one logical active-session authority
-- cross-device takeover/transfer is not required for MVP unless separately promoted
-- in-app account deletion is required under Settings → Account management → Delete account
-- deleting an account deletes all normal user data associated with that account, including workout history, routines, custom exercises, profile/body data, and synchronized account data
-- there is **no recovery/grace period** after final account-deletion confirmation; the deletion is irreversible from the user's perspective
-- account deletion does **not** require provider re-authentication immediately before deletion; a clear destructive final confirmation remains required
-- deleting an account also unlinks/revokes all linked Google, Kakao, and Apple authentication providers where applicable
-- the only account-deletion retention exception is data that must be kept by law for a defined period; only the minimum required data is retained, separated from ordinary product data, used only for that legal purpose, and deleted when the legal retention period ends
-- legally retained data must not be used to restore the deleted Fitness account or normal workout/profile history
-- exact backend deletion completion timing and cleanup mechanics remain implementation details to define before release
-- monetization/pricing/subscription structure is **intentionally not fixed during the current Bootstrap pass**; it will be revisited later as the implemented product and real user value become clearer
-- sex/gender is not used to assign a fixed first working weight
-- first working weight is calibrated from actual performance when prior history is absent
-- first-load guidance uses a short, skippable **in-workout coach-mark state**, not a standalone tutorial route
-- exercises with no history show an explicit no-history state and do not receive a guessed fixed working weight
-- `8–12 reps` is the default first-calibration range only when a program does not define another target rep range
-- after the first set, the user can classify the load as **가벼웠어요 / 적당했어요 / 무거웠어요** in a compact in-workout sheet and adjust the next set accordingly
-- later sessions prioritize actual prior kg/reps over population-based estimates
-- exact curated template count/composition is deferred until the exercise database and substitution data are reviewed
-- the template library may later contain multiple overlapping/similar variants; it does not need to be artificially small
-- Home direction is action-first with large cards rather than a dense analytics dashboard; summary metrics must be directly interpretable
-- recommended exercises should prioritize common, understandable, accessible gym movements
-- unavailable equipment should be handled with simple exercise substitutions
-- beginner onboarding should not require split-training theory or detailed equipment knowledge
-- medical diagnosis and condition-specific exercise safety judgments are outside product scope
-- exercise detail is **text-first and media-optional**; no fixed empty 3D/video area is required
-- exercise detail may show recent personal performance and one prioritized reviewed guide video when available
-- self-built routines expose per-exercise **set count + target rep range** instead of silently inventing rep targets after save
-- custom exercises are MVP-critical and minimally carry **name + equipment + primary muscle + optional secondary muscle + logging method**
-- height/body weight can remain optional profile data later
-- fast logging and prior-performance visibility remain core after the routine is selected
-- flexible session editing remains core
-- active-session recovery is release-critical
-- **Tonal is the Phase-A visual-system reconstruction/replication baseline**: accessible Mobbin screenshots are analyzed across screen families to reconstruct a coherent working system for layout, hierarchy, typography, color roles, spacing, surfaces, controls, navigation, metrics, and component states
-- **Hevy is the primary functional/interaction reference** for practical weight-training flows such as fast set logging, prior-performance visibility, routines, exercise selection/history, and active-workout controls
-- the visible Tonal system may be replicated closely as a baseline, but Fitness does not claim Tonal's private source tokens and does not reuse Tonal trademarks, proprietary icons, logos, or production media assets
-- Fitness GitHub policy remains authoritative whenever Tonal or Hevy behavior conflicts with confirmed product policy
-- other design references are secondary and should be used only when a specific UX problem is not adequately covered by Tonal or Hevy
-- Watch / MCP / InBody / Health integrations / social / primary AI coaching remain post-MVP unless promoted by a later decision
+- first-run choice: **recommended routine / build my own routine**
+- curated program-template matching rather than LLM-generated routines
+- short recommendation onboarding: goal + weekly availability + workout duration
+- gym-first first recommendation
+- authentication required; Android Google/Kakao, iOS Google/Kakao/Apple
+- unified provider `계속하기` semantics rather than separate signup/login branches
+- offline-first workout persistence and change-driven cloud synchronization
+- one active editing device for an in-progress workout
+- active workout survives app/process/device restart until explicit finish/discard
+- fast logging, previous-performance visibility, flexible editing, and active-session recovery remain core
+- exercise detail is text-first / media-optional
+- custom exercises remain MVP-critical
+- monetization remains intentionally deferred
+- technical stack: React Native + Expo + TypeScript, shared Android/iOS codebase; current real-device QA is Android-only until an iPhone is available
 
-## Project OS bootstrap status
+Screen-level approvals are maintained in `docs/13_SCREEN_DESIGN_DECISIONS.md`.
+
+Already approved there:
+- Screen 01 first entry/authentication structure, hero-media placeholder strategy, provider-button treatment, transient auth states, and legal-link treatment
+- Screen 02 first-run path choice with two equal text-only action cards and no separate Continue button
+
+## Visual-system authority
+
+The visual-reference split is confirmed:
+- **Tonal = Phase-A visual-system reconstruction/replication baseline**
+- **Hevy = practical weight-training functionality / repeated interaction reference**
+- **Fitness GitHub Product/Policy/Decision docs = behavior and scope authority**
+
+Tonal screenshots are used to reconstruct visible relationships, not to claim Tonal's private source tokens. Tonal trademarks, proprietary icons, logos, production media, and exact proprietary assets are not Fitness assets.
+
+## Tonal reconstruction status
 
 Completed:
-- repository operating structure
-- top-level `PROJECT_INSTRUCTIONS.md` upgraded from OnTalk lessons for Fitness
-- 8-role agent model defined: Product / Research-Evidence / UX / UI-Design / Dev / QA / Growth / Ops
-- Growth/Ops defined but intentionally dormant until useful
-- Evidence Gate defined for exercise/health/product claims
-- Decision Challenge Gate defined: strongest support / strongest objection / different framing
-- Regression & Impact Gate defined from OnTalk regression lessons
-- Fitness-specific Global Invariants added
-- Fitness-specific Regression Matrix added
-- engineering evidence split into Logic / Integration / Runtime(Device)
-- AI-assisted design pipeline defined:
-  `Product Decision -> UX IA/Storyboard -> Figma low-fi -> Tonal reconstruction/reference research -> UI synthesis -> Figma refinement -> Design QA -> Development`
-- Figma explicitly treated as visual artifact, not product-policy Source of Truth
-- primary reference split confirmed: **Tonal visual-system reconstruction baseline + Hevy workout functionality/interaction**, with GitHub policy remaining authoritative
-- Mobbin screenshot evidence is now explicitly used to reconstruct a provisional Tonal-like design system before Fitness-specific customization
-- Tonal reconstruction evidence is tracked in `docs/14_TONAL_RECONSTRUCTION_BASELINE.md`
-- provisional implementation-facing foundations/components are defined in `docs/15_TONAL_DESIGN_SYSTEM_SPEC.md`
-- Figma execution rules are defined in `docs/16_FIGMA_TONAL_BUILD_INSTRUCTIONS.md`
-- because the canonical repository is public, full competitor screenshots are not stored as permanent GitHub assets; canonical Mobbin links and text evidence are stored instead
-- exercise/health research evidence hierarchy and counter-evidence rules defined
-- existing Fitness/Liftly design/code/data assets remain reuse candidates, not immutable product truth
-- product brief updated for recommendation/self-build model
-- decision log is consolidated through `DEC-021`; account/privacy/data ownership policy is materially settled
-- account-entry direction fixed to Google/Kakao/Apple sign-in with Android+iOS parallel product planning
-- account entry now uses unified provider `계속하기` semantics instead of separate signup/login branches
-- account-provider linking confirmed in Profile/Settings; duplicate-account history merge is intentionally excluded from MVP
-- offline-first workout persistence + automatic cloud sync confirmed
-- synchronization cadence confirmed as change-driven with 3-second edit debounce and immediate sync on important lifecycle/boundary events
-- canonical data ownership confirmed: active-device local state owns latest unsynced active-workout changes; successfully synced durable account data uses cloud as the long-term canonical record
-- multi-device policy keeps one active workout writer while allowing synchronized non-active data across devices
-- active-session lifecycle now survives app/process/device restart and remains active until explicit user finish/discard
-- account deletion is confirmed to remove all normal account-associated user data, with no user-visible recovery/grace period, no provider re-authentication before final deletion confirmation, linked authentication providers unlinked/revoked on deletion, and only narrow legally required retention allowed
-- monetization is intentionally deferred rather than prematurely constraining the MVP around an unvalidated revenue model
-- platform/technical stack is confirmed in `docs/09_TECHNICAL_STACK.md`: React Native + Expo + TypeScript on Windows/Cursor with one shared Android/iOS codebase
-- current Runtime/Device QA is Android-only; iOS real-device QA remains explicitly pending until an iPhone is acquired
-- optional body-data and medical-boundary policies documented
-- first-load calibration direction confirmed without demographic kg guessing
-- V0.4 exercise-detail, self-build/custom-exercise, and first-use workout wireframes refined against current decisions and reference patterns
-- Figma page **`V0.5_PRODUCTIZED_WIREFRAME`** created as a preserved successor to V0.4
-- all **31 core wireframe screens** were restructured against current product decisions and multi-app reference patterns, with consistent 390×844 viewports, clearer root/detail/state hierarchy, and action prioritization
-- first-load guidance, set feedback, rest timer, incomplete-end confirmation, and session recovery are represented as contextual in-workout/state surfaces rather than unnecessary standalone navigation concepts
-- V0.5 structural QA found exactly 31 numbered screens and no unresolved placeholder/TBD copy inside the reviewed wireframes
-- Tonal Batch 01 Foundations audit completed in `docs/18_TONAL_FOUNDATIONS_AUDIT.md`
-- Tonal Batch 02 Core Components audit completed in `docs/19_TONAL_CORE_COMPONENTS_AUDIT.md`
-- Batch 01+02 midpoint specification QA passed with canonical corrections in `docs/20_TONAL_INTERMEDIATE_QA_BATCH01_02.md`
-- Tonal Batch 03 Product Patterns audit completed with provisional pass in `docs/21_TONAL_PRODUCT_PATTERNS_AUDIT.md`
-- Batch 03 confirmed multiple semantic surface roles, multi-accent data/status roles, dashboard 2-column metric patterns, media/program hero patterns, metric XL/L/M hierarchy, and history/set-table patterns
-- Tonal's video-first active-session UI is explicitly **not** the Fitness active-logging baseline; Hevy-led logging functionality remains authoritative and receives Tonal styling rather than Tonal hardware/media behavior
+- `docs/18_TONAL_FOUNDATIONS_AUDIT.md` — Batch 01 Foundations
+- `docs/19_TONAL_CORE_COMPONENTS_AUDIT.md` — Batch 02 Core Components
+- `docs/20_TONAL_INTERMEDIATE_QA_BATCH01_02.md` — midpoint specification QA with canonical corrections
+- `docs/21_TONAL_PRODUCT_PATTERNS_AUDIT.md` — Batch 03 Product Patterns
+- `docs/22_TONAL_PREFIGMA_CONSOLIDATION_QA.md` — **PASS**
 
-Project OS v0.1 is **not frozen yet**. Product/privacy/data/platform decisions are now sufficiently stable to move into the final pre-Figma design-system consolidation pass.
+The canonical implementation-facing Phase-A specification is now:
+
+`docs/15_TONAL_DESIGN_SYSTEM_SPEC.md`
+
+If an earlier audit document conflicts with `15_TONAL_DESIGN_SYSTEM_SPEC.md`, the consolidated spec wins until a later QA-approved correction updates it.
+
+Figma construction instructions:
+- `docs/16_FIGMA_TONAL_BUILD_INSTRUCTIONS.md`
+
+Figma mechanical execution / QA contract:
+- `docs/17_FIGMA_AGENT_EXECUTION_QA.md`
+
+## Figma discovery status
+
+Phase-0 discovery of the current Figma file has been performed.
+
+Observed existing assets:
+- historical `V0.3_FOUNDATIONS` and `V0.3_COMPONENTS`
+- historical wireframe pages through `V0.5_PRODUCTIZED_WIREFRAME`
+- existing V0.3 variable collections and SUIT-based text styles
+- existing old-direction components such as pill/full-width CTA and floating bottom navigation
+
+Decision for the current Phase-A build:
+- preserve historical V0.3/V0.5 pages as reference/archive material
+- do **not** mutate the old V0.3 design system into the new baseline
+- construct a separate Tonal Phase-A semantic system from the consolidated GitHub spec
+- existing 390 reference width, 24 page inset, and 4 pt spacing-family concepts may be reused where they agree with the consolidated spec
+- Pretendard is available in the target Figma environment with the required working weights and is the Phase-A typography proxy
+
+## Figma build sequence
+
+Required order:
+
+`01_FOUNDATIONS -> 02_COMPONENTS -> 03_PATTERNS -> Examples -> 10_FITNESS_SCREENS`
+
+Do not build the whole library in one uncontrolled pass.
+
+### Current next action — Phase F1
+
+Build **`01_FOUNDATIONS` only** from `docs/15_TONAL_DESIGN_SYSTEM_SPEC.md`.
+
+Create/verify:
+- semantic surface / ink / divider / accent/action color variables
+- spacing variables
+- radius variables
+- icon / touch / repeated dimension variables
+- Pretendard text styles including metric roles
+- 390 reference + 24 inset demonstration
+- Fixed / Hug / Fill examples
+- alignment and touch-target examples
+
+Then run **Foundation preflight** before any component construction:
+- every canonical role exists exactly once
+- no duplicate near-synonym variables
+- values match the canonical spec
+- scopes/bindings are appropriate
+- text styles use intended Pretendard roles
+- provisional status is documented
+
+Only after Foundation preflight passes may Phase F2 components begin.
+
+## Mandatory Figma QA
+
+Every substantial build batch follows `docs/17_FIGMA_AGENT_EXECUTION_QA.md`:
+
+1. **QA-1 Structure / Auto Layout**
+   - Auto Layout direction
+   - Fixed / Hug / Fill independently on both axes
+   - padding / gap / alignment
+   - text wrap / resizing
+   - responsive behavior
+   - unnecessary absolute positioning
+
+2. **QA-2 Design-system / Binding**
+   - actual variable/style bindings
+   - component instances / variants / properties
+   - semantic naming
+   - no avoidable detached instances
+   - no repeated raw-value drift
+
+3. **QA-3 Visual / Reference / Product**
+   - Tonal screenshot relationship/fidelity
+   - cross-screen consistency
+   - Fitness product-policy correctness
+   - no proprietary Tonal asset reuse
+
+A visual match alone is not a PASS if structure or binding is incorrect.
 
 ## Deferred by explicit product decision
 
-- monetization model, pricing, subscription/ad structure, and paid/free feature boundaries; revisit during later product development when concrete user value and scope are clearer
+- monetization model / pricing / paid-free boundaries
 - exact recommended-program template count
 - exact template exercise composition
-- detailed variant matrix
-- cross-device active-workout takeover/transfer unless later user demand justifies it
-- duplicate-account workout-history merge/recovery unless real user demand justifies it
-
-These should be decided after the relevant data or user need is available for review.
-
-## Next bootstrap decisions
-
-1. run Pre-Figma Consolidation QA across Tonal Batch 01–03 and midpoint corrections
-2. reconcile the surviving canonical token/component/pattern rules into `docs/15_TONAL_DESIGN_SYSTEM_SPEC.md`
-3. build Figma `01_FOUNDATIONS`, `02_COMPONENTS`, `03_PATTERNS`, and `Examples` from the consolidated GitHub reconstruction spec
-4. run Figma QA-1 Structure / QA-2 Binding / QA-3 Visual-Reference-Product on the first reconstruction batch
-5. resume Fitness screen-by-screen refinement using the stabilized Tonal baseline + Hevy functional patterns + Fitness product policy
-6. cross-document QA before Project OS v0.1 freeze
-
-## Canonical source
-
-`GitHub Repository`
-
-Notion IDEA LAB, old Figma, and Liftly remain useful as discovery/research/reuse provenance. Once a product decision is confirmed for execution, GitHub is the maintained source of truth.
+- cross-device active-workout takeover/transfer
+- duplicate-account workout-history merge/recovery
+- final hero photo/video and final brand copy
+- final Fitness iconography
+- final dark-mode policy beyond evidenced Phase-A dark/media patterns
 
 ## Current blocker
 
-No repository-structure blocker.
+No repository or specification blocker.
 
-The current design blocker is intentional: **do not continue detailed Fitness visual customization until the Tonal reconstruction rules have passed Pre-Figma Consolidation QA and have been reconciled into the implementation-facing design-system spec**.
+The intentional gate is: **do not resume broad Fitness screen visual customization until the Tonal reconstruction baseline has been built in Figma and representative examples pass QA-1 / QA-2 / QA-3.**
 
-## Next action
+## Canonical source rule
 
-Run **Pre-Figma Consolidation QA** across:
-- `docs/18_TONAL_FOUNDATIONS_AUDIT.md`
-- `docs/19_TONAL_CORE_COMPONENTS_AUDIT.md`
-- `docs/20_TONAL_INTERMEDIATE_QA_BATCH01_02.md`
-- `docs/21_TONAL_PRODUCT_PATTERNS_AUDIT.md`
-
-Then update `docs/15_TONAL_DESIGN_SYSTEM_SPEC.md` so Figma receives one coherent canonical implementation spec rather than multiple partially overlapping audit documents.
-
-After consolidation passes, construct Figma foundations/components/patterns/examples using `docs/16_FIGMA_TONAL_BUILD_INSTRUCTIONS.md` and `docs/17_FIGMA_AGENT_EXECUTION_QA.md`, with icon/media placeholders and no permanent competitor screenshot assets in the public repository.
-
-After the Figma reconstruction baseline passes QA, resume the Fitness onboarding flow from the next unreviewed screen.
-
-Do not design the final template matrix yet. That work is intentionally deferred until the exercise database is ready for review.
-
-## Operating rule
-
-This file contains only the current state, blockers, and next action. Historical decisions belong in `08_DECISIONS.md`; implementation history belongs in Issues/Commits/Tests.
+GitHub remains the Source of Truth for product policy, current design-system specification, execution rules, and QA criteria. Figma is the visual implementation/reference artifact and must be corrected when it conflicts with current GitHub policy or the canonical Phase-A spec.
