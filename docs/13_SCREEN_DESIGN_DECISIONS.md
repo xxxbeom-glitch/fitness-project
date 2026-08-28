@@ -26,10 +26,10 @@ Global reference rule:
 - Do **not** use a multi-slide marketing carousel for first entry.
 - Show the **Fitness brand/logo plus one short hero line** rather than logo-only treatment or long explanatory copy.
 - Keep the hero message concise so the photograph and brand retain primary visual impact.
+- The exact hero wording is **provisional** during the current design pass and will be refined later with final naming/brand voice; temporary copy may be used in Figma without becoming product policy.
 - The composition should be Tonal-led in restraint and brand impact, while authentication behavior remains Fitness-specific.
 
 ### Still to decide
-- Exact wording of the one-line hero message.
 - Exact source/style of the hero photograph.
 - Exact provider-button visual treatment and legal-copy placement.
 - Loading/error/cancel presentation for provider authentication.
