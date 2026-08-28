@@ -31,6 +31,7 @@ Confirmed:
 - first release requires account sign-in; guest mode is not in the initial scope
 - Android sign-in providers: **Google / Kakao**
 - iOS sign-in providers: **Google / Kakao / Apple**
+- first-entry authentication uses unified provider `계속하기` actions rather than separate `회원가입` and `로그인` paths; successful provider auth signs into an existing linked Fitness account or creates a new internal Fitness account for first-time users
 - Android and iOS are intended to proceed in parallel rather than treating iOS as a later port
 - application stack is **React Native + Expo + TypeScript**, developed from **Windows PC + Cursor**
 - Android and iOS share one primary codebase wherever practical
@@ -116,6 +117,7 @@ Completed:
 - product brief updated for recommendation/self-build model
 - decision log is consolidated through `DEC-021`; account/privacy/data ownership policy is materially settled
 - account-entry direction fixed to Google/Kakao/Apple sign-in with Android+iOS parallel product planning
+- account entry now uses unified provider `계속하기` semantics instead of separate signup/login branches
 - account-provider linking confirmed in Profile/Settings; duplicate-account history merge is intentionally excluded from MVP
 - offline-first workout persistence + automatic cloud sync confirmed
 - synchronization cadence confirmed as change-driven with 3-second edit debounce and immediate sync on important lifecycle/boundary events
@@ -167,12 +169,14 @@ Current implementation planning may proceed only after the remaining design QA /
 
 ## Next action
 
-Restart the **screen-by-screen design pass from the first-entry/login flow**, using:
+Continue the **screen-by-screen design pass from the first-entry/login flow**, using:
 - **Tonal** for visual composition, hierarchy, restraint, and UI tone
 - **Hevy** for strength-training functionality and interaction efficiency
 - **Fitness GitHub policy** for actual product behavior and scope
 
-Each screen should be reviewed and approved one at a time before moving forward.
+For the first-entry screen, authentication is already fixed as unified provider `계속하기` actions rather than separate signup/login paths.
+
+Each remaining screen decision should be reviewed and approved one at a time before moving forward.
 
 Do not design the final template matrix yet. That work is intentionally deferred until the exercise database is ready for review.
 
