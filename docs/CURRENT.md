@@ -59,6 +59,7 @@ Confirmed:
 - the only account-deletion retention exception is data that must be kept by law for a defined period; only the minimum required data is retained, separated from ordinary product data, used only for that legal purpose, and deleted when the legal retention period ends
 - legally retained data must not be used to restore the deleted Fitness account or normal workout/profile history
 - exact backend deletion completion timing and cleanup mechanics remain implementation details to define before release
+- monetization/pricing/subscription structure is **intentionally not fixed during the current Bootstrap pass**; it will be revisited later as the implemented product and real user value become clearer
 - sex/gender is not used to assign a fixed first working weight
 - first working weight is calibrated from actual performance when prior history is absent
 - first-load guidance uses a short, skippable **in-workout coach-mark state**, not a standalone tutorial route
@@ -112,6 +113,7 @@ Completed:
 - multi-device policy keeps one active workout writer while allowing synchronized non-active data across devices
 - active-session lifecycle now survives app/process/device restart and remains active until explicit user finish/discard
 - account deletion is confirmed to remove all normal account-associated user data, with no user-visible recovery/grace period, no provider re-authentication before final deletion confirmation, linked authentication providers unlinked/revoked on deletion, and only narrow legally required retention allowed
+- monetization is intentionally deferred rather than prematurely constraining the MVP around an unvalidated revenue model
 - optional body-data and medical-boundary policies documented
 - first-load calibration direction confirmed without demographic kg guessing
 - V0.4 exercise-detail, self-build/custom-exercise, and first-use workout wireframes refined against current decisions and reference patterns
@@ -124,6 +126,7 @@ Project OS v0.1 is **not frozen yet**. The operating model is now materially str
 
 ## Deferred by explicit product decision
 
+- monetization model, pricing, subscription/ad structure, and paid/free feature boundaries; revisit during later product development when concrete user value and scope are clearer
 - exact recommended-program template count
 - exact template exercise composition
 - detailed variant matrix
@@ -134,11 +137,10 @@ These should be decided after the relevant data or user need is available for re
 
 ## Next bootstrap decisions
 
-1. monetization stance for the first release
-2. finalize platform/technical stack for parallel Android+iOS delivery
-3. run Design QA on the current productized wireframes / successor design artifacts after the remaining product policies are settled
-4. finalize minimum design tokens/components after core IA is stable
-5. cross-document QA before Project OS v0.1 freeze
+1. finalize platform/technical stack for parallel Android+iOS delivery
+2. run Design QA on the current productized wireframes / successor design artifacts after the remaining product policies are settled
+3. finalize minimum design tokens/components after core IA is stable
+4. cross-document QA before Project OS v0.1 freeze
 
 ## Canonical source
 
@@ -154,9 +156,9 @@ Implementation should not begin as if the product were fully specified until the
 
 ## Next action
 
-Product Owner and ChatGPT have completed the current account/privacy/data-architecture decision pass.
+Product Owner and ChatGPT have completed the current account/privacy/data-architecture decision pass, and monetization has been intentionally deferred.
 
-Next product decision: **monetization stance for the first release**.
+Next product decision: **platform/technical stack for parallel Android+iOS delivery**.
 
 Design QA and final design-system cleanup can follow after these product policies are sufficiently stable.
 
