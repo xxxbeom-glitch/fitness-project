@@ -61,7 +61,12 @@ There is **no user-visible recovery or grace period** after the user completes t
 
 Once deletion is finally confirmed, the action is irreversible from the user's perspective and the product does not offer account/data restoration.
 
-The exact backend deletion completion timing, re-authentication requirement, legally required retention exceptions, and external provider unlinking mechanics remain separate implementation/policy decisions.
+### Account deletion confirmation policy
+Account deletion does **not** require re-authentication with Google, Kakao, Apple, or another sign-in provider immediately before deletion.
+
+The product still requires a clear destructive final confirmation that explicitly warns that the account and associated workout/profile data will be permanently deleted and cannot be restored.
+
+The exact backend deletion completion timing, legally required retention exceptions, and external provider unlinking mechanics remain separate implementation/policy decisions.
 
 ## TBD
 
@@ -69,7 +74,7 @@ The exact backend deletion completion timing, re-authentication requirement, leg
 - login methods
 - cloud sync policy
 - data retention timing / legally required exceptions
-- account deletion re-authentication and backend cleanup mechanics
+- account deletion backend cleanup mechanics
 - export/delete request handling
 - telemetry/analytics policy
 - crash reporting policy
