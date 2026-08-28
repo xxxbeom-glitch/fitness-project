@@ -12,10 +12,13 @@ Initial providers remain Google, Kakao, and Apple on iOS.
 
 Do not automatically merge accounts only because provider email addresses match.
 
+If a provider is already attached to another Fitness account, MVP does not attempt to merge workout histories or accounts automatically. The connection is blocked with a clear explanation. A dedicated duplicate-account merge/recovery flow is deferred until there is real user demand.
+
 ## Product impact
 - Profile/Settings includes account/authentication management.
 - Each provider shows a state such as `연결됨` or `연결하기`.
 - Connecting a provider attaches a login method to the existing internal account rather than creating a second workout-history owner.
 - A provider cannot be detached if doing so would leave the account with no usable sign-in method.
-- If the provider being connected already belongs to another Fitness account, do not silently merge or overwrite accounts.
-- The exact recovery/merge policy for already-existing duplicate accounts remains a separate decision.
+- If the provider being connected already belongs to another Fitness account, do not silently merge, overwrite, or combine histories.
+- Duplicate-account history merge is **not an MVP feature**.
+- Account linking remains a simple authentication-management feature; complex recovery/merge behavior is intentionally deferred.
