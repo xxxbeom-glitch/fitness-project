@@ -32,6 +32,10 @@ Confirmed:
 - Android sign-in providers: **Google / Kakao**
 - iOS sign-in providers: **Google / Kakao / Apple**
 - Android and iOS are intended to proceed in parallel rather than treating iOS as a later port
+- a single internal Fitness account may link multiple supported sign-in providers
+- Profile/Settings includes account/authentication management with provider states such as **연결됨 / 연결하기**
+- provider linking requires real provider authentication; matching email alone must not silently merge accounts
+- if a provider is already attached to another Fitness account, MVP blocks the link rather than merging histories; duplicate-account history merge is deferred
 - workout recording is **offline-first**: durable local save first, automatic cloud synchronization when connectivity is available
 - core workout logging must remain usable without a live network connection
 - an active workout remains **in progress until the user explicitly finishes or discards it**
@@ -41,7 +45,7 @@ Confirmed:
 - an in-progress workout has **one active editing device at a time**; a second phone/tablet must not concurrently edit the same live session
 - future Watch support may be a paired companion exception while preserving one logical active-session authority
 - cross-device takeover/transfer is not required for MVP unless separately promoted
-- provider/account linking, account deletion/privacy, and long-term canonical-data rules still need confirmation
+- account deletion/privacy and long-term canonical-data rules still need confirmation
 - sex/gender is not used to assign a fixed first working weight
 - first working weight is calibrated from actual performance when prior history is absent
 - first-load guidance uses a short, skippable **in-workout coach-mark state**, not a standalone tutorial route
@@ -86,8 +90,9 @@ Completed:
 - exercise/health research evidence hierarchy and counter-evidence rules defined
 - existing Fitness/Liftly design/code/data assets remain reuse candidates, not immutable product truth
 - product brief updated for recommendation/self-build model
-- decision log updated through `DEC-018`
+- decision log updated through `DEC-019`
 - account-entry direction fixed to Google/Kakao/Apple sign-in with Android+iOS parallel product planning
+- account-provider linking confirmed in Profile/Settings; duplicate-account history merge is intentionally excluded from MVP
 - offline-first workout persistence + automatic cloud sync confirmed
 - multi-device policy keeps one active workout writer while allowing synchronized non-active data across devices
 - active-session lifecycle now survives app/process/device restart and remains active until explicit user finish/discard
@@ -107,12 +112,13 @@ Project OS v0.1 is **not frozen yet**. The operating model is now materially str
 - exact template exercise composition
 - detailed variant matrix
 - cross-device active-workout takeover/transfer unless later user demand justifies it
+- duplicate-account workout-history merge/recovery unless real user demand justifies it
 
 These should be decided after the relevant data or user need is available for review.
 
 ## Next bootstrap decisions
 
-1. finish account/privacy/data architecture: account linking/deletion, privacy, and canonical data ownership
+1. finish account/privacy/data architecture: account deletion/privacy and canonical data ownership
 2. monetization stance for the first release
 3. finalize platform/technical stack for parallel Android+iOS delivery
 4. run Design QA on the current productized wireframes / successor design artifacts after the remaining product policies are settled
@@ -135,7 +141,7 @@ Implementation should not begin as if the product were fully specified until the
 
 Product Owner and ChatGPT are resolving the remaining non-design Bootstrap decisions one by one.
 
-Next product decision: **account linking / duplicate-account behavior**.
+Next product decision: **account deletion / privacy behavior**.
 
 Design QA and final design-system cleanup can follow after these product policies are sufficiently stable.
 
