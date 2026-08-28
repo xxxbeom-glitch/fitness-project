@@ -66,7 +66,12 @@ Account deletion does **not** require re-authentication with Google, Kakao, Appl
 
 The product still requires a clear destructive final confirmation that explicitly warns that the account and associated workout/profile data will be permanently deleted and cannot be restored.
 
-The exact backend deletion completion timing, legally required retention exceptions, and external provider unlinking mechanics remain separate implementation/policy decisions.
+### Authentication-provider unlinking on account deletion
+When a Fitness account is deleted, all supported external authentication providers linked to that Fitness account are also unlinked/revoked as part of the deletion flow.
+
+This applies to linked Google, Kakao, and Apple authentication identities where applicable. The product must not leave an external provider connection intentionally attached to a Fitness account that no longer exists.
+
+The exact backend deletion completion timing and legally required retention exceptions remain separate implementation/policy decisions.
 
 ## TBD
 
