@@ -4,7 +4,7 @@
 
 ## Current mode
 
-`BOOTSTRAP MODE — TONAL PHASE-A FIGMA F3 SECOND REMEDIATION REQUIRED`
+`BOOTSTRAP MODE — TONAL PHASE-A FIGMA F3 THIRD CLEANUP REQUIRED`
 
 The current work is the Tonal reconstruction baseline. Broad Fitness screen visual customization remains gated until the staged Figma design-system build passes QA.
 
@@ -75,85 +75,87 @@ Independent QA:
 
 **F2 RESULT: PASS**
 
-Verified baseline remains approved:
-- full F2 family inventory present
-- Button shared styles bound
-- ChoiceCards reuse Radio/Check instances
-- Input/Underline complete with trailing API
-- Stepper 44pt hit areas preserved around compact visible geometry
-- F2 text-collapse / binding / overlap checks passed
-
 ## Phase F3 — current result
 
 Independent QA:
 - `docs/25_FIGMA_PHASE_F3_PATTERN_QA.md`
 
-**F3 RESULT: FAIL — FIRST REMEDIATION FIXED MOST ORIGINAL BLOCKERS, SECOND CLEANUP REQUIRED**
+**F3 RESULT: FAIL — SECOND CLEANUP IMPROVED THE SYSTEM, THIRD NARROW CLEANUP REQUIRED**
 
 ### Now verified PASS
 
 - all expected F3 families present
 - top-level overlap = 0
-- `Navigation/BottomBar` exposes Active 1–5 states
-- `Tab/Underline` Active/Inactive outer heights are equal at 50
-- `Row/Settings` exposes `Tone = Default | Destructive | Disabled`
-- all Settings nested Toggle instances are 52 x 32
-- `Row/Movement` exposes controlled `Trailing` and `Meta` modes
-- `Workout/BlockHeader` base geometry is 342 x 54
-- `Dialog/Center` exposes Body / Secondary / Tone axes and uses 390 x 844 overlay variants
-- Dialog nested action instances are restored to 54pt height
-- `Sheet/Action` uses a 390 x 844 overlay reference and bottom-aligned surface
-- Sheet nested action instances are 54pt high
-- avoidable raw canonical spacing = 0
+- BottomBar Active 1–5 API
+- Tab Active/Inactive equal outer height = 50
+- Settings Tone API
+- Settings nested Toggle = 52 x 32
+- Movement Trailing / Meta APIs
+- BlockHeader = 342 x 54
+- Dialog Body / Secondary / Tone APIs
+- Dialog nested actions = 54pt height
+- Sheet overlay = 390 x 844 and bottom aligned
+- Sheet nested actions = 54pt height
+- raw canonical spacing = 0
 - unstyled F3 text = 0
 - text-collapse failures = 0
+- TopBar parent variants reduced from 72 to 6
+- Row/Settings child overlap = 0
+- Row/Movement child overlap = 0
+- explicit Scrim layers now exist in Dialog and Sheet
 - no later Phase page created
 
 ### Remaining F3 blockers
 
-1. **TopBar text action hit area**
-   - parent right padding is actually applied at 4pt (`Space/4`)
-   - `Trailing=Text` currently hugs `Save` at only **30 x 44**
-   - canonical minimum interaction wrapper is 44 x 44
-   - therefore the label looks excessively edge-close and the hit target is undersized
-   - exact 4pt outer inset is still provisional; do not automatically replace it with normal 24pt page inset
+1. **TopBar parent hit wrappers regress to 24 x 44**
+   - nested source controls define 44pt wrappers
+   - instances inside parent TopBar are HUG-compressed to 24pt width
+   - visual icon may stay 24, but parent interaction wrapper must remain >= 44 x 44
 
-2. **TopBar variant explosion**
-   - current `Navigation/TopBar` has **72 variants**
-   - capability is correct but the Cartesian product is too large for the current Figma execution contract
-   - refactor to a smaller parent variant set with nested leading/trailing controls while preserving the same public semantic API
+2. **TopBar Leading / Trailing are not exposed as parent-level controllable properties**
+   - parent currently exposes only Surface / TitleMode / Title
+   - keep the reduced 6 parent variants but expose nested Leading and Trailing choices via stable nested property / instance-swap architecture
 
-3. **Internal component-set overlaps**
-   - `Row/Settings`: 15 variants, 15 internal overlaps
-   - `Row/Movement`: 18 variants, 45 internal overlaps
-   - rearrange variants without changing APIs or internals
+3. **TopBar centered title is not robust to asymmetric action widths**
+   - current flow-based FILL title region can shift when left/right action zones differ
+   - Center mode must remain optically centered for Back+Text, Back+Multiple, None+Text cases
 
-4. **Dialog/Sheet Scrim semantic layer**
-   - visual dimming is present as a 50% black fill on the overlay root
-   - explicit `Scrim` child layer is absent
-   - add a semantic Scrim child so overlay anatomy is machine-readable
+4. **Nested Leading / Trailing component-set cleanup**
+   - Leading internal overlaps = 3
+   - Trailing internal overlaps = 6
+   - Trailing Multiple currently = 88 x 100 instead of 88 x 44
+
+5. **Row component-set bounds do not contain rearranged variants**
+   - Settings set frame = 342 x 455, actual child extent ≈ 1066 x 455
+   - Movement set frame = 342 x 317, actual child extent ≈ 1066 x 687
+   - resize set bounds without changing child/API geometry
+
+6. **Dialog Scrim layers do not fill the viewport**
+   - explicit Scrim children exist, but heights vary roughly 572–702 instead of 844
+   - every Dialog Scrim must be 390 x 844 at x=0, y=0
+   - Sheet Scrim is already correct and must not regress
 
 F3 QA-1 Structure: **FAIL**
 
 F3 QA-2 Design-system / Binding: **FAIL**
 
-F3 visual sanity: **PASS WITH PROVISIONAL TOP-BAR EDGE-INSET NOTE**
+F3 visual sanity: **PASS / STRUCTURE STILL BLOCKING**
 
 ## Current next action
 
-Remain in **Phase F3** for one focused cleanup pass only.
+Remain in **Phase F3** for one narrow cleanup pass.
 
 Required fixes are defined in:
 - `docs/25_FIGMA_PHASE_F3_PATTERN_QA.md`
 
 After remediation:
-- rerun F3 QA-1
-- rerun F3 QA-2
-- verify TopBar trailing text wrapper >= 44 x 44
-- verify TopBar variant architecture no longer explodes to 72 combinations
-- verify internal variant overlap = 0 in Settings and Movement sets
-- verify explicit Scrim child exists in Dialog and Sheet overlay anatomy
-- verify previously passed F3 items do not regress
+- verify TopBar parent action wrappers >= 44 x 44
+- verify Leading / Trailing are parent-controllable without returning to 72 variants
+- verify Center title optical behavior under asymmetric actions
+- verify Leading / Trailing nested-set overlap = 0 and Multiple = 88 x 44
+- verify Settings / Movement set bounds contain all variants
+- verify every Dialog Scrim = 390 x 844
+- rerun QA-1 / QA-2
 - STOP and request independent QA
 
 ## Gate
