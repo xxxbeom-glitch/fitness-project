@@ -27,23 +27,27 @@ Confirmed:
 - training experience, equipment inventory, weekday assignment, height/body weight, and sex/gender are not required to receive the first recommendation
 - sex/gender is not used to assign a fixed first working weight
 - first working weight is calibrated from actual performance when prior history is absent
-- first-load guidance uses a short, skippable in-workout coach-mark flow rather than a long pre-workout tutorial
+- first-load guidance uses a short, skippable **in-workout coach-mark state**, not a standalone tutorial route
+- exercises with no history show an explicit no-history state and do not receive a guessed fixed working weight
 - `8–12 reps` is the default first-calibration range only when a program does not define another target rep range
-- after the first set, the user can classify the load as **가벼웠어요 / 적당했어요 / 무거웠어요** and adjust the next set accordingly
+- after the first set, the user can classify the load as **가벼웠어요 / 적당했어요 / 무거웠어요** in a compact in-workout sheet and adjust the next set accordingly
 - later sessions prioritize actual prior kg/reps over population-based estimates
 - weekday scheduling remains optional and may be offered after recommendation
 - scheduled users can see **Today's workout**; unscheduled users can see **Next workout**
 - exact curated template count/composition is deferred until the exercise database and substitution data are reviewed
 - the template library may later contain multiple overlapping/similar variants; it does not need to be artificially small
-- Home direction is action-first with large cards rather than a dense analytics dashboard
+- Home direction is action-first with large cards rather than a dense analytics dashboard; summary metrics must be directly interpretable
 - recommended exercises should prioritize common, understandable, accessible gym movements
 - unavailable equipment should be handled with simple exercise substitutions
 - beginner onboarding should not require split-training theory or detailed equipment knowledge
 - medical diagnosis and condition-specific exercise safety judgments are outside product scope
+- exercise detail is **text-first and media-optional**; no fixed empty 3D/video area is required
+- exercise detail may show recent personal performance and one prioritized reviewed guide video when available
+- self-built routines expose per-exercise **set count + target rep range** instead of silently inventing rep targets after save
+- custom exercises are MVP-critical and minimally carry **name + equipment + primary muscle + optional secondary muscle + logging method**
 - height/body weight can remain optional profile data later
 - fast logging and prior-performance visibility remain core after the routine is selected
 - flexible session editing remains core
-- custom exercises are MVP-critical
 - active-session recovery is release-critical
 - Watch / MCP / InBody / Health integrations / social / primary AI coaching remain post-MVP unless promoted by a later decision
 
@@ -67,9 +71,10 @@ Completed:
 - exercise/health research evidence hierarchy and counter-evidence rules defined
 - existing Fitness/Liftly design/code/data assets remain reuse candidates, not immutable product truth
 - product brief updated for recommendation/self-build model
-- decision log updated through `DEC-010`
+- decision log updated through `DEC-013`
 - optional body-data and medical-boundary policies documented
 - first-load calibration direction confirmed without demographic kg guessing
+- V0.4 exercise-detail, self-build/custom-exercise, and first-use workout wireframes refined against current decisions and reference patterns
 
 Project OS v0.1 is **not frozen yet**. The operating model is now materially stronger, but several product/implementation decisions remain open.
 
@@ -83,8 +88,8 @@ These should be decided after the exercise database and substitution relationshi
 
 ## Next bootstrap decisions
 
-1. define the recommendation result flow and optional post-recommend scheduling step
-2. define core workout execution UX in detail, including no-history states and first-use coach marks
+1. confirm the recommendation-result flow and optional post-recommend scheduling semantics
+2. finish cross-screen V0.4 workout-execution QA, especially set-entry, rest-timer, replacement, completion, and recovery transitions
 3. account/privacy/data architecture
 4. monetization stance for the first release
 5. platform and technical stack
@@ -105,9 +110,9 @@ Implementation should not begin as if the product were fully specified until the
 
 ## Next action
 
-Define what the **recommended-routine result screen** must communicate after the three-question onboarding, and decide whether optional weekday scheduling appears on that result screen or immediately after it.
+Run a cross-screen QA pass over the V0.4 wireframes to catch inconsistent entry/exit states, duplicated responsibilities, missing empty/no-history states, and interactions that should be sheets/overlays rather than standalone navigation.
 
-After that, move into detailed workout-execution UX, including the first-load coach-mark flow, no-history state, set-entry interaction, rest timer, and prior-performance behavior.
+Then confirm the remaining recommendation-result/scheduling semantics before freezing the core IA.
 
 Do not design the final template matrix yet. That work is intentionally deferred until the exercise database is ready.
 
