@@ -140,8 +140,14 @@ Completed:
 - all **31 core wireframe screens** were restructured against current product decisions and multi-app reference patterns, with consistent 390×844 viewports, clearer root/detail/state hierarchy, and action prioritization
 - first-load guidance, set feedback, rest timer, incomplete-end confirmation, and session recovery are represented as contextual in-workout/state surfaces rather than unnecessary standalone navigation concepts
 - V0.5 structural QA found exactly 31 numbered screens and no unresolved placeholder/TBD copy inside the reviewed wireframes
+- Tonal Batch 01 Foundations audit completed in `docs/18_TONAL_FOUNDATIONS_AUDIT.md`
+- Tonal Batch 02 Core Components audit completed in `docs/19_TONAL_CORE_COMPONENTS_AUDIT.md`
+- Batch 01+02 midpoint specification QA passed with canonical corrections in `docs/20_TONAL_INTERMEDIATE_QA_BATCH01_02.md`
+- Tonal Batch 03 Product Patterns audit completed with provisional pass in `docs/21_TONAL_PRODUCT_PATTERNS_AUDIT.md`
+- Batch 03 confirmed multiple semantic surface roles, multi-accent data/status roles, dashboard 2-column metric patterns, media/program hero patterns, metric XL/L/M hierarchy, and history/set-table patterns
+- Tonal's video-first active-session UI is explicitly **not** the Fitness active-logging baseline; Hevy-led logging functionality remains authoritative and receives Tonal styling rather than Tonal hardware/media behavior
 
-Project OS v0.1 is **not frozen yet**. Product/privacy/data/platform decisions are now sufficiently stable to move into the design-system reconstruction pass.
+Project OS v0.1 is **not frozen yet**. Product/privacy/data/platform decisions are now sufficiently stable to move into the final pre-Figma design-system consolidation pass.
 
 ## Deferred by explicit product decision
 
@@ -156,11 +162,12 @@ These should be decided after the relevant data or user need is available for re
 
 ## Next bootstrap decisions
 
-1. complete Tonal screenshot-family audit and tune the provisional reconstruction tokens/components
-2. build Figma `01_FOUNDATIONS`, `02_COMPONENTS`, and `03_PATTERNS` from the GitHub reconstruction spec
-3. visually QA representative reconstructed screens against Mobbin evidence
-4. resume Fitness screen-by-screen refinement using the stabilized Tonal baseline + Hevy functional patterns + Fitness product policy
-5. cross-document QA before Project OS v0.1 freeze
+1. run Pre-Figma Consolidation QA across Tonal Batch 01–03 and midpoint corrections
+2. reconcile the surviving canonical token/component/pattern rules into `docs/15_TONAL_DESIGN_SYSTEM_SPEC.md`
+3. build Figma `01_FOUNDATIONS`, `02_COMPONENTS`, `03_PATTERNS`, and `Examples` from the consolidated GitHub reconstruction spec
+4. run Figma QA-1 Structure / QA-2 Binding / QA-3 Visual-Reference-Product on the first reconstruction batch
+5. resume Fitness screen-by-screen refinement using the stabilized Tonal baseline + Hevy functional patterns + Fitness product policy
+6. cross-document QA before Project OS v0.1 freeze
 
 ## Canonical source
 
@@ -172,21 +179,21 @@ Notion IDEA LAB, old Figma, and Liftly remain useful as discovery/research/reuse
 
 No repository-structure blocker.
 
-The current design blocker is intentional: **do not continue detailed Fitness visual customization until the Tonal reconstruction baseline is coherent enough to reuse across screens**.
+The current design blocker is intentional: **do not continue detailed Fitness visual customization until the Tonal reconstruction rules have passed Pre-Figma Consolidation QA and have been reconciled into the implementation-facing design-system spec**.
 
 ## Next action
 
-Pause the screen-by-screen visual pass after the already-approved first-entry/path-choice decisions.
+Run **Pre-Figma Consolidation QA** across:
+- `docs/18_TONAL_FOUNDATIONS_AUDIT.md`
+- `docs/19_TONAL_CORE_COMPONENTS_AUDIT.md`
+- `docs/20_TONAL_INTERMEDIATE_QA_BATCH01_02.md`
+- `docs/21_TONAL_PRODUCT_PATTERNS_AUDIT.md`
 
-Next, complete the **Tonal design-system reconstruction baseline**:
-- inspect accessible Mobbin Tonal screenshots across onboarding, dashboard, program/workout, exercise/detail, profile/settings, charts/history, navigation, forms, and transient surfaces
-- maintain evidence and uncertainty in `docs/14_TONAL_RECONSTRUCTION_BASELINE.md`
-- maintain implementation-facing token/component rules in `docs/15_TONAL_DESIGN_SYSTEM_SPEC.md`
-- use `docs/16_FIGMA_TONAL_BUILD_INSTRUCTIONS.md` to construct Figma foundations/components/patterns
-- use icon and media placeholders; final Fitness iconography and hero media are filled later
-- do not store full Tonal/Mobbin screenshots as permanent assets in the public GitHub repository
+Then update `docs/15_TONAL_DESIGN_SYSTEM_SPEC.md` so Figma receives one coherent canonical implementation spec rather than multiple partially overlapping audit documents.
 
-After the Figma reconstruction baseline passes visual QA, resume the Fitness onboarding flow from the next unreviewed screen.
+After consolidation passes, construct Figma foundations/components/patterns/examples using `docs/16_FIGMA_TONAL_BUILD_INSTRUCTIONS.md` and `docs/17_FIGMA_AGENT_EXECUTION_QA.md`, with icon/media placeholders and no permanent competitor screenshot assets in the public repository.
+
+After the Figma reconstruction baseline passes QA, resume the Fitness onboarding flow from the next unreviewed screen.
 
 Do not design the final template matrix yet. That work is intentionally deferred until the exercise database is ready for review.
 
