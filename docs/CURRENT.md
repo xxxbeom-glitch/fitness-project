@@ -4,7 +4,7 @@
 
 ## Current mode
 
-`BOOTSTRAP MODE — TONAL PHASE-A FIGMA F2 FINAL CLEANUP REQUIRED`
+`BOOTSTRAP MODE — TONAL PHASE-A FIGMA F2 PASS / F3 READY`
 
 The current work is the Tonal reconstruction baseline. Broad Fitness screen visual customization remains gated until the staged Figma design-system build passes QA.
 
@@ -75,56 +75,86 @@ Foundation remains approved:
 - 15 canonical Pretendard Text Styles
 - foundation structure, binding, spacing, text resizing, and metadata QA passed
 
-## Phase F2 — current result
+## Phase F2
 
 Independent QA:
 - `docs/24_FIGMA_PHASE_F2_COMPONENT_QA.md`
 
-**F2 RESULT: NOT READY FOR F3 — FIRST REMEDIATION PASSED, FINAL CLEANUP REQUIRED**
+**F2 RESULT: PASS — READY FOR F3**
 
-### Remediation items now verified PASS
-
+Verified F2 status:
 - full expected F2 family inventory exists
-- `Input/Underline` now exists with Default / Focus / Filled / Error / Disabled states
-- 14/14 affected Button labels now actually use `Type/Action/Primary`
-- `ChoiceCard/Single` now contains nested `Control/Radio` instances
-- `ChoiceCard/Multi` now contains nested `Control/Check` instances
-- duplicated local ChoiceCard selection indicators removed
-- all 14 component-set arrangement gaps are bound to `Space/16`
-- all F2 text layers have Text Styles
-- no character-by-character text collapse detected
-- no F3/later page created
+- `Input/Underline` has Default / Focus / Filled / Error / Disabled states
+- `Input/Underline` exposes `Label`, `Value`, `Trailing`, `TrailingText`, and `State`
+- optional trailing metadata is property-bound and hidden by default
+- top-level component overlap = 0
+- 14/14 affected Button labels use `Type/Action/Primary`
+- `ChoiceCard/Single` reuses nested `Control/Radio`
+- `ChoiceCard/Multi` reuses nested `Control/Check`
+- duplicated local ChoiceCard indicators removed
+- all 14 component-set arrangement gaps bind to `Space/16`
+- `Control/Stepper` preserves a 124x38 visible surface inside a 124x44 component with 44x44 minus/plus hit areas
+- unstyled F2 text = 0
+- text-collapse failures = 0
+- no later Phase page created before independent approval
 
-### Remaining F2 blockers
+F2 QA-1 Structure: **PASS**
 
-1. `Input/Underline` was placed at `x=0, y=0` and physically overlaps:
-   - `Button/Primary/Compact`
-   - `Button/Primary/Content`
-   Current top-level overlap count: **2**.
+F2 QA-2 Design-system / Binding: **PASS**
 
-2. `Input/Underline` currently exposes `Label`, `Value`, and `State`, but the canonical optional counter/trailing metadata capability is absent. Add a simple reusable trailing/counter API while keeping value text `FILL` and trailing content `HUG`.
+F2 visual sanity: **PASS FOR F2 SCOPE**
 
-3. `Control/Stepper` keeps the intended `124 x 38` visible geometry, but minus/plus action slots are `38 x 38`. Provide a 44pt minimum interaction target without changing the compact visible surface language.
+Full screenshot-fidelity QA remains intentionally deferred until higher-order patterns/examples exist.
 
-## Current next action
+## Current next action — Phase F3
 
-Remain in **Phase F2** for one final focused remediation pass only:
+Build **Phase F3 — Navigation / Rows / Structural Overlays** only.
 
-1. move `Input/Underline` to a clear non-overlapping top-level location
-2. add optional trailing/counter support to `Input/Underline`
-3. provide 44pt interaction wrappers for Stepper minus/plus while retaining the current visible geometry
-4. re-run F2 QA-1 / QA-2
-5. STOP and request independent QA
+Canonical F3 scope:
+- `Navigation/TopBar`
+- `Navigation/BottomBar`
+- `Tab/Underline`
+- `Row/Settings`
+- `Row/Movement`
+- `Workout/BlockHeader`
+- `Dialog/Center`
+- `Sheet/Action`
+- `Feedback/Toast`
+- required placeholders / nested F2 instances used by those components
 
-## Gate
+F3 must reuse F1 Foundations and F2 components wherever applicable. Do not redraw an existing Button / Toggle / control locally when a reusable instance is appropriate.
 
-Do **not** start `03_PATTERNS` until F2 receives independent PASS.
+F3 must be built in small families and must pass:
 
-Later sequence remains:
+### QA-1 — Structure / Auto Layout
+- correct component anatomy
+- horizontal/vertical Fixed / Hug / Fill behavior
+- stable optical centering where required
+- min-height and text wrapping
+- trailing control protection in rows
+- overlay/scrim geometry
+- responsive/copy stress behavior
+
+### QA-2 — Design-system / Binding
+- existing Foundation variables/styles actually bound
+- existing F2 components reused as nested instances where appropriate
+- semantic component naming and descriptions
+- controlled variants/properties
+- no avoidable duplicated control/action geometry
+- no repeated raw-value drift
+
+Do not report F3 DONE while either QA stage fails.
+
+## Later gate
+
+Do not resume broad Fitness screen visual customization until:
+- F3 navigation/rows/overlays pass QA-1/2
+- F4 product patterns pass QA-1/2
+- F5 representative examples pass full QA-1 / QA-2 / QA-3 against Tonal evidence and Fitness policy
+
+Later sequence:
 
 `01_FOUNDATIONS PASS -> 02_COMPONENTS PASS -> 03_PATTERNS -> Examples -> representative QA -> 10_FITNESS_SCREENS`
-
-Broad Fitness customization resumes only after representative examples pass full QA-1 / QA-2 / QA-3 against Tonal evidence and Fitness product policy.
 
 ## Canonical source rule
 
