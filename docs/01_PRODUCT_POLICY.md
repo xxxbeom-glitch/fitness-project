@@ -10,6 +10,24 @@ Workout records are user-owned product data and must not be silently altered by 
 ### Active-session reliability
 The app must preserve or recover the current workout after app interruption/restart whenever technically feasible. Silent loss of logged sets is unacceptable.
 
+### Offline-first sync and canonical data policy
+Workout/session changes are written to durable local storage immediately. A network request must not be required to complete a set, edit kg/reps, or preserve active-session progress.
+
+Server synchronization is **change-driven**, not timer/polling-driven:
+- if there are no unsynchronized changes, no upload request is sent
+- ordinary edits are coalesced with a **3-second debounce** after the latest change
+- important boundary events such as **set completion, workout completion, app backgrounding, and network reconnection** trigger an immediate sync attempt rather than waiting for the debounce window
+- if the device is offline or a sync attempt fails, pending changes remain durably queued and retry automatically when connectivity returns
+- synchronization failure must not block the active workout
+
+Canonical ownership is split by state:
+- while a workout is in progress, the **current active device's durable local state is authoritative for the latest unsynchronized workout changes**
+- the cloud must not silently overwrite newer pending local workout changes with an older synchronized snapshot
+- after records are successfully synchronized, the **cloud account record is the long-term canonical record** for completed workouts, routines, custom exercises, profile data, and optional body data
+- local storage remains a durable offline working copy / replica for normal app use and recovery
+
+Exact technical conflict handling for simultaneous offline edits to the same non-active record may be specified during implementation, but it must not silently discard a locally accepted user change without a defined conflict policy.
+
 ### User control
 The app must allow users to modify the active session without forcing a predefined exercise order.
 
@@ -85,15 +103,12 @@ Exact backend deletion completion timing and cleanup mechanics remain implementa
 
 ## TBD
 
-- account required vs guest-first
-- login methods
-- cloud sync policy
 - account deletion backend cleanup mechanics
 - export/delete request handling
 - telemetry/analytics policy
 - crash reporting policy
 - age restriction, if any
-- exact body-data retention/sync behavior once account/cloud architecture is decided
+- exact non-active multi-device conflict-resolution mechanics for simultaneous offline edits
 
 ## RESEARCH NEEDED
 
