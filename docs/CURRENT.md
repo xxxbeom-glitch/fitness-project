@@ -47,6 +47,11 @@ Figma QA contract:
 Pre-Figma consolidation gate:
 - `docs/22_TONAL_PREFIGMA_CONSOLIDATION_QA.md` — **PASS**
 
+Methodology / work-history checkpoint:
+- `docs/26_MOBBIN_FIGMA_RECONSTRUCTION_RETROSPECTIVE_DRAFT.md` — **LIVING DRAFT**
+- captures the current Mobbin -> reconstruction -> Figma -> independent-QA method, repeated Figma-Agent failure modes, measurable QA ideas, and prompt-design lessons
+- this is not a canonical implementation spec and must be updated again after F3 / Examples / representative QA
+
 ## Current Figma file
 
 - file: `tracker-app3`
