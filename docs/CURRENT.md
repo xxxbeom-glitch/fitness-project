@@ -92,7 +92,7 @@ Completed:
 - exercise/health research evidence hierarchy and counter-evidence rules defined
 - existing Fitness/Liftly design/code/data assets remain reuse candidates, not immutable product truth
 - product brief updated for recommendation/self-build model
-- decision log updated through `DEC-019`
+- decision log updated through `DEC-020`
 - account-entry direction fixed to Google/Kakao/Apple sign-in with Android+iOS parallel product planning
 - account-provider linking confirmed in Profile/Settings; duplicate-account history merge is intentionally excluded from MVP
 - offline-first workout persistence + automatic cloud sync confirmed
