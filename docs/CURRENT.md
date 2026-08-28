@@ -4,83 +4,108 @@
 
 ## Current mode
 
-`BOOTSTRAP MODE — TONAL PHASE-A FIGMA BUILD READY`
+`BOOTSTRAP MODE — TONAL PHASE-A FIGMA F1 PASS / F2 READY`
 
-The product/policy baseline is sufficiently settled to proceed with design-system construction. The current work is **not broad Fitness screen production**; it is the Tonal reconstruction baseline that will be used before Fitness-specific customization.
+The product/policy baseline is sufficiently settled for design-system construction. The current work is **not broad Fitness screen production**; it is the Tonal reconstruction baseline that must pass staged Figma QA before Fitness-specific customization resumes.
 
-## Product state — confirmed
+## Product authority
 
-Canonical product decisions are maintained in `docs/08_DECISIONS.md` through `DEC-021`.
+Canonical product decisions are maintained in:
+- `docs/08_DECISIONS.md` through `DEC-021`
+- `docs/13_SCREEN_DESIGN_DECISIONS.md` for approved screen-level decisions
+- `docs/09_TECHNICAL_STACK.md` for the current React Native + Expo + TypeScript platform direction
 
-Current product direction includes:
+Key current product constraints remain:
 - general-purpose weight-training tracker
-- first-run choice: **recommended routine / build my own routine**
-- curated program-template matching rather than LLM-generated routines
+- first-run choice: recommended routine / build my own routine
 - short recommendation onboarding: goal + weekly availability + workout duration
-- gym-first first recommendation
-- authentication required; Android Google/Kakao, iOS Google/Kakao/Apple
-- unified provider `계속하기` semantics rather than separate signup/login branches
-- offline-first workout persistence and change-driven cloud synchronization
+- gym-first initial recommendation
+- authentication required
+- offline-first workout persistence and change-driven sync
 - one active editing device for an in-progress workout
 - active workout survives app/process/device restart until explicit finish/discard
 - fast logging, previous-performance visibility, flexible editing, and active-session recovery remain core
 - exercise detail is text-first / media-optional
 - custom exercises remain MVP-critical
 - monetization remains intentionally deferred
-- technical stack: React Native + Expo + TypeScript, shared Android/iOS codebase; current real-device QA is Android-only until an iPhone is available
-
-Screen-level approvals are maintained in `docs/13_SCREEN_DESIGN_DECISIONS.md`.
-
-Already approved there:
-- Screen 01 first entry/authentication structure, hero-media placeholder strategy, provider-button treatment, transient auth states, and legal-link treatment
-- Screen 02 first-run path choice with two equal text-only action cards and no separate Continue button
 
 ## Visual-system authority
 
-The visual-reference split is confirmed:
+Confirmed reference split:
 - **Tonal = Phase-A visual-system reconstruction/replication baseline**
 - **Hevy = practical weight-training functionality / repeated interaction reference**
 - **Fitness GitHub Product/Policy/Decision docs = behavior and scope authority**
 
-Tonal screenshots are used to reconstruct visible relationships, not to claim Tonal's private source tokens. Tonal trademarks, proprietary icons, logos, production media, and exact proprietary assets are not Fitness assets.
+Tonal screenshots are evidence for visible relationships only. Fitness does not claim Tonal private tokens and does not reuse Tonal trademarks, proprietary icons, logos, production media, or exact proprietary assets.
 
-## Tonal reconstruction status
+## Tonal reconstruction documentation status
 
 Completed:
 - `docs/18_TONAL_FOUNDATIONS_AUDIT.md` — Batch 01 Foundations
 - `docs/19_TONAL_CORE_COMPONENTS_AUDIT.md` — Batch 02 Core Components
-- `docs/20_TONAL_INTERMEDIATE_QA_BATCH01_02.md` — midpoint specification QA with canonical corrections
+- `docs/20_TONAL_INTERMEDIATE_QA_BATCH01_02.md` — midpoint QA
 - `docs/21_TONAL_PRODUCT_PATTERNS_AUDIT.md` — Batch 03 Product Patterns
 - `docs/22_TONAL_PREFIGMA_CONSOLIDATION_QA.md` — **PASS**
 
-The canonical implementation-facing Phase-A specification is now:
-
-`docs/15_TONAL_DESIGN_SYSTEM_SPEC.md`
-
-If an earlier audit document conflicts with `15_TONAL_DESIGN_SYSTEM_SPEC.md`, the consolidated spec wins until a later QA-approved correction updates it.
+Canonical implementation-facing Phase-A specification:
+- `docs/15_TONAL_DESIGN_SYSTEM_SPEC.md`
 
 Figma construction instructions:
 - `docs/16_FIGMA_TONAL_BUILD_INSTRUCTIONS.md`
 
-Figma mechanical execution / QA contract:
+Figma execution / QA contract:
 - `docs/17_FIGMA_AGENT_EXECUTION_QA.md`
 
-## Figma discovery status
+If an older audit estimate conflicts with `15_TONAL_DESIGN_SYSTEM_SPEC.md`, the canonical spec wins until a later QA-approved correction updates it.
 
-Phase-0 discovery of the current Figma file has been performed.
+## Current Figma state
 
-Observed existing assets:
-- historical `V0.3_FOUNDATIONS` and `V0.3_COMPONENTS`
-- historical wireframe pages through `V0.5_PRODUCTIZED_WIREFRAME`
-- existing V0.3 variable collections and SUIT-based text styles
-- existing old-direction components such as pill/full-width CTA and floating bottom navigation
+Current design file:
+- `tracker-app3`
+- file key `tBpQfpAR1apJngF8a7qyH9`
 
-Decision for the current Phase-A build:
-- preserve historical V0.3/V0.5 pages as reference/archive material
-- do **not** mutate the old V0.3 design system into the new baseline
-- construct a separate Tonal Phase-A semantic system from the consolidated GitHub spec
-- existing 390 reference width, 24 page inset, and 4 pt spacing-family concepts may be reused where they agree with the consolidated spec
-- Pretendard is available in the target Figma environment with the required working weights and is the Phase-A typography proxy
+The Product Owner removed the prior Figma work. The current file is intentionally rebuilt from the current GitHub canonical specification rather than preserving old V0.3/V0.5 assets.
+
+Current page inventory after F1 QA:
+- `01_FOUNDATIONS` only
+
+No later Phase pages currently exist:
+- no `02_COMPONENTS`
+- no `03_PATTERNS`
+- no `Examples`
+- no `10_FITNESS_SCREENS`
+
+## Phase F1 — Foundation result
+
+Independent QA recorded in:
+- `docs/23_FIGMA_PHASE_F1_FOUNDATION_QA.md`
+
+**F1 RESULT: PASS**
+
+Verified against the actual Figma structure:
+- 49 canonical local variables
+  - Color 17
+  - Space 13
+  - Radius 6
+  - Size 13
+- 15 canonical Pretendard Text Styles
+- missing canonical variables/styles: 0
+- unexpected extras: 0
+- canonical value mismatch: 0
+- top-level documentation overlap: 0
+- text collapse / near-zero-width wrapping failures: 0
+- canonical repeated Auto Layout spacing properties bound to Space variables: 205
+- avoidable canonical spacing raw values remaining: 0
+- all variables and Text Styles have role-specific descriptions
+- F1 STOP condition respected; `02_COMPONENTS` was not created
+
+Foundation-level QA-1 Structure: **PASS**
+
+Foundation-level QA-2 Binding: **PASS**
+
+Foundation-level QA-3 Visual: **PASS FOR F1 SCOPE**
+
+Full Tonal screenshot fidelity QA remains intentionally deferred until representative Components / Patterns / Examples exist.
 
 ## Figma build sequence
 
@@ -88,58 +113,52 @@ Required order:
 
 `01_FOUNDATIONS -> 02_COMPONENTS -> 03_PATTERNS -> Examples -> 10_FITNESS_SCREENS`
 
-Do not build the whole library in one uncontrolled pass.
+Do not build the entire library in one uncontrolled pass.
 
-### Current next action — Phase F1
+## Current next action — Phase F2
 
-Build **`01_FOUNDATIONS` only** from `docs/15_TONAL_DESIGN_SYSTEM_SPEC.md`.
+Build **Phase F2 — Core Actions / Selections** only.
 
-Create/verify:
-- semantic surface / ink / divider / accent/action color variables
-- spacing variables
-- radius variables
-- icon / touch / repeated dimension variables
-- Pretendard text styles including metric roles
-- 390 reference + 24 inset demonstration
-- Fixed / Hug / Fill examples
-- alignment and touch-target examples
+Scope:
+- primary / secondary / text action button families
+- choice cards
+- radio / check
+- toggle
+- stepper
+- segmented / mode controls
+- underline input
+- required icon/control placeholders used by those components
 
-Then run **Foundation preflight** before any component construction:
-- every canonical role exists exactly once
-- no duplicate near-synonym variables
-- values match the canonical spec
-- scopes/bindings are appropriate
-- text styles use intended Pretendard roles
-- provisional status is documented
+Use existing F1 variables and Text Styles. Do not duplicate or bypass the Foundation system with raw values unless the property cannot be bound and the exception is documented.
 
-Only after Foundation preflight passes may Phase F2 components begin.
+F2 must be built in small component-family batches and each family must be validated before the next family expands the system.
 
-## Mandatory Figma QA
+Before F3 begins, F2 must pass:
 
-Every substantial build batch follows `docs/17_FIGMA_AGENT_EXECUTION_QA.md`:
+### QA-1 — Structure / Auto Layout
+- correct component anatomy
+- Auto Layout direction
+- Fixed / Hug / Fill independently on both axes
+- min-height / resizing / wrapping
+- state layout stability
+- responsive/copy stress behavior
 
-1. **QA-1 Structure / Auto Layout**
-   - Auto Layout direction
-   - Fixed / Hug / Fill independently on both axes
-   - padding / gap / alignment
-   - text wrap / resizing
-   - responsive behavior
-   - unnecessary absolute positioning
+### QA-2 — Design-system / Binding
+- variables/styles actually bound
+- semantic component naming
+- controlled variants/properties
+- no avoidable detached instances
+- no repeated raw-value drift
 
-2. **QA-2 Design-system / Binding**
-   - actual variable/style bindings
-   - component instances / variants / properties
-   - semantic naming
-   - no avoidable detached instances
-   - no repeated raw-value drift
+Do not report F2 DONE while either QA stage fails.
 
-3. **QA-3 Visual / Reference / Product**
-   - Tonal screenshot relationship/fidelity
-   - cross-screen consistency
-   - Fitness product-policy correctness
-   - no proprietary Tonal asset reuse
+## Later gate
 
-A visual match alone is not a PASS if structure or binding is incorrect.
+Do not resume broad Fitness screen visual customization until:
+- F2 components pass QA-1/2
+- F3 navigation/rows/overlays pass QA-1/2
+- F4 product patterns pass QA-1/2
+- F5 representative examples pass full QA-1 / QA-2 / QA-3 against Tonal evidence and Fitness policy
 
 ## Deferred by explicit product decision
 
@@ -154,9 +173,9 @@ A visual match alone is not a PASS if structure or binding is incorrect.
 
 ## Current blocker
 
-No repository or specification blocker.
+No repository, specification, or F1 blocker.
 
-The intentional gate is: **do not resume broad Fitness screen visual customization until the Tonal reconstruction baseline has been built in Figma and representative examples pass QA-1 / QA-2 / QA-3.**
+The next controlled gate is **Phase F2 Core Actions / Selections**.
 
 ## Canonical source rule
 
