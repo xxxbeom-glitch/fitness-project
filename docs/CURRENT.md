@@ -32,6 +32,11 @@ Confirmed:
 - Android sign-in providers: **Google / Kakao**
 - iOS sign-in providers: **Google / Kakao / Apple**
 - Android and iOS are intended to proceed in parallel rather than treating iOS as a later port
+- application stack is **React Native + Expo + TypeScript**, developed from **Windows PC + Cursor**
+- Android and iOS share one primary codebase wherever practical
+- Android runtime/device QA is performed continuously during implementation
+- iOS-compatible code/configuration is maintained from the beginning, but iOS runtime/device QA remains **not complete** until an iPhone test device is available
+- once an iPhone is acquired, release-critical iOS flows must receive real-device QA before iOS release
 - a single internal Fitness account may link multiple supported sign-in providers
 - Profile/Settings includes account/authentication management with provider states such as **연결됨 / 연결하기**
 - provider linking requires real provider authentication; matching email alone must not silently merge accounts
@@ -104,7 +109,7 @@ Completed:
 - exercise/health research evidence hierarchy and counter-evidence rules defined
 - existing Fitness/Liftly design/code/data assets remain reuse candidates, not immutable product truth
 - product brief updated for recommendation/self-build model
-- decision log is being consolidated through `DEC-021`; account/privacy/data ownership policy is now materially settled
+- decision log is consolidated through `DEC-021`; account/privacy/data ownership policy is materially settled
 - account-entry direction fixed to Google/Kakao/Apple sign-in with Android+iOS parallel product planning
 - account-provider linking confirmed in Profile/Settings; duplicate-account history merge is intentionally excluded from MVP
 - offline-first workout persistence + automatic cloud sync confirmed
@@ -114,6 +119,8 @@ Completed:
 - active-session lifecycle now survives app/process/device restart and remains active until explicit user finish/discard
 - account deletion is confirmed to remove all normal account-associated user data, with no user-visible recovery/grace period, no provider re-authentication before final deletion confirmation, linked authentication providers unlinked/revoked on deletion, and only narrow legally required retention allowed
 - monetization is intentionally deferred rather than prematurely constraining the MVP around an unvalidated revenue model
+- platform/technical stack is confirmed in `docs/09_TECHNICAL_STACK.md`: React Native + Expo + TypeScript on Windows/Cursor with one shared Android/iOS codebase
+- current Runtime/Device QA is Android-only; iOS real-device QA remains explicitly pending until an iPhone is acquired
 - optional body-data and medical-boundary policies documented
 - first-load calibration direction confirmed without demographic kg guessing
 - V0.4 exercise-detail, self-build/custom-exercise, and first-use workout wireframes refined against current decisions and reference patterns
@@ -122,7 +129,7 @@ Completed:
 - first-load guidance, set feedback, rest timer, incomplete-end confirmation, and session recovery are represented as contextual in-workout/state surfaces rather than unnecessary standalone navigation concepts
 - V0.5 structural QA found exactly 31 numbered screens and no unresolved placeholder/TBD copy inside the reviewed wireframes
 
-Project OS v0.1 is **not frozen yet**. The operating model is now materially stronger, but several product/implementation decisions remain open.
+Project OS v0.1 is **not frozen yet**. Product/privacy/data/platform decisions are now sufficiently stable to move into the next design validation pass.
 
 ## Deferred by explicit product decision
 
@@ -137,10 +144,9 @@ These should be decided after the relevant data or user need is available for re
 
 ## Next bootstrap decisions
 
-1. finalize platform/technical stack for parallel Android+iOS delivery
-2. run Design QA on the current productized wireframes / successor design artifacts after the remaining product policies are settled
-3. finalize minimum design tokens/components after core IA is stable
-4. cross-document QA before Project OS v0.1 freeze
+1. run Design QA on the current productized wireframes / successor design artifacts
+2. finalize minimum design tokens/components after core IA is stable
+3. cross-document QA before Project OS v0.1 freeze
 
 ## Canonical source
 
@@ -152,15 +158,13 @@ Notion IDEA LAB, old Figma, and Liftly remain useful as discovery/research/reuse
 
 No repository-structure blocker.
 
-Implementation should not begin as if the product were fully specified until the remaining Bootstrap decisions are resolved or explicitly marked as assumptions/TBD.
+Current implementation planning may proceed only after the remaining design QA / design-system / cross-document gates are cleared or explicitly accepted as assumptions.
 
 ## Next action
 
-Product Owner and ChatGPT have completed the current account/privacy/data-architecture decision pass, and monetization has been intentionally deferred.
+Run **Design QA on `V0.5_PRODUCTIZED_WIREFRAME`** against the confirmed product policies and 31-screen IA.
 
-Next product decision: **platform/technical stack for parallel Android+iOS delivery**.
-
-Design QA and final design-system cleanup can follow after these product policies are sufficiently stable.
+The QA should check navigation/flow completeness, screen/state consistency, action hierarchy, empty/error/offline/session-recovery states, account/privacy flows, and whether any wireframe still conflicts with the confirmed decisions.
 
 Do not design the final template matrix yet. That work is intentionally deferred until the exercise database is ready for review.
 
