@@ -4,7 +4,7 @@
 
 ## Current mode
 
-`BOOTSTRAP MODE — TONAL PHASE-A FIGMA F2 PASS / F3 READY`
+`BOOTSTRAP MODE — TONAL PHASE-A FIGMA F3 QA FAIL / REMEDIATION REQUIRED`
 
 The current work is the Tonal reconstruction baseline. Broad Fitness screen visual customization remains gated until the staged Figma design-system build passes QA.
 
@@ -35,8 +35,6 @@ Core product constraints remain unchanged:
 - **Hevy = practical weight-training functionality / repeated interaction reference**
 - **Fitness GitHub Product/Policy/Decision docs = behavior and scope authority**
 
-Tonal screenshots are evidence for visible relationships only. Fitness does not claim Tonal private tokens and does not reuse Tonal trademarks, proprietary icons, logos, production media, or exact proprietary assets.
-
 Canonical Phase-A implementation spec:
 - `docs/15_TONAL_DESIGN_SYSTEM_SPEC.md`
 
@@ -57,9 +55,9 @@ Pre-Figma consolidation gate:
 Current pages:
 - `01_FOUNDATIONS`
 - `02_COMPONENTS`
+- `03_PATTERNS`
 
 Not started:
-- `03_PATTERNS`
 - `Examples`
 - `10_FITNESS_SCREENS`
 
@@ -70,47 +68,29 @@ Independent QA:
 
 **F1 RESULT: PASS**
 
-Foundation remains approved:
-- 49 canonical local variables
-- 15 canonical Pretendard Text Styles
-- foundation structure, binding, spacing, text resizing, and metadata QA passed
-
 ## Phase F2
 
 Independent QA:
 - `docs/24_FIGMA_PHASE_F2_COMPONENT_QA.md`
 
-**F2 RESULT: PASS — READY FOR F3**
+**F2 RESULT: PASS**
 
-Verified F2 status:
-- full expected F2 family inventory exists
-- `Input/Underline` has Default / Focus / Filled / Error / Disabled states
-- `Input/Underline` exposes `Label`, `Value`, `Trailing`, `TrailingText`, and `State`
-- optional trailing metadata is property-bound and hidden by default
-- top-level component overlap = 0
-- 14/14 affected Button labels use `Type/Action/Primary`
-- `ChoiceCard/Single` reuses nested `Control/Radio`
-- `ChoiceCard/Multi` reuses nested `Control/Check`
-- duplicated local ChoiceCard indicators removed
-- all 14 component-set arrangement gaps bind to `Space/16`
-- `Control/Stepper` preserves a 124x38 visible surface inside a 124x44 component with 44x44 minus/plus hit areas
-- unstyled F2 text = 0
-- text-collapse failures = 0
-- no later Phase page created before independent approval
+Verified baseline remains approved:
+- full F2 family inventory present
+- Button shared styles bound
+- ChoiceCards reuse Radio/Check instances
+- Input/Underline complete with trailing API
+- Stepper 44pt hit areas preserved around compact visible geometry
+- F2 text-collapse / binding / overlap checks passed
 
-F2 QA-1 Structure: **PASS**
+## Phase F3 — current result
 
-F2 QA-2 Design-system / Binding: **PASS**
+Independent QA:
+- `docs/25_FIGMA_PHASE_F3_PATTERN_QA.md`
 
-F2 visual sanity: **PASS FOR F2 SCOPE**
+**F3 RESULT: FAIL — REMEDIATION REQUIRED BEFORE NEXT PHASE**
 
-Full screenshot-fidelity QA remains intentionally deferred until higher-order patterns/examples exist.
-
-## Current next action — Phase F3
-
-Build **Phase F3 — Navigation / Rows / Structural Overlays** only.
-
-Canonical F3 scope:
+All expected F3 families exist:
 - `Navigation/TopBar`
 - `Navigation/BottomBar`
 - `Tab/Underline`
@@ -120,41 +100,55 @@ Canonical F3 scope:
 - `Dialog/Center`
 - `Sheet/Action`
 - `Feedback/Toast`
-- required placeholders / nested F2 instances used by those components
 
-F3 must reuse F1 Foundations and F2 components wherever applicable. Do not redraw an existing Button / Toggle / control locally when a reusable instance is appropriate.
+Positive findings:
+- missing F3 families = 0
+- all F3 text uses Text Styles
+- text-collapse failures = 0
+- F2 nested reuse exists
+- later Phase pages have not been created
 
-F3 must be built in small families and must pass:
+Blocking findings:
+1. `Tab/Underline` overlaps `Row/Settings` on the page.
+2. `Navigation/TopBar` does not expose canonical Leading / Trailing / Title mode APIs.
+3. `Navigation/BottomBar` has no controllable active-index/state API.
+4. `Tab/Underline` Active state is 50pt high while Inactive is 40pt, causing layout jump.
+5. `Row/Settings` lacks `Tone = Default | Destructive | Disabled`; its nested Toggle was shrunk from 52x32 to 32x32.
+6. `Row/Movement` lacks canonical `Trailing = Chevron | Drag | None` and `Meta = SingleLine | MultiLine` modes.
+7. `Workout/BlockHeader` is only 175x54 / HUG instead of representing full-width/FILL behavior.
+8. `Dialog/Center` lacks canonical Body/Secondary/Tone modes and viewport scrim; nested F2 buttons are collapsed to 16/18pt heights instead of 54pt.
+9. `Sheet/Action` lacks viewport scrim/bottom-overlay anatomy; nested primary F2 button is collapsed to 16pt instead of 54pt.
+10. 16 canonical spacing properties remain raw instead of bound to existing Space variables.
 
-### QA-1 — Structure / Auto Layout
-- correct component anatomy
-- horizontal/vertical Fixed / Hug / Fill behavior
-- stable optical centering where required
-- min-height and text wrapping
-- trailing control protection in rows
-- overlay/scrim geometry
-- responsive/copy stress behavior
+F3 QA-1 Structure: **FAIL**
 
-### QA-2 — Design-system / Binding
-- existing Foundation variables/styles actually bound
-- existing F2 components reused as nested instances where appropriate
-- semantic component naming and descriptions
-- controlled variants/properties
-- no avoidable duplicated control/action geometry
-- no repeated raw-value drift
+F3 QA-2 Design-system / Binding: **FAIL**
 
-Do not report F3 DONE while either QA stage fails.
+F3 visual sanity: **PARTIAL PASS**
 
-## Later gate
+## Current next action
 
-Do not resume broad Fitness screen visual customization until:
-- F3 navigation/rows/overlays pass QA-1/2
-- F4 product patterns pass QA-1/2
-- F5 representative examples pass full QA-1 / QA-2 / QA-3 against Tonal evidence and Fitness policy
+Remain in **Phase F3** and remediate only the current F3 patterns.
 
-Later sequence:
+Required fixes are defined in:
+- `docs/25_FIGMA_PHASE_F3_PATTERN_QA.md`
 
-`01_FOUNDATIONS PASS -> 02_COMPONENTS PASS -> 03_PATTERNS -> Examples -> representative QA -> 10_FITNESS_SCREENS`
+After remediation:
+- rerun F3 QA-1
+- rerun F3 QA-2
+- verify nested F2 instance geometry
+- verify canonical variant/property APIs
+- verify top-level overlap = 0
+- verify avoidable raw canonical spacing = 0
+- STOP and request independent QA
+
+## Gate
+
+Do **not** start `Examples` or `10_FITNESS_SCREENS` while F3 QA is failing.
+
+Later sequence remains:
+
+`01_FOUNDATIONS PASS -> 02_COMPONENTS PASS -> 03_PATTERNS PASS -> Examples -> representative QA -> 10_FITNESS_SCREENS`
 
 ## Canonical source rule
 
