@@ -4,7 +4,7 @@
 
 ## Current mode
 
-`BOOTSTRAP MODE — TONAL PHASE-A FIGMA F2 QA FAIL / REMEDIATION REQUIRED`
+`BOOTSTRAP MODE — TONAL PHASE-A FIGMA F2 FINAL CLEANUP REQUIRED`
 
 The current work is the Tonal reconstruction baseline. Broad Fitness screen visual customization remains gated until the staged Figma design-system build passes QA.
 
@@ -70,69 +70,55 @@ Independent QA:
 
 **F1 RESULT: PASS**
 
-Verified foundation state remains the approved baseline:
+Foundation remains approved:
 - 49 canonical local variables
 - 15 canonical Pretendard Text Styles
-- foundation binding / spacing / text resizing / metadata QA passed
+- foundation structure, binding, spacing, text resizing, and metadata QA passed
 
 ## Phase F2 — current result
 
 Independent QA:
 - `docs/24_FIGMA_PHASE_F2_COMPONENT_QA.md`
 
-**F2 RESULT: FAIL — REMEDIATION REQUIRED BEFORE F3**
+**F2 RESULT: NOT READY FOR F3 — FIRST REMEDIATION PASSED, FINAL CLEANUP REQUIRED**
 
-Current `02_COMPONENTS` inventory:
-- 13 component sets
-- 1 standalone component family (`Control/Stepper`)
-- 45 variants/components total
-- no later Phase page created; STOP discipline respected
+### Remediation items now verified PASS
 
-Existing families include:
-- all requested primary/secondary/text Button families
-- `ChoiceCard/Single`
-- `ChoiceCard/Multi`
-- `Control/Radio`
-- `Control/Check`
-- `Control/Toggle`
-- `Control/Stepper`
-- `Control/Segmented/Pill`
-- `Control/ModeTile`
+- full expected F2 family inventory exists
+- `Input/Underline` now exists with Default / Focus / Filled / Error / Disabled states
+- 14/14 affected Button labels now actually use `Type/Action/Primary`
+- `ChoiceCard/Single` now contains nested `Control/Radio` instances
+- `ChoiceCard/Multi` now contains nested `Control/Check` instances
+- duplicated local ChoiceCard selection indicators removed
+- all 14 component-set arrangement gaps are bound to `Space/16`
+- all F2 text layers have Text Styles
+- no character-by-character text collapse detected
+- no F3/later page created
 
-### Blocking findings
+### Remaining F2 blockers
 
-1. `Input/Underline` is missing entirely.
-2. 14 button label/loading text layers visually use Pretendard 12/16 Bold but do **not** actually apply the canonical `Type/Action/Primary` Text Style.
-3. `ChoiceCard/Single` and `ChoiceCard/Multi` locally recreate selection-indicator geometry; the entire F2 page currently contains zero nested `INSTANCE` nodes, so the cards do not reuse the existing `Control/Radio` / `Control/Check` components.
+1. `Input/Underline` was placed at `x=0, y=0` and physically overlaps:
+   - `Button/Primary/Compact`
+   - `Button/Primary/Content`
+   Current top-level overlap count: **2**.
 
-### Minor cleanup
+2. `Input/Underline` currently exposes `Label`, `Value`, and `State`, but the canonical optional counter/trailing metadata capability is absent. Add a simple reusable trailing/counter API while keeping value text `FILL` and trailing content `HUG`.
 
-- 13 component-set arrangement gaps use raw `16` rather than `Space/16`. Bind where supported or document the exception.
-
-### What passed in F2 inspection
-
-- no top-level component overlap
-- no text collapse / near-zero-width wrapping failure
-- semantic family naming is generally clean
-- family descriptions exist
-- major text/component properties are present
-- actual Toggle has ON/OFF variants, 52×32 geometry, and a 24×24 thumb
-- F3 / Examples / Fitness screen pages were not started
+3. `Control/Stepper` keeps the intended `124 x 38` visible geometry, but minus/plus action slots are `38 x 38`. Provide a 44pt minimum interaction target without changing the compact visible surface language.
 
 ## Current next action
 
-Remain in **Phase F2** and remediate only the current component system:
+Remain in **Phase F2** for one final focused remediation pass only:
 
-1. create `Input/Underline` with `Default / Focus / Filled / Error / Disabled` states and canonical Fill/Hug behavior
-2. apply existing `Type/Action/Primary` Text Style to the 14 affected Button text layers
-3. make ChoiceCards reuse nested `Control/Radio` / `Control/Check` instances where practical and preserve state mapping
-4. bind the repeated component-set `itemSpacing=16` to `Space/16` where supported, otherwise document the exception
-5. rerun F2 QA-1 / QA-2
-6. STOP and request independent QA before starting F3
+1. move `Input/Underline` to a clear non-overlapping top-level location
+2. add optional trailing/counter support to `Input/Underline`
+3. provide 44pt interaction wrappers for Stepper minus/plus while retaining the current visible geometry
+4. re-run F2 QA-1 / QA-2
+5. STOP and request independent QA
 
 ## Gate
 
-Do **not** start `03_PATTERNS` while F2 QA is failing.
+Do **not** start `03_PATTERNS` until F2 receives independent PASS.
 
 Later sequence remains:
 
