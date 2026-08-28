@@ -303,3 +303,90 @@ This also preserves the intentionally short recommendation onboarding while crea
 - exercises with no prior history need a clear `no-history` state
 - later sessions should surface prior performance inline and minimize repeated input
 - bodyweight, timed, assisted, or otherwise non-standard load exercises may require exercise-type-specific guidance rather than forcing the weighted-exercise calibration flow
+
+---
+
+## DEC-011 — Exercise detail is text-first and media-optional
+
+**Date:** 2026-08-28
+**Status:** CONFIRMED
+
+### Decision
+Exercise detail must remain complete and useful without requiring a 3D animation, proprietary exercise animation, or embedded video.
+
+The default detail hierarchy is:
+
+1. exercise name and structured metadata
+2. recent personal performance when available
+3. concise step-by-step instructions
+4. a short check point / reference note when useful
+5. one prioritized guide video when a reviewed embeddable video is available
+
+A fixed empty media slot must not be reserved for exercises without media.
+
+For external video, manufacturer-official content is preferred for machine-specific setup; a reviewed professional/expert source may be used for general movement guidance. The whole video section is hidden when no reviewed source is available.
+
+### Product impact
+- 3D/animation is optional enhancement data, not a required exercise-detail dependency
+- recent performance links to the existing exercise-history experience
+- library-selection context uses `이 운동 추가` as the primary action
+- exercise replacement remains a replacement-flow action rather than a permanent exercise-detail CTA
+- media deletion or embed failure must not break the core exercise-detail experience
+
+---
+
+## DEC-012 — Self-built routines and custom exercises use structured prescription data
+
+**Date:** 2026-08-28
+**Status:** CONFIRMED
+
+### Decision
+A self-built routine must expose each exercise's set count and target rep prescription rather than storing only an exercise name plus set count.
+
+Users can open an exercise row to edit values such as `3세트 · 8–12회` or another program-appropriate range.
+
+Custom exercises in MVP use the following minimum structured metadata:
+
+- exercise name
+- equipment
+- primary muscle
+- optional secondary muscle
+- logging method / exercise type needed for recording
+
+### Why
+Target rep ranges are part of the workout prescription and must have an explicit source in a self-built routine. Structured custom-exercise metadata is also needed for useful search, history, filtering, substitution, and exercise-type-specific logging behavior.
+
+### Product impact
+- routine creation cannot silently invent a rep range only after save
+- program templates may supply their own target ranges
+- custom exercises remain first-class history entities while carrying enough metadata to participate in the broader exercise system
+
+---
+
+## DEC-013 — First-load calibration and set feedback stay inside the active workout
+
+**Date:** 2026-08-28
+**Status:** CONFIRMED — REFINES DEC-010 UX
+
+### Decision
+First-load guidance and the first-set weight-feeling question are interaction states of the active workout screen, not separate navigation destinations.
+
+For a weighted exercise with no history:
+
+- show an explicit no-history state
+- do not prefill a guessed working weight
+- show the program target range when available
+- offer a short skippable first-load coach mark in workout context
+
+After the first set, show a compact in-workout sheet with the fixed choices:
+
+- **가벼웠어요** → consider increasing the next set
+- **적당했어요** → keep the current load
+- **무거웠어요** → reduce the next set
+
+The choice is an immediate action; an additional full-screen confirmation step is unnecessary.
+
+### Product impact
+- V0.4 wireframes `19_첫중량가이드_WF` and `21_세트피드백_WF` represent overlay/sheet states on the active workout, not standalone routes
+- `20_운동기록_WF` includes a visible no-history example alongside exercises with prior history
+- later sessions continue to prioritize inline prior kg/reps for fast logging
