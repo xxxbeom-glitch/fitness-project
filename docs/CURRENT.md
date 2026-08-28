@@ -45,7 +45,9 @@ Confirmed:
 - an in-progress workout has **one active editing device at a time**; a second phone/tablet must not concurrently edit the same live session
 - future Watch support may be a paired companion exception while preserving one logical active-session authority
 - cross-device takeover/transfer is not required for MVP unless separately promoted
-- account deletion/privacy and long-term canonical-data rules still need confirmation
+- in-app account deletion is required under Settings → Account management → Delete account
+- deleting an account deletes all user data associated with that account, including workout history, routines, custom exercises, profile/body data, and synchronized account data
+- exact deletion timing, re-authentication, legally required retention exceptions, provider unlinking, and backend cleanup mechanics still need confirmation
 - sex/gender is not used to assign a fixed first working weight
 - first working weight is calibrated from actual performance when prior history is absent
 - first-load guidance uses a short, skippable **in-workout coach-mark state**, not a standalone tutorial route
@@ -96,6 +98,7 @@ Completed:
 - offline-first workout persistence + automatic cloud sync confirmed
 - multi-device policy keeps one active workout writer while allowing synchronized non-active data across devices
 - active-session lifecycle now survives app/process/device restart and remains active until explicit user finish/discard
+- account deletion is confirmed to remove all account-associated user data; deletion mechanics remain TBD
 - optional body-data and medical-boundary policies documented
 - first-load calibration direction confirmed without demographic kg guessing
 - V0.4 exercise-detail, self-build/custom-exercise, and first-use workout wireframes refined against current decisions and reference patterns
@@ -118,7 +121,7 @@ These should be decided after the relevant data or user need is available for re
 
 ## Next bootstrap decisions
 
-1. finish account/privacy/data architecture: account deletion/privacy and canonical data ownership
+1. finish account/privacy/data architecture: deletion execution/privacy and canonical data ownership
 2. monetization stance for the first release
 3. finalize platform/technical stack for parallel Android+iOS delivery
 4. run Design QA on the current productized wireframes / successor design artifacts after the remaining product policies are settled
@@ -141,7 +144,7 @@ Implementation should not begin as if the product were fully specified until the
 
 Product Owner and ChatGPT are resolving the remaining non-design Bootstrap decisions one by one.
 
-Next product decision: **account deletion / privacy behavior**.
+Next product decision: **account deletion execution behavior**.
 
 Design QA and final design-system cleanup can follow after these product policies are sufficiently stable.
 
