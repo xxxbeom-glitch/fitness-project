@@ -44,11 +44,22 @@ Global reference rule:
 - If authentication fails for a recoverable reason, keep the user on the first-entry screen and show a concise, non-blocking error message with an immediate retry path.
 - These transient states must preserve the Tonal-led quiet visual composition while making system status unambiguous.
 
+### Legal / terms / privacy treatment — CONFIRMED
+- Keep **`이용약관`** and **`개인정보처리방침`** links persistently accessible in the lower legal area of the first-entry screen.
+- Do **not** use a blanket sentence that treats provider sign-in as automatic consent to every legal/privacy item.
+- After successful provider authentication, if the provider identity maps to an existing Fitness account, sign the user in without repeatedly asking for the same onboarding agreement on every login.
+- If the provider identity is new, show one concise **new-user terms confirmation** step before completing normal first-run account setup.
+- The new-user confirmation requires explicit agreement to the **service Terms of Use**.
+- The **Privacy Policy remains separately viewable** and is not turned into a generic mandatory checkbox merely to process account data that is necessary for the service contract.
+- If future product behavior introduces processing that actually requires user consent — for example optional marketing or other non-essential consent-based processing — that consent must be presented separately rather than bundled into the service-terms agreement.
+- Exact production legal copy, lawful-basis mapping, and any consent-required data categories must receive a final legal/privacy review before release; the screen design must not invent those details from competitor screenshots.
+
 ### Deferred media decision
 - Final hero photo/video selection and art direction are deferred until suitable media is available.
 - Do not block the screen-level UX/design pass on final media production.
 
-### Still to decide
-- Legal-copy / terms-and-privacy placement and consent flow.
+### Screen-01 status
+- Core structure and interaction policy are sufficiently defined to proceed to Figma refinement.
+- Final hero media and final hero marketing copy remain intentionally replaceable/deferred.
 
 Do not copy Tonal or Hevy brand assets, exact copy, or proprietary imagery.
