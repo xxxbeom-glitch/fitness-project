@@ -390,3 +390,26 @@ The choice is an immediate action; an additional full-screen confirmation step i
 - V0.4 wireframes `19_첫중량가이드_WF` and `21_세트피드백_WF` represent overlay/sheet states on the active workout, not standalone routes
 - `20_운동기록_WF` includes a visible no-history example alongside exercises with prior history
 - later sessions continue to prioritize inline prior kg/reps for fast logging
+
+---
+
+## DEC-014 — Accepting a recommended routine goes directly to Home
+
+**Date:** 2026-08-28
+**Status:** CONFIRMED
+
+### Decision
+After the user completes the three recommendation questions, reviews the single recommended routine, and chooses **`이 루틴 사용하기`**, the routine is saved and the user goes directly to Home.
+
+The initial recommendation flow does **not** insert a weekday-scheduling step after acceptance.
+
+Weekday scheduling remains optional and can be configured later from the routine/program settings.
+
+### Why
+The recommendation flow is intentionally short. Requiring or prompting weekday assignment immediately after the recommendation would reintroduce friction for a setting that is not required to use the product.
+
+### Product impact
+- default recommendation path: `3 questions → recommendation result → 이 루틴 사용하기 → Home`
+- an unscheduled recommended routine appears on Home as **`다음 운동`** and advances in program sequence
+- a user who later assigns weekdays may see **`오늘의 운동`** when a scheduled session applies
+- routine acceptance must not be blocked by calendar/schedule setup
