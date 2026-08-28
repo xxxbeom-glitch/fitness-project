@@ -71,14 +71,23 @@ When a Fitness account is deleted, all supported external authentication provide
 
 This applies to linked Google, Kakao, and Apple authentication identities where applicable. The product must not leave an external provider connection intentionally attached to a Fitness account that no longer exists.
 
-The exact backend deletion completion timing and legally required retention exceptions remain separate implementation/policy decisions.
+### Legally required retention exception
+Account deletion removes normal product data. The only retention exception is data that the service is legally required to keep for a defined period.
+
+Requirements:
+- retain only the minimum data required by the applicable legal obligation
+- keep legally retained data separated from ordinary active-account product data
+- do not use retained data to restore the deleted Fitness account or normal workout/profile history
+- restrict use of retained data to the legally required purpose
+- delete the retained data when the legally required retention period ends, unless another valid legal obligation still applies
+
+Exact backend deletion completion timing and cleanup mechanics remain implementation details to define before release.
 
 ## TBD
 
 - account required vs guest-first
 - login methods
 - cloud sync policy
-- data retention timing / legally required exceptions
 - account deletion backend cleanup mechanics
 - export/delete request handling
 - telemetry/analytics policy
