@@ -87,6 +87,10 @@ Confirmed:
 - fast logging and prior-performance visibility remain core after the routine is selected
 - flexible session editing remains core
 - active-session recovery is release-critical
+- **Tonal is the primary visual/UI reference** for screen composition, visual hierarchy, restraint, typography emphasis, spacing rhythm, and overall fitness-product tone
+- **Hevy is the primary functional/interaction reference** for practical weight-training flows such as fast set logging, prior-performance visibility, routines, exercise selection/history, and active-workout controls
+- Tonal and Hevy are references rather than specifications: neither may override confirmed Fitness GitHub policy, and exact screens, copy, brand assets, proprietary imagery, or unverified tokens are not copied
+- other design references are secondary and should be used only when a specific UX problem is not adequately covered by Tonal or Hevy
 - Watch / MCP / InBody / Health integrations / social / primary AI coaching remain post-MVP unless promoted by a later decision
 
 ## Project OS bootstrap status
@@ -103,9 +107,10 @@ Completed:
 - Fitness-specific Regression Matrix added
 - engineering evidence split into Logic / Integration / Runtime(Device)
 - AI-assisted design pipeline defined:
-  `Product Decision -> UX IA/Storyboard -> Figma low-fi -> Mobbin/reference research -> UI synthesis -> Figma refinement -> Design QA -> Development`
+  `Product Decision -> UX IA/Storyboard -> Figma low-fi -> Tonal/Hevy reference research -> UI synthesis -> Figma refinement -> Design QA -> Development`
 - Figma explicitly treated as visual artifact, not product-policy Source of Truth
-- Mobbin explicitly treated as pattern reference, not exact-token/screen-copy source
+- primary design-reference split confirmed: **Tonal-led visual/UI direction + Hevy-led workout functionality/interaction**, with GitHub policy remaining authoritative
+- Mobbin/reference material remains pattern evidence, not exact-token/screen-copy specification
 - exercise/health research evidence hierarchy and counter-evidence rules defined
 - existing Fitness/Liftly design/code/data assets remain reuse candidates, not immutable product truth
 - product brief updated for recommendation/self-build model
@@ -144,7 +149,7 @@ These should be decided after the relevant data or user need is available for re
 
 ## Next bootstrap decisions
 
-1. run Design QA on the current productized wireframes / successor design artifacts
+1. run screen-by-screen Design QA / redesign using the confirmed **Tonal visual + Hevy functional + Fitness policy** reference split
 2. finalize minimum design tokens/components after core IA is stable
 3. cross-document QA before Project OS v0.1 freeze
 
@@ -162,9 +167,12 @@ Current implementation planning may proceed only after the remaining design QA /
 
 ## Next action
 
-Run **Design QA on `V0.5_PRODUCTIZED_WIREFRAME`** against the confirmed product policies and 31-screen IA.
+Restart the **screen-by-screen design pass from the first-entry/login flow**, using:
+- **Tonal** for visual composition, hierarchy, restraint, and UI tone
+- **Hevy** for strength-training functionality and interaction efficiency
+- **Fitness GitHub policy** for actual product behavior and scope
 
-The QA should check navigation/flow completeness, screen/state consistency, action hierarchy, empty/error/offline/session-recovery states, account/privacy flows, and whether any wireframe still conflicts with the confirmed decisions.
+Each screen should be reviewed and approved one at a time before moving forward.
 
 Do not design the final template matrix yet. That work is intentionally deferred until the exercise database is ready for review.
 
