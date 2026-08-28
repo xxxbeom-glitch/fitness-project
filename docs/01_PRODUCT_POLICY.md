@@ -48,13 +48,18 @@ If gym registration is introduced later:
 - it must be separate from real-time location sharing
 - default visibility should favor privacy
 
+### Account deletion entry point
+The product must provide an in-app account-deletion entry point under **Settings → Account management → Delete account**.
+
+The exact deletion execution flow, re-authentication, retention, recovery window, and backend cleanup behavior are not yet confirmed and remain separate policy decisions.
+
 ## TBD
 
 - account required vs guest-first
 - login methods
 - cloud sync policy
 - data retention
-- account deletion
+- account deletion execution / retention behavior
 - export/delete request handling
 - telemetry/analytics policy
 - crash reporting policy
