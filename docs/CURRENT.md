@@ -34,11 +34,14 @@ Confirmed:
 - Android and iOS are intended to proceed in parallel rather than treating iOS as a later port
 - workout recording is **offline-first**: durable local save first, automatic cloud synchronization when connectivity is available
 - core workout logging must remain usable without a live network connection
-- active-session recovery relies on durable local state, not only server state
+- an active workout remains **in progress until the user explicitly finishes or discards it**
+- app close, force-kill, phone lock, network loss, or device reboot must not end the workout
+- reopening the app on the same device must recover the active session and preserve recorded session progress
 - routines and completed history may synchronize across multiple signed-in devices
 - an in-progress workout has **one active editing device at a time**; a second phone/tablet must not concurrently edit the same live session
 - future Watch support may be a paired companion exception while preserving one logical active-session authority
-- exact device-takeover/transfer behavior, provider/account linking, account deletion/privacy, and long-term canonical-data rules still need confirmation
+- cross-device takeover/transfer is not required for MVP unless separately promoted
+- provider/account linking, account deletion/privacy, and long-term canonical-data rules still need confirmation
 - sex/gender is not used to assign a fixed first working weight
 - first working weight is calibrated from actual performance when prior history is absent
 - first-load guidance uses a short, skippable **in-workout coach-mark state**, not a standalone tutorial route
@@ -83,10 +86,11 @@ Completed:
 - exercise/health research evidence hierarchy and counter-evidence rules defined
 - existing Fitness/Liftly design/code/data assets remain reuse candidates, not immutable product truth
 - product brief updated for recommendation/self-build model
-- decision log updated through `DEC-017`
+- decision log updated through `DEC-018`
 - account-entry direction fixed to Google/Kakao/Apple sign-in with Android+iOS parallel product planning
 - offline-first workout persistence + automatic cloud sync confirmed
-- multi-device policy now keeps one active workout writer while allowing synchronized non-active data across devices
+- multi-device policy keeps one active workout writer while allowing synchronized non-active data across devices
+- active-session lifecycle now survives app/process/device restart and remains active until explicit user finish/discard
 - optional body-data and medical-boundary policies documented
 - first-load calibration direction confirmed without demographic kg guessing
 - V0.4 exercise-detail, self-build/custom-exercise, and first-use workout wireframes refined against current decisions and reference patterns
@@ -102,12 +106,13 @@ Project OS v0.1 is **not frozen yet**. The operating model is now materially str
 - exact recommended-program template count
 - exact template exercise composition
 - detailed variant matrix
+- cross-device active-workout takeover/transfer unless later user demand justifies it
 
-These should be decided after the exercise database and substitution relationships are available for review.
+These should be decided after the relevant data or user need is available for review.
 
 ## Next bootstrap decisions
 
-1. finish account/privacy/data architecture: device takeover/transfer, account linking/deletion, privacy, and canonical data ownership
+1. finish account/privacy/data architecture: account linking/deletion, privacy, and canonical data ownership
 2. monetization stance for the first release
 3. finalize platform/technical stack for parallel Android+iOS delivery
 4. run Design QA on the current productized wireframes / successor design artifacts after the remaining product policies are settled
@@ -130,7 +135,7 @@ Implementation should not begin as if the product were fully specified until the
 
 Product Owner and ChatGPT are resolving the remaining non-design Bootstrap decisions one by one.
 
-Next product decision: **active-workout device takeover / transfer behavior**.
+Next product decision: **account linking / duplicate-account behavior**.
 
 Design QA and final design-system cleanup can follow after these product policies are sufficiently stable.
 
