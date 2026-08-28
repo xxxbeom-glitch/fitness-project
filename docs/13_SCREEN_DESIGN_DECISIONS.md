@@ -37,12 +37,18 @@ Global reference rule:
 - Exact provider button artwork, text treatment, spacing, color, icon use, and other brand-specific implementation details must be checked against each provider's current official guidance at implementation/release time rather than inferred from competitor screenshots.
 - Fitness may harmonize placement, width, spacing between buttons, and surrounding layout where allowed, while preserving provider-required identity and treatment.
 
+### Authentication transient states — CONFIRMED
+- Provider authentication loading, user cancellation, and recoverable authentication errors remain **states of the first-entry screen**, not separate navigation screens.
+- While a provider authentication attempt is in progress, the selected provider action shows clear in-place progress and prevents accidental duplicate submission.
+- If the user cancels the provider flow, return quietly to the unchanged first-entry screen without presenting cancellation as an error.
+- If authentication fails for a recoverable reason, keep the user on the first-entry screen and show a concise, non-blocking error message with an immediate retry path.
+- These transient states must preserve the Tonal-led quiet visual composition while making system status unambiguous.
+
 ### Deferred media decision
 - Final hero photo/video selection and art direction are deferred until suitable media is available.
 - Do not block the screen-level UX/design pass on final media production.
 
 ### Still to decide
 - Legal-copy / terms-and-privacy placement and consent flow.
-- Loading/error/cancel presentation for provider authentication.
 
 Do not copy Tonal or Hevy brand assets, exact copy, or proprietary imagery.
