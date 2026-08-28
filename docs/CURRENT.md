@@ -46,11 +46,13 @@ Confirmed:
 - future Watch support may be a paired companion exception while preserving one logical active-session authority
 - cross-device takeover/transfer is not required for MVP unless separately promoted
 - in-app account deletion is required under Settings → Account management → Delete account
-- deleting an account deletes all user data associated with that account, including workout history, routines, custom exercises, profile/body data, and synchronized account data
+- deleting an account deletes all normal user data associated with that account, including workout history, routines, custom exercises, profile/body data, and synchronized account data
 - there is **no recovery/grace period** after final account-deletion confirmation; the deletion is irreversible from the user's perspective
 - account deletion does **not** require provider re-authentication immediately before deletion; a clear destructive final confirmation remains required
 - deleting an account also unlinks/revokes all linked Google, Kakao, and Apple authentication providers where applicable
-- exact backend deletion completion timing, legally required retention exceptions, and backend cleanup mechanics still need confirmation
+- the only account-deletion retention exception is data that must be kept by law for a defined period; only the minimum required data is retained, separated from ordinary product data, used only for that legal purpose, and deleted when the legal retention period ends
+- legally retained data must not be used to restore the deleted Fitness account or normal workout/profile history
+- exact backend deletion completion timing and cleanup mechanics remain implementation details to define before release
 - sex/gender is not used to assign a fixed first working weight
 - first working weight is calibrated from actual performance when prior history is absent
 - first-load guidance uses a short, skippable **in-workout coach-mark state**, not a standalone tutorial route
@@ -95,13 +97,13 @@ Completed:
 - exercise/health research evidence hierarchy and counter-evidence rules defined
 - existing Fitness/Liftly design/code/data assets remain reuse candidates, not immutable product truth
 - product brief updated for recommendation/self-build model
-- decision log updated through `DEC-020`
+- decision log updated through `DEC-020`; the account-deletion policy has been refined with the confirmed legal-retention exception
 - account-entry direction fixed to Google/Kakao/Apple sign-in with Android+iOS parallel product planning
 - account-provider linking confirmed in Profile/Settings; duplicate-account history merge is intentionally excluded from MVP
 - offline-first workout persistence + automatic cloud sync confirmed
 - multi-device policy keeps one active workout writer while allowing synchronized non-active data across devices
 - active-session lifecycle now survives app/process/device restart and remains active until explicit user finish/discard
-- account deletion is confirmed to remove all account-associated user data, with no user-visible recovery/grace period, no provider re-authentication before final deletion confirmation, and linked authentication providers unlinked/revoked on deletion
+- account deletion is confirmed to remove all normal account-associated user data, with no user-visible recovery/grace period, no provider re-authentication before final deletion confirmation, linked authentication providers unlinked/revoked on deletion, and only narrow legally required retention allowed
 - optional body-data and medical-boundary policies documented
 - first-load calibration direction confirmed without demographic kg guessing
 - V0.4 exercise-detail, self-build/custom-exercise, and first-use workout wireframes refined against current decisions and reference patterns
@@ -124,7 +126,7 @@ These should be decided after the relevant data or user need is available for re
 
 ## Next bootstrap decisions
 
-1. finish account/privacy/data architecture: retention exceptions and canonical data ownership
+1. finish account/privacy/data architecture: canonical data ownership
 2. monetization stance for the first release
 3. finalize platform/technical stack for parallel Android+iOS delivery
 4. run Design QA on the current productized wireframes / successor design artifacts after the remaining product policies are settled
@@ -147,7 +149,7 @@ Implementation should not begin as if the product were fully specified until the
 
 Product Owner and ChatGPT are resolving the remaining non-design Bootstrap decisions one by one.
 
-Next product decision: **legally required data-retention exceptions after account deletion**.
+Next product decision: **canonical data ownership**.
 
 Design QA and final design-system cleanup can follow after these product policies are sufficiently stable.
 
