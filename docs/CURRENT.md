@@ -4,7 +4,7 @@
 
 ## Current mode
 
-`BOOTSTRAP MODE — TONAL PHASE-A FIGMA F3 QA FAIL / REMEDIATION REQUIRED`
+`BOOTSTRAP MODE — TONAL PHASE-A FIGMA F3 SECOND REMEDIATION REQUIRED`
 
 The current work is the Tonal reconstruction baseline. Broad Fitness screen visual customization remains gated until the staged Figma design-system build passes QA.
 
@@ -88,47 +88,60 @@ Verified baseline remains approved:
 Independent QA:
 - `docs/25_FIGMA_PHASE_F3_PATTERN_QA.md`
 
-**F3 RESULT: FAIL — REMEDIATION REQUIRED BEFORE NEXT PHASE**
+**F3 RESULT: FAIL — FIRST REMEDIATION FIXED MOST ORIGINAL BLOCKERS, SECOND CLEANUP REQUIRED**
 
-All expected F3 families exist:
-- `Navigation/TopBar`
-- `Navigation/BottomBar`
-- `Tab/Underline`
-- `Row/Settings`
-- `Row/Movement`
-- `Workout/BlockHeader`
-- `Dialog/Center`
-- `Sheet/Action`
-- `Feedback/Toast`
+### Now verified PASS
 
-Positive findings:
-- missing F3 families = 0
-- all F3 text uses Text Styles
+- all expected F3 families present
+- top-level overlap = 0
+- `Navigation/BottomBar` exposes Active 1–5 states
+- `Tab/Underline` Active/Inactive outer heights are equal at 50
+- `Row/Settings` exposes `Tone = Default | Destructive | Disabled`
+- all Settings nested Toggle instances are 52 x 32
+- `Row/Movement` exposes controlled `Trailing` and `Meta` modes
+- `Workout/BlockHeader` base geometry is 342 x 54
+- `Dialog/Center` exposes Body / Secondary / Tone axes and uses 390 x 844 overlay variants
+- Dialog nested action instances are restored to 54pt height
+- `Sheet/Action` uses a 390 x 844 overlay reference and bottom-aligned surface
+- Sheet nested action instances are 54pt high
+- avoidable raw canonical spacing = 0
+- unstyled F3 text = 0
 - text-collapse failures = 0
-- F2 nested reuse exists
-- later Phase pages have not been created
+- no later Phase page created
 
-Blocking findings:
-1. `Tab/Underline` overlaps `Row/Settings` on the page.
-2. `Navigation/TopBar` does not expose canonical Leading / Trailing / Title mode APIs.
-3. `Navigation/BottomBar` has no controllable active-index/state API.
-4. `Tab/Underline` Active state is 50pt high while Inactive is 40pt, causing layout jump.
-5. `Row/Settings` lacks `Tone = Default | Destructive | Disabled`; its nested Toggle was shrunk from 52x32 to 32x32.
-6. `Row/Movement` lacks canonical `Trailing = Chevron | Drag | None` and `Meta = SingleLine | MultiLine` modes.
-7. `Workout/BlockHeader` is only 175x54 / HUG instead of representing full-width/FILL behavior.
-8. `Dialog/Center` lacks canonical Body/Secondary/Tone modes and viewport scrim; nested F2 buttons are collapsed to 16/18pt heights instead of 54pt.
-9. `Sheet/Action` lacks viewport scrim/bottom-overlay anatomy; nested primary F2 button is collapsed to 16pt instead of 54pt.
-10. 16 canonical spacing properties remain raw instead of bound to existing Space variables.
+### Remaining F3 blockers
+
+1. **TopBar text action hit area**
+   - parent right padding is actually applied at 4pt (`Space/4`)
+   - `Trailing=Text` currently hugs `Save` at only **30 x 44**
+   - canonical minimum interaction wrapper is 44 x 44
+   - therefore the label looks excessively edge-close and the hit target is undersized
+   - exact 4pt outer inset is still provisional; do not automatically replace it with normal 24pt page inset
+
+2. **TopBar variant explosion**
+   - current `Navigation/TopBar` has **72 variants**
+   - capability is correct but the Cartesian product is too large for the current Figma execution contract
+   - refactor to a smaller parent variant set with nested leading/trailing controls while preserving the same public semantic API
+
+3. **Internal component-set overlaps**
+   - `Row/Settings`: 15 variants, 15 internal overlaps
+   - `Row/Movement`: 18 variants, 45 internal overlaps
+   - rearrange variants without changing APIs or internals
+
+4. **Dialog/Sheet Scrim semantic layer**
+   - visual dimming is present as a 50% black fill on the overlay root
+   - explicit `Scrim` child layer is absent
+   - add a semantic Scrim child so overlay anatomy is machine-readable
 
 F3 QA-1 Structure: **FAIL**
 
 F3 QA-2 Design-system / Binding: **FAIL**
 
-F3 visual sanity: **PARTIAL PASS**
+F3 visual sanity: **PASS WITH PROVISIONAL TOP-BAR EDGE-INSET NOTE**
 
 ## Current next action
 
-Remain in **Phase F3** and remediate only the current F3 patterns.
+Remain in **Phase F3** for one focused cleanup pass only.
 
 Required fixes are defined in:
 - `docs/25_FIGMA_PHASE_F3_PATTERN_QA.md`
@@ -136,10 +149,11 @@ Required fixes are defined in:
 After remediation:
 - rerun F3 QA-1
 - rerun F3 QA-2
-- verify nested F2 instance geometry
-- verify canonical variant/property APIs
-- verify top-level overlap = 0
-- verify avoidable raw canonical spacing = 0
+- verify TopBar trailing text wrapper >= 44 x 44
+- verify TopBar variant architecture no longer explodes to 72 combinations
+- verify internal variant overlap = 0 in Settings and Movement sets
+- verify explicit Scrim child exists in Dialog and Sheet overlay anatomy
+- verify previously passed F3 items do not regress
 - STOP and request independent QA
 
 ## Gate
