@@ -1,6 +1,6 @@
 # 09 DESIGN SYSTEM
 
-**Status:** BOOTSTRAP — PRIMARY REFERENCES CONFIRMED, TOKENS NOT FROZEN
+**Status:** BOOTSTRAP — TONAL-LED VISUAL SYSTEM CONFIRMED, TOKENS NOT FROZEN
 
 ## Product-driven design goal
 
@@ -21,9 +21,9 @@ Figma is the visual implementation/reference surface, not the product-policy Sou
 The product uses a deliberate two-reference model:
 
 ### Tonal — primary visual/UI reference
-Tonal is the primary reference for the product's visual language and screen-composition quality.
+Tonal is the **dominant visual-system reference** for the product. The intended direction is not merely loosely inspired by Tonal; Fitness should stay deliberately close to Tonal's overall visual logic wherever that logic fits the product.
 
-Reference characteristics to study and reinterpret:
+Reference characteristics to study and intentionally adopt:
 - restrained black / white / neutral visual system
 - strong typography hierarchy and prominent numeric information
 - generous whitespace and clear section separation
@@ -32,10 +32,41 @@ Reference characteristics to study and reinterpret:
 - high-contrast primary actions
 - clear distinction between primary content, secondary metadata, and supporting states
 - premium but quiet fitness-product tone
+- simple, large onboarding choice surfaces
+- disciplined visual density rather than decorative UI
+- strong contrast between selected and unselected states
+- restrained icon use and minimal visual ornament
+
+### Tonal adoption level — CONFIRMED
+Fitness should use Tonal as the default answer for **visual composition, hierarchy, spacing rhythm, surface treatment, contrast philosophy, and component tone** unless there is a clear product reason not to.
+
+This means the design team should not continuously invent alternative visual styles when Tonal already provides a suitable pattern. A Fitness screen may intentionally feel visually close to Tonal at first glance, provided it is re-authored for Fitness content, behavior, branding, and implementation.
+
+What may be closely adopted in principle:
+- page composition
+- whitespace proportions and section rhythm
+- visual hierarchy
+- black/white/neutral emphasis
+- card and surface restraint
+- button prominence
+- selection-state contrast
+- information-density philosophy
+- typography emphasis patterns
+- onboarding visual language
+
+What must remain Fitness-original or independently defined:
+- brand name, logo, trademarks, and identity assets
+- final copy
+- proprietary imagery/video
+- exact screen reproduction
+- exact unverified token values
+- icons/assets that are proprietary to Tonal
+- hardware-specific or coach/class-specific functionality
+- interaction or information architecture that conflicts with Fitness product policy
 
 Tonal is **not** a functional specification. Do not inherit assumptions that depend on Tonal hardware, proprietary exercise media, coaches, classes, or machine-specific data.
 
-Do not copy Tonal trademarks, brand assets, exact screens, copy, proprietary imagery, or unverified exact tokens.
+The design goal is therefore **close visual-system alignment without literal cloning**.
 
 ### Hevy — primary functional/interaction reference
 Hevy is the primary reference for weight-training tracker functionality and repeated workout interaction patterns.
@@ -57,7 +88,7 @@ Hevy is **not** the visual style target and does not override confirmed Fitness 
 Other products may be researched when Tonal or Hevy does not adequately solve a specific UX problem. They remain supporting references rather than a new global visual direction.
 
 Every screen should pass three checks:
-1. **Tonal visual check** — does the composition, hierarchy, restraint, and visual tone align with the intended UI direction?
+1. **Tonal visual check** — does the composition, hierarchy, restraint, and visual tone stay sufficiently close to the intended Tonal-led system?
 2. **Hevy functional check** — is the workout-tracking interaction practical, fast, and clear for repeated gym use?
 3. **Fitness policy check** — does the screen exactly preserve the confirmed GitHub product rules?
 
@@ -102,6 +133,8 @@ Start with the confirmed primary-reference split rather than broad visual browsi
 
 Use **Tonal first for visual composition** and **Hevy first for workout-tracking functionality**. Search other references only when the specific problem is not sufficiently covered.
 
+For Tonal research, first identify whether a relevant Tonal screen/pattern already exists before proposing a materially different visual solution.
+
 Examples:
 - program recommendation result
 - weekly training schedule
@@ -120,11 +153,13 @@ For each relevant reference identify:
 Tonal and Hevy are primary references, not templates to clone.
 
 The default synthesis rule is:
-- **visual expression / composition / hierarchy -> Tonal-led**
+- **visual expression / composition / hierarchy -> strongly Tonal-led**
 - **workout functionality / repeated interaction -> Hevy-led**
 - **product behavior / scope / policy -> Fitness GitHub-led**
 
 If a reference conflicts with the product rules, the reference is adapted or rejected.
+
+A screen should not diverge from Tonal visually merely for originality. Divergence should have a specific usability, platform, accessibility, brand, or product reason.
 
 ### Stage 6 — Figma refinement
 Refine the approved low-fi structure into high-fidelity screens using:
@@ -134,33 +169,40 @@ Refine the approved low-fi structure into high-fidelity screens using:
 - current design system
 - existing Fitness/Liftly assets where still valid
 
+As the token system is defined, use Tonal screenshots/patterns as directional evidence for proportion and visual rhythm, while defining Fitness-owned implementation values rather than claiming or copying unknown exact Tonal values.
+
 ### Stage 7 — Design QA
 Before development check:
 - final Figma still matches the approved storyboard/product meaning
 - the Tonal-led visual direction is applied consistently rather than only on isolated screens
+- screens do not drift into generic dashboard/card-heavy SaaS styling
 - Hevy-derived workout interactions remain practical and low-friction
 - scheduled and unscheduled states are handled where relevant
 - loading / empty / error / disabled / success states are not accidentally omitted
 - repeated components are actually consistent
 - touch targets and readability are acceptable
 - the design is implementable without inventing hidden behavior
-- reference borrowing has not turned into product-policy drift or literal competitor copying
+- reference borrowing has not turned into literal competitor copying
 
 ## Mobbin / reference rules
 
-Mobbin is a **UX pattern library**, not a token source and not a screen-copy source.
+Mobbin is a **UX pattern library**, not a verified token source and not a screen-copy source.
 
 Do not claim exact spacing, font size, radius, animation timing, or component internals from screenshots unless independently known.
 
-A reference may influence:
+A Tonal reference may strongly influence:
 - information hierarchy
 - card grouping
 - navigation pattern
 - screen sequence
 - interaction model
 - state presentation
+- overall composition
+- spacing rhythm
+- surface density
+- contrast treatment
 
-It does not automatically define our:
+It does not automatically provide verified values for our:
 - spacing scale
 - typography tokens
 - colors
@@ -175,6 +217,7 @@ Reuse when:
 - the component still matches the current product meaning
 - interaction behavior remains valid
 - visual quality is acceptable
+- the component can be brought into the Tonal-led system without visual inconsistency
 - reuse reduces work without creating inconsistency
 
 Replace or modify when current product/UX decisions require it.
@@ -194,7 +237,7 @@ Do not preserve an old screen merely because it already exists.
 
 ## Visual direction — CONFIRMED
 
-The overall UI direction is **Tonal-led but re-authored for Fitness**.
+The overall UI direction is **strongly Tonal-led and re-authored for Fitness**.
 
 - clean, restrained, high-contrast mobile UI
 - strong typography hierarchy
@@ -206,8 +249,11 @@ The overall UI direction is **Tonal-led but re-authored for Fitness**.
 - avoid ornamental gradients and generic "AI-looking" styling
 - use imagery only when it adds real product value; the core UI must remain complete without media
 - default to familiar mobile controls where custom interaction does not add real value
+- onboarding choices should favor large, simple, text-led surfaces
+- selected states may use strong black/white inversion when appropriate
+- visual restraint is preferred over decorative differentiation
 
-The exact token values are still ours to define; Tonal screenshots do not constitute token specifications.
+The exact token values are still Fitness-owned and must be defined during implementation/design-system freeze. Tonal screenshots are directional references, not proof of exact underlying token values.
 
 ## Required states
 
