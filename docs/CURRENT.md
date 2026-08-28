@@ -48,7 +48,8 @@ Confirmed:
 - in-app account deletion is required under Settings → Account management → Delete account
 - deleting an account deletes all user data associated with that account, including workout history, routines, custom exercises, profile/body data, and synchronized account data
 - there is **no recovery/grace period** after final account-deletion confirmation; the deletion is irreversible from the user's perspective
-- exact backend deletion completion timing, re-authentication, legally required retention exceptions, provider unlinking, and backend cleanup mechanics still need confirmation
+- account deletion does **not** require provider re-authentication immediately before deletion; a clear destructive final confirmation remains required
+- exact backend deletion completion timing, legally required retention exceptions, provider unlinking, and backend cleanup mechanics still need confirmation
 - sex/gender is not used to assign a fixed first working weight
 - first working weight is calibrated from actual performance when prior history is absent
 - first-load guidance uses a short, skippable **in-workout coach-mark state**, not a standalone tutorial route
@@ -99,7 +100,7 @@ Completed:
 - offline-first workout persistence + automatic cloud sync confirmed
 - multi-device policy keeps one active workout writer while allowing synchronized non-active data across devices
 - active-session lifecycle now survives app/process/device restart and remains active until explicit user finish/discard
-- account deletion is confirmed to remove all account-associated user data, with no user-visible recovery/grace period after final confirmation
+- account deletion is confirmed to remove all account-associated user data, with no user-visible recovery/grace period and no provider re-authentication before final deletion confirmation
 - optional body-data and medical-boundary policies documented
 - first-load calibration direction confirmed without demographic kg guessing
 - V0.4 exercise-detail, self-build/custom-exercise, and first-use workout wireframes refined against current decisions and reference patterns
@@ -122,7 +123,7 @@ These should be decided after the relevant data or user need is available for re
 
 ## Next bootstrap decisions
 
-1. finish account/privacy/data architecture: deletion re-authentication, provider unlinking, retention exceptions, and canonical data ownership
+1. finish account/privacy/data architecture: provider unlinking, retention exceptions, and canonical data ownership
 2. monetization stance for the first release
 3. finalize platform/technical stack for parallel Android+iOS delivery
 4. run Design QA on the current productized wireframes / successor design artifacts after the remaining product policies are settled
@@ -145,7 +146,7 @@ Implementation should not begin as if the product were fully specified until the
 
 Product Owner and ChatGPT are resolving the remaining non-design Bootstrap decisions one by one.
 
-Next product decision: **account deletion re-authentication behavior**.
+Next product decision: **external authentication-provider unlinking on account deletion**.
 
 Design QA and final design-system cleanup can follow after these product policies are sufficiently stable.
 
