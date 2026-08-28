@@ -1,11 +1,11 @@
 # 24 FIGMA PHASE F2 COMPONENT QA
 
-**Status:** FAIL — REMEDIATION REQUIRED BEFORE F3
+**Status:** FAIL — REMEDIATION SUBSTANTIALLY PASSED, FINAL F2 CLEANUP REQUIRED BEFORE F3
 **Updated:** 2026-08-28
 
 ## Scope
 
-Independent QA of Phase F2 in Figma file `tracker-app3` (`tBpQfpAR1apJngF8a7qyH9`) after the Figma Agent reported `02_COMPONENTS` complete.
+Independent QA of Phase F2 in Figma file `tracker-app3` (`tBpQfpAR1apJngF8a7qyH9`) after the Figma Agent completed the first remediation pass.
 
 Canonical references:
 - `docs/15_TONAL_DESIGN_SYSTEM_SPEC.md`
@@ -13,7 +13,7 @@ Canonical references:
 - `docs/17_FIGMA_AGENT_EXECUTION_QA.md`
 - `docs/23_FIGMA_PHASE_F1_FOUNDATION_QA.md`
 
-F2 is not considered complete until QA-1 Structure and QA-2 Binding both pass.
+F2 is not complete until QA-1 Structure and QA-2 Binding both pass.
 
 ---
 
@@ -28,14 +28,13 @@ No later-phase pages exist:
 - no `Examples`
 - no `10_FITNESS_SCREENS`
 
-STOP condition therefore remains respected.
+STOP discipline remains respected.
 
-The `02_COMPONENTS` page currently contains:
-- 13 `COMPONENT_SET` families
-- 1 standalone `COMPONENT` family (`Control/Stepper`)
-- 45 component variants/components total
+`02_COMPONENTS` now contains the full expected F2 family inventory:
+- 14 `COMPONENT_SET` families
+- 1 standalone `COMPONENT` (`Control/Stepper`)
 
-Implemented families:
+Families present:
 - `Button/Primary/Compact`
 - `Button/Primary/Content`
 - `Button/Primary/Inverse`
@@ -50,127 +49,184 @@ Implemented families:
 - `Control/Stepper`
 - `Control/Segmented/Pill`
 - `Control/ModeTile`
-
-Missing canonical F2 family:
 - `Input/Underline`
 
----
-
-## What passed
-
-### Visual / gross structure
-- no top-level overlap detected on `02_COMPONENTS`
-- no near-zero-width text-collapse / one-character wrapping failures detected
-- component families are visually coherent with the current Phase-A rectangular / neutral / inversion language
-- `Control/Toggle` is now a real two-state component with 52×32 track geometry and 24×24 thumb
-- expected Button state sets exist for the current canonical families
-- ChoiceCard states and LabelOnly / LabelHelper variants exist
-- semantic family naming is generally clean
-- family-level descriptions exist
-- useful text properties exist on major families, including Button labels, ChoiceCard labels/helpers, segmented labels, and Stepper value
-
-### STOP discipline
-- F3 and later phases were not started
+Missing F2 families: **0**.
 
 ---
 
-## Blocking issue 1 — `Input/Underline` missing
+## Remediation verification — PASSED ITEMS
 
-`docs/15_TONAL_DESIGN_SYSTEM_SPEC.md` defines `Input/Underline` as a canonical F2 form component with:
-- compact label
-- input text
-- 1 pt underline
-- optional counter/trailing metadata
-- `FILL / HUG` field behavior
-- states `Default / Focus / Filled / Error / Disabled`
+### 1. `Input/Underline` now exists
 
-No `Input/Underline` component or component set exists on `02_COMPONENTS`.
+Verified as a `COMPONENT_SET` with states:
+- Default
+- Focus
+- Filled
+- Error
+- Disabled
 
-**Result:** F2 scope incomplete.
+Current variant anatomy:
+- `Label`
+- `InputRow`
+- `Value`
+- `Underline`
+
+Verified structure:
+- variant vertical layout
+- label horizontal `FILL`, vertical `HUG`
+- input row horizontal `FILL`, vertical `HUG`
+- value horizontal `FILL`, vertical `HUG`
+- underline horizontal `FILL`, vertical `FIXED`, height 1
+- no unstyled input text
+- no text-collapse failure
+
+Verified bindings include:
+- `Space/4` state internal spacing
+- `Type/Caption` label
+- `Type/Body/Primary` value
+- semantic Ink/Divider bindings
+- Focus underline uses `Color/Ink/Primary`
+- Error underline uses `Color/Accent/Negative`
+- Disabled text uses tertiary ink
+
+### 2. Button Text Style remediation passed
+
+Affected button text layers: **14**.
+
+Actual `Type/Action/Primary` application: **14 / 14**.
+
+Remaining affected button labels with missing/wrong Text Style: **0**.
+
+### 3. ChoiceCard reusable-control remediation passed
+
+`ChoiceCard/Single`:
+- nested `Control/Radio` instances: **6**
+- Default variants map to `Unselected`
+- Selected variants map to `Selected`
+- Disabled variants map to `Disabled`
+- locally duplicated `Indicator` geometry remaining: **0**
+
+`ChoiceCard/Multi`:
+- nested `Control/Check` instances: **6**
+- Default variants map to `Unselected`
+- Selected variants map to `Selected`
+- Disabled variants map to `Disabled`
+- locally duplicated `Indicator` geometry remaining: **0**
+
+### 4. Component-set spacing remediation passed
+
+All 14 component sets now bind their arrangement `itemSpacing=16` to the existing `Space/16` variable.
+
+Remaining raw unbound canonical 16 gap at component-set level: **0**.
+
+### 5. General structural checks passed
+
+- all F2 text layers have a Text Style applied
+- suspicious near-zero-width / character-by-character text collapse: **0**
+- F3 and later pages not created
 
 ---
 
-## Blocking issue 2 — 14 Button text layers bypass the Foundation Text Style
+## Remaining blocking issue 1 — `Input/Underline` overlaps existing component families
 
-14 text layers in the four filled/outline button families have the correct-looking Pretendard 12/16 Bold values but no actual Figma Text Style applied.
+The new `Input/Underline` component set was placed at:
+- `x=0`
+- `y=0`
+- `320 x 445`
 
-Affected families:
-- `Button/Primary/Compact` — 4 states
-- `Button/Primary/Content` — 4 states
-- `Button/Primary/Inverse` — 3 states
-- `Button/Secondary/Outline` — 3 states
+This physically overlaps two existing top-level component sets:
+- `Button/Primary/Compact` (`x=0, y=0, 192 x 264`)
+- `Button/Primary/Content` (`x=0, y=344, 342 x 264`)
 
-These should use the existing canonical Foundation style:
-- `Type/Action/Primary`
+Independent intersection check:
+- top-level overlap count = **2**
 
-Visual equality with the same font values is not sufficient. F2 QA-2 requires actual shared-style application so later global changes remain centralized.
+The rendered page screenshot confirms that the Input variants are visually laid over the first button families.
 
-**Result:** QA-2 Binding FAIL.
+This is a QA-1 Structure failure even though the component internals are otherwise valid.
 
----
-
-## Blocking issue 3 — ChoiceCard duplicates selection indicators instead of reusing controls
-
-The entire `02_COMPONENTS` page currently contains zero `INSTANCE` nodes.
-
-In particular:
-- `ChoiceCard/Single` contains no instance of `Control/Radio`
-- `ChoiceCard/Multi` contains no instance of `Control/Check`
-
-The cards recreate their trailing indicator geometry locally inside each variant despite the canonical Radio / Check controls already existing as reusable component sets.
-
-This creates duplicated state geometry and allows future drift between:
-- standalone `Control/Radio` and radio indicators inside `ChoiceCard/Single`
-- standalone `Control/Check` and check indicators inside `ChoiceCard/Multi`
-
-For a machine-readable component system, ChoiceCard should compose these controls as nested instances and map the card state to the nested indicator state where practical.
-
-**Result:** QA-2 component-reuse integrity FAIL.
+Required fix:
+- move `Input/Underline` to a clear top-level position after the current last F2 family
+- preserve its component set, variants, properties, values, bindings, and internal structure
+- do not rebuild the component
+- after moving, top-level overlap count must equal 0
 
 ---
 
-## Minor QA-2 cleanup — component-set arrangement spacing
+## Remaining blocking issue 2 — optional trailing/counter API is absent
 
-13 component-set containers use raw `16` item spacing between variants instead of the existing `Space/16` variable.
+The canonical `Input/Underline` specification includes optional counter/trailing metadata.
 
-This spacing affects library/component-set organization rather than production component anatomy, so it is lower severity than the three blockers above. However, the Phase-A rule is to avoid repeated raw canonical values where binding is supported.
+Current component properties are:
+- `Label`
+- `Value`
+- `State`
 
-Recommended remediation:
-- bind these component-set `itemSpacing` properties to `Space/16` if supported and stable
-- otherwise document the Figma limitation/intentional exception
+Current `InputRow` contains only `Value`; there is no reusable trailing/counter slot or property.
+
+This means a future character counter or trailing metadata would require local ad-hoc modification instead of using the canonical Input component.
+
+Required fix:
+- add a reusable optional trailing/counter capability to `Input/Underline`
+- preferred API: a `Trailing` boolean plus a `TrailingText` text property, or an equivalent simple machine-readable property structure
+- trailing content must remain `HUG` while the value text remains `FILL`
+- default may remain hidden/off
+- do not create a separate input family just for counters
+
+---
+
+## Accessibility follow-up — Stepper touch target
+
+`Control/Stepper` retains the intended compact visual geometry `124 x 38`, but its minus/plus slots are currently `38 x 38`.
+
+The canonical system also defines `Size/Touch/Minimum = 44` and states that compact visual controls should preserve adequate tap targets.
+
+This should be addressed without changing the intended 124x38 visible surface. Acceptable approaches include a 44pt invisible interaction wrapper extending around the visual minus/plus controls, provided layout and clipping remain stable.
+
+Treat this as part of the final F2 structure cleanup so the control does not ship with undersized explicit action targets.
 
 ---
 
 ## Current F2 verdict
 
 ### QA-1 Structure
-**FAIL — SCOPE INCOMPLETE**
-
-Reason:
-- canonical `Input/Underline` family is missing
-
-Existing component geometry, page layout, and text resizing otherwise show no blocking structural defect in this inspection.
-
-### QA-2 Design-system / Binding
 **FAIL**
 
-Reasons:
-- 14 Button labels do not use the shared `Type/Action/Primary` Text Style
-- ChoiceCard indicators duplicate Radio/Check instead of composing reusable instances
-- 13 raw `Space/16` component-set arrangement gaps remain as minor cleanup
+Passed:
+- full canonical family inventory present
+- Input state/anatomy base structure valid
+- text collapse 0
+- ChoiceCard reuse structure valid
+
+Blocking:
+- 2 top-level component-set overlaps
+- Stepper explicit minus/plus touch target remains below 44pt unless an invisible interaction wrapper is provided
+
+### QA-2 Design-system / Binding
+**PASS FOR REMEDIATED ITEMS**
+
+Verified:
+- Button action Text Style 14/14
+- ChoiceCard nested component reuse
+- Component-set `Space/16` binding
+- Input semantic text/color/spacing bindings
+
+### Component API completeness
+**FAIL**
+
+Reason:
+- `Input/Underline` does not yet expose optional trailing/counter metadata capability
 
 ### F2 status
 **NOT READY FOR F3**
 
-Do not start `03_PATTERNS` or any later Phase until remediation is applied and this QA is rerun.
-
 ---
 
-## Required remediation
+## Final F2 remediation required
 
-1. Build canonical `Input/Underline` with the specified states and Fill/Hug behavior.
-2. Apply `Type/Action/Primary` to all 14 affected Button label/loading text layers without changing their intended state colors.
-3. Replace locally duplicated ChoiceCard selection-indicator geometry with nested `Control/Radio` / `Control/Check` instances where practical; preserve card state mapping and selected/disabled contrast.
-4. Bind repeated component-set `itemSpacing=16` to `Space/16` where supported, or document an explicit exception.
-5. Rerun F2 QA-1 and QA-2.
-6. STOP before F3 and request independent QA again.
+1. Move `Input/Underline` to a non-overlapping top-level position; verify top-level overlap = 0.
+2. Add optional trailing/counter support to `Input/Underline` while preserving value `FILL` and trailing `HUG` behavior.
+3. Ensure Stepper minus/plus interactions meet the 44pt minimum target without changing the 124x38 visible surface language.
+4. Re-run QA-1 / QA-2 and text/copy sanity checks.
+5. STOP before F3 and request independent QA again.
