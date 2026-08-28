@@ -4,13 +4,21 @@
 
 ## Current mode
 
-`BOOTSTRAP MODE — TONAL PHASE-A RECONSTRUCTION COMPLETE · FITNESS CUSTOMIZATION READY`
+`CONTROLLED EXECUTION PILOT — FITNESS PHASE-B CODE-FIRST · TSK-PB-001 READY`
 
 The Tonal Phase-A reconstruction baseline has passed F1–F5 independent QA. F5 was subsequently revalidated after a Product Owner visual review exposed two composition-level double-inset defects in the Examples page; those defects were remediated and the full representative QA matrix was rerun successfully.
 
 The gate blocking broad Fitness-specific design/implementation is cleared.
 
-The next product phase is Fitness-specific customization. A workflow optimization question is now explicitly recorded: after the design system is stable, fully designing every remaining screen in Figma and then reproducing it again in React Native may create avoidable duplicate work. A code-first Phase-B pilot is strongly favored for evaluation, while the passing Figma system remains the visual baseline. This is a working execution direction, not yet a locked permanent operating policy.
+The Product Owner has approved proceeding to the next phase. The first controlled Phase-B execution pilot is now selected and tracked as GitHub Issue #1:
+
+- **TSK-PB-001 — Expo scaffold + First-run Path Choice screen**
+- https://github.com/xxxbeom-glitch/fitness-project/issues/1
+- Status: **READY FOR CURSOR**
+
+The pilot intentionally uses **Screen 02 — First-run Path Choice** rather than Screen 01 Authentication. Screen 02 already has approved product meaning and visual direction and has no provider-auth branding, backend, legal-copy, or final-media dependency, making it a cleaner test of whether code-led screen execution is faster without losing design-system quality.
+
+This is a controlled workflow pilot, not yet a permanent policy that all future screens must be code-first.
 
 ## Product authority
 
@@ -67,8 +75,10 @@ Current pages:
 - `03_PATTERNS`
 - `Examples`
 
-Not started:
+Not started as a dedicated Figma page:
 - `10_FITNESS_SCREENS`
+
+This is no longer a blocker for the Phase-B pilot because the first screen will be implemented code-led using the passing F5 example as the visual baseline.
 
 ## Completed phases
 
@@ -151,6 +161,58 @@ New QA rule from this revalidation:
 - `no overflow` does not prove correct alignment
 - composed-screen QA must separately inspect shared page alignment lines, effective visible insets, and accidental parent-padding + child-padding double insets
 
+## Phase-B pilot — active task
+
+### Selected screen
+**Screen 02 — First-run Path Choice**
+
+Approved behavior from `docs/13_SCREEN_DESIGN_DECISIONS.md`:
+- exactly two equal product paths
+- recommended routine / build my own routine
+- entire card is actionable
+- direct navigation on card tap
+- no separate Continue button
+- no default/preselected option
+- no BEST / recommended badge
+- no decorative icon/illustration requirement
+
+### Why this screen first
+Strongest reason:
+- cleanly tests code-led visual execution against an already-approved UX meaning.
+
+Strongest reason not to use Screen 01 first:
+- provider branding, authentication integration, final hero media, and legal/transient auth states would add unrelated external dependencies and make the workflow comparison noisy.
+
+Meaningfully different alternative:
+- starting with Home/Workout would exercise more components, but those final Fitness screen semantics are not yet approved enough and would force new product/design decisions during the implementation pilot.
+
+Therefore Screen 02 is the lowest-cost, highest-signal first execution task.
+
+### Verified implementation baseline
+Current official Expo documentation was checked before task creation:
+- current latest new-project template = Expo SDK 57
+- Expo Router is recommended for new Expo projects and included in the default SDK 57 project template
+
+Issue #1 records the implementation scope and Acceptance Criteria. Exact resolved package patch versions must be reported by Cursor after installation rather than assumed here.
+
+## Current next action
+
+**Cursor executes GitHub Issue #1 / TSK-PB-001.**
+
+After Cursor reports completion, ChatGPT must independently inspect:
+1. actual code/diff
+2. Acceptance Criteria
+3. package/SDK versions
+4. typecheck/lint/build evidence
+5. Android runtime evidence
+6. 320 / 360 / 390 / 430 screenshot/layout behavior
+7. page alignment / effective inset / double-inset risk
+8. shared token / ChoiceCard / routing structure
+9. commit/push status
+10. code-first pilot effort/time evidence
+
+Do not mark the pilot PASS from Cursor's completion statement alone.
+
 ## Workflow checkpoint after F5
 
 The project now has enough stable visual-system structure that implementation efficiency should be tested directly rather than assuming every final screen must be fully completed in Figma first.
@@ -159,7 +221,7 @@ Current working assessment:
 - Figma-first was valuable during F1–F5 because the design language itself was being discovered and normalized.
 - After F5, many remaining screens should be composable from known tokens/components/patterns.
 - Recreating the same known composition once in Figma and again in code may add time without adding equivalent design information.
-- Therefore a **code-first / code-led Phase-B pilot** is strongly favored.
+- Therefore a **code-first / code-led Phase-B pilot** is now active.
 
 Constraints on that pilot:
 - do not abandon the Phase-A Figma baseline
@@ -167,29 +229,11 @@ Constraints on that pilot:
 - use Figma selectively for new/high-risk visual structures, global system changes, or meaningful visual alternatives
 - run device/screenshot QA, spacing-rhythm QA, alignment-line/double-inset QA, responsive QA, and component/token drift checks in code
 
-This is recorded as a workflow hypothesis/working direction until the first real Fitness screen family provides comparative evidence.
-
-## Current next action
-
-Begin the first **Fitness-specific screen family** and use it as the Phase-B workflow pilot.
-
-The product-screen phase is still represented by `10_FITNESS_SCREENS`, but this no longer implies that all ten screens must automatically be fully designed in Figma before implementation.
-
-Pilot execution rule:
-1. read approved Fitness Product / Policy / Screen Decisions for the target screen family
-2. identify which parts already exist in the passing Phase-A system
-3. prefer direct React Native composition when the visual pattern is already established
-4. use Figma when a genuinely new or uncertain visual/interaction decision needs exploration
-5. use Hevy where repeated weight-training interaction/functionality is the better reference
-6. keep Fitness semantics authoritative rather than copying Tonal behavior
-7. run structure + spacing-rhythm + alignment-line/double-inset + token/reuse + responsive + visual/product QA
-8. compare the effort/quality of this code-led pass against the previous Figma-first workflow before locking the permanent Phase-B process
-
-Do not treat the current Examples page as final Fitness product screens; it is the validated composition baseline.
+This remains a workflow hypothesis until the first real Fitness screen family provides comparative evidence.
 
 ## Phase sequence
 
-`F1 PASS -> F2 PASS -> F3 PASS -> F4 PASS -> F5 PASS (REVALIDATED) -> FITNESS PHASE-B PILOT READY`
+`F1 PASS -> F2 PASS -> F3 PASS -> F4 PASS -> F5 PASS (REVALIDATED) -> TSK-PB-001 READY FOR CURSOR`
 
 ## Canonical source rule
 
