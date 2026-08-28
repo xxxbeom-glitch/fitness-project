@@ -537,7 +537,7 @@ The internal Fitness account—not an email string or one external provider—mu
 
 ---
 
-## DEC-020 — Account deletion removes all account-associated user data
+## DEC-020 — Account deletion removes normal account data with only narrow legal-retention exceptions
 
 **Date:** 2026-08-28
 **Status:** CONFIRMED
@@ -553,15 +553,59 @@ Deleting a Fitness account deletes all normal user data associated with that acc
 - profile and optional body data
 - synchronized account data
 
-The product must not retain normal workout/profile data attached to the deleted account for future restoration.
+The deletion flow uses a clear destructive final confirmation but does **not** require Google/Kakao/Apple re-authentication immediately before deletion.
 
-Exact deletion timing, re-authentication, legally required retention exceptions, external authentication-provider unlinking, and backend cleanup mechanics are separate policy/implementation decisions and remain TBD.
+After final confirmation:
+- there is **no user-visible recovery or grace period**
+- the deleted account and normal product data are not restorable by the product
+- all linked supported authentication providers are unlinked/revoked where applicable
+
+The only retention exception is data that the service is legally required to keep for a defined period. Such retained data must be limited to the minimum legally required scope, separated from ordinary active-account product data, used only for the legal purpose, and deleted when the applicable retention period ends. Legally retained data must not be used to restore the deleted Fitness account or workout/profile history.
+
+Exact backend deletion completion timing and cleanup sequencing are implementation details to define before release.
 
 ### Why
-Workout and profile records are user-owned product data. Keeping those records after the user deletes the account creates unnecessary privacy, ownership, recovery, and support complexity unless retention is legally required.
+Account deletion should behave as a real deletion rather than deactivation or hidden archival. A recovery window, provider re-authentication requirement, or retained normal workout history would add friction or complexity that is not justified for MVP. Narrow legal-retention exceptions remain necessary where law requires them.
 
 ### Product impact
-- account deletion is destructive for account-associated product data
-- confirmation UX must clearly communicate that workout history and routines are included
-- local/cloud cleanup and provider unlinking need an implementation specification before release
-- legally required retention, if any, must be treated as a narrow documented exception rather than ordinary recoverable account storage
+- confirmation UX must explicitly state that workout history, routines, profile/body data, and other account data will be permanently removed
+- there is no product-managed account restoration after final deletion confirmation
+- provider connections must not intentionally remain attached to a deleted internal Fitness account
+- legal-retention storage must be operationally separated from recoverable user-product storage
+
+---
+
+## DEC-021 — Active-device local authority with change-driven cloud synchronization
+
+**Date:** 2026-08-28
+**Status:** CONFIRMED
+
+### Decision
+Workout and account data use an offline-first synchronization model with state-dependent canonical ownership.
+
+Every meaningful workout/session change is written to durable local storage immediately.
+
+Cloud synchronization is **change-driven** rather than periodic polling:
+- no unsynchronized change means no upload request
+- ordinary rapid edits are coalesced with a **3-second debounce** after the latest change
+- **set completion, workout completion, app backgrounding, and network reconnection** trigger an immediate sync attempt
+- offline or failed changes remain durably queued and retry automatically when connectivity returns
+
+Canonical ownership is:
+- while a workout is in progress, the **current active device's durable local state is authoritative for the latest unsynchronized workout changes**
+- an older server snapshot must not silently overwrite newer pending local workout changes
+- after successful synchronization, the **cloud account record is the long-term canonical record** for completed workouts, routines, custom exercises, profile data, and optional body data
+- local storage remains a durable offline working copy / replica for app use and recovery
+
+### Why
+Immediate local persistence keeps the logging path independent from gym connectivity. Change-driven sync avoids needless traffic when nothing changed while keeping cloud data nearly current. A short debounce prevents rapid text/number edits from creating unnecessary requests, while important boundary events still synchronize promptly.
+
+The authority split also matches the product's one-active-workout-writer rule: the active device owns unsynchronized live progress, while the cloud becomes the durable cross-device source after acknowledgement.
+
+### Product impact
+- network latency/failure must never block set completion or local workout progress
+- sync state needs durable dirty/pending markers and retry behavior
+- successful server acknowledgement marks the synchronized version clean
+- sync traffic is generated only by changed data or explicit lifecycle/reconnect flush events
+- stale cloud data cannot silently replace newer unsynchronized local active-workout state
+- exact conflict resolution for simultaneous offline edits to the same **non-active** record may be specified during implementation, but the policy must not silently discard a locally accepted change without a defined conflict rule
