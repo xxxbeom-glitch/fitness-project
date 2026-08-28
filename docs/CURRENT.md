@@ -28,10 +28,14 @@ Confirmed:
 - accepting a recommended routine goes directly to Home; no post-recommend weekday-scheduling step is inserted
 - weekday scheduling remains optional and can be configured later
 - scheduled users can see **Today's workout**; unscheduled users can see **Next workout**
-- first release requires account sign-in rather than a guest-only start
-- initial sign-in providers are **Google / Kakao / Apple**; Apple Sign In is included for iOS
+- first release requires account sign-in; guest mode is not in the initial scope
+- Android sign-in providers: **Google / Kakao**
+- iOS sign-in providers: **Google / Kakao / Apple**
 - Android and iOS are intended to proceed in parallel rather than treating iOS as a later port
-- exact account-linking, duplicate-account, deletion, privacy, offline-sync, and cloud-canonical-data rules are not yet finalized
+- workout recording is **offline-first**: durable local save first, automatic cloud synchronization when connectivity is available
+- core workout logging must remain usable without a live network connection
+- active-session recovery relies on durable local state, not only server state
+- exact multi-device conflict behavior, provider/account linking, account deletion/privacy, and long-term canonical-data rules still need confirmation
 - sex/gender is not used to assign a fixed first working weight
 - first working weight is calibrated from actual performance when prior history is absent
 - first-load guidance uses a short, skippable **in-workout coach-mark state**, not a standalone tutorial route
@@ -76,8 +80,9 @@ Completed:
 - exercise/health research evidence hierarchy and counter-evidence rules defined
 - existing Fitness/Liftly design/code/data assets remain reuse candidates, not immutable product truth
 - product brief updated for recommendation/self-build model
-- decision log updated through `DEC-014`
-- account-entry direction now fixed to Google/Kakao/Apple sign-in with Android+iOS parallel product planning; detailed account/data rules remain open
+- decision log updated through `DEC-016`
+- account-entry direction fixed to Google/Kakao/Apple sign-in with Android+iOS parallel product planning
+- offline-first workout persistence + automatic cloud sync confirmed
 - optional body-data and medical-boundary policies documented
 - first-load calibration direction confirmed without demographic kg guessing
 - V0.4 exercise-detail, self-build/custom-exercise, and first-use workout wireframes refined against current decisions and reference patterns
@@ -98,7 +103,7 @@ These should be decided after the exercise database and substitution relationshi
 
 ## Next bootstrap decisions
 
-1. finish account/privacy/data architecture: offline behavior, cloud sync, account linking/deletion, and canonical data ownership
+1. finish account/privacy/data architecture: multi-device workout behavior, account linking/deletion, privacy, and canonical data ownership
 2. monetization stance for the first release
 3. finalize platform/technical stack for parallel Android+iOS delivery
 4. run Design QA on the current productized wireframes / successor design artifacts after the remaining product policies are settled
@@ -121,7 +126,7 @@ Implementation should not begin as if the product were fully specified until the
 
 Product Owner and ChatGPT are resolving the remaining non-design Bootstrap decisions one by one.
 
-Next product decision: **offline recording + cloud sync behavior**.
+Next product decision: **multi-device active-workout behavior**.
 
 Design QA and final design-system cleanup can follow after these product policies are sufficiently stable.
 
