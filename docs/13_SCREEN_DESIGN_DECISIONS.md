@@ -31,12 +31,18 @@ Global reference rule:
 - The exact hero wording is **provisional** during the current design pass and will be refined later with final naming/brand voice; temporary copy may be used in Figma without becoming product policy.
 - The composition should be Tonal-led in restraint and brand impact, while authentication behavior remains Fitness-specific.
 
+### Provider-button treatment — CONFIRMED
+- Google, Kakao, and Apple authentication controls should remain immediately recognizable as their respective provider actions.
+- The surrounding screen composition follows the Tonal-led Fitness visual direction, but provider buttons must not be visually homogenized in a way that conflicts with the provider's current official sign-in branding requirements.
+- Exact provider button artwork, text treatment, spacing, color, icon use, and other brand-specific implementation details must be checked against each provider's current official guidance at implementation/release time rather than inferred from competitor screenshots.
+- Fitness may harmonize placement, width, spacing between buttons, and surrounding layout where allowed, while preserving provider-required identity and treatment.
+
 ### Deferred media decision
 - Final hero photo/video selection and art direction are deferred until suitable media is available.
 - Do not block the screen-level UX/design pass on final media production.
 
 ### Still to decide
-- Exact provider-button visual treatment and legal-copy placement.
+- Legal-copy / terms-and-privacy placement and consent flow.
 - Loading/error/cancel presentation for provider authentication.
 
 Do not copy Tonal or Hevy brand assets, exact copy, or proprietary imagery.
