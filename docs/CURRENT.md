@@ -75,6 +75,10 @@ Completed:
 - optional body-data and medical-boundary policies documented
 - first-load calibration direction confirmed without demographic kg guessing
 - V0.4 exercise-detail, self-build/custom-exercise, and first-use workout wireframes refined against current decisions and reference patterns
+- Figma page **`V0.5_PRODUCTIZED_WIREFRAME`** created as a preserved successor to V0.4
+- all **31 core wireframe screens** were restructured against current product decisions and multi-app reference patterns, with consistent 390×844 viewports, clearer root/detail/state hierarchy, and action prioritization
+- first-load guidance, set feedback, rest timer, incomplete-end confirmation, and session recovery are represented as contextual in-workout/state surfaces rather than unnecessary standalone navigation concepts
+- V0.5 structural QA found exactly 31 numbered screens and no unresolved placeholder/TBD copy inside the reviewed wireframes
 
 Project OS v0.1 is **not frozen yet**. The operating model is now materially stronger, but several product/implementation decisions remain open.
 
@@ -88,8 +92,8 @@ These should be decided after the exercise database and substitution relationshi
 
 ## Next bootstrap decisions
 
-1. confirm the recommendation-result flow and optional post-recommend scheduling semantics
-2. finish cross-screen V0.4 workout-execution QA, especially set-entry, rest-timer, replacement, completion, and recovery transitions
+1. confirm the recommendation-result flow and optional post-recommend scheduling semantics after Product Owner review of V0.5
+2. run Design QA on `V0.5_PRODUCTIZED_WIREFRAME`, focusing on cross-screen transitions, interaction states, and whether any screen responsibility still overlaps
 3. account/privacy/data architecture
 4. monetization stance for the first release
 5. platform and technical stack
@@ -110,9 +114,9 @@ Implementation should not begin as if the product were fully specified until the
 
 ## Next action
 
-Run a cross-screen QA pass over the V0.4 wireframes to catch inconsistent entry/exit states, duplicated responsibilities, missing empty/no-history states, and interactions that should be sheets/overlays rather than standalone navigation.
+Product Owner reviews the Figma page **`V0.5_PRODUCTIZED_WIREFRAME`** as the current cross-screen UX artifact.
 
-Then confirm the remaining recommendation-result/scheduling semantics before freezing the core IA.
+After that review, run Design QA on transitions and states, then confirm the remaining recommendation-result / optional scheduling semantics before freezing the core IA.
 
 Do not design the final template matrix yet. That work is intentionally deferred until the exercise database is ready.
 
