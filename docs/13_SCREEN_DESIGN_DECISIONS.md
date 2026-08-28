@@ -20,17 +20,22 @@ Global reference rule:
 - iOS providers: **Google / Kakao / Apple**.
 
 ### Confirmed visual composition
-- Use a **single full-screen weight-training hero photograph** as the primary background.
-- Apply a dark treatment/overlay so brand and authentication actions remain legible.
+- Use a **single full-screen hero-media area** as the primary background treatment.
+- The final hero asset may be a **photograph or video** selected/provided later by the Product Owner; exact source, subject, crop, motion treatment, and production style are intentionally deferred.
+- The current Figma pass may use a replaceable placeholder asset and must not depend on one specific final image/video to remain legible and usable.
+- Apply a dark treatment/overlay as needed so brand and authentication actions remain legible over the eventual media.
 - Provider authentication actions are grouped near the bottom of the screen.
 - Do **not** use a multi-slide marketing carousel for first entry.
 - Show the **Fitness brand/logo plus one short hero line** rather than logo-only treatment or long explanatory copy.
-- Keep the hero message concise so the photograph and brand retain primary visual impact.
+- Keep the hero message concise so the media and brand retain primary visual impact.
 - The exact hero wording is **provisional** during the current design pass and will be refined later with final naming/brand voice; temporary copy may be used in Figma without becoming product policy.
 - The composition should be Tonal-led in restraint and brand impact, while authentication behavior remains Fitness-specific.
 
+### Deferred media decision
+- Final hero photo/video selection and art direction are deferred until suitable media is available.
+- Do not block the screen-level UX/design pass on final media production.
+
 ### Still to decide
-- Exact source/style of the hero photograph.
 - Exact provider-button visual treatment and legal-copy placement.
 - Loading/error/cancel presentation for provider authentication.
 
