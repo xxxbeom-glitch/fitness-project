@@ -36,8 +36,14 @@ Confirmed:
 - Profile/Settings includes account/authentication management with provider states such as **연결됨 / 연결하기**
 - provider linking requires real provider authentication; matching email alone must not silently merge accounts
 - if a provider is already attached to another Fitness account, MVP blocks the link rather than merging histories; duplicate-account history merge is deferred
-- workout recording is **offline-first**: durable local save first, automatic cloud synchronization when connectivity is available
+- workout recording is **offline-first**: every meaningful workout/session change is durably saved locally first
 - core workout logging must remain usable without a live network connection
+- server sync is **change-driven only**; no unsynchronized changes means no upload request
+- ordinary edits use a **3-second debounce** before synchronization so rapid edits can be coalesced
+- set completion, workout completion, app backgrounding, and network reconnection trigger an immediate sync attempt
+- failed/offline sync changes remain durably queued and retry automatically when connectivity returns
+- during an in-progress workout, the current active device's local state is authoritative for the latest unsynchronized changes
+- after successful synchronization, the cloud account record is the long-term canonical record for completed workouts, routines, custom exercises, profile data, and optional body data; local storage remains the offline working copy/replica
 - an active workout remains **in progress until the user explicitly finishes or discards it**
 - app close, force-kill, phone lock, network loss, or device reboot must not end the workout
 - reopening the app on the same device must recover the active session and preserve recorded session progress
@@ -97,10 +103,12 @@ Completed:
 - exercise/health research evidence hierarchy and counter-evidence rules defined
 - existing Fitness/Liftly design/code/data assets remain reuse candidates, not immutable product truth
 - product brief updated for recommendation/self-build model
-- decision log updated through `DEC-020`; the account-deletion policy has been refined with the confirmed legal-retention exception
+- decision log is being consolidated through `DEC-021`; account/privacy/data ownership policy is now materially settled
 - account-entry direction fixed to Google/Kakao/Apple sign-in with Android+iOS parallel product planning
 - account-provider linking confirmed in Profile/Settings; duplicate-account history merge is intentionally excluded from MVP
 - offline-first workout persistence + automatic cloud sync confirmed
+- synchronization cadence confirmed as change-driven with 3-second edit debounce and immediate sync on important lifecycle/boundary events
+- canonical data ownership confirmed: active-device local state owns latest unsynced active-workout changes; successfully synced durable account data uses cloud as the long-term canonical record
 - multi-device policy keeps one active workout writer while allowing synchronized non-active data across devices
 - active-session lifecycle now survives app/process/device restart and remains active until explicit user finish/discard
 - account deletion is confirmed to remove all normal account-associated user data, with no user-visible recovery/grace period, no provider re-authentication before final deletion confirmation, linked authentication providers unlinked/revoked on deletion, and only narrow legally required retention allowed
@@ -126,12 +134,11 @@ These should be decided after the relevant data or user need is available for re
 
 ## Next bootstrap decisions
 
-1. finish account/privacy/data architecture: canonical data ownership
-2. monetization stance for the first release
-3. finalize platform/technical stack for parallel Android+iOS delivery
-4. run Design QA on the current productized wireframes / successor design artifacts after the remaining product policies are settled
-5. finalize minimum design tokens/components after core IA is stable
-6. cross-document QA before Project OS v0.1 freeze
+1. monetization stance for the first release
+2. finalize platform/technical stack for parallel Android+iOS delivery
+3. run Design QA on the current productized wireframes / successor design artifacts after the remaining product policies are settled
+4. finalize minimum design tokens/components after core IA is stable
+5. cross-document QA before Project OS v0.1 freeze
 
 ## Canonical source
 
@@ -147,9 +154,9 @@ Implementation should not begin as if the product were fully specified until the
 
 ## Next action
 
-Product Owner and ChatGPT are resolving the remaining non-design Bootstrap decisions one by one.
+Product Owner and ChatGPT have completed the current account/privacy/data-architecture decision pass.
 
-Next product decision: **canonical data ownership**.
+Next product decision: **monetization stance for the first release**.
 
 Design QA and final design-system cleanup can follow after these product policies are sufficiently stable.
 
