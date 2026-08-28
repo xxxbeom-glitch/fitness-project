@@ -51,15 +51,20 @@ If gym registration is introduced later:
 ### Account deletion entry point
 The product must provide an in-app account-deletion entry point under **Settings → Account management → Delete account**.
 
-The exact deletion execution flow, re-authentication, retention, recovery window, and backend cleanup behavior are not yet confirmed and remain separate policy decisions.
+### Account deletion data scope
+Deleting a Fitness account deletes all user data associated with that account from the product, including workout history, routines, custom exercises, profile/body data, and synchronized account data.
+
+The product must not keep normal user workout/profile data attached to a deleted account for future restoration.
+
+The exact deletion execution timing, re-authentication, legally required retention exceptions, external provider unlinking, and backend cleanup mechanics are not yet confirmed and remain separate implementation/policy decisions.
 
 ## TBD
 
 - account required vs guest-first
 - login methods
 - cloud sync policy
-- data retention
-- account deletion execution / retention behavior
+- data retention timing / legally required exceptions
+- account deletion execution mechanics
 - export/delete request handling
 - telemetry/analytics policy
 - crash reporting policy
