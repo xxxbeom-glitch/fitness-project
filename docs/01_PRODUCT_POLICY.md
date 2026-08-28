@@ -56,7 +56,12 @@ Deleting a Fitness account deletes all user data associated with that account fr
 
 The product must not keep normal user workout/profile data attached to a deleted account for future restoration.
 
-The exact deletion execution timing, re-authentication, legally required retention exceptions, external provider unlinking, and backend cleanup mechanics are not yet confirmed and remain separate implementation/policy decisions.
+### Account deletion recovery policy
+There is **no user-visible recovery or grace period** after the user completes the final account-deletion confirmation.
+
+Once deletion is finally confirmed, the action is irreversible from the user's perspective and the product does not offer account/data restoration.
+
+The exact backend deletion completion timing, re-authentication requirement, legally required retention exceptions, and external provider unlinking mechanics remain separate implementation/policy decisions.
 
 ## TBD
 
@@ -64,7 +69,7 @@ The exact deletion execution timing, re-authentication, legally required retenti
 - login methods
 - cloud sync policy
 - data retention timing / legally required exceptions
-- account deletion execution mechanics
+- account deletion re-authentication and backend cleanup mechanics
 - export/delete request handling
 - telemetry/analytics policy
 - crash reporting policy
