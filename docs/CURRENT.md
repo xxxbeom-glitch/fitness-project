@@ -4,7 +4,7 @@
 
 ## Current mode
 
-`BOOTSTRAP MODE — TONAL PHASE-A FIGMA F3 THIRD CLEANUP REQUIRED`
+`BOOTSTRAP MODE — TONAL PHASE-A FIGMA F3 ONE TOPBAR BLOCKER REMAINS`
 
 The current work is the Tonal reconstruction baseline. Broad Fitness screen visual customization remains gated until the staged Figma design-system build passes QA.
 
@@ -85,83 +85,85 @@ Independent QA:
 Independent QA:
 - `docs/25_FIGMA_PHASE_F3_PATTERN_QA.md`
 
-**F3 RESULT: FAIL — SECOND CLEANUP IMPROVED THE SYSTEM, THIRD NARROW CLEANUP REQUIRED**
+**F3 RESULT: FAIL — ONE TOPBAR STRUCTURAL BLOCKER REMAINS**
 
-### Now verified PASS
+### Latest cleanup now verified PASS
 
-- all expected F3 families present
+- all expected F3 families remain present
 - top-level overlap = 0
 - BottomBar Active 1–5 API
-- Tab Active/Inactive equal outer height = 50
+- Tab Active/Inactive outer height = 50
 - Settings Tone API
 - Settings nested Toggle = 52 x 32
-- Movement Trailing / Meta APIs
+- Movement Leading / Trailing / Meta APIs
 - BlockHeader = 342 x 54
 - Dialog Body / Secondary / Tone APIs
-- Dialog nested actions = 54pt height
+- Dialog actions = 54pt
 - Sheet overlay = 390 x 844 and bottom aligned
-- Sheet nested actions = 54pt height
+- Sheet actions = 54pt
 - raw canonical spacing = 0
 - unstyled F3 text = 0
 - text-collapse failures = 0
-- TopBar parent variants reduced from 72 to 6
-- Row/Settings child overlap = 0
-- Row/Movement child overlap = 0
-- explicit Scrim layers now exist in Dialog and Sheet
+- TopBar parent variants remain reduced at 6
+- TopBar Leading and Trailing are parent-controllable INSTANCE_SWAP properties
+- Leading single wrapper = 44 x 44
+- Trailing Text/Icon wrapper = 44 x 44
+- Trailing Multiple = 88 x 44
+- nested Leading internal overlap = 0
+- nested Trailing internal overlap = 0
+- Row/Settings set bounds = 1066 x 455 and contain all variants
+- Row/Movement set bounds = 1066 x 687 and contain all variants
+- all 12 Dialog Scrims = 390 x 844 at x=0/y=0
+- Sheet Scrim = 390 x 844
 - no later Phase page created
 
-### Remaining F3 blockers
+### Remaining F3 blocker
 
-1. **TopBar parent hit wrappers regress to 24 x 44**
-   - nested source controls define 44pt wrappers
-   - instances inside parent TopBar are HUG-compressed to 24pt width
-   - visual icon may stay 24, but parent interaction wrapper must remain >= 44 x 44
+**`Navigation/TopBar` Center-mode side-action anchoring**
 
-2. **TopBar Leading / Trailing are not exposed as parent-level controllable properties**
-   - parent currently exposes only Surface / TitleMode / Title
-   - keep the reduced 6 parent variants but expose nested Leading and Trailing choices via stable nested property / instance-swap architecture
+The centered title itself is now correct:
+- TitleRegion is independent/absolute in Center mode
+- title center X = 195 on the 390 baseline
 
-3. **TopBar centered title is not robust to asymmetric action widths**
-   - current flow-based FILL title region can shift when left/right action zones differ
-   - Center mode must remain optically centered for Back+Text, Back+Multiple, None+Text cases
+But current Center variants place:
+- Leading x = 4
+- Trailing x = 48
 
-4. **Nested Leading / Trailing component-set cleanup**
-   - Leading internal overlaps = 3
-   - Trailing internal overlaps = 6
-   - Trailing Multiple currently = 88 x 100 instead of 88 x 44
+So the trailing action is packed directly after the leading action on the left instead of being pinned to the right edge.
 
-5. **Row component-set bounds do not contain rearranged variants**
-   - Settings set frame = 342 x 455, actual child extent ≈ 1066 x 455
-   - Movement set frame = 342 x 317, actual child extent ≈ 1066 x 687
-   - resize set bounds without changing child/API geometry
+Contextual variants correctly place the trailing action at x = 342, proving this defect is specific to Center mode.
 
-6. **Dialog Scrim layers do not fill the viewport**
-   - explicit Scrim children exist, but heights vary roughly 572–702 instead of 844
-   - every Dialog Scrim must be 390 x 844 at x=0, y=0
-   - Sheet Scrim is already correct and must not regress
+Required fix:
+- keep Title center X = 195
+- keep Leading left-anchored
+- make Trailing right-anchored
+- preserve the 44pt interaction wrappers and current INSTANCE_SWAP API
+- verify Multiple (88 x 44) remains right-anchored
 
 F3 QA-1 Structure: **FAIL**
 
-F3 QA-2 Design-system / Binding: **FAIL**
+F3 QA-2 Design-system / Binding / API: **PASS**
 
-F3 visual sanity: **PASS / STRUCTURE STILL BLOCKING**
+F3 visual sanity: **PARTIAL PASS**
 
 ## Current next action
 
-Remain in **Phase F3** for one narrow cleanup pass.
+Remain in **Phase F3** for a TopBar-only remediation.
 
-Required fixes are defined in:
-- `docs/25_FIGMA_PHASE_F3_PATTERN_QA.md`
+After remediation verify Center mode with:
+- Back + Text
+- Back + Multiple
+- None + Text
+- None + Multiple
 
-After remediation:
-- verify TopBar parent action wrappers >= 44 x 44
-- verify Leading / Trailing are parent-controllable without returning to 72 variants
-- verify Center title optical behavior under asymmetric actions
-- verify Leading / Trailing nested-set overlap = 0 and Multiple = 88 x 44
-- verify Settings / Movement set bounds contain all variants
-- verify every Dialog Scrim = 390 x 844
-- rerun QA-1 / QA-2
-- STOP and request independent QA
+Required for every combination:
+- title center X = 195
+- Leading anchored left when present
+- Trailing anchored right when present
+- no action/title overlap
+- minimum interaction geometry preserved
+
+Then rerun F3 regression QA and STOP for independent review.
 
 ## Gate
 
