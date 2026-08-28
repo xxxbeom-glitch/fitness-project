@@ -1,239 +1,278 @@
 # 09 DESIGN SYSTEM
 
-**Status:** BOOTSTRAP — TONAL RECONSTRUCTION BASELINE CONFIRMED, TOKENS NOT FROZEN
+**Status:** TONAL PHASE-A BASELINE CONSOLIDATED — FIGMA BUILD READY, FINAL TOKENS NOT FROZEN
+**Updated:** 2026-08-28
 
-## Product-driven design goal
+## Purpose
 
-The interface must feel fast and quiet during training. Legibility, touch efficiency, state clarity, and low interaction cost remain mandatory.
+Define the strategic visual-system direction for Fitness.
+
+This file explains **why and how the design system is being built**. It is not the detailed token/component implementation source.
+
+Canonical implementation sources:
+- `docs/15_TONAL_DESIGN_SYSTEM_SPEC.md` — implementation-facing Phase-A spec
+- `docs/16_FIGMA_TONAL_BUILD_INSTRUCTIONS.md` — Figma construction sequence
+- `docs/17_FIGMA_AGENT_EXECUTION_QA.md` — mechanical execution and QA contract
+- `docs/22_TONAL_PREFIGMA_CONSOLIDATION_QA.md` — pre-Figma consolidation gate / conflict resolution
+
+Evidence/provenance:
+- `docs/14_TONAL_RECONSTRUCTION_BASELINE.md`
+- `docs/18_TONAL_FOUNDATIONS_AUDIT.md`
+- `docs/19_TONAL_CORE_COMPONENTS_AUDIT.md`
+- `docs/20_TONAL_INTERMEDIATE_QA_BATCH01_02.md`
+- `docs/21_TONAL_PRODUCT_PATTERNS_AUDIT.md`
+
+If an old audit value conflicts with `15_TONAL_DESIGN_SYSTEM_SPEC.md`, the canonical implementation spec wins until a later QA-approved correction updates it.
+
+---
 
 ## Design Source-of-Truth rule
 
-Figma is the visual implementation/reference surface, not the product-policy Source of Truth.
+Figma is the visual implementation/reference artifact, not the product-policy Source of Truth.
 
-- GitHub Decision / Product / Policy docs define **what the product means and how it behaves**.
-- Figma defines **how the approved behavior is visually expressed**.
-- If Figma and current GitHub product policy conflict, GitHub wins and Figma must be corrected.
+- GitHub Product / Policy / Decision docs define **what the product means and how it behaves**.
+- GitHub design-system docs define **the current visual-system rules and QA contract**.
+- Figma expresses those approved rules visually and structurally.
+- If Figma conflicts with current GitHub policy/specification, Figma must be corrected.
 
-## Primary reference split — CONFIRMED
+---
 
-The product uses a deliberate two-reference model:
+## Primary reference split — confirmed
 
-- **Tonal = visual-system reconstruction baseline**
-- **Hevy = weight-training functionality / repeated interaction reference**
+- **Tonal = Phase-A visual-system reconstruction/replication baseline**
+- **Hevy = practical weight-training functionality and repeated interaction reference**
 - **Fitness GitHub policy = behavior and scope authority**
 
-## Tonal reconstruction baseline — CONFIRMED
+The product intentionally separates visual reference from functional reference.
 
-The first visual-system pass is explicitly a **Tonal reconstruction / replication baseline**, not merely loose inspiration.
+Tonal leads visible system quality. Hevy leads repeated strength-training interaction where Tonal's hardware/media model does not fit Fitness.
 
-The purpose of this phase is to reconstruct a coherent working design system from the Tonal screens that are accessible through Mobbin, then use that reconstructed system as the starting point for later Fitness-specific customization.
+---
 
-### Reconstruction principle
+## Tonal reconstruction principle
 
-Before inventing Fitness-specific styling, inspect Tonal across as many accessible screen families as possible and infer a consistent provisional system from repeated visual evidence.
+The first design-system pass intentionally reconstructs the visible Tonal system closely before Fitness-specific customization.
 
-The reconstruction should intentionally approximate the visible Tonal system in:
-- typography hierarchy and emphasis
-- black / white / neutral palette behavior
-- accent-color usage
-- spacing rhythm and page margins
-- section spacing and vertical density
-- surface/background hierarchy
-- card proportions and flatness
-- button size, prominence, and treatment
-- selected / unselected contrast
-- tabs and segmented controls
-- top navigation and bottom navigation treatment
-- list rows and dividers
+The goal is not vague inspiration. It is to establish a coherent baseline for:
+- typography hierarchy
+- large-number/metric emphasis
+- black / white / neutral surface behavior
+- semantic accent usage
+- spacing rhythm
+- page margins
+- section density
+- surface hierarchy
+- low-radius card/button geometry
+- selection inversion
+- tabs / segmented controls
+- top/bottom navigation treatment
+- rows / dividers
 - form/input presentation
-- toggles, radio/choice controls, and selection markers
-- metric presentation and large-number hierarchy
-- chart framing and statistic layouts
-- hero-media overlays
-- workout/program cards
-- exercise/workout detail composition
-- sheet/modal presentation where evidenced
-- icon restraint and supporting metadata treatment
-
-### Evidence rule
-
-Mobbin screenshots are the evidence base for this reconstruction.
-
-For every inferred rule or token:
-- prefer patterns repeated across multiple Tonal screens over one-off visual details
-- compare multiple screen families before deciding a global rule
-- distinguish **observed** values from **estimated** values
-- do not present screenshot-derived estimates as official Tonal source tokens
-- if exact values cannot be known, choose the closest internally consistent approximation and mark it provisional
-
-The goal is to reproduce the **visible system**, even when the underlying official Tonal token values are unknown.
-
-### Coverage rule
-
-Do not derive the system from only onboarding or a handful of attractive screens.
-
-The audit should cover, where accessible:
-1. authentication / first entry
-2. onboarding / profile setup
-3. Home / dashboard
-4. Explore / discovery
-5. program detail
-6. workout detail / workout builder
-7. exercise detail
-8. history / charts / progress
-9. profile
-10. settings / legal / connected apps
-11. forms / toggles / selection states
-12. navigation / tabs / list rows
-13. media-led screens
-14. empty / disabled / error / recovery states when available
-
-Because Mobbin search is not guaranteed to expose a literal exhaustive list of every Tonal screen in one operation, the working rule is **maximum practical coverage of all accessible Tonal screens, deduplicated by screen family and component evidence**.
-
-### Phase-A target
-
-The output of the Tonal reconstruction phase should be a provisional Fitness design-system baseline containing at minimum:
-- typography scale
-- color roles
-- spacing scale
-- radius/surface rules
-- page/container margins
-- button system
-- card/surface system
-- selection controls
-- top/bottom navigation
-- tabs
-- list rows
-- inputs/forms
-- metric/stat patterns
+- toggles / choice controls / steppers
 - chart framing
-- workout/program card patterns
-- exercise-detail patterns
-- icon usage rules
-- state patterns
+- media/program/workout cards
+- hero overlays
+- exercise/detail composition
+- dialog/sheet treatment
+- icon restraint and metadata hierarchy
 
-These values are allowed to be intentionally close to the visible Tonal system during this internal baseline phase.
+This baseline is reconstructed from accessible Mobbin Tonal screenshots and does **not** claim Tonal's private internal design tokens.
 
-## Fitness customization phase — REQUIRED BEFORE FINAL FREEZE
+---
 
-The reconstruction baseline is not the final brand system.
+## Evidence rule
 
-After the Tonal baseline is coherent, Fitness performs a second pass that changes only what has a clear reason to change:
-- Fitness brand name / logo / identity
+For screenshot-derived reconstruction:
+- repeated patterns across multiple screen families outrank one-off details
+- observed relationships must be separated from inferred/estimated values
+- exact numeric/color values remain provisional until Figma screenshot QA
+- when an odd local measurement can be explained by a shared 4 pt family or common alignment token, prefer the coherent shared system
+- global token changes require evidence from more than one screen family where possible
+
+The purpose is to reproduce the **visible system consistently**, not to invent false precision.
+
+---
+
+## Current Phase-A system — consolidated
+
+The following have already been derived provisionally and are **not TBD anymore**:
+- 390 comparison frame baseline with responsive production behavior
+- approximately 24 primary page inset and 16 internal/component inset
+- 4 pt spacing family
+- semantic white / subtle-gray / dark canvas roles
+- semantic ink / divider hierarchy
+- mint/green positive, blue info, achievement orange/yellow, negative red/pink roles
+- Pretendard as the Phase-A implementation proxy font
+- question/screen/section/body/label/action/metric typography roles
+- very low ordinary card/button radius
+- distinct dialog / sheet-top / pill / circle radius roles
+- icon slots 16 / 20 / 24 / 28
+- minimum 44 interaction target
+- compact and content-width primary action families
+- choice-card, control, navigation, row, dialog/sheet/toast component families
+- dashboard, media carousel, hero, stats/history, exercise-detail and workout-block higher-order patterns
+- explicit Fixed / Hug / Fill contracts
+- role-driven text alignment rules
+
+Exact values remain **PROVISIONAL** until representative Figma reconstruction screens pass visual comparison.
+
+See `docs/15_TONAL_DESIGN_SYSTEM_SPEC.md` for the actual current values and component APIs.
+
+---
+
+## Fitness customization phase
+
+Phase A is a reconstruction baseline, not the final Fitness brand system.
+
+After representative Tonal reconstruction examples pass Figma QA, Fitness may customize where there is a clear product reason:
+- Fitness brand/logo/identity
 - final copy
-- proprietary imagery / video
-- exercise and workout functionality required by Fitness
-- accessibility or platform corrections
-- behavior required by confirmed GitHub policy
-- Hevy-derived workout interaction improvements
-- later brand differentiation approved by the Product Owner
+- final iconography
+- proprietary/original workout imagery/video
+- accessibility/platform corrections
+- confirmed Fitness-specific behavior
+- Hevy-derived repeated workout interaction
+- later brand differentiation explicitly approved by the Product Owner
 
-The point is to **start from a strong, coherent reconstructed system and customize from there**, rather than inventing an inconsistent design language screen by screen.
+Do not customize arbitrarily before the reconstruction baseline is stable enough to compare globally.
 
-Tonal trademarks, logos, proprietary imagery/video, and other protected brand assets are never reused as Fitness assets.
+---
 
-## Hevy — primary functional / interaction reference
+## Brand-asset boundary
 
-Hevy remains the primary reference for practical weight-training interactions:
+Never reuse Tonal as Fitness production assets:
+- trademarks
+- logos
+- proprietary icon artwork
+- exact proprietary copy
+- production imagery/video
+
+Reference screenshots are evidence, not shippable assets.
+
+The public GitHub repository stores Mobbin URLs/IDs and text observations rather than permanent full competitor screenshots.
+
+---
+
+## Hevy — functional reference
+
+Hevy remains the primary reference for:
 - fast set logging
 - previous-performance visibility
 - routine creation/editing
 - exercise search/selection
 - exercise/workout history
 - active-workout controls
-- set completion and correction
-- practical strength-training data density
+- set completion/correction
+- practical repeated-gym-use density
 
-Hevy is not the visual-system target and does not override confirmed Fitness product policy.
+Hevy does not define Fitness visual styling and does not override confirmed Fitness product policy.
 
-## Default Design Pipeline
+Tonal's video/hardware-centric active-session model is not copied as the Fitness active-logging baseline.
 
-`Product Decision -> UX IA/Storyboard -> Tonal screen audit -> Tonal reconstruction baseline -> Fitness screen mapping -> Hevy functional check -> Figma refinement -> Design QA -> Development`
+---
 
-### Tonal screen audit
-
-Before visually refining a Fitness screen:
-- identify the closest Tonal screen family/pattern
-- inspect repeated Tonal rules around that pattern
-- use the reconstructed baseline first
-- only create a new visual pattern when Tonal has no suitable equivalent or Fitness behavior requires a different solution
-
-### Figma refinement
-
-Figma should use reusable components/tokens from the reconstructed Tonal baseline rather than manually approximating each screen independently.
-
-Old Fitness/Liftly assets may be reused only when they can be brought into the reconstructed system without inconsistency.
-
-## CONFIRMED UX principles
+## Confirmed Fitness UX principles
 
 - Previous performance should be visible where the user enters the next set.
-- Avoid forcing navigation away from the active workout for routine edits or prior-record checks.
+- Avoid forcing navigation away from an active workout for common edits/history checks.
 - Exercise order remains flexible.
-- Important workout actions require clear feedback.
+- Important workout actions require clear state feedback.
 - Active workout prioritizes current set, previous performance, completion state, and rest timing.
 - Recommendation/self-build users converge into the same routine/workout/history system.
-- Weekday scheduling is optional.
-- Home remains action-first rather than a dense analytics dashboard.
+- Weekday scheduling remains optional.
+- Home remains action-first rather than becoming a dense analytics dashboard.
+- Exercise detail remains text-first / media-optional; missing media does not leave a fixed empty rectangle.
 
-## Design QA
+---
 
-Every screen must pass:
-1. **Tonal reconstruction check** — does it use the reconstructed system consistently?
-2. **Hevy functional check** — is repeated strength-training interaction practical and fast?
-3. **Fitness policy check** — does behavior preserve confirmed GitHub product rules?
-4. **State check** — are relevant loading/empty/error/disabled/success/recovery states covered?
-5. **Implementation consistency check** — are repeated components actually using shared tokens/components?
+## Design pipeline
 
-## Current visual observations from the Tonal audit
+Current pipeline:
 
-Repeated visible patterns already confirmed across multiple accessible Tonal screens include:
-- light gray/off-white application backgrounds with white content surfaces
-- near-black primary text and strong black primary actions
-- large, bold, compact headings with visibly quieter supporting copy
-- uppercase compact section labels in many statistic/workout contexts
-- large numeric values with much smaller uppercase metadata labels
-- large rectangular choice surfaces with selected states frequently using black inversion
-- relatively small or restrained corner radii compared with heavily rounded consumer UI
-- thin dividers and low-contrast gray separators
-- frequent use of generous vertical whitespace rather than decorative containers
-- bottom navigation using a strong black bar in major app surfaces
-- bright green used selectively for positive/progress/active training information rather than as a general brand wash
-- blue appears in some progress/benchmark or profile contexts but is not treated as the dominant global surface color
-- media-heavy program/workout screens combine edge-to-edge imagery with dark overlays and white metadata
-- settings/legal screens become much flatter and more utilitarian, using rows and dividers rather than card-heavy composition
+`Product Decision -> UX IA/Storyboard -> Tonal screenshot audit -> Tonal reconstruction spec -> Pre-Figma QA -> Figma Foundations -> Components -> Patterns -> Examples -> Representative QA -> Fitness customization -> Screen QA -> Development`
 
-These are **observed system behaviors**, not yet frozen token values.
+Do not skip from audit directly to broad Fitness screen styling.
 
-## Required component states
+---
 
-Where relevant, components must define:
-- default
-- pressed
-- active/selected
-- disabled
-- loading
-- empty
-- error
-- success/completed
-- retry/recovery
-- editable/completed-set correction
-- scheduled / unscheduled variants
+## Figma structure
 
-## TBD — to derive from the Tonal reconstruction audit
+Phase-A Figma construction order:
 
-- provisional typography tokens
-- provisional color roles and values
-- provisional spacing scale
-- provisional radius/surface scale
-- icon system
-- exact bottom-navigation implementation
-- tab/segmented-control tokens
-- chart/metric tokens
-- motion/transition behavior where screenshot evidence is insufficient
-- dark-mode policy
+`01_FOUNDATIONS -> 02_COMPONENTS -> 03_PATTERNS -> Examples -> 10_FITNESS_SCREENS`
 
-## Design gate
+Historical V0.3/V0.5 Figma pages remain preserved as reference/archive material and are not the canonical Phase-A component library.
 
-Do not freeze the final Fitness brand system before the Tonal reconstruction baseline is sufficiently complete.
+Icons/media remain placeholders during the baseline:
+- `Placeholder/IconSlot`
+- `Placeholder/Media`
 
-Do not infer product behavior from Tonal. Tonal is being reconstructed for **visual-system quality**; Fitness behavior remains governed by GitHub product policy.
+---
+
+## Figma structural quality rule
+
+Visual similarity alone is insufficient.
+
+Reusable Figma assets must encode:
+- Auto Layout
+- Fixed / Hug / Fill by axis
+- correct wrapping/resizing
+- role-based text alignment
+- semantic naming
+- real variable/style bindings
+- controlled component variants/properties
+- reusable higher-order patterns
+
+Do not flatten screenshot appearance into manually positioned x/y layers.
+
+---
+
+## Mandatory Design QA
+
+Every substantial Figma build batch must pass the detailed contract in `docs/17_FIGMA_AGENT_EXECUTION_QA.md`.
+
+### QA-1 — Structure / Auto Layout
+- layout direction
+- Fixed / Hug / Fill
+- padding/gap/alignment
+- text wrapping/resizing
+- responsive behavior
+- unnecessary absolute positioning
+
+### QA-2 — Design-system / Binding
+- actual variable/style bindings
+- component instance/variant/property integrity
+- semantic naming
+- no avoidable detached instances
+- no repeated raw-value drift
+
+### QA-3 — Visual / Reference / Product
+- Tonal proportion/hierarchy/density/surface fidelity
+- cross-family consistency
+- Fitness policy correctness
+- no proprietary Tonal asset reuse
+
+A visually similar screenshot with broken Auto Layout or unbound tokens is a FAIL.
+
+---
+
+## Current freeze status
+
+### Phase-A reconstruction rules
+**Consolidated enough to build in Figma.**
+
+Pre-Figma gate:
+- `docs/22_TONAL_PREFIGMA_CONSOLIDATION_QA.md` = PASS
+
+### Final Fitness design-system freeze
+**NOT YET.**
+
+Still requires:
+- actual Figma foundation/component/pattern construction
+- binding verification
+- responsive/copy stress testing
+- representative reconstruction screenshot comparison
+- QA-1 / QA-2 / QA-3 pass
+- later Fitness customization review
+
+Remaining provisional areas include exact color HEX, exact Pretendard weight mapping, hero/chart dimensions, sheet radius, motion/easing, final icons, and broader dark-mode policy.
