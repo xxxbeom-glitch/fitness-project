@@ -79,6 +79,23 @@ Provider buttons use unified `계속하기` semantics. After successful provider
 
 The product does not require a separate email/password account-creation screen for the MVP authentication path.
 
+### First-run legal / privacy consent policy
+The first-entry screen keeps **Terms of Use** and **Privacy Policy** links accessible without forcing the user into a long legal screen before choosing a sign-in provider.
+
+For a first-time provider identity:
+- require an explicit agreement to the **Terms of Use** before completing normal first-run account setup
+- keep the **Privacy Policy** separately viewable
+- do not create a generic mandatory `개인정보처리방침 동의` checkbox merely for personal data that is necessary to establish or perform the service relationship
+- do not bundle optional or future consent-based processing into the required service-terms agreement
+
+For an existing Fitness account:
+- do not ask the user to repeat the same first-run agreement on every login
+- if a later material terms update or a legally distinct new consent is required, handle that as a separate versioned flow rather than reusing the normal login screen
+
+If future features introduce processing that genuinely requires consent, such as optional marketing or other non-essential consent-based processing, the consent must be presented separately with the required information and a real choice.
+
+Before production release, verify the exact lawful basis, consent-required categories, and legal copy against current Korean privacy law, provider requirements, and app-store disclosure obligations.
+
 ### Account deletion entry point
 The product must provide an in-app account-deletion entry point under **Settings → Account management → Delete account**.
 
