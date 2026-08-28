@@ -461,3 +461,26 @@ Gyms can have weak or intermittent connectivity, and workout-record loss is a tr
 - UI may expose a lightweight sync/problem state when needed, but normal logging should not require manual sync
 - data architecture must include stable record identifiers and enough sync metadata to avoid duplicate writes and support deterministic conflict handling
 - exact multi-device conflict policy is a separate product/technical decision
+
+---
+
+## DEC-017 — Only one device may actively edit an in-progress workout
+
+**Date:** 2026-08-28
+**Status:** CONFIRMED
+
+### Decision
+A signed-in account may use multiple devices for synchronized routines, history, and other non-active data, but an **in-progress workout has exactly one active editing device at a time**.
+
+A second phone/tablet must not concurrently edit the same active workout session. Future Watch support may be designed as an explicitly paired companion exception rather than as an independent concurrent editor.
+
+### Why
+The product is offline-first. Allowing two independent devices to edit the same live session while either device may temporarily be offline creates ambiguous conflicts around set completion, kg/reps changes, exercise ordering, session completion, and recovery. Preventing concurrent live-session writers is substantially safer than relying on silent last-write-wins behavior.
+
+### Product impact
+- routines and completed history remain available across signed-in devices after synchronization
+- the active workout needs an identifiable owning device/session writer
+- another device must not silently overwrite or merge concurrent active-session edits
+- the UI should clearly explain when an active workout is currently owned by another device
+- exact device-takeover / transfer behavior is a separate decision
+- future Watch behavior must preserve a single logical session authority even if phone and Watch collaborate
