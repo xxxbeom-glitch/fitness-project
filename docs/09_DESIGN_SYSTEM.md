@@ -1,6 +1,6 @@
 # 09 DESIGN SYSTEM
 
-**Status:** BOOTSTRAP — PIPELINE DEFINED, TOKENS NOT FROZEN
+**Status:** BOOTSTRAP — PRIMARY REFERENCES CONFIRMED, TOKENS NOT FROZEN
 
 ## Product-driven design goal
 
@@ -16,9 +16,54 @@ Figma is the visual implementation/reference surface, not the product-policy Sou
 - Figma defines **how the approved behavior is visually expressed**.
 - If Figma and the current GitHub Decision conflict, GitHub wins and Figma must be corrected.
 
+## Primary reference split — CONFIRMED
+
+The product uses a deliberate two-reference model:
+
+### Tonal — primary visual/UI reference
+Tonal is the primary reference for the product's visual language and screen-composition quality.
+
+Reference characteristics to study and reinterpret:
+- restrained black / white / neutral visual system
+- strong typography hierarchy and prominent numeric information
+- generous whitespace and clear section separation
+- limited use of accent color
+- relatively flat surfaces instead of excessive nested rounded cards
+- high-contrast primary actions
+- clear distinction between primary content, secondary metadata, and supporting states
+- premium but quiet fitness-product tone
+
+Tonal is **not** a functional specification. Do not inherit assumptions that depend on Tonal hardware, proprietary exercise media, coaches, classes, or machine-specific data.
+
+Do not copy Tonal trademarks, brand assets, exact screens, copy, proprietary imagery, or unverified exact tokens.
+
+### Hevy — primary functional/interaction reference
+Hevy is the primary reference for weight-training tracker functionality and repeated workout interaction patterns.
+
+Reference characteristics to study and reinterpret:
+- fast set logging
+- previous-performance visibility during logging
+- routine creation and editing
+- exercise search/selection
+- exercise history and workout history
+- active-workout controls
+- set completion and correction
+- practical strength-training data density
+- low-friction repeated use inside a real gym session
+
+Hevy is **not** the visual style target and does not override confirmed Fitness product policy. Do not automatically inherit its monetization, information architecture, feature scope, terminology, or every interaction.
+
+### Secondary references
+Other products may be researched when Tonal or Hevy does not adequately solve a specific UX problem. They remain supporting references rather than a new global visual direction.
+
+Every screen should pass three checks:
+1. **Tonal visual check** — does the composition, hierarchy, restraint, and visual tone align with the intended UI direction?
+2. **Hevy functional check** — is the workout-tracking interaction practical, fast, and clear for repeated gym use?
+3. **Fitness policy check** — does the screen exactly preserve the confirmed GitHub product rules?
+
 ## Default Design Pipeline
 
-`Product Decision -> UX IA/Storyboard -> Figma low-fi visualization -> Mobbin/reference research -> UI pattern synthesis -> Figma refinement -> Design QA -> Development`
+`Product Decision -> UX IA/Storyboard -> Figma low-fi visualization -> Tonal/Hevy reference research -> UI pattern synthesis -> Figma refinement -> Design QA -> Development`
 
 ### Stage 1 — Product meaning
 Before drawing screens, confirm:
@@ -53,7 +98,9 @@ Use simple frames, real or near-real copy, and basic blocks to confirm:
 Do not spend time perfecting components before the flow is stable.
 
 ### Stage 4 — Reference research
-Search Mobbin and other references by the specific UX problem, not broad visual keywords.
+Start with the confirmed primary-reference split rather than broad visual browsing.
+
+Use **Tonal first for visual composition** and **Hevy first for workout-tracking functionality**. Search other references only when the specific problem is not sufficiently covered.
 
 Examples:
 - program recommendation result
@@ -70,14 +117,14 @@ For each relevant reference identify:
 - whether it changes product meaning
 
 ### Stage 5 — UI pattern synthesis
-Do not copy one competitor wholesale.
+Tonal and Hevy are primary references, not templates to clone.
 
-The UI / Design Agent may combine validated patterns from multiple products, for example:
-- one product's schedule hierarchy
-- another product's large-card Home treatment
-- another product's workout logging interaction
+The default synthesis rule is:
+- **visual expression / composition / hierarchy -> Tonal-led**
+- **workout functionality / repeated interaction -> Hevy-led**
+- **product behavior / scope / policy -> Fitness GitHub-led**
 
-The result must be re-expressed using the Fitness design language and confirmed product rules.
+If a reference conflicts with the product rules, the reference is adapted or rejected.
 
 ### Stage 6 — Figma refinement
 Refine the approved low-fi structure into high-fidelity screens using:
@@ -90,12 +137,14 @@ Refine the approved low-fi structure into high-fidelity screens using:
 ### Stage 7 — Design QA
 Before development check:
 - final Figma still matches the approved storyboard/product meaning
+- the Tonal-led visual direction is applied consistently rather than only on isolated screens
+- Hevy-derived workout interactions remain practical and low-friction
 - scheduled and unscheduled states are handled where relevant
 - loading / empty / error / disabled / success states are not accidentally omitted
 - repeated components are actually consistent
 - touch targets and readability are acceptable
 - the design is implementable without inventing hidden behavior
-- reference borrowing has not turned into product-policy drift
+- reference borrowing has not turned into product-policy drift or literal competitor copying
 
 ## Mobbin / reference rules
 
@@ -143,14 +192,22 @@ Do not preserve an old screen merely because it already exists.
 - Weekday scheduling is optional; design must not assume every user has a fixed weekday plan.
 - Home direction is action-first and favors a small number of large, readable cards over a dense analytics dashboard.
 
-## Visual direction — ASSUMPTION
+## Visual direction — CONFIRMED
 
-- clean, restrained mobile UI
+The overall UI direction is **Tonal-led but re-authored for Fitness**.
+
+- clean, restrained, high-contrast mobile UI
 - strong typography hierarchy
-- consistent spacing
+- prominent and highly legible numbers where workout data matters
+- generous spacing and clear section rhythm
+- black / white / neutral foundation with restrained accent color
 - limited decorative surfaces
-- avoid excessive rounded cards and ornamental gradients
+- fewer unnecessary nested rounded cards
+- avoid ornamental gradients and generic "AI-looking" styling
+- use imagery only when it adds real product value; the core UI must remain complete without media
 - default to familiar mobile controls where custom interaction does not add real value
+
+The exact token values are still ours to define; Tonal screenshots do not constitute token specifications.
 
 ## Required states
 
