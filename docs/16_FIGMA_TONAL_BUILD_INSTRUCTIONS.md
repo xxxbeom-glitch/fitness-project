@@ -1,311 +1,429 @@
 # 16 FIGMA TONAL BUILD INSTRUCTIONS
 
-**Status:** ACTIVE — PHASE-A RECONSTRUCTION
+**Status:** READY FOR PHASE-A FIGMA BUILD
 **Updated:** 2026-08-28
 
 ## Objective
 
-Build the first Fitness Figma design system by reconstructing Tonal's visible design language from the GitHub specification and Mobbin reference evidence, before product-specific visual customization.
+Build the first Fitness Figma design system by reconstructing Tonal's visible design language from the consolidated GitHub specification before Fitness-specific visual customization.
 
-The Figma build should consume:
-1. `docs/09_DESIGN_SYSTEM.md`
-2. `docs/14_TONAL_RECONSTRUCTION_BASELINE.md`
-3. `docs/15_TONAL_DESIGN_SYSTEM_SPEC.md`
-4. `docs/17_FIGMA_AGENT_EXECUTION_QA.md`
-5. relevant Fitness Product/Policy/Screen Decision docs when building actual Fitness screens
+### Canonical input order
+1. `docs/09_DESIGN_SYSTEM.md` — strategic visual direction
+2. `docs/15_TONAL_DESIGN_SYSTEM_SPEC.md` — **canonical implementation spec**
+3. `docs/17_FIGMA_AGENT_EXECUTION_QA.md` — mechanical execution + QA contract
+4. `docs/22_TONAL_PREFIGMA_CONSOLIDATION_QA.md` — consolidation gate / conflict resolutions
+5. Batch audit docs `18–21` — evidence/provenance only when clarification is needed
+6. relevant Fitness Product/Policy/Screen Decision docs when actual Fitness screens are built
 
-## Important tool limitation / workflow rule
+If an audit document conflicts with `15_TONAL_DESIGN_SYSTEM_SPEC.md`, the consolidated spec wins until a QA-approved correction updates it.
 
-Do **not** assume Figma itself will reliably crawl and interpret arbitrary GitHub Markdown files or Markdown-embedded competitor screenshots automatically.
+---
 
-For ChatGPT-driven Figma work, ChatGPT acts as the bridge:
-- read GitHub specifications
-- inspect Mobbin screenshot evidence
-- translate the evidence into Figma variables, styles, components, patterns, examples, and screen composition
+## 1. Workflow rule
 
-Figma Code Connect is for mapping design components to code; it is not the primary mechanism for ingesting arbitrary Markdown design specifications.
+Do not assume Figma will reliably crawl arbitrary GitHub Markdown and infer the design system by itself.
 
-Therefore the build must not depend on 'GitHub is connected, so Figma will infer everything by itself.' The specification must be explicit enough to execute deterministically.
+ChatGPT remains the translation bridge:
+- read current GitHub spec
+- inspect Tonal/Mobbin evidence where needed
+- create Figma variables/styles/components/patterns/examples
+- inspect the resulting Figma structure and bindings
+- run the required QA gates
 
-## Figma-agent readability rule
+The Figma file itself must become machine-readable through:
+- semantic names
+- Auto Layout
+- explicit Fixed / Hug / Fill
+- component variants/properties
+- actual variable/style bindings
+- descriptions
+- higher-order patterns
+- example compositions
 
-The Figma file itself must become a machine-readable design system after the GitHub spec is translated into it.
+---
 
-The system should deliberately expose design intent through:
-- semantic component/layer names
-- Auto Layout structure
-- explicit Fixed / Hug / Fill behavior
-- component properties and variants
-- bound variables and text styles
-- component/style/variable descriptions
-- reusable higher-order patterns
-- example compositions that show correct usage
+## 2. Competitor-reference policy
 
-This is not optional cleanup. It is part of the design-system build.
+Do not commit full Tonal/Mobbin screenshots into the public GitHub repository.
 
-When the Figma plan/library setup supports publishing, publish the reconstructed library after a QA-passing baseline is ready so Figma's agent can use the latest library context. If library publishing is unavailable, keep the design-system assets in the same working file and do not assume a separate Figma agent has full library context automatically.
+Use:
+- canonical Mobbin URLs / IDs in GitHub evidence docs
+- direct Mobbin inspection during analysis
+- temporary/private visual reference placement in Figma only when permitted and useful
 
-## Competitor screenshot storage policy
+Never publish Tonal logos, proprietary icons, production imagery, or screenshots as Fitness brand assets.
 
-The canonical GitHub repository is currently public.
+---
 
-Do **not** commit full Tonal/Mobbin competitor screenshots into the public repository as permanent assets.
-
-Reasons:
-- copyright/licensing risk
-- unnecessary duplication of third-party reference assets
-- repository bloat
-- stale screenshots become misleading evidence
-
-Instead:
-- store canonical Mobbin screen URLs and screen IDs in the evidence document
-- keep detailed text observations/inferences in GitHub
-- if image-level comparison is needed during Figma work, inspect the Mobbin source directly or place temporary reference screenshots on a non-published/private Figma reference page where permitted
-
-## Figma page structure
-
-Create or maintain the following pages/sections:
+## 3. Required Figma page structure
 
 ### `00_REFERENCE_TONAL`
-Purpose:
-- temporary visual comparison surface only
-- representative reference screenshots or reference links/labels
-- not a source of product behavior
-- never publish competitor imagery as Fitness brand assets
+Temporary comparison area only.
+- reference labels/URLs
+- temporary representative images when permitted
+- not product behavior source
+- not published as Fitness assets
 
 ### `01_FOUNDATIONS`
-Include:
-- Color roles
-- Typography scale
-- Spacing scale
-- Radius scale
-- Divider/border styles
-- Icon-slot sizes
-- Touch-target examples
-- Grid/margin examples
-- Fixed / Hug / Fill examples
+Build first.
+
+Must include:
+- semantic surface/ink/divider/accent colors
+- typography roles
+- metric typography roles
+- spacing scale
+- radius roles
+- repeated dimensions
+- icon-slot sizes
+- touch-target example
+- 390 reference frame + 24 page inset example
+- Fixed / Hug / Fill demonstration
 - alignment examples
 
 ### `02_COMPONENTS`
-Build reusable components and variant sets from `15_TONAL_DESIGN_SYSTEM_SPEC.md`.
+Build only after Foundation preflight passes.
 
-Minimum set:
-- Button/Primary/Black
-- Button/Secondary/Light
-- Button/Text
-- ChoiceCard/Single
-- ChoiceCard/Multi
-- Input/Underline
-- Navigation/TopBar
-- Navigation/BottomBar
-- Tab/Underline
-- Row/Settings
-- Row/Movement
-- Metric/Stat
-- Workout/BlockHeader
-- Control/Stepper
-- Control/Toggle
-- Media/Hero
-- Sheet/Bottom
-- Placeholder/IconSlot
+Canonical minimum component set:
+- `Button/Primary/Compact`
+- `Button/Primary/Content`
+- `Button/Primary/Inverse`
+- `Button/Secondary/Outline`
+- `Button/Text/Neutral`
+- `Button/Text/Destructive`
+- `ChoiceCard/Single`
+- `ChoiceCard/Multi`
+- `Control/Radio`
+- `Control/Check`
+- `Control/Toggle`
+- `Control/Stepper`
+- `Control/Segmented/Pill`
+- `Control/ModeTile`
+- `Input/Underline`
+- `Navigation/TopBar`
+- `Navigation/BottomBar`
+- `Tab/Underline`
+- `Row/Settings`
+- `Row/Movement`
+- `Workout/BlockHeader`
+- `Dialog/Center`
+- `Sheet/Action`
+- `Feedback/Toast`
+- `Placeholder/IconSlot`
+- `Placeholder/Media`
 
-Each reusable component must define where applicable:
+Every component must define where applicable:
 - semantic name
-- Auto Layout
-- sizing behavior by axis
-- component properties / variants
-- variable/style bindings
-- component description
+- Auto Layout direction
+- horizontal sizing mode
+- vertical sizing mode
+- min/max dimension
+- padding/gap/alignment
+- text wrapping behavior
+- component properties/variants
+- actual variable/style bindings
+- usage description
 
 ### `03_PATTERNS`
-Create composed reusable patterns:
-- onboarding question + choice stack + CTA
-- large numeric selector
-- dashboard metric module
-- history/stat section
-- program/workout hero + body
-- workout movement list/block
-- settings list section
-- bottom-sheet content layout
+Build only after component QA-1 and QA-2 pass.
 
-Patterns should be assembled from system components rather than duplicated raw frames.
+Canonical pattern set:
+- `Dashboard/PageShell`
+- `Dashboard/FeatureMetric`
+- `Dashboard/MetricGrid2`
+- `Metric/ValueUnit`
+- `Stats/ValueList`
+- `Content/MediaCard/Landscape`
+- `Content/MediaCard/Portrait`
+- `Content/MediaCarousel`
+- `Hero/ProgramWorkout`
+- `Program/DetailComposition`
+- `Workout/BlockList`
+- `Exercise/InfoDetail/MediaPresent`
+- `Exercise/InfoDetail/NoMedia`
+- `History/MetricChart`
+- `History/ExerciseSetTable`
+
+Patterns must be assembled from system components and bound tokens. Do not duplicate raw frames to imitate a screenshot.
 
 ### `Examples`
-This page exists specifically to show people and Figma's agent how components should be combined.
+This page teaches correct composition to people and Figma agents.
 
-Create example components/patterns such as:
+Minimum examples:
 - `Onboarding/ChoiceQuestion_example`
-- `Dashboard/MetricSection_example`
-- `Workout/MovementBlock_example`
-- `Settings/ListSection_example`
+- `Dashboard/ProgressHome_example`
+- `Dashboard/MetricGrid_example`
 - `Program/HeroDetail_example`
+- `Workout/BlockList_example`
+- `Exercise/InfoDetail_NoMedia_example`
+- `Exercise/InfoDetail_MediaPresent_example`
+- `History/MetricChart_example`
+- `History/ExerciseSetTable_example`
+- `Settings/ListSection_example`
 
 Examples must:
 - use actual system components
 - use bound variables/styles
-- demonstrate correct spacing/alignment/sizing behavior
-- remain representative rather than becoming a complete duplicate of every product screen
+- demonstrate correct Fixed/Hug/Fill
+- demonstrate copy wrapping and alignment
+- remain representative rather than duplicating every product screen
 
 ### `10_FITNESS_SCREENS`
-Only after the reconstruction baseline is coherent:
-- apply the reconstructed system to approved Fitness screens
-- Fitness policy and `docs/13_SCREEN_DESIGN_DECISIONS.md` override Tonal behavior
+Do not start broad Fitness visual refinement until the reconstruction baseline passes representative QA-1/2/3.
 
-## Variables and styles
+Fitness policy overrides Tonal behavior.
 
-Create Figma variables for:
-- semantic colors
-- spacing scale
+---
+
+## 4. Foundation variable/style construction
+
+Create semantic variables from `15_TONAL_DESIGN_SYSTEM_SPEC.md`.
+
+Required categories:
+- `Color/Surface/*`
+- `Color/Ink/*`
+- `Color/Divider/*`
+- `Color/Accent/*`
+- `Color/Action/*`
+- `Space/*`
+- `Radius/*`
+- `Size/Icon/*`
+- `Size/Touch/*`
+- repeated control/navigation dimensions where useful
+
+Create text styles/typography variables for:
+- Heading/Question
+- Heading/Screen
+- Heading/Section
+- Heading/Card
+- Nav/Title
+- Body/Primary
+- Body/Secondary
+- Label/Primary
+- Label/Caps
+- Action/Primary
+- Caption
+- Metric/XL
+- Metric/L
+- Metric/M
+- Metric/Unit
+
+Semantic naming is required. Do not name variables after the competitor.
+
+### Foundation preflight — mandatory before components
+Check:
+- every canonical role exists exactly once
+- no duplicate near-synonym variables
+- token values match the current canonical spec
+- no competitor branding in names
+- text styles use the intended proxy font and scale
+- variable/style descriptions identify `PROVISIONAL` screenshot-derived status
+
+If Foundation preflight fails, fix it before component generation.
+
+---
+
+## 5. Auto Layout / container execution
+
+Use `docs/17_FIGMA_AGENT_EXECUTION_QA.md` as the detailed sizing contract.
+
+Non-negotiable rules:
+- decide Fixed/Hug/Fill separately on each axis
+- page-width components normally use horizontal `FILL`
+- content-driven vertical stacks normally use vertical `HUG`
+- icon/toggle/stepper/touch slots use `FIXED`
+- variable-copy rows/cards use `HUG + min-height`
+- never freeze a text-bearing card to screenshot height when copy may wrap
+- never make all children Fixed just to preserve a screenshot
+- do not place unresolved FILL children inside same-axis HUG parents where free space is undefined
+- use a real parent width before using FILL
+
+Absolute positioning is permitted only for:
+- media overlays
+- intentionally floating badges/controls
+- genuinely independent optical top-bar centering
+
+---
+
+## 6. Text and alignment execution
+
+Role-driven text alignment:
+- onboarding question/helper: center
+- button labels: center
+- body/list/form/detail: left
+- choice-card internal text: left
+- trailing values: right when scanning benefits
+- top-bar title: optically centered
+- metric value + unit: baseline aligned
+
+Text layers:
+- single-line action/tab labels remain one line
+- paragraphs get parent-derived width and HUG height
+- long Korean and English copy must wrap without geometry collapse
+- numeric/stat values do not wrap
+- ellipsis only where the product pattern explicitly allows truncation
+
+---
+
+## 7. Variable binding
+
+Creating variables is insufficient.
+
+Bind reusable component properties to semantic variables/styles wherever Figma supports it:
+- fills
+- strokes
+- text color
 - radii
-- icon/dimension sizes where practical
-- other repeatable numeric system values where binding is supported and useful
+- typography
+- padding/gap/dimensions where supported and useful
 
-Create text styles and/or typography variables for the reconstructed typography roles.
+Repeated raw values are a QA failure unless:
+- Figma cannot bind that property
+- the value is intentionally one-off and documented
+- the node is an explicit provisional experiment
 
-Use semantic role names rather than `Tonal/Black1`, `Tonal/Gray2`, etc.
+Do not detach instances to solve ordinary layout problems.
 
-Examples:
-- `Color/Ink/Primary`
-- `Color/Surface/Canvas`
-- `Space/24`
-- `Radius/Small`
-- `Size/Icon/24`
-- `Type/Heading/Screen`
-- `Type/Metric/XL`
+---
 
-This preserves the replicated visual relationships while allowing later Fitness customization without renaming the entire system.
+## 8. Placeholder rules
 
-Defining a variable is not sufficient. Components must actually bind to it. QA-2 in `17_FIGMA_AGENT_EXECUTION_QA.md` verifies binding rather than visual equality alone.
-
-## Auto Layout rules
-
-- reusable components must use Auto Layout where applicable
-- page-width components use Fill-container behavior
-- content-driven stacks use Hug behavior where structurally correct
-- fixed-size slots/controls use Fixed behavior
-- sizing must be decided separately on horizontal and vertical axes
-- do not hard-code 390-width internals except for explicit reference-frame demonstrations
-- standard outer page margin: use the current reconstructed token, initially 24
-- internal layout must preserve consistent left/right alignment lines
-- use min-height when content can wrap
-- Korean copy must not break component geometry
-- follow the full sizing/alignment decision matrix in `docs/17_FIGMA_AGENT_EXECUTION_QA.md`
-
-## Text-alignment rule
-
-Text alignment is role-driven:
-- body/list/form/detail content defaults left
-- onboarding question composition may center where Tonal evidence supports it
-- button labels center
-- trailing values may right-align when scanning benefits
-- ordinary paragraphs are not centered for decoration
-
-The agent must preserve both text alignment and container alignment; these are separate decisions.
-
-## Icon placeholder rule
-
-The Product Owner will provide/finalize iconography later.
+### Icons
+The Product Owner will finalize iconography later.
 
 Until then:
-- create `Placeholder/IconSlot`
-- use only a square slot or neutral placeholder marker
-- default sizes: 16 / 20 / 24 / 28
-- maintain a 44x44 interaction frame for tap targets where needed
-- do not choose arbitrary icons merely to make the screen look finished
-- do not copy Tonal proprietary icon artwork
+- use `Placeholder/IconSlot`
+- available visual sizes: 16 / 20 / 24 / 28
+- preserve minimum 44 touch wrapper where required
+- do not copy Tonal icons
+- do not use arbitrary substitutes that distort spacing
 
-## Image/media placeholder rule
-
-Final Fitness workout/brand media will be added later.
+### Media
+Final Fitness photo/video will be supplied later.
 
 Until then:
-- hero blocks use a replaceable `MEDIA_PLACEHOLDER`
-- preserve overlay, title, metadata, crop region, and safe text zones
-- layout must remain functional if the image is replaced with video later
+- use `Placeholder/Media`
+- preserve crop/aspect/overlay/title/metadata safe zones
+- support later image/video replacement without changing the surrounding component structure
 
-## Reconstruction-first rule
+---
 
-During Phase A, when a component or pattern clearly exists in Tonal screenshot evidence:
-- reconstruct that visible pattern first
-- do not redesign it for originality
-- do not add decorative Fitness styling yet
+## 9. Reconstruction-first rule
 
-Fitness customization begins only after the baseline component system is visually coherent.
+During Phase A:
+- reconstruct the visible Tonal pattern before inventing a Fitness-specific styling alternative
+- tune global tokens/components instead of patching individual example screens
+- keep visual fidelity and internal consistency ahead of originality
 
-## Evidence labels
+Exceptions:
+- confirmed Fitness product behavior
+- accessibility/platform corrections
+- Hevy-led functional workout interaction
+- missing media requirement under Fitness `DEC-011`
 
-When adding annotations inside the design-system page, use:
-- `OBSERVED`
-- `INFERRED`
-- `ESTIMATED`
+Tonal active-session video/hardware behavior is not copied as Fitness active logging.
 
-Do not label an estimated value as an official Tonal token.
+---
 
-## Visual QA process
+## 10. Incremental build + QA sequence
 
-For each major component/pattern:
-1. identify 2+ Tonal screenshot examples where possible
-2. compare proportion, alignment, whitespace, hierarchy, color role, and density
-3. adjust provisional token values
-4. test the same component in at least two different compositions
-5. only then promote the value into the working baseline
+Do not generate the full library in one uncontrolled pass.
 
-For overall Phase-A QA, recreate representative screens from five families:
+### Batch F1 — Foundations
+Build `01_FOUNDATIONS` only.
+
+Run Foundation preflight.
+
+### Batch F2 — Core actions/selections
+Build:
+- action buttons
+- choice cards
+- radio/check/toggle/stepper
+- segmented/mode controls
+- input
+
+Run:
+- QA-1 Structure
+- QA-2 Binding
+
+Fix failures before continuing.
+
+### Batch F3 — Navigation/rows/overlays
+Build:
+- top/bottom navigation
+- underline tabs
+- settings/movement rows
+- block header
+- dialog/sheet/toast
+
+Run:
+- QA-1
+- QA-2
+
+### Batch F4 — Product patterns
+Build `03_PATTERNS` from already-passing components.
+
+Run:
+- QA-1 responsive structure
+- QA-2 component/token reuse
+
+### Batch F5 — Representative examples
+Create `Examples` compositions.
+
+Representative cross-family validation must cover:
 - onboarding
 - dashboard/home
 - program/workout
 - exercise/detail
 - settings/profile
 
-A token is considered stable only if it works across families rather than matching one screenshot.
+Run full:
+- QA-1 Structure
+- QA-2 Binding
+- QA-3 Visual / Tonal reference / Fitness policy
 
-## Mandatory three-stage QA
+Do not proceed to broad Fitness screen generation until all representative examples pass.
 
-Every substantial component/pattern/screen batch must run the complete gate defined in `docs/17_FIGMA_AGENT_EXECUTION_QA.md`:
+---
 
-### QA-1 — Structure / Auto Layout
-Check layout direction, Fixed/Hug/Fill, text wrapping, responsive behavior, alignment, gaps/padding, and unnecessary absolute positioning.
+## 11. Responsive and copy stress tests
 
-### QA-2 — Design-system / Binding
-Check variable bindings, text styles, component instances, variants/properties, semantic names, descriptions, and raw-value bypasses.
+Minimum widths:
+- narrow mobile: `320–360`
+- reconstruction baseline: `390`
+- wider mobile: `430`
 
-### QA-3 — Visual / Reference / Product
-Compare with Tonal evidence and verify Fitness product-policy correctness.
+Check:
+- page inset integrity
+- text wrapping
+- row compression
+- trailing controls
+- CTA width behavior
+- media crop behavior
+- no clipping/overflow
 
-Do not generate a large downstream screen batch while an upstream component/pattern is failing QA-1 or QA-2.
+Reusable text-bearing components must also be tested with:
+- short copy
+- long Korean copy
+- long English copy
+- large numeric values where applicable
 
-## What Figma/agent may infer vs. must not infer
+Fix layout rules, not the test copy.
 
-### Figma/agent may infer
-- responsive width behavior from the spec
-- exact Auto Layout configuration needed to reproduce stated spacing/alignment
-- sensible text wrapping constraints
-- component nesting structure
-- variant-property organization
+---
 
-### Figma/agent must not infer independently
-- new product behavior
-- additional screens
-- new onboarding questions
-- monetization states
-- medical/health logic
-- proprietary Tonal assets
-- random icon choices
-- arbitrary new colors/radii that conflict with the reconstruction spec
+## 12. Build completion criteria
 
-## Build completion criteria
-
-The Tonal reconstruction foundation is ready for Fitness screen work when:
-- foundations exist as reusable variables/styles
-- minimum component set exists with required states
-- actual properties are bound to the intended variables/styles
-- semantic layer/component naming is clean
-- Auto Layout and Fixed/Hug/Fill decisions survive responsive/content stress tests
+The reconstruction baseline is ready for Fitness customization only when:
+- canonical foundations exist as reusable semantic variables/styles
+- all required components exist with correct properties/states
+- actual component nodes bind to the variables/styles
+- semantic naming is clean
+- Auto Layout and Fixed/Hug/Fill survive stress tests
 - icon/media placeholders are systematic
-- higher-order examples/patterns exist for agent guidance
-- at least five representative reconstruction screens/patterns pass visual comparison
-- QA-1 / QA-2 / QA-3 pass for the baseline batch
-- no major component uses one-off styling that bypasses the shared system
-- estimated values are documented and can be tuned centrally
+- higher-order patterns/examples reuse the system
+- representative cross-family reconstructions pass visual comparison
+- QA-1 / QA-2 / QA-3 pass
+- no major repeated raw-value drift remains
+- all remaining estimates can be tuned centrally
 
-At that point, the workflow switches from **RECONSTRUCT** to **CUSTOMIZE**.
+At that point the workflow switches from **RECONSTRUCT** to **CUSTOMIZE**.
