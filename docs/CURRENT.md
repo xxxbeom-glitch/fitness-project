@@ -25,6 +25,9 @@ Confirmed:
 - workout-duration choices are fixed as **30 / 45 / 60 minutes**; no `75+` option in the initial recommendation flow
 - initial recommended-routine experience is **gym-first**; no separate home-workout recommendation branch in the first scope
 - training experience, equipment inventory, weekday assignment, height/body weight, and sex/gender are not required to receive the first recommendation
+- accepting a recommended routine goes directly to Home; no post-recommend weekday-scheduling step is inserted
+- weekday scheduling remains optional and can be configured later
+- scheduled users can see **Today's workout**; unscheduled users can see **Next workout**
 - sex/gender is not used to assign a fixed first working weight
 - first working weight is calibrated from actual performance when prior history is absent
 - first-load guidance uses a short, skippable **in-workout coach-mark state**, not a standalone tutorial route
@@ -32,8 +35,6 @@ Confirmed:
 - `8–12 reps` is the default first-calibration range only when a program does not define another target rep range
 - after the first set, the user can classify the load as **가벼웠어요 / 적당했어요 / 무거웠어요** in a compact in-workout sheet and adjust the next set accordingly
 - later sessions prioritize actual prior kg/reps over population-based estimates
-- weekday scheduling remains optional and may be offered after recommendation
-- scheduled users can see **Today's workout**; unscheduled users can see **Next workout**
 - exact curated template count/composition is deferred until the exercise database and substitution data are reviewed
 - the template library may later contain multiple overlapping/similar variants; it does not need to be artificially small
 - Home direction is action-first with large cards rather than a dense analytics dashboard; summary metrics must be directly interpretable
@@ -71,7 +72,7 @@ Completed:
 - exercise/health research evidence hierarchy and counter-evidence rules defined
 - existing Fitness/Liftly design/code/data assets remain reuse candidates, not immutable product truth
 - product brief updated for recommendation/self-build model
-- decision log updated through `DEC-013`
+- decision log updated through `DEC-014`
 - optional body-data and medical-boundary policies documented
 - first-load calibration direction confirmed without demographic kg guessing
 - V0.4 exercise-detail, self-build/custom-exercise, and first-use workout wireframes refined against current decisions and reference patterns
@@ -92,13 +93,12 @@ These should be decided after the exercise database and substitution relationshi
 
 ## Next bootstrap decisions
 
-1. confirm the recommendation-result flow and optional post-recommend scheduling semantics after Product Owner review of V0.5
-2. run Design QA on `V0.5_PRODUCTIZED_WIREFRAME`, focusing on cross-screen transitions, interaction states, and whether any screen responsibility still overlaps
-3. account/privacy/data architecture
-4. monetization stance for the first release
-5. platform and technical stack
-6. finalize minimum design tokens/components after core IA is stable
-7. cross-document QA before Project OS v0.1 freeze
+1. account/privacy/data architecture
+2. monetization stance for the first release
+3. platform and technical stack
+4. run Design QA on the current productized wireframes / successor design artifacts after the remaining product policies are settled
+5. finalize minimum design tokens/components after core IA is stable
+6. cross-document QA before Project OS v0.1 freeze
 
 ## Canonical source
 
@@ -114,9 +114,11 @@ Implementation should not begin as if the product were fully specified until the
 
 ## Next action
 
-Product Owner reviews the Figma page **`V0.5_PRODUCTIZED_WIREFRAME`** as the current cross-screen UX artifact.
+Product Owner and ChatGPT are resolving the remaining non-design Bootstrap decisions one by one.
 
-After that review, run Design QA on transitions and states, then confirm the remaining recommendation-result / optional scheduling semantics before freezing the core IA.
+Next product decision: **account / privacy / data architecture**.
+
+Design QA and final design-system cleanup can follow after these product policies are sufficiently stable.
 
 Do not design the final template matrix yet. That work is intentionally deferred until the exercise database is ready.
 
