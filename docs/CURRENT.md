@@ -88,9 +88,10 @@ Confirmed:
 - fast logging and prior-performance visibility remain core after the routine is selected
 - flexible session editing remains core
 - active-session recovery is release-critical
-- **Tonal is the primary visual/UI reference** for screen composition, visual hierarchy, restraint, typography emphasis, spacing rhythm, and overall fitness-product tone
+- **Tonal is the Phase-A visual-system reconstruction/replication baseline**: accessible Mobbin screenshots are analyzed across screen families to reconstruct a coherent working system for layout, hierarchy, typography, color roles, spacing, surfaces, controls, navigation, metrics, and component states
 - **Hevy is the primary functional/interaction reference** for practical weight-training flows such as fast set logging, prior-performance visibility, routines, exercise selection/history, and active-workout controls
-- Tonal and Hevy are references rather than specifications: neither may override confirmed Fitness GitHub policy, and exact screens, copy, brand assets, proprietary imagery, or unverified tokens are not copied
+- the visible Tonal system may be replicated closely as a baseline, but Fitness does not claim Tonal's private source tokens and does not reuse Tonal trademarks, proprietary icons, logos, or production media assets
+- Fitness GitHub policy remains authoritative whenever Tonal or Hevy behavior conflicts with confirmed product policy
 - other design references are secondary and should be used only when a specific UX problem is not adequately covered by Tonal or Hevy
 - Watch / MCP / InBody / Health integrations / social / primary AI coaching remain post-MVP unless promoted by a later decision
 
@@ -108,10 +109,14 @@ Completed:
 - Fitness-specific Regression Matrix added
 - engineering evidence split into Logic / Integration / Runtime(Device)
 - AI-assisted design pipeline defined:
-  `Product Decision -> UX IA/Storyboard -> Figma low-fi -> Tonal/Hevy reference research -> UI synthesis -> Figma refinement -> Design QA -> Development`
+  `Product Decision -> UX IA/Storyboard -> Figma low-fi -> Tonal reconstruction/reference research -> UI synthesis -> Figma refinement -> Design QA -> Development`
 - Figma explicitly treated as visual artifact, not product-policy Source of Truth
-- primary design-reference split confirmed: **Tonal-led visual/UI direction + Hevy-led workout functionality/interaction**, with GitHub policy remaining authoritative
-- Mobbin/reference material remains pattern evidence, not exact-token/screen-copy specification
+- primary reference split confirmed: **Tonal visual-system reconstruction baseline + Hevy workout functionality/interaction**, with GitHub policy remaining authoritative
+- Mobbin screenshot evidence is now explicitly used to reconstruct a provisional Tonal-like design system before Fitness-specific customization
+- Tonal reconstruction evidence is tracked in `docs/14_TONAL_RECONSTRUCTION_BASELINE.md`
+- provisional implementation-facing foundations/components are defined in `docs/15_TONAL_DESIGN_SYSTEM_SPEC.md`
+- Figma execution rules are defined in `docs/16_FIGMA_TONAL_BUILD_INSTRUCTIONS.md`
+- because the canonical repository is public, full competitor screenshots are not stored as permanent GitHub assets; canonical Mobbin links and text evidence are stored instead
 - exercise/health research evidence hierarchy and counter-evidence rules defined
 - existing Fitness/Liftly design/code/data assets remain reuse candidates, not immutable product truth
 - product brief updated for recommendation/self-build model
@@ -136,7 +141,7 @@ Completed:
 - first-load guidance, set feedback, rest timer, incomplete-end confirmation, and session recovery are represented as contextual in-workout/state surfaces rather than unnecessary standalone navigation concepts
 - V0.5 structural QA found exactly 31 numbered screens and no unresolved placeholder/TBD copy inside the reviewed wireframes
 
-Project OS v0.1 is **not frozen yet**. Product/privacy/data/platform decisions are now sufficiently stable to move into the next design validation pass.
+Project OS v0.1 is **not frozen yet**. Product/privacy/data/platform decisions are now sufficiently stable to move into the design-system reconstruction pass.
 
 ## Deferred by explicit product decision
 
@@ -151,9 +156,11 @@ These should be decided after the relevant data or user need is available for re
 
 ## Next bootstrap decisions
 
-1. run screen-by-screen Design QA / redesign using the confirmed **Tonal visual + Hevy functional + Fitness policy** reference split
-2. finalize minimum design tokens/components after core IA is stable
-3. cross-document QA before Project OS v0.1 freeze
+1. complete Tonal screenshot-family audit and tune the provisional reconstruction tokens/components
+2. build Figma `01_FOUNDATIONS`, `02_COMPONENTS`, and `03_PATTERNS` from the GitHub reconstruction spec
+3. visually QA representative reconstructed screens against Mobbin evidence
+4. resume Fitness screen-by-screen refinement using the stabilized Tonal baseline + Hevy functional patterns + Fitness product policy
+5. cross-document QA before Project OS v0.1 freeze
 
 ## Canonical source
 
@@ -165,18 +172,21 @@ Notion IDEA LAB, old Figma, and Liftly remain useful as discovery/research/reuse
 
 No repository-structure blocker.
 
-Current implementation planning may proceed only after the remaining design QA / design-system / cross-document gates are cleared or explicitly accepted as assumptions.
+The current design blocker is intentional: **do not continue detailed Fitness visual customization until the Tonal reconstruction baseline is coherent enough to reuse across screens**.
 
 ## Next action
 
-Continue the **screen-by-screen design pass from the first-entry/login flow**, using:
-- **Tonal** for visual composition, hierarchy, restraint, and UI tone
-- **Hevy** for strength-training functionality and interaction efficiency
-- **Fitness GitHub policy** for actual product behavior and scope
+Pause the screen-by-screen visual pass after the already-approved first-entry/path-choice decisions.
 
-For the first-entry screen, authentication is already fixed as unified provider `계속하기` actions rather than separate signup/login paths.
+Next, complete the **Tonal design-system reconstruction baseline**:
+- inspect accessible Mobbin Tonal screenshots across onboarding, dashboard, program/workout, exercise/detail, profile/settings, charts/history, navigation, forms, and transient surfaces
+- maintain evidence and uncertainty in `docs/14_TONAL_RECONSTRUCTION_BASELINE.md`
+- maintain implementation-facing token/component rules in `docs/15_TONAL_DESIGN_SYSTEM_SPEC.md`
+- use `docs/16_FIGMA_TONAL_BUILD_INSTRUCTIONS.md` to construct Figma foundations/components/patterns
+- use icon and media placeholders; final Fitness iconography and hero media are filled later
+- do not store full Tonal/Mobbin screenshots as permanent assets in the public GitHub repository
 
-Each remaining screen decision should be reviewed and approved one at a time before moving forward.
+After the Figma reconstruction baseline passes visual QA, resume the Fitness onboarding flow from the next unreviewed screen.
 
 Do not design the final template matrix yet. That work is intentionally deferred until the exercise database is ready for review.
 
