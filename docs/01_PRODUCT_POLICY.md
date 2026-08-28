@@ -66,6 +66,19 @@ If gym registration is introduced later:
 - it must be separate from real-time location sharing
 - default visibility should favor privacy
 
+### Authentication entry policy
+The first-entry authentication experience does **not** split `Sign up` and `Log in` into separate product paths.
+
+The user chooses a supported provider and continues with that provider:
+- Android: **Google / Kakao**
+- iOS: **Google / Kakao / Apple**
+
+Provider buttons use unified `계속하기` semantics. After successful provider authentication:
+- if the provider identity is already linked to an existing Fitness account, sign the user into that account
+- if it is a first-time provider identity, create the internal Fitness account and continue into first-run onboarding
+
+The product does not require a separate email/password account-creation screen for the MVP authentication path.
+
 ### Account deletion entry point
 The product must provide an in-app account-deletion entry point under **Settings → Account management → Delete account**.
 
