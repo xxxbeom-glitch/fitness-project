@@ -484,3 +484,28 @@ The product is offline-first. Allowing two independent devices to edit the same 
 - the UI should clearly explain when an active workout is currently owned by another device
 - exact device-takeover / transfer behavior is a separate decision
 - future Watch behavior must preserve a single logical session authority even if phone and Watch collaborate
+
+---
+
+## DEC-018 — An active workout remains active until the user explicitly finishes or discards it
+
+**Date:** 2026-08-28
+**Status:** CONFIRMED
+
+### Decision
+Starting a workout creates an active session that remains **in progress until the user explicitly finishes the workout or deliberately discards/cancels that session**.
+
+Closing the app, force-killing it, switching apps, losing network connectivity, locking the phone, or rebooting the device does **not** end the workout.
+
+When the app starts again on the same device, the persisted active session must be recoverable with its recorded exercises, sets, kg/reps values, completion states, ordering, and other session progress intact.
+
+### Why
+The user—not the app lifecycle—determines whether a workout is finished. Mobile apps can be interrupted for ordinary reasons during training, and treating process death or reboot as workout completion/abandonment would violate the release-critical record-reliability requirement.
+
+### Product impact
+- there is no automatic session completion merely because the app process stops or the device restarts
+- active-session state must be durably persisted after meaningful edits
+- reopening the app while a local active session exists must prominently offer/restore **진행 중인 운동 계속하기** rather than silently creating a new workout
+- attempting to start another workout while one is still active must first resolve the existing session: continue it, finish it, or deliberately discard it
+- normal elapsed-time presentation must not be used as evidence that the workout has ended; session status is authoritative
+- cross-device takeover is not required by this Decision and remains outside the MVP unless separately promoted
