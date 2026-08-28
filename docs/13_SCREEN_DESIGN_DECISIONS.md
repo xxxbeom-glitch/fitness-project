@@ -62,4 +62,37 @@ Global reference rule:
 - Core structure and interaction policy are sufficiently defined to proceed to Figma refinement.
 - Final hero media and final hero marketing copy remain intentionally replaceable/deferred.
 
+## 02 — First-run Path Choice
+
+### Purpose
+- This screen appears for a new user after authentication/required new-user terms confirmation.
+- It asks **how the user wants to begin**, not whether they are a beginner or experienced lifter.
+- The two starting paths are equal product choices: **recommended routine** and **build my own routine**.
+
+### Confirmed structure
+- Use one simple question at the top, with provisional copy such as **`어떻게 시작할까요?`**.
+- Show exactly two primary options:
+  1. **`추천 루틴으로 시작하기`** — short supporting text explains that the app will use a small set of onboarding inputs to recommend a routine.
+  2. **`직접 루틴 만들기`** — short supporting text explains that the user can choose exercises and set/rep structure directly.
+- The exact supporting copy remains editable during final copywriting and does not become product policy merely because it appears in Figma.
+
+### Interaction — CONFIRMED
+- Each option card is itself the action target.
+- **Do not add a separate `계속` button** after the user taps one of only two mutually exclusive paths.
+- Tapping **recommended routine** moves directly to the first recommendation-input screen.
+- Tapping **build my own routine** moves directly to the routine-creation flow.
+- A brief pressed/selected state may provide touch feedback, but the screen does not require a persistent preselection state before navigation.
+
+### Visual treatment — CONFIRMED
+- Use the Tonal onboarding pattern as the visual reference: bright/neutral background, strong black headline, generous whitespace, and large rectangular option surfaces.
+- Keep the two paths visually **equal in hierarchy**.
+- Do **not** add a `추천`, `BEST`, or similar badge that biases the recommended-routine path.
+- Do **not** pre-highlight one path as the default choice.
+- Use **text-only option cards** in this screen; no decorative illustration or icon is required.
+- Cards should remain relatively flat and restrained rather than turning into illustration-heavy marketing tiles.
+
+### Screen-02 status
+- Core structure, navigation, and visual direction are approved for Figma refinement.
+- Final display copy may still be polished later without changing the approved product meaning.
+
 Do not copy Tonal or Hevy brand assets, exact copy, or proprietary imagery.
