@@ -1,11 +1,11 @@
 # 25 FIGMA PHASE F3 PATTERN QA
 
-**Status:** FAIL — ONE TOPBAR STRUCTURAL BLOCKER REMAINS  
-**Updated:** 2026-08-28
+**Status:** PASS — READY FOR F4 PRODUCT PATTERNS  
+**Updated:** 2026-08-29
 
 ## Scope
 
-Independent QA of Phase F3 in Figma file `tracker-app3` (`tBpQfpAR1apJngF8a7qyH9`) after the latest Figma Agent structural cleanup.
+Independent final QA of Phase F3 in Figma file `tracker-app3` (`tBpQfpAR1apJngF8a7qyH9`) after the final TopBar-only remediation.
 
 Canonical references:
 - `docs/15_TONAL_DESIGN_SYSTEM_SPEC.md`
@@ -13,201 +13,171 @@ Canonical references:
 - `docs/17_FIGMA_AGENT_EXECUTION_QA.md`
 - `docs/24_FIGMA_PHASE_F2_COMPONENT_QA.md`
 
-F3 remains gated until QA-1 Structure and QA-2 Design-system / Binding both pass.
+F3 is considered complete because QA-1 Structure and QA-2 Design-system / Binding / API both pass for the current F3 scope.
 
 ---
 
 ## Current inventory
 
-Pages:
+Pages remain:
 - `01_FOUNDATIONS`
 - `02_COMPONENTS`
 - `03_PATTERNS`
 
-No later-phase pages exist:
+Later-phase pages remain absent:
 - no `Examples`
 - no `10_FITNESS_SCREENS`
 
-STOP discipline remains respected.
+STOP discipline is respected.
+
+F3 families remain present:
+- `Navigation/TopBar`
+- `Navigation/BottomBar`
+- `Tab/Underline`
+- `Row/Settings`
+- `Row/Movement`
+- `Workout/BlockHeader`
+- `Dialog/Center`
+- `Sheet/Action`
+- `Feedback/Toast`
 
 ---
 
-## Latest remediation items now verified PASS
+## Final TopBar remediation — PASS
 
-### TopBar architecture / API
-- parent `Navigation/TopBar` variant count = **6**, not 72
-- parent variants = `Surface x TitleMode`
-- parent exposes `Leading` as **INSTANCE_SWAP**
-- parent exposes `Trailing` as **INSTANCE_SWAP**
-- parent still exposes `Title` text property
+Parent `Navigation/TopBar` remains a compact 6-variant component set:
 - `Surface = Light | Dark | Overlay`
 - `TitleMode = Center | Contextual`
 
-### TopBar nested controls
-- `Navigation/TopBar/Leading` variants = 3
-- internal overlap = **0**
-- Back = 44 x 44
-- Close = 44 x 44
-- visual icon inside = 24 x 24
+Parent-level public API remains exposed:
+- `Title` text property
+- `Leading` INSTANCE_SWAP
+- `Trailing` INSTANCE_SWAP
 
-- `Navigation/TopBar/Trailing` variants = 4
-- internal overlap = **0**
-- Text = 44 x 44
-- IconSlot = 44 x 44
-- Multiple = **88 x 44**
-- None = empty mode
+Nested controls:
+- `Navigation/TopBar/Leading`
+  - Back = 44 x 44
+  - Close = 44 x 44
+  - None supported
+  - internal overlap = 0
+- `Navigation/TopBar/Trailing`
+  - Text = 44 x 44
+  - IconSlot = 44 x 44
+  - Multiple = 88 x 44
+  - None supported
+  - internal overlap = 0
 
-### Parent TopBar hit geometry
-For the current parent master variants:
-- Leading instance = **44 x 44**
-- Trailing single-action instance = **44 x 44**
-- visual icon remains 24 x 24
+### Center-mode geometry
 
-The previous 24pt interaction-width regression is fixed.
+All three Center master variants now use independent/absolute side-action positioning:
+- Leading = x 4 / y 2 / 44 x 44
+- single Trailing = x 342 / y 2 / 44 x 44
+- TitleRegion = 390 x 48, independently centered
+- title center X = 195 on the 390 baseline
+- center delta = 0
 
-### Row component-set organization
+The previous defect where Trailing sat at x=48 next to Leading is fixed.
+
+### Instance-swap stress verification
+
+Transient instance-swap QA verified the right-side anchoring survives controlled swaps:
+- Back + Text -> Trailing x 342, 44 x 44, title center X 195
+- Back + Multiple -> Trailing x 298, 88 x 44, title center X 195
+- None + Text -> Trailing x 342, 44 x 44, title center X 195
+- None + Multiple -> Trailing x 298, 88 x 44, title center X 195
+
+No title/trailing overlap was detected in these stress combinations.
+
+Contextual variants remain flow-based and continue to place the single Trailing action at x 342.
+
+---
+
+## Regression QA — PASS
+
+### Page / family structure
+- top-level overlap = 0
+- no later-phase pages created
+
+### BottomBar
+- variants = 5
+- `Active = 1 | 2 | 3 | 4 | 5`
+
+### Tab
+All four variants retain outer height 50:
+- Active / Equal = 50
+- Active / Content = 50
+- Inactive / Equal = 50
+- Inactive / Content = 50
+
+### Settings / Movement
 `Row/Settings`:
-- variants = 15
-- internal overlap = **0**
-- set bounds = **1066 x 455**
-- all variants contained = **true**
+- internal overlap = 0
+- set bounds = 1066 x 455
+- all variants contained = true
+- nested Toggle instances = 52 x 32
 
 `Row/Movement`:
-- variants = 18
-- internal overlap = **0**
-- set bounds = **1066 x 687**
-- all variants contained = **true**
+- internal overlap = 0
+- set bounds = 1066 x 687
+- all variants contained = true
 
-### Dialog / Sheet overlays
+### Dialog / Sheet
 Dialog:
-- variants = 12
-- explicit semantic `Scrim` exists in all 12 variants
-- every Scrim = **390 x 844**
-- every Scrim = x 0 / y 0 / absolute
+- 12 variants remain
+- all 12 explicit `Scrim` children = 390 x 844
+- Scrim x=0 / y=0 / absolute
+- nested primary/secondary actions remain 54pt high
 
 Sheet:
-- Scrim remains **390 x 844**
+- Scrim = 390 x 844
+- primary/destructive/cancel actions remain 54pt high
 
-### Regression checks still PASS
-- top-level overlap = **0**
-- BottomBar Active variants = 1–5
-- Tab Active/Inactive outer height = 50
-- Settings nested Toggle = 52 x 32
-- Dialog nested actions remain 54pt high
-- Sheet actions remain 54pt high
-- raw canonical spacing = **0**
-- unstyled text = **0**
-- suspicious text collapse = **0**
-- F1/F2 assets remain present
-- no later-phase page was created
+### Typography / binding sanity
+- unstyled F3 text = 0
+- suspicious near-zero-width multi-character text = 0
+- avoidable raw canonical spacing = 0
 
 ---
 
-## Remaining blocker — Center TopBar side-action anchoring is structurally wrong
-
-The centered title itself is now robust:
-- `TitleMode=Center` uses an absolute `TitleRegion`
-- Title center X = **195** in the 390pt bar
-- delta from parent center = **0**
-
-However, removing the centered title region from normal Auto Layout flow exposed a new structural defect.
-
-In all current `TitleMode=Center` parent variants:
-- Leading instance = x **4**, width 44
-- Trailing instance = x **48**, width 44
-
-This means the trailing action is packed directly after the leading action on the **left side** instead of being anchored to the right edge.
-
-By contrast, current `TitleMode=Contextual` variants correctly place:
-- Leading = x 4
-- Trailing = x 342
-
-So the latest cleanup solved optical title centering but broke side-action placement specifically in Center mode.
-
-### Why this matters
-A center navigation bar must satisfy both conditions simultaneously:
-1. the title remains optically centered independently of asymmetric actions
-2. Leading remains anchored left and Trailing remains anchored right
-
-The current Center implementation only satisfies condition 1.
-
-### Required remediation
-Keep:
-- parent variant count = 6
-- existing INSTANCE_SWAP Leading / Trailing API
-- 44 x 44 interaction wrappers
-- 24 x 24 visual icons
-- absolute optically centered TitleRegion
-
-Fix only Center-mode side-action anchoring.
-
-Acceptable architectures include:
-- independent absolute Leading / Trailing action zones with left/right anchors
-- a dedicated full-width side-action overlay containing left and right fixed zones
-- another stable structure that preserves true center while pinning actions to opposite edges
-
-Required geometry on 390 baseline for a single 44pt action with current 4pt edge inset:
-- Leading x ≈ **4**
-- Trailing x ≈ **342**
-
-For `Trailing=Multiple`:
-- trailing wrapper = 88 x 44
-- right edge remains anchored to the bar edge inset
-- expected x ≈ **298** with current 4pt inset
-
-Do not solve by moving the centered title away from x=195.
-
-### Required stress combinations
-Verify Center mode with:
-- Leading=Back + Trailing=Text
-- Leading=Back + Trailing=Multiple
-- Leading=None + Trailing=Text
-- Leading=None + Trailing=Multiple
-
-For each:
-- title center X = 195
-- leading action anchored left when present
-- trailing action anchored right when present
-- no title/action overlap
-- 44pt minimum interaction geometry preserved
-
----
-
-## Current verdict
+## Final verdict
 
 ### QA-1 — Structure / Auto Layout
-**FAIL**
+**PASS**
 
-Only remaining blocker:
-- `TitleMode=Center` places Trailing next to Leading on the left instead of anchoring it to the right.
+Verified:
+- TopBar Center title and side-action anchoring coexist correctly
+- 44pt interaction wrappers preserved
+- Multiple trailing remains 88 x 44 and right anchored
+- component-set internal overlaps = 0 for previously failing families
+- component-set bounds contain arranged variants
+- overlay Scrims fill the reference viewport
+- no top-level overlap
 
 ### QA-2 — Design-system / Binding / API
 **PASS**
 
 Verified:
-- reduced 6-variant parent architecture
-- Leading / Trailing parent-controllable INSTANCE_SWAP properties
-- nested component reuse
-- canonical spacing binding
-- Text Styles
-- semantic component APIs
+- TopBar remains 6 parent variants, not 72
+- Leading / Trailing remain parent-controllable INSTANCE_SWAP properties
+- nested reusable components remain intact
+- canonical spacing remains bound
+- Text Styles remain applied
+- no repeated structural regression detected
 
 ### Visual sanity
-**PARTIAL PASS**
+**PASS FOR F3 SCOPE**
 
-The system is materially improved and most F3 structures are now clean, but Center TopBar side actions are not yet valid for real composition.
+The navigation / rows / overlays layer now has coherent Tonal-aligned geometry and no known structural blocker.
 
 ### F3 status
-**NOT READY FOR NEXT PHASE**
+**PASS — READY FOR F4 PRODUCT PATTERNS**
 
 ---
 
-## Required next action
+## Next action
 
-Remain in F3 for one very narrow TopBar-only remediation:
-1. keep centered title at true parent center
-2. anchor Center-mode Leading to the left action zone
-3. anchor Center-mode Trailing to the right action zone
-4. verify Text / IconSlot / Multiple / None swaps do not break anchoring
-5. rerun TopBar QA plus regression checks
-6. STOP before `Examples` or Fitness screens
+Proceed to Phase F4 product patterns on `03_PATTERNS` using passing F1/F2/F3 assets.
+
+F4 should build higher-order product patterns from the canonical pattern audit/spec, then rerun QA-1 / QA-2 / visual sanity before `Examples` begins.
+
+Do not start broad Fitness screen customization yet.
