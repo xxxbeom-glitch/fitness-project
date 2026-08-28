@@ -24,10 +24,12 @@ Global reference rule:
 - Apply a dark treatment/overlay so brand and authentication actions remain legible.
 - Provider authentication actions are grouped near the bottom of the screen.
 - Do **not** use a multi-slide marketing carousel for first entry.
+- Show the **Fitness brand/logo plus one short hero line** rather than logo-only treatment or long explanatory copy.
+- Keep the hero message concise so the photograph and brand retain primary visual impact.
 - The composition should be Tonal-led in restraint and brand impact, while authentication behavior remains Fitness-specific.
 
 ### Still to decide
-- Exact hero message/brand-copy treatment.
+- Exact wording of the one-line hero message.
 - Exact source/style of the hero photograph.
 - Exact provider-button visual treatment and legal-copy placement.
 - Loading/error/cancel presentation for provider authentication.
