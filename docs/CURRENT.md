@@ -4,9 +4,9 @@
 
 ## Current mode
 
-`BOOTSTRAP MODE — TONAL PHASE-A FIGMA F4 REMEDIATION REQUIRED`
+`BOOTSTRAP MODE — TONAL PHASE-A FIGMA F5 EXAMPLES READY`
 
-The current work remains the Tonal reconstruction baseline. Broad Fitness screen customization is still gated until F4 Product Patterns and later representative Examples pass independent QA.
+The Tonal Phase-A reconstruction baseline has passed F1–F4 independent QA. The next work is F5 representative Examples. Broad Fitness screen customization remains gated until F5 Examples and representative QA pass.
 
 ## Product authority
 
@@ -77,132 +77,63 @@ Independent QA:
 Independent QA:
 - `docs/25_FIGMA_PHASE_F3_PATTERN_QA.md`
 
-**F3 STRUCTURAL RESULT: PASS**
+**F3 RESULT: PASS**
 
-Important F4 integration note:
-- F4 contextual QA exposed a visual-semantic issue in `Navigation/TopBar Surface=Overlay`: the geometry/API remain valid, but overlay title/action ink is not legible on the dark Hero/media surface.
-- Correct this source visual treatment during F4 remediation and rerun F3 regression QA.
+F4 remediation corrected the contextual Overlay ink treatment while preserving the F3 TopBar geometry/API. F3 regression revalidation remains PASS.
 
-## Phase F4 — current result
-
+### F4 Product Patterns
 Independent QA:
 - `docs/27_FIGMA_PHASE_F4_PRODUCT_PATTERNS_QA.md`
 
-**F4 RESULT: FAIL — REMEDIATION REQUIRED BEFORE F5 EXAMPLES**
+**F4 RESULT: PASS — READY FOR F5 EXAMPLES**
 
-### F4 inventory
-
-The expected higher-order system is broadly present:
-- Dashboard/PageShell
-- Dashboard/FeatureMetric
-- Dashboard/MetricGrid2
-- Metric/ValueUnit
-- Stats/ValueList
-- Content/MediaCard/Landscape
-- Content/MediaCard/Portrait
-- Content/MediaCarousel
-- Hero/ProgramWorkout
-- Program/DetailComposition
-- Workout/BlockList
-- Exercise/InfoDetail as one component set with Media=Present / Media=None
-- History/MetricChart
-- History/ExerciseSetTable
-
-The two Exercise states are treated as two logical canonical patterns inside one reusable component set; this architecture is acceptable.
-
-### Verified F4 PASS signals
-
+Final verified F4 signals:
 - F4 top-level overlap = 0
-- Metric/ValueUnit internal overlap = 0
-- Exercise/InfoDetail internal overlap = 0
-- F4 component-set containment = PASS
 - unstyled F4 text = 0
 - suspicious text collapse = 0
-- raw semantic-color matches without Variable binding = 0
-- no major nested-instance height distortion detected
-- Exercise NoMedia state removes/collapses the media region correctly
-- F2/F3 reuse is generally present in Dashboard, Hero, Program, Workout, Exercise, and History compositions
-
-### Current F4 blockers
-
-1. **Hero Overlay TopBar contextual visual failure**
-   - `Hero/ProgramWorkout` correctly uses `Navigation/TopBar Surface=Overlay`
-   - current Overlay ink/action treatment becomes effectively invisible over dark Hero/media
-   - keep transparent overlay surface but use inverse/white title/action treatment under the Hero readability scrim
-   - preserve F3 geometry/API and rerun F3 regression
-
-2. **MediaCarousel section-heading alignment**
-   - `SectionLabel` currently starts at x=0 while cards begin at x=24
-   - align section heading to the canonical 24pt page line while keeping the carousel viewport full-width for next-card peek
-
-3. **History tab composition is structurally wrong**
-   - current `History/MetricChart` stretches one `Tab/Underline` instance to 390 and labels it `Tab`
-   - compose a real three-tab row from three existing Tab instances with Active/Inactive states
-
-4. **History DateRange clips text**
-   - DateRange frame = 390 x 16
-   - DateLabel = y8 / height18
-   - clipsContent=true
-   - make the container tall/HUG enough to contain the text and preserve spacing before the chart
-
-5. **History chart is too blank to validate Tonal chart hierarchy**
-   - add a minimal representative axis/grid + semantic data mark skeleton
-   - production analytics behavior is not required
-
-6. **ExerciseSetTable ColumnHeaders clip text**
-   - ColumnHeaders frame height = 10
-   - SET / WEIGHT / REPS text height = 14
-   - fix to HUG or sufficient height without losing numeric-column alignment
-
-7. **F4 raw canonical spacing regression**
-   - avoidable raw canonical spacing count = **58**
-   - repeated 4 / 8 / 12 / 24 spacing must bind to existing `Space/*` Variables where supported
-   - target after remediation = 0
-
-8. **Program/DetailComposition is too skeletal for the Tonal pattern baseline**
-   - current structure only demonstrates Hero + description + one rail + CTA
-   - enrich enough to teach Tonal's repeated supporting metadata / secondary module / section rhythm without copying Tonal-specific product behavior
-
-### Non-blocking cleanup during F4 remediation
-
-- Dashboard MetricGrid demo data should not show `1,250 lbs` under WORKOUTS / STREAK
-- Exercise example title/instruction copy should describe the same movement
-- Program primary CTA should not remain generic `LABEL`
-
-## Current QA verdict
-
-F4 QA-1 Structure / composition: **FAIL**
-
-F4 QA-2 Reuse / Binding / API: **FAIL**
-- primary blocker: raw canonical spacing = 58
-
-F4 direct Tonal visual sanity: **FAIL**
+- avoidable raw canonical spacing = 0
+- semantic/chart/text color binding audit = PASS
+- component-set containment = PASS
+- Overlay TopBar legible over Hero/media with inverse ink
+- MediaCarousel heading aligned to 24pt page line while viewport remains full-width
+- History uses three actual Tab instances: Week / Month / Year
+- History DateRange no longer clips
+- History chart has representative sparse axis/grid + positive data marks
+- ExerciseSetTable column headers no longer clip
+- Program/DetailComposition includes supporting metadata, workout rail, related rail, and meaningful START action
+- Dashboard / Exercise representative copy cleaned
+- transient 320 / 360 / 430 width QA: non-intentional overflow = 0 on key F4 patterns
+- direct Tonal program-detail and history/statistics comparison = PASS for F4 Phase-A baseline
 
 ## Current next action
 
-Remain in F4 for one focused remediation pass.
+Proceed to **F5 Examples**.
 
-Priority:
-1. fix source Overlay TopBar contextual colors and revalidate F3
-2. fix carousel heading alignment
-3. rebuild History tab row from actual Tab instances
-4. fix History DateRange clipping and chart skeleton
-5. fix SetTable header clipping
-6. bind all avoidable F4 canonical spacing
-7. enrich Program/DetailComposition enough for the documented Tonal hierarchy
-8. clean representative demo copy
-9. rerun F4 QA-1 / QA-2 / direct Mobbin comparison
-10. STOP for independent review
+F5 goal:
+- create a small representative example page/compositions from the passing F1–F4 system
+- prove that primitives + patterns combine into coherent real-screen examples
+- use the current Tonal reconstruction visual relationships, without importing Tonal product semantics into Fitness policy
+- run independent representative QA before broad Fitness customization
+
+Suggested representative example set should cover the highest-risk system relationships rather than every screen:
+1. Dashboard example
+2. Program detail example
+3. Exercise detail example with media
+4. Exercise detail example without media
+5. History/statistics example
+6. Workout block/list example
+
+F5 should reuse existing components/patterns rather than redraw local duplicates.
 
 ## Gate
 
-Do **not** create `Examples` until F4 Product Pattern QA passes.
+**F5 Examples may now begin.**
 
 Do **not** start `10_FITNESS_SCREENS` until F5 Examples and representative QA pass.
 
 Phase sequence:
 
-`F1 PASS -> F2 PASS -> F3 PASS -> F4 REMEDIATION -> F4 PASS -> F5 Examples -> Representative QA -> 10_FITNESS_SCREENS`
+`F1 PASS -> F2 PASS -> F3 PASS -> F4 PASS -> F5 Examples -> Representative QA -> 10_FITNESS_SCREENS`
 
 ## Canonical source rule
 
