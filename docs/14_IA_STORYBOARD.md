@@ -84,10 +84,23 @@ This keeps the primary tabs visually stable and avoids a persistent global banne
 
 The active workout is important enough to stay recoverable, but it does not need to occupy persistent UI across the entire app. Home acts as the canonical recovery point.
 
+## Confirmed — Only one active workout session; switching routines is allowed
+
+The app maintains **one active workout session at a time**. Multi-session workout tracking is not part of the primary UX.
+
+If the user is already working out and chooses `운동 시작` on another routine:
+
+- the app does not create a second simultaneous active session
+- the user is told that another workout is currently in progress
+- the user may choose to end the current workout and start the newly selected routine
+- after confirmation, the current active session is closed and the new routine becomes the single active workout
+
+This means a user can intentionally change workouts without being trapped in the first session, while keeping session state simple and unambiguous.
+
 ### Still to decide
 
-- Whether any destinations/actions should be restricted while an active workout is running.
-- What happens if the user attempts to start a second workout while one is already active.
+- When replacing an active workout, whether completed work from the current session is saved as a partial workout or discarded.
+- Whether any other destinations/actions should be restricted while an active workout is running.
 
 ## Planning sequence
 
