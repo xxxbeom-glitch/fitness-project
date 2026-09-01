@@ -4,9 +4,9 @@
 
 ## Current mode
 
-`PRODUCT / UX PLANNING — ONBOARDING BASELINE COMPLETE · NEXT: HOME DEFAULT STATE`
+`PRODUCT / UX PLANNING — HOME DEFAULT-STATE WIREFRAME REVIEW · ONBOARDING BASELINE COMPLETE`
 
-신규 사용자 onboarding의 핵심 구조와 입력 UX는 현재 기준으로 충분히 확정했다. 이제 같은 내용을 계속 다듬지 않고 **Home 기본 상태 / 첫 진입 경험**으로 기획 초점을 이동한다.
+신규 사용자 onboarding의 핵심 구조와 입력 UX는 현재 기준으로 충분히 확정했다. 현재 기획 초점은 **활성 운동이 없는 Home 기본 상태**다.
 
 Top-level IA와 active-workout navigation/state 규칙은 기존 확정안을 그대로 유지한다. Cursor implementation은 아직 승인되지 않았다.
 
@@ -171,45 +171,63 @@ GitHub source:
 - `product/wireframe/index.html`
 
 Current version:
-- `2026-09-01.6`
+- `2026-09-01.7`
 
 Production:
 - `https://liftly-wireframe.vercel.app`
 
-The current wireframe is the approved onboarding baseline for this planning pass:
+The wireframe now contains:
+
+### Confirmed onboarding baseline
 
 - login
 - basic profile information: segmented `남성 / 여성` + text-field birth date with `1999-01-01` placeholder
 - start mode
 - recommendation settings list
-- confirmed goal bottom sheet: `근육 증가 / 체지방 감량 / 건강·체력 향상`
-- confirmed training-experience bottom sheet
-- confirmed weekly-availability 1–7 day bottom sheet
-- confirmed workout-duration `30 / 45 / 60 / 90분 이상` bottom sheet
+- confirmed goal / experience / weekly availability / workout-duration sheets
 - completed-input CTA state
 
 Do not keep expanding onboarding wireframes unless a later policy decision materially changes the flow.
 
+### Home default-state review — NOT CONFIRMED
+
+Four review states are shown together for Product Owner discussion:
+
+1. **추천 루틴 있음 + 요일 스케줄 없음**
+   - `다음 운동` primary card
+   - intended only when a recommended/internal sequence actually defines a next session
+
+2. **요일 스케줄 있음**
+   - `오늘의 운동` primary card
+   - next scheduled session shown as secondary information
+
+3. **직접 만든 독립 루틴만 있음**
+   - app does not invent a `다음 운동`
+   - Home emphasizes quick selection/start from `내 루틴`
+
+4. **루틴 없음**
+   - empty state
+   - `추천 루틴 받기 / 직접 루틴 만들기` remain equal choices
+
+These are review proposals only. Do **not** write them into Screen Decision policy as confirmed until Product Owner explicitly chooses the Home behavior.
+
 Canonical Figma:
 - `https://www.figma.com/design/W3lZurXCXbThP67rF2xk2b/LIFTLY_%EC%B5%9C%EC%A2%85?node-id=0-1&t=59Hp4z7hcHf5nNL5-1`
 
-## Next planning focus — HOME DEFAULT STATE
+## Current Home decision to discuss
 
-The next unblocked product area is **Home when there is no active workout**.
+The next decision should be made from the new wireframe rather than abstract discussion:
 
-Already confirmed and therefore not reopened:
+- should Home be primarily a **workout-start surface**?
+- when is the app allowed to name one routine as `다음 운동`?
+- should `오늘의 운동` appear only when a weekday schedule actually exists?
+- for independent self-built routines, should Home present quick routine choices instead of guessing a next routine?
+
+Already confirmed and not reopened:
 
 - primary bottom navigation: `홈 / 루틴 / 분석 / 설정`
 - if a workout is active, Home exposes a persistent one-tap return state
 - active-workout return UI appears on Home only
-
-Next decisions should focus on the idle/default Home experience:
-
-- what a brand-new user sees on Home after onboarding or self-build setup
-- primary workout-start CTA / entry hierarchy
-- recommended/saved routine exposure on Home
-- empty state when no routine exists
-- optional `오늘의 운동` vs `다음 운동` behavior without forcing weekday scheduling
 
 ## Open later, but not part of the immediate Home decision
 
