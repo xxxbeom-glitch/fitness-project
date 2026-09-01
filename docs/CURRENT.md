@@ -52,6 +52,13 @@ Confirmed / current baseline:
 - weekly availability means the **maximum realistic number of days the user can train**, not the exact number the app must prescribe
 - the matcher may prescribe fewer sessions but must never prescribe more than the selected maximum
 - the onboarding input captures day count only; specific weekday assignment remains optional later
+- confirmed experience-based weekly resistance-training ceilings:
+  - `처음이에요` → 최대 3회
+  - `6개월 미만이에요` → 최대 4회
+  - `6개월~1년 미만이에요` → 최대 5회
+  - `1년 이상이에요` → 최대 6회
+- baseline ceiling rule: `min(user weekly availability, experience cap)`
+- this is a ceiling rather than a requirement to always prescribe the maximum; later goal/duration/template rules may prescribe fewer sessions
 - equipment inventory is excluded from the initial recommendation intake
 - initial recommendation is gym-first and assumes a broadly equipped commercial-gym context
 - equipment mismatch is handled later through practical exercise substitution
@@ -63,8 +70,8 @@ Confirmed / current baseline:
 Still open:
 - exact sex/gender and age field shape / consent treatment
 - final goal options and what each option changes in the training program
-- exact downstream effects of each confirmed experience band
-- weekly availability -> actual prescribed training frequency / split mapping
+- other downstream effects of each confirmed experience band beyond the frequency ceiling
+- prescribed weekly frequency -> split / routine-count mapping
 - workout duration -> exercise/set budget mapping
 - recommendation output contract
 - deterministic template matching / tie-break rules
@@ -112,16 +119,15 @@ The current wireframe visual baseline follows the Figma system already inspected
 Continue `docs/23_RECOMMENDATION_SYSTEM_V1.md` one decision at a time.
 
 Next decision:
-1. map selected maximum `1–7일` to actual prescribed weekly resistance-training frequency
-2. map that prescribed frequency to routine split / routine count
+1. map prescribed weekly frequency `1–6회` to default routine split / routine count
 
 Then continue:
-3. workout-duration mapping
-4. exact effects of experience bands / goal choices where still open
-5. recommendation output contract
-6. matcher / substitutions
-7. recommendation result UX
-8. first-workout handoff / load calibration
+2. workout-duration mapping
+3. exact effects of experience bands / goal choices where still open
+4. recommendation output contract
+5. matcher / substitutions
+6. recommendation result UX
+7. first-workout handoff / load calibration
 
 Candidate goal choices remain a working proposal until explicitly confirmed:
 - 근육 증가
