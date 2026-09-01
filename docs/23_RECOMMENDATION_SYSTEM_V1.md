@@ -1,6 +1,6 @@
 # 23 RECOMMENDATION SYSTEM V1
 
-**Status:** IN PROGRESS · ONBOARDING INPUT BASELINE COMPLETE · RESULT CAROUSEL BASELINE CONFIRMED · SPLIT MAPPING ON HOLD
+**Status:** IN PROGRESS · ONBOARDING INPUT BASELINE COMPLETE · RESULT CAROUSEL BASELINE CONFIRMED · EXIT PATH FOLLOW-UP · SPLIT MAPPING ON HOLD
 **Updated:** 2026-09-01
 
 ## Purpose
@@ -181,7 +181,7 @@ These items must be reviewed together before implementation/release is finalized
 
 After all four recommendation inputs are complete, the recommendation branch does **not** save a routine immediately and does **not** enter Home yet.
 
-Flow:
+Acceptance flow:
 
 `추천 설정 완료 -> 추천 결과 전용 화면 -> 3개 후보를 카드 캐러셀로 비교 -> 이 루틴으로 시작하기 -> 선택한 프로그램 저장 -> Home`
 
@@ -197,6 +197,15 @@ Before the user accepts one candidate:
 - no recommended program is saved to `내 루틴`
 - the normal Home layout is not shown
 - bottom navigation is not required on the result-selection screen
+
+### Result header — CONFIRMED SHAPE
+
+Keep the top of the result screen deliberately simple.
+
+- one primary head copy remains
+- onboarding-condition chips are removed from the result header
+- small eyebrow / extra supporting description are not required there
+- candidate frequency/time details can live in the program card itself rather than being repeated above it
 
 ### Three-candidate model
 
@@ -250,6 +259,30 @@ The recommendation result must not force the user to accept a candidate based on
 
 Exact exercise names, exercise order, repetition targets, set counts, and day composition shown in the current wireframe are **illustrative placeholders** until program-template rules and the exercise DB are finalized. The UX requirement to expose the prescription is confirmed; the sample prescription itself is not product policy.
 
+### Recommendation result exit / skip — REQUIREMENT IDENTIFIED · DETAIL OPEN
+
+The user must not be trapped into accepting one of the three recommendation candidates.
+
+Confirmed requirement:
+
+- if none of the candidates is wanted, the user needs a path to leave the recommendation-result selection without accepting a candidate
+- leaving/skipping must **not** automatically save any candidate to `내 루틴`
+
+Not yet confirmed:
+
+- exact user-facing label such as `건너뛰기`
+- exact placement of that control
+- whether skip goes directly to a routine-empty Home
+- whether confirmation is needed
+- where `추천 다시 받기` is exposed later in Home/Routine
+- whether the current `추천 조건 수정` secondary action remains or is replaced by back navigation
+
+Working direction for next review:
+
+`추천 결과 -> 선택 안 함/건너뛰기 -> 추천 프로그램 미저장 상태로 first-run recommendation selection 종료 -> 이후 추천 다시 받기 가능`
+
+This direction is intentionally **not final policy yet**; the exact post-skip state must be confirmed in the next planning pass.
+
 ### What may differ between the three candidates
 
 The candidate variants may differ in parameters such as:
@@ -294,8 +327,16 @@ It includes:
 - confirmed weekly-availability 1–7 day sheet
 - confirmed workout-duration `30 / 45 / 60 / 90분 이상` sheet
 - recommendation-result carousel structure with three safe candidate types
+- minimal result header with one main head copy
 - one near-full-content-width active program card at a time
 - day selector + visible exercise/prescription list inside each candidate card
+
+Current production wireframe version: `2026-09-01.11`.
+
+Important checkpoint:
+
+- the newly identified recommendation-result skip/exit requirement is **documented but not yet visualized** in the current wireframe
+- result-card detailed visual polish is intentionally deferred
 
 It intentionally does **not** finalize:
 
@@ -303,7 +344,8 @@ It intentionally does **not** finalize:
 - exact day-by-day exercise composition
 - exact exercise/set volume derived from workout duration
 - final parameter differences among `기본형 / 간결형 / 볼륨형`
-- post-acceptance Home default-state design
+- post-acceptance / post-skip Home default-state design
+- exact skip UI and post-skip state
 
 ## Product Owner hold — 2026-09-01
 
@@ -315,6 +357,12 @@ The already-confirmed experience-based frequency ceilings remain recorded policy
 
 ## Remaining recommendation-system decisions
 
+Immediate resume point:
+
+- recommendation-result skip/exit action and post-skip state
+
+Deferred after that:
+
 - exact downstream program effects of the confirmed goal choices
 - other downstream effects of experience bands beyond weekly ceiling
 - prescribed frequency -> routine split / routine count **ON HOLD**
@@ -323,6 +371,7 @@ The already-confirmed experience-based frequency ceilings remain recorded policy
 - deterministic template matching / tie-break rules
 - substitution rules
 - first-workout handoff / load calibration
+- result-card detailed visual polish
 
 ## Deferred non-matcher policy
 
