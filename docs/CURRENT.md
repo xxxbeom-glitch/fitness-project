@@ -4,27 +4,96 @@
 
 ## Current mode
 
-`PRODUCT / UX PLANNING — G FIT WHOLE-APP WIREFRAME v2026-09-01.12 · PO REVIEW PENDING`
+`PRODUCT / UX PLANNING — G FIT WHOLE-APP WIREFRAME v2026-09-01.13 · FIGMA SYSTEM SYNCED · PO REVIEW PENDING`
 
 Product Owner가 제품 전체 방향을 먼저 화면으로 확인한 뒤 Home부터 천천히 결정하기로 했다.
 
-2026-09-01 작업 종료 checkpoint:
-- whole-app review wireframe `2026-09-01.12` 제작/배포 완료
-- 새 Product Decision은 추가 확정하지 않음
-- Product Owner가 2026-09-02 전체 화면을 확인한 뒤 피드백 예정
-- 다음 작업은 새 화면 제작이 아니라 **PO 피드백을 기준으로 Home부터 수정/삭제/확정**
-
-현재 최신 상위 기준:
+Current product-direction authority:
 - `docs/24_PRODUCT_DIRECTION_V2.md`
+- `docs/CURRENT.md`
 
-현재 누적 검토용 와이어프레임:
+Current visual review source:
 - `product/wireframe/index.html`
-- version: `2026-09-01.12`
+- `product/wireframe/style.css`
+- `product/wireframe/README.md`
+- version: `2026-09-01.13`
 - production: `https://liftly-wireframe.vercel.app`
 
-중요: 현재 wireframe에서 `REVIEW / OPEN`으로 표시한 UI·정보 구조는 **검토 가설이며 Product Decision이 아니다.** 기존 확정 정책만 `CONFIRMED`로 유지한다.
-
 Cursor implementation은 아직 승인되지 않았다.
+
+## Latest checkpoint — Figma design-system sync
+
+Product Owner가 whole-app review wireframe을 이해하기 쉽도록 **기존 Figma 디자인시스템을 먼저 정확히 반영한 상태에서 제품 구조를 검토**하기로 했다.
+
+v12는 GitHub에 기록된 일부 visual token을 사용했지만 실제 Figma authored screens/components를 충분히 직접 대조하지 않은 상태였다.
+
+v13에서는 canonical Figma 파일을 직접 확인해 review wireframe의 visual language를 다시 맞췄다.
+
+Canonical Figma:
+
+`https://www.figma.com/design/W3lZurXCXbThP67rF2xk2b/LIFTLY_%EC%B5%9C%EC%A2%85?node-id=0-1`
+
+직접 확인한 대표 Figma 구조:
+
+- `110_Home`
+- `111_Home_Empty`
+- `201_Routine_List`
+- `210_Routine_Detail`
+- `220_Routine_Create`
+- `230_Routine_Edit`
+- `301_Exercise_Search`
+- `310_Custom_Exercise_Create`
+- `401a_Workout_Active`
+- `501_Workout_Complete`
+- Bottom App Bar reference
+
+대표 sync 기준:
+
+- screen width `360`
+- side padding `20`
+- content width `320`
+- SUIT typography
+- `bg/default #0A0A0C`
+- `bg/surface #161618`
+- `bg/elevated #1E1E22`
+- `border/subtle #232326`
+- `text/primary #F0F0F2`
+- `text/secondary #8E8E93`
+- `brand/primary #34D399`
+- standard radius `12`
+- Nav Header `56`
+- Home hero `320 × 128`
+- Home Heatmap `320 × 104`
+- WorkoutRow `320 × 60`
+- RoutineCard `320 × 124`
+- CTA `320 × 58`
+- Input `320 × 52`
+- weekday control `34 × 34`
+- Exercise search `320 × 44`
+- FilterChip height `32`
+- ExerciseItem `320 × 96`
+- Active-workout progress section `72`, track `8`
+- Completion primary metric `154 × 94` × 2
+- Bottom App Bar `360 × 78`
+
+Important:
+
+- v13은 Figma component를 그대로 export한 final UI spec이 아니라, **실제 Figma variables / metadata / authored-screen proportions에 current product review content를 맞춘 planning artifact**다.
+- working name은 `G Fit`이므로 기존 Figma logo asset 자체를 복제하지 않고 placeholder text를 사용한다.
+- 디자인시스템 sync는 `REVIEW / OPEN` 제품 가설을 확정시키지 않는다.
+
+## Runtime verification — v2026-09-01.13
+
+Production deploy/read-back 확인 완료:
+
+- Vercel target: production
+- state: `READY`
+- canonical alias: `https://liftly-wireframe.vercel.app`
+- HTML HTTP `200`
+- `CANONICAL_WIREFRAME_VERSION: 2026-09-01.13`
+- `Figma design-system synced` marker 확인
+- `style.css` HTTP `200`
+- production CSS에서 Figma baseline color/size selectors 확인
 
 ## Current product definition
 
@@ -86,14 +155,7 @@ Existing account:
 - 성별: `남성 / 여성`
 - 생년월일: full date of birth
 
-기존 추천 설문:
-
-- 운동 목표
-- 운동 경력
-- 주당 가능일
-- 운동 시간
-
-및 추천 결과 전용 화면 / 3-candidate carousel / skip-exit 흐름은 **superseded** 됐다.
+기존 recommendation-heavy onboarding과 추천 결과 전용 화면 / 3-candidate carousel / skip-exit 흐름은 superseded 됐다.
 
 성별/생년월일은 시작 중량 추정에 사용하지 않는다.
 
@@ -116,11 +178,11 @@ Baseline:
 - **중성적으로 보이는 해부학 느낌의 3D avatar 한 계열**
 - 동일 운동의 남/녀 asset 중복 제작은 요구하지 않음
 - social profile image와 exercise demo visual은 분리
-- grip 시각화는 실제 수행 이해에 가치가 있는 운동에서 제공하는 방향
+- grip 시각화는 실제 수행 이해에 가치가 있는 운동에서 제공
 
-운동 DB / visual asset은 장기 제품 자산으로 직접 구축하는 방향을 검토한다. 핵심 운동부터 우선순위를 나눠 제작하고 출시 후 지속 확장 가능하다.
+운동 DB / visual asset은 장기 제품 자산으로 직접 구축하는 방향이다. 핵심 운동부터 우선순위를 나눠 제작하고 출시 후 지속 확장 가능하다.
 
-## Recommended routine — CONFIRMED NEW DIRECTION
+## Recommended routine — CONFIRMED DIRECTION
 
 사용자-facing 용어는 `프리셋` 대신 **`추천 루틴`**을 사용한다.
 
@@ -138,7 +200,7 @@ Home에서 여러 추천 루틴 카드를 볼 수 있다.
 - 예: `무분할 전신 루틴`, `상체 루틴`, `하체 루틴`
 - category questionnaire 없이 바로 카드 탐색 가능
 - `내 루틴 만들기`도 함께 제공
-- 추천 카드를 눌렀을 때 정확한 detail / confirm / start flow는 아직 OPEN
+- 추천 카드 탭 이후 detail / save / start semantics는 OPEN
 
 루틴이 이미 있는 일반 Home에서는 추천 콘텐츠보다 오늘/다음 운동 시작과 최근 상태가 우선한다.
 
@@ -157,8 +219,6 @@ Priority direction:
 
 `운동 후 분석 > 운동 전 준비 > Home 장기 인사이트 > 운동 중 최소 개입`
 
-LLM 없이 규칙/통계로 더 안정적으로 해결 가능한 문제는 구조화된 로직을 우선한다.
-
 ## Post-workout / Analysis — CONFIRMED DIRECTION
 
 운동 종료 후에는 단순 완료 화면보다 **다양한 데이터를 직관적으로 보여주는 요약 대시보드**를 지향한다.
@@ -176,11 +236,7 @@ LLM 없이 규칙/통계로 더 안정적으로 해결 가능한 문제는 구�
 
 운동 기록 / 루틴 / 게시물 공개 여부는 사용자가 선택한다.
 
-닉네임/프사는 소셜을 쓰지 않는 사용자에게 설정을 강제하지 않는다.
-
 ## Existing foundations retained
-
-다음 기존 결정은 유지한다.
 
 - primary bottom navigation: `홈 / 루틴 / 분석 / 설정`
 - exercise library is contextual, not primary tab
@@ -190,7 +246,7 @@ LLM 없이 규칙/통계로 더 안정적으로 해결 가능한 문제는 구�
 - active session survives restart until finish/discard
 - Home exposes active-workout return state
 - active-workout return indicator is Home-only
-- Routine remains browseable/read-only while an active workout exists
+- Routine remains browseable/read-only while active workout exists
 - active workout structural edits stay flexible
 - structural live-workout changes may prompt saved-routine update at completion
 - load/reps are performance records
@@ -200,66 +256,51 @@ LLM 없이 규칙/통계로 더 안정적으로 해결 가능한 문제는 구�
 - recommendation/AI must not silently alter workout records
 - custom exercises remain important
 
-## Whole-app wireframe review checkpoint — 2026-09-01.12
-
-Product Owner 요청에 따라 아직 미확정인 화면도 `REVIEW / OPEN`으로 명확히 표시한 상태에서 먼저 전체 구조를 시각화했다.
-
-현재 wireframe이 보여주는 검토 범위:
+## Whole-app wireframe review scope — v2026-09-01.13
 
 1. Account / Onboarding
 2. Home — 루틴 없음 / 요일 미지정 / 요일 지정 / 운동 진행 중
 3. Routine — 내 루틴 / 추천 루틴 / 상세 / 만들기·수정
 4. Exercise DB / Guide — 검색·필터 / 운동 상세 / 중성 3D placeholder / grip / YouTube slot / custom exercise
-5. Active workout — 세트 기록 / 이전 기록 / rest / 운동 메뉴 / 기존 확정 dialog
+5. Active workout — 진행률 / 세트 기록 / 이전 기록 / rest / 운동 메뉴 / existing dialogs
 6. Workout complete — 완료 요약 대시보드 / 부분 기록
-7. Analysis / History — 분석 overview / 종목 기록 / 운동 기록 상세
-8. Settings — 운동 / 프로필 / 계정·데이터 + post-MVP 확장 메모
+7. Analysis / History — overview / 종목 기록 / 운동 기록 상세
+8. Settings — 운동 / 프로필 / 계정·데이터 + post-MVP extension memo
 
 Wireframe 운영 원칙:
 
-- `CONFIRMED` = 기존 확정 정책을 시각화
+- `CONFIRMED` = 기존 확정 정책
 - `REVIEW` = 현재 비교·검토용 UI 가설
 - `OPEN` = Product Owner가 화면을 보고 결정할 항목
-- review draft를 Cursor 구현 Task 또는 Acceptance Criteria로 사용하지 않음
-- 화면을 봤다는 이유만으로 Decision을 자동 생성하지 않음
-
-Production deploy/read-back 확인 완료:
-
-- Vercel state: `READY`
-- canonical alias: `https://liftly-wireframe.vercel.app`
-- HTML HTTP 200
-- `CANONICAL_WIREFRAME_VERSION: 2026-09-01.12` 확인
-- `style.css` HTTP 200
+- review draft를 Cursor 구현 Task / Acceptance Criteria로 사용하지 않음
+- 화면에 존재한다는 이유로 Product Decision을 자동 생성하지 않음
 
 ## Superseded planning
 
-다음은 더 이상 current product direction이 아니다.
+Current direction이 아닌 항목:
 
 - first-run `추천 루틴 받기 / 직접 만들기` branch screen
-- goal / experience / weekly availability / duration recommendation questionnaire
-- experience-based frequency ceiling as first-run matcher requirement
+- goal / experience / weekly availability / duration questionnaire
+- experience-based first-run matcher
 - dedicated recommendation-result screen
 - three candidates `기본형 / 간결형 / 볼륨형`
-- recommendation result pagination / carousel
-- recommendation-result skip / exit policy problem
-- prescribed frequency -> split mapping discussion tied to the old matcher
+- recommendation result carousel/pagination
+- recommendation-result skip/exit policy problem
 
-`docs/23_RECOMMENDATION_SYSTEM_V1.md`는 historical / superseded reference로 남기되 current planning authority가 아니다.
+`docs/23_RECOMMENDATION_SYSTEM_V1.md`는 historical / superseded reference only다.
 
 ## Next resume point
 
-다음 대화에서도 프로젝트 위치를 다시 묻지 않고 현재 whole-app wireframe에서 이어간다.
-
-**PO 전체 검토 피드백 수신 대기. 첫 검토 대상은 Home.**
+**PO whole-app review feedback pending. 첫 검토 대상은 Home.**
 
 Home review states:
 
 - `02A` 루틴 없음 — G Fit 추천 루틴 + 내 루틴 만들기
 - `02B` 내 루틴 있음 / 요일 미지정 — `다음 루틴` 중심 검토안
 - `02C` 내 루틴 있음 / 요일 지정 — `오늘 운동` 중심 검토안
-- `02D` 운동 진행 중 — 기존 확정 active-workout return behavior
+- `02D` 운동 진행 중 — confirmed active-workout return behavior
 
-Product Owner가 화면을 보면서 수정/삭제/확정 의견을 주면 해당 화면부터 wireframe과 관련 Decision을 순차 반영한다.
+Product Owner가 수정/삭제/확정 의견을 주면 Home부터 wireframe과 관련 Decision을 순차 반영한다.
 
 그 다음 검토 순서:
 
@@ -271,21 +312,17 @@ Product Owner가 화면을 보면서 수정/삭제/확정 의견을 주면 해�
 6. Post-workout summary dashboard
 7. Analysis
 8. Settings
-9. AI / personalization planning pass
-10. Social planning pass
-11. Legal / privacy / minimum-age / platform-policy final pass
-12. Monetization after core feature definition
+9. AI / personalization
+10. Social
+11. Legal / privacy / minimum-age / platform policy
+12. Monetization
 
 ## Canonical source rule
 
 GitHub remains Source of Truth.
 
-Current product-direction authority:
-- `docs/24_PRODUCT_DIRECTION_V2.md`
-- `docs/CURRENT.md`
+- Product decisions: GitHub docs
+- Visual/design-system reference: canonical Figma
+- Current review artifact: `product/wireframe/index.html` + `style.css`
 
-Current visual review source:
-- `product/wireframe/index.html`
-- `product/wireframe/README.md`
-
-기존 문서가 이 최신 방향과 충돌하면 V2를 우선한다.
+Figma/wireframe이 제품 정책을 역으로 덮어쓰지 않는다.
