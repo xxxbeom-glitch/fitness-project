@@ -4,7 +4,7 @@
 
 ## Current mode
 
-`PRODUCT / UX PLANNING — RECOMMENDATION RESULT CAROUSEL REVIEW · ONBOARDING BASELINE COMPLETE`
+`PRODUCT / UX PLANNING — RECOMMENDATION RESULT CARD CONTENT REVIEW · ONBOARDING BASELINE COMPLETE`
 
 신규 사용자 onboarding 입력 UX는 현재 기준으로 충분히 확정했다. 현재 기획 초점은 **추천 설정 완료 후 사용자가 실제 추천 프로그램을 선택하는 결과 단계**다.
 
@@ -119,7 +119,7 @@ Baseline ceiling:
 
 `min(user weekly availability, experience cap)`
 
-## Recommendation result — NEW CONFIRMED BASELINE
+## Recommendation result — CONFIRMED BASELINE
 
 추천 설정 완료 직후 Home으로 가지 않는다.
 
@@ -147,9 +147,26 @@ Three-candidate baseline:
 Important:
 
 - `초급 / 중급 / 고급` 선택지가 아님
-- 세 후보 모두 사용자의 운동 경력과 입력 조건 안에서 안전하게 pre-filter되어야 함
+- 세 후보 모두 사용자의 운동 경력과 입력 조건 안에서 pre-filter되어야 함
 - swipe로 experience ceiling을 우회할 수 없음
 - 정확한 후보별 세트/운동 수/볼륨 차이는 아직 미확정
+
+### Candidate card content — CONFIRMED SHAPE
+
+추천 결과 카드는 프로그램 성격 설명만 보여주면 안 된다.
+
+사용자는 선택 전에 카드 안에서 **실제로 어떤 운동을 하게 되는지** 확인할 수 있어야 한다.
+
+Required content shape:
+
+- candidate type/name
+- frequency / session-time context
+- multi-day 프로그램이면 `DAY 1 / DAY 2 / DAY 3` 같은 day selector
+- selected day의 실제 운동명 목록
+- 각 운동의 반복수 × 세트수 prescription, 예: `8–12회 × 3세트`
+- CTA `이 루틴으로 시작하기`
+
+Current wireframe의 운동명/반복수/세트수는 **UI 구조 확인용 샘플**이며 아직 프로그램 정책이 아니다. 실제 운동 composition은 exercise DB, duration budget, template QA, split policy가 확정될 때 결정한다.
 
 Older `one primary recommended routine` / `single recommended routine` presentation wording in DEC-006 / DEC-014 is superseded by `docs/23_RECOMMENDATION_SYSTEM_V1.md`의 2026-09-01 result policy. Curated matching과 선택 후 Home 이동 원칙은 유지한다.
 
@@ -168,7 +185,7 @@ GitHub source:
 - `product/wireframe/index.html`
 
 Current target version for this pass:
-- `2026-09-01.8`
+- `2026-09-01.9`
 
 Production:
 - `https://liftly-wireframe.vercel.app`
@@ -177,6 +194,7 @@ Current visual scope:
 
 - confirmed onboarding baseline
 - recommendation-result dedicated carousel review
+- each candidate card contains day selector + exercise prescription list
 
 Previous Home default-state review is paused/removed from current wireframe so recommendation acceptance flow can be settled first.
 
@@ -187,7 +205,7 @@ Canonical Figma:
 
 추천 결과 화면을 본 뒤 다음 하나를 결정한다:
 
-**`기본형 / 간결형 / 볼륨형`을 실제 프로그램 변수에서 정확히 무엇으로 구분할지.**
+**카드 안에서 하루 운동 구성 전체를 어느 깊이까지 보여줄지, 그리고 `기본형 / 간결형 / 볼륨형`의 실제 프로그램 차이를 무엇으로 만들지.**
 
 그 다음에 Home 기본 상태 검토로 돌아간다.
 
