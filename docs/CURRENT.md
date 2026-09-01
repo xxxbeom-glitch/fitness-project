@@ -42,6 +42,12 @@ Confirmed / current baseline:
 - after choosing recommendation, the user sees one `추천 루틴 설정` screen containing all four rows
 - tapping a row opens a bottom sheet; after selection the user returns to the same settings screen
 - the recommendation CTA remains disabled until all four values are present
+- confirmed training-experience choices:
+  - `처음이에요`
+  - `6개월 미만이에요`
+  - `6개월~1년 미만이에요`
+  - `1년 이상이에요`
+- experience is a supporting matcher signal; `1년 이상` does not automatically mean advanced lifter
 - equipment inventory is excluded from the initial recommendation intake
 - initial recommendation is gym-first and assumes a broadly equipped commercial-gym context
 - equipment mismatch is handled later through practical exercise substitution
@@ -53,7 +59,7 @@ Confirmed / current baseline:
 Still open:
 - exact sex/gender and age field shape / consent treatment
 - final goal options and what each option changes in the training program
-- final experience bands and what each band changes
+- exact downstream effects of each confirmed experience band
 - weekly availability -> training frequency / split mapping
 - workout duration -> exercise/set budget mapping
 - recommendation output contract
@@ -102,17 +108,22 @@ The current wireframe visual baseline follows the Figma system already inspected
 Continue `docs/23_RECOMMENDATION_SYSTEM_V1.md` one decision at a time.
 
 Next decision:
-1. define final `운동 목표` choices
-2. specify exactly what each goal changes in the curated resistance-training program
+1. define what `주당 가능일` means to the matcher
+2. define weekly availability -> actual prescribed training frequency / split mapping
 
 Then continue:
-3. training-experience bands / effects
-4. weekly availability mapping
-5. workout-duration mapping
-6. recommendation output contract
-7. matcher / substitutions
-8. recommendation result UX
-9. first-workout handoff / load calibration
+3. workout-duration mapping
+4. exact effects of experience bands / goal choices where still open
+5. recommendation output contract
+6. matcher / substitutions
+7. recommendation result UX
+8. first-workout handoff / load calibration
+
+Candidate goal choices remain a working proposal until explicitly confirmed:
+- 근육 증가
+- 근력 향상
+- 체지방 감량
+- 건강·체력 향상
 
 Do not return to recommendation-result A/B/C presentation until the upstream recommendation rules are defined.
 
