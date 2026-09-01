@@ -4,9 +4,11 @@
 
 ## Current mode
 
-`PRODUCT / UX PLANNING — RECOMMENDATION RESULT CARD CONTENT REVIEW · ONBOARDING BASELINE COMPLETE`
+`PRODUCT / UX PLANNING — RECOMMENDATION RESULT BASELINE CHECKPOINTED · EXIT PATH FOLLOW-UP`
 
-신규 사용자 onboarding 입력 UX는 현재 기준으로 충분히 확정했다. 현재 기획 초점은 **추천 설정 완료 후 사용자가 실제 추천 프로그램을 선택하는 결과 단계**다.
+신규 사용자 onboarding 입력 UX는 현재 기준으로 충분히 확정했다. 추천 결과 화면도 **전용 결과 화면 + 3개 후보 + full-width 프로그램 카드 + DAY별 실제 운동 처방 확인**까지 baseline을 잡았다.
+
+추천 결과의 세부 시각/카피 polish는 일단 뒤로 미룬다. 마지막 대화에서 **추천 후보 3개 중 어떤 것도 선택하고 싶지 않은 사용자를 위한 exit/skip 경로가 필요하다**는 요구가 확인되었다. 정확한 UI와 skip 이후 상태는 다음 기획 패스에서 결정한다.
 
 Top-level IA와 active-workout navigation/state 규칙은 기존 확정안을 그대로 유지한다. Cursor implementation은 아직 승인되지 않았다.
 
@@ -123,7 +125,7 @@ Baseline ceiling:
 
 추천 설정 완료 직후 Home으로 가지 않는다.
 
-Confirmed flow:
+Confirmed acceptance flow:
 
 `추천 설정 완료 -> 추천 결과 전용 화면 -> 3개 후보 카드 캐러셀 -> 이 루틴으로 시작하기 -> 선택 프로그램 저장 -> Home`
 
@@ -173,6 +175,30 @@ Required content shape:
 
 Current wireframe의 운동명/반복수/세트수는 **UI 구조 확인용 샘플**이며 아직 프로그램 정책이 아니다. 실제 운동 composition은 exercise DB, duration budget, template QA, split policy가 확정될 때 결정한다.
 
+### Recommendation result exit / skip — REQUIREMENT IDENTIFIED · DETAIL OPEN
+
+사용자를 추천 후보 수락에 가두지 않는다.
+
+Confirmed requirement:
+
+- 3개 추천 후보가 모두 마음에 들지 않으면 **어떤 후보도 저장하지 않고 결과 선택 단계를 빠져나갈 수 있는 경로가 필요함**
+- exit/skip 시 추천 후보를 `내 루틴`에 자동 저장하면 안 됨
+
+Not yet confirmed:
+
+- 사용자-facing label (`건너뛰기` 등)
+- 정확한 배치 위치
+- skip 직후 `루틴 없는 Home`으로 바로 이동할지 여부
+- confirmation 필요 여부
+- Home/루틴 탭에서 추천 다시 받기를 어떤 위치에 제공할지
+- 현재 하단 `추천 조건 수정`을 유지할지, 뒤로가기로 대체할지
+
+Working direction for next review:
+
+`추천 결과 -> 선택 안 함/건너뛰기 -> 추천 루틴 미저장 상태로 온보딩 종료 -> 이후 다시 추천받기 가능`
+
+이 working direction은 다음 대화에서 최종 확정한다.
+
 Older `one primary recommended routine` / `single recommended routine` presentation wording in DEC-006 / DEC-014 is superseded by `docs/23_RECOMMENDATION_SYSTEM_V1.md`의 2026-09-01 result policy. Curated matching과 선택 후 Home 이동 원칙은 유지한다.
 
 ## Explicit hold
@@ -189,7 +215,7 @@ Older `one primary recommended routine` / `single recommended routine` presentat
 GitHub source:
 - `product/wireframe/index.html`
 
-Current target version for this pass:
+Current production version:
 - `2026-09-01.11`
 
 Production:
@@ -203,18 +229,26 @@ Current visual scope:
 - one full-width program card per active candidate
 - each candidate card contains day selector + exercise prescription list
 
-Previous Home default-state review is paused/removed from current wireframe so recommendation acceptance flow can be settled first.
+Important checkpoint:
+
+- **skip/exit requirement is documented but is not yet visualized in v2026-09-01.11**
+- recommendation-result visual/detail polish is deferred for now
+
+Previous Home default-state review is paused/removed from current wireframe so recommendation acceptance/exit flow can be settled first.
 
 Canonical Figma:
 - `https://www.figma.com/design/W3lZurXCXbThP67rF2xk2b/LIFTLY_%EC%B5%9C%EC%A2%85?node-id=0-1&t=59Hp4z7hcHf5nNL5-1`
 
-## Next decision after wireframe review
+## Next resume point
 
-추천 결과 화면을 본 뒤 다음 하나를 결정한다:
+새 대화에서는 프로젝트 위치를 다시 묻지 않고 여기서 이어간다.
 
-**`기본형 / 간결형 / 볼륨형`을 실제 program variable에서 무엇으로 구분할지.**
+우선순위:
 
-그 다음에 Home 기본 상태 검토로 돌아간다.
+1. 추천 결과 **skip/exit 동작과 skip 이후 상태를 확정**
+2. 필요하면 해당 동작만 wireframe에 반영
+3. 추천 결과 카드의 세부 시각 polish와 `기본형 / 간결형 / 볼륨형`의 실제 program-variable 차이는 뒤로 미룸
+4. 그 다음 Home 기본 상태 기획으로 이동
 
 ## Open later
 
@@ -226,7 +260,9 @@ Canonical Figma:
 - deterministic template matching / tie-break rules
 - substitution rules
 - first-workout handoff / load calibration
-- post-acceptance Home default-state design
+- recommendation-result detailed visual polish
+- exact candidate-variant program variables
+- post-acceptance / post-skip Home default-state design
 
 ## Existing IA / workout rules remain valid
 
