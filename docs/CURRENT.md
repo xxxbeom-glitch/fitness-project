@@ -48,6 +48,10 @@ Confirmed / current baseline:
   - `6개월~1년 미만이에요`
   - `1년 이상이에요`
 - experience is a supporting matcher signal; `1년 이상` does not automatically mean advanced lifter
+- confirmed weekly-availability choices: `1일 / 2일 / 3일 / 4일 / 5일 / 6일 / 7일`
+- weekly availability means the **maximum realistic number of days the user can train**, not the exact number the app must prescribe
+- the matcher may prescribe fewer sessions but must never prescribe more than the selected maximum
+- the onboarding input captures day count only; specific weekday assignment remains optional later
 - equipment inventory is excluded from the initial recommendation intake
 - initial recommendation is gym-first and assumes a broadly equipped commercial-gym context
 - equipment mismatch is handled later through practical exercise substitution
@@ -60,7 +64,7 @@ Still open:
 - exact sex/gender and age field shape / consent treatment
 - final goal options and what each option changes in the training program
 - exact downstream effects of each confirmed experience band
-- weekly availability -> training frequency / split mapping
+- weekly availability -> actual prescribed training frequency / split mapping
 - workout duration -> exercise/set budget mapping
 - recommendation output contract
 - deterministic template matching / tie-break rules
@@ -108,8 +112,8 @@ The current wireframe visual baseline follows the Figma system already inspected
 Continue `docs/23_RECOMMENDATION_SYSTEM_V1.md` one decision at a time.
 
 Next decision:
-1. define what `주당 가능일` means to the matcher
-2. define weekly availability -> actual prescribed training frequency / split mapping
+1. map selected maximum `1–7일` to actual prescribed weekly resistance-training frequency
+2. map that prescribed frequency to routine split / routine count
 
 Then continue:
 3. workout-duration mapping
