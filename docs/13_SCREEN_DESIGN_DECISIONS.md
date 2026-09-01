@@ -1,7 +1,7 @@
 # 13 SCREEN DESIGN DECISIONS
 
 **Status:** BOOTSTRAP — SCREEN-BY-SCREEN REVIEW IN PROGRESS
-**Updated:** 2026-08-28
+**Updated:** 2026-09-01
 
 This document records approved screen-level UX/UI decisions during the current design QA/redesign pass.
 
@@ -94,5 +94,32 @@ Global reference rule:
 ### Screen-02 status
 - Core structure, navigation, and visual direction are approved for Figma refinement.
 - Final display copy may still be polished later without changing the approved product meaning.
+
+## 03 — First-run Basic Profile Information
+
+### Purpose
+- This screen is shown only during first-run onboarding for a genuinely new account.
+- It collects the required profile fields `성별` and `생년월일`.
+- These fields remain separate from the recommendation matcher and are not used to guess starting working weight.
+
+### Gender control — CONFIRMED
+- Show exactly two choices: **`남성` / `여성`**.
+- Do **not** use a bottom sheet, dropdown, or separate selection screen.
+- Reuse the existing standard input/control height and width area, but split the row into **two equal-width button segments**.
+- Each half is a direct tap target.
+- Selected/unselected styling should use the existing Fitness selection language without changing the control height.
+- There is no `응답 안 함` option.
+
+### Date-of-birth control — CONFIRMED
+- Use a **text field**, not a bottom sheet, date-wheel, or calendar picker as the primary control.
+- Preserve the current standard input height/radius/visual treatment.
+- Remove the right-side chevron/arrow.
+- Placeholder/example format: **`1999-01-01`**.
+- Store the actual full date of birth rather than an age band or manually entered current age.
+- Detailed input masking, validation, keyboard type, error state, and minimum-age enforcement remain implementation/policy follow-up decisions.
+
+### Screen-03 status
+- Field set and primary control types are approved.
+- Remaining open items are validation/error behavior, minimum-age policy, and privacy/consent treatment.
 
 Do not copy Tonal or Hevy brand assets, exact copy, or proprietary imagery.
