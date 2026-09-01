@@ -28,7 +28,7 @@ First-run onboarding is the place where initial profile information and the reco
 
 The Product Owner selected the balanced recommendation-input direction as the current baseline.
 
-Initial recommendation flow:
+Initial recommendation inputs:
 
 1. goal
 2. training experience
@@ -38,6 +38,37 @@ Initial recommendation flow:
 Equipment inventory is not collected during the initial recommendation flow. The initial recommendation remains gym-first and assumes a broadly equipped commercial-gym context. Equipment mismatch is handled later through exercise substitution rather than a long first-run equipment questionnaire.
 
 This supersedes the earlier three-input onboarding assumption in DEC-009 for the current design pass. DEC-009's existing wording/choices for goal, weekly availability, and duration remain provisional until each input is reviewed again in this recommendation-system pass.
+
+## Recommendation intake interaction — CONFIRMED
+
+The four recommendation inputs are **not** presented as four consecutive full-screen onboarding steps.
+
+After the user chooses `추천 루틴 받기`, the app opens one `추천 루틴 설정` screen containing four rows:
+
+- 운동 목표
+- 운동 경력
+- 주당 가능일
+- 운동 시간
+
+Interaction rule:
+
+- tapping a row opens a bottom sheet over the same screen
+- the user selects one value and returns to the same recommendation-settings screen
+- the selected value is shown inline in that row and can be changed again by tapping it
+- all four values remain visible together so the user can review the complete recommendation profile before submitting
+- `내 루틴 추천받기` remains disabled until all four required inputs have values
+- once all four values are present, the CTA becomes active and goes directly to the recommendation result
+- there is no additional confirmation screen between completed settings and the recommendation result
+
+This replaces the earlier wireframe concept of `goal screen -> experience screen -> availability screen -> duration screen`.
+
+The bottom-sheet presentation should reuse the existing Figma design-system pattern represented by the unit-settings sheet: dimmed overlay, 32px top corners, 20px horizontal padding, 52px option rows, and the standard 58px CTA.
+
+Why:
+
+- the four questions are independent inputs; one answer does not change which question is asked next
+- a four-screen wizard makes the intake feel longer than the actual information burden
+- the single settings screen gives the user immediate visibility into what is still missing and makes corrections cheaper
 
 ## Demographic profile data — separate from recommendation matching
 
