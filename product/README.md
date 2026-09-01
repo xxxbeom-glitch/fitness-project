@@ -51,7 +51,7 @@ Figma는 시각 디자인 기준이다. 제품 정책/UX 의미가 GitHub의 확
 
 Product Owner에게 보여주는 누적 웹 와이어프레임은 이 URL 하나만 사용한다.
 
-## Current first-run planning snapshot
+## Onboarding planning snapshot — BASELINE COMPLETE
 
 현재 확정/기준안:
 
@@ -61,6 +61,8 @@ Product Owner에게 보여주는 누적 웹 와이어프레임은 이 URL 하나
 - 미완료 onboarding은 계정에 저장된 중단 지점에서 재개
 - 신규 onboarding 기본정보는 `성별 + 생년월일`
 - 성별 선택지는 `남성 / 여성`만 제공하며 `응답 안 함`은 두지 않음
+- 성별 UI는 기존 52px 높이를 유지한 **2등분 직접 선택 버튼**
+- 생년월일은 화살표 없는 **텍스트필드**, placeholder/example `1999-01-01`, 기본 형식 의도 `YYYY-MM-DD`
 - 나이/연령대를 직접 받지 않고 실제 생년월일을 저장
 - 성별·생년월일은 recommendation matcher와 분리
 - 첫 시작 방식은 `추천 루틴 받기 / 내 루틴 직접 만들기` 동등한 2개 경로
@@ -78,11 +80,23 @@ Product Owner에게 보여주는 누적 웹 와이어프레임은 이 URL 하나
 - 운동 시간은 세트 간 휴식을 포함하고 별도 유산소는 제외한 **최대 웨이트 트레이닝 세션 시간 예산**
 - 경험 기반 주간 처방 ceiling `3 / 4 / 5 / 6회` 정책은 recommendation-system 문서에 기록되어 있음
 - **prescribed frequency -> routine split / routine count 매핑은 Product Owner가 현재 보류함**
-- 현재 웹 와이어프레임은 추천 결과/분할 로직까지 확장하지 않고 **온보딩 흐름까지만 시각화**함
+- 현재 웹 와이어프레임 v`2026-09-01.6`은 onboarding baseline으로 유지
 - 장비 inventory는 초기 추천 설문에서 제외
 - 초기 추천은 일반적인 상업 헬스장 환경을 가정하고 장비 불일치는 대체운동으로 처리
 - 추천은 자유 생성 LLM보다 curated / QA-reviewed template matching을 우선
 - 시작 중량은 성별/생년월일로 고정 추정하지 않고 첫 실제 workout에서 calibration
+
+### Deferred final onboarding policy pass
+
+아래는 현재 제품 진행을 막지 않고 **구현/출시 전 마지막 onboarding 정책 패스**에서 함께 결정한다.
+
+- 최소 가입 연령
+- 이용약관 acknowledgement 위치
+- 개인정보처리방침 / 개인정보 수집 고지 위치
+- Google/Kakao provider consent와 Fitness 자체 약관/개인정보 고지의 최종 관계
+- 기본정보 화면에 법적 고지를 통합할지, 별도 confirmation state가 필요한지
+
+현재 방향성은 별도 약관 화면을 불필요하게 추가하지 않고 기본정보 단계에 자연스럽게 통합할 수 있는지 우선 검토하는 것이지만, 아직 최종 정책으로 고정하지 않는다.
 
 ### Product Owner visual review
 
@@ -92,9 +106,29 @@ Product Owner에게 보여주는 누적 웹 와이어프레임은 이 URL 하나
 - 2026-09-01: 운동 시간 `30 / 45 / 60 / 90분 이상`을 확정함.
 - 2026-09-01: 운동 목표 `근육 증가 / 체지방 감량 / 건강·체력 향상`을 확정함.
 - 2026-09-01: 기본정보는 `성별(남성/여성) + 생년월일`로 확정하고 `응답 안 함`을 두지 않기로 함.
-- 2026-09-01: routine split 매핑은 보류하고, canonical wireframe은 현재 온보딩 흐름까지만 유지하기로 함.
+- 2026-09-01: 성별은 2등분 버튼, 생년월일은 `1999-01-01` placeholder의 텍스트필드로 확정함.
+- 2026-09-01: onboarding 핵심 UX는 이 수준에서 닫고 약관/개인정보/최소연령은 마지막 정책 패스로 미룸.
+- 2026-09-01: routine split 매핑은 보류함.
 
-아직 확정하지 않은 세부 매칭/프로그램 규칙은 `docs/23_RECOMMENDATION_SYSTEM_V1.md`에서 관리하되 Product Owner가 재개하기 전까지 분할 매핑을 자동 진행하지 않는다.
+## Next planning focus — Home
+
+Onboarding 다음에는 **활성 운동이 없는 Home 기본 상태**를 정리한다.
+
+이미 확정되어 다시 열지 않는 것:
+
+- bottom nav `홈 / 루틴 / 분석 / 설정`
+- 운동 진행 중이면 Home에 active-workout return state 노출
+- active-workout return state는 Home에만 노출
+
+다음 검토 대상:
+
+- 신규 사용자가 onboarding/self-build 이후 처음 Home에 들어왔을 때 보이는 내용
+- Home의 primary workout-start CTA / hierarchy
+- saved/recommended routine 노출 방식
+- routine이 하나도 없는 empty state
+- weekday schedule이 없을 때 `오늘의 운동` 대신 `다음 운동`을 어떻게 보여줄지
+
+추천 결과 UX는 prescribed frequency -> split mapping이 현재 보류 중이므로 억지로 먼저 진행하지 않는다.
 
 ## No-drift rule
 
