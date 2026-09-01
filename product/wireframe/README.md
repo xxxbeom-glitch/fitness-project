@@ -1,7 +1,7 @@
 # LIFTLY Cumulative Wireframe
 
 **Status:** CANONICAL
-**Wireframe version:** `2026-09-01.6`
+**Wireframe version:** `2026-09-01.7`
 **Updated:** 2026-09-01
 
 ## Canonical source
@@ -12,44 +12,66 @@
 
 ## Current visual scope
 
-현재 Product Owner 검토 범위는 **신규 사용자 온보딩**이다.
+현재 와이어프레임은 두 층으로 구분한다.
 
-현재 화면에 반영된 범위:
+1. **Onboarding — confirmed baseline**
+2. **Home default state — review proposal, not confirmed**
+
+### Onboarding confirmed baseline
 
 - 로그인
 - 신규/기존 계정 분기 정책
 - 기본정보: `성별(남성/여성) + 생년월일`
 - 성별은 기존 52px 높이 영역을 **남성/여성 2등분 버튼**으로 표시
 - 성별에 `응답 안 함` 옵션 없음
-- 생년월일은 연령대/현재 나이 대신 실제 full date of birth를 저장
-- 생년월일은 **화살표 없는 텍스트필드**로 표시
+- 생년월일은 화살표 없는 **텍스트필드**
 - 생년월일 placeholder/example: `1999-01-01`
+- 생년월일은 연령대/현재 나이 대신 실제 full date of birth를 저장
 - 시작 방식: `추천 루틴 받기 / 내 루틴 직접 만들기`
 - 추천 설정 한 화면: `운동 목표 / 운동 경력 / 주당 가능일 / 운동 시간`
-- 운동 목표 확정 선택지:
-  - `근육 증가`
-  - `체지방 감량`
-  - `건강·체력 향상`
-- `근력 향상`은 별도 첫 온보딩 목표에서 제외하고 이후 기록 기반 progression에서 다룸
-- 운동 경력 확정 선택지:
-  - `처음이에요`
-  - `6개월 미만이에요`
-  - `6개월~1년 미만이에요`
-  - `1년 이상이에요`
-- 주당 가능일 확정 선택지: `1일`~`7일`
-- 주당 가능일의 의미: 사용자가 현실적으로 확보 가능한 **최대 일수**
-- 운동 시간 확정 선택지: `30분 / 45분 / 60분 / 90분 이상`
-- 운동 시간의 의미: 세트 간 휴식 포함, 별도 유산소 제외한 **최대 웨이트 트레이닝 세션 시간 예산**
+- 운동 목표: `근육 증가 / 체지방 감량 / 건강·체력 향상`
+- 운동 경력: `처음이에요 / 6개월 미만이에요 / 6개월~1년 미만이에요 / 1년 이상이에요`
+- 주당 가능일: `1일`~`7일`
+- 운동 시간: `30분 / 45분 / 60분 / 90분 이상`
 - 네 추천 입력을 모두 선택했을 때 CTA 활성화 상태
 
-현재 화면에서 의도적으로 제외 / 후속 설계:
+Onboarding에서 아직 의도적으로 후속으로 남긴 것:
 
 - 추천 결과 상세 화면
 - 주당 처방 횟수 -> routine split / routine count 매핑
-- 각 목표가 실제 프로그램 변수에 주는 정확한 효과
+- 각 목표의 정확한 프로그램 효과
 - 운동시간별 정확한 exercise/set volume budget
 - 생년월일 input masking / validation / error behavior
-- 개인정보 고지/동의 및 최소연령 정책
+- 개인정보 고지/동의 / 약관 / 최소연령 최종 정책
+
+### Home default-state review — NOT CONFIRMED
+
+현재 Home 검토안은 네 상태를 나란히 보여준다.
+
+1. `추천 루틴 있음 + 요일 스케줄 없음`
+   - 내부적으로 순서가 있는 추천 루틴에 한해 `다음 운동`을 강조하는 안
+   - 메인 workout card + `운동 시작`
+   - 하단에 빠른 `내 루틴` 진입/시작
+
+2. `요일 스케줄 있음`
+   - 해당 날짜의 루틴을 `오늘의 운동`으로 표시하는 안
+   - 다음 일정은 보조 정보로 표시
+
+3. `직접 만든 독립 루틴만 있음`
+   - 앱이 임의로 `다음 운동`을 정하지 않는 안
+   - `내 루틴` 빠른 선택/시작이 Home의 주 콘텐츠
+
+4. `루틴 없음`
+   - empty state
+   - `추천 루틴 받기 / 직접 루틴 만들기`를 동등한 선택지로 유지
+
+이 네 화면은 **비교/논의를 위한 검토안**이다. Product Owner 승인 전에는 Home 정책이나 Screen Decision으로 확정하지 않는다.
+
+이미 확정되어 Home 검토에서 다시 열지 않는 것:
+
+- bottom nav `홈 / 루틴 / 분석 / 설정`
+- active workout 중 Home에는 one-tap return state가 있음
+- active-workout return state는 Home에만 노출
 
 ## Canonical runtime
 
@@ -121,6 +143,7 @@ Deploy 후 최소 확인:
 - canonical URL HTTP status = `200`
 - response body 안에 최신 `CANONICAL_WIREFRAME_VERSION`가 있음
 - response body 안에 현재 작업 화면의 대표 문자열이 있음
+- `style.css` HTTP status = `200`
 
 실패하면 새 임시 URL을 사용자에게 던지지 말고 같은 source/project를 수정해서 다시 검증한다.
 
