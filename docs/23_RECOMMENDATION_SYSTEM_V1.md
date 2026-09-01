@@ -89,6 +89,36 @@ Product intent:
 - the app must not assume that everyone in `1년 이상` is an advanced lifter
 - exact downstream effects on exercise complexity, volume, progression expectations, and technique guidance still need to be defined before implementation
 
+## Weekly-availability input — CONFIRMED
+
+User-facing meaning:
+
+`일주일에 현실적으로 최대 며칠까지 운동할 수 있나요?`
+
+Confirmed options:
+
+- `1일`
+- `2일`
+- `3일`
+- `4일`
+- `5일`
+- `6일`
+- `7일`
+
+Matcher semantics:
+
+- the selected value is the user's **maximum realistic weekly availability**, not a promise that the program must prescribe exactly that many resistance-training sessions
+- the matcher may prescribe fewer weekly sessions when that is more appropriate for the user's goal, experience, session duration, or recovery burden
+- the matcher must not prescribe more weekly training days than the selected maximum
+- this onboarding input captures the number of available days only; it does not require the user to choose specific weekdays at this stage
+- weekday assignment remains optional and can be configured later under the existing scheduling policy
+
+Still open within weekly availability:
+
+- selected maximum -> actual prescribed weekly training frequency
+- prescribed frequency -> split / routine-count mapping
+- whether any goal / experience combination should cap prescribed frequency below the selected maximum
+
 ## Demographic profile data — separate from recommendation matching
 
 The Product Owner wants to collect sex/gender and age information for potential future audience segmentation / targeted advertising.
@@ -123,7 +153,7 @@ Review and confirm one item at a time:
 
 1. Goal — question wording, choices, and exactly what each choice changes in the program.
 2. Training experience — bands confirmed; downstream effects still to define.
-3. Weekly availability — meaning of the selected days and frequency/split mapping rules.
+3. Weekly availability — input semantics/options confirmed; frequency/split mapping still to define.
 4. Workout duration — session-time buckets and how they constrain exercise/set volume.
 5. Recommendation output contract — routine count, exercise order, sets, rep ranges, rest, and what is intentionally excluded.
 6. Template matching — deterministic matching/tie-breaking and reviewed template coverage.
@@ -145,16 +175,11 @@ Demographic-profile collection is tracked separately from this recommendation lo
 
 ## Open decision now
 
-### Weekly availability
+### Weekly availability -> prescribed frequency / split
 
-Next decision: define exactly what `주당 가능일` means to the matcher.
+Next decision: define how a selected maximum of `1–7일` maps to the actual prescribed number of weekly resistance-training sessions and the routine split.
 
-The key distinction to resolve is whether a selected value means:
-
-- the exact number of resistance-training sessions the app must prescribe, or
-- the maximum / realistic number of days the user can make available, allowing the matcher to prescribe fewer sessions when that is more appropriate for the user's goal and experience.
-
-The existing product direction favors the second interpretation, but the mapping rules are not yet finalized.
+The mapping should not simply mirror availability. A user who can train 6 or 7 days may still receive fewer prescribed sessions if that better fits the user's experience, goal, and recovery burden.
 
 ### Goal input — still open
 
