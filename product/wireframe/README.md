@@ -1,7 +1,7 @@
 # LIFTLY Cumulative Wireframe
 
 **Status:** CANONICAL
-**Wireframe version:** `2026-09-01.10`
+**Wireframe version:** `2026-09-01.11`
 **Updated:** 2026-09-01
 
 ## Canonical source
@@ -53,6 +53,8 @@ Structural rules:
 - active program card uses nearly the full available screen content width
 - side-peek cards are removed
 - horizontal swipe/drag + `1 / 3`, `2 / 3`, `3 / 3` pagination communicate candidate switching
+- result header is intentionally minimal: navigation + pagination + one head copy only
+- onboarding-condition chips and auxiliary eyebrow/subcopy are removed from the result header
 - CTA applies to the active card
 - `기본형` may show `가장 추천`
 - candidate types are not `초급 / 중급 / 고급`
