@@ -49,6 +49,22 @@ Interaction:
 
 The sheet reuses the established Figma unit-settings pattern: dim overlay, 32px top corners, 20px horizontal padding, 52px option rows, standard 58px CTA.
 
+## Goal — CONFIRMED
+
+User-facing options:
+
+1. `근육 증가`
+2. `체지방 감량`
+3. `건강·체력 향상`
+
+Product decision:
+
+- `근육 증가` and `근력 향상` are not exposed as two separate first-run goal choices
+- `근육 증가` is retained as the single muscle/performance-oriented onboarding goal
+- `근력 향상` remains important in workout progression, but is handled later through load/repetition history and progression behavior rather than a separate onboarding branch
+- this is a product-taxonomy simplification for MVP; it does **not** claim that hypertrophy and maximal-strength programming are physiologically identical
+- exact downstream program differences among the three confirmed goals still need to be defined before implementation
+
 ## Training experience — CONFIRMED
 
 User-facing options:
@@ -137,6 +153,7 @@ Canonical wireframe visualizes only the onboarding flow:
 
 It includes:
 
+- confirmed goal options `근육 증가 / 체지방 감량 / 건강·체력 향상`
 - confirmed training-experience options
 - confirmed weekly-availability 1–7 day sheet
 - confirmed workout-duration `30 / 45 / 60 / 90분 이상` sheet
@@ -145,7 +162,6 @@ It intentionally does **not** visualize:
 
 - recommendation-result details
 - prescribed frequency -> routine split / routine count
-- unconfirmed goal options as final
 - detailed exercise/set volume derived from workout duration
 
 ## Product Owner hold — 2026-09-01
@@ -159,7 +175,7 @@ The already-confirmed experience-based frequency ceilings remain recorded policy
 ## Remaining open decisions
 
 - exact sex/gender and age field shape / consent treatment
-- final goal options and program effects
+- exact downstream program effects of the confirmed goal choices
 - other downstream effects of experience bands beyond weekly ceiling
 - prescribed frequency -> routine split / routine count **ON HOLD**
 - workout duration -> exact exercise/set budget
