@@ -13,7 +13,7 @@ Onboarding is shown only for a genuinely new Fitness account that has not comple
 
 - new account, first successful login -> first-run onboarding
 - existing account that already completed onboarding -> Home
-- reinstall / relogin / another device does not make an existing account new
+- reinstall / relogin / another device does not make existing account new
 - incomplete onboarding resumes from persisted account/onboarding state
 
 ## Recommendation intake baseline — CONFIRMED
@@ -219,12 +219,14 @@ The exact user-facing candidate names/copy may be refined, but the three-safe-va
 ### Carousel interaction
 
 - one candidate card is active at a time
-- adjacent cards visibly peek from the sides so horizontal swipeability is obvious
-- swipe/drag changes the active candidate
-- pagination indicates 1/3, 2/3, 3/3
+- the active candidate uses **nearly the full available content width** so the program itself is the dominant object on the screen
+- previous side-peek treatment is removed; adjacent candidate cards do not need to remain partially visible
+- horizontal swipe/drag changes the active candidate
+- pagination indicates `1 / 3`, `2 / 3`, `3 / 3` and provides the discoverability signal for additional candidates
 - the bottom CTA applies to the currently active candidate
 - primary CTA: `이 루틴으로 시작하기`
 - back navigation may return to recommendation settings for changes
+- internal program-day switching is done with explicit DAY controls rather than a second horizontal-swipe layer, avoiding nested horizontal-gesture conflict
 
 ### Candidate card content — CONFIRMED SHAPE
 
@@ -239,6 +241,7 @@ Required card information shape:
 - day selector such as `DAY 1 / DAY 2 / DAY 3` when the candidate contains multiple sessions
 - actual exercise names for the selected day
 - prescription for each exercise in a compact format such as `8–12회 × 3세트` or another program-defined repetition/set prescription
+- exercise rows should optimize scan speed: exercise name on the left, repetition × set prescription on the right where space allows
 - CTA remains outside/below the program-content area and applies to the whole active candidate
 
 The card should make the practical question **“그래서 실제로 무슨 운동을 하게 되는가?”** answerable before the user accepts the program.
@@ -291,6 +294,7 @@ It includes:
 - confirmed weekly-availability 1–7 day sheet
 - confirmed workout-duration `30 / 45 / 60 / 90분 이상` sheet
 - recommendation-result carousel structure with three safe candidate types
+- one near-full-content-width active program card at a time
 - day selector + visible exercise/prescription list inside each candidate card
 
 It intentionally does **not** finalize:
