@@ -42,15 +42,21 @@ Confirmed required fields:
 - 성별: `남성 / 여성`
 - 생년월일: 실제 full date of birth
 
-Rules:
+Confirmed controls:
 
+- 성별은 bottom sheet/dropdown이 아니라 **기존 52px 높이 영역을 2등분한 남성/여성 버튼**으로 직접 선택
+- 두 성별 버튼은 동일한 너비/높이를 사용
 - `응답 안 함` 옵션 없음
+- 생년월일은 **기존 input visual을 유지한 텍스트필드**
+- 생년월일 필드의 우측 화살표/chevron 없음
+- placeholder/example: `1999-01-01`
+- primary input format intent: `YYYY-MM-DD`
 - 현재 나이 직접 입력이나 연령대가 아니라 생년월일을 저장
 - 성별/생년월일은 추천 matcher와 분리
 - 시작 중량 추정에 사용하지 않음
 - 재로그인/재설치/다른 기기 로그인만으로 다시 입력시키지 않음
-- 생년월일 입력 UI 컨트롤의 세부 방식은 후속 UI/구현 단계에서 정할 수 있음
-- 최소 연령, 개인정보 고지/동의, 향후 광고 활용 정책은 별도 오픈 이슈
+- input masking/validation/error behavior 및 최소 연령 정책은 후속 결정
+- 개인정보 고지/동의와 향후 광고 활용 정책은 별도 오픈 이슈
 
 ### Start mode
 
@@ -141,7 +147,7 @@ GitHub source:
 - `product/wireframe/index.html`
 
 Current version:
-- `2026-09-01.5`
+- `2026-09-01.6`
 
 Production:
 - `https://liftly-wireframe.vercel.app`
@@ -149,7 +155,7 @@ Production:
 The current wireframe intentionally visualizes **onboarding only**:
 
 - login
-- basic profile information: `성별(남성/여성) + 생년월일`
+- basic profile information: segmented `남성 / 여성` + text-field birth date with `1999-01-01` placeholder
 - start mode
 - recommendation settings list
 - confirmed goal bottom sheet: `근육 증가 / 체지방 감량 / 건강·체력 향상`
@@ -165,7 +171,8 @@ Canonical Figma:
 
 ## Still open, but not automatically continued
 
-- privacy/consent/minimum-age policy for sex and birth date
+- birth-date validation/error behavior and minimum-age policy
+- privacy/consent policy for sex and birth date
 - exact program effects of each confirmed goal
 - workout-duration -> exact exercise/set budget
 - other experience effects beyond frequency ceiling
