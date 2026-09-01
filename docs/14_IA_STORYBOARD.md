@@ -48,12 +48,31 @@ The active workout is therefore **not** treated as a locked, full-screen navigat
 
 The user should retain the same navigation model during training instead of entering a separate app mode with unfamiliar navigation behavior.
 
+## Confirmed — Home exposes persistent return to active workout
+
+If the user navigates to **Home** while a workout is still active, Home must clearly show that the workout is still in progress and provide a one-tap path back to the active workout.
+
+The intended pattern is a persistent active-workout bar/card such as:
+
+`운동 진행 중 · 하체 루틴 · 18:24  →  돌아가기`
+
+Exact visual styling and copy may be refined later, but the behavior is fixed:
+
+- the active session remains alive when the user visits Home
+- Home does not look identical to an idle/non-workout state
+- the active workout indicator remains visible without requiring the user to search through the Routine tab
+- tapping the indicator returns directly to the current active-workout screen
+- workout data/session state must remain intact while navigating away and back
+
+### Rationale
+
+Keeping primary navigation visible is only safe if the active session remains easy to recover. The persistent Home return state prevents users from losing track of an in-progress workout while preserving freedom to navigate elsewhere.
+
 ### Still to decide
 
-- What happens when the user taps another primary tab while a workout is active.
-- How the app indicates that an active workout is still running outside the workout screen.
-- The fastest path back to the active workout after navigating elsewhere.
+- Whether the same active-workout indicator also appears in 루틴 / 분석 / 설정, or only on Home.
 - Whether any destinations/actions should be restricted while an active workout is running.
+- What happens if the user attempts to start a second workout while one is already active.
 
 ## Planning sequence
 
