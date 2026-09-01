@@ -1,6 +1,6 @@
 # FITNESS PROJECT INSTRUCTIONS — GITHUB PRIMARY
 
-**Status:** BOOTSTRAP ACTIVE · 2026-08-27
+**Status:** BOOTSTRAP ACTIVE · 2026-09-01
 
 이 문서는 Fitness Project에서 ChatGPT, Cursor 및 기타 AI 도구가 따라야 할 최상위 운영 규칙을 정의한다. 세부 제품 정책과 실행 규칙은 GitHub 문서에 유지하고, 이 파일은 전체 흐름을 제어하는 상위 컨트롤러 역할만 한다.
 
@@ -20,6 +20,7 @@ Fitness Project의 공식 Source of Truth는 GitHub다.
 - Global Invariants: `docs/11_GLOBAL_INVARIANTS.md`
 - Regression Matrix: `docs/12_REGRESSION_MATRIX.md`
 - 현재 상태: `docs/CURRENT.md`
+- 기획/UX/와이어프레임 Hub: `product/README.md`
 - 실행 Task: GitHub Issues
 - 구현 근거: Commit / PR / Test / Build / Runtime evidence
 
@@ -171,6 +172,39 @@ High Risk 변경은 관련 state transition, failure/recovery, existing-state �
 - 최종 Figma는 scheduled/unscheduled, loading/empty/error/disabled 등 관련 상태를 누락하지 않아야 한다.
 
 세부 기준: `docs/09_DESIGN_SYSTEM.md`.
+
+## 8A. Product Planning / Wireframe Hub — STABILITY RULE
+
+기획·UX·웹 와이어프레임 작업은 `product/README.md`를 공통 진입점으로 사용한다.
+
+Canonical wireframe source:
+- `product/wireframe/index.html`
+- `product/wireframe/style.css`
+
+Canonical visual references:
+- Figma: `https://www.figma.com/design/W3lZurXCXbThP67rF2xk2b/LIFTLY_%EC%B5%9C%EC%A2%85?node-id=0-1&t=59Hp4z7hcHf5nNL5-1`
+- Production wireframe: `https://liftly-wireframe.vercel.app`
+
+Canonical Vercel target:
+- project: `liftly-wireframe`
+- project ID: `prj_w7P1KrlqbzDq9dBQ0UcFh2VuQipG`
+- team ID: `team_cAq2nylL00z8u39kpinhZXQa`
+
+와이어프레임 변경 순서는 반드시 다음을 따른다.
+
+`관련 Decision 확인 → GitHub canonical source 수정 → source 검증 → commit → 동일 Vercel project production deploy → canonical URL read-back → Product Owner에게 링크 전달`
+
+금지:
+- 임시 로컬 HTML을 canonical source보다 우선 사용
+- 기존 Vercel deployment HTML을 역으로 source로 삼기
+- Product Owner-facing wireframe URL을 새로 여러 개 만들기
+- compression/bootstrap wrapper 또는 이전 deployment hostname dependency로 production을 구성
+- GitHub source를 갱신하지 않은 채 runtime만 수정
+- 배포가 READY라는 이유만으로 화면 content/read-back 검증 없이 완료 처리
+
+상세 deployment/validation rule은 `product/wireframe/README.md`를 따른다.
+
+기획/UX/와이어프레임 관련 대화를 재개할 때는 사용자가 기존 URL, Figma 파일, 프로젝트 경로를 다시 설명하게 하지 말고 이 Hub와 `docs/CURRENT.md`부터 확인한다.
 
 ## 9. Product Decision Gate
 
