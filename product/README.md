@@ -51,7 +51,7 @@ Figma는 시각 디자인 기준이다. 제품 정책/UX 의미가 GitHub 확정
 
 Product Owner에게 보여주는 누적 웹 와이어프레임은 이 URL 하나만 사용한다.
 
-Current wireframe version: `2026-09-01.9`
+Current wireframe version: `2026-09-01.10`
 
 ## Onboarding planning snapshot — BASELINE COMPLETE
 
@@ -88,12 +88,17 @@ Current baseline:
 - 선택 전에는 추천 프로그램을 `내 루틴`에 저장하지 않음
 - normal bottom navigation 없이 후보 선택에 집중
 - horizontal card carousel
+- 한 번에 하나의 프로그램 카드가 화면 content width를 거의 전부 사용
+- 이전 side-peek card treatment는 제거
+- pagination + swipe로 후보 전환
 - 세 후보는 `기본형 / 간결형 / 볼륨형`
 - `기본형`은 provisional `가장 추천` treatment 가능
 - 세 후보는 `초급 / 중급 / 고급`이 아님
 - 모두 같은 사용자의 경력/시간/제약 범위 안에서 pre-filter
 - CTA `이 루틴으로 시작하기`는 active card에 적용
-- **카드 안에서 DAY 단위 실제 운동 구성과 `반복수 × 세트수` 처방을 확인할 수 있어야 함**
+- 카드 안에서 DAY 단위 실제 운동 구성과 `반복수 × 세트수` 처방을 확인할 수 있어야 함
+- 운동 행은 `운동명 | 반복수 × 세트수` 식으로 빠르게 scan 가능한 구성을 우선
+- DAY selector는 탭으로 전환하고 후보 카드의 horizontal swipe와 중첩하지 않음
 - 현재 와이어프레임 운동명/반복수/세트수는 UI 구조용 샘플이며 프로그램 정책 확정값이 아님
 
 Current wireframe은 `주 3일`을 카드 구조 설명용 예시로 사용한다. 이는 실제 frequency/split 정책 확정이 아니다.
@@ -121,7 +126,7 @@ Current wireframe은 `주 3일`을 카드 구조 설명용 예시로 사용한�
 
 현재 recommendation-result wireframe을 검토한 뒤:
 
-**카드 안에서 하루 운동 구성을 어느 깊이까지 보여줄지와 `기본형 / 간결형 / 볼륨형`을 실제 program variable에서 무엇으로 구분할지**를 결정한다.
+**`기본형 / 간결형 / 볼륨형`을 실제 program variable에서 무엇으로 구분할지**를 결정한다.
 
 그 다음 Home default-state 기획으로 돌아간다.
 
