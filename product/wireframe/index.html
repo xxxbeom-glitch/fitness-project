@@ -1,10 +1,10 @@
 <!doctype html>
-<!-- CANONICAL_WIREFRAME_VERSION: 2026-09-01.8 -->
+<!-- CANONICAL_WIREFRAME_VERSION: 2026-09-01.9 -->
 <html lang="ko">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <meta name="liftly-wireframe-version" content="2026-09-01.8">
+  <meta name="liftly-wireframe-version" content="2026-09-01.9">
   <title>LIFTLY Product Wireframe</title>
   <link rel="stylesheet" href="./style.css">
 </head>
@@ -12,7 +12,7 @@
 <header class="top">
   <div>
     <div class="brand">LIFTLY</div>
-    <div class="sub">Product planning · onboarding baseline + recommendation result · v2026-09-01.8</div>
+    <div class="sub">Product planning · onboarding baseline + recommendation result · v2026-09-01.9</div>
   </div>
   <a class="source" href="https://github.com/xxxbeom-glitch/fitness-project/tree/main/product" target="_blank" rel="noreferrer">GitHub source</a>
 </header>
@@ -144,8 +144,8 @@
   <section class="summary review-summary result-summary">
     <div class="eyebrow">CURRENT REVIEW · RECOMMENDATION RESULT</div>
     <h1>추천 결과 전용 카드 캐러셀</h1>
-    <p>일반 Home과 다른 전용 선택 화면입니다. 추천 프로그램은 아직 저장되지 않았으며, 사용자가 세 후보 중 하나를 고르고 `이 루틴으로 시작하기`를 눌러야 저장됩니다.</p>
-    <div class="flow"><span>기본형</span><span>간결형</span><span>볼륨형</span></div>
+    <p>카드 안에서 프로그램 설명뿐 아니라 실제 운동 목록과 반복수 × 세트수를 확인합니다. 사용자가 하나를 선택하기 전에는 `내 루틴`에 저장되지 않습니다.</p>
+    <div class="flow"><span>기본형</span><span>간결형</span><span>볼륨형</span><span>DAY별 운동 처방</span></div>
   </section>
 
   <section class="rail result-rail">
@@ -154,25 +154,30 @@
       <div class="phone result-phone">
         <div class="status"><span>9:41</span><span>● ● ●</span></div>
         <div class="result-nav"><button class="back">‹</button><span>추천 결과</span><span class="result-step">1 / 3</span></div>
-        <div class="result-intro"><span>3개의 루틴을 준비했어요</span><h2>내 조건에 맞는 루틴을 골라보세요</h2><p>세 가지 모두 운동 경력과 입력 조건 안에서 구성됩니다.</p></div>
+        <div class="result-intro"><span>3개의 루틴을 준비했어요</span><h2>실제 운동 구성을 보고 골라보세요</h2><p>세 후보 모두 입력한 경력과 시간 조건 안에서 구성됩니다.</p></div>
         <div class="context-chips"><span>근육 증가</span><span>경력 맞춤</span><span>주 3일*</span><span>60분 이내</span></div>
-        <div class="carousel-shell">
+        <div class="carousel-shell prescription-carousel">
           <div class="peek-card left"><small>간결형</small><strong>핵심만 빠르게</strong></div>
-          <div class="candidate-card active-card">
-            <div class="recommend-badge">가장 추천</div>
-            <div class="candidate-type">기본형</div>
+          <div class="candidate-card active-card prescription-card">
+            <div class="candidate-topline"><div><div class="recommend-badge">가장 추천</div><div class="candidate-type">기본형</div></div><span class="sample-label">샘플 처방</span></div>
             <h3>균형 있게 시작하는 3일 루틴</h3>
-            <p>운동량과 회복을 무난하게 맞춘 기본 선택입니다.</p>
             <div class="candidate-meta"><div><small>빈도</small><strong>주 3일*</strong></div><div><small>시간</small><strong>60분 이내</strong></div></div>
-            <div class="candidate-points"><span>운동량과 회복 균형</span><span>복잡한 선택 최소화</span><span>경력 범위 안에서 구성</span></div>
+            <div class="day-tabs"><button class="active">DAY 1</button><button>DAY 2</button><button>DAY 3</button></div>
+            <div class="exercise-list">
+              <div><span>벤치프레스</span><strong>8–12회 × 3세트</strong></div>
+              <div><span>랫 풀다운</span><strong>8–12회 × 3세트</strong></div>
+              <div><span>레그 프레스</span><strong>10–12회 × 3세트</strong></div>
+              <div><span>덤벨 숄더 프레스</span><strong>10–12회 × 3세트</strong></div>
+              <div><span>케이블 크런치</span><strong>12–15회 × 2세트</strong></div>
+            </div>
           </div>
           <div class="peek-card right"><small>볼륨형</small><strong>조금 더 채워서</strong></div>
         </div>
         <div class="carousel-guide"><button>‹</button><div class="dots"><b></b><i></i><i></i></div><button>›</button></div>
-        <p class="swipe-hint">좌우로 밀어 다른 타입 보기</p>
+        <p class="swipe-hint">카드는 좌우로 · 카드 안에서는 DAY 전환</p>
         <div class="result-actions"><button class="primary">이 루틴으로 시작하기</button><button class="text-action">추천 조건 수정</button></div>
       </div>
-      <p class="footnote">`주 3일`은 캐러셀 구조를 보여주기 위한 예시입니다. 실제 주당 처방 횟수/분할 매핑은 아직 보류입니다.</p>
+      <p class="footnote">운동명/반복수/세트수와 `주 3일`은 UI 구조 확인용 샘플입니다. 실제 프로그램 구성은 아직 확정하지 않습니다.</p>
     </article>
 
     <article class="case review result-case">
@@ -180,24 +185,29 @@
       <div class="phone result-phone">
         <div class="status"><span>9:41</span><span>● ● ●</span></div>
         <div class="result-nav"><button class="back">‹</button><span>추천 결과</span><span class="result-step">2 / 3</span></div>
-        <div class="result-intro"><span>3개의 루틴을 준비했어요</span><h2>내 조건에 맞는 루틴을 골라보세요</h2><p>세 가지 모두 운동 경력과 입력 조건 안에서 구성됩니다.</p></div>
+        <div class="result-intro"><span>3개의 루틴을 준비했어요</span><h2>실제 운동 구성을 보고 골라보세요</h2><p>세 후보 모두 입력한 경력과 시간 조건 안에서 구성됩니다.</p></div>
         <div class="context-chips"><span>근육 증가</span><span>경력 맞춤</span><span>주 3일*</span><span>60분 이내</span></div>
-        <div class="carousel-shell">
+        <div class="carousel-shell prescription-carousel">
           <div class="peek-card left"><small>기본형</small><strong>균형 있게 시작</strong></div>
-          <div class="candidate-card active-card compact-card">
-            <div class="candidate-type">간결형</div>
+          <div class="candidate-card active-card prescription-card compact-card">
+            <div class="candidate-topline"><div><div class="candidate-type">간결형</div></div><span class="sample-label">샘플 처방</span></div>
             <h3>핵심만 빠르게 끝내는 3일 루틴</h3>
-            <p>구성을 단순하게 가져가고 세션에 여유를 두는 선택입니다.</p>
-            <div class="candidate-meta"><div><small>빈도</small><strong>주 3일*</strong></div><div><small>시간</small><strong>60분 이내</strong></div></div>
-            <div class="candidate-points"><span>핵심 동작 우선</span><span>구성 복잡도 낮춤</span><span>세션 시간 여유 확보</span></div>
+            <div class="candidate-meta"><div><small>빈도</small><strong>주 3일*</strong></div><div><small>시간</small><strong>45–60분</strong></div></div>
+            <div class="day-tabs"><button class="active">DAY 1</button><button>DAY 2</button><button>DAY 3</button></div>
+            <div class="exercise-list">
+              <div><span>체스트 프레스</span><strong>10–12회 × 3세트</strong></div>
+              <div><span>랫 풀다운</span><strong>10–12회 × 3세트</strong></div>
+              <div><span>레그 프레스</span><strong>10–12회 × 3세트</strong></div>
+              <div><span>레터럴 레이즈</span><strong>12–15회 × 2세트</strong></div>
+            </div>
           </div>
           <div class="peek-card right"><small>볼륨형</small><strong>조금 더 채워서</strong></div>
         </div>
         <div class="carousel-guide"><button>‹</button><div class="dots"><i></i><b></b><i></i></div><button>›</button></div>
-        <p class="swipe-hint">좌우로 밀어 다른 타입 보기</p>
+        <p class="swipe-hint">카드는 좌우로 · 카드 안에서는 DAY 전환</p>
         <div class="result-actions"><button class="primary">이 루틴으로 시작하기</button><button class="text-action">추천 조건 수정</button></div>
       </div>
-      <p class="footnote">간결형도 낮은 레벨 프로그램이라는 뜻이 아닙니다. 같은 사용자의 허용 범위 안에서 구성 복잡도와 밀도를 낮추는 타입입니다.</p>
+      <p class="footnote">간결형도 낮은 레벨 프로그램이라는 뜻이 아닙니다. 현재 운동 목록은 타입 차이를 보여주기 위한 샘플입니다.</p>
     </article>
 
     <article class="case review result-case">
@@ -205,24 +215,31 @@
       <div class="phone result-phone">
         <div class="status"><span>9:41</span><span>● ● ●</span></div>
         <div class="result-nav"><button class="back">‹</button><span>추천 결과</span><span class="result-step">3 / 3</span></div>
-        <div class="result-intro"><span>3개의 루틴을 준비했어요</span><h2>내 조건에 맞는 루틴을 골라보세요</h2><p>세 가지 모두 운동 경력과 입력 조건 안에서 구성됩니다.</p></div>
+        <div class="result-intro"><span>3개의 루틴을 준비했어요</span><h2>실제 운동 구성을 보고 골라보세요</h2><p>세 후보 모두 입력한 경력과 시간 조건 안에서 구성됩니다.</p></div>
         <div class="context-chips"><span>근육 증가</span><span>경력 맞춤</span><span>주 3일*</span><span>60분 이내</span></div>
-        <div class="carousel-shell">
+        <div class="carousel-shell prescription-carousel">
           <div class="peek-card left"><small>기본형</small><strong>균형 있게 시작</strong></div>
-          <div class="candidate-card active-card volume-card">
-            <div class="candidate-type">볼륨형</div>
+          <div class="candidate-card active-card prescription-card volume-card">
+            <div class="candidate-topline"><div><div class="candidate-type">볼륨형</div></div><span class="sample-label">샘플 처방</span></div>
             <h3>조금 더 채워서 하는 3일 루틴</h3>
-            <p>선택한 시간 상한 안에서 운동량을 조금 더 확보하는 선택입니다.</p>
             <div class="candidate-meta"><div><small>빈도</small><strong>주 3일*</strong></div><div><small>시간</small><strong>60분 이내</strong></div></div>
-            <div class="candidate-points"><span>볼륨 우선 배분</span><span>시간 상한 적극 활용</span><span>경력 ceiling은 그대로 유지</span></div>
+            <div class="day-tabs"><button class="active">DAY 1</button><button>DAY 2</button><button>DAY 3</button></div>
+            <div class="exercise-list">
+              <div><span>벤치프레스</span><strong>8–12회 × 4세트</strong></div>
+              <div><span>인클라인 덤벨프레스</span><strong>10–12회 × 3세트</strong></div>
+              <div><span>랫 풀다운</span><strong>8–12회 × 4세트</strong></div>
+              <div><span>시티드 로우</span><strong>10–12회 × 3세트</strong></div>
+              <div><span>레그 프레스</span><strong>10–15회 × 4세트</strong></div>
+              <div><span>레터럴 레이즈</span><strong>12–15회 × 3세트</strong></div>
+            </div>
           </div>
           <div class="peek-card right"><small>간결형</small><strong>핵심만 빠르게</strong></div>
         </div>
         <div class="carousel-guide"><button>‹</button><div class="dots"><i></i><i></i><b></b></div><button>›</button></div>
-        <p class="swipe-hint">좌우로 밀어 다른 타입 보기</p>
+        <p class="swipe-hint">카드는 좌우로 · 카드 안에서는 DAY 전환</p>
         <div class="result-actions"><button class="primary">이 루틴으로 시작하기</button><button class="text-action">추천 조건 수정</button></div>
       </div>
-      <p class="footnote">볼륨형은 `고급` 선택지가 아닙니다. 사용자 경력/시간 조건을 우회하지 않고 허용된 범위에서만 볼륨을 높입니다.</p>
+      <p class="footnote">볼륨형은 `고급` 선택지가 아닙니다. 현재 운동 목록/세트는 화면 구조 예시이며 실제 처방은 추후 프로그램 설계에서 검증합니다.</p>
     </article>
   </section>
 
