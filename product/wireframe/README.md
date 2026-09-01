@@ -1,7 +1,7 @@
 # LIFTLY Cumulative Wireframe
 
 **Status:** CANONICAL
-**Wireframe version:** `2026-09-01.7`
+**Wireframe version:** `2026-09-01.8`
 **Updated:** 2026-09-01
 
 ## Canonical source
@@ -12,66 +12,68 @@
 
 ## Current visual scope
 
-현재 와이어프레임은 두 층으로 구분한다.
+현재 Product Owner 검토 범위는 **추천 결과 전용 카드 캐러셀**이다.
 
-1. **Onboarding — confirmed baseline**
-2. **Home default state — review proposal, not confirmed**
+### Confirmed onboarding baseline
 
-### Onboarding confirmed baseline
+현재 화면에 계속 유지되는 확정 범위:
 
 - 로그인
-- 신규/기존 계정 분기 정책
+- 신규/기존 계정 분기
 - 기본정보: `성별(남성/여성) + 생년월일`
-- 성별은 기존 52px 높이 영역을 **남성/여성 2등분 버튼**으로 표시
-- 성별에 `응답 안 함` 옵션 없음
-- 생년월일은 화살표 없는 **텍스트필드**
-- 생년월일 placeholder/example: `1999-01-01`
-- 생년월일은 연령대/현재 나이 대신 실제 full date of birth를 저장
+- 성별 52px 높이 2등분 버튼
+- `응답 안 함` 없음
+- 생년월일 화살표 없는 텍스트필드
+- placeholder `1999-01-01`
 - 시작 방식: `추천 루틴 받기 / 내 루틴 직접 만들기`
 - 추천 설정 한 화면: `운동 목표 / 운동 경력 / 주당 가능일 / 운동 시간`
-- 운동 목표: `근육 증가 / 체지방 감량 / 건강·체력 향상`
-- 운동 경력: `처음이에요 / 6개월 미만이에요 / 6개월~1년 미만이에요 / 1년 이상이에요`
+- 목표: `근육 증가 / 체지방 감량 / 건강·체력 향상`
+- 경력: `처음이에요 / 6개월 미만이에요 / 6개월~1년 미만이에요 / 1년 이상이에요`
 - 주당 가능일: `1일`~`7일`
 - 운동 시간: `30분 / 45분 / 60분 / 90분 이상`
-- 네 추천 입력을 모두 선택했을 때 CTA 활성화 상태
 
-Onboarding에서 아직 의도적으로 후속으로 남긴 것:
+### Recommendation result carousel — current review
 
-- 추천 결과 상세 화면
-- 주당 처방 횟수 -> routine split / routine count 매핑
-- 각 목표의 정확한 프로그램 효과
-- 운동시간별 정확한 exercise/set volume budget
-- 생년월일 input masking / validation / error behavior
-- 개인정보 고지/동의 / 약관 / 최소연령 최종 정책
+Confirmed flow baseline:
 
-### Home default-state review — NOT CONFIRMED
+`추천 설정 완료 -> 추천 결과 전용 화면 -> 3개 후보 카드 캐러셀 -> 이 루틴으로 시작하기 -> 선택 프로그램 저장 -> Home`
 
-현재 Home 검토안은 네 상태를 나란히 보여준다.
+Current wireframe shows three carousel positions:
 
-1. `추천 루틴 있음 + 요일 스케줄 없음`
-   - 내부적으로 순서가 있는 추천 루틴에 한해 `다음 운동`을 강조하는 안
-   - 메인 workout card + `운동 시작`
-   - 하단에 빠른 `내 루틴` 진입/시작
+1. `기본형` active
+2. `간결형` active
+3. `볼륨형` active
 
-2. `요일 스케줄 있음`
-   - 해당 날짜의 루틴을 `오늘의 운동`으로 표시하는 안
-   - 다음 일정은 보조 정보로 표시
+Structural rules:
 
-3. `직접 만든 독립 루틴만 있음`
-   - 앱이 임의로 `다음 운동`을 정하지 않는 안
-   - `내 루틴` 빠른 선택/시작이 Home의 주 콘텐츠
+- recommendation result has a distinct visual state from onboarding and normal Home
+- no normal bottom navigation before candidate acceptance
+- no recommended routine is saved before `이 루틴으로 시작하기`
+- one card is active at a time
+- adjacent cards visibly peek from both sides
+- horizontal swipe/drag is implied
+- pagination shows `1 / 3`, `2 / 3`, `3 / 3`
+- CTA applies to the active card
+- `기본형` may show `가장 추천`
+- candidate types are not `초급 / 중급 / 고급`
+- all candidates must remain inside the same user's experience/time constraints
 
-4. `루틴 없음`
-   - empty state
-   - `추천 루틴 받기 / 직접 루틴 만들기`를 동등한 선택지로 유지
+The wireframe uses `주 3일` as a **UI example only**.
 
-이 네 화면은 **비교/논의를 위한 검토안**이다. Product Owner 승인 전에는 Home 정책이나 Screen Decision으로 확정하지 않는다.
+It does not confirm:
 
-이미 확정되어 Home 검토에서 다시 열지 않는 것:
+- any input -> prescribed frequency mapping
+- 3-day split composition
+- exact exercise count / set count
+- exact parameter differences among `기본형 / 간결형 / 볼륨형`
 
-- bottom nav `홈 / 루틴 / 분석 / 설정`
-- active workout 중 Home에는 one-tap return state가 있음
-- active-workout return state는 Home에만 노출
+### Deferred / outside current review
+
+- post-acceptance Home default-state design
+- prescribed frequency -> routine split / routine count — **ON HOLD**
+- exact goal -> program variable effects
+- duration -> exact exercise/set budget
+- legal/privacy/minimum-age final onboarding policy
 
 ## Canonical runtime
 
@@ -86,21 +88,19 @@ Machine-readable binding: `product/wireframe/PROJECT_BINDING.json`
 
 `https://www.figma.com/design/W3lZurXCXbThP67rF2xk2b/LIFTLY_%EC%B5%9C%EC%A2%85?node-id=0-1&t=59Hp4z7hcHf5nNL5-1`
 
-현재 웹 와이어프레임 공통 스타일은 Figma의 실제 design-system token/pattern을 최대한 따른다.
+웹 와이어프레임은 Figma visual language를 참고하되 제품 정책/UX 의미는 GitHub가 우선한다.
 
-현재 확인된 주요 visual baseline:
+현재 주요 baseline:
 
 - font: SUIT
 - bg/default: `#0A0A0C`
 - bg/surface: `#161618`
-- bg/elevated: `#1E1E22`
 - border: `#232326`
 - text/primary: `#F0F0F2`
 - text/secondary: `#8E8E93`
 - brand/primary: `#34D399`
 - standard side padding: `20px`
 - standard card/input radius: `12px`
-- large card radius: `16px`
 - standard CTA height: `58px`
 - standard input/control height: `52px`
 - bottom-sheet top radius: `32px`
@@ -108,50 +108,42 @@ Machine-readable binding: `product/wireframe/PROJECT_BINDING.json`
 
 ## Mandatory update sequence
 
-와이어프레임을 수정할 때는 아래 순서를 바꾸지 않는다.
-
 1. 관련 GitHub Decision / planning 문서를 확인한다.
 2. `product/wireframe/index.html`을 수정한다.
-3. HTML에 `CANONICAL_WIREFRAME_VERSION` marker를 갱신한다.
+3. HTML의 `CANONICAL_WIREFRAME_VERSION` marker를 갱신한다.
 4. source validation을 수행한다.
 5. GitHub에 source를 commit한다.
-6. **동일 Vercel project** `liftly-wireframe`에 production deploy한다.
+6. 동일 Vercel project `liftly-wireframe`에 production deploy한다.
 7. `https://liftly-wireframe.vercel.app`을 read-back 한다.
 8. HTTP 200 + 새 version marker + 핵심 화면 문자열을 확인한다.
-9. 검증이 끝난 뒤 Product Owner에게 링크를 전달한다.
+9. 검증 후 Product Owner에게 같은 production URL을 전달한다.
 
-`repo updated != runtime deployed`이며, 둘 다 확인하기 전에는 완료라고 하지 않는다.
+`repo updated != runtime deployed`이며 둘 다 확인하기 전에는 완료라고 하지 않는다.
 
 ## Source validation gate
 
-Production deploy 전 최소 확인:
-
-- `index.html`이 존재함
-- `CANONICAL_WIREFRAME_VERSION` marker가 존재함
-- HTML/inline JavaScript syntax가 유효함
-- 예전 Vercel deployment hostname을 asset/script dependency로 참조하지 않음
-- `DecompressionStream` bootstrap 같은 임시 렌더링 우회가 없음
-- production을 구성하는 핵심 CSS/JS가 이전 deployment URL에 의존하지 않음
-- 신규 변경이 기존 확정 화면/탭을 이유 없이 제거하지 않음
+- `index.html` 존재
+- `CANONICAL_WIREFRAME_VERSION` 존재
+- HTML syntax가 유효함
+- 이전 Vercel deployment hostname dependency 없음
+- `DecompressionStream` 같은 임시 렌더링 우회 없음
+- 핵심 CSS가 이전 deployment URL에 의존하지 않음
+- 확정 화면을 이유 없이 제거하지 않음
 
 ## Runtime validation gate
 
-Deploy 후 최소 확인:
-
-- Vercel deployment state = `READY`
+- deployment state = `READY`
 - canonical alias = `liftly-wireframe.vercel.app`
-- canonical URL HTTP status = `200`
-- response body 안에 최신 `CANONICAL_WIREFRAME_VERSION`가 있음
-- response body 안에 현재 작업 화면의 대표 문자열이 있음
-- `style.css` HTTP status = `200`
-
-실패하면 새 임시 URL을 사용자에게 던지지 말고 같은 source/project를 수정해서 다시 검증한다.
+- canonical URL HTTP 200
+- 최신 version marker 포함
+- 현재 검토 화면 대표 문자열 포함
+- `style.css` HTTP 200
 
 ## Stability rules
 
 - Product Owner-facing wireframe URL은 하나만 유지한다.
-- 폐기된 비교안은 확정 후 source에서 제거한다.
-- 아직 검토 중인 안은 `검토안` 또는 `보류`로 명시한다.
-- Figma를 그대로 복제하는 것이 목적이 아니라, UX 검토용 구조를 Figma visual language로 표현한다.
+- 폐기된 비교안은 source에서 제거한다.
+- 아직 검토 중인 안은 `검토안`으로 명시한다.
+- Figma를 그대로 복제하는 것이 아니라 UX 검토 구조를 visual language로 표현한다.
 - 제품 정책을 와이어프레임이 임의로 바꾸지 않는다.
-- production 장애 회피를 위해 임시 deployment 조각을 서로 참조하는 구조를 만들지 않는다.
+- 임시 deployment 조각을 서로 참조하지 않는다.
