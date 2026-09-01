@@ -24,6 +24,27 @@ Equipment inventory is not collected during the initial recommendation flow. The
 
 This supersedes the earlier three-input onboarding assumption in DEC-009 for the current design pass. DEC-009's existing wording/choices for goal, weekly availability, and duration remain provisional until each input is reviewed again in this recommendation-system pass.
 
+## Demographic profile data — separate from recommendation matching
+
+The Product Owner wants to collect sex/gender and age information for potential future audience segmentation / targeted advertising.
+
+Current product direction:
+
+- sex/gender and age are **profile / monetization data**, not recommendation-matching inputs
+- they must not be used to guess a starting working weight
+- they should not be presented as though they are required to generate a better workout recommendation unless a later product rule gives them a real recommendation effect
+- collection timing, exact field shape, consent copy, and whether the fields are optional are still to be finalized before implementation
+- because future personalized advertising may use account-linked demographic information, privacy disclosure, consent/opt-out behavior, app-store data-safety declarations, and age-treatment rules must be defined before ad activation
+- the age-floor / minor-user policy is still open and must be resolved before demographic data is used for personalized advertising
+
+Preferred product separation:
+
+`Recommendation inputs` = goal / training experience / weekly availability / workout duration
+
+`Profile demographics` = sex/gender / age information
+
+The two sets may appear within the broader first-run experience, but they should remain conceptually and technically separate so that advertising/profile collection does not distort the recommendation algorithm.
+
 ## Why this baseline
 
 Compared with the earlier three-input version, training experience gives the matcher one additional signal that can materially affect exercise complexity, progression expectations, and program volume while keeping onboarding short.
@@ -43,6 +64,8 @@ Review and confirm one item at a time:
 7. Equipment mismatch/substitution rules.
 8. Recommendation result UX.
 9. First workout handoff and first-load calibration.
+
+Demographic-profile collection is tracked separately from this recommendation logic and should be finalized before implementation / advertising activation.
 
 ## Constraints retained from existing decisions
 
