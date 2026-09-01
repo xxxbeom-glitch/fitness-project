@@ -4,9 +4,15 @@
 
 ## Current mode
 
-`PRODUCT / UX PLANNING — G FIT WHOLE-APP WIREFRAME REVIEW · HOME FIRST`
+`PRODUCT / UX PLANNING — G FIT WHOLE-APP WIREFRAME v2026-09-01.12 · PO REVIEW PENDING`
 
 Product Owner가 제품 전체 방향을 먼저 화면으로 확인한 뒤 Home부터 천천히 결정하기로 했다.
+
+2026-09-01 작업 종료 checkpoint:
+- whole-app review wireframe `2026-09-01.12` 제작/배포 완료
+- 새 Product Decision은 추가 확정하지 않음
+- Product Owner가 2026-09-02 전체 화면을 확인한 뒤 피드백 예정
+- 다음 작업은 새 화면 제작이 아니라 **PO 피드백을 기준으로 Home부터 수정/삭제/확정**
 
 현재 최신 상위 기준:
 - `docs/24_PRODUCT_DIRECTION_V2.md`
@@ -244,7 +250,7 @@ Production deploy/read-back 확인 완료:
 
 다음 대화에서도 프로젝트 위치를 다시 묻지 않고 현재 whole-app wireframe에서 이어간다.
 
-**첫 검토 대상은 Home.**
+**PO 전체 검토 피드백 수신 대기. 첫 검토 대상은 Home.**
 
 Home review states:
 
