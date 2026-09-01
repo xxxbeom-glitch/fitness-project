@@ -226,6 +226,27 @@ The exact user-facing candidate names/copy may be refined, but the three-safe-va
 - primary CTA: `이 루틴으로 시작하기`
 - back navigation may return to recommendation settings for changes
 
+### Candidate card content — CONFIRMED SHAPE
+
+The candidate card must show **the actual workout prescription**, not only abstract descriptors such as `balanced`, `simple`, or `higher volume`.
+
+For a multi-day candidate, the card must let the user inspect each training day before acceptance.
+
+Required card information shape:
+
+- candidate type/name
+- weekly frequency / expected session-time context
+- day selector such as `DAY 1 / DAY 2 / DAY 3` when the candidate contains multiple sessions
+- actual exercise names for the selected day
+- prescription for each exercise in a compact format such as `8–12회 × 3세트` or another program-defined repetition/set prescription
+- CTA remains outside/below the program-content area and applies to the whole active candidate
+
+The card should make the practical question **“그래서 실제로 무슨 운동을 하게 되는가?”** answerable before the user accepts the program.
+
+The recommendation result must not force the user to accept a candidate based only on marketing-style summaries.
+
+Exact exercise names, exercise order, repetition targets, set counts, and day composition shown in the current wireframe are **illustrative placeholders** until program-template rules and the exercise DB are finalized. The UX requirement to expose the prescription is confirmed; the sample prescription itself is not product policy.
+
 ### What may differ between the three candidates
 
 The candidate variants may differ in parameters such as:
@@ -270,6 +291,7 @@ It includes:
 - confirmed weekly-availability 1–7 day sheet
 - confirmed workout-duration `30 / 45 / 60 / 90분 이상` sheet
 - recommendation-result carousel structure with three safe candidate types
+- day selector + visible exercise/prescription list inside each candidate card
 
 It intentionally does **not** finalize:
 
@@ -296,7 +318,6 @@ The already-confirmed experience-based frequency ceilings remain recorded policy
 - exact differentiation rules for `기본형 / 간결형 / 볼륨형`
 - deterministic template matching / tie-break rules
 - substitution rules
-- exact recommendation-card content and program detail depth
 - first-workout handoff / load calibration
 
 ## Deferred non-matcher policy
