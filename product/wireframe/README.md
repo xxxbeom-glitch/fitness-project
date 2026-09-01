@@ -1,7 +1,7 @@
 # LIFTLY Cumulative Wireframe
 
 **Status:** CANONICAL
-**Wireframe version:** `2026-09-01.1`
+**Wireframe version:** `2026-09-01.2`
 **Updated:** 2026-09-01
 
 ## Canonical source
@@ -9,6 +9,33 @@
 `product/wireframe/index.html`
 
 이 파일이 웹 와이어프레임의 원본이다. 로컬 임시 파일, 채팅에 생성된 HTML, 이전 Vercel deployment HTML은 원본이 아니다.
+
+## Current visual scope
+
+현재 Product Owner 검토 범위는 **신규 사용자 온보딩**이다.
+
+현재 화면에 반영된 범위:
+
+- 로그인
+- 신규/기존 계정 분기 정책
+- 기본정보: 성별 / 나이
+- 시작 방식: `추천 루틴 받기 / 내 루틴 직접 만들기`
+- 추천 설정 한 화면: `운동 목표 / 운동 경력 / 주당 가능일 / 운동 시간`
+- 운동 경력 확정 선택지:
+  - `처음이에요`
+  - `6개월 미만이에요`
+  - `6개월~1년 미만이에요`
+  - `1년 이상이에요`
+- 주당 가능일 확정 선택지: `1일`~`7일`
+- 주당 가능일의 의미: 사용자가 현실적으로 확보 가능한 **최대 일수**
+- 네 추천 입력을 모두 선택했을 때 CTA 활성화 상태
+
+현재 화면에서 의도적으로 제외 / 후속 설계:
+
+- 추천 결과 상세 화면
+- 주당 처방 횟수 -> routine split / routine count 매핑
+- 목표의 최종 선택지/프로그램 효과
+- 운동시간의 최종 선택지/volume budget
 
 ## Canonical runtime
 
