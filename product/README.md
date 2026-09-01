@@ -76,7 +76,7 @@ Current wireframe version: `2026-09-01.11`
 - 추천은 curated / QA-reviewed template matching, free-form LLM generation 아님
 - 시작 중량은 성별/생년월일로 추정하지 않고 첫 실제 workout에서 calibration
 
-## Recommendation result — CURRENT FOCUS
+## Recommendation result — BASELINE CHECKPOINT
 
 Product Owner가 2026-09-01에 다음 방향을 승인했다.
 
@@ -105,6 +105,29 @@ Current baseline:
 
 Current wireframe은 `주 3일`을 카드 구조 설명용 예시로 사용한다. 이는 실제 frequency/split 정책 확정이 아니다.
 
+### Exit / skip checkpoint
+
+마지막 검토에서 **세 추천 후보 중 어떤 것도 선택하고 싶지 않은 사용자를 위한 탈출 경로가 필요함**이 확인되었다.
+
+확정된 요구:
+
+- 추천 후보 수락은 강제가 아님
+- 결과 선택 단계를 빠져나갈 수 있어야 함
+- skip/exit 시 어떤 후보도 `내 루틴`에 자동 저장하지 않음
+
+아직 미확정:
+
+- `건너뛰기` 등 실제 라벨
+- 배치 위치
+- skip 직후 루틴 없는 Home 이동 여부
+- confirmation 여부
+- 이후 추천 다시 받기 진입점
+- `추천 조건 수정` secondary action 유지 여부
+
+Working direction은 `선택 안 함/건너뛰기 -> 추천 루틴 미저장 -> first-run recommendation selection 종료 -> 나중에 다시 추천 가능`이며, 다음 대화에서 최종 확정한다.
+
+**현재 v2026-09-01.11 wireframe에는 skip/exit UI가 아직 반영되지 않았다.** 추천 결과 카드의 세부 visual polish도 여기서 잠시 보류한다.
+
 ## Explicit hold
 
 다음은 Product Owner 요청으로 계속 보류한다.
@@ -126,11 +149,9 @@ Current wireframe은 `주 3일`을 카드 구조 설명용 예시로 사용한�
 
 ## Next planning decision
 
-현재 recommendation-result wireframe을 검토한 뒤:
+새 대화에서는 우선 **추천 결과 skip/exit 동작과 skip 이후 상태**부터 결정한다.
 
-**`기본형 / 간결형 / 볼륨형`을 실제 program variable에서 무엇으로 구분할지**를 결정한다.
-
-그 다음 Home default-state 기획으로 돌아간다.
+그 뒤 필요한 경우 해당 동작만 wireframe에 반영하고, 추천 결과의 세부 시각 polish와 `기본형 / 간결형 / 볼륨형` 실제 program-variable 차이는 나중으로 미룬다. 이후 Home default-state 기획으로 이동한다.
 
 ## No-drift rule
 
