@@ -4,7 +4,7 @@
 
 ## Current mode
 
-`PRODUCT / UX PLANNING — TOP-LEVEL IA CONFIRMED · ACTIVE-WORKOUT NAVIGATION RULES CONFIRMED · CRITICAL FLOW EDGE CASES IN PROGRESS`
+`PRODUCT / UX PLANNING — TOP-LEVEL IA CONFIRMED · ACTIVE-WORKOUT NAVIGATION/STATE RULES CONFIRMED · CRITICAL FLOW STORYBOARD NEXT`
 
 The current execution focus is **high-level IA, critical user flows, and storyboard definition before returning to Figma screen production**.
 
@@ -34,7 +34,7 @@ Core product constraints remain unchanged:
 - custom exercises are MVP-critical
 - monetization remains deferred
 
-## Current IA / navigation decisions
+## Confirmed IA / active-workout rules
 
 Confirmed in `docs/14_IA_STORYBOARD.md`:
 - primary bottom navigation: `홈 / 루틴 / 분석 / 설정`
@@ -45,9 +45,14 @@ Confirmed in `docs/14_IA_STORYBOARD.md`:
 - 루틴 / 분석 / 설정 remain visually normal during an active workout
 - only one active workout session exists at a time
 - starting another routine while one is active asks the user how to handle the current record: save partial work / discard / cancel
+- a partial save stores only actually completed sets/exercises; unperformed planned work is excluded
+- History/Analysis marks that record as a partial record rather than a fully completed planned routine
 - structural changes made inside an active workout apply immediately to the current session
 - at workout completion, if the structure differs from the saved source routine, the app asks whether the saved routine should also be updated
 - load/reps changes are workout-performance records and do not trigger the saved-routine update prompt
+- while a workout is active, the Routine tab remains browseable but saved routine creation/edit/delete is locked
+- current-session exercise add/remove/replace, reorder, and planned set-count changes remain available inside the active-workout screen
+- starting another routine remains available through the active-session replacement dialog
 
 Canonical cumulative wireframe:
 - `https://liftly-wireframe.vercel.app`
@@ -56,27 +61,25 @@ Use this one fixed web artifact for all new comparisons and confirmed states. Do
 
 ## Current open decisions
 
-Before moving fully into critical-flow storyboard work, resolve the remaining active-workout edge cases:
+No unresolved **top-level active-workout navigation/state decision** remains from the current pass.
 
-1. how a saved partial/incomplete workout should appear in History/Analysis
-2. whether any other actions need explicit guarding/restriction while a workout is active
-
-These should stay narrow. Do not reopen already-confirmed top-level navigation or active-session behavior without new evidence.
+Any later guard or exception should be decided only when a concrete storyboard/screen exposes a real need. Do not reopen already-confirmed navigation or active-session behavior without new evidence.
 
 ## Current next action
 
-1. decide the History/Analysis treatment for a workout saved before its planned routine was fully completed
-2. resolve any remaining active-session guard edge case only if it materially affects the primary flow
-3. then define the critical user-flow storyboard set:
-   - recommended-routine first run -> first workout
-   - self-built routine -> first workout
-   - returning user -> next workout
-   - equipment unavailable -> substitute
-   - active session interrupted -> recover
-   - mid-session add/remove/reorder
-   - scheduled vs unscheduled Home start
-4. produce the complete screen inventory from those flows
-5. only then return to Figma `10_FITNESS_SCREENS`
+Move into the critical user-flow storyboard set:
+1. recommended-routine first run -> first workout
+2. self-built routine -> first workout
+3. returning user -> next workout
+4. equipment unavailable -> substitute
+5. active session interrupted -> recover
+6. mid-session add/remove/reorder
+7. scheduled vs unscheduled Home start
+
+Then:
+8. produce the complete screen inventory from those flows
+9. define screen-level content / CTA / states / exceptions
+10. only then return to Figma `10_FITNESS_SCREENS`
 
 Exercise DB normalization and Planfit gap analysis remain backlog work and must not block this sequence.
 
