@@ -19,7 +19,7 @@
 
 ## Current planning mode
 
-`PRODUCT / UX PLANNING — G FIT PRODUCT DIRECTION V2`
+`PRODUCT / UX PLANNING — G FIT WHOLE-APP WIREFRAME REVIEW · HOME FIRST`
 
 Working name: `G Fit (Go Fitness)` — 가칭.
 
@@ -84,28 +84,53 @@ Home에서는:
 
 ## Wireframe status
 
-Current deployed wireframe version `2026-09-01.11`은 superseded recommendation-flow 화면을 포함하므로 **현재 제품 정책을 대표하지 않는다**.
+Current canonical review wireframe:
 
-새 상위 구조를 충분히 확정하기 전까지 recommendation-result UI polish 또는 Cursor implementation을 진행하지 않는다.
+- source: `product/wireframe/index.html`
+- guide: `product/wireframe/README.md`
+- version: `2026-09-01.12`
+- production: `https://liftly-wireframe.vercel.app`
+
+Product Owner 요청에 따라 Home부터 나머지 주요 화면까지 먼저 전체적으로 시각화했다.
+
+현재 visualized areas:
+- Account / Onboarding
+- Home 4 states
+- Routine / G Fit recommended routines
+- Exercise DB / Guide / custom exercise
+- Active workout
+- Workout complete dashboard
+- Analysis / History
+- Settings
+
+표시 의미:
+
+- `CONFIRMED` = 기존 확정 정책
+- `REVIEW` = 현재 화면 검토 가설
+- `OPEN` = Product Owner가 보고 결정할 항목
+
+REVIEW/OPEN 항목은 구현 요구사항이 아니며 Product Owner 승인 전에는 Decision으로 승격하지 않는다.
 
 ## Next planning sequence
 
-1. Account / Onboarding baseline 마무리
-2. Home
-3. Routine / G Fit recommended routines
-4. Exercise DB / assets / identity
-5. Active workout
-6. Post-workout summary dashboard
-7. Analysis
-8. Settings
-9. AI / personalization
-10. Social
-11. Legal / privacy / age / platform policy
-12. Monetization
+현재는 whole-app wireframe을 보면서 다음 순서로 검토한다.
+
+1. Home — `02A / 02B / 02C / 02D`
+2. Routine / G Fit recommended routines
+3. Exercise DB / assets / identity
+4. Active workout
+5. Post-workout summary dashboard
+6. Analysis
+7. Settings
+8. AI / personalization
+9. Social
+10. Legal / privacy / age / platform policy
+11. Monetization
 
 ## No-drift rule
 
 - GitHub가 Source of Truth
 - Figma/wireframe이 최신 제품 결정을 역으로 덮어쓰지 않음
 - superseded recommendation V1을 새 기능의 기본값으로 재사용하지 않음
+- REVIEW/OPEN wireframe 가설을 구현 Task로 자동 변환하지 않음
 - 구현은 상위 기획이 충분히 정리된 뒤 진행
