@@ -1,7 +1,7 @@
 # LIFTLY Cumulative Wireframe
 
 **Status:** CANONICAL
-**Wireframe version:** `2026-09-01.9`
+**Wireframe version:** `2026-09-01.10`
 **Updated:** 2026-09-01
 
 ## Canonical source
@@ -50,14 +50,16 @@ Structural rules:
 - no normal bottom navigation before candidate acceptance
 - no recommended routine is saved before `이 루틴으로 시작하기`
 - one card is active at a time
-- adjacent cards visibly peek from both sides
-- horizontal swipe/drag is implied
-- pagination shows `1 / 3`, `2 / 3`, `3 / 3`
+- active program card uses nearly the full available screen content width
+- side-peek cards are removed
+- horizontal swipe/drag + `1 / 3`, `2 / 3`, `3 / 3` pagination communicate candidate switching
 - CTA applies to the active card
 - `기본형` may show `가장 추천`
 - candidate types are not `초급 / 중급 / 고급`
 - all candidates must remain inside the same user's experience/time constraints
-- **각 candidate card 안에서 DAY selector와 실제 운동명 + 반복수 × 세트수 처방을 확인**
+- each candidate card exposes DAY selector + actual exercise names + repetition × set prescription
+- DAY uses explicit controls rather than another horizontal swipe layer
+- exercise rows prioritize scan speed with exercise name left / prescription right
 - 카드 설명만 보고 수락하게 하지 않음
 
 The wireframe uses `주 3일` and visible exercise prescriptions as **UI examples only**.
