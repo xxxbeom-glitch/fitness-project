@@ -18,7 +18,7 @@ Operating rule:
 - when a choice is confirmed, keep the confirmed behavior in the consolidated wireframe and remove or clearly retire superseded/rejected alternatives
 - the separated 2026-09-01 comparison previews were consolidated into this canonical wireframe
 - the incorrect scenario that required navigating back to Routine just to edit an already-active workout was discarded; active-workout edits belong in the active-workout flow itself
-- the unresolved comparison about whether active-workout structure changes should also update the saved routine remains marked as **PENDING** until the Product Owner decides it
+- active-workout structural changes are now confirmed to prompt the user at workout completion about whether the saved routine should also be updated
 
 ## Confirmed — Main navigation
 
@@ -147,11 +147,61 @@ Do not label the first action as `운동 완료로 처리` when the routine was 
 
 The user may have intentionally completed useful work before switching routines, or may want to discard an accidental/invalid session. Both cases are legitimate, so the app should preserve user control instead of applying a destructive or misleading default.
 
+## Confirmed — Active-workout structure changes ask whether to update the saved routine
+
+A workout started from a saved routine may be changed freely while the session is active.
+
+Structural changes include, for example:
+
+- adding an exercise
+- removing an exercise
+- replacing an exercise
+- reordering exercises
+- changing the planned set count
+
+These changes apply to the **current workout session immediately**. The user does not need to navigate back to Routine management to make them.
+
+When the workout is finished/saved and the current session structure differs from the saved source routine, the app shows a dialog asking whether the saved routine should also adopt those changes.
+
+Recommended structure:
+
+**루틴도 변경할까요?**
+
+`이번 운동에서 하체 루틴 구성이 변경됐어요. 다음 운동에도 이 구성을 사용할까요?`
+
+Actions:
+
+1. **하체 루틴에도 반영**
+   - save the completed workout exactly as performed
+   - update the saved routine structure so future workouts start from the changed configuration
+
+2. **이번 운동에만 적용**
+   - save the completed workout exactly as performed
+   - keep the saved routine structure unchanged for future workouts
+
+The app must not silently mutate the saved routine just because the user adapted one live workout.
+
+### Not considered a routine-structure change
+
+Normal performance logging does **not** trigger this dialog. Examples:
+
+- changing weight/load
+- changing reps
+- completing or uncompleting a set
+- rest-timer behavior
+
+Those values belong to the workout record rather than the saved routine structure.
+
+If an active workout was not started from a saved routine, there is no source routine to update and this dialog is not required.
+
+### Rationale
+
+Gym conditions often force users to adapt a workout temporarily, but some live changes represent an intentional improvement they want to keep. Asking at the end preserves both flexibility and control without making the user manually repeat the same routine edit later.
+
 ### Still to decide
 
 - Whether any other destinations/actions should be restricted while an active workout is running.
 - Exact partial/incomplete status language in History/Analysis.
-- When a user adds/removes exercises or changes set structure during an active workout, whether those changes should affect only the current session or whether the app should ask to update the saved routine after the session.
 
 ## Planning sequence
 
