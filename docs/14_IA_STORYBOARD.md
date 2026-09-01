@@ -5,6 +5,21 @@
 
 This document records confirmed IA and storyboard-level decisions for the current planning pass. It should stay focused on product structure, navigation, core flows, and screen relationships. Detailed visual styling remains in the screen/design documents.
 
+## Working wireframe artifact
+
+Canonical web wireframe for this planning pass:
+
+- `https://liftly-wireframe.vercel.app`
+
+Operating rule:
+
+- use this one Vercel project / fixed URL as the cumulative IA-storyboard wireframe
+- add new decision comparisons and confirmed states into the same web artifact instead of handing the Product Owner a new preview URL for every question
+- when a choice is confirmed, keep the confirmed behavior in the consolidated wireframe and remove or clearly retire superseded/rejected alternatives
+- the separated 2026-09-01 comparison previews were consolidated into this canonical wireframe
+- the incorrect scenario that required navigating back to Routine just to edit an already-active workout was discarded; active-workout edits belong in the active-workout flow itself
+- the unresolved comparison about whether active-workout structure changes should also update the saved routine remains marked as **PENDING** until the Product Owner decides it
+
 ## Confirmed — Main navigation
 
 Primary bottom navigation uses four tabs:
@@ -136,6 +151,7 @@ The user may have intentionally completed useful work before switching routines,
 
 - Whether any other destinations/actions should be restricted while an active workout is running.
 - Exact partial/incomplete status language in History/Analysis.
+- When a user adds/removes exercises or changes set structure during an active workout, whether those changes should affect only the current session or whether the app should ask to update the saved routine after the session.
 
 ## Planning sequence
 
