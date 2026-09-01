@@ -1,7 +1,7 @@
 # LIFTLY Cumulative Wireframe
 
 **Status:** CANONICAL
-**Wireframe version:** `2026-09-01.8`
+**Wireframe version:** `2026-09-01.9`
 **Updated:** 2026-09-01
 
 ## Canonical source
@@ -57,13 +57,17 @@ Structural rules:
 - `기본형` may show `가장 추천`
 - candidate types are not `초급 / 중급 / 고급`
 - all candidates must remain inside the same user's experience/time constraints
+- **각 candidate card 안에서 DAY selector와 실제 운동명 + 반복수 × 세트수 처방을 확인**
+- 카드 설명만 보고 수락하게 하지 않음
 
-The wireframe uses `주 3일` as a **UI example only**.
+The wireframe uses `주 3일` and visible exercise prescriptions as **UI examples only**.
 
 It does not confirm:
 
 - any input -> prescribed frequency mapping
 - 3-day split composition
+- exact exercise names/order
+- exact repetition/set prescription
 - exact exercise count / set count
 - exact parameter differences among `기본형 / 간결형 / 볼륨형`
 
