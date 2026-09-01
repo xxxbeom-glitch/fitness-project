@@ -124,7 +124,7 @@ GitHub source:
 - `product/wireframe/index.html`
 
 Current version:
-- `2026-09-01.3`
+- `2026-09-01.4`
 
 Production:
 - `https://liftly-wireframe.vercel.app`
@@ -135,13 +135,11 @@ The current wireframe intentionally visualizes **onboarding only**:
 - basic profile information
 - start mode
 - recommendation settings list
+- confirmed goal bottom sheet: `근육 증가 / 체지방 감량 / 건강·체력 향상`
 - confirmed training-experience bottom sheet
 - confirmed weekly-availability 1–7 day bottom sheet
 - confirmed workout-duration `30 / 45 / 60 / 90분 이상` bottom sheet
 - completed-input CTA state
-
-Goal taxonomy is now confirmed in product policy and should be reflected in the next wireframe update:
-- `근육 증가 / 체지방 감량 / 건강·체력 향상`
 
 It intentionally does not show recommendation-result details or routine-split mapping yet.
 
