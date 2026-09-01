@@ -4,39 +4,66 @@
 
 ## Current mode
 
-`PRODUCT / UX PLANNING — TOP-LEVEL IA CONFIRMED · ACTIVE-WORKOUT NAVIGATION/STATE RULES CONFIRMED · CRITICAL FLOW STORYBOARD NEXT`
+`PRODUCT / UX PLANNING — RECOMMENDATION SYSTEM V1 · FIRST-RUN ONBOARDING DESIGN ACTIVE`
 
-The current execution focus is **high-level IA, critical user flows, and storyboard definition before returning to Figma screen production**.
+현재 실행 초점은 **신규 사용자 onboarding과 추천 루틴 시스템의 입력/매칭 규칙을 먼저 확정하는 것**이다.
 
-The previously prepared Tonal design-system baseline remains valid and ready for later Fitness screen composition, but the Product Owner explicitly moved the project back one level to finish product structure and interaction-flow decisions first. Therefore Figma screen production must not outrun the current IA/storyboard work.
+Top-level IA와 active-workout navigation/state 규칙은 이미 확정되어 있으며 그대로 유지한다. 추천 시스템의 upstream logic이 충분히 설계되기 전에는 추천 결과 화면이나 추가 Figma screen production을 앞서 진행하지 않는다.
 
 No Cursor implementation task is authorized at this stage.
 
-## Product authority
+## Product / planning authority
 
-Canonical product decisions remain in:
+기획·UX·와이어프레임 작업 공통 진입점:
+- `product/README.md`
+
+Canonical product/planning sources:
 - `docs/08_DECISIONS.md`
 - `docs/13_SCREEN_DESIGN_DECISIONS.md`
-- `docs/14_IA_STORYBOARD.md` — current IA/storyboard planning source
+- `docs/14_IA_STORYBOARD.md`
+- `docs/23_RECOMMENDATION_SYSTEM_V1.md` — current recommendation-system working source
 - `docs/09_TECHNICAL_STACK.md`
 
-Core product constraints remain unchanged:
-- general-purpose weight-training tracker
-- first-run choice: recommended routine / build my own routine
-- short recommendation onboarding: goal + weekly availability + workout duration
-- gym-first initial recommendation
+## Current first-run / recommendation rules
+
+Confirmed / current baseline:
+
 - authentication required
-- offline-first workout persistence + change-driven sync
-- one active editing device for an in-progress workout
-- active session survives app/process/device restart until explicit finish/discard
-- fast logging, previous-performance visibility, flexible editing, and active-session recovery are core
-- exercise detail is text-first / media-optional
-- custom exercises are MVP-critical
-- monetization remains deferred
+- onboarding is shown only for a genuinely new account that has not completed first-run setup
+- returning account login, reinstall, or another-device login skips onboarding and goes directly to Home
+- incomplete first-run onboarding resumes from persisted account state
+- first-run offers two equal primary paths: `추천 루틴 받기 / 내 루틴 직접 만들기`
+- initial recommendation inputs are:
+  1. goal
+  2. training experience
+  3. weekly training availability
+  4. preferred workout duration
+- the four recommendation inputs are **not four full-screen wizard steps**
+- after choosing recommendation, the user sees one `추천 루틴 설정` screen containing all four rows
+- tapping a row opens a bottom sheet; after selection the user returns to the same settings screen
+- the recommendation CTA remains disabled until all four values are present
+- equipment inventory is excluded from the initial recommendation intake
+- initial recommendation is gym-first and assumes a broadly equipped commercial-gym context
+- equipment mismatch is handled later through practical exercise substitution
+- recommendation uses curated / QA-reviewed template matching rather than free-form LLM generation
+- sex/gender and age are collected in the broader new-user onboarding as profile / future advertising-segmentation data, not as recommendation matcher inputs
+- sex/gender and age are not used to guess a starting working weight
+- first-load calibration happens in the actual first workout
+
+Still open:
+- exact sex/gender and age field shape / consent treatment
+- final goal options and what each option changes in the training program
+- final experience bands and what each band changes
+- weekly availability -> training frequency / split mapping
+- workout duration -> exercise/set budget mapping
+- recommendation output contract
+- deterministic template matching / tie-break rules
+- substitution rules
+- recommendation-result presentation
 
 ## Confirmed IA / active-workout rules
 
-Confirmed in `docs/14_IA_STORYBOARD.md`:
+Confirmed in `docs/14_IA_STORYBOARD.md` and retained:
 - primary bottom navigation: `홈 / 루틴 / 분석 / 설정`
 - exercise library is contextual, not a standalone primary tab
 - user-facing saved routines are independent daily routines; no mandatory higher-level program container
@@ -52,40 +79,48 @@ Confirmed in `docs/14_IA_STORYBOARD.md`:
 - load/reps changes are workout-performance records and do not trigger the saved-routine update prompt
 - while a workout is active, the Routine tab remains browseable but saved routine creation/edit/delete is locked
 - current-session exercise add/remove/replace, reorder, and planned set-count changes remain available inside the active-workout screen
-- starting another routine remains available through the active-session replacement dialog
 
-Canonical cumulative wireframe:
+## Canonical wireframe / visual references
+
+GitHub canonical wireframe source:
+- `product/wireframe/index.html`
+- deployment / validation rules: `product/wireframe/README.md`
+- machine-readable Vercel binding: `product/wireframe/PROJECT_BINDING.json`
+
+Canonical Product Owner-facing runtime:
 - `https://liftly-wireframe.vercel.app`
 
-Use this one fixed web artifact for all new comparisons and confirmed states. Do not create a separate Product Owner-facing wireframe URL for each question.
+Canonical Figma:
+- `https://www.figma.com/design/W3lZurXCXbThP67rF2xk2b/LIFTLY_%EC%B5%9C%EC%A2%85?node-id=0-1&t=59Hp4z7hcHf5nNL5-1`
 
-## Current open decisions
+Use the one fixed web artifact for cumulative wireframe review. Do not create separate Product Owner-facing wireframe URLs for individual questions.
 
-No unresolved **top-level active-workout navigation/state decision** remains from the current pass.
-
-Any later guard or exception should be decided only when a concrete storyboard/screen exposes a real need. Do not reopen already-confirmed navigation or active-session behavior without new evidence.
+The current wireframe visual baseline follows the Figma system already inspected: SUIT, dark background/surface tokens, `#34D399` primary, 20px side padding, 12px standard radius, 58px CTA, and the existing unit-settings bottom-sheet pattern.
 
 ## Current next action
 
-Move into the critical user-flow storyboard set:
-1. recommended-routine first run -> first workout
-2. self-built routine -> first workout
-3. returning user -> next workout
-4. equipment unavailable -> substitute
-5. active session interrupted -> recover
-6. mid-session add/remove/reorder
-7. scheduled vs unscheduled Home start
+Continue `docs/23_RECOMMENDATION_SYSTEM_V1.md` one decision at a time.
 
-Then:
-8. produce the complete screen inventory from those flows
-9. define screen-level content / CTA / states / exceptions
-10. only then return to Figma `10_FITNESS_SCREENS`
+Next decision:
+1. define final `운동 목표` choices
+2. specify exactly what each goal changes in the curated resistance-training program
 
-Exercise DB normalization and Planfit gap analysis remain backlog work and must not block this sequence.
+Then continue:
+3. training-experience bands / effects
+4. weekly availability mapping
+5. workout-duration mapping
+6. recommendation output contract
+7. matcher / substitutions
+8. recommendation result UX
+9. first-workout handoff / load calibration
+
+Do not return to recommendation-result A/B/C presentation until the upstream recommendation rules are defined.
+
+Exercise DB normalization and Planfit gap analysis remain backlog work and do not block this sequence.
 
 ## Visual-system authority
 
-The previously completed Tonal Phase-A baseline remains the visual-system authority when Figma execution resumes:
+The previously completed Tonal Phase-A baseline remains valid when Figma execution resumes:
 - `docs/15_TONAL_DESIGN_SYSTEM_SPEC.md`
 - `docs/16_FIGMA_TONAL_BUILD_INSTRUCTIONS.md`
 - `docs/17_FIGMA_AGENT_EXECUTION_QA.md`
@@ -96,4 +131,6 @@ Latest completed design-system QA remains PASS through F5 revalidation.
 
 ## Canonical source rule
 
-GitHub remains the Source of Truth for product policy, decisions, IA/storyboard state, execution rules, QA state, and next action. Figma remains the visual design artifact, but current product/flow decisions must be finalized before the next screen-production pass.
+GitHub remains the Source of Truth for product policy, decisions, IA/storyboard state, recommendation rules, execution rules, QA state, and next action.
+
+For planning/wireframe work, `product/README.md` is the stable entry point and `product/wireframe/index.html` is the canonical web-wireframe source. Runtime deployment is never allowed to become a separate source of truth.
