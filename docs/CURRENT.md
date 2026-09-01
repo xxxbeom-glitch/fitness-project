@@ -133,8 +133,9 @@ Rules:
 - 사용자가 하나를 수락하기 전에는 추천 프로그램을 `내 루틴`에 저장하지 않음
 - 결과 화면에서 normal bottom navigation은 노출하지 않음
 - 한 번에 한 후보가 active card
-- 좌우 후보 카드 일부가 보여 horizontal swipe 가능성을 전달
-- pagination으로 1/3, 2/3, 3/3 표시
+- active candidate는 **화면 content width를 거의 전부 사용하는 full-width program card**로 표시
+- 이전처럼 좌우 후보 카드 일부를 노출하지 않음
+- 다른 후보가 있다는 사실은 `1 / 3`, `2 / 3`, `3 / 3` pagination과 horizontal swipe interaction으로 전달
 - CTA `이 루틴으로 시작하기`는 현재 active candidate에 적용
 - 뒤로 가면 추천 설정을 다시 조정할 수 있음
 
@@ -164,6 +165,8 @@ Required content shape:
 - multi-day 프로그램이면 `DAY 1 / DAY 2 / DAY 3` 같은 day selector
 - selected day의 실제 운동명 목록
 - 각 운동의 반복수 × 세트수 prescription, 예: `8–12회 × 3세트`
+- 운동명은 좌측, 반복수 × 세트수는 우측에 두는 빠른 scan 구조를 기본으로 함
+- DAY는 명시적 탭으로 전환하고, 프로그램 후보 변경에 쓰는 horizontal swipe와 중첩하지 않음
 - CTA `이 루틴으로 시작하기`
 
 Current wireframe의 운동명/반복수/세트수는 **UI 구조 확인용 샘플**이며 아직 프로그램 정책이 아니다. 실제 운동 composition은 exercise DB, duration budget, template QA, split policy가 확정될 때 결정한다.
@@ -185,7 +188,7 @@ GitHub source:
 - `product/wireframe/index.html`
 
 Current target version for this pass:
-- `2026-09-01.9`
+- `2026-09-01.10`
 
 Production:
 - `https://liftly-wireframe.vercel.app`
@@ -194,6 +197,7 @@ Current visual scope:
 
 - confirmed onboarding baseline
 - recommendation-result dedicated carousel review
+- one full-width program card per active candidate
 - each candidate card contains day selector + exercise prescription list
 
 Previous Home default-state review is paused/removed from current wireframe so recommendation acceptance flow can be settled first.
@@ -205,7 +209,7 @@ Canonical Figma:
 
 추천 결과 화면을 본 뒤 다음 하나를 결정한다:
 
-**카드 안에서 하루 운동 구성 전체를 어느 깊이까지 보여줄지, 그리고 `기본형 / 간결형 / 볼륨형`의 실제 프로그램 차이를 무엇으로 만들지.**
+**`기본형 / 간결형 / 볼륨형`을 실제 program variable에서 무엇으로 구분할지.**
 
 그 다음에 Home 기본 상태 검토로 돌아간다.
 
