@@ -74,6 +74,20 @@ Meaning:
 - not the exact number the app must prescribe
 - specific weekday assignment is not required during onboarding
 
+### Confirmed workout duration
+
+Options:
+
+`30분 / 45분 / 60분 / 90분 이상`
+
+Meaning:
+
+- maximum realistic resistance-training session time
+- includes set-to-set rest
+- excludes separate cardio time
+- acts as a planning budget; a recommended session may be shorter
+- exact exercise-count / set-count budget per option remains a later decision
+
 ### Confirmed experience-based frequency ceiling
 
 - 처음 -> max 3/week
@@ -102,7 +116,7 @@ GitHub source:
 - `product/wireframe/index.html`
 
 Current version:
-- `2026-09-01.2`
+- `2026-09-01.3`
 
 Production:
 - `https://liftly-wireframe.vercel.app`
@@ -115,6 +129,7 @@ The current wireframe intentionally visualizes **onboarding only**:
 - recommendation settings list
 - confirmed training-experience bottom sheet
 - confirmed weekly-availability 1–7 day bottom sheet
+- confirmed workout-duration `30 / 45 / 60 / 90분 이상` bottom sheet
 - completed-input CTA state
 
 It intentionally does not show recommendation-result details or routine-split mapping yet.
@@ -126,7 +141,7 @@ Canonical Figma:
 
 - sex/gender and age exact field shape / consent treatment
 - final goal options and program effects
-- workout-duration choices / volume budget
+- workout-duration -> exact exercise/set budget
 - other experience effects beyond frequency ceiling
 - split/routine-count mapping — **ON HOLD**
 - recommendation output contract
