@@ -68,9 +68,24 @@ Exact visual styling and copy may be refined later, but the behavior is fixed:
 
 Keeping primary navigation visible is only safe if the active session remains easy to recover. The persistent Home return state prevents users from losing track of an in-progress workout while preserving freedom to navigate elsewhere.
 
+## Confirmed — Active workout indicator appears only on Home
+
+The active-workout return bar/card is shown on **Home only**.
+
+When the user navigates to 루틴 / 분석 / 설정 during an active workout:
+
+- those screens keep their normal layout
+- no duplicate active-workout bar/card is injected into those tabs
+- the user can return to the active workout by going back to Home and tapping the Home active-workout indicator
+
+This keeps the primary tabs visually stable and avoids a persistent global banner competing with each tab's own content.
+
+### Rationale
+
+The active workout is important enough to stay recoverable, but it does not need to occupy persistent UI across the entire app. Home acts as the canonical recovery point.
+
 ### Still to decide
 
-- Whether the same active-workout indicator also appears in 루틴 / 분석 / 설정, or only on Home.
 - Whether any destinations/actions should be restricted while an active workout is running.
 - What happens if the user attempts to start a second workout while one is already active.
 
