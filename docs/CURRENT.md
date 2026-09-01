@@ -4,12 +4,19 @@
 
 ## Current mode
 
-`PRODUCT / UX PLANNING — G FIT PRODUCT DIRECTION V2 · ACCOUNT/ONBOARDING CHECKPOINT`
+`PRODUCT / UX PLANNING — G FIT WHOLE-APP WIREFRAME REVIEW · HOME FIRST`
 
-Product Owner가 2026-09-01에 제품 전체 방향을 다시 검토했고, 기존 recommendation-heavy onboarding / recommendation-result carousel 흐름은 폐기했다.
+Product Owner가 제품 전체 방향을 먼저 화면으로 확인한 뒤 Home부터 천천히 결정하기로 했다.
 
 현재 최신 상위 기준:
 - `docs/24_PRODUCT_DIRECTION_V2.md`
+
+현재 누적 검토용 와이어프레임:
+- `product/wireframe/index.html`
+- version: `2026-09-01.12`
+- production: `https://liftly-wireframe.vercel.app`
+
+중요: 현재 wireframe에서 `REVIEW / OPEN`으로 표시한 UI·정보 구조는 **검토 가설이며 Product Decision이 아니다.** 기존 확정 정책만 `CONFIRMED`로 유지한다.
 
 Cursor implementation은 아직 승인되지 않았다.
 
@@ -171,17 +178,52 @@ LLM 없이 규칙/통계로 더 안정적으로 해결 가능한 문제는 구�
 
 - primary bottom navigation: `홈 / 루틴 / 분석 / 설정`
 - exercise library is contextual, not primary tab
+- independent daily-routine model
 - weekday scheduling optional
 - one active workout at a time
 - active session survives restart until finish/discard
 - Home exposes active-workout return state
-- Routine/Analysis/Settings usable under existing active-workout rules
+- active-workout return indicator is Home-only
+- Routine remains browseable/read-only while an active workout exists
 - active workout structural edits stay flexible
+- structural live-workout changes may prompt saved-routine update at completion
 - load/reps are performance records
+- partial save persists only completed work
 - prior performance inline
 - offline-first active-workout persistence / safe sync
 - recommendation/AI must not silently alter workout records
 - custom exercises remain important
+
+## Whole-app wireframe review checkpoint — 2026-09-01.12
+
+Product Owner 요청에 따라 아직 미확정인 화면도 `REVIEW / OPEN`으로 명확히 표시한 상태에서 먼저 전체 구조를 시각화했다.
+
+현재 wireframe이 보여주는 검토 범위:
+
+1. Account / Onboarding
+2. Home — 루틴 없음 / 요일 미지정 / 요일 지정 / 운동 진행 중
+3. Routine — 내 루틴 / 추천 루틴 / 상세 / 만들기·수정
+4. Exercise DB / Guide — 검색·필터 / 운동 상세 / 중성 3D placeholder / grip / YouTube slot / custom exercise
+5. Active workout — 세트 기록 / 이전 기록 / rest / 운동 메뉴 / 기존 확정 dialog
+6. Workout complete — 완료 요약 대시보드 / 부분 기록
+7. Analysis / History — 분석 overview / 종목 기록 / 운동 기록 상세
+8. Settings — 운동 / 프로필 / 계정·데이터 + post-MVP 확장 메모
+
+Wireframe 운영 원칙:
+
+- `CONFIRMED` = 기존 확정 정책을 시각화
+- `REVIEW` = 현재 비교·검토용 UI 가설
+- `OPEN` = Product Owner가 화면을 보고 결정할 항목
+- review draft를 Cursor 구현 Task 또는 Acceptance Criteria로 사용하지 않음
+- 화면을 봤다는 이유만으로 Decision을 자동 생성하지 않음
+
+Production deploy/read-back 확인 완료:
+
+- Vercel state: `READY`
+- canonical alias: `https://liftly-wireframe.vercel.app`
+- HTML HTTP 200
+- `CANONICAL_WIREFRAME_VERSION: 2026-09-01.12` 확인
+- `style.css` HTTP 200
 
 ## Superseded planning
 
@@ -198,19 +240,28 @@ LLM 없이 규칙/통계로 더 안정적으로 해결 가능한 문제는 구�
 
 `docs/23_RECOMMENDATION_SYSTEM_V1.md`는 historical / superseded reference로 남기되 current planning authority가 아니다.
 
-Current production wireframe `2026-09-01.11`도 위 폐기된 recommendation flow를 포함하므로 **current product policy를 대표하지 않는다.** 새 상위 구조가 충분히 확정되기 전까지 wireframe polish를 진행하지 않는다.
-
 ## Next resume point
 
-다음 대화에서는 프로젝트 위치를 다시 묻지 않고 여기서 이어간다.
+다음 대화에서도 프로젝트 위치를 다시 묻지 않고 현재 whole-app wireframe에서 이어간다.
 
-현재 planning sequence:
+**첫 검토 대상은 Home.**
 
-1. Account / Onboarding baseline 마무리
-2. Home structure
-3. Routine / G Fit recommended-routine system
+Home review states:
+
+- `02A` 루틴 없음 — G Fit 추천 루틴 + 내 루틴 만들기
+- `02B` 내 루틴 있음 / 요일 미지정 — `다음 루틴` 중심 검토안
+- `02C` 내 루틴 있음 / 요일 지정 — `오늘 운동` 중심 검토안
+- `02D` 운동 진행 중 — 기존 확정 active-workout return behavior
+
+Product Owner가 화면을 보면서 수정/삭제/확정 의견을 주면 해당 화면부터 wireframe과 관련 Decision을 순차 반영한다.
+
+그 다음 검토 순서:
+
+1. Home
+2. G Fit recommended-routine detail / start semantics
+3. Routine
 4. Exercise DB / visual assets / exercise identity
-5. Active workout execution
+5. Active workout execution UI
 6. Post-workout summary dashboard
 7. Analysis
 8. Settings
@@ -219,10 +270,6 @@ Current production wireframe `2026-09-01.11`도 위 폐기된 recommendation flo
 11. Legal / privacy / minimum-age / platform-policy final pass
 12. Monetization after core feature definition
 
-Immediate open decision:
-
-- Home의 `G Fit 추천 루틴` 카드를 탭한 뒤 **구성 확인 / 저장 / 운동 시작**을 어떤 단계로 연결할지
-
 ## Canonical source rule
 
 GitHub remains Source of Truth.
@@ -230,5 +277,9 @@ GitHub remains Source of Truth.
 Current product-direction authority:
 - `docs/24_PRODUCT_DIRECTION_V2.md`
 - `docs/CURRENT.md`
+
+Current visual review source:
+- `product/wireframe/index.html`
+- `product/wireframe/README.md`
 
 기존 문서가 이 최신 방향과 충돌하면 V2를 우선한다.
