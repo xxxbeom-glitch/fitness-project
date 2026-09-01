@@ -89,6 +89,29 @@ Product intent:
 - the app must not assume that everyone in `1년 이상` is an advanced lifter
 - exact downstream effects on exercise complexity, volume, progression expectations, and technique guidance still need to be defined before implementation
 
+### Experience-based weekly frequency ceiling — CONFIRMED
+
+Training experience sets a ceiling on the number of prescribed resistance-training sessions per week:
+
+| Training experience | Maximum prescribed resistance-training sessions / week |
+|---|---:|
+| `처음이에요` | 3 |
+| `6개월 미만이에요` | 4 |
+| `6개월~1년 미만이에요` | 5 |
+| `1년 이상이에요` | 6 |
+
+Baseline rule:
+
+`frequency ceiling = min(user weekly availability, experience cap)`
+
+Examples:
+
+- `처음이에요` + `7일` available -> no more than 3 prescribed resistance-training sessions
+- `6개월 미만이에요` + `3일` available -> no more than 3 prescribed sessions
+- `1년 이상이에요` + `6일` available -> no more than 6 prescribed sessions
+
+This is a ceiling, not a requirement to always prescribe the ceiling. Goal, workout-duration budget, recovery burden, and later template rules may justify fewer sessions, but never more than both the user's selected availability and the experience cap.
+
 ## Weekly-availability input — CONFIRMED
 
 User-facing meaning:
@@ -112,12 +135,12 @@ Matcher semantics:
 - the matcher must not prescribe more weekly training days than the selected maximum
 - this onboarding input captures the number of available days only; it does not require the user to choose specific weekdays at this stage
 - weekday assignment remains optional and can be configured later under the existing scheduling policy
+- experience-based frequency ceilings apply before a final routine split is selected
 
 Still open within weekly availability:
 
-- selected maximum -> actual prescribed weekly training frequency
 - prescribed frequency -> split / routine-count mapping
-- whether any goal / experience combination should cap prescribed frequency below the selected maximum
+- whether some goal / workout-duration combinations should prescribe fewer sessions than the experience/availability ceiling
 
 ## Demographic profile data — separate from recommendation matching
 
@@ -152,8 +175,8 @@ Compared with a detailed Hevy/Fitbod-style intake, this avoids asking first-run 
 Review and confirm one item at a time:
 
 1. Goal — question wording, choices, and exactly what each choice changes in the program.
-2. Training experience — bands confirmed; downstream effects still to define.
-3. Weekly availability — input semantics/options confirmed; frequency/split mapping still to define.
+2. Training experience — bands and weekly frequency ceiling confirmed; other downstream effects still to define.
+3. Weekly availability — input semantics/options and experience-based ceiling confirmed; split mapping still to define.
 4. Workout duration — session-time buckets and how they constrain exercise/set volume.
 5. Recommendation output contract — routine count, exercise order, sets, rep ranges, rest, and what is intentionally excluded.
 6. Template matching — deterministic matching/tie-breaking and reviewed template coverage.
@@ -175,11 +198,11 @@ Demographic-profile collection is tracked separately from this recommendation lo
 
 ## Open decision now
 
-### Weekly availability -> prescribed frequency / split
+### Prescribed frequency -> routine split
 
-Next decision: define how a selected maximum of `1–7일` maps to the actual prescribed number of weekly resistance-training sessions and the routine split.
+Next decision: define the default routine split / routine count for prescribed weekly frequencies from 1 to 6 sessions.
 
-The mapping should not simply mirror availability. A user who can train 6 or 7 days may still receive fewer prescribed sessions if that better fits the user's experience, goal, and recovery burden.
+The split should be simple enough for a curated-template system and should not create unnecessary variants without a meaningful program-level difference.
 
 ### Goal input — still open
 
