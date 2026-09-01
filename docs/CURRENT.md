@@ -136,6 +136,8 @@ Rules:
 - active candidate는 **화면 content width를 거의 전부 사용하는 full-width program card**로 표시
 - 이전처럼 좌우 후보 카드 일부를 노출하지 않음
 - 다른 후보가 있다는 사실은 `1 / 3`, `2 / 3`, `3 / 3` pagination과 horizontal swipe interaction으로 전달
+- 추천 결과 헤더는 **헤드 카피 1개만 남기는 간결한 구조**로 유지
+- 입력 조건 chip / eyebrow / 보조 설명 문구는 추천 결과 헤더에서 제거
 - CTA `이 루틴으로 시작하기`는 현재 active candidate에 적용
 - 뒤로 가면 추천 설정을 다시 조정할 수 있음
 
@@ -188,7 +190,7 @@ GitHub source:
 - `product/wireframe/index.html`
 
 Current target version for this pass:
-- `2026-09-01.10`
+- `2026-09-01.11`
 
 Production:
 - `https://liftly-wireframe.vercel.app`
@@ -197,6 +199,7 @@ Current visual scope:
 
 - confirmed onboarding baseline
 - recommendation-result dedicated carousel review
+- minimal result header with one head copy
 - one full-width program card per active candidate
 - each candidate card contains day selector + exercise prescription list
 
