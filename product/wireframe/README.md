@@ -1,7 +1,7 @@
 # LIFTLY Cumulative Wireframe
 
 **Status:** CANONICAL
-**Wireframe version:** `2026-09-01.3`
+**Wireframe version:** `2026-09-01.4`
 **Updated:** 2026-09-01
 
 ## Canonical source
@@ -21,6 +21,11 @@
 - 기본정보: 성별 / 나이
 - 시작 방식: `추천 루틴 받기 / 내 루틴 직접 만들기`
 - 추천 설정 한 화면: `운동 목표 / 운동 경력 / 주당 가능일 / 운동 시간`
+- 운동 목표 확정 선택지:
+  - `근육 증가`
+  - `체지방 감량`
+  - `건강·체력 향상`
+- `근력 향상`은 별도 첫 온보딩 목표에서 제외하고 이후 기록 기반 progression에서 다룸
 - 운동 경력 확정 선택지:
   - `처음이에요`
   - `6개월 미만이에요`
@@ -36,7 +41,7 @@
 
 - 추천 결과 상세 화면
 - 주당 처방 횟수 -> routine split / routine count 매핑
-- 목표의 최종 선택지/프로그램 효과
+- 각 목표가 실제 프로그램 변수에 주는 정확한 효과
 - 운동시간별 정확한 exercise/set volume budget
 
 ## Canonical runtime
