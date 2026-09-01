@@ -1,10 +1,10 @@
 <!doctype html>
-<!-- CANONICAL_WIREFRAME_VERSION: 2026-09-01.12 -->
+<!-- CANONICAL_WIREFRAME_VERSION: 2026-09-01.13 -->
 <html lang="ko">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <meta name="liftly-wireframe-version" content="2026-09-01.12">
+  <meta name="liftly-wireframe-version" content="2026-09-01.13">
   <title>G Fit Product Wireframe</title>
   <link rel="stylesheet" href="./style.css">
 </head>
@@ -12,7 +12,7 @@
 <header class="top">
   <div>
     <div class="brand">G FIT <span>review wireframe</span></div>
-    <div class="sub">전체 구조 검토용 초안 · v2026-09-01.12 · 확정되지 않은 화면은 REVIEW / OPEN 표시</div>
+    <div class="sub">Figma design-system synced · v2026-09-01.13 · REVIEW / OPEN은 제품 결정이 아님</div>
   </div>
   <nav class="jump" aria-label="화면 섹션 바로가기">
     <a href="#onboarding">가입</a><a href="#home">Home</a><a href="#routine">루틴</a><a href="#exercise">운동 DB</a><a href="#workout">운동 중</a><a href="#summary">완료</a><a href="#analysis">분석</a><a href="#settings">설정</a>
@@ -20,149 +20,157 @@
 </header>
 <main>
   <section class="overview">
-    <div class="eyebrow review">WHOLE APP REVIEW DRAFT</div>
-    <h1>먼저 전체를 보고, 그 다음 하나씩 결정합니다.</h1>
-    <p>현재 확정 정책을 바닥에 깔고 아직 정하지 않은 UI·정보 우선순위를 하나의 누적 와이어프레임에 펼친 검토안입니다. 화면에 보인다고 확정 정책이 되는 것은 아닙니다.</p>
-    <div class="legend"><span class="tag confirmed">CONFIRMED</span><span>기존 정책 유지</span><span class="tag review">REVIEW</span><span>현재 검토안</span><span class="tag open">OPEN</span><span>보고 결정할 부분</span></div>
-    <div class="flow"><b>로그인</b><i>→</i><b>기본정보</b><i>→</i><b>Home</b><i>→</i><b>루틴 선택/생성</b><i>→</i><b>운동 기록</b><i>→</i><b>완료 요약</b><i>→</i><b>분석</b></div>
+    <div class="eyebrow review">WHOLE APP REVIEW · FIGMA SYSTEM SYNC</div>
+    <h1>제품 구조는 검토안 그대로, 화면 언어는 기존 Figma 기준으로 맞췄습니다.</h1>
+    <p>Figma의 360px 화면, 20px 좌우 여백, SUIT typography, 12px card radius, 58px CTA, 52px input, 56px nav, RoutineCard / ExerciseItem / WorkoutRow / Bottom App Bar 계열의 비례를 기준으로 다시 구성했습니다.</p>
+    <div class="legend"><span class="tag confirmed">CONFIRMED</span><span>기존 정책</span><span class="tag review">REVIEW</span><span>현재 검토안</span><span class="tag open">OPEN</span><span>보고 결정할 부분</span></div>
+    <div class="flow"><b>로그인</b><i>→</i><b>기본정보</b><i>→</i><b>Home</b><i>→</i><b>루틴</b><i>→</i><b>운동 기록</b><i>→</i><b>완료</b><i>→</i><b>분석</b></div>
   </section>
 
   <section id="onboarding" class="section">
-    <header class="section-head"><div><div class="eyebrow confirmed">01 · ACCOUNT / ONBOARDING</div><h2>가입은 짧게, 바로 Home으로</h2></div><p>추천 설문과 추천 결과 캐러셀은 제거. 기본정보 입력 후 바로 Home.</p></header>
+    <header class="section-head"><div><div class="eyebrow confirmed">01 · ACCOUNT / ONBOARDING</div><h2>가입은 짧게, 바로 Home으로</h2></div><p>추천 설문은 제거. 기본정보 입력 후 바로 Home.</p></header>
     <div class="rail">
       <article class="case confirmed"><div class="case-head"><strong>01A · 로그인</strong><em>CONFIRMED BASE</em></div><div class="phone hero-phone">
         <div class="status"><span>9:41</span><span>● ● ●</span></div>
         <div class="hero-media"><div class="hero-logo">G FIT</div><p>오늘의 운동을 기록하고 이어가세요.</p></div>
         <div class="bottom-actions"><button class="provider google">Google로 계속하기</button><button class="provider kakao">Kakao로 계속하기</button><div class="legal">이용약관 · 개인정보처리방침</div></div>
       </div></article>
+
       <article class="case confirmed"><div class="case-head"><strong>01B · 기본정보</strong><em>CONFIRMED</em></div><div class="phone">
         <div class="status"><span>9:41</span><span>● ● ●</span></div><div class="appbar">기본정보</div>
         <div class="title-block"><h3>기본정보를 알려주세요</h3><p>처음 한 번만 입력합니다.</p></div>
         <label>성별</label><div class="seg"><button class="selected">남성</button><button>여성</button></div>
         <label>생년월일</label><div class="input">1999-01-01</div>
         <div class="spacer"></div><button class="primary">시작하기</button>
-        <div class="wire-note">완료 → Home. 닉네임/프사 설정은 강제하지 않음.</div>
+        <div class="wire-note">완료 → Home. 닉네임/프로필 사진 설정은 강제하지 않음.</div>
       </div></article>
+
       <article class="case review"><div class="case-head"><strong>01C · 프로필 기본값</strong><em>REVIEW</em></div><div class="phone">
         <div class="status"><span>9:41</span><span>● ● ●</span></div><div class="appbar">프로필</div>
-        <div class="profile-center"><div class="avatar">G</div><h3>user_K7M2Q</h3><p>기본 프로필 이미지 · 자동 생성 닉네임</p></div>
+        <div class="profile-center"><div class="avatar">G</div><h3>user_K7M2Q</h3><p>기본 이미지 · 자동 생성 닉네임</p></div>
         <div class="list"><div><span><b>닉네임</b><small>user_K7M2Q</small></span><strong>›</strong></div><div><span><b>프로필 사진</b><small>기본 이미지</small></span><strong>›</strong></div></div>
-        <div class="open-box"><b>OPEN</b><span>자동 닉네임 규칙과 변경 횟수/중복 정책은 추후 결정.</span></div>
+        <div class="open-box"><b>OPEN</b><span>자동 닉네임 규칙과 변경 정책은 추후 결정.</span></div>
       </div></article>
     </div>
   </section>
 
   <section id="home" class="section">
-    <header class="section-head"><div><div class="eyebrow review">02 · HOME</div><h2>사용자 상태에 따라 첫 행동이 바뀌는 홈</h2></div><p>이 섹션을 보면서 “요일 중심 / 순서 중심 / 추천 노출량”을 결정하면 됩니다.</p></header>
+    <header class="section-head"><div><div class="eyebrow review">02 · HOME</div><h2>기존 Figma Home 문법 위에서 상태별 Home을 비교</h2></div><p>AppLogo/알림 헤더, 320×128 hero card, heatmap, 60px recent row의 비례를 그대로 사용한 검토안입니다.</p></header>
     <div class="rail">
-      <article class="case review"><div class="case-head"><strong>02A · 루틴 없음</strong><em>REVIEW</em></div><div class="phone with-nav">
-        <div class="status"><span>9:41</span><span>● ● ●</span></div><div class="home-top"><div><small>안녕하세요</small><h3>오늘도 운동해볼까요?</h3></div><div class="mini-avatar">G</div></div>
+      <article class="case review"><div class="case-head"><strong>02A · 루틴 없음</strong><em>REVIEW</em></div><div class="phone with-nav long-phone">
+        <div class="status"><span>9:41</span><span>● ● ●</span></div><div class="home-header"><div class="app-logo">G FIT</div><div class="bell"></div></div>
         <div class="section-label"><span>G Fit 추천 루틴</span><small>미리 구성한 루틴</small></div>
-        <div class="routine-card feature"><div class="routine-art body-map">BODY</div><div class="routine-copy"><small>추천 루틴</small><h4>무분할 전신 루틴</h4><p>벤치프레스 · 랫풀다운 · 레그프레스 외 3개</p><div class="meta"><span>6개 운동</span><span>약 50분</span></div></div><b>›</b></div>
-        <div class="routine-card compact"><div><small>추천 루틴</small><h4>상체 루틴</h4><p>가슴 · 등 · 어깨 · 팔</p></div><b>›</b></div>
-        <div class="routine-card compact"><div><small>추천 루틴</small><h4>하체 루틴</h4><p>대퇴사두 · 둔근 · 햄스트링</p></div><b>›</b></div>
-        <button class="secondary">+ 내 루틴 만들기</button>
+        <div class="routine-card feature"><div class="routine-copy"><small>추천 루틴</small><h4>무분할 전신 루틴</h4><p>벤치프레스 · 랫풀다운 · 레그프레스 외 3개</p><div class="meta"><span>CORE</span><span>6개 운동</span></div></div><b>›</b></div>
+        <div class="routine-card compact"><div><small>추천 루틴</small><h4>상체 루틴</h4><p>가슴 · 등 · 어깨 · 팔</p><div class="meta"><span>CORE</span><span>7개 운동</span></div></div><b>›</b></div>
+        <div class="routine-card compact"><div><small>추천 루틴</small><h4>하체 루틴</h4><p>대퇴사두 · 둔근 · 햄스트링</p><div class="meta"><span>LEGS</span><span>6개 운동</span></div></div><b>›</b></div>
+        <button class="secondary">내 루틴 만들기</button>
+        <div class="open-box"><b>OPEN</b><span>신규 Home에서 추천 루틴을 몇 장까지 즉시 보여줄지.</span></div>
         <div class="bottom-nav"><b>⌂<small>홈</small></b><span>▤<small>루틴</small></span><span>⌁<small>분석</small></span><span>⚙<small>설정</small></span></div>
       </div></article>
 
       <article class="case review"><div class="case-head"><strong>02B · 내 루틴 있음 · 요일 미지정</strong><em>OPEN</em></div><div class="phone with-nav">
-        <div class="status"><span>9:41</span><span>● ● ●</span></div><div class="home-top"><div><small>다음 운동</small><h3>등 · 팔</h3></div><div class="mini-avatar">G</div></div>
-        <div class="action-card"><small>다음 루틴</small><h3>등 · 팔</h3><p>랫풀다운 · 시티드 로우 · 케이블 컬 외 3개</p><div class="metric-row"><span><b>6</b><small>운동</small></span><span><b>18</b><small>세트</small></span><span><b>52분</b><small>최근</small></span></div><button class="primary">운동 시작</button></div>
-        <div class="section-label"><span>이번 주</span><small>검토안</small></div><div class="mini-grid"><div><b>3회</b><small>운동</small></div><div><b>45세트</b><small>완료</small></div><div><b>2 PR</b><small>기록</small></div></div>
-        <div class="section-label"><span>최근 운동</span><small>8월 31일</small></div><div class="history-row"><div><b>가슴 · 어깨</b><small>58분 · 19세트</small></div><strong>›</strong></div>
+        <div class="status"><span>9:41</span><span>● ● ●</span></div><div class="home-header"><div class="app-logo">G FIT</div><div class="bell"></div></div>
+        <div class="section-label"><span>다음 운동</span><small>검토안</small></div>
+        <div class="today-card"><div class="kicker">다음 루틴</div><h3>등 · 팔</h3><p>최근 운동 52분</p><div class="tag-row"><span class="tag-chip core">CORE</span><span class="tag-chip neutral">6개 운동</span></div><button class="round-play">▶</button></div>
+        <div class="section-label"><span>이번 달 운동 진행율</span><small>8 / 12회</small></div>
+        <div class="heatmap-card"><div class="heatmap-title"><b>9월</b><span>67%</span></div><div class="heatmap-grid"><i class="l3"></i><i></i><i class="l2"></i><i></i><i class="l1"></i><i></i><i class="l3"></i><i></i><i class="l2"></i><i></i><i class="l1"></i><i></i><i></i><i></i><i></i><i class="l2"></i><i></i><i class="l3"></i><i></i><i></i><i class="l1"></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div></div>
+        <div class="section-label"><span>최근 운동</span><small>전체 보기</small></div><div class="workout-row"><div><b>가슴 · 어깨</b><small>8월 31일 · 58분</small></div><strong>›</strong></div><div class="workout-row"><div><b>하체</b><small>8월 29일 · 61분</small></div><strong>›</strong></div>
         <div class="bottom-nav"><b>⌂<small>홈</small></b><span>▤<small>루틴</small></span><span>⌁<small>분석</small></span><span>⚙<small>설정</small></span></div>
       </div></article>
 
       <article class="case review"><div class="case-head"><strong>02C · 내 루틴 있음 · 요일 지정</strong><em>OPEN</em></div><div class="phone with-nav">
-        <div class="status"><span>9:41</span><span>● ● ●</span></div><div class="home-top"><div><small>9월 1일 화요일</small><h3>오늘은 하체</h3></div><div class="mini-avatar">G</div></div>
-        <div class="action-card"><div class="today-badge">오늘 운동</div><h3>하체 루틴</h3><p>스쿼트 · 레그프레스 · 레그컬 외 3개</p><div class="metric-row"><span><b>6</b><small>운동</small></span><span><b>19</b><small>세트</small></span><span><b>55분</b><small>최근</small></span></div><button class="primary">운동 시작</button></div>
-        <div class="next-row"><span><small>다음 예정</small><b>목요일 · 상체</b></span><strong>›</strong></div>
-        <div class="open-box"><b>OPEN</b><span>요일 지정 사용자는 “오늘 운동”, 미지정 사용자는 “다음 루틴”을 우선할지 결정.</span></div>
+        <div class="status"><span>9:41</span><span>● ● ●</span></div><div class="home-header"><div class="app-logo">G FIT</div><div class="bell"></div></div>
+        <div class="section-label"><span>오늘 진행 운동</span><small>9월 1일 화요일</small></div>
+        <div class="today-card"><h3>하체 루틴</h3><p>매주 화요일 · 금요일</p><div class="tag-row"><span class="tag-chip legs">LEGS</span><span class="tag-chip core">CORE</span></div><button class="round-play">▶</button></div>
+        <div class="section-label"><span>이번 달 운동 진행율</span><small>8 / 12회</small></div>
+        <div class="heatmap-card"><div class="heatmap-title"><b>9월</b><span>67%</span></div><div class="heatmap-grid"><i class="l3"></i><i></i><i class="l2"></i><i></i><i class="l1"></i><i></i><i class="l3"></i><i></i><i class="l2"></i><i></i><i class="l1"></i><i></i><i></i><i></i><i></i><i class="l2"></i><i></i><i class="l3"></i><i></i><i></i><i class="l1"></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div></div>
+        <div class="section-label"><span>최근 운동</span><small>전체 보기</small></div><div class="workout-row"><div><b>가슴 · 어깨</b><small>8월 31일 · 58분</small></div><strong>›</strong></div>
+        <div class="open-box"><b>OPEN</b><span>요일 지정 사용자는 오늘 운동, 미지정 사용자는 다음 루틴을 우선할지.</span></div>
         <div class="bottom-nav"><b>⌂<small>홈</small></b><span>▤<small>루틴</small></span><span>⌁<small>분석</small></span><span>⚙<small>설정</small></span></div>
       </div></article>
 
       <article class="case confirmed"><div class="case-head"><strong>02D · 운동 진행 중</strong><em>BEHAVIOR CONFIRMED</em></div><div class="phone with-nav">
-        <div class="status"><span>9:41</span><span>● ● ●</span></div><div class="home-top"><div><small>홈</small><h3>운동을 이어가세요</h3></div><div class="mini-avatar">G</div></div>
-        <div class="active-card"><div class="pulse"></div><div><small>운동 진행 중 · 18:24</small><h3>하체 루틴</h3><p>현재 레그 프레스 · 8 / 19세트 완료</p></div><button>돌아가기</button></div>
-        <div class="section-label"><span>이번 주</span><small>운동 중에도 탐색 가능</small></div><div class="mini-grid"><div><b>2회</b><small>완료</small></div><div><b>31세트</b><small>완료</small></div><div><b>1 PR</b><small>기록</small></div></div>
-        <div class="wire-note">진행 중 표시/복귀 CTA는 Home에만 노출하는 기존 확정 규칙.</div>
+        <div class="status"><span>9:41</span><span>● ● ●</span></div><div class="home-header"><div class="app-logo">G FIT</div><div class="bell"></div></div>
+        <div class="section-label"><span>운동 진행 중</span><small>18:24</small></div>
+        <div class="active-card"><div class="pulse"></div><div><small>운동 진행 중</small><h3>하체 루틴</h3><p>레그 프레스 · 8 / 19세트 완료</p></div><button>돌아가기</button></div>
+        <div class="section-label"><span>이번 달 운동 진행율</span><small>운동 중</small></div>
+        <div class="heatmap-card"><div class="heatmap-title"><b>9월</b><span>현재 세션 제외</span></div><div class="heatmap-grid"><i class="l3"></i><i></i><i class="l2"></i><i></i><i class="l1"></i><i></i><i class="l3"></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div></div>
+        <div class="wire-note">진행 중 운동 복귀 영역은 Home에만 노출하는 기존 확정 정책.</div>
         <div class="bottom-nav"><b>⌂<small>홈</small></b><span>▤<small>루틴</small></span><span>⌁<small>분석</small></span><span>⚙<small>설정</small></span></div>
       </div></article>
     </div>
   </section>
 
   <section id="routine" class="section">
-    <header class="section-head"><div><div class="eyebrow review">03 · ROUTINE</div><h2>내 루틴과 G Fit 추천 루틴</h2></div><p>내 루틴은 독립된 일일 루틴 단위. 추천도 같은 루틴 체계로 들어옵니다.</p></header>
+    <header class="section-head"><div><div class="eyebrow review">03 · ROUTINE</div><h2>Figma RoutineCard 문법으로 내 루틴과 추천 루틴을 비교</h2></div><p>독립 일일 루틴 모델은 유지. 요일은 선택사항.</p></header>
     <div class="rail">
-      <article class="case review"><div class="case-head"><strong>03A · 루틴 탭</strong><em>REVIEW</em></div><div class="phone with-nav">
+      <article class="case review"><div class="case-head"><strong>03A · 루틴 탭</strong><em>REVIEW</em></div><div class="phone with-nav long-phone">
         <div class="status"><span>9:41</span><span>● ● ●</span></div><div class="page-title"><h3>루틴</h3><button>＋</button></div>
-        <div class="section-label"><span>내 루틴</span><small>3개</small></div>
-        <div class="routine-list"><div><span><b>가슴 · 어깨</b><small>6개 운동 · 월</small></span><strong>›</strong></div><div><span><b>등 · 팔</b><small>6개 운동 · 미지정</small></span><strong>›</strong></div><div><span><b>하체</b><small>6개 운동 · 금</small></span><strong>›</strong></div></div>
+        <div class="section-label"><span>내 루틴</span><small>3개</small></div><div class="routine-list"><div><span><b>가슴 · 어깨</b><small>매주 월요일</small></span><strong>•••</strong></div><div><span><b>등 · 팔</b><small>요일 미지정</small></span><strong>•••</strong></div><div><span><b>하체</b><small>매주 금요일</small></span><strong>•••</strong></div></div>
         <div class="section-label"><span>G Fit 추천 루틴</span><small>둘러보기</small></div><div class="horizontal-cards"><div><small>추천</small><b>무분할 전신</b><span>6개 운동</span></div><div><small>추천</small><b>상체</b><span>7개 운동</span></div></div>
         <div class="bottom-nav"><span>⌂<small>홈</small></span><b>▤<small>루틴</small></b><span>⌁<small>분석</small></span><span>⚙<small>설정</small></span></div>
       </div></article>
 
-      <article class="case review"><div class="case-head"><strong>03B · 추천 루틴 상세</strong><em>OPEN</em></div><div class="phone">
-        <div class="status"><span>9:41</span><span>● ● ●</span></div><div class="appbar back-title">‹ <span>추천 루틴</span></div>
+      <article class="case review"><div class="case-head"><strong>03B · 추천 루틴 상세</strong><em>OPEN</em></div><div class="phone long-phone">
+        <div class="status"><span>9:41</span><span>● ● ●</span></div><div class="appbar back-title">‹ <span>추천 루틴</span><span></span></div>
         <div class="routine-hero"><small>G Fit 추천 루틴</small><h3>무분할 전신 루틴</h3><p>전신의 큰 근육을 한 번에 훈련하는 기본 구성</p><div class="meta"><span>6개 운동</span><span>18세트</span><span>약 50분</span></div></div>
         <div class="section-label"><span>운동 구성</span><small>샘플</small></div><div class="exercise-rows"><div><span><i>01</i><b>벤치프레스</b></span><strong>8–12 × 3</strong></div><div><span><i>02</i><b>랫풀다운</b></span><strong>8–12 × 3</strong></div><div><span><i>03</i><b>레그프레스</b></span><strong>10–15 × 3</strong></div><div><span><i>04</i><b>숄더프레스</b></span><strong>8–12 × 3</strong></div><div><span><i>05</i><b>레그컬</b></span><strong>10–15 × 3</strong></div><div><span><i>06</i><b>케이블 크런치</b></span><strong>10–15 × 3</strong></div></div>
-        <div class="sticky-actions"><button class="primary">이 루틴으로 시작하기</button></div><div class="open-box"><b>OPEN</b><span>카드 탭 → 이 상세 → 바로 운동 시작/내 루틴 저장 시점은 아직 검토 대상.</span></div>
+        <button class="primary">이 루틴으로 시작하기</button><div class="open-box"><b>OPEN</b><span>상세 확인 뒤 바로 시작할지, 내 루틴에 먼저 저장할지.</span></div>
       </div></article>
 
-      <article class="case confirmed"><div class="case-head"><strong>03C · 내 루틴 상세</strong><em>MODEL CONFIRMED</em></div><div class="phone">
+      <article class="case confirmed"><div class="case-head"><strong>03C · 내 루틴 상세</strong><em>MODEL CONFIRMED</em></div><div class="phone long-phone">
         <div class="status"><span>9:41</span><span>● ● ●</span></div><div class="appbar back-title">‹ <span>루틴 상세</span><button>•••</button></div>
-        <div class="routine-hero"><small>내 루틴</small><h3>가슴 · 어깨</h3><p>월요일 · 최근 8월 31일</p></div>
-        <div class="exercise-rows"><div><span><i>01</i><b>벤치프레스</b></span><strong>3세트 · 8–12회</strong></div><div><span><i>02</i><b>인클라인 덤벨 프레스</b></span><strong>3세트 · 8–12회</strong></div><div><span><i>03</i><b>체스트 프레스</b></span><strong>3세트 · 10–12회</strong></div><div><span><i>04</i><b>숄더 프레스</b></span><strong>3세트 · 8–12회</strong></div></div>
+        <div class="routine-hero"><small>내 루틴</small><h3>가슴 · 어깨</h3><p>매주 월요일 · 최근 8월 31일</p></div>
+        <div class="section-label"><span>운동</span><small>4개</small></div><div class="exercise-rows"><div><span><i>01</i><b>벤치프레스</b></span><strong>3세트 · 8–12회</strong></div><div><span><i>02</i><b>인클라인 덤벨 프레스</b></span><strong>3세트 · 8–12회</strong></div><div><span><i>03</i><b>체스트 프레스</b></span><strong>3세트 · 10–12회</strong></div><div><span><i>04</i><b>숄더 프레스</b></span><strong>3세트 · 8–12회</strong></div></div>
         <div class="sub-action-row"><button>요일 설정</button><button>루틴 수정</button></div><button class="primary">운동 시작</button>
       </div></article>
 
-      <article class="case review"><div class="case-head"><strong>03D · 루틴 만들기 / 수정</strong><em>REVIEW</em></div><div class="phone">
+      <article class="case review"><div class="case-head"><strong>03D · 루틴 만들기 / 수정</strong><em>REVIEW</em></div><div class="phone long-phone">
         <div class="status"><span>9:41</span><span>● ● ●</span></div><div class="appbar back-title">취소 <span>루틴 만들기</span><button>저장</button></div>
-        <label>루틴 이름</label><div class="input">가슴 · 어깨</div>
-        <div class="section-label"><span>운동</span><small>드래그로 순서 변경</small></div>
-        <div class="edit-ex"><div class="drag">≡</div><span><b>벤치프레스</b><small>3세트 · 8–12회</small></span><button>›</button></div><div class="edit-ex"><div class="drag">≡</div><span><b>인클라인 덤벨 프레스</b><small>3세트 · 8–12회</small></span><button>›</button></div><div class="edit-ex"><div class="drag">≡</div><span><b>숄더 프레스</b><small>3세트 · 8–12회</small></span><button>›</button></div>
-        <button class="secondary">+ 운동 추가</button><div class="wire-note">세트 수 + 목표 반복수는 루틴 처방 데이터로 유지.</div>
+        <label>루틴 이름</label><div class="input">가슴 · 어깨</div><label>운동 요일</label><div class="day-row"><button class="day selected">월</button><button class="day">화</button><button class="day">수</button><button class="day">목</button><button class="day">금</button><button class="day">토</button><button class="day">일</button></div>
+        <div class="section-label"><span>운동</span><small>드래그로 순서 변경</small></div><div class="edit-ex"><div class="drag">≡</div><span><b>벤치프레스</b><small>3세트 · 8–12회</small></span><button>›</button></div><div class="edit-ex"><div class="drag">≡</div><span><b>인클라인 덤벨 프레스</b><small>3세트 · 8–12회</small></span><button>›</button></div><div class="edit-ex"><div class="drag">≡</div><span><b>숄더 프레스</b><small>3세트 · 8–12회</small></span><button>›</button></div>
+        <button class="secondary">운동 추가</button>
       </div></article>
     </div>
   </section>
 
   <section id="exercise" class="section">
-    <header class="section-head"><div><div class="eyebrow review">04 · EXERCISE DB / GUIDE</div><h2>운동을 찾고, 이해하고, 필요한 경우 직접 추가</h2></div><p>운동 시범 비주얼은 성별과 분리된 중성 해부학 3D 아바타 방향.</p></header>
+    <header class="section-head"><div><div class="eyebrow review">04 · EXERCISE DB / GUIDE</div><h2>검색과 운동 정보도 기존 ExerciseItem 비례로</h2></div><p>검색 44px, filter 32px, exercise item 96px. 운동 비주얼은 중성 해부학 3D 방향.</p></header>
     <div class="rail">
-      <article class="case review"><div class="case-head"><strong>04A · 운동 선택</strong><em>REVIEW</em></div><div class="phone">
+      <article class="case review"><div class="case-head"><strong>04A · 운동 선택</strong><em>REVIEW</em></div><div class="phone long-phone">
         <div class="status"><span>9:41</span><span>● ● ●</span></div><div class="appbar back-title">‹ <span>운동 추가</span><button>완료</button></div>
         <div class="search">⌕ 운동 이름 검색</div><div class="filter-row"><button class="selected">전체</button><button>가슴</button><button>등</button><button>하체</button><button>어깨</button></div>
         <div class="exercise-pick"><div class="thumb anatomy">3D</div><span><b>벤치프레스</b><small>가슴 · 바벨</small></span><button>＋</button></div><div class="exercise-pick"><div class="thumb anatomy">3D</div><span><b>체스트 프레스 머신</b><small>가슴 · 머신</small></span><button>＋</button></div><div class="exercise-pick"><div class="thumb anatomy">3D</div><span><b>랫풀다운</b><small>등 · 케이블</small></span><button>＋</button></div><div class="exercise-pick"><div class="thumb anatomy">3D</div><span><b>레그프레스</b><small>하체 · 머신</small></span><button>＋</button></div>
-        <button class="secondary">원하는 운동이 없나요? 직접 만들기</button>
+        <button class="secondary">직접 운동 만들기</button>
       </div></article>
 
       <article class="case review"><div class="case-head"><strong>04B · 운동 상세</strong><em>REVIEW</em></div><div class="phone long-phone">
-        <div class="status"><span>9:41</span><span>● ● ●</span></div><div class="appbar back-title">‹ <span>운동 정보</span></div>
+        <div class="status"><span>9:41</span><span>● ● ●</span></div><div class="appbar back-title">‹ <span>운동 정보</span><span></span></div>
         <div class="demo-visual"><div class="anatomy-person">3D<br>ANATOMY</div><div class="muscle-chip">가슴 · 삼두</div></div>
         <div class="title-block"><h3>체스트 프레스 머신</h3><p>머신 · 가슴</p></div>
         <div class="guide-block"><b>동작 가이드</b><ol><li>등과 엉덩이를 패드에 붙입니다.</li><li>손잡이를 가슴 중앙 높이에 맞춥니다.</li><li>가슴을 유지한 채 앞으로 밀고 천천히 돌아옵니다.</li></ol></div>
         <div class="grip-card"><div><b>그립 확인</b><small>손 위치가 중요한 운동에서 제공</small></div><div class="grips"><span>┫ ┣<small>기본</small></span><span>┫━┣<small>넓게</small></span></div></div>
-        <div class="video-row"><div class="video-thumb">▶</div><span><b>YouTube 자세 가이드</b><small>검수된 영상 1개 · 외부 콘텐츠</small></span><strong>›</strong></div>
-        <div class="wire-note">자체 3D/해부학 비주얼 + 필요 시 YouTube. 실제 영상 정책은 별도 검증.</div>
+        <div class="video-row"><div class="video-thumb">▶</div><span><b>YouTube 자세 가이드</b><small>검수된 영상 · 외부 콘텐츠</small></span><strong>›</strong></div>
       </div></article>
 
       <article class="case review"><div class="case-head"><strong>04C · 직접 만든 운동</strong><em>REVIEW</em></div><div class="phone">
         <div class="status"><span>9:41</span><span>● ● ●</span></div><div class="appbar back-title">취소 <span>운동 만들기</span><button>저장</button></div>
-        <label>운동 이름</label><div class="input placeholder">예: 해머 체스트 프레스</div><label>장비</label><div class="select">머신 <b>›</b></div><label>주요 근육</label><div class="select">가슴 <b>›</b></div><label>보조 근육</label><div class="select">삼두 <b>›</b></div><label>기록 방식</label><div class="select">중량 + 횟수 <b>›</b></div>
-        <div class="wire-note">커스텀 운동도 독립 기록 히스토리를 가진 1급 운동 엔티티.</div>
+        <div class="profile-center"><div class="avatar">3D</div></div><label>운동명</label><div class="input placeholder">예: 해머 체스트 프레스</div><label>운동 설정</label><div class="select">무게 단위 <b>kg ›</b></div><div style="height:12px"></div><div class="select">기록 방식 <b>중량 + 횟수 ›</b></div>
+        <div class="wire-note">커스텀 운동도 독립 기록 히스토리를 가진 운동 엔티티.</div>
       </div></article>
     </div>
   </section>
 
   <section id="workout" class="section">
-    <header class="section-head"><div><div class="eyebrow confirmed">05 · ACTIVE WORKOUT</div><h2>운동 중에는 기록 속도와 유연성이 우선</h2></div><p>이 섹션은 기존 확정 정책이 많습니다. 세부 표현만 검토하면 됩니다.</p></header>
+    <header class="section-head"><div><div class="eyebrow confirmed">05 · ACTIVE WORKOUT</div><h2>운동 중 화면은 기존 Active Workout 비례를 우선</h2></div><p>진행률, ExerciseCard, 이전 기록, 휴식, 운동 추가를 한 흐름 안에서 검토합니다.</p></header>
     <div class="rail">
       <article class="case review"><div class="case-head"><strong>05A · 운동 기록</strong><em>REVIEW UI</em></div><div class="phone with-nav long-phone">
         <div class="status"><span>9:41</span><span>● ● ●</span></div><div class="workout-head"><div><small>18:24 진행 중</small><h3>하체 루틴</h3></div><button>운동 종료</button></div>
-        <div class="work-ex"><div class="work-ex-head"><span><b>레그 프레스</b><small>하체 · 머신</small></span><button>•••</button></div><div class="set-head"><span>세트</span><span>이전</span><span>kg</span><span>횟수</span><span></span></div><div class="set-row done"><b>1</b><small>100×12</small><i>105</i><i>12</i><strong>✓</strong></div><div class="set-row done"><b>2</b><small>100×12</small><i>105</i><i>11</i><strong>✓</strong></div><div class="set-row"><b>3</b><small>100×10</small><i>105</i><i>10</i><strong>○</strong></div><button class="add-set">+ 세트 추가</button></div>
-        <div class="rest-inline"><span><small>휴식</small><b>01:24</b></span><button>건너뛰기</button></div>
+        <div class="workout-progress"><div class="progress-info"><span>운동 진행률</span><span>42%</span></div><div class="progress-track"><i></i></div></div>
+        <div class="work-ex"><div class="work-ex-head"><span><b>레그 프레스</b><small>하체 · 머신</small></span><button>•••</button></div><div class="set-head"><span>세트</span><span>이전</span><span>kg</span><span>횟수</span><span></span></div><div class="set-row done"><b>1</b><small>100×12</small><i>105</i><i>12</i><strong>✓</strong></div><div class="set-row done"><b>2</b><small>100×12</small><i>105</i><i>11</i><strong>✓</strong></div><div class="set-row"><b>3</b><small>100×10</small><i>105</i><i>10</i><strong>○</strong></div><button class="add-set">세트 추가</button></div>
+        <div class="rest-inline"><span><small>휴식 타이머</small><b>01:24</b></span><button>건너뛰기</button></div>
         <div class="work-ex collapsed"><div class="work-ex-head"><span><b>레그 컬</b><small>이전 45kg × 12 · 11 · 10</small></span><button>•••</button></div></div><div class="work-ex collapsed"><div class="work-ex-head"><span><b>카프 레이즈</b><small>이전 60kg × 15 · 14 · 13</small></span><button>•••</button></div></div>
-        <button class="secondary">+ 운동 추가</button>
+        <button class="primary">운동 추가</button>
         <div class="bottom-nav"><span>⌂<small>홈</small></span><span>▤<small>루틴</small></span><span>⌁<small>분석</small></span><span>⚙<small>설정</small></span></div>
       </div></article>
 
@@ -172,59 +180,60 @@
       </div></article>
 
       <article class="case confirmed"><div class="case-head"><strong>05C · 운동 중 루틴 구조 변경</strong><em>CONFIRMED RULE</em></div><div class="phone">
-        <div class="status"><span>9:41</span><span>● ● ●</span></div><div class="appbar">운동 완료</div><div class="dialog-wrap"><div class="dialog"><h3>루틴도 변경할까요?</h3><p>이번 운동에서 하체 루틴 구성이 변경됐어요. 다음 운동에도 이 구성을 사용할까요?</p><button class="primary">하체 루틴에도 반영</button><button class="secondary">이번 운동에만 적용</button></div></div><div class="wire-note">중량/횟수 변경은 루틴 구조 변경이 아니므로 이 확인창을 띄우지 않음.</div>
+        <div class="status"><span>9:41</span><span>● ● ●</span></div><div class="appbar">운동 완료</div><div class="dialog-wrap"><div class="dialog"><h3>루틴도 변경할까요?</h3><p>이번 운동에서 하체 루틴 구성이 변경됐어요. 다음 운동에도 이 구성을 사용할까요?</p><button class="primary">하체 루틴에도 반영</button><button class="secondary">이번 운동에만 적용</button></div></div><div class="wire-note">중량/횟수 변경은 루틴 구조 변경이 아님.</div>
       </div></article>
 
       <article class="case confirmed"><div class="case-head"><strong>05D · 다른 루틴 시작</strong><em>CONFIRMED RULE</em></div><div class="phone">
-        <div class="status"><span>9:41</span><span>● ● ●</span></div><div class="appbar">루틴</div><div class="dialog-wrap"><div class="dialog"><h3>진행 중인 운동이 있어요</h3><p>하체 루틴을 어떻게 처리할까요?</p><button class="primary">지금까지 기록 저장하고 새 운동 시작</button><button class="secondary danger-text">기록 폐기하고 새 운동 시작</button><button class="text-btn">취소</button></div></div><div class="wire-note">동시에 2개 세션을 만들지 않음. 부분 저장은 실제 완료한 세트만 저장.</div>
+        <div class="status"><span>9:41</span><span>● ● ●</span></div><div class="appbar">루틴</div><div class="dialog-wrap"><div class="dialog"><h3>진행 중인 운동이 있어요</h3><p>하체 루틴을 어떻게 처리할까요?</p><button class="primary">지금까지 기록 저장하고 새 운동 시작</button><button class="secondary danger-text">기록 폐기하고 새 운동 시작</button><button class="text-btn">취소</button></div></div><div class="wire-note">부분 저장은 실제 완료한 세트만 저장.</div>
       </div></article>
     </div>
   </section>
 
   <section id="summary" class="section">
-    <header class="section-head"><div><div class="eyebrow review">06 · WORKOUT COMPLETE</div><h2>단순 완료가 아니라 “오늘 운동을 이해하는” 요약</h2></div><p>지표 종류와 우선순위는 아직 확정하지 않았습니다. 화면을 본 뒤 줄이거나 바꿉니다.</p></header>
+    <header class="section-head"><div><div class="eyebrow review">06 · WORKOUT COMPLETE</div><h2>기존 완료 화면의 metric card 비례로 확장안을 검토</h2></div><p>기존 154×94 metric card와 320px content width를 유지하면서 어떤 정보를 더 보여줄지 봅니다.</p></header>
     <div class="rail">
       <article class="case review"><div class="case-head"><strong>06A · 운동 완료 대시보드</strong><em>OPEN METRICS</em></div><div class="phone long-phone">
         <div class="status"><span>9:41</span><span>● ● ●</span></div><div class="complete-hero"><div class="check">✓</div><small>운동 완료</small><h3>하체 루틴</h3><p>9월 1일 화요일 · 58분</p></div>
-        <div class="metric-2"><div><b>19</b><small>완료 세트</small></div><div><b>12,480 kg</b><small>총 볼륨</small></div></div>
+        <div class="metric-2"><div><small>완료 세트</small><b>19</b></div><div><small>총 볼륨</small><b>12,480 kg</b></div></div>
         <div class="insight-card"><span><b>↑ 8%</b><small>지난 하체 운동보다 총 볼륨 증가</small></span><strong>좋은 흐름</strong></div>
-        <div class="section-label"><span>오늘의 부위</span><small>검토안</small></div><div class="muscle-bars"><div><span>대퇴사두</span><i><b style="width:82%"></b></i><strong>8세트</strong></div><div><span>둔근</span><i><b style="width:58%"></b></i><strong>5세트</strong></div><div><span>햄스트링</span><i><b style="width:64%"></b></i><strong>6세트</strong></div></div>
-        <div class="section-label"><span>기록</span><small>2개</small></div><div class="pr-row"><span>★ 레그 프레스</span><b>최고 볼륨</b></div><div class="pr-row"><span>★ 레그 컬</span><b>반복 PR</b></div>
-        <button class="primary">완료</button><div class="open-box"><b>OPEN</b><span>총 볼륨 / 근육 분포 / PR / 이전 대비 / 주간 누적 중 MVP에서 무엇까지 보여줄지.</span></div>
+        <div class="section-label"><span>오늘의 부위</span><small>검토안</small></div><div class="muscle-bars"><div><span>대퇴사두</span><i><b style="width:82%"></b></i><strong>8</strong></div><div><span>둔근</span><i><b style="width:58%"></b></i><strong>5</strong></div><div><span>햄스트링</span><i><b style="width:64%"></b></i><strong>6</strong></div></div>
+        <div class="section-label"><span>기록</span><small>2개</small></div><div class="pr-row"><span>레그 프레스</span><b>최고 볼륨</b></div><div class="pr-row"><span>레그 컬</span><b>반복 PR</b></div>
+        <button class="primary">완료</button><div class="open-box"><b>OPEN</b><span>총 볼륨 / 근육 분포 / PR / 이전 대비 중 MVP 범위.</span></div>
       </div></article>
 
       <article class="case review"><div class="case-head"><strong>06B · 부분 기록 완료</strong><em>REVIEW</em></div><div class="phone">
-        <div class="status"><span>9:41</span><span>● ● ●</span></div><div class="complete-hero"><div class="partial">◐</div><small>부분 기록 저장</small><h3>가슴 · 어깨</h3><p>계획한 운동을 모두 끝내지는 않았어요.</p></div><div class="metric-2"><div><b>7</b><small>완료 세트</small></div><div><b>3</b><small>수행 운동</small></div></div><div class="wire-note">실제로 완료한 운동/세트만 분석에 반영. 미수행 항목은 0으로 저장하지 않음.</div><button class="primary">기록 보기</button>
+        <div class="status"><span>9:41</span><span>● ● ●</span></div><div class="complete-hero"><div class="partial">◐</div><small>부분 기록 저장</small><h3>가슴 · 어깨</h3><p>계획한 운동을 모두 끝내지는 않았어요.</p></div><div class="metric-2"><div><small>완료 세트</small><b>7</b></div><div><small>수행 운동</small><b>3</b></div></div><div class="wire-note">실제 완료한 운동과 세트만 분석에 반영.</div><button class="primary">기록 보기</button>
       </div></article>
     </div>
   </section>
 
   <section id="analysis" class="section">
-    <header class="section-head"><div><div class="eyebrow review">07 · ANALYSIS / HISTORY</div><h2>데이터는 많이 보여주는 것보다 “읽히게”</h2></div><p>첫 출시 분석의 깊이는 이 화면을 보면서 정합니다. AI 해석은 아직 넣지 않습니다.</p></header>
+    <header class="section-head"><div><div class="eyebrow review">07 · ANALYSIS / HISTORY</div><h2>분석도 동일한 surface와 metric hierarchy로</h2></div><p>AI 해석은 아직 넣지 않고 기본 데이터 정보량만 검토합니다.</p></header>
     <div class="rail">
       <article class="case review"><div class="case-head"><strong>07A · 분석 홈</strong><em>OPEN</em></div><div class="phone with-nav long-phone">
-        <div class="status"><span>9:41</span><span>● ● ●</span></div><div class="page-title"><h3>분석</h3><button class="period">최근 4주⌄</button></div>
+        <div class="status"><span>9:41</span><span>● ● ●</span></div><div class="page-title"><h3>분석</h3><button class="period">최근 4주</button></div>
         <div class="analysis-summary"><small>최근 4주</small><h3>총 14회 운동</h3><div class="metric-row"><span><b>214</b><small>세트</small></span><span><b>132K</b><small>볼륨 kg</small></span><span><b>7</b><small>PR</small></span></div></div>
         <div class="chart-card"><div><b>주간 운동 볼륨</b><small>최근 4주</small></div><div class="bars"><i style="height:46%"></i><i style="height:70%"></i><i style="height:58%"></i><i style="height:86%"></i></div><div class="axis"><span>1주</span><span>2주</span><span>3주</span><span>이번 주</span></div></div>
         <div class="section-label"><span>부위별 세트</span><small>최근 4주</small></div><div class="muscle-bars"><div><span>가슴</span><i><b style="width:72%"></b></i><strong>34</strong></div><div><span>등</span><i><b style="width:84%"></b></i><strong>40</strong></div><div><span>하체</span><i><b style="width:90%"></b></i><strong>43</strong></div><div><span>어깨</span><i><b style="width:58%"></b></i><strong>28</strong></div></div>
-        <div class="section-label"><span>최근 운동 기록</span><small>전체 보기</small></div><div class="history-row"><div><b>하체 루틴</b><small>9월 1일 · 58분 · 19세트</small></div><strong>›</strong></div><div class="history-row"><div><b>가슴 · 어깨</b><small>8월 31일 · 52분 · 18세트</small></div><strong>›</strong></div>
+        <div class="section-label"><span>최근 운동 기록</span><small>전체 보기</small></div><div class="workout-row"><div><b>하체 루틴</b><small>9월 1일 · 58분 · 19세트</small></div><strong>›</strong></div><div class="workout-row"><div><b>가슴 · 어깨</b><small>8월 31일 · 52분 · 18세트</small></div><strong>›</strong></div>
         <div class="bottom-nav"><span>⌂<small>홈</small></span><span>▤<small>루틴</small></span><b>⌁<small>분석</small></b><span>⚙<small>설정</small></span></div>
       </div></article>
 
       <article class="case review"><div class="case-head"><strong>07B · 종목 분석</strong><em>REVIEW</em></div><div class="phone long-phone">
-        <div class="status"><span>9:41</span><span>● ● ●</span></div><div class="appbar back-title">‹ <span>종목 기록</span></div><div class="title-block"><h3>벤치프레스</h3><p>가슴 · 바벨</p></div><div class="metric-2"><div><b>85 kg</b><small>최고 중량</small></div><div><b>80 × 10</b><small>최근</small></div></div>
-        <div class="chart-card"><div><b>최고 수행 중량</b><small>최근 8회</small></div><div class="line-chart"><svg viewBox="0 0 280 100" aria-label="벤치프레스 최고 수행 중량 증가 추세"><polyline points="5,82 45,74 85,72 125,58 165,60 205,44 245,34 275,26" fill="none" stroke="currentColor" stroke-width="3"/><circle cx="275" cy="26" r="5" fill="currentColor"/></svg></div></div>
-        <div class="section-label"><span>최근 기록</span><small>세트 상세</small></div><div class="history-row"><div><b>8월 31일</b><small>80kg × 10 · 9 · 8</small></div><strong>›</strong></div><div class="history-row"><div><b>8월 26일</b><small>77.5kg × 10 · 10 · 9</small></div><strong>›</strong></div><div class="history-row"><div><b>8월 21일</b><small>77.5kg × 9 · 9 · 8</small></div><strong>›</strong></div>
+        <div class="status"><span>9:41</span><span>● ● ●</span></div><div class="appbar back-title">‹ <span>종목 기록</span><span></span></div><div class="title-block"><h3>벤치프레스</h3><p>가슴 · 바벨</p></div><div class="metric-2"><div><small>최고 중량</small><b>85 kg</b></div><div><small>최근</small><b>80 × 10</b></div></div>
+        <div class="chart-card"><div><b>최고 수행 중량</b><small>최근 8회</small></div><div class="line-chart"><svg viewBox="0 0 280 100" aria-label="벤치프레스 중량 증가 추세"><polyline points="5,82 45,74 85,72 125,58 165,60 205,44 245,34 275,26" fill="none" stroke="currentColor" stroke-width="3"/><circle cx="275" cy="26" r="5" fill="currentColor"/></svg></div></div>
+        <div class="section-label"><span>최근 기록</span><small>세트 상세</small></div><div class="workout-row"><div><b>8월 31일</b><small>80kg × 10 · 9 · 8</small></div><strong>›</strong></div><div class="workout-row"><div><b>8월 26일</b><small>77.5kg × 10 · 10 · 9</small></div><strong>›</strong></div>
       </div></article>
 
       <article class="case review"><div class="case-head"><strong>07C · 운동 기록 상세</strong><em>REVIEW</em></div><div class="phone">
-        <div class="status"><span>9:41</span><span>● ● ●</span></div><div class="appbar back-title">‹ <span>운동 기록</span><button>•••</button></div><div class="title-block"><h3>하체 루틴</h3><p>9월 1일 · 58분</p></div><div class="metric-2"><div><b>19</b><small>세트</small></div><div><b>12,480 kg</b><small>볼륨</small></div></div><div class="exercise-rows"><div><span><i>01</i><b>레그 프레스</b></span><strong>105×12 · 11 · 10</strong></div><div><span><i>02</i><b>레그 컬</b></span><strong>47.5×12 · 11 · 10</strong></div><div><span><i>03</i><b>카프 레이즈</b></span><strong>62.5×15 · 14 · 13</strong></div></div><div class="wire-note">과거 기록 수정/삭제 진입점은 ••• 안에 배치하는 검토안.</div>
+        <div class="status"><span>9:41</span><span>● ● ●</span></div><div class="appbar back-title">‹ <span>운동 기록</span><button>•••</button></div><div class="title-block"><h3>하체 루틴</h3><p>9월 1일 · 58분</p></div><div class="metric-2"><div><small>세트</small><b>19</b></div><div><small>볼륨</small><b>12,480 kg</b></div></div>
+        <div class="section-label"><span>수행 운동</span><small>3개</small></div><div class="exercise-rows"><div><span><i>01</i><b>레그 프레스</b></span><strong>105×12 · 11 · 10</strong></div><div><span><i>02</i><b>레그 컬</b></span><strong>47.5×12 · 11 · 10</strong></div><div><span><i>03</i><b>카프 레이즈</b></span><strong>62.5×15 · 14 · 13</strong></div></div>
       </div></article>
     </div>
   </section>
 
   <section id="settings" class="section">
-    <header class="section-head"><div><div class="eyebrow review">08 · SETTINGS</div><h2>운동 설정과 계정/프로필을 분리</h2></div><p>소셜을 사용하지 않아도 닉네임/프사 설정을 요구하지 않습니다.</p></header>
+    <header class="section-head"><div><div class="eyebrow review">08 · SETTINGS</div><h2>설정은 Figma list-row 체계로 단순하게</h2></div><p>프로필과 운동 설정, 계정/데이터를 분리합니다.</p></header>
     <div class="rail">
       <article class="case review"><div class="case-head"><strong>08A · 설정 홈</strong><em>REVIEW</em></div><div class="phone with-nav">
         <div class="status"><span>9:41</span><span>● ● ●</span></div><div class="page-title"><h3>설정</h3></div><div class="profile-row"><div class="avatar small">G</div><span><b>user_K7M2Q</b><small>프로필 보기 / 수정</small></span><strong>›</strong></div>
@@ -234,18 +243,18 @@
       </div></article>
 
       <article class="case review"><div class="case-head"><strong>08B · 프로필 설정</strong><em>REVIEW</em></div><div class="phone">
-        <div class="status"><span>9:41</span><span>● ● ●</span></div><div class="appbar back-title">‹ <span>프로필</span><button>저장</button></div><div class="profile-center"><div class="avatar editable">G<span>✎</span></div></div><label>닉네임</label><div class="input">user_K7M2Q</div><label>성별</label><div class="select">남성 <b>›</b></div><label>생년월일</label><div class="input">1999-01-01</div><div class="wire-note">닉네임/프사 변경은 선택사항. 운동 시범 3D 아바타와 프로필 사진은 연결하지 않음.</div>
+        <div class="status"><span>9:41</span><span>● ● ●</span></div><div class="appbar back-title">‹ <span>프로필</span><button>저장</button></div><div class="profile-center"><div class="avatar editable">G<span>✎</span></div></div><label>닉네임</label><div class="input">user_K7M2Q</div><label>성별</label><div class="select">남성 <b>›</b></div><label>생년월일</label><div class="input">1999-01-01</div><div class="wire-note">운동 시범 3D 아바타와 프로필 이미지는 연결하지 않음.</div>
       </div></article>
 
       <article class="case review"><div class="case-head"><strong>08C · 미래 기능 자리</strong><em>POST-MVP</em></div><div class="phone">
-        <div class="status"><span>9:41</span><span>● ● ●</span></div><div class="appbar">향후 확장</div><div class="future-card"><small>PERSONAL INTELLIGENCE</small><h3>내 기록을 바탕으로 한 제안</h3><p>중량 증가, 정체, 부위별 운동량 등을 “제안”만 하고 기록/루틴을 자동 변경하지 않습니다.</p></div><div class="future-card"><small>SOCIAL</small><h3>운동과 루틴 공유</h3><p>사진 · 좋아요 · 공개 루틴. 공개 여부는 사용자가 선택합니다.</p></div><div class="wire-note">첫 출시 UI가 아니라 장기 IA에서 자리를 잃지 않기 위한 구조 메모.</div>
+        <div class="status"><span>9:41</span><span>● ● ●</span></div><div class="appbar">향후 확장</div><div class="future-card"><small>PERSONAL INTELLIGENCE</small><h3>내 기록을 바탕으로 한 제안</h3><p>중량 증가, 정체, 부위별 운동량 등을 제안하되 기록이나 루틴을 자동 변경하지 않습니다.</p></div><div class="future-card"><small>SOCIAL</small><h3>운동과 루틴 공유</h3><p>사진 · 좋아요 · 공개 루틴. 공개 여부는 사용자가 선택합니다.</p></div><div class="wire-note">첫 출시 UI가 아니라 장기 IA 확장 메모.</div>
       </div></article>
     </div>
   </section>
 
   <section class="decision-board">
-    <div class="eyebrow open">NEXT REVIEW ORDER</div><h2>이제 화면을 보면서 아래 순서로 하나씩 결정하면 됩니다.</h2>
-    <ol><li><b>Home</b><span>루틴 없음 / 요일 미지정 / 요일 지정 상태의 우선순위</span></li><li><b>추천 루틴</b><span>카드 정보량, 상세 진입, 저장/시작 시점</span></li><li><b>루틴</b><span>목록·상세·생성 구조와 요일 설정</span></li><li><b>운동 DB</b><span>탐색·필터·3D/그립/영상 정보 구조</span></li><li><b>운동 중</b><span>확정 정책 위에서 실제 입력 UI 다듬기</span></li><li><b>완료/분석</b><span>MVP에 남길 지표와 정보량 결정</span></li><li><b>설정</b><span>프로필·운동·계정/데이터 범위 결정</span></li></ol>
+    <div class="eyebrow open">NEXT REVIEW ORDER</div><h2>이제 디자인 차이보다 제품 구조 자체를 보면서 결정하면 됩니다.</h2>
+    <ol><li><b>Home</b><span>루틴 없음 / 요일 미지정 / 요일 지정 상태</span></li><li><b>추천 루틴</b><span>카드 정보량과 시작/저장 시점</span></li><li><b>루틴</b><span>목록·상세·생성 구조</span></li><li><b>운동 DB</b><span>탐색·3D·그립·영상</span></li><li><b>운동 중</b><span>입력 UI와 휴식 흐름</span></li><li><b>완료/분석</b><span>MVP 지표 범위</span></li><li><b>설정</b><span>프로필·운동·계정 범위</span></li></ol>
   </section>
 </main>
 </body>
