@@ -20,6 +20,7 @@ Operating rule:
 - the incorrect scenario that required navigating back to Routine just to edit an already-active workout was discarded; active-workout edits belong in the active-workout flow itself
 - active-workout structural changes are now confirmed to prompt the user at workout completion about whether the saved routine should also be updated
 - partial-save behavior is confirmed to persist only work actually completed by the user; unperformed planned work is not saved as workout data
+- while a workout is active, the Routine tab remains browseable but saved-routine management is read-only until the active session ends
 
 ## Confirmed — Main navigation
 
@@ -226,9 +227,35 @@ If an active workout was not started from a saved routine, there is no source ro
 
 Gym conditions often force users to adapt a workout temporarily, but some live changes represent an intentional improvement they want to keep. Asking at the end preserves both flexibility and control without making the user manually repeat the same routine edit later.
 
-### Still to decide
+## Confirmed — Saved-routine management is locked during an active workout
 
-- Whether any other destinations/actions should be restricted while an active workout is running.
+While any workout session is active, the **Routine tab remains available for browsing**, but saved routine management is temporarily read-only.
+
+During an active workout:
+
+- routine list and routine detail may be viewed
+- saved routines cannot be created, edited, or deleted
+- changes needed for the workout being performed must be made directly in the active-workout screen
+- exercise add/remove/replace, exercise reorder, and planned set-count changes remain available inside the active session
+- starting another routine remains available through the already-confirmed active-session replacement dialog
+- Analysis and Settings remain independently navigable unless a later screen-specific decision explicitly requires protection for a destructive account action
+
+Suggested feedback when a user tries a blocked routine-management action:
+
+**운동 중에는 루틴을 변경할 수 없어요**
+
+`진행 중인 운동은 현재 운동 화면에서 조정할 수 있습니다. 저장된 루틴은 운동을 종료한 뒤 변경해 주세요.`
+
+### Rationale
+
+Technically, only the source routine would need conflict protection, but a source-only lock creates a conditional rule that is harder to understand and still leaves multiple saved-routine mutation paths active while workout state is changing. A temporary read-only Routine management state is stricter, but simpler and safer for the MVP:
+
+- active-session state has one clear owner
+- live workout changes cannot race or conflict with saved-routine edits
+- the end-of-workout `루틴에도 반영` dialog remains deterministic
+- users can still browse other tabs and inspect routines while training
+
+The tradeoff is that users cannot prepare or edit another saved routine during rest periods. For the MVP, this cost is accepted in favor of a simpler and less ambiguous active-workout state model.
 
 ## Planning sequence
 
