@@ -1,32 +1,22 @@
 # 23 RECOMMENDATION SYSTEM V1
 
-**Status:** IN PROGRESS
+**Status:** IN PROGRESS · SPLIT MAPPING ON HOLD
 **Updated:** 2026-09-01
 
 ## Purpose
 
-Define the recommendation system before continuing recommendation-flow wireframes. The system must make clear what user inputs are collected, what each input changes, how a reviewed routine template is selected, and what is shown to the user.
-
-This document is the working source for recommendation-system design. Screen-level recommendation UX should not outrun these rules.
+Define the recommendation system before recommendation-result UX is expanded. Screen-level UX must not outrun confirmed product rules.
 
 ## First-run eligibility gate — CONFIRMED
 
 Onboarding is shown only for a genuinely new Fitness account that has not completed first-run setup.
 
-Entry behavior:
-
 - new account, first successful login -> first-run onboarding
-- existing account that already completed onboarding -> skip onboarding and go directly to Home
-- reinstalling the app, signing in again, or signing in on another device does not make an existing account a new user
-- if first-run onboarding was started but not completed, the account should resume the incomplete onboarding rather than being treated as a fully onboarded returning user
+- existing account that already completed onboarding -> Home
+- reinstall / relogin / another device does not make an existing account new
+- incomplete onboarding resumes from persisted account/onboarding state
 
-The gate must therefore be based on persisted account/onboarding state, not only a local `first launch` flag on the device.
-
-First-run onboarding is the place where initial profile information and the recommendation/self-build entry decision are collected. Returning users should not be forced through those questions again merely because they logged out or changed devices.
-
-## Confirmed baseline
-
-The Product Owner selected the balanced recommendation-input direction as the current baseline.
+## Recommendation intake baseline — CONFIRMED
 
 Initial recommendation inputs:
 
@@ -35,63 +25,47 @@ Initial recommendation inputs:
 3. weekly training availability
 4. preferred workout duration
 
-Equipment inventory is not collected during the initial recommendation flow. The initial recommendation remains gym-first and assumes a broadly equipped commercial-gym context. Equipment mismatch is handled later through exercise substitution rather than a long first-run equipment questionnaire.
-
-This supersedes the earlier three-input onboarding assumption in DEC-009 for the current design pass. DEC-009's existing wording/choices for goal, weekly availability, and duration remain provisional until each input is reviewed again in this recommendation-system pass.
+Equipment inventory is not collected during initial intake. Initial recommendation is gym-first and assumes a broadly equipped commercial gym; equipment mismatch is handled later through substitution.
 
 ## Recommendation intake interaction — CONFIRMED
 
-The four recommendation inputs are **not** presented as four consecutive full-screen onboarding steps.
+The four recommendation inputs are **not four consecutive full-screen onboarding steps**.
 
-After the user chooses `추천 루틴 받기`, the app opens one `추천 루틴 설정` screen containing four rows:
+After `추천 루틴 받기`, the app opens one `추천 루틴 설정` screen with four rows:
 
 - 운동 목표
 - 운동 경력
 - 주당 가능일
 - 운동 시간
 
-Interaction rule:
+Interaction:
 
-- tapping a row opens a bottom sheet over the same screen
-- the user selects one value and returns to the same recommendation-settings screen
-- the selected value is shown inline in that row and can be changed again by tapping it
-- all four values remain visible together so the user can review the complete recommendation profile before submitting
-- `내 루틴 추천받기` remains disabled until all four required inputs have values
-- once all four values are present, the CTA becomes active and goes directly to the recommendation result
-- there is no additional confirmation screen between completed settings and the recommendation result
+- row tap -> bottom sheet
+- select value -> return to same settings screen
+- selected value appears inline and can be changed again
+- all four values remain visible together
+- `내 루틴 추천받기` is disabled until all four required values exist
+- once complete, CTA becomes active
 
-This replaces the earlier wireframe concept of `goal screen -> experience screen -> availability screen -> duration screen`.
+The sheet reuses the established Figma unit-settings pattern: dim overlay, 32px top corners, 20px horizontal padding, 52px option rows, standard 58px CTA.
 
-The bottom-sheet presentation should reuse the existing Figma design-system pattern represented by the unit-settings sheet: dimmed overlay, 32px top corners, 20px horizontal padding, 52px option rows, and the standard 58px CTA.
+## Training experience — CONFIRMED
 
-Why:
-
-- the four questions are independent inputs; one answer does not change which question is asked next
-- a four-screen wizard makes the intake feel longer than the actual information burden
-- the single settings screen gives the user immediate visibility into what is still missing and makes corrections cheaper
-
-## Training-experience input — CONFIRMED
-
-User-facing question should refer to the period of **consistent resistance-training experience**, not simply time since the user first visited a gym.
-
-Confirmed options:
+User-facing options:
 
 1. `처음이에요`
 2. `6개월 미만이에요`
 3. `6개월~1년 미만이에요`
 4. `1년 이상이에요`
 
-Product intent:
+Intent:
 
-- the first year is segmented more closely because this is where beginner onboarding and exercise-complexity differences are most likely to matter
-- `1년 이상` is intentionally kept as one broad bucket for MVP rather than creating 1–3 year / 3+ year tiers without a clear program-level need
-- training experience is a supporting matcher signal, not a complete measure of skill or strength
-- the app must not assume that everyone in `1년 이상` is an advanced lifter
-- exact downstream effects on exercise complexity, volume, progression expectations, and technique guidance still need to be defined before implementation
+- segment the first year more closely
+- keep `1년 이상` broad for MVP
+- experience is a supporting signal, not a complete skill/strength classification
+- `1년 이상` does not automatically mean advanced lifter
 
 ### Experience-based weekly frequency ceiling — CONFIRMED
-
-Training experience sets a ceiling on the number of prescribed resistance-training sessions per week:
 
 | Training experience | Maximum prescribed resistance-training sessions / week |
 |---|---:|
@@ -100,117 +74,82 @@ Training experience sets a ceiling on the number of prescribed resistance-traini
 | `6개월~1년 미만이에요` | 5 |
 | `1년 이상이에요` | 6 |
 
-Baseline rule:
+Baseline ceiling:
 
 `frequency ceiling = min(user weekly availability, experience cap)`
 
-Examples:
+This is a ceiling, not a requirement to always prescribe the ceiling.
 
-- `처음이에요` + `7일` available -> no more than 3 prescribed resistance-training sessions
-- `6개월 미만이에요` + `3일` available -> no more than 3 prescribed sessions
-- `1년 이상이에요` + `6일` available -> no more than 6 prescribed sessions
+## Weekly availability — CONFIRMED
 
-This is a ceiling, not a requirement to always prescribe the ceiling. Goal, workout-duration budget, recovery burden, and later template rules may justify fewer sessions, but never more than both the user's selected availability and the experience cap.
-
-## Weekly-availability input — CONFIRMED
-
-User-facing meaning:
+Question meaning:
 
 `일주일에 현실적으로 최대 며칠까지 운동할 수 있나요?`
 
-Confirmed options:
+Options:
 
-- `1일`
-- `2일`
-- `3일`
-- `4일`
-- `5일`
-- `6일`
-- `7일`
+`1일 / 2일 / 3일 / 4일 / 5일 / 6일 / 7일`
 
-Matcher semantics:
+Semantics:
 
-- the selected value is the user's **maximum realistic weekly availability**, not a promise that the program must prescribe exactly that many resistance-training sessions
-- the matcher may prescribe fewer weekly sessions when that is more appropriate for the user's goal, experience, session duration, or recovery burden
-- the matcher must not prescribe more weekly training days than the selected maximum
-- this onboarding input captures the number of available days only; it does not require the user to choose specific weekdays at this stage
-- weekday assignment remains optional and can be configured later under the existing scheduling policy
-- experience-based frequency ceilings apply before a final routine split is selected
+- selected value = maximum realistic weekly availability
+- it is not the exact number the app must prescribe
+- prescribed training days must never exceed the selected maximum
+- no specific weekday selection is required in this onboarding step
+- weekday scheduling remains optional later
 
-Still open within weekly availability:
+## Demographic profile data — SEPARATE FROM MATCHER
 
-- prescribed frequency -> split / routine-count mapping
-- whether some goal / workout-duration combinations should prescribe fewer sessions than the experience/availability ceiling
+Sex/gender and age belong to broader new-user profile onboarding for potential future audience segmentation / advertising use.
 
-## Demographic profile data — separate from recommendation matching
+- they are not recommendation-matcher inputs at this stage
+- they are not used to guess starting working weight
+- returning users are not asked again merely because they relogin
+- exact field shape / consent / age-floor / ad-data treatment remain open before implementation or personalized-ad activation
 
-The Product Owner wants to collect sex/gender and age information for potential future audience segmentation / targeted advertising.
+## Current wireframe scope — CONFIRMED
 
-Current product direction:
+Canonical wireframe currently visualizes only the onboarding flow:
 
-- sex/gender and age are **profile / monetization data**, not recommendation-matching inputs
-- they must not be used to guess a starting working weight
-- they should not be presented as though they are required to generate a better workout recommendation unless a later product rule gives them a real recommendation effect
-- sex/gender and age collection belongs in the new-user onboarding/profile setup path, not in returning-user login
-- collection timing within first-run onboarding, exact field shape, consent copy, and whether the fields are optional are still to be finalized before implementation
-- because future personalized advertising may use account-linked demographic information, privacy disclosure, consent/opt-out behavior, app-store data-safety declarations, and age-treatment rules must be defined before ad activation
-- the age-floor / minor-user policy is still open and must be resolved before demographic data is used for personalized advertising
+`로그인 -> 기본정보 -> 시작 방식 -> 추천 설정 1화면 + bottom sheets -> 입력 완료 CTA 상태`
 
-Preferred product separation:
+It now includes the confirmed training-experience options and weekly-availability 1–7 day sheet.
 
-`Recommendation inputs` = goal / training experience / weekly availability / workout duration
+It intentionally does **not** visualize:
 
-`Profile demographics` = sex/gender / age information
+- recommendation-result details
+- prescribed frequency -> routine split / routine count
+- unconfirmed goal options as final
+- unconfirmed workout-duration options as final
 
-The two sets may appear within the broader first-run experience, but they should remain conceptually and technically separate so that advertising/profile collection does not distort the recommendation algorithm.
+## Product Owner hold — 2026-09-01
 
-## Why this baseline
+`prescribed weekly frequency -> routine split / routine count` mapping is **ON HOLD** by Product Owner request.
 
-Compared with the earlier three-input version, training experience gives the matcher one additional signal that can materially affect exercise complexity, progression expectations, and program volume while keeping onboarding short.
+Do not continue or wireframe the previously discussed 1–6 day split table until Product Owner explicitly resumes this decision.
 
-Compared with a detailed Hevy/Fitbod-style intake, this avoids asking first-run users to inventory equipment, preferred body parts, detailed schedule, body measurements, and other fields before they can see a useful recommendation.
+The already-confirmed experience-based frequency ceilings remain recorded policy; only the downstream split mapping is paused.
 
-## Current recommendation-system design order
+## Remaining open decisions
 
-Review and confirm one item at a time:
+- exact sex/gender and age field shape / consent treatment
+- final goal options and program effects
+- other downstream effects of experience bands beyond weekly ceiling
+- prescribed frequency -> routine split / routine count **ON HOLD**
+- workout duration -> exercise/set budget
+- recommendation output contract
+- deterministic template matching / tie-break rules
+- substitution rules
+- recommendation-result presentation
+- first-workout handoff / load calibration
 
-1. Goal — question wording, choices, and exactly what each choice changes in the program.
-2. Training experience — bands and weekly frequency ceiling confirmed; other downstream effects still to define.
-3. Weekly availability — input semantics/options and experience-based ceiling confirmed; split mapping still to define.
-4. Workout duration — session-time buckets and how they constrain exercise/set volume.
-5. Recommendation output contract — routine count, exercise order, sets, rep ranges, rest, and what is intentionally excluded.
-6. Template matching — deterministic matching/tie-breaking and reviewed template coverage.
-7. Equipment mismatch/substitution rules.
-8. Recommendation result UX.
-9. First workout handoff and first-load calibration.
+## Constraints retained
 
-Demographic-profile collection is tracked separately from this recommendation logic and should be finalized before implementation / advertising activation.
-
-## Constraints retained from existing decisions
-
-- Recommendation and self-build remain equal first-run entry modes.
-- Recommendations use curated, QA-reviewed templates rather than free-form LLM generation.
-- Weekday assignment remains optional.
-- Initial recommendation remains gym-first.
-- Starting working weight is not guessed from sex/gender; first-load calibration happens inside the actual workout.
-- Recommended exercises should favor common, understandable gym movements and support practical substitutions.
-- Accepting the final recommended routine should eventually converge into the same routine/workout/history system used by self-built routines.
-
-## Open decision now
-
-### Prescribed frequency -> routine split
-
-Next decision: define the default routine split / routine count for prescribed weekly frequencies from 1 to 6 sessions.
-
-The split should be simple enough for a curated-template system and should not create unnecessary variants without a meaningful program-level difference.
-
-### Goal input — still open
-
-Candidate user-facing goals discussed so far:
-
-- 근육 증가
-- 근력 향상
-- 체지방 감량
-- 건강·체력 향상
-
-These remain a working proposal until the Product Owner explicitly confirms the final set and their downstream program effects.
+- recommendation and self-build remain equal first-run entry modes
+- recommendation uses curated / QA-reviewed templates, not free-form LLM generation
+- weekday assignment remains optional
+- initial recommendation remains gym-first
+- starting working weight is not guessed from sex/gender
+- first-load calibration happens inside the actual workout
+- recommendations should favor common, understandable gym movements and practical substitutions
+- accepted recommended routines converge into the same routine/workout/history system as self-built routines
