@@ -87,11 +87,38 @@ Home에서는:
 Current canonical review wireframe:
 
 - source: `product/wireframe/index.html`
+- stylesheet: `product/wireframe/style.css`
 - guide: `product/wireframe/README.md`
-- version: `2026-09-01.12`
+- version: `2026-09-01.13`
 - production: `https://liftly-wireframe.vercel.app`
 
 Product Owner 요청에 따라 Home부터 나머지 주요 화면까지 먼저 전체적으로 시각화했다.
+
+### Figma design-system sync
+
+v13은 실제 canonical Figma 파일의 metadata / variables / authored screen structure를 직접 확인해 visual language를 동기화한 review artifact다.
+
+대표 적용 기준:
+
+- 360px screen / 20px side padding / 320px content
+- SUIT typography
+- `bg/default #0A0A0C`
+- `bg/surface #161618`
+- `bg/elevated #1E1E22`
+- `brand/primary #34D399`
+- common radius 12
+- Nav Header 56
+- CTA 320×58
+- Input 320×52
+- Home hero 320×128
+- RoutineCard 320×124
+- ExerciseItem 320×96
+- Bottom App Bar 360×78
+- Completion primary metrics 154×94
+
+정확한 inspected baseline과 제한사항은 `product/wireframe/README.md`에 기록한다.
+
+중요: 디자인시스템 sync는 REVIEW/OPEN 제품 가설을 확정시키지 않는다.
 
 현재 visualized areas:
 - Account / Onboarding
@@ -130,6 +157,7 @@ REVIEW/OPEN 항목은 구현 요구사항이 아니며 Product Owner 승인 전�
 ## No-drift rule
 
 - GitHub가 Source of Truth
+- Figma는 visual/design-system reference
 - Figma/wireframe이 최신 제품 결정을 역으로 덮어쓰지 않음
 - superseded recommendation V1을 새 기능의 기본값으로 재사용하지 않음
 - REVIEW/OPEN wireframe 가설을 구현 Task로 자동 변환하지 않음
