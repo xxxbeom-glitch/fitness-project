@@ -70,6 +70,25 @@ Why:
 - a four-screen wizard makes the intake feel longer than the actual information burden
 - the single settings screen gives the user immediate visibility into what is still missing and makes corrections cheaper
 
+## Training-experience input — CONFIRMED
+
+User-facing question should refer to the period of **consistent resistance-training experience**, not simply time since the user first visited a gym.
+
+Confirmed options:
+
+1. `처음이에요`
+2. `6개월 미만이에요`
+3. `6개월~1년 미만이에요`
+4. `1년 이상이에요`
+
+Product intent:
+
+- the first year is segmented more closely because this is where beginner onboarding and exercise-complexity differences are most likely to matter
+- `1년 이상` is intentionally kept as one broad bucket for MVP rather than creating 1–3 year / 3+ year tiers without a clear program-level need
+- training experience is a supporting matcher signal, not a complete measure of skill or strength
+- the app must not assume that everyone in `1년 이상` is an advanced lifter
+- exact downstream effects on exercise complexity, volume, progression expectations, and technique guidance still need to be defined before implementation
+
 ## Demographic profile data — separate from recommendation matching
 
 The Product Owner wants to collect sex/gender and age information for potential future audience segmentation / targeted advertising.
@@ -103,7 +122,7 @@ Compared with a detailed Hevy/Fitbod-style intake, this avoids asking first-run 
 Review and confirm one item at a time:
 
 1. Goal — question wording, choices, and exactly what each choice changes in the program.
-2. Training experience — bands/wording and exactly what it changes.
+2. Training experience — bands confirmed; downstream effects still to define.
 3. Weekly availability — meaning of the selected days and frequency/split mapping rules.
 4. Workout duration — session-time buckets and how they constrain exercise/set volume.
 5. Recommendation output contract — routine count, exercise order, sets, rep ranges, rest, and what is intentionally excluded.
@@ -126,14 +145,24 @@ Demographic-profile collection is tracked separately from this recommendation lo
 
 ## Open decision now
 
-### Goal input
+### Weekly availability
 
-Next decision: define the goal question and choices based on whether each choice causes a meaningful and defensible change in the generated resistance-training program.
+Next decision: define exactly what `주당 가능일` means to the matcher.
 
-The prior choices were:
+The key distinction to resolve is whether a selected value means:
 
+- the exact number of resistance-training sessions the app must prescribe, or
+- the maximum / realistic number of days the user can make available, allowing the matcher to prescribe fewer sessions when that is more appropriate for the user's goal and experience.
+
+The existing product direction favors the second interpretation, but the mapping rules are not yet finalized.
+
+### Goal input — still open
+
+Candidate user-facing goals discussed so far:
+
+- 근육 증가
+- 근력 향상
 - 체지방 감량
-- 근육량 증가
-- 체력 향상
+- 건강·체력 향상
 
-These are not automatically retained. They must be re-evaluated before wireframing because the recommendation system should not collect a field unless its answer has a clear downstream effect.
+These remain a working proposal until the Product Owner explicitly confirms the final set and their downstream program effects.
