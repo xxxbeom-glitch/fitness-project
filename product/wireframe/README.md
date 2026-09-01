@@ -1,0 +1,92 @@
+# LIFTLY Cumulative Wireframe
+
+**Status:** CANONICAL
+**Wireframe version:** `2026-09-01.1`
+**Updated:** 2026-09-01
+
+## Canonical source
+
+`product/wireframe/index.html`
+
+이 파일이 웹 와이어프레임의 원본이다. 로컬 임시 파일, 채팅에 생성된 HTML, 이전 Vercel deployment HTML은 원본이 아니다.
+
+## Canonical runtime
+
+- Production URL: `https://liftly-wireframe.vercel.app`
+- Vercel project: `liftly-wireframe`
+- Vercel project ID: `prj_w7P1KrlqbzDq9dBQ0UcFh2VuQipG`
+- Vercel team ID: `team_cAq2nylL00z8u39kpinhZXQa`
+
+Machine-readable binding: `product/wireframe/PROJECT_BINDING.json`
+
+## Canonical Figma
+
+`https://www.figma.com/design/W3lZurXCXbThP67rF2xk2b/LIFTLY_%EC%B5%9C%EC%A2%85?node-id=0-1&t=59Hp4z7hcHf5nNL5-1`
+
+현재 웹 와이어프레임 공통 스타일은 Figma의 실제 design-system token/pattern을 최대한 따른다.
+
+현재 확인된 주요 visual baseline:
+
+- font: SUIT
+- bg/default: `#0A0A0C`
+- bg/surface: `#161618`
+- bg/elevated: `#1E1E22`
+- border: `#232326`
+- text/primary: `#F0F0F2`
+- text/secondary: `#8E8E93`
+- brand/primary: `#34D399`
+- standard side padding: `20px`
+- standard card/input radius: `12px`
+- large card radius: `16px`
+- standard CTA height: `58px`
+- bottom-sheet top radius: `32px`
+- bottom-sheet option row: `52px`
+
+## Mandatory update sequence
+
+와이어프레임을 수정할 때는 아래 순서를 바꾸지 않는다.
+
+1. 관련 GitHub Decision / planning 문서를 확인한다.
+2. `product/wireframe/index.html`을 수정한다.
+3. HTML에 `CANONICAL_WIREFRAME_VERSION` marker를 갱신한다.
+4. source validation을 수행한다.
+5. GitHub에 source를 commit한다.
+6. **동일 Vercel project** `liftly-wireframe`에 production deploy한다.
+7. `https://liftly-wireframe.vercel.app`을 read-back 한다.
+8. HTTP 200 + 새 version marker + 핵심 화면 문자열을 확인한다.
+9. 검증이 끝난 뒤 Product Owner에게 링크를 전달한다.
+
+`repo updated != runtime deployed`이며, 둘 다 확인하기 전에는 완료라고 하지 않는다.
+
+## Source validation gate
+
+Production deploy 전 최소 확인:
+
+- `index.html`이 존재함
+- `CANONICAL_WIREFRAME_VERSION` marker가 존재함
+- HTML/inline JavaScript syntax가 유효함
+- 예전 Vercel deployment hostname을 asset/script dependency로 참조하지 않음
+- `DecompressionStream` bootstrap 같은 임시 렌더링 우회가 없음
+- production을 구성하는 핵심 CSS/JS가 이전 deployment URL에 의존하지 않음
+- 신규 변경이 기존 확정 화면/탭을 이유 없이 제거하지 않음
+
+## Runtime validation gate
+
+Deploy 후 최소 확인:
+
+- Vercel deployment state = `READY`
+- canonical alias = `liftly-wireframe.vercel.app`
+- canonical URL HTTP status = `200`
+- response body 안에 최신 `CANONICAL_WIREFRAME_VERSION`가 있음
+- response body 안에 현재 작업 화면의 대표 문자열이 있음
+
+실패하면 새 임시 URL을 사용자에게 던지지 말고 같은 source/project를 수정해서 다시 검증한다.
+
+## Stability rules
+
+- Product Owner-facing wireframe URL은 하나만 유지한다.
+- 폐기된 비교안은 확정 후 source에서 제거한다.
+- 아직 검토 중인 안은 `검토안` 또는 `보류`로 명시한다.
+- Figma를 그대로 복제하는 것이 목적이 아니라, UX 검토용 구조를 Figma visual language로 표현한다.
+- 제품 정책을 와이어프레임이 임의로 바꾸지 않는다.
+- production 장애 회피를 위해 임시 deployment 조각을 서로 참조하는 구조를 만들지 않는다.
