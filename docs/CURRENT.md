@@ -55,6 +55,14 @@ Rows:
 
 Each row opens a bottom sheet. All four values remain visible together and editable. `내 루틴 추천받기` stays disabled until all four are populated.
 
+### Confirmed goal choices
+
+- `근육 증가`
+- `체지방 감량`
+- `건강·체력 향상`
+
+`근력 향상` is not a separate first-run goal. Strength progression is handled later through load/repetition history and progression behavior. This is an MVP taxonomy simplification, not a claim that hypertrophy and strength programming are identical.
+
 ### Confirmed training-experience choices
 
 - `처음이에요`
@@ -132,6 +140,9 @@ The current wireframe intentionally visualizes **onboarding only**:
 - confirmed workout-duration `30 / 45 / 60 / 90분 이상` bottom sheet
 - completed-input CTA state
 
+Goal taxonomy is now confirmed in product policy and should be reflected in the next wireframe update:
+- `근육 증가 / 체지방 감량 / 건강·체력 향상`
+
 It intentionally does not show recommendation-result details or routine-split mapping yet.
 
 Canonical Figma:
@@ -140,7 +151,7 @@ Canonical Figma:
 ## Still open, but not automatically continued
 
 - sex/gender and age exact field shape / consent treatment
-- final goal options and program effects
+- exact program effects of each confirmed goal
 - workout-duration -> exact exercise/set budget
 - other experience effects beyond frequency ceiling
 - split/routine-count mapping — **ON HOLD**
