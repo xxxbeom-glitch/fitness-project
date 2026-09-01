@@ -5,7 +5,7 @@
 
 이 폴더는 Fitness Project의 **기획·UX·와이어프레임 작업 진입점**이다.
 
-중요: 이 폴더가 기존 `docs/`의 정책/Decision을 복제해서 별도 Source of Truth를 만드는 것은 아니다. 제품 정책과 결정의 최종 권위는 기존 GitHub 문서에 있고, 이 Hub는 그 문서들과 와이어프레임/Vercel/Figma를 한곳에서 연결한다.
+중요: 이 폴더가 기존 `docs/`의 정책/Decision을 복제해서 별도 Source of Truth를 만드는 것은 아니다. 제품 정책과 결정의 최종 권위는 기존 GitHub 문서에 있고, 이 Hub는 그 문서들과 와이어프레임/Vercel/Figma를 연결한다.
 
 ## 작업 시작 규칙
 
@@ -43,7 +43,7 @@
 
 `https://www.figma.com/design/W3lZurXCXbThP67rF2xk2b/LIFTLY_%EC%B5%9C%EC%A2%85?node-id=0-1&t=59Hp4z7hcHf5nNL5-1`
 
-Figma는 시각 디자인 기준이다. 제품 정책/UX 의미가 GitHub의 확정 Decision과 충돌하면 GitHub가 우선한다.
+Figma는 시각 디자인 기준이다. 제품 정책/UX 의미가 GitHub 확정 Decision과 충돌하면 GitHub가 우선한다.
 
 ### Cumulative wireframe
 
@@ -51,88 +51,85 @@ Figma는 시각 디자인 기준이다. 제품 정책/UX 의미가 GitHub의 확
 
 Product Owner에게 보여주는 누적 웹 와이어프레임은 이 URL 하나만 사용한다.
 
-Current wireframe version: `2026-09-01.7`
+Current wireframe version: `2026-09-01.8`
 
 ## Onboarding planning snapshot — BASELINE COMPLETE
-
-현재 확정/기준안:
 
 - 인증 필요
 - 신규 계정 최초 로그인만 onboarding 진행
 - 기존 계정 재로그인 / 재설치 / 다른 기기 로그인은 onboarding을 건너뛰고 Home
-- 미완료 onboarding은 계정에 저장된 중단 지점에서 재개
-- 신규 onboarding 기본정보는 `성별 + 생년월일`
-- 성별 선택지는 `남성 / 여성`만 제공하며 `응답 안 함`은 두지 않음
-- 성별 UI는 기존 52px 높이를 유지한 **2등분 직접 선택 버튼**
-- 생년월일은 화살표 없는 **텍스트필드**, placeholder/example `1999-01-01`, 기본 형식 의도 `YYYY-MM-DD`
-- 나이/연령대를 직접 받지 않고 실제 생년월일을 저장
+- 미완료 onboarding은 저장된 중단 지점에서 재개
+- 기본정보는 `성별 + 생년월일`
+- 성별 `남성 / 여성`, `응답 안 함` 없음
+- 성별 UI는 52px 높이 2등분 직접 선택 버튼
+- 생년월일은 화살표 없는 텍스트필드, placeholder `1999-01-01`
 - 성별·생년월일은 recommendation matcher와 분리
-- 첫 시작 방식은 `추천 루틴 받기 / 내 루틴 직접 만들기` 동등한 2개 경로
+- 시작 방식은 `추천 루틴 받기 / 내 루틴 직접 만들기` 동등한 2개 경로
 - 추천 입력은 `운동 목표 / 운동 경력 / 주당 가능일 / 운동 시간`
-- 추천 4개 입력은 **추천 설정 한 화면 + 항목별 bottom sheet**
-- 운동 목표: `근육 증가 / 체지방 감량 / 건강·체력 향상`
-- 운동 경력: `처음이에요 / 6개월 미만이에요 / 6개월~1년 미만이에요 / 1년 이상이에요`
-- 주당 가능일: `1일`~`7일`, 현실적으로 확보 가능한 최대 일수
-- 운동 시간: `30분 / 45분 / 60분 / 90분 이상`, 세트 간 휴식 포함 / 별도 유산소 제외 최대 세션 시간 예산
-- 경험 기반 주간 처방 ceiling `3 / 4 / 5 / 6회`
-- **prescribed frequency -> routine split / routine count 매핑은 Product Owner가 현재 보류함**
+- 추천 입력은 한 화면 list + bottom sheet 구조
+- 목표: `근육 증가 / 체지방 감량 / 건강·체력 향상`
+- 경력: `처음이에요 / 6개월 미만이에요 / 6개월~1년 미만이에요 / 1년 이상이에요`
+- 주당 가능일: `1일`~`7일`, 현실적인 최대 일수
+- 운동 시간: `30분 / 45분 / 60분 / 90분 이상`, 최대 웨이트 세션 시간 예산
 - 장비 inventory는 초기 추천 설문에서 제외
-- 초기 추천은 일반적인 상업 헬스장 환경을 가정하고 장비 불일치는 대체운동으로 처리
-- 추천은 자유 생성 LLM보다 curated / QA-reviewed template matching을 우선
-- 시작 중량은 성별/생년월일로 고정 추정하지 않고 첫 실제 workout에서 calibration
+- 초기 추천은 상업 헬스장 환경을 가정하고 장비 불일치는 대체운동으로 처리
+- 추천은 curated / QA-reviewed template matching, free-form LLM generation 아님
+- 시작 중량은 성별/생년월일로 추정하지 않고 첫 실제 workout에서 calibration
 
-### Deferred final onboarding policy pass
+## Recommendation result — CURRENT FOCUS
 
-아래는 구현/출시 전 마지막 onboarding 정책 패스에서 함께 결정한다.
+Product Owner가 2026-09-01에 다음 방향을 승인했다.
+
+`추천 설정 완료 -> 추천 결과 전용 화면 -> 3개 후보 카드 캐러셀 -> 이 루틴으로 시작하기 -> 선택 프로그램 저장 -> Home`
+
+Current baseline:
+
+- 결과 화면은 onboarding과 normal Home UI와 다른 전용 visual state
+- 선택 전에는 추천 프로그램을 `내 루틴`에 저장하지 않음
+- normal bottom navigation 없이 후보 선택에 집중
+- horizontal card carousel
+- 세 후보는 `기본형 / 간결형 / 볼륨형`
+- `기본형`은 provisional `가장 추천` treatment 가능
+- 세 후보는 `초급 / 중급 / 고급`이 아님
+- 모두 같은 사용자의 경력/시간/제약 범위 안에서 pre-filter
+- CTA `이 루틴으로 시작하기`는 active card에 적용
+
+Current wireframe은 `주 3일`을 카드 구조 설명용 예시로 사용한다. 이는 실제 frequency/split 정책 확정이 아니다.
+
+## Explicit hold
+
+다음은 Product Owner 요청으로 계속 보류한다.
+
+- prescribed weekly frequency -> routine split / routine count mapping
+- previously discussed 1–6 day split table
+
+이 보류를 추천 결과 UI 예시가 우회해서 확정하지 않는다.
+
+## Deferred final onboarding policy pass
+
+구현/출시 전 마지막 onboarding 정책 패스에서 결정:
 
 - 최소 가입 연령
 - 이용약관 acknowledgement 위치
 - 개인정보처리방침 / 개인정보 수집 고지 위치
-- Google/Kakao provider consent와 Fitness 자체 약관/개인정보 고지의 최종 관계
-- 기본정보 화면에 법적 고지를 통합할지, 별도 confirmation state가 필요한지
+- Google/Kakao provider consent와 Fitness 자체 고지의 최종 관계
+- 기본정보 화면 통합 vs 별도 confirmation state
 
-현재 방향성은 별도 약관 화면을 불필요하게 추가하지 않고 기본정보 단계에 자연스럽게 통합할 수 있는지 우선 검토하는 것이지만, 아직 최종 정책으로 고정하지 않는다.
+## Next planning decision
 
-## Current planning focus — Home default state
+현재 recommendation-result wireframe을 검토한 뒤:
 
-Onboarding 다음 기획 영역은 **활성 운동이 없는 Home 기본 상태**다.
+**`기본형 / 간결형 / 볼륨형`을 실제 program variable에서 무엇으로 구분할지**를 결정한다.
 
-이미 확정되어 다시 열지 않는 것:
-
-- bottom nav `홈 / 루틴 / 분석 / 설정`
-- 운동 진행 중이면 Home에 active-workout return state 노출
-- active-workout return state는 Home에만 노출
-
-Canonical wireframe v`2026-09-01.7`에는 아직 확정하지 않은 Home 검토안 네 상태를 추가했다.
-
-1. 추천 루틴 있음 + 요일 스케줄 없음 -> `다음 운동` 중심 안
-2. 요일 스케줄 있음 -> `오늘의 운동` 중심 안
-3. 직접 만든 독립 루틴만 있음 -> 앱이 다음 운동을 임의 지정하지 않고 `내 루틴` 빠른 시작 중심 안
-4. 루틴 없음 -> `추천 루틴 받기 / 직접 루틴 만들기` 동등한 empty-state 안
-
-이 네 상태는 **Product Owner 논의를 위한 review proposal**이며 아직 Screen Decision/제품 정책이 아니다.
-
-추천 결과 UX는 prescribed frequency -> split mapping이 현재 보류 중이므로 억지로 먼저 진행하지 않는다.
-
-## Product Owner visual review log
-
-- 2026-09-01: 신규 사용자 온보딩의 큰 구조 승인
-- 2026-09-01: 추천 입력을 한 화면 리스트 + bottom sheet로 승인
-- 2026-09-01: 경력 / 주당 가능일 / 운동 시간 / 운동 목표 선택지 확정
-- 2026-09-01: 기본정보 `성별(남성/여성) + 생년월일` 및 입력 UI 확정
-- 2026-09-01: onboarding 핵심 UX는 이 수준에서 닫고 약관/개인정보/최소연령은 마지막 정책 패스로 미룸
-- 2026-09-01: routine split 매핑 보류
-- 2026-09-01: Home default-state 논의를 위해 4-state review wireframe 추가 — **아직 미확정**
+그 다음 Home default-state 기획으로 돌아간다.
 
 ## No-drift rule
 
-앞으로 기획/와이어프레임 작업에서 다음을 금지한다.
+- 대화 중 임시 HTML을 새로운 기준본처럼 사용하지 않음
+- production deployment HTML을 source로 역복사하지 않음
+- 별도 Product Owner-facing Vercel URL을 만들지 않음
+- 임시 wrapper / compression bootstrap / 이전 deployment URL dependency 금지
+- Figma 확인 없이 공통 스타일 임의 reset 금지
+- GitHub source 갱신 없이 runtime만 수정 금지
 
-- 대화 중 임시 HTML을 새로운 기준본처럼 사용
-- 기존 production deployment의 HTML을 역으로 복사해 source로 삼기
-- 별도 Product Owner-facing Vercel URL 생성
-- 임시 wrapper / compression bootstrap / 이전 deployment URL dependency로 production을 구성
-- Figma 디자인 시스템을 확인하지 않고 와이어프레임 공통 스타일을 임의 재설정
-- GitHub source를 갱신하지 않은 채 runtime만 수정
-
-와이어프레임 변경은 반드시 `product/wireframe/README.md`의 순서를 따른다.
+와이어프레임 변경은 `product/wireframe/README.md`의 update/deploy/read-back 순서를 따른다.
