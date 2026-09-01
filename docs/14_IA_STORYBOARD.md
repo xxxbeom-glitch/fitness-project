@@ -97,10 +97,45 @@ If the user is already working out and chooses `운동 시작` on another routin
 
 This means a user can intentionally change workouts without being trapped in the first session, while keeping session state simple and unambiguous.
 
+## Confirmed — Replacing an active workout asks how to handle the current record
+
+When the user starts another routine while a workout is already active, the app must **not** automatically decide whether to keep or discard the current session record.
+
+A confirmation dialog is shown before switching.
+
+Recommended structure:
+
+**진행 중인 운동이 있어요**
+
+`하체 루틴을 어떻게 처리할까요?`
+
+Actions:
+
+1. **지금까지 기록 저장하고 새 운동 시작**
+   - save the sets/reps/load actually completed so far
+   - close the current session as a partial/incomplete workout record
+   - start the newly selected routine as the single active workout
+
+2. **기록 폐기하고 새 운동 시작**
+   - discard the current session record
+   - start the newly selected routine as the single active workout
+
+3. **취소**
+   - keep the current workout active
+   - do not start the new routine
+
+### Copy rule
+
+Do not label the first action as `운동 완료로 처리` when the routine was only partially performed. The record should reflect that the user saved the work performed so far and ended the session early, rather than falsely implying the planned routine was fully completed.
+
+### Rationale
+
+The user may have intentionally completed useful work before switching routines, or may want to discard an accidental/invalid session. Both cases are legitimate, so the app should preserve user control instead of applying a destructive or misleading default.
+
 ### Still to decide
 
-- When replacing an active workout, whether completed work from the current session is saved as a partial workout or discarded.
 - Whether any other destinations/actions should be restricted while an active workout is running.
+- Exact partial/incomplete status language in History/Analysis.
 
 ## Planning sequence
 
