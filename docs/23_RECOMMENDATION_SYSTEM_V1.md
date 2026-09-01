@@ -1,11 +1,11 @@
 # 23 RECOMMENDATION SYSTEM V1
 
-**Status:** IN PROGRESS · ONBOARDING INPUT BASELINE COMPLETE · SPLIT MAPPING ON HOLD
+**Status:** IN PROGRESS · ONBOARDING INPUT BASELINE COMPLETE · RESULT CAROUSEL BASELINE CONFIRMED · SPLIT MAPPING ON HOLD
 **Updated:** 2026-09-01
 
 ## Purpose
 
-Define the recommendation system before recommendation-result UX is expanded. Screen-level UX must not outrun confirmed product rules.
+Define the recommendation system before implementation. Screen-level UX must not outrun confirmed product rules.
 
 ## First-run eligibility gate — CONFIRMED
 
@@ -177,11 +177,90 @@ Current working direction is to avoid an unnecessary standalone legal screen if 
 
 These items must be reviewed together before implementation/release is finalized.
 
-## Current wireframe scope — ONBOARDING BASELINE COMPLETE
+## Recommendation result experience — CONFIRMED BASELINE
 
-Canonical wireframe currently visualizes:
+After all four recommendation inputs are complete, the recommendation branch does **not** save a routine immediately and does **not** enter Home yet.
 
-`로그인 -> 기본정보 -> 시작 방식 -> 추천 설정 1화면 + bottom sheets -> 입력 완료 CTA 상태`
+Flow:
+
+`추천 설정 완료 -> 추천 결과 전용 화면 -> 3개 후보를 카드 캐러셀로 비교 -> 이 루틴으로 시작하기 -> 선택한 프로그램 저장 -> Home`
+
+### Result screen identity
+
+The recommendation result is a **dedicated first-run selection experience**, visually distinct from both:
+
+- onboarding input screens
+- the normal Home / bottom-navigation app shell
+
+Before the user accepts one candidate:
+
+- no recommended program is saved to `내 루틴`
+- the normal Home layout is not shown
+- bottom navigation is not required on the result-selection screen
+
+### Three-candidate model
+
+Show **three curated candidates** that are all valid for the user's collected constraints and training-experience safety envelope.
+
+Current baseline candidate types:
+
+1. `기본형` — balanced default; can carry a provisional `가장 추천` treatment
+2. `간결형` — fewer decisions / simpler and shorter session emphasis
+3. `볼륨형` — more training-volume emphasis while remaining inside the same user's allowed experience/time constraints
+
+Important rule:
+
+- these are **not** `초급 / 중급 / 고급` choices
+- a user must not bypass the experience-based safety/complexity envelope by swiping to a harder candidate
+- all three candidates are pre-filtered to remain appropriate for the same user
+
+The exact user-facing candidate names/copy may be refined, but the three-safe-variant model is the approved baseline.
+
+### Carousel interaction
+
+- one candidate card is active at a time
+- adjacent cards visibly peek from the sides so horizontal swipeability is obvious
+- swipe/drag changes the active candidate
+- pagination indicates 1/3, 2/3, 3/3
+- the bottom CTA applies to the currently active candidate
+- primary CTA: `이 루틴으로 시작하기`
+- back navigation may return to recommendation settings for changes
+
+### What may differ between the three candidates
+
+The candidate variants may differ in parameters such as:
+
+- simplicity / exercise-selection breadth
+- session density
+- weekly set-volume emphasis
+- exercise count / set allocation within the selected duration budget
+
+Exact parameter ranges are **not yet confirmed**. They must be defined together with duration budgeting, exercise DB, program-template QA, and recovery constraints.
+
+### Example-only wireframe frequency
+
+The current result wireframe may use a `주 3일` example to communicate the card concept.
+
+This is **not** a confirmation that any specific onboarding answer maps to three prescribed days, and it does not resume the held `prescribed frequency -> routine split / routine count` decision.
+
+## Superseded legacy recommendation-result clauses
+
+This 2026-09-01 result baseline supersedes only the older presentation clauses that said the app shows **one single recommended routine** before acceptance.
+
+Retained from the older Decisions:
+
+- recommendations still come from curated / QA-reviewed templates, not free-form LLM generation
+- structured onboarding inputs still drive matching
+- weekday scheduling remains optional
+- after the user explicitly accepts a candidate, the selected program is saved and the user proceeds to Home
+
+Therefore the `one primary recommended routine` wording in DEC-006 and the `single recommended routine` wording in DEC-014 are legacy presentation details and must not be used to override this newer result policy.
+
+## Current wireframe scope
+
+Canonical wireframe visualizes:
+
+`로그인 -> 기본정보 -> 시작 방식 -> 추천 설정 -> 추천 결과 캐러셀 검토안`
 
 It includes:
 
@@ -190,14 +269,15 @@ It includes:
 - confirmed training-experience options
 - confirmed weekly-availability 1–7 day sheet
 - confirmed workout-duration `30 / 45 / 60 / 90분 이상` sheet
+- recommendation-result carousel structure with three safe candidate types
 
-This onboarding wireframe is sufficient for the current planning pass. Do not keep expanding it unless the final legal/policy pass materially changes the flow.
+It intentionally does **not** finalize:
 
-It intentionally does **not** visualize:
-
-- recommendation-result details
 - prescribed frequency -> routine split / routine count
-- detailed exercise/set volume derived from workout duration
+- exact day-by-day exercise composition
+- exact exercise/set volume derived from workout duration
+- final parameter differences among `기본형 / 간결형 / 볼륨형`
+- post-acceptance Home default-state design
 
 ## Product Owner hold — 2026-09-01
 
@@ -207,18 +287,16 @@ Do not continue or wireframe the previously discussed 1–6 day split table unti
 
 The already-confirmed experience-based frequency ceilings remain recorded policy; only the downstream split mapping is paused.
 
-Because recommendation-result composition depends on the downstream program structure, recommendation-result UX should not be forced ahead of the held mapping.
-
 ## Remaining recommendation-system decisions
 
 - exact downstream program effects of the confirmed goal choices
 - other downstream effects of experience bands beyond weekly ceiling
 - prescribed frequency -> routine split / routine count **ON HOLD**
 - workout duration -> exact exercise/set budget
-- recommendation output contract
+- exact differentiation rules for `기본형 / 간결형 / 볼륨형`
 - deterministic template matching / tie-break rules
 - substitution rules
-- recommendation-result presentation
+- exact recommendation-card content and program detail depth
 - first-workout handoff / load calibration
 
 ## Deferred non-matcher policy
