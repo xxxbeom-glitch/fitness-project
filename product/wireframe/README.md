@@ -1,87 +1,118 @@
-# LIFTLY Cumulative Wireframe
+# G Fit Cumulative Wireframe
 
-**Status:** CANONICAL
-**Wireframe version:** `2026-09-01.11`
+**Status:** CANONICAL · WHOLE-APP REVIEW DRAFT
+**Wireframe version:** `2026-09-01.12`
 **Updated:** 2026-09-01
 
 ## Canonical source
 
 `product/wireframe/index.html`
 
-이 파일이 웹 와이어프레임의 원본이다. 로컬 임시 파일, 채팅에 생성된 HTML, 이전 Vercel deployment HTML은 원본이 아니다.
+이 파일이 웹 와이어프레임의 원본이다. 로컬 임시 파일, 채팅에서 생성한 HTML, 이전 Vercel deployment HTML은 원본이 아니다.
 
-## Current visual scope
+## Current review purpose
 
-현재 Product Owner 검토 범위는 **추천 결과 전용 카드 캐러셀**이다.
+Product Owner 요청으로 현재는 Home부터 화면을 하나씩 말로 확정하기보다, **앱 전체 주요 화면을 먼저 시각화하고 실제 화면을 보면서 천천히 결정하는 패스**다.
 
-### Confirmed onboarding baseline
+현재 v2026-09-01.12는 `docs/24_PRODUCT_DIRECTION_V2.md`를 기준으로 만든 **검토용 구조 초안**이다.
 
-현재 화면에 계속 유지되는 확정 범위:
+중요:
 
-- 로그인
-- 신규/기존 계정 분기
-- 기본정보: `성별(남성/여성) + 생년월일`
-- 성별 52px 높이 2등분 버튼
-- `응답 안 함` 없음
-- 생년월일 화살표 없는 텍스트필드
-- placeholder `1999-01-01`
-- 시작 방식: `추천 루틴 받기 / 내 루틴 직접 만들기`
-- 추천 설정 한 화면: `운동 목표 / 운동 경력 / 주당 가능일 / 운동 시간`
-- 목표: `근육 증가 / 체지방 감량 / 건강·체력 향상`
-- 경력: `처음이에요 / 6개월 미만이에요 / 6개월~1년 미만이에요 / 1년 이상이에요`
-- 주당 가능일: `1일`~`7일`
-- 운동 시간: `30분 / 45분 / 60분 / 90분 이상`
+- 화면에 보인다는 이유만으로 새로운 제품 정책이 확정되는 것은 아니다.
+- 기존 확정 정책은 `CONFIRMED`로 표시한다.
+- 아직 정하지 않은 정보 구조/UI는 `REVIEW` 또는 `OPEN`으로 표시한다.
+- Product Owner 승인 전에는 REVIEW/OPEN 항목을 구현 Task/Acceptance Criteria로 사용하지 않는다.
 
-### Recommendation result carousel — current review
+## Visualized scope
 
-Confirmed flow baseline:
+현재 누적 wireframe에는 다음을 포함한다.
 
-`추천 설정 완료 -> 추천 결과 전용 화면 -> 3개 후보 카드 캐러셀 -> 이 루틴으로 시작하기 -> 선택 프로그램 저장 -> Home`
+1. Account / Onboarding
+   - 로그인
+   - 성별 + 생년월일
+   - 자동 닉네임/기본 프로필 이미지 검토 상태
+2. Home
+   - 루틴 없는 신규 사용자
+   - 내 루틴 있음 + 요일 미지정
+   - 내 루틴 있음 + 요일 지정
+   - active workout 진행 중 복귀 상태
+3. Routine
+   - 내 루틴 목록
+   - G Fit 추천 루틴
+   - 추천 루틴 상세
+   - 내 루틴 상세
+   - 루틴 생성/수정
+4. Exercise DB / Guide
+   - 운동 검색/선택
+   - 중성 해부학 3D avatar placeholder
+   - grip guide concept
+   - reviewed YouTube guide slot
+   - custom exercise
+5. Active workout
+   - 세트 기록 + 이전 수행
+   - 휴식 타이머
+   - 운동 추가/메뉴
+   - saved-routine update confirmation
+   - active-session replacement dialog
+6. Workout complete
+   - workout summary dashboard review
+   - partial-save summary
+7. Analysis / History
+   - analysis overview
+   - exercise history/trend
+   - workout-record detail
+8. Settings
+   - workout settings
+   - profile
+   - account/data
+   - post-MVP intelligence/social placeholder
 
-Current wireframe shows three carousel positions:
+## Current high-level product baseline
 
-1. `기본형` active
-2. `간결형` active
-3. `볼륨형` active
+The old recommendation-heavy onboarding and dedicated recommendation-result carousel are superseded.
 
-Structural rules:
+Current first-run baseline:
 
-- recommendation result has a distinct visual state from onboarding and normal Home
-- no normal bottom navigation before candidate acceptance
-- no recommended routine is saved before `이 루틴으로 시작하기`
-- one card is active at a time
-- active program card uses nearly the full available screen content width
-- side-peek cards are removed
-- horizontal swipe/drag + `1 / 3`, `2 / 3`, `3 / 3` pagination communicate candidate switching
-- result header is intentionally minimal: navigation + pagination + one head copy only
-- onboarding-condition chips and auxiliary eyebrow/subcopy are removed from the result header
-- CTA applies to the active card
-- `기본형` may show `가장 추천`
-- candidate types are not `초급 / 중급 / 고급`
-- all candidates must remain inside the same user's experience/time constraints
-- each candidate card exposes DAY selector + actual exercise names + repetition × set prescription
-- DAY uses explicit controls rather than another horizontal swipe layer
-- exercise rows prioritize scan speed with exercise name left / prescription right
-- 카드 설명만 보고 수락하게 하지 않음
+`로그인 -> 기본정보(성별 + 생년월일) -> Home`
 
-The wireframe uses `주 3일` and visible exercise prescriptions as **UI examples only**.
+Current Home direction:
 
-It does not confirm:
+- 루틴이 없는 사용자는 Home에서 G Fit이 미리 구성한 `추천 루틴` 카드와 `내 루틴 만들기`를 볼 수 있다.
+- 카드 하나가 루틴 하나를 나타낸다.
+- 예시: `무분할 전신 루틴 / 상체 루틴 / 하체 루틴`
+- 초기 추천 루틴은 개인 데이터 기반 recommendation matcher가 아니라 G Fit curated ready-made routine이다.
+- 루틴이 있는 일반 Home에서는 추천 콘텐츠보다 오늘/다음 운동 시작과 최근 상태가 우선한다.
 
-- any input -> prescribed frequency mapping
-- 3-day split composition
-- exact exercise names/order
-- exact repetition/set prescription
-- exact exercise count / set count
-- exact parameter differences among `기본형 / 간결형 / 볼륨형`
+## Existing confirmed behavior preserved
 
-### Deferred / outside current review
+- bottom navigation: `홈 / 루틴 / 분석 / 설정`
+- exercise library is contextual, not a primary tab
+- independent daily-routine model
+- weekday assignment optional
+- one active workout at a time
+- active workout survives interruption/restart
+- Home exposes one-tap return to active workout
+- active-workout return card is Home-only
+- Routine remains browseable/read-only while any workout is active
+- active workout may add/remove/replace/reorder exercises and change planned set count
+- structural live-workout changes ask at completion whether to update the saved routine
+- load/reps are performance records, not routine-structure changes
+- partial save stores only completed work
+- prior performance remains visible during logging
 
-- post-acceptance Home default-state design
-- prescribed frequency -> routine split / routine count — **ON HOLD**
-- exact goal -> program variable effects
-- duration -> exact exercise/set budget
-- legal/privacy/minimum-age final onboarding policy
+## Main OPEN review points represented visually
+
+- Home: scheduled `오늘 운동` vs unscheduled `다음 루틴` priority
+- Home: amount/location of G Fit recommended-routine exposure after user has routines
+- recommended-routine card information density
+- recommendation card tap -> detail -> save/start semantics
+- exact routine-tab hierarchy and weekday-setting placement
+- exercise-library filtering/search behavior
+- 3D/grip/video hierarchy inside exercise detail
+- active-workout visual density
+- post-workout summary MVP metrics
+- Analysis MVP depth/metrics
+- Settings profile/account/data detail
 
 ## Canonical runtime
 
@@ -92,27 +123,22 @@ It does not confirm:
 
 Machine-readable binding: `product/wireframe/PROJECT_BINDING.json`
 
-## Canonical Figma
+## Visual baseline
 
-`https://www.figma.com/design/W3lZurXCXbThP67rF2xk2b/LIFTLY_%EC%B5%9C%EC%A2%85?node-id=0-1&t=59Hp4z7hcHf5nNL5-1`
-
-웹 와이어프레임은 Figma visual language를 참고하되 제품 정책/UX 의미는 GitHub가 우선한다.
-
-현재 주요 baseline:
+Web wireframe continues the existing dark Fitness visual language for structure review:
 
 - font: SUIT
 - bg/default: `#0A0A0C`
 - bg/surface: `#161618`
-- border: `#232326`
+- border: around `#232326`
 - text/primary: `#F0F0F2`
 - text/secondary: `#8E8E93`
 - brand/primary: `#34D399`
-- standard side padding: `20px`
-- standard card/input radius: `12px`
-- standard CTA height: `58px`
-- standard input/control height: `52px`
-- bottom-sheet top radius: `32px`
-- bottom-sheet option row: `52px`
+- standard side padding: around `20px`
+- standard card/input radius: around `12px`
+- standard CTA height: around `54–58px`
+
+This is a low/mid-fidelity planning artifact, not final UI spec.
 
 ## Mandatory update sequence
 
@@ -130,28 +156,27 @@ Machine-readable binding: `product/wireframe/PROJECT_BINDING.json`
 
 ## Source validation gate
 
-- `index.html` 존재
-- `CANONICAL_WIREFRAME_VERSION` 존재
-- HTML syntax가 유효함
-- 이전 Vercel deployment hostname dependency 없음
-- `DecompressionStream` 같은 임시 렌더링 우회 없음
-- 핵심 CSS가 이전 deployment URL에 의존하지 않음
-- 확정 화면을 이유 없이 제거하지 않음
+- `index.html` exists
+- current `CANONICAL_WIREFRAME_VERSION` exists
+- HTML parse succeeds
+- no dependency on prior Vercel deployment hostname
+- no `DecompressionStream` / temporary render bootstrap
+- `style.css` exists and contains the current review selectors
+- representative review strings exist: `G Fit 추천 루틴`, `운동 완료 대시보드`, `분석`, `설정`
 
 ## Runtime validation gate
 
 - deployment state = `READY`
 - canonical alias = `liftly-wireframe.vercel.app`
 - canonical URL HTTP 200
-- 최신 version marker 포함
-- 현재 검토 화면 대표 문자열 포함
+- latest version marker present
+- representative current-review strings present
 - `style.css` HTTP 200
 
 ## Stability rules
 
 - Product Owner-facing wireframe URL은 하나만 유지한다.
-- 폐기된 비교안은 source에서 제거한다.
-- 아직 검토 중인 안은 `검토안`으로 명시한다.
-- Figma를 그대로 복제하는 것이 아니라 UX 검토 구조를 visual language로 표현한다.
-- 제품 정책을 와이어프레임이 임의로 바꾸지 않는다.
-- 임시 deployment 조각을 서로 참조하지 않는다.
+- superseded recommendation-survey/result-carousel screens are not retained in the current artifact.
+- unconfirmed screens are explicitly labeled REVIEW/OPEN.
+- wireframe must not silently convert review hypotheses into Product Policy.
+- GitHub source update without runtime verification is not complete.
