@@ -35,6 +35,23 @@ Existing account:
 
 Incomplete first-run onboarding resumes from persisted account state.
 
+### Basic profile information
+
+Confirmed required fields:
+
+- 성별: `남성 / 여성`
+- 생년월일: 실제 full date of birth
+
+Rules:
+
+- `응답 안 함` 옵션 없음
+- 현재 나이 직접 입력이나 연령대가 아니라 생년월일을 저장
+- 성별/생년월일은 추천 matcher와 분리
+- 시작 중량 추정에 사용하지 않음
+- 재로그인/재설치/다른 기기 로그인만으로 다시 입력시키지 않음
+- 생년월일 입력 UI 컨트롤의 세부 방식은 후속 UI/구현 단계에서 정할 수 있음
+- 최소 연령, 개인정보 고지/동의, 향후 광고 활용 정책은 별도 오픈 이슈
+
 ### Start mode
 
 Equal first-run paths:
@@ -124,7 +141,7 @@ GitHub source:
 - `product/wireframe/index.html`
 
 Current version:
-- `2026-09-01.4`
+- `2026-09-01.5`
 
 Production:
 - `https://liftly-wireframe.vercel.app`
@@ -132,7 +149,7 @@ Production:
 The current wireframe intentionally visualizes **onboarding only**:
 
 - login
-- basic profile information
+- basic profile information: `성별(남성/여성) + 생년월일`
 - start mode
 - recommendation settings list
 - confirmed goal bottom sheet: `근육 증가 / 체지방 감량 / 건강·체력 향상`
@@ -148,7 +165,7 @@ Canonical Figma:
 
 ## Still open, but not automatically continued
 
-- sex/gender and age exact field shape / consent treatment
+- privacy/consent/minimum-age policy for sex and birth date
 - exact program effects of each confirmed goal
 - workout-duration -> exact exercise/set budget
 - other experience effects beyond frequency ceiling
