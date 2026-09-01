@@ -4,9 +4,9 @@
 
 ## Current mode
 
-`PRODUCT / UX PLANNING — FIRST-RUN ONBOARDING WIREFRAME UPDATED · SPLIT MAPPING ON HOLD`
+`PRODUCT / UX PLANNING — ONBOARDING BASELINE COMPLETE · NEXT: HOME DEFAULT STATE`
 
-현재 실행 초점은 **신규 사용자 onboarding의 확정 흐름을 canonical wireframe에 반영한 상태를 유지하는 것**이다.
+신규 사용자 onboarding의 핵심 구조와 입력 UX는 현재 기준으로 충분히 확정했다. 이제 같은 내용을 계속 다듬지 않고 **Home 기본 상태 / 첫 진입 경험**으로 기획 초점을 이동한다.
 
 Top-level IA와 active-workout navigation/state 규칙은 기존 확정안을 그대로 유지한다. Cursor implementation은 아직 승인되지 않았다.
 
@@ -23,7 +23,7 @@ Canonical sources:
 - `product/wireframe/index.html`
 - `product/wireframe/README.md`
 
-## Current confirmed onboarding flow
+## Onboarding baseline — COMPLETE FOR CURRENT PLANNING PASS
 
 New account:
 
@@ -55,8 +55,30 @@ Confirmed controls:
 - 성별/생년월일은 추천 matcher와 분리
 - 시작 중량 추정에 사용하지 않음
 - 재로그인/재설치/다른 기기 로그인만으로 다시 입력시키지 않음
-- input masking/validation/error behavior 및 최소 연령 정책은 후속 결정
-- 개인정보 고지/동의와 향후 광고 활용 정책은 별도 오픈 이슈
+
+Implementation-detail follow-up:
+
+- input masking / invalid-date / future-date / field error behavior
+- exact keyboard behavior
+
+These do not need additional Product Owner planning before moving to the next product area.
+
+### Legal / privacy / minimum-age policy — DEFERRED TO FINAL ONBOARDING POLICY PASS
+
+Do not block current product planning on this now.
+
+Still to decide near implementation/release:
+
+- minimum account age / age restriction
+- Terms of Use acknowledgement placement
+- Privacy Policy / personal-data disclosure placement
+- whether required legal/privacy treatment is fully integrated into the basic-information screen or needs any separate confirmation state
+- exact handling of Google/Kakao provider consent versus Fitness-owned terms/privacy notices
+
+Current working direction only, **not final policy**:
+
+- avoid adding an unnecessary standalone legal screen if the required disclosure/acknowledgement can be cleanly integrated into the basic-information step
+- final legal/privacy structure must be reviewed as one package before release
 
 ### Start mode
 
@@ -141,6 +163,8 @@ Product Owner requested that the following work **stop for now**:
 
 Do not continue or wireframe this mapping until Product Owner explicitly resumes it.
 
+Because recommendation-result composition depends on this downstream program structure, do not force recommendation-result UX ahead of the held mapping.
+
 ## Canonical wireframe
 
 GitHub source:
@@ -152,7 +176,7 @@ Current version:
 Production:
 - `https://liftly-wireframe.vercel.app`
 
-The current wireframe intentionally visualizes **onboarding only**:
+The current wireframe is the approved onboarding baseline for this planning pass:
 
 - login
 - basic profile information: segmented `남성 / 여성` + text-field birth date with `1999-01-01` placeholder
@@ -164,15 +188,32 @@ The current wireframe intentionally visualizes **onboarding only**:
 - confirmed workout-duration `30 / 45 / 60 / 90분 이상` bottom sheet
 - completed-input CTA state
 
-It intentionally does not show recommendation-result details or routine-split mapping yet.
+Do not keep expanding onboarding wireframes unless a later policy decision materially changes the flow.
 
 Canonical Figma:
 - `https://www.figma.com/design/W3lZurXCXbThP67rF2xk2b/LIFTLY_%EC%B5%9C%EC%A2%85?node-id=0-1&t=59Hp4z7hcHf5nNL5-1`
 
-## Still open, but not automatically continued
+## Next planning focus — HOME DEFAULT STATE
 
-- birth-date validation/error behavior and minimum-age policy
-- privacy/consent policy for sex and birth date
+The next unblocked product area is **Home when there is no active workout**.
+
+Already confirmed and therefore not reopened:
+
+- primary bottom navigation: `홈 / 루틴 / 분석 / 설정`
+- if a workout is active, Home exposes a persistent one-tap return state
+- active-workout return UI appears on Home only
+
+Next decisions should focus on the idle/default Home experience:
+
+- what a brand-new user sees on Home after onboarding or self-build setup
+- primary workout-start CTA / entry hierarchy
+- recommended/saved routine exposure on Home
+- empty state when no routine exists
+- optional `오늘의 운동` vs `다음 운동` behavior without forcing weekday scheduling
+
+## Open later, but not part of the immediate Home decision
+
+- onboarding legal/privacy/minimum-age final policy pass
 - exact program effects of each confirmed goal
 - workout-duration -> exact exercise/set budget
 - other experience effects beyond frequency ceiling
@@ -184,11 +225,9 @@ Canonical Figma:
 
 ## Existing IA / workout rules remain valid
 
-- primary bottom navigation: `홈 / 루틴 / 분석 / 설정`
 - exercise library is contextual, not a primary tab
 - one active workout at a time
 - active session survives restart until finish/discard
-- Home exposes active-workout return state
 - Routine/Analysis/Settings remain usable while workout is active under existing lock rules
 - structural edits during workout apply to current session and may prompt saved-routine update at completion
 - load/reps changes are performance records and do not trigger routine-structure update prompts
