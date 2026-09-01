@@ -136,14 +136,23 @@ Semantics:
 - the matcher may create a shorter session when appropriate, but should not routinely design a session that exceeds the selected time budget
 - exact exercise-count / set-count allocation for each time bucket remains a later program-design decision
 
-## Demographic profile data — SEPARATE FROM MATCHER
+## Demographic profile data — CONFIRMED FIELD SHAPE / SEPARATE FROM MATCHER
 
-Sex/gender and age belong to broader new-user profile onboarding for potential future audience segmentation / advertising use.
+The broader new-user profile onboarding collects the following required demographic/profile values:
 
-- they are not recommendation-matcher inputs at this stage
+- sex: `남성 / 여성`
+- birth date: full date of birth rather than age band or manually entered current age
+
+Product rules:
+
+- there is no `응답 안 함` option for sex in the current product design
+- sex and birth date are collected only in first-run profile onboarding and persisted to the account
+- returning users are not asked again merely because they relogin, reinstall, or use another device
+- sex and birth date are **not recommendation-matcher inputs** at this stage
 - they are not used to guess starting working weight
-- returning users are not asked again merely because they relogin
-- exact field shape / consent / age-floor / ad-data treatment remain open before implementation or personalized-ad activation
+- birth date may later support age calculation / age policy / audience segmentation, but the recommendation system must not present it as a training-quality input unless a later decision creates a real program effect
+- exact date-entry control (calendar, wheel, segmented date fields, etc.) may be finalized during detailed UI/implementation design; the stored product value remains date of birth
+- privacy disclosure, consent treatment, minimum-age policy, and any future personalized-ad use remain separate open policy work before advertising activation
 
 ## Current wireframe scope — CONFIRMED
 
@@ -153,6 +162,7 @@ Canonical wireframe visualizes only the onboarding flow:
 
 It includes:
 
+- basic profile fields: `성별(남성/여성) + 생년월일`
 - confirmed goal options `근육 증가 / 체지방 감량 / 건강·체력 향상`
 - confirmed training-experience options
 - confirmed weekly-availability 1–7 day sheet
@@ -174,7 +184,7 @@ The already-confirmed experience-based frequency ceilings remain recorded policy
 
 ## Remaining open decisions
 
-- exact sex/gender and age field shape / consent treatment
+- privacy/consent/minimum-age treatment for sex and birth date data
 - exact downstream program effects of the confirmed goal choices
 - other downstream effects of experience bands beyond weekly ceiling
 - prescribed frequency -> routine split / routine count **ON HOLD**
