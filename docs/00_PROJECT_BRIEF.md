@@ -1,49 +1,39 @@
 # 00 PROJECT BRIEF
 
-**Status:** BOOTSTRAP DRAFT
-**Updated:** 2026-08-28
+**Status:** ACTIVE — V2 ALIGNED
+**Updated:** 2026-09-01
 
 ## Product definition — CONFIRMED
 
-Build a **general-purpose weight-training tracker** that supports different levels of guidance instead of assuming one fixed training habit.
-
-The app should help users:
-- get a sensible workout program when they do not want to design one themselves
-- build and manage their own routine when they already know what they want to do
-- start today's or the next workout quickly
-- see relevant prior performance immediately
-- record sets with minimal interaction
-- adapt the session freely when real gym conditions change
-
-A weekday-scheduled routine is an optional convenience, not the product's core identity.
-
-## Initial target — CONFIRMED
+G Fit은 **운동 루틴을 만들고, 실행 기록을 쌓고, 지속적으로 관리하는 general-purpose weight-training tracker**다.
 
 Primary early target:
+- 일반적인 헬스 이용자
+- 숙련자
 
-**People who want to start or continue weight training but differ in how much help they want with program design.**
-
-This includes:
-- people who are new to the gym and want a ready-to-use routine
-- people who have trained before but do not want to design a weekly program themselves
-- people who already have their own routine and mainly want a fast, flexible tracker
-
-The product should therefore segment users by **desired level of guidance/control**, not only by beginner vs experienced labels.
+초보자도 사용할 수 있어야 하지만 제품 전체를 초보자 교육용으로 단순화하지 않는다.
 
 Core product principle:
 
-> Help only as much as the user wants.
+> 사용자가 운동을 빠르게 시작하고, 최소한의 마찰로 기록하며, 쌓인 데이터가 다음 운동과 이후 개인화에 계속 가치를 더하게 한다.
 
-The app should not become an AI coach-first product. Guidance is useful when it removes decisions, but the user keeps control of the workout.
+## Core user loop
 
-## Core user problems — CONFIRMED
+`오늘/다음 운동 확인 -> 운동 시작 -> 이전 기록 확인 -> 중량/횟수/세트 기록 -> 휴식 -> 운동 종료 -> 요약/성장 확인 -> 다음 운동`
 
-### Program-start problem
-Some users want to train but do not know, or do not want to decide, how to structure a weekly resistance-training program.
+## Core problems
 
-The product should reduce this setup burden without requiring users to study programming theory before they can begin.
+### Routine / program start
 
-### Workout-logging problem
+사용자는 두 방식 모두를 동등하게 사용할 수 있어야 한다.
+
+- 직접 루틴 만들기
+- G Fit이 미리 준비한 추천 루틴 사용하기
+
+추천 루틴은 first-run 개인화 matcher 결과가 아니라 **G Fit이 미리 구성하고 검수한 ready-made routine**이다.
+
+### Workout logging
+
 During training, logging becomes annoying when users must:
 - repeatedly re-enter the same weight/reps
 - navigate away to see previous performance
@@ -51,10 +41,6 @@ During training, logging becomes annoying when users must:
 - edit a session through too many screens
 - keep touching a phone during rest periods
 - trust an app that may lose the active session
-
-## Core value proposition — CONFIRMED
-
-> Start with the amount of guidance you need, then record real weight training with minimal friction while preserving control and historical context.
 
 ## Product principles — CONFIRMED
 
@@ -64,247 +50,160 @@ Target flow:
 
 `Start workout -> see prior performance -> confirm/edit kg/reps -> complete set -> rest timer -> next set`
 
-If the suggested values are already correct, a set should require as little interaction as practical.
-
 ### 2. User controls the workout
 
-The app must not force exercise order or prevent real-time changes.
-
-Users should be able to:
+Users can:
 - reorder exercises
 - add/remove exercises during a session
 - add/remove sets
 - correct completed sets
 - create custom exercises
 
-Recommendations should be suggestions or defaults, not silent commands.
+Recommendation / personalization may suggest but must not silently change routines or completed history.
 
-### 3. Historical data must compound in value
+### 3. Historical data compounds in value
 
-Records should make future sessions easier and later enable:
+Records should enable:
 - prior-performance comparison
 - PRs
 - progress trends
-- body-composition relationships
-- later smart recommendations
-- external AI analysis if introduced
+- workout-volume analysis
+- later personalization
+- later AI-assisted explanation where useful
 
-### 4. Do not make users study before they can train
+### 4. AI is not the product identity
 
-The app should not require beginners to understand split terminology, programming theory, or equipment taxonomy during onboarding.
+G Fit is not an AI coach-first product.
 
-When explanation is useful, show it after the app has already made a practical recommendation and only to the depth needed for the user to understand or modify it.
+Use structured product logic when it is more reliable, testable, faster, and cheaper. AI/LLM may later help interpret user workout data or explain recommendations.
 
-### 5. AI is optional infrastructure, not the product identity
+### 5. Reliability is core
 
-Do not use LLMs simply because they are available.
+Active workout data must survive interruption/restart whenever technically feasible. Offline workout logging must remain usable without a network dependency.
 
-Structured product logic should be used when it is more reliable, testable, faster, and cheaper. LLMs may be added later where natural-language understanding or explanation materially improves the experience.
+## First-run onboarding — CONFIRMED
 
-## Primary workout-start paths — CONFIRMED
+New account:
 
-The main first-run choice should offer two equal paths:
+`로그인 -> 성별 + 생년월일 -> Home`
 
-1. **Get a recommended routine**
-2. **Build my own routine**
+The old recommendation questionnaire / result carousel is superseded.
 
-Self-built routines must not be presented as a secondary or advanced-only path.
+Home can expose:
+- G Fit 추천 루틴 cards
+- 내 루틴 만들기
 
-Additional start paths may later include:
-- scheduled routine shortcut
-- choose a saved routine
-- start an ad-hoc workout
+Example recommended-routine cards:
+- 무분할 전신 루틴
+- 상체 루틴
+- 하체 루틴
 
-The IA must not assume weekday scheduling is mandatory.
+Each card represents one complete ready-made routine. Exact detail / save / start interaction remains to be decided.
 
-## Recommended-routine onboarding — CONFIRMED DIRECTION
+## Home direction — CONFIRMED
 
-The recommendation path uses structured onboarding rather than open-ended chat.
-
-### Required recommendation inputs for the initial product
-- goal: fat loss / muscle gain / fitness improvement
-- weekly training frequency / availability
-- preferred workout duration: **30 / 45 / 60 minutes**
-
-The initial recommendation flow should stay intentionally short. Training experience, height/body weight, detailed weekday assignment, and equipment inventory are not required to obtain the first recommended routine.
-
-The weekly-frequency question is framed as realistic availability:
-
-> **일주일에 몇 번 운동할 수 있나요?**
-
-The initial recommendation flow does not offer a duration longer than 60 minutes. Longer sessions may still be possible through self-built routines or later product expansion, but they are not part of the initial recommendation matching inputs.
-
-Specific weekday assignment may be offered after recommendation as an optional scheduling convenience. Height/body weight may be collected later as optional profile data when there is a clear product purpose.
-
-### Initial environment scope
-The initial recommended-routine experience is **gym-first**.
-
-Do not create a separate home-workout recommendation branch in the initial onboarding. Home-workout-specific program templates and equipment branching are deferred unless a later Decision promotes them.
-
-This does not mean the core tracker must reject bodyweight or home-style exercises; it means the curated recommendation product is not required to solve gym and home programming simultaneously in the first version.
-
-## Recommended-program model — CONFIRMED
-
-Recommendation means **program matching**, not LLM-generated programming.
-
-The product should:
-1. maintain a curated, QA-reviewed program-template/variant library
-2. use onboarding inputs to select the most suitable template
-3. present **one primary recommended program** rather than forcing the user to compare multiple equally weighted choices
-4. allow the user to inspect and modify the recommendation before or after starting
-
-The template library may contain multiple overlapping or similar variants when that improves coverage and predictability. Exact template count, exercise composition, and variant strategy will be decided after the exercise database and substitution relationships are available for review.
-
-Do not force every onboarding combination into a completely unique handcrafted program. Shared template families and controlled variants may be used internally where useful.
-
-A user's selected weekly frequency/availability is an input to the matching logic, not a reason to prescribe an unnecessarily high number of hard resistance-training sessions.
-
-## Exercise-selection direction — CONFIRMED
-
-Recommended programs should prioritize movements that are:
-- common in ordinary gyms
-- relatively easy for a beginner to understand and perform
-- easy to log consistently
-- replaceable when a specific machine is unavailable
-
-Common machines, cables, dumbbells, Smith-machine movements, bodyweight movements, and other broadly accessible options may all be used where appropriate.
-
-Program data should support exercise substitutions by movement purpose / exercise family rather than assuming every gym has the same machine inventory.
-
-The user-facing UI should keep substitutions simple. Internal exercise relationships may be more detailed than the terminology shown to the user.
-
-## Scheduling direction — CONFIRMED
-
-Weekday scheduling is optional.
-
-With weekdays assigned:
-- Home can emphasize **Today's workout**
-- reminders and missed-session handling can use the schedule
-
-Without weekdays assigned:
-- Home can emphasize **Next workout**
-- the routine can continue in sequence without forcing calendar dates
-
-The product must work correctly in both modes.
-
-## Home direction — CONFIRMED DESIGN DIRECTION
-
-Use an **action-first, large-card dashboard** rather than a dense analytics dashboard.
+Use an action-first dashboard.
 
 Information priority:
 1. what should I do now?
-2. how is this week going?
+2. how did recent training go?
 3. am I progressing?
 
-The primary card should be the current action: today's workout when scheduled, or the next workout when unscheduled. Detailed analytics belong in History/Progress rather than dominating Home.
+For a user with routines, today's/next workout is more important than recommendation content.
 
-## MVP — CONFIRMED
+## Exercise content direction
 
-### Recommended routine matching
-- recommendation / self-build first-run choice
-- short structured recommendation onboarding: goal + weekly frequency + workout duration
-- workout-duration choices: 30 / 45 / 60 minutes
-- gym-first curated program-template matching
-- one primary recommended routine result
-- ability to inspect and modify the recommended routine
-- no LLM required for program generation
+Exercise DB and visual guidance are long-term product assets.
+
+Current visual baseline:
+- one neutral anatomy-inspired 3D avatar family
+- no required male/female duplicate exercise asset set
+- grip visuals where they materially improve exercise understanding
+- reviewed YouTube guidance may complement proprietary visuals where appropriate
+
+## MVP — CONFIRMED RESET
 
 ### Routine management
 - create/edit/delete routines
-- add exercises from a basic exercise database
+- use G Fit recommended ready-made routines
+- add exercises
 - reorder exercises
-- configure set count
+- configure basic set/rep prescription
 - optional weekday assignment
 
-### Exercise substitution
-- offer practical alternatives when a recommended exercise/equipment is unavailable
-- preserve the intent of the program as reasonably as possible
-
 ### Custom exercises
-MVP-critical because gym machines vary.
-
-Minimum fields:
 - exercise name
-- target body area
-- type: machine / barbell / dumbbell / cable / bodyweight / other
-- edit/delete
+- target body area / primary muscle
+- equipment/type
 - independent prior-performance history
 
 ### Active workout
-- start a routine/workout
+- start routine/workout
 - enter weight and reps
 - show previous performance inline
-- complete/uncomplete a set
+- complete/uncomplete sets
 - add/remove sets
 - edit completed data
-- add/remove exercises
-- reorder exercises
+- add/remove/reorder exercises
 - automatic rest timer
-- recover an active session after app interruption/restart
+- recover active session after interruption/restart
 
-### History
-- finish/save workout
-- date-based workout history
-- previous performance by exercise
+### History / basic analysis
+- save completed/partial workout appropriately
+- date-based history
+- prior performance by exercise
 - simple PR indication
-- exercise notes
+- workout summary dashboard
+- basic progress analysis
 
 ### Basic settings
 - kg/lb
-- optional height/body-weight profile data
+- required profile fields from first run
+- optional later profile/social settings
 
-## MVP boundary — OPTIONAL IF LOW COST
+## Explicitly out of MVP
 
-- simple Warm-up / Normal set type
-- workout summary: duration, exercise count, set count, PR count
-- lightweight explanation such as “why this routine was recommended”
+These do not block first release:
 
-## Explicitly out of MVP — CONFIRMED
-
-These must not block the first release unless a later decision promotes them:
-
-- home-workout-specific recommendation branch/templates
-- Apple Watch / Wear OS
-- MCP / external AI integration
-- InBody integration
-- Apple Health / Health Connect
-- LLM-generated routines
-- AI coaching/chat as a primary interface
-- natural-language workout modification
-- video-form analysis
-- advanced analytics
+- AI coaching/chat primary interface
 - automatic progressive overload
+- RPE / RIR advanced logging
+- advanced analytics
 - social feed
+- workout photos / likes / routine sharing
 - comments / DM
-- workout groups
+- Apple Watch / Wear OS
+- InBody / Health Connect / Apple Health
 - nutrition
-- challenges / ranking
-- trainer/PT features
+- trainer/PT tools
 - paid subscription
 
-## MVP validation question — CONFIRMED
+## Post-MVP direction
 
-> After receiving or building a routine and completing one workout, does the user choose this app again for the next workout instead of returning to the previous method?
+### Personal Intelligence
+Use actual workout history to provide suggestions such as:
+- load increase opportunities
+- stalled exercise patterns
+- muscle-group volume changes
+- next-workout preparation
 
-## Long-term direction — ASSUMPTION / TO VALIDATE
+Suggestions remain user-controlled.
 
-Potential progression:
+### Social
+Potential scope:
+- workout photos
+- likes
+- routine sharing
+- public/private choices controlled by the user
 
-`FAST -> ANYWHERE -> YOURS`
+Users who do not use social should not be forced to set a custom nickname or profile photo. Defaults may be assigned automatically and edited later.
 
-- FAST: minimal-input logging
-- ANYWHERE: phone to watch
-- YOURS: export / API / MCP / user-selected AI
+## MVP validation question
 
-Potential later smart-assistance areas:
-- weight/reps recommendations based on training history
-- missed-week schedule adjustment
-- shorter-session adaptation when time is limited
-- equipment substitutions
-- return-after-break guidance
-- natural-language explanation or modification when it is genuinely easier than structured UI
+> After creating or adopting a routine and completing one workout, does the user choose G Fit again for the next workout instead of returning to the previous method?
 
-Potential moat candidate:
-- gym-specific equipment data connected to exercises and routines
+## Current authority
 
-This is strategically interesting but not required for MVP validation.
+For the latest reset details, see:
+- `docs/24_PRODUCT_DIRECTION_V2.md`
+- `docs/CURRENT.md`
