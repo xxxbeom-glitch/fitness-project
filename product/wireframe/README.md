@@ -1,7 +1,7 @@
 # LIFTLY Cumulative Wireframe
 
 **Status:** CANONICAL
-**Wireframe version:** `2026-09-01.4`
+**Wireframe version:** `2026-09-01.5`
 **Updated:** 2026-09-01
 
 ## Canonical source
@@ -18,7 +18,9 @@
 
 - 로그인
 - 신규/기존 계정 분기 정책
-- 기본정보: 성별 / 나이
+- 기본정보: `성별(남성/여성) + 생년월일`
+- 성별에 `응답 안 함` 옵션 없음
+- 생년월일은 연령대/현재 나이 대신 실제 full date of birth를 저장
 - 시작 방식: `추천 루틴 받기 / 내 루틴 직접 만들기`
 - 추천 설정 한 화면: `운동 목표 / 운동 경력 / 주당 가능일 / 운동 시간`
 - 운동 목표 확정 선택지:
@@ -43,6 +45,8 @@
 - 주당 처방 횟수 -> routine split / routine count 매핑
 - 각 목표가 실제 프로그램 변수에 주는 정확한 효과
 - 운동시간별 정확한 exercise/set volume budget
+- 생년월일 입력 컨트롤의 상세 구현 방식
+- 개인정보 고지/동의 및 최소연령 정책
 
 ## Canonical runtime
 
