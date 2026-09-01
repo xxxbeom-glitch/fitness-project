@@ -1,0 +1,10 @@
+{
+  "wireframe_version": "2026-09-01.1",
+  "source_path": "product/wireframe/index.html",
+  "canonical_production_url": "https://liftly-wireframe.vercel.app",
+  "vercel_project_name": "liftly-wireframe",
+  "vercel_project_id": "prj_w7P1KrlqbzDq9dBQ0UcFh2VuQipG",
+  "vercel_team_id": "team_cAq2nylL00z8u39kpinhZXQa",
+  "figma_url": "https://www.figma.com/design/W3lZurXCXbThP67rF2xk2b/LIFTLY_%EC%B5%9C%EC%A2%85?node-id=0-1&t=59Hp4z7hcHf5nNL5-1",
+  "deployment_policy": "commit-source-first-then-deploy-same-vercel-project-and-read-back"
+}
