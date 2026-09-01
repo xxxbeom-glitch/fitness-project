@@ -69,6 +69,11 @@ Product Owner에게 보여주는 누적 웹 와이어프레임은 이 URL 하나
 - 추천은 자유 생성 LLM보다 curated / QA-reviewed template matching을 우선
 - 시작 중량은 성별/나이로 고정 추정하지 않고 첫 실제 workout에서 calibration
 
+### Product Owner visual review
+
+- 2026-09-01: 현재 신규 사용자 온보딩 와이어프레임 구조를 Product Owner가 확인했고, **이 구조로 진행 가능**하다고 승인함.
+- 따라서 다음 기획 단계에서는 이 온보딩 구조를 다시 열지 않고, 추천 입력값이 실제 프로그램에 어떤 차이를 만드는지와 template matching 규칙을 설계한다.
+
 아직 확정하지 않은 세부 선택지/매칭 규칙은 `docs/23_RECOMMENDATION_SYSTEM_V1.md`에서 계속 결정한다.
 
 ## No-drift rule
