@@ -4,9 +4,9 @@
 
 ## Current mode
 
-`PRODUCT / UX PLANNING — HOME DEFAULT-STATE WIREFRAME REVIEW · ONBOARDING BASELINE COMPLETE`
+`PRODUCT / UX PLANNING — RECOMMENDATION RESULT CAROUSEL REVIEW · ONBOARDING BASELINE COMPLETE`
 
-신규 사용자 onboarding의 핵심 구조와 입력 UX는 현재 기준으로 충분히 확정했다. 현재 기획 초점은 **활성 운동이 없는 Home 기본 상태**다.
+신규 사용자 onboarding 입력 UX는 현재 기준으로 충분히 확정했다. 현재 기획 초점은 **추천 설정 완료 후 사용자가 실제 추천 프로그램을 선택하는 결과 단계**다.
 
 Top-level IA와 active-workout navigation/state 규칙은 기존 확정안을 그대로 유지한다. Cursor implementation은 아직 승인되지 않았다.
 
@@ -37,22 +37,16 @@ Incomplete first-run onboarding resumes from persisted account state.
 
 ### Basic profile information
 
-Confirmed required fields:
+Confirmed:
 
 - 성별: `남성 / 여성`
-- 생년월일: 실제 full date of birth
-
-Confirmed controls:
-
-- 성별은 bottom sheet/dropdown이 아니라 **기존 52px 높이 영역을 2등분한 남성/여성 버튼**으로 직접 선택
-- 두 성별 버튼은 동일한 너비/높이를 사용
-- `응답 안 함` 옵션 없음
-- 생년월일은 **기존 input visual을 유지한 텍스트필드**
-- 생년월일 필드의 우측 화살표/chevron 없음
+- 성별 UI: 기존 52px 높이 영역을 2등분한 직접 선택 버튼
+- `응답 안 함` 없음
+- 생년월일: full date of birth
+- 생년월일 UI: 화살표 없는 텍스트필드
 - placeholder/example: `1999-01-01`
-- primary input format intent: `YYYY-MM-DD`
-- 현재 나이 직접 입력이나 연령대가 아니라 생년월일을 저장
-- 성별/생년월일은 추천 matcher와 분리
+- primary format intent: `YYYY-MM-DD`
+- 성별/생년월일은 recommendation matcher와 분리
 - 시작 중량 추정에 사용하지 않음
 - 재로그인/재설치/다른 기기 로그인만으로 다시 입력시키지 않음
 
@@ -61,87 +55,60 @@ Implementation-detail follow-up:
 - input masking / invalid-date / future-date / field error behavior
 - exact keyboard behavior
 
-These do not need additional Product Owner planning before moving to the next product area.
+### Legal / privacy / minimum-age policy — DEFERRED
 
-### Legal / privacy / minimum-age policy — DEFERRED TO FINAL ONBOARDING POLICY PASS
-
-Do not block current product planning on this now.
-
-Still to decide near implementation/release:
+출시 전 마지막 onboarding 정책 패스에서 함께 결정한다.
 
 - minimum account age / age restriction
 - Terms of Use acknowledgement placement
 - Privacy Policy / personal-data disclosure placement
-- whether required legal/privacy treatment is fully integrated into the basic-information screen or needs any separate confirmation state
-- exact handling of Google/Kakao provider consent versus Fitness-owned terms/privacy notices
+- Google/Kakao provider consent와 Fitness-owned terms/privacy notices의 관계
+- 기본정보 화면 통합 vs 별도 confirmation state
 
-Current working direction only, **not final policy**:
+현재 방향성은 불필요한 standalone legal screen을 피하는 것이지만 아직 최종 정책은 아니다.
 
-- avoid adding an unnecessary standalone legal screen if the required disclosure/acknowledgement can be cleanly integrated into the basic-information step
-- final legal/privacy structure must be reviewed as one package before release
+## Recommendation intake — CONFIRMED
 
-### Start mode
-
-Equal first-run paths:
+Start mode:
 
 - `추천 루틴 받기`
 - `내 루틴 직접 만들기`
 
-### Recommendation settings interaction
-
-The recommendation path uses one settings screen, not four full-screen questions.
-
-Rows:
+Recommendation settings rows:
 
 1. 운동 목표
 2. 운동 경력
 3. 주당 가능일
 4. 운동 시간
 
-Each row opens a bottom sheet. All four values remain visible together and editable. `내 루틴 추천받기` stays disabled until all four are populated.
+각 row는 bottom sheet를 열며, 네 값이 모두 입력되면 `내 루틴 추천받기` CTA가 활성화된다.
 
-### Confirmed goal choices
+Confirmed goal choices:
 
 - `근육 증가`
 - `체지방 감량`
 - `건강·체력 향상`
 
-`근력 향상` is not a separate first-run goal. Strength progression is handled later through load/repetition history and progression behavior. This is an MVP taxonomy simplification, not a claim that hypertrophy and strength programming are identical.
-
-### Confirmed training-experience choices
+Confirmed training-experience choices:
 
 - `처음이에요`
 - `6개월 미만이에요`
 - `6개월~1년 미만이에요`
 - `1년 이상이에요`
 
-### Confirmed weekly availability
-
-Options:
+Confirmed weekly availability:
 
 `1일 / 2일 / 3일 / 4일 / 5일 / 6일 / 7일`
 
-Meaning:
+선택값은 현실적으로 확보 가능한 **최대 일수**다.
 
-- maximum realistic number of days the user can make available
-- not the exact number the app must prescribe
-- specific weekday assignment is not required during onboarding
-
-### Confirmed workout duration
-
-Options:
+Confirmed workout duration:
 
 `30분 / 45분 / 60분 / 90분 이상`
 
-Meaning:
+선택값은 세트 간 휴식을 포함하고 별도 유산소는 제외한 **최대 웨이트 트레이닝 세션 시간 예산**이다.
 
-- maximum realistic resistance-training session time
-- includes set-to-set rest
-- excludes separate cardio time
-- acts as a planning budget; a recommended session may be shorter
-- exact exercise-count / set-count budget per option remains a later decision
-
-### Confirmed experience-based frequency ceiling
+Confirmed experience-based weekly frequency ceiling:
 
 - 처음 -> max 3/week
 - < 6 months -> max 4/week
@@ -152,100 +119,97 @@ Baseline ceiling:
 
 `min(user weekly availability, experience cap)`
 
-This remains a ceiling only.
+## Recommendation result — NEW CONFIRMED BASELINE
+
+추천 설정 완료 직후 Home으로 가지 않는다.
+
+Confirmed flow:
+
+`추천 설정 완료 -> 추천 결과 전용 화면 -> 3개 후보 카드 캐러셀 -> 이 루틴으로 시작하기 -> 선택 프로그램 저장 -> Home`
+
+Rules:
+
+- 결과 선택 화면은 onboarding 입력 화면 및 일반 Home UI와 **다른 전용 visual state**로 구성
+- 사용자가 하나를 수락하기 전에는 추천 프로그램을 `내 루틴`에 저장하지 않음
+- 결과 화면에서 normal bottom navigation은 노출하지 않음
+- 한 번에 한 후보가 active card
+- 좌우 후보 카드 일부가 보여 horizontal swipe 가능성을 전달
+- pagination으로 1/3, 2/3, 3/3 표시
+- CTA `이 루틴으로 시작하기`는 현재 active candidate에 적용
+- 뒤로 가면 추천 설정을 다시 조정할 수 있음
+
+Three-candidate baseline:
+
+1. `기본형` — 균형 잡힌 기본 추천, `가장 추천` 표현 가능
+2. `간결형` — 구성 단순화 / 상대적으로 짧은 세션 지향
+3. `볼륨형` — 동일 사용자 허용 범위 안에서 볼륨 강조
+
+Important:
+
+- `초급 / 중급 / 고급` 선택지가 아님
+- 세 후보 모두 사용자의 운동 경력과 입력 조건 안에서 안전하게 pre-filter되어야 함
+- swipe로 experience ceiling을 우회할 수 없음
+- 정확한 후보별 세트/운동 수/볼륨 차이는 아직 미확정
+
+Older `one primary recommended routine` / `single recommended routine` presentation wording in DEC-006 / DEC-014 is superseded by `docs/23_RECOMMENDATION_SYSTEM_V1.md`의 2026-09-01 result policy. Curated matching과 선택 후 Home 이동 원칙은 유지한다.
 
 ## Explicit hold
 
-Product Owner requested that the following work **stop for now**:
+다음은 계속 **ON HOLD**:
 
 - prescribed weekly frequency -> routine split / routine count mapping
 - previously discussed 1–6 day split table
 
-Do not continue or wireframe this mapping until Product Owner explicitly resumes it.
-
-Because recommendation-result composition depends on this downstream program structure, do not force recommendation-result UX ahead of the held mapping.
+현재 추천 결과 와이어프레임에서 `주 3일`을 예시로 보여줄 수 있으나, 이는 UI 개념 설명용이며 위 매핑을 확정하지 않는다.
 
 ## Canonical wireframe
 
 GitHub source:
 - `product/wireframe/index.html`
 
-Current version:
-- `2026-09-01.7`
+Current target version for this pass:
+- `2026-09-01.8`
 
 Production:
 - `https://liftly-wireframe.vercel.app`
 
-The wireframe now contains:
+Current visual scope:
 
-### Confirmed onboarding baseline
+- confirmed onboarding baseline
+- recommendation-result dedicated carousel review
 
-- login
-- basic profile information: segmented `남성 / 여성` + text-field birth date with `1999-01-01` placeholder
-- start mode
-- recommendation settings list
-- confirmed goal / experience / weekly availability / workout-duration sheets
-- completed-input CTA state
-
-Do not keep expanding onboarding wireframes unless a later policy decision materially changes the flow.
-
-### Home default-state review — NOT CONFIRMED
-
-Four review states are shown together for Product Owner discussion:
-
-1. **추천 루틴 있음 + 요일 스케줄 없음**
-   - `다음 운동` primary card
-   - intended only when a recommended/internal sequence actually defines a next session
-
-2. **요일 스케줄 있음**
-   - `오늘의 운동` primary card
-   - next scheduled session shown as secondary information
-
-3. **직접 만든 독립 루틴만 있음**
-   - app does not invent a `다음 운동`
-   - Home emphasizes quick selection/start from `내 루틴`
-
-4. **루틴 없음**
-   - empty state
-   - `추천 루틴 받기 / 직접 루틴 만들기` remain equal choices
-
-These are review proposals only. Do **not** write them into Screen Decision policy as confirmed until Product Owner explicitly chooses the Home behavior.
+Previous Home default-state review is paused/removed from current wireframe so recommendation acceptance flow can be settled first.
 
 Canonical Figma:
 - `https://www.figma.com/design/W3lZurXCXbThP67rF2xk2b/LIFTLY_%EC%B5%9C%EC%A2%85?node-id=0-1&t=59Hp4z7hcHf5nNL5-1`
 
-## Current Home decision to discuss
+## Next decision after wireframe review
 
-The next decision should be made from the new wireframe rather than abstract discussion:
+추천 결과 화면을 본 뒤 다음 하나를 결정한다:
 
-- should Home be primarily a **workout-start surface**?
-- when is the app allowed to name one routine as `다음 운동`?
-- should `오늘의 운동` appear only when a weekday schedule actually exists?
-- for independent self-built routines, should Home present quick routine choices instead of guessing a next routine?
+**`기본형 / 간결형 / 볼륨형`을 실제 프로그램 변수에서 정확히 무엇으로 구분할지.**
 
-Already confirmed and not reopened:
+그 다음에 Home 기본 상태 검토로 돌아간다.
 
-- primary bottom navigation: `홈 / 루틴 / 분석 / 설정`
-- if a workout is active, Home exposes a persistent one-tap return state
-- active-workout return UI appears on Home only
-
-## Open later, but not part of the immediate Home decision
+## Open later
 
 - onboarding legal/privacy/minimum-age final policy pass
 - exact program effects of each confirmed goal
 - workout-duration -> exact exercise/set budget
 - other experience effects beyond frequency ceiling
 - split/routine-count mapping — **ON HOLD**
-- recommendation output contract
-- deterministic template matching / substitutions
-- recommendation-result UX
+- deterministic template matching / tie-break rules
+- substitution rules
 - first-workout handoff / load calibration
+- post-acceptance Home default-state design
 
 ## Existing IA / workout rules remain valid
 
+- primary bottom navigation: `홈 / 루틴 / 분석 / 설정`
 - exercise library is contextual, not a primary tab
 - one active workout at a time
 - active session survives restart until finish/discard
+- Home exposes active-workout return state
 - Routine/Analysis/Settings remain usable while workout is active under existing lock rules
 - structural edits during workout apply to current session and may prompt saved-routine update at completion
 - load/reps changes are performance records and do not trigger routine-structure update prompts
