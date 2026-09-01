@@ -9,6 +9,21 @@ Define the recommendation system before continuing recommendation-flow wireframe
 
 This document is the working source for recommendation-system design. Screen-level recommendation UX should not outrun these rules.
 
+## First-run eligibility gate — CONFIRMED
+
+Onboarding is shown only for a genuinely new Fitness account that has not completed first-run setup.
+
+Entry behavior:
+
+- new account, first successful login -> first-run onboarding
+- existing account that already completed onboarding -> skip onboarding and go directly to Home
+- reinstalling the app, signing in again, or signing in on another device does not make an existing account a new user
+- if first-run onboarding was started but not completed, the account should resume the incomplete onboarding rather than being treated as a fully onboarded returning user
+
+The gate must therefore be based on persisted account/onboarding state, not only a local `first launch` flag on the device.
+
+First-run onboarding is the place where initial profile information and the recommendation/self-build entry decision are collected. Returning users should not be forced through those questions again merely because they logged out or changed devices.
+
 ## Confirmed baseline
 
 The Product Owner selected the balanced recommendation-input direction as the current baseline.
@@ -33,7 +48,8 @@ Current product direction:
 - sex/gender and age are **profile / monetization data**, not recommendation-matching inputs
 - they must not be used to guess a starting working weight
 - they should not be presented as though they are required to generate a better workout recommendation unless a later product rule gives them a real recommendation effect
-- collection timing, exact field shape, consent copy, and whether the fields are optional are still to be finalized before implementation
+- sex/gender and age collection belongs in the new-user onboarding/profile setup path, not in returning-user login
+- collection timing within first-run onboarding, exact field shape, consent copy, and whether the fields are optional are still to be finalized before implementation
 - because future personalized advertising may use account-linked demographic information, privacy disclosure, consent/opt-out behavior, app-store data-safety declarations, and age-treatment rules must be defined before ad activation
 - the age-floor / minor-user policy is still open and must be resolved before demographic data is used for personalized advertising
 
