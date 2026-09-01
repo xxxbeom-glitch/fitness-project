@@ -98,6 +98,28 @@ Semantics:
 - no specific weekday selection is required in this onboarding step
 - weekday scheduling remains optional later
 
+## Workout duration — CONFIRMED
+
+Question meaning:
+
+`한 번 운동할 때 현실적으로 얼마나 시간을 쓸 수 있나요?`
+
+Options:
+
+- `30분`
+- `45분`
+- `60분`
+- `90분 이상`
+
+Semantics:
+
+- selected value = the user's realistic **maximum resistance-training session time**
+- the value is a planning budget, not a promise that every session must last exactly that long
+- set-to-set rest time is included in this budget
+- separate cardio time is not included in this onboarding value
+- the matcher may create a shorter session when appropriate, but should not routinely design a session that exceeds the selected time budget
+- exact exercise-count / set-count allocation for each time bucket remains a later program-design decision
+
 ## Demographic profile data — SEPARATE FROM MATCHER
 
 Sex/gender and age belong to broader new-user profile onboarding for potential future audience segmentation / advertising use.
@@ -109,18 +131,22 @@ Sex/gender and age belong to broader new-user profile onboarding for potential f
 
 ## Current wireframe scope — CONFIRMED
 
-Canonical wireframe currently visualizes only the onboarding flow:
+Canonical wireframe visualizes only the onboarding flow:
 
 `로그인 -> 기본정보 -> 시작 방식 -> 추천 설정 1화면 + bottom sheets -> 입력 완료 CTA 상태`
 
-It now includes the confirmed training-experience options and weekly-availability 1–7 day sheet.
+It includes:
+
+- confirmed training-experience options
+- confirmed weekly-availability 1–7 day sheet
+- confirmed workout-duration `30 / 45 / 60 / 90분 이상` sheet
 
 It intentionally does **not** visualize:
 
 - recommendation-result details
 - prescribed frequency -> routine split / routine count
 - unconfirmed goal options as final
-- unconfirmed workout-duration options as final
+- detailed exercise/set volume derived from workout duration
 
 ## Product Owner hold — 2026-09-01
 
@@ -136,7 +162,7 @@ The already-confirmed experience-based frequency ceilings remain recorded policy
 - final goal options and program effects
 - other downstream effects of experience bands beyond weekly ceiling
 - prescribed frequency -> routine split / routine count **ON HOLD**
-- workout duration -> exercise/set budget
+- workout duration -> exact exercise/set budget
 - recommendation output contract
 - deterministic template matching / tie-break rules
 - substitution rules
