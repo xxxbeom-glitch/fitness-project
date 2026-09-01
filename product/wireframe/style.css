@@ -98,7 +98,7 @@ main{max-width:1180px;margin:auto;padding:24px 14px 80px}
 .result-rail{padding-bottom:30px}
 .result-case{background:#0d100e}
 
-.result-phone{min-height:1000px;background:#0b0f0d;border-color:#1e2a24;padding-bottom:24px}
+.result-phone{min-height:990px;background:#0b0f0d;border-color:#1e2a24;padding-bottom:24px}
 .result-nav{height:46px;display:grid;grid-template-columns:44px 1fr 44px;align-items:center;text-align:center;margin:0 -8px 4px}
 .result-nav>span:nth-child(2){font-size:15px;font-weight:800}
 .back{width:36px;height:36px;border:0;background:transparent;color:var(--p);font-size:30px;line-height:32px;padding:0;text-align:left}
@@ -112,10 +112,10 @@ main{max-width:1180px;margin:auto;padding:24px 14px 80px}
 .context-chips span{flex:0 0 auto;padding:6px 8px;border-radius:8px;background:#131a16;border:1px solid #1f2d26;font-size:10px;color:#9ca9a2}
 
 .carousel-shell{position:relative;height:378px;margin:16px -20px 0;overflow:hidden}
-.prescription-carousel{height:565px}
+.prescription-carousel{height:535px}
 .candidate-card{position:absolute;z-index:3;left:50%;top:8px;transform:translateX(-50%);width:264px;min-height:352px;padding:20px;background:#171c19;border:1px solid #2a3b32;border-radius:24px;box-shadow:0 18px 40px rgba(0,0,0,.26)}
 .candidate-card:before{content:"";position:absolute;inset:0 0 auto 0;height:5px;border-radius:24px 24px 0 0;background:var(--brand)}
-.prescription-card{width:290px;min-height:540px;padding:18px}
+.prescription-card{width:calc(100% - 40px);min-height:510px;padding:18px}
 .candidate-topline{display:flex;align-items:flex-start;justify-content:space-between;gap:8px;min-height:36px}
 .recommend-badge{display:inline-flex;align-items:center;height:22px;padding:0 8px;margin-bottom:6px;border-radius:999px;background:rgba(52,211,153,.12);color:var(--brand);font-size:9px;font-weight:800}
 .candidate-type{font-size:11px;color:var(--brand);font-weight:900;margin-bottom:6px}
@@ -126,24 +126,17 @@ main{max-width:1180px;margin:auto;padding:24px 14px 80px}
 .candidate-meta>div{padding:9px 10px;background:#101411;border:1px solid #202b25;border-radius:10px}
 .candidate-meta small{display:block;font-size:9px;color:var(--t);margin-bottom:3px}
 .candidate-meta strong{font-size:11px;line-height:16px}
-.candidate-points{display:grid;gap:7px;margin-top:8px}
-.candidate-points span{position:relative;padding-left:15px;font-size:11px;line-height:16px;color:#b8c0bc}
-.candidate-points span:before{content:"✓";position:absolute;left:0;color:var(--brand);font-size:10px;font-weight:900}
 
 .day-tabs{display:grid;grid-template-columns:repeat(3,1fr);gap:5px;margin:4px 0 10px}
-.day-tabs button{height:30px;border:1px solid #26332c;border-radius:8px;background:#101411;color:#657169;font-size:9px;font-weight:800}
+.day-tabs button{height:32px;border:1px solid #26332c;border-radius:8px;background:#101411;color:#657169;font-size:9px;font-weight:800}
 .day-tabs button.active{border-color:var(--brand);background:rgba(52,211,153,.09);color:var(--brand)}
 .exercise-list{border:1px solid #222d27;border-radius:12px;background:#101411;overflow:hidden}
-.exercise-list>div{min-height:46px;display:flex;flex-direction:column;justify-content:center;gap:2px;padding:8px 11px;border-bottom:1px solid #1b241f}
+.exercise-list>div{min-height:48px;display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:center;gap:10px;padding:9px 11px;border-bottom:1px solid #1b241f}
 .exercise-list>div:last-child{border-bottom:0}
-.exercise-list span{font-size:11px;line-height:15px;color:#d8ddda;font-weight:700}
-.exercise-list strong{font-size:10px;line-height:14px;color:#8fa097;font-weight:700}
+.exercise-list span{min-width:0;font-size:11px;line-height:15px;color:#d8ddda;font-weight:700}
+.exercise-list strong{font-size:10px;line-height:14px;color:#8fa097;font-weight:700;text-align:right;white-space:nowrap}
 
-.peek-card{position:absolute;z-index:1;top:58px;width:220px;height:420px;padding:18px;background:#111512;border:1px solid #202a24;border-radius:22px;opacity:.52}
-.peek-card.left{left:-178px;text-align:right}
-.peek-card.right{right:-178px}
-.peek-card small{display:block;color:var(--brand);font-size:10px;font-weight:800;margin-bottom:6px}
-.peek-card strong{font-size:14px;line-height:20px;color:#b8c0bc}
+.peek-card{display:none}
 
 .carousel-guide{height:34px;display:grid;grid-template-columns:40px 1fr 40px;align-items:center;margin-top:0}
 .carousel-guide button{width:34px;height:30px;border:1px solid #233128;border-radius:9px;background:#111512;color:var(--s);font-size:18px;line-height:18px}
