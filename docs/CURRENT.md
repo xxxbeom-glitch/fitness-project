@@ -1,23 +1,24 @@
 # CURRENT — Fitness Project
 
-**Updated:** 2026-08-29
+**Updated:** 2026-09-01
 
 ## Current mode
 
-`BOOTSTRAP / DESIGN EXECUTION — TONAL PHASE-A RECONSTRUCTION COMPLETE · F5 REVALIDATED · FITNESS FIGMA SCREENS NEXT`
+`PRODUCT / UX PLANNING — TOP-LEVEL IA CONFIRMED · ACTIVE-WORKOUT NAVIGATION RULES CONFIRMED · CRITICAL FLOW EDGE CASES IN PROGRESS`
 
-The Tonal Phase-A reconstruction baseline has passed F1–F5 independent QA. F5 was subsequently revalidated after Product Owner visual review exposed two composition-level double-inset defects in the Examples page; those defects were remediated and the full representative QA matrix was rerun successfully.
+The current execution focus is **high-level IA, critical user flows, and storyboard definition before returning to Figma screen production**.
 
-The current execution target remains **Figma**. The earlier discussion that a later code-first/code-led workflow may be faster is recorded only as a workflow hypothesis. It is **not** an instruction to switch the active work from Figma to Cursor/code.
+The previously prepared Tonal design-system baseline remains valid and ready for later Fitness screen composition, but the Product Owner explicitly moved the project back one level to finish product structure and interaction-flow decisions first. Therefore Figma screen production must not outrun the current IA/storyboard work.
 
-A mistakenly created GitHub Issue #1 (`TSK-PB-001`) attempted to start a Cursor/Expo code-first pilot. That issue has been closed as **NOT PLANNED** and must not be executed.
+No Cursor implementation task is authorized at this stage.
 
 ## Product authority
 
 Canonical product decisions remain in:
-- `docs/08_DECISIONS.md` through `DEC-021`
-- `docs/13_SCREEN_DESIGN_DECISIONS.md` for approved screen-level UX/UI decisions
-- `docs/09_TECHNICAL_STACK.md` for React Native + Expo + TypeScript direction
+- `docs/08_DECISIONS.md`
+- `docs/13_SCREEN_DESIGN_DECISIONS.md`
+- `docs/14_IA_STORYBOARD.md` — current IA/storyboard planning source
+- `docs/09_TECHNICAL_STACK.md`
 
 Core product constraints remain unchanged:
 - general-purpose weight-training tracker
@@ -33,125 +34,63 @@ Core product constraints remain unchanged:
 - custom exercises are MVP-critical
 - monetization remains deferred
 
+## Current IA / navigation decisions
+
+Confirmed in `docs/14_IA_STORYBOARD.md`:
+- primary bottom navigation: `홈 / 루틴 / 분석 / 설정`
+- exercise library is contextual, not a standalone primary tab
+- user-facing saved routines are independent daily routines; no mandatory higher-level program container
+- active workout keeps the primary bottom navigation visible
+- Home alone exposes the persistent active-workout return state
+- 루틴 / 분석 / 설정 remain visually normal during an active workout
+- only one active workout session exists at a time
+- starting another routine while one is active asks the user how to handle the current record: save partial work / discard / cancel
+- structural changes made inside an active workout apply immediately to the current session
+- at workout completion, if the structure differs from the saved source routine, the app asks whether the saved routine should also be updated
+- load/reps changes are workout-performance records and do not trigger the saved-routine update prompt
+
+Canonical cumulative wireframe:
+- `https://liftly-wireframe.vercel.app`
+
+Use this one fixed web artifact for all new comparisons and confirmed states. Do not create a separate Product Owner-facing wireframe URL for each question.
+
+## Current open decisions
+
+Before moving fully into critical-flow storyboard work, resolve the remaining active-workout edge cases:
+
+1. how a saved partial/incomplete workout should appear in History/Analysis
+2. whether any other actions need explicit guarding/restriction while a workout is active
+
+These should stay narrow. Do not reopen already-confirmed top-level navigation or active-session behavior without new evidence.
+
+## Current next action
+
+1. decide the History/Analysis treatment for a workout saved before its planned routine was fully completed
+2. resolve any remaining active-session guard edge case only if it materially affects the primary flow
+3. then define the critical user-flow storyboard set:
+   - recommended-routine first run -> first workout
+   - self-built routine -> first workout
+   - returning user -> next workout
+   - equipment unavailable -> substitute
+   - active session interrupted -> recover
+   - mid-session add/remove/reorder
+   - scheduled vs unscheduled Home start
+4. produce the complete screen inventory from those flows
+5. only then return to Figma `10_FITNESS_SCREENS`
+
+Exercise DB normalization and Planfit gap analysis remain backlog work and must not block this sequence.
+
 ## Visual-system authority
 
-- **Tonal = passing Phase-A visual-system baseline**
-- **Hevy = practical weight-training functionality / repeated interaction reference**
-- **Fitness GitHub Product/Policy/Decision docs = behavior and scope authority**
-
-Canonical design references:
+The previously completed Tonal Phase-A baseline remains the visual-system authority when Figma execution resumes:
 - `docs/15_TONAL_DESIGN_SYSTEM_SPEC.md`
 - `docs/16_FIGMA_TONAL_BUILD_INSTRUCTIONS.md`
 - `docs/17_FIGMA_AGENT_EXECUTION_QA.md`
 - `docs/21_TONAL_PRODUCT_PATTERNS_AUDIT.md`
 - `docs/22_TONAL_PREFIGMA_CONSOLIDATION_QA.md`
 
-Latest QA:
-- `docs/27_FIGMA_PHASE_F4_PRODUCT_PATTERNS_QA.md`
-- `docs/28_FIGMA_F4_SPACING_QA.md`
-- `docs/29_FIGMA_PHASE_F5_EXAMPLES_QA.md`
-- `docs/31_FIGMA_F5_EXAMPLES_ALIGNMENT_QA.md` — width/alignment revalidation after PO visual review
-
-Methodology / work-history checkpoints:
-- `docs/26_MOBBIN_FIGMA_RECONSTRUCTION_RETROSPECTIVE_DRAFT.md`
-- `docs/30_PHASE_A_RECONSTRUCTION_HISTORY_AND_WORKFLOW_CHECKPOINT.md`
-
-## Current Figma file
-
-- file: `tracker-app3`
-- file key: `tBpQfpAR1apJngF8a7qyH9`
-
-Current pages:
-- `01_FOUNDATIONS`
-- `02_COMPONENTS`
-- `03_PATTERNS`
-- `Examples`
-
-Next page / phase:
-- `10_FITNESS_SCREENS`
-
-## Completed phases
-
-### F1 Foundations
-**PASS**
-
-### F2 Core Components
-**PASS**
-
-F5 integration QA later corrected selected ChoiceCard indicator contrast; focused F2 regression remains PASS.
-
-### F3 Navigation / Rows / Overlays
-**PASS**
-
-Later integration QA corrected Overlay TopBar inverse ink and restored Row/Settings component-property references; focused F3 regression remains PASS.
-
-### F4 Product Patterns
-**PASS**
-
-Final F4 signals include:
-- top-level overlap = 0
-- unstyled text = 0
-- canonical spacing drift = 0
-- canonical spacing without Variable binding = 0
-- semantic color binding = PASS
-- representative 320 / 360 / 430 responsive QA = PASS
-- program/history direct Tonal visual comparison = PASS for Phase-A baseline
-
-### F5 Representative Examples
-**PASS — PHASE-A COMPLETE · REVALIDATED**
-
-Examples page includes:
-1. Onboarding / Choice Question
-2. Dashboard / Home
-3. Program / Hero Detail
-4. Workout / Movement Block
-5. Exercise Detail / Media
-6. Exercise Detail / No Media
-7. History / Chart + Table
-8. Settings / List Section
-
-Follow-up alignment QA corrected:
-- History set table double horizontal inset
-- Settings list double horizontal inset
-
-Final post-remediation signals:
-- shared page alignment lines = PASS
-- example overlap = 0
-- unstyled text = 0
-- local non-scale spacing = 0
-- canonical spacing without Variable binding = 0
-- 8 examples x 320 / 360 / 430 responsive checks = PASS
-- no F5-local duplicate of existing reusable components
-
-Required QA lesson:
-- `no overflow` does not prove correct alignment
-- composed-screen QA must separately inspect shared page alignment lines, effective visible insets, and accidental parent-padding + child-padding double insets
-
-## Workflow checkpoint
-
-A future code-first/code-led workflow remains worth evaluating because the Phase-A design system is now stable enough that some Figma-to-code duplication may be avoidable.
-
-However:
-- this is not yet a locked policy
-- no current Cursor implementation task is authorized from that discussion alone
-- the active design workflow continues in Figma until the Product Owner explicitly chooses to switch execution mode
-
-## Current next action
-
-Continue in **Figma** with the Fitness-specific screen phase (`10_FITNESS_SCREENS`).
-
-Execution rule:
-1. read the approved screen-level Product/UX decision before each screen
-2. reuse the passing F1–F5 system rather than drawing local replacements
-3. use Tonal for visual hierarchy/composition and Hevy for practical strength-training interactions where appropriate
-4. apply Fitness policy over competitor behavior
-5. QA each composed screen for structure, spacing rhythm, alignment lines/double inset, token/reuse integrity, responsive behavior, and visual/product correctness
-6. do not hand off to Cursor merely because a Figma screen exists; code handoff begins only when the Product Owner explicitly moves the work into implementation
-
-## Phase sequence
-
-`F1 PASS -> F2 PASS -> F3 PASS -> F4 PASS -> F5 PASS (REVALIDATED) -> 10_FITNESS_SCREENS FIGMA READY`
+Latest completed design-system QA remains PASS through F5 revalidation.
 
 ## Canonical source rule
 
-GitHub remains the Source of Truth for product policy, design-system specification, execution rules, QA state, history checkpoints, and next action. Figma remains the active visual design artifact for the current phase.
+GitHub remains the Source of Truth for product policy, decisions, IA/storyboard state, execution rules, QA state, and next action. Figma remains the visual design artifact, but current product/flow decisions must be finalized before the next screen-production pass.
