@@ -19,6 +19,7 @@ Operating rule:
 - the separated 2026-09-01 comparison previews were consolidated into this canonical wireframe
 - the incorrect scenario that required navigating back to Routine just to edit an already-active workout was discarded; active-workout edits belong in the active-workout flow itself
 - active-workout structural changes are now confirmed to prompt the user at workout completion about whether the saved routine should also be updated
+- partial-save behavior is confirmed to persist only work actually completed by the user; unperformed planned work is not saved as workout data
 
 ## Confirmed — Main navigation
 
@@ -147,6 +148,33 @@ Do not label the first action as `운동 완료로 처리` when the routine was 
 
 The user may have intentionally completed useful work before switching routines, or may want to discard an accidental/invalid session. Both cases are legitimate, so the app should preserve user control instead of applying a destructive or misleading default.
 
+## Confirmed — Partial save stores only work actually completed
+
+When the user chooses to save an active workout before completing the full planned routine, the app creates a **partial workout record**.
+
+Only work actually completed by the user is persisted:
+
+- save only completed sets with their actual load/reps
+- include an exercise in the saved record only when it contains completed work
+- exclude unperformed planned exercises
+- exclude sets that were planned or entered but never completed
+- do not create empty or zero-value workout entries for work that was not performed
+
+History / Analysis should distinguish this record from a fully completed planned routine with a partial-state label such as `부분 기록`.
+
+Session summary values are calculated from the persisted performed work only:
+
+- completed set count
+- exercise count
+- volume
+- duration and other workout-record metrics where applicable
+
+The original saved routine remains a plan/template; the partial workout record represents only what physically happened in that session.
+
+### Rationale
+
+A partial save is intended to preserve real training data, not to preserve the uncompleted plan. Saving planned-but-unperformed exercises or sets would make history and analysis imply work that never happened.
+
 ## Confirmed — Active-workout structure changes ask whether to update the saved routine
 
 A workout started from a saved routine may be changed freely while the session is active.
@@ -201,7 +229,6 @@ Gym conditions often force users to adapt a workout temporarily, but some live c
 ### Still to decide
 
 - Whether any other destinations/actions should be restricted while an active workout is running.
-- Exact partial/incomplete status language in History/Analysis.
 
 ## Planning sequence
 
