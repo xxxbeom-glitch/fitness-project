@@ -51,7 +51,7 @@ Figma는 시각 디자인 기준이다. 제품 정책/UX 의미가 GitHub 확정
 
 Product Owner에게 보여주는 누적 웹 와이어프레임은 이 URL 하나만 사용한다.
 
-Current wireframe version: `2026-09-01.10`
+Current wireframe version: `2026-09-01.11`
 
 ## Onboarding planning snapshot — BASELINE COMPLETE
 
@@ -91,6 +91,8 @@ Current baseline:
 - 한 번에 하나의 프로그램 카드가 화면 content width를 거의 전부 사용
 - 이전 side-peek card treatment는 제거
 - pagination + swipe로 후보 전환
+- 추천 결과 상단은 **헤드 카피 하나만 남기는 간결한 구조**로 유지
+- 입력 조건 chip, eyebrow, 보조 설명 문구는 추천 결과 헤더에서 노출하지 않음
 - 세 후보는 `기본형 / 간결형 / 볼륨형`
 - `기본형`은 provisional `가장 추천` treatment 가능
 - 세 후보는 `초급 / 중급 / 고급`이 아님
