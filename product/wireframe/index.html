@@ -1,0 +1,154 @@
+<!doctype html>
+<!-- CANONICAL_WIREFRAME_VERSION: 2026-09-01.1 -->
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="liftly-wireframe-version" content="2026-09-01.1">
+  <title>LIFTLY Product Wireframe</title>
+  <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+  <header class="top">
+    <div>
+      <div class="brand">LIFTLY</div>
+      <div class="sub">Product planning · cumulative wireframe · v2026-09-01.1</div>
+    </div>
+    <a class="source" href="https://github.com/xxxbeom-glitch/fitness-project/tree/main/product" target="_blank" rel="noreferrer">GitHub source</a>
+  </header>
+
+  <main>
+    <section class="summary">
+      <div class="eyebrow">CURRENT FLOW</div>
+      <h1>신규 사용자 온보딩</h1>
+      <p>신규 계정만 진행합니다. 기존 계정은 로그인 후 바로 Home으로 이동합니다. 추천 입력은 여러 화면으로 쪼개지 않고 한 화면에서 설정합니다.</p>
+      <div class="flow">
+        <span>로그인</span><b>→</b><span>기본정보</span><b>→</b><span>시작 방식</span><b>→</b><span>추천 설정 1화면</span><b>→</b><span>추천 결과</span>
+      </div>
+      <div class="branch"><span>기존 사용자</span><b>→</b><span>Home</span></div>
+    </section>
+
+    <section class="rail">
+      <article class="case confirmed">
+        <div class="case-head"><strong>0 · 로그인</strong><em>확정</em></div>
+        <div class="phone">
+          <div class="status"><span>9:41</span><span>● ● ●</span></div>
+          <div class="hero"><div class="logo">LIFTLY</div><p>나의 운동을 기록하고 이어가세요.</p></div>
+          <div class="actions"><button class="primary">Google로 계속하기</button><button class="secondary">Kakao로 계속하기</button></div>
+        </div>
+      </article>
+
+      <article class="case review">
+        <div class="case-head"><strong>1 · 기본정보</strong><em>형식 검토</em></div>
+        <div class="phone">
+          <div class="status"><span>9:41</span><span>● ● ●</span></div>
+          <div class="nav-title">기본정보</div>
+          <div class="question"><h2>기본정보를 알려주세요</h2><p>신규 사용자 온보딩에서 한 번만 받습니다.</p></div>
+          <label>성별</label><div class="input"><span>선택</span><b>›</b></div>
+          <label>나이</label><div class="input"><span>선택</span><b>›</b></div>
+          <button class="primary">다음</button>
+          <p class="footnote">성별·나이는 프로필/광고 분석용이며 추천 matcher와 분리합니다.</p>
+        </div>
+      </article>
+
+      <article class="case confirmed">
+        <div class="case-head"><strong>2 · 시작 방식</strong><em>확정</em></div>
+        <div class="phone">
+          <div class="status"><span>9:41</span><span>● ● ●</span></div>
+          <div class="nav-title">시작하기</div>
+          <div class="question"><h2>어떻게 시작할까요?</h2><p>두 경로는 같은 수준의 첫 시작 선택지입니다.</p></div>
+          <div class="choice"><h3>추천 루틴 받기</h3><p>네 가지 조건을 한 화면에서 설정하고 추천받습니다.</p><b>›</b></div>
+          <div class="choice"><h3>내 루틴 직접 만들기</h3><p>운동·세트 구성을 직접 선택합니다.</p><b>›</b></div>
+        </div>
+      </article>
+
+      <article class="case confirmed">
+        <div class="case-head"><strong>3 · 추천 설정</strong><em>구조 확정</em></div>
+        <div class="phone">
+          <div class="status"><span>9:41</span><span>● ● ●</span></div>
+          <div class="nav-title">추천 루틴 설정</div>
+          <div class="question"><h2>내게 맞는 루틴을 설정해볼게요</h2><p>항목을 눌러 바텀시트에서 선택합니다.</p></div>
+          <div class="settings-list">
+            <div><span><strong>운동 목표</strong><small>선택</small></span><b>›</b></div>
+            <div><span><strong>운동 경력</strong><small>선택</small></span><b>›</b></div>
+            <div><span><strong>주당 가능일</strong><small>선택</small></span><b>›</b></div>
+            <div><span><strong>운동 시간</strong><small>선택</small></span><b>›</b></div>
+          </div>
+          <button class="primary disabled">내 루틴 추천받기</button>
+          <p class="footnote">네 항목을 모두 선택하면 활성화됩니다.</p>
+        </div>
+      </article>
+
+      <article class="case confirmed">
+        <div class="case-head"><strong>4 · 선택 바텀시트</strong><em>Figma 패턴</em></div>
+        <div class="phone sheet-demo">
+          <div class="status"><span>9:41</span><span>● ● ●</span></div>
+          <div class="nav-title">추천 루틴 설정</div>
+          <div class="settings-list dimmed">
+            <div><span><strong>운동 경력</strong><small>3개월~1년</small></span><b>›</b></div>
+            <div><span><strong>주당 가능일</strong><small>선택</small></span><b>›</b></div>
+          </div>
+          <div class="overlay">
+            <div class="sheet">
+              <div class="handle"></div>
+              <h3>운동 경력</h3>
+              <p>웨이트 트레이닝을 꾸준히 한 기간을 선택하세요.</p>
+              <div class="options">
+                <div>처음이거나 3개월 미만</div>
+                <div class="selected"><span>3개월~1년</span><b>✓</b></div>
+                <div>1~3년</div>
+                <div>3년 이상</div>
+              </div>
+              <button class="primary">적용</button>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <article class="case confirmed">
+        <div class="case-head"><strong>5 · 입력 완료</strong><em>확정 구조</em></div>
+        <div class="phone">
+          <div class="status"><span>9:41</span><span>● ● ●</span></div>
+          <div class="nav-title">추천 루틴 설정</div>
+          <div class="question"><h2>이 조건으로 추천할게요</h2><p>같은 화면에서 다시 눌러 수정할 수 있습니다.</p></div>
+          <div class="settings-list completed">
+            <div><span><strong>운동 목표</strong><small>근육 증가</small></span><b>›</b></div>
+            <div><span><strong>운동 경력</strong><small>3개월~1년</small></span><b>›</b></div>
+            <div><span><strong>주당 가능일</strong><small>3일</small></span><b>›</b></div>
+            <div><span><strong>운동 시간</strong><small>45분</small></span><b>›</b></div>
+          </div>
+          <button class="primary">내 루틴 추천받기</button>
+        </div>
+      </article>
+
+      <article class="case review">
+        <div class="case-head"><strong>6 · 추천 결과</strong><em>후순위</em></div>
+        <div class="phone">
+          <div class="status"><span>9:41</span><span>● ● ●</span></div>
+          <div class="nav-title">추천 결과</div>
+          <div class="question"><h2>추천 로직 확정 후 연결</h2><p>목표·경력·가능일·시간이 실제 프로그램에 어떻게 반영되는지 먼저 결정합니다.</p></div>
+          <div class="placeholder">운동 구성 · 순서 · 세트 수 · 반복수 범위</div>
+          <div class="info"><strong>초기 중량</strong><p>성별/나이로 고정 추정하지 않고 첫 실제 운동에서 개인화합니다.</p></div>
+        </div>
+      </article>
+    </section>
+
+    <section class="inventory">
+      <div class="eyebrow">CONFIRMED IA INVENTORY</div>
+      <h2>기존 확정 화면은 계속 유지</h2>
+      <p>이 목록의 화면/상태를 새 기획 때문에 임의 삭제하지 않습니다. 상세 정책은 GitHub Decision/Storyboard가 우선합니다.</p>
+      <div class="chips">
+        <span>홈</span><span>홈 · 운동 진행 중</span><span>루틴 목록</span><span>루틴 상세</span><span>루틴 편집</span><span>운동 검색</span><span>검색 결과 없음</span><span>직접 운동 만들기</span><span>운동 중</span><span>휴식 타이머</span><span>운동 종료</span><span>운동 순서 변경</span><span>운동 완료</span><span>운동 최근 기록</span><span>분석</span><span>설정</span><span>단위 설정</span><span>다른 루틴 시작 · 세션 처리</span><span>운동 중 변경 → 루틴 반영</span><span>부분 저장 기록 표시</span><span>운동 중 루틴 관리</span><span>추천 결과 A/B/C · 보류</span>
+      </div>
+    </section>
+
+    <section class="rules">
+      <div class="eyebrow">CANONICAL LINKS</div>
+      <div class="link-card"><strong>GitHub planning hub</strong><code>product/README.md</code></div>
+      <div class="link-card"><strong>Wireframe source</strong><code>product/wireframe/index.html</code></div>
+      <div class="link-card"><strong>Production</strong><code>https://liftly-wireframe.vercel.app</code></div>
+      <div class="link-card"><strong>Figma</strong><code>W3lZurXCXbThP67rF2xk2b / LIFTLY_최종</code></div>
+    </section>
+  </main>
+</body>
+</html>
