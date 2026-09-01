@@ -1,7 +1,7 @@
 # LIFTLY Cumulative Wireframe
 
 **Status:** CANONICAL
-**Wireframe version:** `2026-09-01.2`
+**Wireframe version:** `2026-09-01.3`
 **Updated:** 2026-09-01
 
 ## Canonical source
@@ -28,6 +28,8 @@
   - `1년 이상이에요`
 - 주당 가능일 확정 선택지: `1일`~`7일`
 - 주당 가능일의 의미: 사용자가 현실적으로 확보 가능한 **최대 일수**
+- 운동 시간 확정 선택지: `30분 / 45분 / 60분 / 90분 이상`
+- 운동 시간의 의미: 세트 간 휴식 포함, 별도 유산소 제외한 **최대 웨이트 트레이닝 세션 시간 예산**
 - 네 추천 입력을 모두 선택했을 때 CTA 활성화 상태
 
 현재 화면에서 의도적으로 제외 / 후속 설계:
@@ -35,7 +37,7 @@
 - 추천 결과 상세 화면
 - 주당 처방 횟수 -> routine split / routine count 매핑
 - 목표의 최종 선택지/프로그램 효과
-- 운동시간의 최종 선택지/volume budget
+- 운동시간별 정확한 exercise/set volume budget
 
 ## Canonical runtime
 
