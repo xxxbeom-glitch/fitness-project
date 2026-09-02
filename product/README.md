@@ -1,7 +1,7 @@
 # G Fit Product Planning Hub
 
 **Status:** ACTIVE
-**Updated:** 2026-09-01
+**Updated:** 2026-09-02
 
 이 폴더는 Fitness Project의 기획·UX·와이어프레임 작업 진입점이다.
 
@@ -89,16 +89,28 @@ Current canonical review wireframe:
 - source: `product/wireframe/index.html`
 - stylesheet: `product/wireframe/style.css`
 - guide: `product/wireframe/README.md`
-- version: `2026-09-01.13`
+- version: `2026-09-02.14`
 - production: `https://liftly-wireframe.vercel.app`
 
-Product Owner 요청에 따라 Home부터 나머지 주요 화면까지 먼저 전체적으로 시각화했다.
+### Planning-spec layout — v14
+
+Product Owner 요청에 따라 current whole-app review artifact를 현업 화면설계서 형태로 재구성했다.
+
+- document metadata: 상단
+- phone mockup: 좌측
+- 화면 목적 / 진입 조건 / 요소 / 동작 / Validation / 이동 / 비고: 우측
+- phone 안에는 실제 앱 UI만 유지
+- `CONFIRMED / REVIEW / OPEN / POST-MVP` 등 기획 상태와 설명은 phone 밖 명세 영역에서 관리
+- 주변 shell은 light planning document, phone은 기존 Figma-synced dark G Fit UI 유지
+- 기존 whole-app 주요 화면과 제품 의미는 보존
+
+이 표현 변경은 새로운 Product Decision이 아니다.
 
 ### Figma design-system sync
 
-v13은 실제 canonical Figma 파일의 metadata / variables / authored screen structure를 직접 확인해 visual language를 동기화한 review artifact다.
+Phone UI는 canonical Figma의 visual language를 계속 사용한다.
 
-대표 적용 기준:
+대표 기준:
 
 - 360px screen / 20px side padding / 320px content
 - SUIT typography
@@ -118,7 +130,7 @@ v13은 실제 canonical Figma 파일의 metadata / variables / authored screen s
 
 정확한 inspected baseline과 제한사항은 `product/wireframe/README.md`에 기록한다.
 
-중요: 디자인시스템 sync는 REVIEW/OPEN 제품 가설을 확정시키지 않는다.
+중요: 디자인시스템 sync 또는 planning-spec layout은 REVIEW/OPEN 제품 가설을 확정시키지 않는다.
 
 현재 visualized areas:
 - Account / Onboarding
@@ -135,8 +147,20 @@ v13은 실제 canonical Figma 파일의 metadata / variables / authored screen s
 - `CONFIRMED` = 기존 확정 정책
 - `REVIEW` = 현재 화면 검토 가설
 - `OPEN` = Product Owner가 보고 결정할 항목
+- `POST-MVP` = 장기 구조 reference
 
 REVIEW/OPEN 항목은 구현 요구사항이 아니며 Product Owner 승인 전에는 Decision으로 승격하지 않는다.
+
+## Runtime status
+
+v2026-09-02.14 production deploy/read-back 완료:
+
+- Vercel project: `liftly-wireframe`
+- deployment: `dpl_FhbswP4x1T8oat9yQQKgsRic8hV8`
+- state: `READY`
+- canonical: `https://liftly-wireframe.vercel.app`
+- HTML: HTTP 200 / v14 markers 확인
+- CSS: HTTP 200
 
 ## Next planning sequence
 
