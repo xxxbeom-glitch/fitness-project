@@ -1,12 +1,14 @@
 # CURRENT — Fitness Project
 
-**Updated:** 2026-09-02 22:56 KST
+**Updated:** 2026-09-02 23:13 KST
 
 ## Current mode
 
-`PRODUCT / UX PLANNING — EXERCISE DB NORMALIZATION RULES APPROVED · BILINGUAL NAMES APPROVED · NEXT: CLASSIFY PURCHASED METADATA · CANONICAL WIREFRAME v2026-09-02.14`
+`PRODUCT / UX PLANNING — PURCHASED EXERCISE ASSET FIRST PASS COMPLETE · NEXT: METADATA + IMAGE QA → PRODUCTION DB v1 · CANONICAL WIREFRAME v2026-09-02.14`
 
-Product Owner가 운동 DB의 핵심 기록 기준인 **장비별 분리**, **각도/주요 자세별 분리**, **대표 그립은 선택적인 하위 기록**, **한국어/영어 표시명 병행**, **구매 에셋 내부의 실제 중복 통합 규칙**, **큰 부위 중심의 사용자 필터 + 세부 근육 데이터 병행**을 승인했다. 제조사 / 브랜드별 머신 DB는 MVP 기본 범위에서 제외한다. 다음은 실제 구매 metadata를 이 기준으로 분류하는 단계다.
+Product Owner가 운동 DB의 핵심 기록 기준인 **장비별 분리**, **각도/주요 자세별 분리**, **대표 그립은 선택적인 하위 기록**, **한국어/영어 표시명 병행**, **구매 에셋 내부의 실제 중복 통합 규칙**, **큰 부위 중심의 사용자 필터 + 세부 근육 데이터 병행**을 승인했다. 제조사 / 브랜드별 머신 DB는 MVP 기본 범위에서 제외한다.
+
+구매 에셋 **206개에 대한 파일명 기반 1차 분류 v0.1을 완료**했다. 다음은 실제 `metadata.json` 필드와 운동 이미지를 함께 검수해 **G Fit production Exercise DB v1 후보**로 다듬는 단계다. 그 뒤 국내 핵심 운동 / Planfit·Hevy 계열 레퍼런스와 비교해 **추가 제작이 필요한 핵심 누락 운동만 계산**한다.
 
 Cursor 제품 구현은 아직 승인되지 않았다.
 
@@ -17,9 +19,10 @@ Cursor 제품 구현은 아직 승인되지 않았다.
 1. 현재 Product Owner 결정
 2. `docs/24_PRODUCT_DIRECTION_V2.md`
 3. `docs/ux-decisions/2026-09-02-exercise-db-normalization.md`
-4. `docs/ux-decisions/2026-09-02-home-workout-routine-completion-locks.md`
-5. `docs/08_DECISIONS.md` 중 위 문서들과 충돌하지 않는 기존 기반 결정
-6. 현재 canonical wireframe / Figma
+4. `docs/exercise-db/purchased-asset-classification-v0.1.md`
+5. `docs/ux-decisions/2026-09-02-home-workout-routine-completion-locks.md`
+6. `docs/08_DECISIONS.md` 중 위 문서들과 충돌하지 않는 기존 기반 결정
+7. 현재 canonical wireframe / Figma
 
 기존 recommendation-heavy onboarding 관련 DEC-005 / DEC-006 / DEC-009 / DEC-014의 오래된 흐름은 `docs/24_PRODUCT_DIRECTION_V2.md`의 2026-09-01 reset보다 우선하지 않는다.
 
@@ -250,17 +253,34 @@ MVP 기본 운동 DB에서는 Hammer Strength / Cybex 등 **제조사·브랜드
 - 통합된 원본 이름은 alias / 검색어 / source metadata로 보존
 - 사용자 기본 부위 분류는 큰 부위 중심으로 단순화하되, 기본 운동 DB의 세부 근육 데이터는 별도로 유지
 
+### First-pass classification — COMPLETE
+
+기록 문서:
+
+`docs/exercise-db/purchased-asset-classification-v0.1.md`
+
+commit:
+
+`544e39a0744278362ff0fbf6745908424edbeffe`
+
+파일명 기준 Google Drive 원본 에셋 **206개**를 1차 분류했다.
+
+- 이름 변경 / 기본 유지: 172
+- 유지 · 전신/컨디셔닝: 14
+- 유지 · 그립 하위 기록 후보: 7
+- 중복 통합 후보: 5
+- 1차 제외: 4
+- 1차 제외 검토: 4
+
+주의: 이 결과는 **최종 production DB가 아니라 파일명 기반 v0.1**이다. 원본 구매 에셋과 원본 metadata는 수정하지 않고 별도 정규화 결과로 관리한다.
+
 ### Next
 
-실제 구매 metadata 전체를 다음 상태로 분류한다.
-
-- `유지`
-- `이름 변경`
-- `중복 통합`
-- `별도 유지`
-- `1차 제외`
-
-이 분류가 끝나면 G Fit 기본 Exercise DB와 추가 제작이 필요한 핵심 누락 운동을 계산할 수 있다.
+1. 실제 `metadata.json`의 원본 필드를 각 항목에 결합한다.
+2. 중복 통합 후보와 이름이 애매한 항목은 운동 이미지를 직접 확인해 최종 판정한다.
+3. 전체 한국어 표시명 / 영어 표시명 / alias를 자연스럽게 정리한다.
+4. 큰 부위 / 주동근 / 보조근 / 장비 / 각도·자세 / 기록 방식을 채워 production DB v1 후보를 만든다.
+5. 확정된 G Fit DB를 국내 핵심 운동 및 Planfit·Hevy 레퍼런스와 비교해 **핵심 누락 운동과 추가 이미지 제작 수량**을 산출한다.
 
 ## Theme — VALIDATION PENDING
 
@@ -337,6 +357,12 @@ Bilingual exercise naming lock:
 - Product Owner direction: 2026-09-02
 - decision doc update commit: `a850bf6f4884f1881d6b0a69750298e90b1b2e27`
 
+Purchased asset classification v0.1:
+
+- first-pass classification commit: `544e39a0744278362ff0fbf6745908424edbeffe`
+- source assets scanned: 206
+- based on source filenames; metadata/image QA still required
+
 Review-only previews do not automatically replace canonical production.
 
 ## Implementation status
@@ -347,7 +373,9 @@ Planning / UX approval is still in progress. Product implementation should begin
 
 ## Open items / blockers
 
-- actual purchased metadata classification
+- purchased metadata field enrichment + image-level duplicate QA
+- production Exercise DB v1 candidate build
+- core missing-exercise / additional asset gap analysis after DB v1 candidate
 - exact representative grip list by exercise
 - grip selection UI exact form / last-used behavior
 - purchased asset license check for AI-reference derivative work
