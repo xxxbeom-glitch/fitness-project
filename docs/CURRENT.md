@@ -1,10 +1,10 @@
 # CURRENT — Fitness Project
 
-**Updated:** 2026-09-01
+**Updated:** 2026-09-02
 
 ## Current mode
 
-`PRODUCT / UX PLANNING — G FIT WHOLE-APP WIREFRAME v2026-09-01.13 · FIGMA SYSTEM SYNCED · PO REVIEW PENDING`
+`PRODUCT / UX PLANNING — G FIT WHOLE-APP WIREFRAME v2026-09-02.14 · PLANNING-SPEC LAYOUT · PO REVIEW PENDING`
 
 Product Owner가 제품 전체 방향을 먼저 화면으로 확인한 뒤 Home부터 천천히 결정하기로 했다.
 
@@ -16,36 +16,33 @@ Current visual review source:
 - `product/wireframe/index.html`
 - `product/wireframe/style.css`
 - `product/wireframe/README.md`
-- version: `2026-09-01.13`
+- version: `2026-09-02.14`
 - production: `https://liftly-wireframe.vercel.app`
 
 Cursor implementation은 아직 승인되지 않았다.
 
-## Latest checkpoint — Figma design-system sync
+## Latest checkpoint — planning-spec wireframe layout
 
-Product Owner가 whole-app review wireframe을 이해하기 쉽도록 **기존 Figma 디자인시스템을 먼저 정확히 반영한 상태에서 제품 구조를 검토**하기로 했다.
+Product Owner 요청에 따라 기존 whole-app review wireframe의 **제품 내용은 유지하면서, 검토 화면의 표현 구조를 현업 화면설계서 형태로 재구성**했다.
 
-v12는 GitHub에 기록된 일부 visual token을 사용했지만 실제 Figma authored screens/components를 충분히 직접 대조하지 않은 상태였다.
+v14 기준:
 
-v13에서는 canonical Figma 파일을 직접 확인해 review wireframe의 visual language를 다시 맞췄다.
+- 페이지 바깥 shell은 white / light-gray 기반의 planning document로 변경
+- 상단에 Page Title / Version / Status / Screen Scope / Purpose 등 metadata 배치
+- 각 화면 상단에 `Screen ID / Name`, `Screen Path`, `Review State` 배치
+- 각 화면은 **좌측 phone mockup / 우측 spec table** 구조
+- 우측 spec은 `화면 목적 / 진입 조건 / 주요 요소 / 동작·상태 / Validation / 이동·다음 / 비고`를 사용
+- phone mockup에는 실제 사용자-facing UI와 데이터만 유지
+- 기존 phone 내부 `.wire-note`, `.open-box`, `검토안`, 정책 설명은 phone 밖 명세 영역으로 이동
+- `CONFIRMED / REVIEW / OPEN / POST-MVP` 의미는 유지하며 제품 결정을 새로 생성하지 않음
+- 기존 whole-app 주요 화면/상태는 삭제하지 않음
+- 좁은 화면에서는 phone과 spec이 vertical stack으로 전환
+
+Canonical Figma visual baseline은 v13에서 동기화한 값을 그대로 유지한다.
 
 Canonical Figma:
 
 `https://www.figma.com/design/W3lZurXCXbThP67rF2xk2b/LIFTLY_%EC%B5%9C%EC%A2%85?node-id=0-1`
-
-직접 확인한 대표 Figma 구조:
-
-- `110_Home`
-- `111_Home_Empty`
-- `201_Routine_List`
-- `210_Routine_Detail`
-- `220_Routine_Create`
-- `230_Routine_Edit`
-- `301_Exercise_Search`
-- `310_Custom_Exercise_Create`
-- `401a_Workout_Active`
-- `501_Workout_Complete`
-- Bottom App Bar reference
 
 대표 sync 기준:
 
@@ -78,22 +75,28 @@ Canonical Figma:
 
 Important:
 
-- v13은 Figma component를 그대로 export한 final UI spec이 아니라, **실제 Figma variables / metadata / authored-screen proportions에 current product review content를 맞춘 planning artifact**다.
+- v14은 final UI spec이 아니라 **current product review content를 실제 화면설계서 형태로 읽기 쉽게 정리한 planning artifact**다.
+- phone 내부의 visual language는 Figma baseline을 유지한다.
 - working name은 `G Fit`이므로 기존 Figma logo asset 자체를 복제하지 않고 placeholder text를 사용한다.
-- 디자인시스템 sync는 `REVIEW / OPEN` 제품 가설을 확정시키지 않는다.
+- 디자인시스템 sync와 planning-spec layout은 `REVIEW / OPEN` 제품 가설을 확정시키지 않는다.
 
-## Runtime verification — v2026-09-01.13
+## Runtime verification — v2026-09-02.14
 
 Production deploy/read-back 확인 완료:
 
+- Vercel project: `liftly-wireframe`
+- deployment ID: `dpl_FhbswP4x1T8oat9yQQKgsRic8hV8`
 - Vercel target: production
 - state: `READY`
 - canonical alias: `https://liftly-wireframe.vercel.app`
 - HTML HTTP `200`
-- `CANONICAL_WIREFRAME_VERSION: 2026-09-01.13`
-- `Figma design-system synced` marker 확인
+- `CANONICAL_WIREFRAME_VERSION: 2026-09-02.14`
+- `PLANNING_SPEC_LAYOUT: 2026-09-02` marker 확인
+- `Product Planning Wireframe` / `screen-spec` / `화면 목적` 구조 확인
 - `style.css` HTTP `200`
-- production CSS에서 Figma baseline color/size selectors 확인
+- production alias가 v14 deployment를 가리키는 것 확인
+
+HTTP/source/runtime read-back은 완료했다. Pixel-perfect browser visual QA는 Product Owner가 실제 화면을 보면서 진행한다.
 
 ## Current product definition
 
@@ -256,7 +259,7 @@ Priority direction:
 - recommendation/AI must not silently alter workout records
 - custom exercises remain important
 
-## Whole-app wireframe review scope — v2026-09-01.13
+## Whole-app wireframe review scope — v2026-09-02.14
 
 1. Account / Onboarding
 2. Home — 루틴 없음 / 요일 미지정 / 요일 지정 / 운동 진행 중
@@ -272,8 +275,10 @@ Wireframe 운영 원칙:
 - `CONFIRMED` = 기존 확정 정책
 - `REVIEW` = 현재 비교·검토용 UI 가설
 - `OPEN` = Product Owner가 화면을 보고 결정할 항목
+- `POST-MVP` = 장기 구조 참고용
 - review draft를 Cursor 구현 Task / Acceptance Criteria로 사용하지 않음
 - 화면에 존재한다는 이유로 Product Decision을 자동 생성하지 않음
+- phone mockup에는 실제 사용자-facing UI만 두고 planning 설명은 우측 spec에서 관리
 
 ## Superseded planning
 
@@ -324,5 +329,6 @@ GitHub remains Source of Truth.
 - Product decisions: GitHub docs
 - Visual/design-system reference: canonical Figma
 - Current review artifact: `product/wireframe/index.html` + `style.css`
+- Product Owner-facing production: `https://liftly-wireframe.vercel.app`
 
 Figma/wireframe이 제품 정책을 역으로 덮어쓰지 않는다.
