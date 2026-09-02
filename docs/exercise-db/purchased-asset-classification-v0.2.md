@@ -20,6 +20,19 @@ v0.1은 Google Drive poster 파일명 중심의 1차 분류였다. v0.2는 실�
 - 이 승인은 개별 운동의 metadata / 중복 / 자세 판정을 승인한 것이 아니라 **한국어 표시명 스타일 방향에 대한 승인**이다.
 - 영어 표시명 `name_en`과 원본 추적용 `source_name_en`은 별도로 계속 보존한다.
 
+## PO decision — grip scope for MVP
+
+Product Owner는 선택형 그립 기록의 원래 의도가 **케이블 / 풀리 머신 운동**이었다고 명확히 했다.
+
+MVP에서는 다음처럼 처리한다.
+
+- 선택형 그립 기록은 **케이블 / 풀리 기반 운동에만 적용**한다.
+- 그중에서도 같은 운동으로 보는 것이 자연스러운 경우에만 대표 그립을 하위 기록으로 둔다.
+- 바벨 / 덤벨 / 일반 머신 운동에는 선택형 그립 기록을 확장하지 않는다.
+- `Close-Grip Bench Press`처럼 케이블 / 풀리 범위 밖에서 별도 운동명으로 통용되는 운동은 일반 별도 exercise identity로 처리한다.
+- 따라서 v0.2에서 열어둔 `named grip variant exception` 문제는 별도의 전역 예외 규칙 없이 해소한다.
+- 어떤 케이블 / 풀리 운동에 실제 그립 옵션을 노출할지와 대표 그립 목록은 후속 DB/UI 정리에서 확정한다.
+
 ## QA summary
 
 - Source rows preserved: **206**
@@ -29,7 +42,6 @@ v0.1은 Google Drive poster 파일명 중심의 1차 분류였다. v0.2는 실�
 - Confirmed true duplicate merge rows: **1**
 - Name / body-part / equipment corrections: **10**
 - Asset-metadata or posture conflicts requiring review: **4**
-- Named grip/variant policy review rows surfaced now: **2**
 - Required core candidate fields blank: **0**
 
 ## Important corrections from v0.1
@@ -151,22 +163,6 @@ v1 candidate는 다음 구조를 사용한다.
 - `qa_flags`
 - `notes`
 
-## OPEN — grip policy exception found during QA
-
-현재 승인 원칙은 `그립은 기본적으로 선택 하위 기록`이다. 그러나 source metadata를 확인하면서 모든 grip variant에 이 원칙을 똑같이 적용하면 안 될 가능성이 확인됐다.
-
-대표 사례: `Barbell Close Grip Bench Press`
-
-- source primary: `Triceps`
-- source secondary: `Chest`
-- 일반 Bench Press와 별도의 통용 운동명과 훈련 목적을 가짐
-
-따라서 다음 예외 규칙을 검토할 가치가 높다.
-
-> **그립 변화가 통용 별도 운동명을 만들고 주동근/주요 훈련 목적까지 materially 바꾸는 경우에는 별도 exercise identity를 허용한다.** 그 외 일반적인 오버핸드 / 뉴트럴 등 세부 그립은 기존 선택 하위 기록으로 유지한다.
-
-이 예외는 아직 Product Owner 승인 전이므로 LOCK하지 않는다.
-
 ## QA boundary / next
 
 현재 v1 candidate는 audit trail용이며 production-final이 아니다.
@@ -174,8 +170,8 @@ v1 candidate는 다음 구조를 사용한다.
 다음 순서:
 
 1. 남은 low-confidence **176 row**를 source `metadata.json`으로 전수 enrichment.
-2. `qa_flags`가 있는 posture / grip / category 예외만 poster를 추가 시각 검수.
-3. grip policy exception을 Product Owner와 1회 결정.
+2. `qa_flags`가 있는 posture / cable-grip / category 예외만 poster를 추가 시각 검수.
+3. 케이블 / 풀리 운동 중 실제로 그립 하위 기록이 필요한 운동과 대표 그립 목록을 정리한다.
 4. canonical IDs / aliases / bilingual display names 최종 검증.
 5. 그 뒤 Planfit / Hevy + 국내 핵심 운동과 비교하여 **추가 제작이 필요한 핵심 운동 수량**을 산출한다.
 
