@@ -1,12 +1,12 @@
 # CURRENT — Fitness Project
 
-**Updated:** 2026-09-02 21:24 KST
+**Updated:** 2026-09-02 21:36 KST
 
 ## Current mode
 
-`PRODUCT / UX PLANNING — EXERCISE IDENTITY / GRIP HISTORY APPROVED · NEXT: BRAND MACHINE + DB NORMALIZATION · CANONICAL WIREFRAME v2026-09-02.14`
+`PRODUCT / UX PLANNING — OPTIONAL GRIP HISTORY APPROVED · BRAND MACHINE DB DEFERRED · NEXT: DB NORMALIZATION · CANONICAL WIREFRAME v2026-09-02.14`
 
-Product Owner가 운동 DB의 핵심 기록 기준 중 **장비별 기록 분리**와 **한 운동 안의 대표 그립별 기록 전환** 방향을 승인했다. 다음은 브랜드 머신 분리 기준과 실제 구매 DB의 국내 명칭 / 중복 정리 규칙을 정하는 단계다.
+Product Owner가 운동 DB의 핵심 기록 기준 중 **장비별 기록 분리**, **한 운동 안의 대표 그립별 기록 전환**, **그립 기록은 선택 기능**이라는 방향을 승인했다. 제조사 / 브랜드별 머신 DB는 MVP 기본 범위에서 제외하고, 다음은 실제 구매 DB의 국내 명칭 / 중복 정리 규칙을 정하는 단계다.
 
 Cursor 제품 구현은 아직 승인되지 않았다.
 
@@ -144,18 +144,20 @@ Custom exercise 기반 결정은 DEC-003 / DEC-012 유지.
 
 위 기록들의 이전 kg / 횟수 / PR은 서로 섞지 않는다.
 
-**대표 그립은 한 운동 안의 기록 변형**으로 관리한다.
+**그립 기록은 선택 기능**이다.
 
 예: `랫풀다운`
 
-- 검색 목록에는 기본적으로 `랫풀다운` 하나를 노출
-- 사용자가 둘 이상의 대표 그립으로 운동한 이력이 있으면 운동 카드 안에서 `오버핸드 / 뉴트럴` 같은 탭 또는 토글 제공
-- 그립 전환 시 최근 기록 / 이전 kg·횟수 / PR / 세트 참고값 / 오늘 저장될 기록 이력이 함께 전환
-- 화면에서는 한 운동 카드지만 대표 그립별 수행 기록은 내부적으로 분리
+- 사용자가 그립 구분이 필요 없으면 별도 선택 없이 `랫풀다운` 기본 기록으로 운동 가능
+- 그립 선택을 강제하거나 운동 시작/완료를 막지 않음
+- 필요한 사용자만 카드 안에서 `오버핸드 / 뉴트럴` 같은 대표 그립을 선택해 별도 이력을 사용
+- 그립 미선택 기록과 각 대표 그립의 이전 kg / 횟수 / PR은 서로 섞지 않음
+- 기존 기본 기록을 나중에 특정 그립 기록으로 자동 재분류하지 않음
+- 화면에서는 한 운동 카드지만 기본 기록과 대표 그립별 수행 기록은 내부적으로 분리
 
 모든 미세 손 위치를 그립 변형으로 만들지는 않는다. 작은 손 너비 / 시트 / 손잡이 위치 조정은 같은 기록 안에서 메모 또는 세팅 정보로 처리하는 방향이다.
 
-대표 그립의 정확한 전체 목록과 세팅 metadata 방식은 아직 OPEN.
+대표 그립의 정확한 전체 목록, 그립 선택 UI의 세부 형태, 마지막 선택 기억 여부는 아직 OPEN.
 
 ## Exercise DB / asset direction
 
@@ -172,11 +174,18 @@ Custom exercise 기반 결정은 DEC-003 / DEC-012 유지.
 
 구매 원본 에셋을 AI reference로 직접 사용하기 전 modification / derivative / AI 관련 라이선스를 확인해야 한다.
 
-## Next product decision — Brand machine / DB normalization
+### Brand / manufacturer machine scope
+
+MVP 기본 운동 DB에서는 Hammer Strength / Cybex 등 **제조사·브랜드별 머신 목록을 별도로 운영하지 않는다.**
+
+- 기본 DB는 일반적인 운동명 / 장비 수준으로 유지
+- 특정 브랜드·모델 머신의 기록을 따로 관리하고 싶은 사용자는 `직접 만든 운동`으로 별도 기록 가능
+- 제조사 / 모델 DB 확장은 실제 사용자 수요가 확인된 뒤 재검토
+
+## Next product decision — DB normalization
 
 다음으로 정할 핵심:
 
-- Hammer Strength / Cybex 등 특정 머신을 일반 머신 운동과 언제 별도 기록으로 볼지
 - 구매 DB의 영문/해외 명칭을 국내 대표 이름으로 어떻게 정규화할지
 - 이름만 다른 실제 중복 운동을 어떤 규칙으로 합칠지
 - 실제 구매 metadata 전체를 `유지 / 이름 변경 / 중복 통합 / 별도 유지 / 1차 제외`로 분류할 기준
@@ -236,7 +245,7 @@ Grip history review source:
 - preview URL: `https://liftly-wireframe-cb74hs3xy-xxxbeom-glitchs-projects.vercel.app/grip-record-review.html`
 - HTTP read-back: `200`
 - Product Owner approval: 2026-09-02
-- decision lock update commit: `a910f841e176f9e2850b04995f4b343ae1ad21a8`
+- optional-grip decision lock update commit: `aa38a6cf0031a6e508619355edbca862fe68aba6`
 
 Review-only previews do not automatically replace canonical production.
 
@@ -248,9 +257,9 @@ Planning / UX approval is still in progress. Product implementation should begin
 
 ## Open items / blockers
 
-- manufacturer / brand machine identity rules
 - exercise duplicate / Korean naming normalization
 - exact representative grip list by exercise
+- grip selection UI exact form / last-used behavior
 - purchased asset license check for AI-reference derivative work
 - actual purchased-asset light-theme validation
 - recommended routine exact program contents
