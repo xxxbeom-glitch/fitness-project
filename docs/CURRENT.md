@@ -1,12 +1,12 @@
 # CURRENT — Fitness Project
 
-**Updated:** 2026-09-02 22:16 KST
+**Updated:** 2026-09-02 22:56 KST
 
 ## Current mode
 
-`PRODUCT / UX PLANNING — EXERCISE DB NORMALIZATION RULES APPROVED · NEXT: CLASSIFY PURCHASED METADATA · CANONICAL WIREFRAME v2026-09-02.14`
+`PRODUCT / UX PLANNING — EXERCISE DB NORMALIZATION RULES APPROVED · BILINGUAL NAMES APPROVED · NEXT: CLASSIFY PURCHASED METADATA · CANONICAL WIREFRAME v2026-09-02.14`
 
-Product Owner가 운동 DB의 핵심 기록 기준인 **장비별 분리**, **각도/주요 자세별 분리**, **대표 그립은 선택적인 하위 기록**, **국내 통용명을 우선한 표시명**, **구매 에셋 내부의 실제 중복 통합 규칙**, **큰 부위 중심의 사용자 필터 + 세부 근육 데이터 병행**을 승인했다. 제조사 / 브랜드별 머신 DB는 MVP 기본 범위에서 제외한다. 다음은 실제 구매 metadata를 이 기준으로 분류하는 단계다.
+Product Owner가 운동 DB의 핵심 기록 기준인 **장비별 분리**, **각도/주요 자세별 분리**, **대표 그립은 선택적인 하위 기록**, **한국어/영어 표시명 병행**, **구매 에셋 내부의 실제 중복 통합 규칙**, **큰 부위 중심의 사용자 필터 + 세부 근육 데이터 병행**을 승인했다. 제조사 / 브랜드별 머신 DB는 MVP 기본 범위에서 제외한다. 다음은 실제 구매 metadata를 이 기준으로 분류하는 단계다.
 
 Cursor 제품 구현은 아직 승인되지 않았다.
 
@@ -129,7 +129,7 @@ Home은 상세 분석 화면이 아니다.
 
 Custom exercise 기반 결정은 DEC-003 / DEC-012 유지.
 
-### 6. Exercise Identity / Grip History
+### 6. Exercise Identity / Grip History / Naming
 
 운동 기록은 실제로 비교 가능한 수행끼리만 같은 기록으로 묶는다.
 
@@ -158,19 +158,19 @@ Custom exercise 기반 결정은 DEC-003 / DEC-012 유지.
 
 기본 exercise identity는 최소한 `동작 + 장비 + 각도/주요 자세`를 구분할 수 있어야 한다.
 
-**한국어 표시명은 국내 통용명을 우선**한다.
+**운동 이름은 한국어 / 영어를 모두 정식 데이터로 유지**한다.
 
-내부 데이터에서는 장비와 각도/주요 자세를 보존하되, 사용자에게 보이는 이름은 자연스럽게 줄인다.
+한국어 시장에서는 국내 통용명을 우선 표시하지만, 영어 이름을 버리거나 한국어로 덮어쓰지 않는다. 같은 exercise identity가 언어별 표시명을 가진다.
 
 예:
 
-- `Bench Press + Barbell + Flat` → `벤치프레스`
-- `Bench Press + Dumbbell + Flat` → `덤벨 벤치프레스`
-- `Bench Press + Smith Machine + Flat` → `스미스 머신 벤치프레스`
-- `Bench Press + Barbell + Incline` → `인클라인 벤치프레스`
-- `Bench Press + Dumbbell + Incline` → `인클라인 덤벨 벤치프레스`
+- `벤치프레스` / `Bench Press`
+- `덤벨 벤치프레스` / `Dumbbell Bench Press`
+- `스미스 머신 벤치프레스` / `Smith Machine Bench Press`
+- `인클라인 벤치프레스` / `Incline Bench Press`
+- `인클라인 덤벨 벤치프레스` / `Incline Dumbbell Bench Press`
 
-구매 원본 영문명은 원본 추적 / 검색용 metadata로 보존한다.
+구매 에셋 원본 영문명은 `source_name_en` 성격의 원본 추적 데이터로 별도 보존하고, 해외 사용자에게 보여줄 `name_en`은 중복/표현을 정리한 영어 표시명으로 관리한다. 통합 전 다른 이름은 alias / 검색어로 남긴다.
 
 **그립 기록은 선택 기능**이다.
 
@@ -196,6 +196,8 @@ Custom exercise 기반 결정은 DEC-003 / DEC-012 유지.
 `가슴 / 등 / 어깨 / 팔 / 하체 / 코어 / 전신 / 기타`
 
 세부 근육은 DB와 분석용 데이터로 별도 유지한다. 예를 들어 `등` 아래에서 광배근 / 승모근 / 등 상부 등을 세밀하게 기록할 수 있고, `하체` 아래에서 대퇴사두근 / 햄스트링 / 둔근 / 내전근 / 외전근 / 종아리 등을 구분할 수 있다.
+
+운동 검색 결과에서는 상세 화면에 들어가지 않아도 빠르게 구분할 수 있도록 `장비 + 주요 근육` 정도를 작은 보조정보로 노출한다. 주요/보조 근육 전체 정보는 상세와 분석에서 더 깊게 사용한다.
 
 직접 만든 운동은 다음 원칙을 따른다.
 
@@ -240,7 +242,8 @@ MVP 기본 운동 DB에서는 Hammer Strength / Cybex 등 **제조사·브랜드
 - 장비가 다르면 별도 운동 기록
 - 각도 / 주요 자세가 다르면 별도 운동 기록
 - 그립은 별도 검색 운동으로 무조건 늘리지 않고 선택적 하위 기록으로 관리
-- 사용자 표시명은 국내 통용명을 우선하고 원본 영문명은 metadata로 보존
+- 하나의 exercise identity에 **한국어 표시명과 영어 표시명을 모두 유지**
+- 구매 원본 영문명은 원본 추적용으로 별도 보존하고, 사용자용 영문명은 필요하면 정규화
 - 브랜드/제조사별 머신 DB는 MVP 기본 범위에서 제외
 - 구매 에셋 안에서 **이름만 다르지만 실제 수행이 같은 항목은 하나의 G Fit 운동으로 통합**
 - 중복 통합 여부는 이름만 보지 않고 기본 동작 / 장비 / 각도·주요 자세 / 한쪽·양쪽 같은 주요 수행 방식과 가능한 경우 실제 운동 이미지까지 함께 확인
@@ -257,7 +260,7 @@ MVP 기본 운동 DB에서는 Hammer Strength / Cybex 등 **제조사·브랜드
 - `별도 유지`
 - `1차 제외`
 
-이 분류가 끝나면 국내용 기본 Exercise DB와 추가 제작이 필요한 핵심 누락 운동을 계산할 수 있다.
+이 분류가 끝나면 G Fit 기본 Exercise DB와 추가 제작이 필요한 핵심 누락 운동을 계산할 수 있다.
 
 ## Theme — VALIDATION PENDING
 
@@ -328,6 +331,11 @@ Body-part classification / custom exercise lock:
 
 - Product Owner approval: 2026-09-02
 - decision doc update commit: `f763e8e6a86aea9ceb071327a397250467382497`
+
+Bilingual exercise naming lock:
+
+- Product Owner direction: 2026-09-02
+- decision doc update commit: `a850bf6f4884f1881d6b0a69750298e90b1b2e27`
 
 Review-only previews do not automatically replace canonical production.
 
