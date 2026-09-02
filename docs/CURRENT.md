@@ -1,12 +1,12 @@
 # CURRENT — Fitness Project
 
-**Updated:** 2026-09-02 21:11 KST
+**Updated:** 2026-09-02 21:24 KST
 
 ## Current mode
 
-`PRODUCT / UX PLANNING — EXERCISE SEARCH/ADD APPROVED · NEXT: EXERCISE IDENTITY / DB NORMALIZATION · CANONICAL WIREFRAME v2026-09-02.14`
+`PRODUCT / UX PLANNING — EXERCISE IDENTITY / GRIP HISTORY APPROVED · NEXT: BRAND MACHINE + DB NORMALIZATION · CANONICAL WIREFRAME v2026-09-02.14`
 
-Product Owner가 2차 UX 기획의 주요 흐름을 순차 승인했다. 현재는 화면을 더 그리기 전에 **운동 DB에서 무엇을 같은 운동으로 보고 무엇을 별도 운동 기록으로 분리할지** 정하는 단계다.
+Product Owner가 운동 DB의 핵심 기록 기준 중 **장비별 기록 분리**와 **한 운동 안의 대표 그립별 기록 전환** 방향을 승인했다. 다음은 브랜드 머신 분리 기준과 실제 구매 DB의 국내 명칭 / 중복 정리 규칙을 정하는 단계다.
 
 Cursor 제품 구현은 아직 승인되지 않았다.
 
@@ -128,6 +128,35 @@ Home은 상세 분석 화면이 아니다.
 
 Custom exercise 기반 결정은 DEC-003 / DEC-012 유지.
 
+### 6. Exercise Identity / Grip History
+
+운동 기록은 실제로 비교 가능한 수행끼리만 같은 기록으로 묶는다.
+
+**장비 방식이 다르면 별도 기록**으로 관리한다.
+
+예:
+
+- 바벨 벤치프레스
+- 덤벨 벤치프레스
+- 스미스 벤치프레스
+- 체스트 프레스 머신
+- 케이블 프레스
+
+위 기록들의 이전 kg / 횟수 / PR은 서로 섞지 않는다.
+
+**대표 그립은 한 운동 안의 기록 변형**으로 관리한다.
+
+예: `랫풀다운`
+
+- 검색 목록에는 기본적으로 `랫풀다운` 하나를 노출
+- 사용자가 둘 이상의 대표 그립으로 운동한 이력이 있으면 운동 카드 안에서 `오버핸드 / 뉴트럴` 같은 탭 또는 토글 제공
+- 그립 전환 시 최근 기록 / 이전 kg·횟수 / PR / 세트 참고값 / 오늘 저장될 기록 이력이 함께 전환
+- 화면에서는 한 운동 카드지만 대표 그립별 수행 기록은 내부적으로 분리
+
+모든 미세 손 위치를 그립 변형으로 만들지는 않는다. 작은 손 너비 / 시트 / 손잡이 위치 조정은 같은 기록 안에서 메모 또는 세팅 정보로 처리하는 방향이다.
+
+대표 그립의 정확한 전체 목록과 세팅 metadata 방식은 아직 OPEN.
+
 ## Exercise DB / asset direction
 
 기본 Exercise Asset Library는 이미 구매한 exercise asset / metadata를 사용한다.
@@ -143,19 +172,16 @@ Custom exercise 기반 결정은 DEC-003 / DEC-012 유지.
 
 구매 원본 에셋을 AI reference로 직접 사용하기 전 modification / derivative / AI 관련 라이선스를 확인해야 한다.
 
-## Next product decision — Exercise identity
+## Next product decision — Brand machine / DB normalization
 
-다음으로 정할 핵심은 **같은 운동 / 다른 운동의 기록 기준**이다.
+다음으로 정할 핵심:
 
-검토 대상:
+- Hammer Strength / Cybex 등 특정 머신을 일반 머신 운동과 언제 별도 기록으로 볼지
+- 구매 DB의 영문/해외 명칭을 국내 대표 이름으로 어떻게 정규화할지
+- 이름만 다른 실제 중복 운동을 어떤 규칙으로 합칠지
+- 실제 구매 metadata 전체를 `유지 / 이름 변경 / 중복 통합 / 별도 유지 / 1차 제외`로 분류할 기준
 
-- 바벨 / 덤벨 / 머신 / 케이블 차이를 각각 별도 운동으로 보는 기준
-- Hammer Strength / Cybex 등 제조사 머신을 일반 머신 운동과 언제 분리할지
-- 그립 차이를 별도 exercise identity로 만들지 metadata로 둘지
-- 구매 DB의 영문/해외 명칭을 국내 명칭으로 어떻게 정규화할지
-- 중복 운동을 어떤 규칙으로 합칠지
-
-이 기준이 정해져야 운동별 과거 기록, 검색 결과, 추천 루틴, 대체운동, 분석 데이터가 안정된다.
+이 기준이 정해지면 구매한 운동 DB 전체 정리를 시작할 수 있다.
 
 ## Theme — VALIDATION PENDING
 
@@ -200,9 +226,17 @@ Exercise Search / Add review source:
 - source commit: `1c95c122cc9775966cf1ace778f35d9cecb88e9f`
 - preview deployment: `dpl_9UBKHfnc2zQcjoDaJGuQ6vCz6tz7`
 - preview URL: `https://liftly-wireframe-gopt8hf2u-xxxbeom-glitchs-projects.vercel.app/exercise-review.html`
+- Product Owner approval: 2026-09-02
+
+Grip history review source:
+
+- GitHub: `product/wireframe/grip-record-review.html`
+- approved source commit: `0dd26331908bd7f769961fed11578ca4e6f1faca`
+- preview deployment: `dpl_BprdwuMdcN1bEjYZeWLjeiAKaw56`
+- preview URL: `https://liftly-wireframe-cb74hs3xy-xxxbeom-glitchs-projects.vercel.app/grip-record-review.html`
 - HTTP read-back: `200`
 - Product Owner approval: 2026-09-02
-- decision lock update commit: `8bee0df38a7965718dcaa2a481ec4758b5807335`
+- decision lock update commit: `a910f841e176f9e2850b04995f4b343ae1ad21a8`
 
 Review-only previews do not automatically replace canonical production.
 
@@ -214,8 +248,9 @@ Planning / UX approval is still in progress. Product implementation should begin
 
 ## Open items / blockers
 
-- exercise identity / duplicate / Korean naming rules
-- manufacturer machine / grip variant modeling
+- manufacturer / brand machine identity rules
+- exercise duplicate / Korean naming normalization
+- exact representative grip list by exercise
 - purchased asset license check for AI-reference derivative work
 - actual purchased-asset light-theme validation
 - recommended routine exact program contents
