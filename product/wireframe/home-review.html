@@ -1,0 +1,134 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>G Fit Home 검토안</title>
+  <style>
+    *{box-sizing:border-box}
+    :root{--bg:#eef0f3;--ink:#20242a;--muted:#6f7782;--line:#d8dce1;--green:#34d399;--phone:#0a0a0c;--surface:#161618;--elevated:#1e1e22;--border:#2a2a2e;--text:#f0f0f2;--sub:#8e8e93}
+    html,body{margin:0;background:var(--bg);color:var(--ink);font-family:SUIT,Pretendard,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
+    button{font:inherit}
+    .top{position:sticky;top:0;z-index:10;display:flex;justify-content:space-between;gap:24px;align-items:center;padding:14px 24px;background:rgba(255,255,255,.96);border-bottom:1px solid var(--line);backdrop-filter:blur(12px)}
+    .top b{font-size:18px}.top span{font-size:12px;color:var(--muted)}
+    .back{color:#39414a;text-decoration:none;font-size:12px;border:1px solid var(--line);background:#fff;padding:7px 10px;border-radius:6px}
+    main{max-width:1320px;margin:0 auto;padding:28px 24px 72px}
+    .head{display:flex;justify-content:space-between;gap:32px;align-items:flex-end;padding-bottom:16px;border-bottom:2px solid #252a31}
+    .head small{font-size:11px;font-weight:800;color:#6c7480;letter-spacing:.04em}.head h1{margin:6px 0 6px;font-size:28px;line-height:1.25}.head p{margin:0;color:var(--muted);font-size:14px;line-height:1.55}.badge{flex:0 0 auto;padding:7px 10px;border-radius:999px;background:#fff4d8;color:#805d00;font-size:11px;font-weight:800}
+    .state-tabs{display:flex;gap:8px;flex-wrap:wrap;margin:22px 0 16px}.state-tabs button{border:1px solid #cdd2d8;background:#fff;color:#545c66;border-radius:8px;padding:9px 13px;cursor:pointer;font-size:13px;font-weight:700}.state-tabs button.active{border-color:#1d8f68;background:#eaf9f3;color:#13714f}
+    .layout{display:grid;grid-template-columns:470px minmax(0,1fr);border:1px solid #cfd4da;background:#fff}
+    .preview{display:flex;justify-content:center;padding:28px 24px 36px;border-right:1px solid var(--line);background:#fafbfc}
+    .phone{position:relative;width:360px;min-height:720px;padding:0 20px 86px;background:var(--phone);color:var(--text);border-radius:26px;overflow:hidden;box-shadow:0 12px 30px rgba(25,30,38,.12)}
+    .status{height:34px;display:flex;align-items:center;justify-content:space-between;font-size:11px;color:#c8c8cc}.home-head{height:54px;display:flex;justify-content:space-between;align-items:center}.logo{font-size:19px;font-weight:900;letter-spacing:.04em}.bell{width:22px;height:22px;border:1px solid #56565c;border-radius:50%;position:relative}.bell:after{content:"";position:absolute;width:5px;height:5px;border-radius:50%;background:var(--green);right:-1px;top:-1px}
+    .section-title{display:flex;justify-content:space-between;align-items:end;margin:14px 0 9px}.section-title b{font-size:14px}.section-title span{font-size:11px;color:var(--sub)}
+    .action-card{padding:18px;border:1px solid #2d2d31;background:var(--surface);border-radius:14px}.action-card .eyebrow{font-size:11px;color:var(--green);font-weight:800}.action-card h2{margin:7px 0 5px;font-size:23px;line-height:1.2}.action-card p{margin:0;color:var(--sub);font-size:12px;line-height:1.5}.action-card .primary{width:100%;height:46px;margin-top:16px;border:0;border-radius:10px;background:var(--green);color:#07130e;font-weight:900;cursor:pointer}.action-card.active-session{border-color:#256b53;background:#10221c}.action-card.active-session h2{font-size:21px}
+    .recommend-stack{display:grid;gap:8px}.recommend{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:13px 14px;border-radius:12px;background:var(--surface);border:1px solid #2d2d31}.recommend:first-child{border-color:#2f6f59}.recommend small{display:block;color:var(--green);font-size:10px;font-weight:800;margin-bottom:3px}.recommend b{font-size:14px}.recommend span{display:block;margin-top:3px;color:var(--sub);font-size:11px}.recommend i{font-style:normal;color:#777780}.create-routine{width:100%;height:42px;margin-top:9px;border-radius:10px;border:1px solid #3a3a40;background:transparent;color:#dddde1;font-weight:800}
+    .week-card{padding:14px;border-radius:12px;background:var(--surface);border:1px solid #29292e}.week-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px}.week-top b{font-size:19px}.week-top span{font-size:11px;color:var(--sub)}.week-days{display:grid;grid-template-columns:repeat(7,1fr);gap:6px}.day{text-align:center}.day small{display:block;color:#74747b;font-size:9px;margin-bottom:6px}.dot{width:26px;height:26px;margin:auto;border-radius:50%;display:grid;place-items:center;background:#232327;color:#777780;font-size:9px}.dot.done{background:#193b30;color:#59dfad}.dot.today{outline:1px solid #59dfad;color:#59dfad}
+    .recent{display:flex;justify-content:space-between;align-items:center;padding:13px 0;border-bottom:1px solid #232327}.recent:last-child{border-bottom:0}.recent b{font-size:13px}.recent small{display:block;margin-top:4px;color:var(--sub);font-size:11px}.recent strong{color:#696970}.empty{padding:16px;border-radius:12px;background:var(--surface);color:var(--sub);font-size:12px;line-height:1.5}
+    .bottom{position:absolute;left:0;right:0;bottom:0;height:72px;padding:9px 20px 10px;background:#111114;border-top:1px solid #242429;display:grid;grid-template-columns:repeat(4,1fr)}.bottom div{text-align:center;color:#74747b;font-size:15px}.bottom .on{color:var(--text)}.bottom small{display:block;margin-top:3px;font-size:9px}
+    .notes{padding:24px}.notes h2{margin:0 0 6px;font-size:20px}.notes>.lead{margin:0 0 22px;color:var(--muted);font-size:13px;line-height:1.6}.rule{padding:16px 0;border-top:1px solid #e0e3e7}.rule:first-of-type{border-top:0}.rule b{display:block;margin-bottom:7px;font-size:14px}.rule p{margin:0;color:#505862;font-size:13px;line-height:1.55}.rule strong{color:#12704f}.state-map{margin-top:18px;border:1px solid #d7dbe0;border-radius:10px;overflow:hidden}.state-map div{display:grid;grid-template-columns:120px 1fr;gap:12px;padding:11px 12px;border-bottom:1px solid #e2e5e8;font-size:12px;line-height:1.5}.state-map div:last-child{border-bottom:0}.state-map b{color:#30363d}.state-map span{color:#626a74}
+    .decision{margin-top:20px;padding:16px;border-radius:10px;background:#eef9f4;border:1px solid #b9e5d2}.decision b{display:block;color:#12694b;margin-bottom:5px}.decision p{margin:0;font-size:13px;line-height:1.55;color:#355448}
+    @media(max-width:900px){.layout{grid-template-columns:1fr}.preview{border-right:0;border-bottom:1px solid var(--line)}.head{align-items:flex-start;flex-direction:column}.badge{align-self:flex-start}}
+    @media(max-width:430px){main{padding:18px 8px 56px}.top{padding:11px 12px}.preview{padding:18px 4px 26px}.phone{width:350px;max-width:100%;border-radius:20px}.notes{padding:18px 14px}.state-map div{grid-template-columns:95px 1fr}}
+  </style>
+</head>
+<body>
+  <header class="top"><div><b>G FIT</b> <span>Home 이해용 검토안</span></div><a class="back" href="./index.html#home">전체 와이어프레임으로 돌아가기</a></header>
+  <main>
+    <div class="head"><div><small>HOME · REVIEW ONLY</small><h1>홈을 켜면, 지금 할 일을 가장 먼저 보여준다</h1><p>아래 4개 버튼을 눌러보면 같은 Home이 사용자 상황에 따라 어떻게 바뀌는지 볼 수 있습니다.</p></div><div class="badge">아직 확정 아님</div></div>
+
+    <div class="state-tabs" role="tablist" aria-label="Home 상태 선택">
+      <button data-state="empty">루틴 없음</button>
+      <button data-state="next">다음 운동</button>
+      <button class="active" data-state="today">오늘 운동</button>
+      <button data-state="active">운동 중</button>
+    </div>
+
+    <section class="layout">
+      <div class="preview">
+        <div class="phone">
+          <div class="status"><span>9:41</span><span>● ● ●</span></div>
+          <div class="home-head"><div class="logo">G FIT</div><div class="bell"></div></div>
+          <div id="topArea"></div>
+          <div id="lowerArea"></div>
+          <div class="bottom"><div class="on">⌂<small>홈</small></div><div>▤<small>루틴</small></div><div>⌁<small>분석</small></div><div>⚙<small>설정</small></div></div>
+        </div>
+      </div>
+
+      <aside class="notes">
+        <h2>이 화면에서 보려는 핵심</h2>
+        <p class="lead">Home 전체를 정보로 꽉 채우지 않고, <strong>맨 위에서 지금 해야 할 행동을 바로 보여주는 방식</strong>입니다.</p>
+        <div class="rule"><b>1. 가장 위 = 지금 할 일</b><p>오늘 운동이 있으면 <strong>오늘의 운동</strong>, 운동 중이면 <strong>계속하기</strong>를 가장 크게 보여줍니다.</p></div>
+        <div class="rule"><b>2. 그 아래 = 이번 주 상태</b><p>자세한 그래프 대신 이번 주에 얼마나 운동했는지만 빠르게 확인합니다.</p></div>
+        <div class="rule"><b>3. 마지막 = 최근 운동</b><p>최근에 어떤 운동을 했는지 짧게 확인합니다. 자세한 기록과 그래프는 분석 탭에서 봅니다.</p></div>
+
+        <div class="state-map">
+          <div><b>루틴 없음</b><span>추천 루틴 + 내 루틴 만들기</span></div>
+          <div><b>요일 미지정</b><span>다음 운동</span></div>
+          <div><b>요일 지정</b><span>오늘의 운동</span></div>
+          <div><b>운동 중</b><span>진행 중인 운동 계속하기</span></div>
+        </div>
+
+        <div class="decision"><b>지금 판단할 것</b><p>“Home의 가장 중요한 역할을 이렇게 <strong>운동 시작/복귀</strong>로 잡는 게 좋은가?”만 보면 됩니다. 카드 모양이나 문구는 나중에 다시 다듬습니다.</p></div>
+      </aside>
+    </section>
+  </main>
+
+  <script>
+    const topArea=document.getElementById('topArea');
+    const lowerArea=document.getElementById('lowerArea');
+    const buttons=[...document.querySelectorAll('[data-state]')];
+
+    function weekly(count){
+      return `<div class="section-title"><b>이번 주 운동</b><span>${count}회</span></div>
+      <div class="week-card"><div class="week-top"><b>${count}회 운동</b><span>이번 주</span></div><div class="week-days">
+        <div class="day"><small>월</small><div class="dot ${count>0?'done':''}">${count>0?'✓':''}</div></div>
+        <div class="day"><small>화</small><div class="dot"></div></div>
+        <div class="day"><small>수</small><div class="dot ${count>1?'done':''}">${count>1?'✓':''}</div></div>
+        <div class="day"><small>목</small><div class="dot today">오늘</div></div>
+        <div class="day"><small>금</small><div class="dot"></div></div>
+        <div class="day"><small>토</small><div class="dot"></div></div>
+        <div class="day"><small>일</small><div class="dot"></div></div>
+      </div></div>`;
+    }
+
+    function recent(has=true){
+      if(!has) return `<div class="section-title"><b>최근 운동</b></div><div class="empty">아직 운동 기록이 없어요.<br>첫 운동을 시작하면 여기에 최근 기록이 보여요.</div>`;
+      return `<div class="section-title"><b>최근 운동</b><span>전체 보기</span></div>
+        <div class="recent"><div><b>가슴 · 어깨</b><small>8월 31일 · 58분 · 18세트</small></div><strong>›</strong></div>
+        <div class="recent"><div><b>하체</b><small>8월 29일 · 61분 · 19세트</small></div><strong>›</strong></div>`;
+    }
+
+    function render(state){
+      buttons.forEach(b=>b.classList.toggle('active',b.dataset.state===state));
+      if(state==='empty'){
+        topArea.innerHTML=`<div class="section-title"><b>운동을 시작해볼까요?</b><span>추천 루틴</span></div>
+          <div class="recommend-stack">
+            <div class="recommend"><div><small>G Fit 추천</small><b>무분할 전신 루틴</b><span>6개 운동 · 약 50분</span></div><i>›</i></div>
+            <div class="recommend"><div><small>G Fit 추천</small><b>상체 루틴</b><span>7개 운동 · 약 50분</span></div><i>›</i></div>
+            <div class="recommend"><div><small>G Fit 추천</small><b>하체 루틴</b><span>6개 운동 · 약 45분</span></div><i>›</i></div>
+          </div><button class="create-routine">내 루틴 만들기</button>`;
+        lowerArea.innerHTML=weekly(0)+recent(false);
+      }
+      if(state==='next'){
+        topArea.innerHTML=`<div class="section-title"><b>다음 운동</b><span>요일 미지정</span></div>
+          <div class="action-card"><div class="eyebrow">다음 운동</div><h2>등 · 팔</h2><p>6개 운동 · 약 50분</p><button class="primary">운동 시작</button></div>`;
+        lowerArea.innerHTML=weekly(2)+recent(true);
+      }
+      if(state==='today'){
+        topArea.innerHTML=`<div class="section-title"><b>오늘의 운동</b><span>9월 2일 수요일</span></div>
+          <div class="action-card"><div class="eyebrow">오늘의 운동</div><h2>하체 루틴</h2><p>6개 운동 · 약 50분</p><button class="primary">운동 시작</button></div>`;
+        lowerArea.innerHTML=weekly(2)+recent(true);
+      }
+      if(state==='active'){
+        topArea.innerHTML=`<div class="section-title"><b>진행 중인 운동</b><span>32분째</span></div>
+          <div class="action-card active-session"><div class="eyebrow">운동 진행 중</div><h2>하체 루틴</h2><p>4 / 6 운동 · 12 / 19세트 완료</p><button class="primary">계속하기</button></div>`;
+        lowerArea.innerHTML=weekly(2)+recent(true);
+      }
+    }
+
+    buttons.forEach(b=>b.addEventListener('click',()=>render(b.dataset.state)));
+    render('today');
+  </script>
+</body>
+</html>
