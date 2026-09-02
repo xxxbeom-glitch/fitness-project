@@ -1,476 +1,226 @@
 # CURRENT — Fitness Project
 
-**Updated:** 2026-09-02
+**Updated:** 2026-09-02 21:11 KST
 
 ## Current mode
 
-`PRODUCT / UX PLANNING — HOME DASHBOARD IA REVIEW · G FIT WHOLE-APP WIREFRAME v2026-09-02.14 · PO DECISION PENDING`
+`PRODUCT / UX PLANNING — EXERCISE SEARCH/ADD APPROVED · NEXT: EXERCISE IDENTITY / DB NORMALIZATION · CANONICAL WIREFRAME v2026-09-02.14`
 
-Planning-spec 형식의 whole-app wireframe은 준비된 상태다. 현재 Product Owner가 **Home을 어떤 대시보드 구조로 가져갈지** 정보 위계와 역할부터 결정하는 단계다.
+Product Owner가 2차 UX 기획의 주요 흐름을 순차 승인했다. 현재는 화면을 더 그리기 전에 **운동 DB에서 무엇을 같은 운동으로 보고 무엇을 별도 운동 기록으로 분리할지** 정하는 단계다.
 
-Current product-direction authority:
-- `docs/24_PRODUCT_DIRECTION_V2.md`
-- `docs/CURRENT.md`
+Cursor 제품 구현은 아직 승인되지 않았다.
 
-Current visual review source:
-- `product/wireframe/index.html`
-- `product/wireframe/style.css`
-- `product/wireframe/README.md`
-- version: `2026-09-02.14`
-- production: `https://liftly-wireframe.vercel.app`
+## Current authority
 
-Cursor implementation은 아직 승인되지 않았다.
+우선순위:
 
-## Latest checkpoint — planning-spec wireframe layout
+1. 현재 Product Owner 결정
+2. `docs/24_PRODUCT_DIRECTION_V2.md`
+3. `docs/ux-decisions/2026-09-02-home-workout-routine-completion-locks.md`
+4. `docs/08_DECISIONS.md` 중 위 문서들과 충돌하지 않는 기존 기반 결정
+5. 현재 canonical wireframe / Figma
 
-Product Owner 요청에 따라 기존 whole-app review wireframe의 **제품 내용은 유지하면서, 검토 화면의 표현 구조를 현업 화면설계서 형태로 재구성**했다.
+기존 recommendation-heavy onboarding 관련 DEC-005 / DEC-006 / DEC-009 / DEC-014의 오래된 흐름은 `docs/24_PRODUCT_DIRECTION_V2.md`의 2026-09-01 reset보다 우선하지 않는다.
 
-v14 기준:
+## Product definition — CONFIRMED
 
-- 페이지 바깥 shell은 white / light-gray 기반의 planning document로 변경
-- 상단에 Page Title / Version / Status / Screen Scope / Purpose 등 metadata 배치
-- 각 화면 상단에 `Screen ID / Name`, `Screen Path`, `Review State` 배치
-- 각 화면은 **좌측 phone mockup / 우측 spec table** 구조
-- 우측 spec은 `화면 목적 / 진입 조건 / 주요 요소 / 동작·상태 / Validation / 이동·다음 / 비고`를 사용
-- phone mockup에는 실제 사용자-facing UI와 데이터만 유지
-- 기존 phone 내부 `.wire-note`, `.open-box`, `검토안`, 정책 설명은 phone 밖 명세 영역으로 이동
-- `CONFIRMED / REVIEW / OPEN / POST-MVP` 의미는 유지하며 제품 결정을 새로 생성하지 않음
-- 기존 whole-app 주요 화면/상태는 삭제하지 않음
-- 좁은 화면에서는 phone과 spec이 vertical stack으로 전환
+Working name: `G Fit` (`Go Fitness`) — 가칭.
 
-Canonical Figma visual baseline은 v13에서 동기화한 값을 그대로 유지한다.
+G Fit은 **운동 루틴을 만들고, 실제 운동을 빠르게 기록하고, 기록이 쌓일수록 성장과 개인화 가치를 높이는 웨이트 트레이닝 앱**이다.
 
-Canonical Figma:
+제품 성격:
 
-`https://www.figma.com/design/W3lZurXCXbThP67rF2xk2b/LIFTLY_%EC%B5%9C%EC%A2%85?node-id=0-1`
+- 빠른 운동 기록이 본체
+- 추천 루틴 / 운동 정보는 선택을 돕는 보조층
+- 기록이 쌓이면 분석 / 개인화 가치가 커짐
+- AI coach/chat-first 제품이 아님
 
-대표 sync 기준:
+Core loop:
 
-- screen width `360`
-- side padding `20`
-- content width `320`
-- SUIT typography
-- `bg/default #0A0A0C`
-- `bg/surface #161618`
-- `bg/elevated #1E1E22`
-- `border/subtle #232326`
-- `text/primary #F0F0F2`
-- `text/secondary #8E8E93`
-- `brand/primary #34D399`
-- standard radius `12`
-- Nav Header `56`
-- Home hero `320 × 128`
-- Home Heatmap `320 × 104`
-- WorkoutRow `320 × 60`
-- RoutineCard `320 × 124`
-- CTA `320 × 58`
-- Input `320 × 52`
-- weekday control `34 × 34`
-- Exercise search `320 × 44`
-- FilterChip height `32`
-- ExerciseItem `320 × 96`
-- Active-workout progress section `72`, track `8`
-- Completion primary metric `154 × 94` × 2
-- Bottom App Bar `360 × 78`
+`Home에서 다음 운동 바로 시작 → 운동 중 빠르게 기록 → 완료에서 오늘 결과 확인 → 분석에서 누적 변화 확인`
 
-Important:
+Bottom navigation:
 
-- v14은 final UI spec이 아니라 **current product review content를 실제 화면설계서 형태로 읽기 쉽게 정리한 planning artifact**다.
-- phone 내부의 visual language는 아직 기존 Figma dark baseline을 유지한다.
-- working name은 `G Fit`이므로 기존 Figma logo asset 자체를 복제하지 않고 placeholder text를 사용한다.
-- 디자인시스템 sync와 planning-spec layout은 `REVIEW / OPEN` 제품 가설을 확정시키지 않는다.
+`홈 / 루틴 / 분석 / 설정`
 
-## Runtime verification — v2026-09-02.14
+Exercise Library는 독립 primary tab이 아니라 루틴/운동 흐름 안에서 contextual하게 사용한다.
 
-Production deploy/read-back 확인 완료:
-
-- Vercel project: `liftly-wireframe`
-- deployment ID: `dpl_FhbswP4x1T8oat9yQQKgsRic8hV8`
-- Vercel target: production
-- state: `READY`
-- canonical alias: `https://liftly-wireframe.vercel.app`
-- HTML HTTP `200`
-- `CANONICAL_WIREFRAME_VERSION: 2026-09-02.14`
-- `PLANNING_SPEC_LAYOUT: 2026-09-02` marker 확인
-- `Product Planning Wireframe` / `screen-spec` / `화면 목적` 구조 확인
-- `style.css` HTTP `200`
-- production alias가 v14 deployment를 가리키는 것 확인
-
-HTTP/source/runtime read-back은 완료했다. Pixel-perfect browser visual QA는 Product Owner가 실제 화면을 보면서 진행한다.
-
-## Current product definition
-
-Working name: `G Fit` (`Go Fitness`) — 가칭이며 출시 브랜드 확정이 아님.
-
-G Fit은 **운동 루틴을 만들고, 실행 기록을 쌓고, 지속적으로 관리하는 웨이트 트레이닝 앱**이다.
-
-Primary target:
-- 일반적인 헬스 이용자
-- 숙련자
-
-초보자도 사용할 수 있어야 하지만 초보자 교육 앱을 중심 정체성으로 두지 않는다.
-
-Core product layers:
-
-1. Core Tracker
-2. Exercise / Program Content
-3. Personal Intelligence
-4. Social
-
-첫 출시에서는 Core Tracker를 우선 완성한다.
-
-## MVP reset — CONFIRMED
-
-첫 출시 핵심:
-
-- 루틴 생성 / 수정 / 삭제 / 관리
-- G Fit이 제공하는 추천 루틴 사용
-- 운동 시작 / 진행 / 종료
-- 기본 기록: `중량 / 횟수 / 세트 / 휴식`
-- 이전 수행 기록
-- 기본 운동 이력 / 성장 데이터
-- 운동 종료 요약 대시보드
-- 기본 분석
-
-현재 MVP 밖:
-
-- RPE / RIR
-- AI coach/chat primary UX
-- 자동 루틴 변경
-- automatic progressive overload
-- social feed / photo / likes / routine sharing
-- monetization
-
-AI / personalization과 Social은 장기 구조에는 고려하지만 첫 출시 blocker가 아니다.
-
-## First-run onboarding — CONFIRMED RESET
+## First-run — CONFIRMED RESET
 
 New account:
 
-`로그인 -> 기본정보 -> Home`
+`로그인 → 기본정보(성별 + 생년월일) → Home`
 
 Existing account:
 
-`로그인 -> Home`
+`로그인 → Home`
 
-필수 기본정보:
+기존 추천 설문 / 추천 결과 캐러셀 onboarding은 superseded.
 
-- 성별: `남성 / 여성`
-- 생년월일: full date of birth
+닉네임 / 프로필 사진은 first-run 필수가 아니며 기본값을 자동 부여하고 Settings에서 변경한다.
 
-기존 recommendation-heavy onboarding과 추천 결과 전용 화면 / 3-candidate carousel / skip-exit 흐름은 superseded 됐다.
+## Approved UX locks — 2026-09-02
 
-성별/생년월일은 시작 중량 추정에 사용하지 않는다.
+### 1. Home
 
-### Social identity default
+Home의 최우선 역할은 **운동 시작 / 운동 복귀**다.
 
-소셜을 쓰지 않는 사용자에게 nickname / profile image 설정을 강제하지 않는다.
+상태별 상단 행동:
 
-계정 생성 시 기본값을 자동 부여하고 사용자가 필요할 때 Settings에서 변경한다.
+- 루틴 없음 → 추천 루틴 / 내 루틴 만들기
+- 루틴 있음 + 요일 미지정 → 다음 운동
+- 루틴 있음 + 요일 지정 → 오늘의 운동
+- active workout → 운동 계속하기
 
-- autogenerated public nickname: exact format TBD
-- default neutral profile image
-- public nickname과 internal immutable user ID는 별도 개념
+Home은 상세 분석 화면이 아니다.
 
-## Exercise visual / asset direction — UPDATED
+### 2. Active Workout
 
-운동 visual은 기존처럼 해부학적이고 동작 이해가 쉬운 한 계열의 visual language를 유지한다. 다만 **전체 운동 에셋을 새로 만들거나 추가 대형 라이브러리를 구매하는 방향은 중단**한다.
+운동 기록 화면은 **전체 운동을 한 화면에서 이어서 보고 현재 운동만 펼쳐 기록**한다.
 
-Product Owner 결정:
+- 세트 / 이전 기록 / kg / 횟수 / 완료를 한곳에 표시
+- 다음 운동은 아래에 접어서 계속 보임
+- 이전 기록은 입력 영역 가까이에 둠
+- 휴식 타이머는 화면을 가리지 않는 작은 형태
+- 운동 하나마다 별도 화면으로 이동하는 구조는 기본값이 아님
 
-- 이미 구매한 exercise asset / metadata를 **기본 Exercise Asset Library**로 활용
-- 구매한 자료와 겹치는 운동은 새로 제작하지 않음
-- 국내 헬스장에서 필요한 핵심 운동 중 실제로 없는 운동만 gap으로 추림
-- 누락 운동은 기존 구매 에셋의 카메라, crop, 배경, 인체 비율, 근육 highlight 체계와 최대한 같은 계열로 추가 제작
-- 동일 운동의 male/female asset을 이중 제작하는 것은 baseline에서 요구하지 않음
-- social profile image와 exercise demo visual은 별도 개념 유지
-- grip 시각화는 실제 수행 이해에 가치가 있는 운동에서 제공
+### 3. Recommended Routine Save Flow
 
-중요한 라이선스 체크:
+추천 루틴을 시작한다고 자동 저장하지 않는다.
 
-- 구매 에셋의 **상업 앱 사용 권한**과 **원본을 AI reference로 넣어 derivative asset을 만드는 권한**은 별개일 수 있음
-- 원본 에셋을 AI/reference workflow에 직접 넣기 전 구매 라이선스의 modification / derivative / AI 관련 조항을 확인해야 함
-- 라이선스가 불명확하면 원본 파일 자체를 AI에 제공하지 않고, 일반적인 visual grammar만 참고해 새 에셋을 제작
+`추천 루틴 선택 → 저장 없이 운동 시작 → 운동 완료 → 사용자가 내 루틴 저장 여부 결정`
 
-### Theme direction — PO preference / VALIDATION PENDING
+- 오늘 운동 기록은 항상 저장
+- 루틴 저장은 별도 선택
+- 운동 중 구성을 바꿨다면 저장할 때만 `오늘 한 구성 / 원래 추천 구성` 선택을 추가로 묻는 방향
+- 정확한 버튼 문구와 배치는 완료 화면 UI 단계에서 조정 가능
 
-구매한 운동 에셋이 밝은 배경에서 자연스럽게 보이기 때문에 Product Owner는 **앱도 light theme 기반으로 전환하는 방향을 선호**한다.
+### 4. Post-workout Completion
 
-아직 전체 디자인시스템 변경으로 확정·반영하지는 않았다.
+완료 화면은 오늘 운동 정보를 풍부하게 보여주되 **상단 카드 캐러셀로 나눠 담는다.**
 
-검증 방법:
+상단 후보 구조:
+
+1. 오늘 운동 요약
+2. 오늘 좋아진 기록
+3. 이번 주 기록
+
+그 아래에는 오늘 실제 운동 결과 전체를 보여준다.
+
+추천 루틴으로 운동했다면 완료 화면 하단에서 저장 여부를 묻는다.
+
+월별 추세 / 장기 그래프 / 깊은 종목 분석은 Analysis가 담당한다.
+
+정확한 지표와 계산법은 아직 OPEN.
+
+### 5. Exercise Search / Add
+
+운동 추가는 **검색 중심 + 목록에서 바로 추가**를 기본으로 한다.
+
+- 루틴 만들기와 운동 중 추가에서 같은 선택 흐름 재사용
+- 검색 결과 목록에서 운동 상세를 거치지 않고 바로 추가 가능
+- 목록 우선 정보: 운동명 / 장비 / 주요 부위 / 운동 이미지 / 최근 기록
+- 부위 / 장비 필터는 가볍게 제공
+- 운동 이름 또는 이미지를 눌렀을 때만 상세 화면 진입
+- 운동 상세는 선택 단계이며 운동 추가의 필수 단계가 아님
+- 찾는 운동이 없으면 직접 만들기
+- 직접 만든 운동도 일반 운동처럼 기록 / 이력을 가짐
+
+Custom exercise 기반 결정은 DEC-003 / DEC-012 유지.
+
+## Exercise DB / asset direction
+
+기본 Exercise Asset Library는 이미 구매한 exercise asset / metadata를 사용한다.
+
+원칙:
+
+- 구매 자료와 겹치는 운동을 대규모로 새 제작하지 않음
+- 국내 헬스장에서 필요한 핵심 누락 운동만 gap으로 추가
+- 누락 에셋은 기존 구매 자료와 카메라 / crop / 배경 / 인체 비율 / 근육 highlight를 최대한 같은 계열로 맞춤
+- 중성적으로 보이는 해부학 3D 아바타 1계열이 baseline
+- 동일 운동 male/female 이중 에셋은 baseline에서 요구하지 않음
+- grip visual은 실제 수행 이해에 가치가 있을 때 사용
+
+구매 원본 에셋을 AI reference로 직접 사용하기 전 modification / derivative / AI 관련 라이선스를 확인해야 한다.
+
+## Next product decision — Exercise identity
+
+다음으로 정할 핵심은 **같은 운동 / 다른 운동의 기록 기준**이다.
+
+검토 대상:
+
+- 바벨 / 덤벨 / 머신 / 케이블 차이를 각각 별도 운동으로 보는 기준
+- Hammer Strength / Cybex 등 제조사 머신을 일반 머신 운동과 언제 분리할지
+- 그립 차이를 별도 exercise identity로 만들지 metadata로 둘지
+- 구매 DB의 영문/해외 명칭을 국내 명칭으로 어떻게 정규화할지
+- 중복 운동을 어떤 규칙으로 합칠지
+
+이 기준이 정해져야 운동별 과거 기록, 검색 결과, 추천 루틴, 대체운동, 분석 데이터가 안정된다.
+
+## Theme — VALIDATION PENDING
+
+Product Owner는 구매 에셋과의 결합 때문에 light theme를 선호한다.
+
+아직 global theme로 확정하지 않는다.
+
+먼저 실제 구매 에셋을 다음 화면에 넣어 검증한다.
 
 1. Exercise Search / Select
 2. Exercise Detail
 3. Active Workout
 
-위 3개 핵심 화면에 실제 구매 에셋을 넣고 light theme prototype을 먼저 검증한다.
+## Canonical artifacts
 
-세 화면에서 에셋과 UI의 결합이 좋으면 Home / Routine / Analysis까지 전체 light system으로 확장한다.
+Canonical production wireframe:
 
-현재 v14 Vercel wireframe의 phone UI는 기존 dark Figma baseline이며, light theme 변경은 아직 runtime/Figma에 적용하지 않았다.
+`https://liftly-wireframe.vercel.app`
 
-## Recommended routine — CONFIRMED DIRECTION
+- Vercel project: `liftly-wireframe`
+- project ID: `prj_w7P1KrlqbzDq9dBQ0UcFh2VuQipG`
+- team ID: `team_cAq2nylL00z8u39kpinhZXQa`
+- canonical version: `2026-09-02.14`
+- production deployment: `dpl_FhbswP4x1T8oat9yQQKgsRic8hV8`
+- production state previously verified READY / HTTP 200
 
-사용자-facing 용어는 `프리셋` 대신 **`추천 루틴`**을 사용한다.
+Canonical Figma:
 
-현재 추천 루틴은 개인 데이터 기반 추천이 아니라:
+`https://www.figma.com/design/W3lZurXCXbThP67rF2xk2b/LIFTLY_%EC%B5%9C%EC%A2%85?node-id=0-1`
 
-> G Fit이 미리 구성하고 검수해서 제공하는 ready-made routine
+Living planning deck:
 
-이다.
+`G Fit 기획 진행본 - 쉬운 문장 버전 2026-09-02`
 
-신규 사용자는 onboarding 후 바로 Home에 진입한다.
+`https://docs.google.com/presentation/d/1F0EYIvZ2xfbi2hR0kdjyW8c-gXAHWaBLIajmPamczJM/edit`
 
-Home에서 여러 추천 루틴 카드를 볼 수 있다.
+## Latest review evidence
 
-- 카드 1개 = 완성된 루틴 1개
-- 예: `무분할 전신 루틴`, `상체 루틴`, `하체 루틴`
-- category questionnaire 없이 바로 카드 탐색 가능
-- `내 루틴 만들기`도 함께 제공
-- 추천 카드 탭 이후 detail / save / start semantics는 OPEN
+Exercise Search / Add review source:
 
-루틴이 이미 있는 일반 Home에서는 추천 콘텐츠보다 오늘/다음 운동 시작과 최근 상태가 우선한다.
+- GitHub: `product/wireframe/exercise-review.html`
+- source commit: `1c95c122cc9775966cf1ace778f35d9cecb88e9f`
+- preview deployment: `dpl_9UBKHfnc2zQcjoDaJGuQ6vCz6tz7`
+- preview URL: `https://liftly-wireframe-gopt8hf2u-xxxbeom-glitchs-projects.vercel.app/exercise-review.html`
+- HTTP read-back: `200`
+- Product Owner approval: 2026-09-02
+- decision lock update commit: `8bee0df38a7965718dcaa2a481ec4758b5807335`
 
-## Home dashboard research checkpoint — RESEARCH / PO DECISION PENDING
+Review-only previews do not automatically replace canonical production.
 
-Home을 단순 카드 모음이 아니라 **대시보드형 메인**으로 볼 때의 UX 원칙과 Mobbin 레퍼런스를 검토했다.
+## Implementation status
 
-### Dashboard role
+No Cursor handoff yet.
 
-현재 G Fit에는 별도의 `분석` 탭이 있으므로 Home은 상세 분석 dashboard가 아니라 **operational / action-first dashboard**에 가깝게 가져가는 것이 가장 논리적이라는 연구 결론이다.
+Planning / UX approval is still in progress. Product implementation should begin only after the current planning pass has enough locked behavior to write stable Issues and Acceptance Criteria.
 
-Home이 몇 초 안에 답해야 할 핵심 질문:
+## Open items / blockers
 
-1. **지금 나는 뭘 해야 하지?**
-2. **요즘 나는 운동을 잘 하고 있나?**
-3. **최근에 뭐 했지?**
-
-상세 volume trend, muscle distribution, exercise progress chart 등은 Analysis로 보내고 Home에는 행동과 상태 판단에 필요한 최소 context만 둔다.
-
-### UX principles used
-
-Dashboard는 정보를 많이 보여주는 화면이 아니라 **사용자 목표와 현재 상황을 빠르게 파악하고 다음 행동을 결정하게 하는 화면**으로 접근한다.
-
-적용 원칙:
-
-- 화면부터 그리지 않고 `사용자가 왜 Home에 들어오는가 → 무엇을 판단하는가 → 어떤 행동을 하는가` 순으로 설계
-- `must-see / must-do`를 가장 높은 visual hierarchy에 배치
-- 관련 정보끼리 묶고 상세 분석은 progressive disclosure / Analysis로 이동
-- chart 자체보다 사용자가 바로 이해할 수 있는 상태/변화 메시지를 우선
-- 모든 카드에 동일한 visual weight를 주지 않음
-- 평상시 필요 없는 insight는 상시 고정 영역이 아니라 exception-based information으로 처리 가능
-
-참고한 외부 UX 자료:
-
-- UXmatters — Dashboard Design 101: `https://www.uxmatters.com/mt/archives/2010/11/dashboard-design-101.php`
-- UXmatters / Stephen Few dashboard review: `https://www.uxmatters.com/mt/archives/2007/04/book-review-information-dashboard-design.php`
-- Apple HIG Layout: `https://developer.apple.com/design/human-interface-guidelines/layout`
-- Apple HIG Charts: `https://developer.apple.com/design/human-interface-guidelines/charts`
-
-### Mobbin reference patterns reviewed
-
-피트니스만 보지 않고 금융 / 업무 / 생산성 / 건강 앱까지 함께 비교했다.
-
-핵심 패턴:
-
-- **Action-first:** Mimo, N26, Chime — 가장 중요한 현재 상태/행동을 크게, 그 아래 보조 정보
-- **Equal modular KPI dashboard:** Hevy, MacroFactor, Todoist — 여러 widget을 비슷한 무게로 배열
-- **Context / activity feed:** Remote Global HR, Monzo, Withings — 현재 중요한 것 → 최근 상태/이력 → 다음 참고 정보
-
-대표 Mobbin screens:
-
-- Hevy: `https://mobbin.com/screens/2e109a73-9c45-4f56-94fb-062038f53a6e`
-- MacroFactor: `https://mobbin.com/screens/bd079a0d-9ba0-4672-882d-b0a2ce05b9cd`
-- Todoist: `https://mobbin.com/screens/fd6d1d04-fc19-4e7f-b43c-7a9f970aedf6`
-- Remote Global HR: `https://mobbin.com/screens/5d1526a7-e3e1-44e7-bef0-c51f21a67e01`
-- Monzo: `https://mobbin.com/screens/f8295bc6-41ee-463f-987c-4cec448c6fea`
-- Withings Health Mate: `https://mobbin.com/screens/72f11245-eb96-405a-be2a-91b05ce7b01c`
-- N26: `https://mobbin.com/screens/52ecfd8a-5c0a-4a0d-bf1f-518ee3b88767`
-- Mimo: `https://mobbin.com/screens/54b61209-26b8-4d28-ac60-9f888e099b6e`
-
-### Three Home directions reviewed
-
-#### A. Action-first dashboard — RECOMMENDED
-
-정보 위계 예시:
-
-- `NOW / ACTION`: 약 40–45%
-- `CURRENT STATUS`: 약 25–30%
-- `RECENT`: 약 20–25%
-- `EXCEPTION / INSIGHT`: 필요할 때만
-
-핵심은 Home에서 **오늘/다음 운동 시작**이 가장 큰 카드/영역을 차지하는 것.
-
-#### B. Metric dashboard
-
-Hevy처럼 `루틴 선택 / 운동 기록 / 볼륨 / streak / rest` 등을 modular KPI로 구성.
-
-장점은 누적 데이터가 많을 때 풍성하고 수치 확인이 빠르다는 것.
-
-단점은 모든 정보가 비슷하게 중요해 보여 G Fit의 핵심 행동인 `운동 시작`이 묻힐 수 있고, 신규 사용자는 빈 dashboard가 되기 쉬움.
-
-#### C. Context feed dashboard
-
-현재 중요한 상태 → 이번 주 흐름 → 최근 운동 → 다음 정보 순으로 내려가는 구조.
-
-장기적으로 Personal Intelligence를 붙이기 쉽지만 feed가 계속 확장되면 Home의 중심이 흐려질 위험이 있음.
-
-### Current recommendation — NOT YET CONFIRMED
-
-현재 추천은 **A(Action-first) 약 70% + C(Context feed) 약 30%** 조합이다.
-
-동일한 Home skeleton을 유지하면서 최상단 primary action만 상태에 따라 변경:
-
-- `02A` 루틴 없음 → `G Fit 추천 루틴으로 시작 / 내 루틴 만들기`
-- `02B` 루틴 있음 · 요일 미지정 → `다음 루틴`
-- `02C` 루틴 있음 · 요일 지정 → `오늘 운동`
-- `02D` active workout 존재 → `운동 계속하기`
-
-그 아래에는 공통적으로:
-
-- 이번 주 운동 상태
-- 최근 운동
-- 특별한 변화가 있을 때만 exception / insight
-
-를 배치하는 방향.
-
-이 구조는 현재 **Research recommendation**이며 Product Owner가 아직 최종 CONFIRMED하지 않았다.
-
-## Personalization / AI — CONFIRMED DIRECTION
-
-G Fit은 AI coach-first product가 아니다.
-
-AI/personalization은 사용자의 실제 운동 데이터를 해석하는 보조 레이어다.
-
-Core rule:
-
-- 제안 가능
-- 기록/루틴 자동 변경 금지
-
-Priority direction:
-
-`운동 후 분석 > 운동 전 준비 > Home 장기 인사이트 > 운동 중 최소 개입`
-
-## Post-workout / Analysis — CONFIRMED DIRECTION
-
-운동 종료 후에는 단순 완료 화면보다 **다양한 데이터를 직관적으로 보여주는 요약 대시보드**를 지향한다.
-
-정확한 MVP metric / calculation rule은 Analysis planning에서 확정한다.
-
-## Social — POST-MVP DIRECTION
-
-장기적으로 필요:
-
-- 운동 사진
-- 좋아요
-- 루틴 공유
-- 공개 루틴 탐색/활용 가능성
-
-운동 기록 / 루틴 / 게시물 공개 여부는 사용자가 선택한다.
-
-## Existing foundations retained
-
-- primary bottom navigation: `홈 / 루틴 / 분석 / 설정`
-- exercise library is contextual, not primary tab
-- independent daily-routine model
-- weekday scheduling optional
-- one active workout at a time
-- active session survives restart until finish/discard
-- Home exposes active-workout return state
-- active-workout return indicator is Home-only
-- Routine remains browseable/read-only while active workout exists
-- active workout structural edits stay flexible
-- structural live-workout changes may prompt saved-routine update at completion
-- load/reps are performance records
-- partial save persists only completed work
-- prior performance inline
-- offline-first active-workout persistence / safe sync
-- recommendation/AI must not silently alter workout records
-- custom exercises remain important
-
-## Whole-app wireframe review scope — v2026-09-02.14
-
-1. Account / Onboarding
-2. Home — 루틴 없음 / 요일 미지정 / 요일 지정 / 운동 진행 중
-3. Routine — 내 루틴 / 추천 루틴 / 상세 / 만들기·수정
-4. Exercise DB / Guide — 검색·필터 / 운동 상세 / 중성 3D placeholder / grip / YouTube slot / custom exercise
-5. Active workout — 진행률 / 세트 기록 / 이전 기록 / rest / 운동 메뉴 / existing dialogs
-6. Workout complete — 완료 요약 대시보드 / 부분 기록
-7. Analysis / History — overview / 종목 기록 / 운동 기록 상세
-8. Settings — 운동 / 프로필 / 계정·데이터 + post-MVP extension memo
-
-Wireframe 운영 원칙:
-
-- `CONFIRMED` = 기존 확정 정책
-- `REVIEW` = 현재 비교·검토용 UI 가설
-- `OPEN` = Product Owner가 화면을 보고 결정할 항목
-- `POST-MVP` = 장기 구조 참고용
-- review draft를 Cursor 구현 Task / Acceptance Criteria로 사용하지 않음
-- 화면에 존재한다는 이유로 Product Decision을 자동 생성하지 않음
-- phone mockup에는 실제 사용자-facing UI만 두고 planning 설명은 우측 spec에서 관리
-
-## Superseded planning
-
-Current direction이 아닌 항목:
-
-- first-run `추천 루틴 받기 / 직접 만들기` branch screen
-- goal / experience / weekly availability / duration questionnaire
-- experience-based first-run matcher
-- dedicated recommendation-result screen
-- three candidates `기본형 / 간결형 / 볼륨형`
-- recommendation result carousel/pagination
-- recommendation-result skip/exit policy problem
-
-`docs/23_RECOMMENDATION_SYSTEM_V1.md`는 historical / superseded reference only다.
-
-## Next resume point
-
-**다음 작업은 Home dashboard 구조를 Product Owner가 확정하는 것부터 재개한다.**
-
-현재 첫 결정 대상:
-
-- Home의 역할을 `Action-first operational dashboard`로 확정할지
-- 최상단 primary action의 visual weight / 정보량
-- `이번 주 상태`에 어떤 수치를 노출할지 (`운동 횟수 / 세트 / 목표 대비` 등)
-- `최근 운동`에 어떤 정보까지 표시할지
-- exception / insight를 상시 영역이 아니라 조건부로 둘지
-
-현재 추천 baseline:
-
-`NOW/ACTION 40–45% → CURRENT STATUS 25–30% → RECENT 20–25% → EXCEPTION/INSIGHT 필요 시`
-
-Home state review:
-
-- `02A` 루틴 없음 — G Fit 추천 루틴 + 내 루틴 만들기
-- `02B` 내 루틴 있음 / 요일 미지정 — `다음 루틴`
-- `02C` 내 루틴 있음 / 요일 지정 — `오늘 운동`
-- `02D` 운동 진행 중 — confirmed `운동 계속하기` behavior
-
-Home IA를 확정한 다음 같은 skeleton을 `02A / 02B / 02C / 02D`에 적용해 wireframe을 갱신한다.
-
-그 다음 검토 순서:
-
-1. Home
-2. G Fit recommended-routine detail / start semantics
-3. Routine
-4. Exercise DB / visual assets / exercise identity
-5. Active workout execution UI
-6. Post-workout summary dashboard
-7. Analysis
-8. Settings
-9. AI / personalization
-10. Social
-11. Legal / privacy / minimum-age / platform policy
-12. Monetization
-
-## Canonical source rule
-
-GitHub remains Source of Truth.
-
-- Product decisions: GitHub docs
-- Visual/design-system reference: canonical Figma
-- Current review artifact: `product/wireframe/index.html` + `style.css`
-- Product Owner-facing production: `https://liftly-wireframe.vercel.app`
-
-Figma/wireframe이 제품 정책을 역으로 덮어쓰지 않는다.
+- exercise identity / duplicate / Korean naming rules
+- manufacturer machine / grip variant modeling
+- purchased asset license check for AI-reference derivative work
+- actual purchased-asset light-theme validation
+- recommended routine exact program contents
+- completion dashboard exact metrics / formulas
+- Analysis first-screen metrics / drilldown scope
+- recommendation routine save button copy / detailed edge cases
+- autogenerated nickname format
+- legal/policy pass for sex/date-of-birth collection
