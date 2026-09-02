@@ -1,18 +1,18 @@
 # CURRENT — Fitness Project
 
-**Updated:** 2026-09-02 23:35 KST
+**Updated:** 2026-09-02 23:46 KST
 
 ## Current mode
 
-`PRODUCT / UX PLANNING — EXERCISE DB v1 CANDIDATE BUILT · METADATA/POSTER QA PARTIAL COMPLETE · NEXT: FULL METADATA ENRICHMENT + GRIP EXCEPTION DECISION · CANONICAL WIREFRAME v2026-09-02.14`
+`PRODUCT / UX PLANNING — EXERCISE DB v1 CANDIDATE BUILT · CABLE/PULLEY GRIP SCOPE APPROVED · NEXT: FULL METADATA ENRICHMENT + CABLE GRIP MAPPING · CANONICAL WIREFRAME v2026-09-02.14`
 
-Product Owner가 운동 DB의 핵심 기록 기준인 **장비별 분리**, **각도/주요 자세별 분리**, **대표 그립은 선택적인 하위 기록**, **한국어/영어 표시명 병행**, **구매 에셋 내부의 실제 중복 통합 규칙**, **큰 부위 중심의 사용자 필터 + 세부 근육 데이터 병행**을 승인했다. 제조사 / 브랜드별 머신 DB는 MVP 기본 범위에서 제외한다.
+Product Owner가 운동 DB의 핵심 기록 기준인 **장비별 분리**, **각도/주요 자세별 분리**, **케이블/풀리 운동에 한정한 선택형 그립 기록**, **한국어/영어 표시명 병행**, **구매 에셋 내부의 실제 중복 통합 규칙**, **큰 부위 중심의 사용자 필터 + 세부 근육 데이터 병행**을 승인했다. 제조사 / 브랜드별 머신 DB는 MVP 기본 범위에서 제외한다.
 
 구매 에셋 **206개 파일명 기반 v0.1** 이후 실제 `metadata.json`과 일부 poster를 다시 검수한 **v0.2 QA**를 진행했다. 그 결과 v0.1의 중복 후보 5개 중 현재 **실제 중복으로 high-confidence 확인된 것은 `bodyweight-elevated-push-up` → `incline-push-up` 1건**이며, dumbbell/kettlebell row 후보는 주요 자세/에셋 차이 때문에 자동 통합을 취소했다. `machine-cable-v-bar-push-downs`, `machine-seated-cable-row`는 duplicate가 아니라 canonical 이름/장비 분류 정정으로 변경했다.
 
 별도 G Fit Exercise DB v1 candidate를 생성했으며 원본 구매 에셋/metadata는 수정하지 않았다. 현재 206 row 중 source metadata/poster로 직접 검수한 high-confidence 26개, medium 4개, 아직 전체 metadata enrichment가 필요한 low-confidence 176개 상태다. 따라서 이 candidate는 production-final이 아니다.
 
-QA 중 `Close-Grip Bench Press`처럼 **그립 변화가 통용 별도 운동명과 주동근/훈련 목적까지 바꾸는 경우**가 발견되어, 기존 `그립은 선택 하위 기록` 원칙의 예외를 별도 exercise identity로 둘지 Product Owner 결정이 한 번 필요하다.
+선택형 그립 기록의 MVP 범위는 **케이블 / 풀리 기반 운동**으로 제한한다. 랫풀다운·시티드 케이블 로우처럼 같은 운동으로 보는 것이 자연스러운 경우에만 대표 그립을 하위 기록으로 둔다. 바벨·덤벨·일반 머신 운동에는 이 기능을 확장하지 않는다. 따라서 `Close-Grip Bench Press` 같은 비케이블 운동은 별도 운동 identity로 처리하며 전역 그립 예외 규칙은 더 이상 필요하지 않다.
 
 Cursor 제품 구현은 아직 승인되지 않았다.
 
@@ -180,22 +180,20 @@ Custom exercise 기반 결정은 DEC-003 / DEC-012 유지.
 
 구매 에셋 원본 영문명은 `source_name_en` 성격의 원본 추적 데이터로 별도 보존하고, 해외 사용자에게 보여줄 `name_en`은 중복/표현을 정리한 영어 표시명으로 관리한다. 통합 전 다른 이름은 alias / 검색어로 남긴다.
 
-**그립 기록은 선택 기능**이다.
+**선택형 그립 기록은 MVP에서 케이블 / 풀리 운동에만 적용**한다.
 
-예: `랫풀다운`
+예: `랫풀다운`, `시티드 케이블 로우`
 
-- 사용자가 그립 구분이 필요 없으면 별도 선택 없이 `랫풀다운` 기본 기록으로 운동 가능
-- 그립 선택을 강제하거나 운동 시작/완료를 막지 않음
-- 필요한 사용자만 카드 안에서 `오버핸드 / 뉴트럴` 같은 대표 그립을 선택해 별도 이력을 사용
+- 사용자가 그립 구분이 필요 없으면 별도 선택 없이 기본 기록으로 운동 가능
+- 필요한 사용자만 오버핸드 / 뉴트럴 / 언더핸드 같은 대표 그립을 선택해 별도 이력을 사용
 - 그립 미선택 기록과 각 대표 그립의 이전 kg / 횟수 / PR은 서로 섞지 않음
 - 기존 기본 기록을 나중에 특정 그립 기록으로 자동 재분류하지 않음
-- 화면에서는 한 운동 카드지만 기본 기록과 대표 그립별 수행 기록은 내부적으로 분리
+- 바벨 / 덤벨 / 일반 머신 운동에는 MVP 그립 선택 기능을 적용하지 않음
+- 케이블 / 풀리 운동이라도 별도 운동명으로 통용되는 변형은 무조건 하위 그립으로 합치지 않음
 
-모든 미세 손 위치를 그립 변형으로 만들지는 않는다. 작은 손 너비 / 시트 / 손잡이 위치 조정은 같은 기록 안에서 메모 또는 세팅 정보로 처리하는 방향이다.
+`클로즈그립 벤치프레스`처럼 케이블 / 풀리 범위 밖에서 별도 운동명으로 통용되는 운동은 별도 exercise identity로 처리한다.
 
-**OPEN exception:** `Close-Grip Bench Press`처럼 그립 변화가 통용 별도 운동명과 주요 훈련 목적까지 바꾸는 경우를 별도 exercise identity로 허용할지 검토 중이다. 이 예외는 아직 Product Owner 승인 전이다.
-
-대표 그립의 정확한 전체 목록, 그립 선택 UI의 세부 형태, 마지막 선택 기억 여부는 아직 OPEN.
+어떤 케이블 / 풀리 운동에 그립 선택을 실제로 노출할지, 대표 그립 목록, 마지막 선택 기억 여부는 아직 OPEN.
 
 ### 7. Body-part classification / Custom exercise
 
@@ -251,7 +249,7 @@ MVP 기본 운동 DB에서는 Hammer Strength / Cybex 등 **제조사·브랜드
 
 - 장비가 다르면 별도 운동 기록
 - 각도 / 주요 자세가 다르면 별도 운동 기록
-- 그립은 별도 검색 운동으로 무조건 늘리지 않고 선택적 하위 기록으로 관리
+- 선택형 그립 기록은 MVP에서 케이블 / 풀리 운동에만 적용
 - 하나의 exercise identity에 **한국어 표시명과 영어 표시명을 모두 유지**
 - 구매 원본 영문명은 원본 추적용으로 별도 보존하고, 사용자용 영문명은 필요하면 정규화
 - 브랜드/제조사별 머신 DB는 MVP 기본 범위에서 제외
@@ -278,10 +276,6 @@ commit:
 
 `docs/exercise-db/purchased-asset-classification-v0.2.md`
 
-commit:
-
-`5b8f5ff100878c0db030f5384798bda690b9274d`
-
 핵심 결과:
 
 - source rows 206개 그대로 보존
@@ -291,16 +285,17 @@ commit:
 - high-confidence 실제 중복 통합: 1 (`bodyweight-elevated-push-up` → `incline-push-up`)
 - 이름/장비/부위 정정: 10
 - poster/metadata 불일치 또는 자세 차이 검수: 4
-- named grip/variant 정책 검토: 2
 - v0.1 원본과 구매 원본은 수정하지 않음
+- 한국어 표시명 톤은 Product Owner가 전반적으로 무난하다고 승인
+- 케이블 / 풀리 한정 선택형 그립 범위 확정
 
 v1 candidate에는 `source` 값과 G Fit `normalized` 값을 분리해 보존하고 `qa_basis / qa_confidence / qa_flags`를 추가했다. low-confidence row는 production 확정으로 취급하지 않는다.
 
 ### Next
 
 1. 남은 low-confidence 176 row를 실제 `metadata.json`으로 전수 enrichment한다.
-2. `qa_flags`가 있는 posture / grip / category 예외만 poster를 추가 확인한다.
-3. `Close-Grip Bench Press` 같은 **named grip variant 예외 규칙**을 Product Owner와 한 번 결정한다.
+2. `qa_flags`가 있는 posture / cable-grip / category 예외만 poster를 추가 확인한다.
+3. 케이블 / 풀리 운동 중 실제 그립 하위 기록이 필요한 운동과 대표 그립 목록을 정리한다.
 4. canonical ID / aliases / bilingual display names를 최종 검증해 production Exercise DB v1로 승격한다.
 5. 확정된 G Fit DB를 국내 핵심 운동 및 Planfit·Hevy 레퍼런스와 비교해 **핵심 누락 운동과 추가 이미지 제작 수량**을 산출한다.
 
@@ -358,6 +353,7 @@ Grip history review source:
 - HTTP read-back: `200`
 - Product Owner approval: 2026-09-02
 - optional-grip decision lock update commit: `aa38a6cf0031a6e508619355edbca862fe68aba6`
+- MVP cable/pulley-only scope update commit: `4a31f23cd6f6e62126cb6bf663313e57a791db0e`
 
 Exercise identity / naming rule lock:
 
@@ -387,7 +383,8 @@ Purchased asset classification v0.1:
 
 Purchased asset metadata/poster QA v0.2:
 
-- QA report commit: `5b8f5ff100878c0db030f5384798bda690b9274d`
+- QA report initial commit: `5b8f5ff100878c0db030f5384798bda690b9274d`
+- cable/pulley grip resolution update commit: `57516854cbc06288161788bbf6f56490fbc3242e`
 - v0.1 heuristic errors and false duplicate assumptions documented
 - production-final DB is not yet claimed
 
@@ -403,10 +400,9 @@ Planning / UX approval is still in progress. Product implementation should begin
 
 - remaining 176 low-confidence purchased metadata rows enrichment
 - asset/metadata posture conflicts in dumbbell/kettlebell row assets
-- named grip variant exception decision (`Close-Grip Bench Press` etc.)
+- cable / pulley exercise representative grip mapping
 - production Exercise DB v1 promotion after QA
 - core missing-exercise / additional asset gap analysis after DB v1
-- exact representative grip list by exercise
 - grip selection UI exact form / last-used behavior
 - purchased asset license check for AI-reference derivative work
 - actual purchased-asset light-theme validation
