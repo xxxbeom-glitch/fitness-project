@@ -1,12 +1,12 @@
 # CURRENT — Fitness Project
 
-**Updated:** 2026-09-02 21:36 KST
+**Updated:** 2026-09-02 22:12 KST
 
 ## Current mode
 
-`PRODUCT / UX PLANNING — OPTIONAL GRIP HISTORY APPROVED · BRAND MACHINE DB DEFERRED · NEXT: DB NORMALIZATION · CANONICAL WIREFRAME v2026-09-02.14`
+`PRODUCT / UX PLANNING — EXERCISE IDENTITY RULES APPROVED · NEXT: PURCHASED DB DUPLICATE NORMALIZATION · CANONICAL WIREFRAME v2026-09-02.14`
 
-Product Owner가 운동 DB의 핵심 기록 기준 중 **장비별 기록 분리**, **한 운동 안의 대표 그립별 기록 전환**, **그립 기록은 선택 기능**이라는 방향을 승인했다. 제조사 / 브랜드별 머신 DB는 MVP 기본 범위에서 제외하고, 다음은 실제 구매 DB의 국내 명칭 / 중복 정리 규칙을 정하는 단계다.
+Product Owner가 운동 DB의 핵심 기록 기준인 **장비별 분리**, **각도/주요 자세별 분리**, **대표 그립은 선택적인 하위 기록**, **국내 통용명을 우선한 표시명** 방향을 승인했다. 제조사 / 브랜드별 머신 DB는 MVP 기본 범위에서 제외한다. 다음은 실제 구매 DB에서 이름만 다른 중복을 어떤 기준으로 합칠지 정하는 단계다.
 
 Cursor 제품 구현은 아직 승인되지 않았다.
 
@@ -136,13 +136,40 @@ Custom exercise 기반 결정은 DEC-003 / DEC-012 유지.
 
 예:
 
-- 바벨 벤치프레스
+- 벤치프레스
 - 덤벨 벤치프레스
-- 스미스 벤치프레스
+- 스미스 머신 벤치프레스
 - 체스트 프레스 머신
 - 케이블 프레스
 
 위 기록들의 이전 kg / 횟수 / PR은 서로 섞지 않는다.
+
+**각도 / 주요 자세가 다르면 별도 기록**으로 관리한다.
+
+예:
+
+- 벤치프레스
+- 인클라인 벤치프레스
+- 디클라인 벤치프레스
+- 덤벨 벤치프레스
+- 인클라인 덤벨 벤치프레스
+- 인클라인 스미스 머신 벤치프레스
+
+기본 exercise identity는 최소한 `동작 + 장비 + 각도/주요 자세`를 구분할 수 있어야 한다.
+
+**한국어 표시명은 국내 통용명을 우선**한다.
+
+내부 데이터에서는 장비와 각도/주요 자세를 보존하되, 사용자에게 보이는 이름은 자연스럽게 줄인다.
+
+예:
+
+- `Bench Press + Barbell + Flat` → `벤치프레스`
+- `Bench Press + Dumbbell + Flat` → `덤벨 벤치프레스`
+- `Bench Press + Smith Machine + Flat` → `스미스 머신 벤치프레스`
+- `Bench Press + Barbell + Incline` → `인클라인 벤치프레스`
+- `Bench Press + Dumbbell + Incline` → `인클라인 덤벨 벤치프레스`
+
+구매 원본 영문명은 원본 추적 / 검색용 metadata로 보존한다.
 
 **그립 기록은 선택 기능**이다.
 
@@ -182,15 +209,22 @@ MVP 기본 운동 DB에서는 Hammer Strength / Cybex 등 **제조사·브랜드
 - 특정 브랜드·모델 머신의 기록을 따로 관리하고 싶은 사용자는 `직접 만든 운동`으로 별도 기록 가능
 - 제조사 / 모델 DB 확장은 실제 사용자 수요가 확인된 뒤 재검토
 
-## Next product decision — DB normalization
+## Next product decision — Purchased DB duplicate normalization
+
+이미 승인된 정규화 기준:
+
+- 장비가 다르면 별도 운동 기록
+- 각도 / 주요 자세가 다르면 별도 운동 기록
+- 그립은 별도 검색 운동으로 무조건 늘리지 않고 선택적 하위 기록으로 관리
+- 사용자 표시명은 국내 통용명을 우선하고 원본 영문명은 metadata로 보존
+- 브랜드/제조사별 머신 DB는 MVP 기본 범위에서 제외
 
 다음으로 정할 핵심:
 
-- 구매 DB의 영문/해외 명칭을 국내 대표 이름으로 어떻게 정규화할지
-- 이름만 다른 실제 중복 운동을 어떤 규칙으로 합칠지
+- **이름만 다른 실제 중복 운동을 어떤 규칙으로 합칠지**
 - 실제 구매 metadata 전체를 `유지 / 이름 변경 / 중복 통합 / 별도 유지 / 1차 제외`로 분류할 기준
 
-이 기준이 정해지면 구매한 운동 DB 전체 정리를 시작할 수 있다.
+이 두 기준이 정해지면 구매한 운동 DB 전체 정리를 시작할 수 있다.
 
 ## Theme — VALIDATION PENDING
 
@@ -247,6 +281,11 @@ Grip history review source:
 - Product Owner approval: 2026-09-02
 - optional-grip decision lock update commit: `aa38a6cf0031a6e508619355edbca862fe68aba6`
 
+Exercise identity / naming rule lock:
+
+- Product Owner approval: 2026-09-02
+- equipment + angle + display-name rule update commit: `7394a15036d57bb510557a063bddc734453ed0ac`
+
 Review-only previews do not automatically replace canonical production.
 
 ## Implementation status
@@ -257,7 +296,7 @@ Planning / UX approval is still in progress. Product implementation should begin
 
 ## Open items / blockers
 
-- exercise duplicate / Korean naming normalization
+- exercise duplicate merge rule / purchased metadata normalization
 - exact representative grip list by exercise
 - grip selection UI exact form / last-used behavior
 - purchased asset license check for AI-reference derivative work
