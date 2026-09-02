@@ -1,14 +1,18 @@
 # CURRENT — Fitness Project
 
-**Updated:** 2026-09-02 23:13 KST
+**Updated:** 2026-09-02 23:35 KST
 
 ## Current mode
 
-`PRODUCT / UX PLANNING — PURCHASED EXERCISE ASSET FIRST PASS COMPLETE · NEXT: METADATA + IMAGE QA → PRODUCTION DB v1 · CANONICAL WIREFRAME v2026-09-02.14`
+`PRODUCT / UX PLANNING — EXERCISE DB v1 CANDIDATE BUILT · METADATA/POSTER QA PARTIAL COMPLETE · NEXT: FULL METADATA ENRICHMENT + GRIP EXCEPTION DECISION · CANONICAL WIREFRAME v2026-09-02.14`
 
 Product Owner가 운동 DB의 핵심 기록 기준인 **장비별 분리**, **각도/주요 자세별 분리**, **대표 그립은 선택적인 하위 기록**, **한국어/영어 표시명 병행**, **구매 에셋 내부의 실제 중복 통합 규칙**, **큰 부위 중심의 사용자 필터 + 세부 근육 데이터 병행**을 승인했다. 제조사 / 브랜드별 머신 DB는 MVP 기본 범위에서 제외한다.
 
-구매 에셋 **206개에 대한 파일명 기반 1차 분류 v0.1을 완료**했다. 다음은 실제 `metadata.json` 필드와 운동 이미지를 함께 검수해 **G Fit production Exercise DB v1 후보**로 다듬는 단계다. 그 뒤 국내 핵심 운동 / Planfit·Hevy 계열 레퍼런스와 비교해 **추가 제작이 필요한 핵심 누락 운동만 계산**한다.
+구매 에셋 **206개 파일명 기반 v0.1** 이후 실제 `metadata.json`과 일부 poster를 다시 검수한 **v0.2 QA**를 진행했다. 그 결과 v0.1의 중복 후보 5개 중 현재 **실제 중복으로 high-confidence 확인된 것은 `bodyweight-elevated-push-up` → `incline-push-up` 1건**이며, dumbbell/kettlebell row 후보는 주요 자세/에셋 차이 때문에 자동 통합을 취소했다. `machine-cable-v-bar-push-downs`, `machine-seated-cable-row`는 duplicate가 아니라 canonical 이름/장비 분류 정정으로 변경했다.
+
+별도 G Fit Exercise DB v1 candidate를 생성했으며 원본 구매 에셋/metadata는 수정하지 않았다. 현재 206 row 중 source metadata/poster로 직접 검수한 high-confidence 26개, medium 4개, 아직 전체 metadata enrichment가 필요한 low-confidence 176개 상태다. 따라서 이 candidate는 production-final이 아니다.
+
+QA 중 `Close-Grip Bench Press`처럼 **그립 변화가 통용 별도 운동명과 주동근/훈련 목적까지 바꾸는 경우**가 발견되어, 기존 `그립은 선택 하위 기록` 원칙의 예외를 별도 exercise identity로 둘지 Product Owner 결정이 한 번 필요하다.
 
 Cursor 제품 구현은 아직 승인되지 않았다.
 
@@ -19,10 +23,11 @@ Cursor 제품 구현은 아직 승인되지 않았다.
 1. 현재 Product Owner 결정
 2. `docs/24_PRODUCT_DIRECTION_V2.md`
 3. `docs/ux-decisions/2026-09-02-exercise-db-normalization.md`
-4. `docs/exercise-db/purchased-asset-classification-v0.1.md`
-5. `docs/ux-decisions/2026-09-02-home-workout-routine-completion-locks.md`
-6. `docs/08_DECISIONS.md` 중 위 문서들과 충돌하지 않는 기존 기반 결정
-7. 현재 canonical wireframe / Figma
+4. `docs/exercise-db/purchased-asset-classification-v0.2.md`
+5. `docs/exercise-db/purchased-asset-classification-v0.1.md`
+6. `docs/ux-decisions/2026-09-02-home-workout-routine-completion-locks.md`
+7. `docs/08_DECISIONS.md` 중 위 문서들과 충돌하지 않는 기존 기반 결정
+8. 현재 canonical wireframe / Figma
 
 기존 recommendation-heavy onboarding 관련 DEC-005 / DEC-006 / DEC-009 / DEC-014의 오래된 흐름은 `docs/24_PRODUCT_DIRECTION_V2.md`의 2026-09-01 reset보다 우선하지 않는다.
 
@@ -188,6 +193,8 @@ Custom exercise 기반 결정은 DEC-003 / DEC-012 유지.
 
 모든 미세 손 위치를 그립 변형으로 만들지는 않는다. 작은 손 너비 / 시트 / 손잡이 위치 조정은 같은 기록 안에서 메모 또는 세팅 정보로 처리하는 방향이다.
 
+**OPEN exception:** `Close-Grip Bench Press`처럼 그립 변화가 통용 별도 운동명과 주요 훈련 목적까지 바꾸는 경우를 별도 exercise identity로 허용할지 검토 중이다. 이 예외는 아직 Product Owner 승인 전이다.
+
 대표 그립의 정확한 전체 목록, 그립 선택 UI의 세부 형태, 마지막 선택 기억 여부는 아직 OPEN.
 
 ### 7. Body-part classification / Custom exercise
@@ -263,23 +270,38 @@ commit:
 
 `544e39a0744278362ff0fbf6745908424edbeffe`
 
-파일명 기준 Google Drive 원본 에셋 **206개**를 1차 분류했다.
+파일명 기준 Google Drive 원본 에셋 **206개**를 1차 분류했다. 이 결과는 audit trail로 유지하며 덮어쓰지 않는다.
 
-- 이름 변경 / 기본 유지: 172
-- 유지 · 전신/컨디셔닝: 14
-- 유지 · 그립 하위 기록 후보: 7
-- 중복 통합 후보: 5
-- 1차 제외: 4
-- 1차 제외 검토: 4
+### Metadata / poster QA v0.2 — PARTIAL COMPLETE
 
-주의: 이 결과는 **최종 production DB가 아니라 파일명 기반 v0.1**이다. 원본 구매 에셋과 원본 metadata는 수정하지 않고 별도 정규화 결과로 관리한다.
+기록 문서:
+
+`docs/exercise-db/purchased-asset-classification-v0.2.md`
+
+commit:
+
+`5b8f5ff100878c0db030f5384798bda690b9274d`
+
+핵심 결과:
+
+- source rows 206개 그대로 보존
+- high-confidence metadata/poster QA: 26
+- medium-confidence: 4
+- low-confidence / full metadata enrichment pending: 176
+- high-confidence 실제 중복 통합: 1 (`bodyweight-elevated-push-up` → `incline-push-up`)
+- 이름/장비/부위 정정: 10
+- poster/metadata 불일치 또는 자세 차이 검수: 4
+- named grip/variant 정책 검토: 2
+- v0.1 원본과 구매 원본은 수정하지 않음
+
+v1 candidate에는 `source` 값과 G Fit `normalized` 값을 분리해 보존하고 `qa_basis / qa_confidence / qa_flags`를 추가했다. low-confidence row는 production 확정으로 취급하지 않는다.
 
 ### Next
 
-1. 실제 `metadata.json`의 원본 필드를 각 항목에 결합한다.
-2. 중복 통합 후보와 이름이 애매한 항목은 운동 이미지를 직접 확인해 최종 판정한다.
-3. 전체 한국어 표시명 / 영어 표시명 / alias를 자연스럽게 정리한다.
-4. 큰 부위 / 주동근 / 보조근 / 장비 / 각도·자세 / 기록 방식을 채워 production DB v1 후보를 만든다.
+1. 남은 low-confidence 176 row를 실제 `metadata.json`으로 전수 enrichment한다.
+2. `qa_flags`가 있는 posture / grip / category 예외만 poster를 추가 확인한다.
+3. `Close-Grip Bench Press` 같은 **named grip variant 예외 규칙**을 Product Owner와 한 번 결정한다.
+4. canonical ID / aliases / bilingual display names를 최종 검증해 production Exercise DB v1로 승격한다.
 5. 확정된 G Fit DB를 국내 핵심 운동 및 Planfit·Hevy 레퍼런스와 비교해 **핵심 누락 운동과 추가 이미지 제작 수량**을 산출한다.
 
 ## Theme — VALIDATION PENDING
@@ -361,7 +383,13 @@ Purchased asset classification v0.1:
 
 - first-pass classification commit: `544e39a0744278362ff0fbf6745908424edbeffe`
 - source assets scanned: 206
-- based on source filenames; metadata/image QA still required
+- based on source filenames; audit trail preserved
+
+Purchased asset metadata/poster QA v0.2:
+
+- QA report commit: `5b8f5ff100878c0db030f5384798bda690b9274d`
+- v0.1 heuristic errors and false duplicate assumptions documented
+- production-final DB is not yet claimed
 
 Review-only previews do not automatically replace canonical production.
 
@@ -373,9 +401,11 @@ Planning / UX approval is still in progress. Product implementation should begin
 
 ## Open items / blockers
 
-- purchased metadata field enrichment + image-level duplicate QA
-- production Exercise DB v1 candidate build
-- core missing-exercise / additional asset gap analysis after DB v1 candidate
+- remaining 176 low-confidence purchased metadata rows enrichment
+- asset/metadata posture conflicts in dumbbell/kettlebell row assets
+- named grip variant exception decision (`Close-Grip Bench Press` etc.)
+- production Exercise DB v1 promotion after QA
+- core missing-exercise / additional asset gap analysis after DB v1
 - exact representative grip list by exercise
 - grip selection UI exact form / last-used behavior
 - purchased asset license check for AI-reference derivative work
