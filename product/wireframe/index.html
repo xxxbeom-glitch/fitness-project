@@ -1,170 +1,332 @@
 <!doctype html>
-<!-- CANONICAL_WIREFRAME_VERSION: 2026-09-01.13 -->
+<!-- CANONICAL_WIREFRAME_VERSION: 2026-09-02.14 -->
+<!-- PLANNING_SPEC_LAYOUT: 2026-09-02 -->
 <html lang="ko">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <meta name="liftly-wireframe-version" content="2026-09-01.13">
+  <meta name="liftly-wireframe-version" content="2026-09-02.14">
   <title>G Fit Product Wireframe</title>
   <link rel="stylesheet" href="./style.css">
+  <style>
+    html,body{background:#eef0f3!important;color:#20242a!important}
+    body{min-width:0}
+    main.planning-main{max-width:1680px;margin:0 auto;padding:28px 24px 80px}
+    .planning-top{position:sticky;top:0;z-index:80;display:flex;align-items:center;justify-content:space-between;gap:24px;padding:12px 24px;background:rgba(255,255,255,.96);border-bottom:1px solid #d8dce1;backdrop-filter:blur(12px)}
+    .planning-brand{display:flex;align-items:baseline;gap:10px;min-width:0}.planning-brand b{font-size:18px;line-height:24px;color:#15181d}.planning-brand span{font-size:11px;color:#69717c;white-space:nowrap}.planning-jump{display:flex;flex-wrap:wrap;justify-content:flex-end;gap:6px}.planning-jump a{text-decoration:none;color:#4e5661;background:#f5f6f7;border:1px solid #d9dde2;border-radius:4px;padding:6px 9px;font-size:11px;line-height:14px}.planning-jump a:hover{background:#eceff2}
+    .doc-head{display:grid;grid-template-columns:120px minmax(220px,1.4fr) 110px minmax(180px,.8fr) 90px minmax(150px,.7fr);border:1px solid #cfd4da;background:#fff;margin-bottom:24px}.doc-head dt,.doc-head dd{margin:0;padding:10px 12px;border-right:1px solid #d8dce1;border-bottom:1px solid #d8dce1;font-size:12px;line-height:18px}.doc-head dt{font-weight:700;background:#f6f7f8;color:#353b43}.doc-head dd{color:#343a42}.doc-head .purpose-label{grid-column:1/2}.doc-head .purpose{grid-column:2/7}.doc-head>*:nth-last-child(-n+2){border-bottom:0}.doc-head dd:nth-child(6),.doc-head .purpose{border-right:0}
+    .section-spec{scroll-margin-top:84px;margin:34px 0 48px}.section-spec-head{display:flex;align-items:flex-end;justify-content:space-between;gap:20px;padding:0 2px 10px;border-bottom:2px solid #2e343c}.section-spec-head h2{margin:0;font-size:20px;line-height:28px;color:#161a1f}.section-spec-head p{margin:0;max-width:620px;text-align:right;font-size:12px;line-height:18px;color:#68717c}.section-no{display:block;margin-bottom:4px;font-size:11px;line-height:14px;font-weight:800;letter-spacing:.04em;color:#5e6670}
+    .screen-spec{margin-top:16px;border:1px solid #cfd4da;background:#fff}.screen-strip{display:grid;grid-template-columns:minmax(180px,.7fr) minmax(260px,1.3fr) minmax(180px,.8fr);border-bottom:1px solid #cfd4da;background:#f7f8f9}.screen-strip>div{padding:10px 12px;border-right:1px solid #d8dce1;min-width:0}.screen-strip>div:last-child{border-right:0}.screen-strip small{display:block;margin-bottom:2px;font-size:10px;line-height:14px;font-weight:700;color:#7a838e;text-transform:uppercase;letter-spacing:.03em}.screen-strip b,.screen-strip span{display:block;font-size:13px;line-height:18px;color:#20252b;overflow-wrap:anywhere}.screen-strip b{font-weight:800}
+    .screen-grid{display:grid;grid-template-columns:minmax(420px,520px) minmax(0,1fr);min-width:0}.screen-preview{display:flex;justify-content:center;align-items:flex-start;padding:24px 28px 32px;border-right:1px solid #d8dce1;background:#fafbfc;min-width:0}.screen-preview .phone{flex:0 0 auto;box-shadow:0 0 0 1px rgba(0,0,0,.02)}
+    .screen-notes{min-width:0;padding:18px 20px 24px}.spec-table{width:100%;border-collapse:collapse;table-layout:fixed;font-size:12px;line-height:18px;color:#30363d}.spec-table th,.spec-table td{padding:9px 10px;border:1px solid #d6dae0;vertical-align:top;text-align:left;overflow-wrap:anywhere}.spec-table th{width:132px;background:#f4f6f8;font-weight:800;color:#3d444d}.spec-table ul{margin:0;padding-left:18px}.spec-table li+li{margin-top:3px}.state-chip{display:inline-flex;align-items:center;min-height:22px;padding:2px 8px;border-radius:999px;font-size:10px;font-weight:800;line-height:14px;letter-spacing:.02em}.state-chip.confirmed{background:#e8f7f0;color:#17734e}.state-chip.review{background:#fff4d8;color:#835f00}.state-chip.open{background:#e9f2ff;color:#1f5f9e}.state-chip.post{background:#f0ebff;color:#6545a6}.note-muted{color:#6d7580}.note-open{color:#1f5f9e;font-weight:700}
+    .review-queue{margin-top:42px;border:1px solid #cfd4da;background:#fff}.review-queue header{padding:16px 18px;border-bottom:1px solid #d8dce1;background:#f7f8f9}.review-queue h2{margin:0;font-size:18px;line-height:26px;color:#1c2026}.review-queue p{margin:4px 0 0;font-size:12px;color:#69717c}.review-queue ol{margin:0;padding:0;list-style:none}.review-queue li{display:grid;grid-template-columns:180px 1fr;padding:11px 16px;border-bottom:1px solid #e0e3e7;font-size:12px;line-height:18px}.review-queue li:last-child{border-bottom:0}.review-queue b{color:#292f36}.review-queue span{color:#69717c}
+    @media(max-width:980px){.planning-top{align-items:flex-start;flex-direction:column}.planning-jump{justify-content:flex-start}.doc-head{grid-template-columns:100px 1fr}.doc-head dt,.doc-head dd{border-bottom:1px solid #d8dce1}.doc-head .purpose-label{grid-column:1}.doc-head .purpose{grid-column:2}.doc-head>*:nth-last-child(-n+2){border-bottom:0}.screen-strip{grid-template-columns:1fr}.screen-strip>div{border-right:0;border-bottom:1px solid #d8dce1}.screen-strip>div:last-child{border-bottom:0}.screen-grid{grid-template-columns:1fr}.screen-preview{border-right:0;border-bottom:1px solid #d8dce1}.section-spec-head{align-items:flex-start;flex-direction:column}.section-spec-head p{text-align:left}.review-queue li{grid-template-columns:1fr;gap:2px}}
+    @media(max-width:520px){main.planning-main{padding:18px 10px 60px}.planning-top{padding:10px 12px}.planning-brand span{white-space:normal}.screen-preview{padding:18px 8px 24px}.screen-preview .phone{width:360px;max-width:100%}.screen-notes{padding:12px 10px 16px}.spec-table th{width:96px}.spec-table th,.spec-table td{padding:8px 7px}.doc-head{grid-template-columns:86px 1fr}.doc-head dt,.doc-head dd{padding:8px}}
+    @media print{.planning-top{position:static}.planning-jump{display:none}html,body{background:#fff!important}.screen-spec{break-inside:avoid}.screen-preview{background:#fff}}
+  </style>
 </head>
 <body>
-<header class="top">
-  <div>
-    <div class="brand">G FIT <span>review wireframe</span></div>
-    <div class="sub">Figma design-system synced · v2026-09-01.13 · REVIEW / OPEN은 제품 결정이 아님</div>
-  </div>
-  <nav class="jump" aria-label="화면 섹션 바로가기">
+<header class="planning-top">
+  <div class="planning-brand"><b>G FIT</b><span>Product Planning Wireframe · v2026-09-02.14</span></div>
+  <nav class="planning-jump" aria-label="화면 섹션 바로가기">
     <a href="#onboarding">가입</a><a href="#home">Home</a><a href="#routine">루틴</a><a href="#exercise">운동 DB</a><a href="#workout">운동 중</a><a href="#summary">완료</a><a href="#analysis">분석</a><a href="#settings">설정</a>
   </nav>
 </header>
-<main>
-  <section class="overview">
-    <div class="eyebrow review">WHOLE APP REVIEW · FIGMA SYSTEM SYNC</div>
-    <h1>제품 구조는 검토안 그대로, 화면 언어는 기존 Figma 기준으로 맞췄습니다.</h1>
-    <p>Figma의 360px 화면, 20px 좌우 여백, SUIT typography, 12px card radius, 58px CTA, 52px input, 56px nav, RoutineCard / ExerciseItem / WorkoutRow / Bottom App Bar 계열의 비례를 기준으로 다시 구성했습니다.</p>
-    <div class="legend"><span class="tag confirmed">CONFIRMED</span><span>기존 정책</span><span class="tag review">REVIEW</span><span>현재 검토안</span><span class="tag open">OPEN</span><span>보고 결정할 부분</span></div>
-    <div class="flow"><b>로그인</b><i>→</i><b>기본정보</b><i>→</i><b>Home</b><i>→</i><b>루틴</b><i>→</i><b>운동 기록</b><i>→</i><b>완료</b><i>→</i><b>분석</b></div>
-  </section>
+<main class="planning-main">
+  <dl class="doc-head">
+    <dt>Page Title</dt><dd>G Fit Whole App Wireframe</dd>
+    <dt>Version</dt><dd>2026-09-02.14</dd>
+    <dt>Status</dt><dd>Product / UX Planning</dd>
+    <dt>Screen Scope</dt><dd>가입 → Home → 루틴 → 운동 DB → 운동 기록 → 완료 → 분석 → 설정</dd>
+    <dt>Visual Basis</dt><dd>Canonical Figma system synced</dd>
+    <dt>Review Rule</dt><dd>CONFIRMED / REVIEW / OPEN 분리</dd>
+    <dt class="purpose-label">Description / Purpose</dt><dd class="purpose">실제 앱 화면과 기획 설명을 분리한 화면설계서. 모바일 목업에는 실제 사용자 노출 UI만 두고, 화면 목적·진입 조건·동작·미확정 사항은 우측 명세 영역에서 관리한다.</dd>
+  </dl>
 
-  <section id="onboarding" class="section">
-    <header class="section-head"><div><div class="eyebrow confirmed">01 · ACCOUNT / ONBOARDING</div><h2>가입은 짧게, 바로 Home으로</h2></div><p>추천 설문은 제거. 기본정보 입력 후 바로 Home.</p></header>
-    <div class="rail">
-      <article class="case confirmed"><div class="case-head"><strong>01A · 로그인</strong><em>CONFIRMED BASE</em></div><div class="phone hero-phone">
+  <section id="onboarding" class="section-spec">
+    <header class="section-spec-head"><div><span class="section-no">01 · ACCOUNT / ONBOARDING</span><h2>가입은 짧게, 바로 Home으로</h2></div><p>현재 확정 first-run은 로그인 → 기본정보(성별·생년월일) → Home. 추천 설문은 제거됐다.</p></header>
+
+    <article class="screen-spec">
+      <div class="screen-strip"><div><small>Screen ID / Name</small><b>01A · 로그인</b></div><div><small>Screen Path</small><span>가입 &gt; 로그인</span></div><div><small>Review State</small><span><i class="state-chip confirmed">CONFIRMED BASE</i></span></div></div>
+      <div class="screen-grid"><div class="screen-preview"><div class="phone hero-phone">
         <div class="status"><span>9:41</span><span>● ● ●</span></div>
         <div class="hero-media"><div class="hero-logo">G FIT</div><p>오늘의 운동을 기록하고 이어가세요.</p></div>
         <div class="bottom-actions"><button class="provider google">Google로 계속하기</button><button class="provider kakao">Kakao로 계속하기</button><div class="legal">이용약관 · 개인정보처리방침</div></div>
-      </div></article>
+      </div></div><aside class="screen-notes"><table class="spec-table"><tbody>
+        <tr><th>화면 목적</th><td>소셜 로그인을 제공하고 서비스 진입을 시작한다.</td></tr>
+        <tr><th>진입 조건</th><td>미로그인 상태의 앱 최초 진입 또는 로그아웃 후 재진입.</td></tr>
+        <tr><th>주요 요소</th><td><ul><li>G FIT 브랜드 영역</li><li>Google로 계속하기</li><li>Kakao로 계속하기</li><li>이용약관 · 개인정보처리방침</li></ul></td></tr>
+        <tr><th>동작 / 상태</th><td>소셜 인증 완료 후 신규 계정은 기본정보 화면으로, 기존 계정은 Home으로 이동한다.</td></tr>
+        <tr><th>Validation</th><td>-</td></tr>
+        <tr><th>이동 / 다음</th><td>신규: 01B 기본정보 / 기존: Home</td></tr>
+        <tr><th>비고</th><td>현재 소셜 로그인 UI의 baseline 검토 화면.</td></tr>
+      </tbody></table></aside></div>
+    </article>
 
-      <article class="case confirmed"><div class="case-head"><strong>01B · 기본정보</strong><em>CONFIRMED</em></div><div class="phone">
+    <article class="screen-spec">
+      <div class="screen-strip"><div><small>Screen ID / Name</small><b>01B · 기본정보</b></div><div><small>Screen Path</small><span>가입 &gt; 로그인 &gt; 기본정보</span></div><div><small>Review State</small><span><i class="state-chip confirmed">CONFIRMED</i></span></div></div>
+      <div class="screen-grid"><div class="screen-preview"><div class="phone">
         <div class="status"><span>9:41</span><span>● ● ●</span></div><div class="appbar">기본정보</div>
         <div class="title-block"><h3>기본정보를 알려주세요</h3><p>처음 한 번만 입력합니다.</p></div>
         <label>성별</label><div class="seg"><button class="selected">남성</button><button>여성</button></div>
         <label>생년월일</label><div class="input">1999-01-01</div>
         <div class="spacer"></div><button class="primary">시작하기</button>
-        <div class="wire-note">완료 → Home. 닉네임/프로필 사진 설정은 강제하지 않음.</div>
-      </div></article>
+      </div></div><aside class="screen-notes"><table class="spec-table"><tbody>
+        <tr><th>화면 목적</th><td>신규 사용자의 최소 필수 기본정보를 수집한다.</td></tr>
+        <tr><th>진입 조건</th><td>신규 계정의 소셜 로그인 완료 후.</td></tr>
+        <tr><th>주요 요소</th><td><ul><li>성별: 남성 / 여성</li><li>생년월일: full date of birth</li><li>시작하기 CTA</li></ul></td></tr>
+        <tr><th>동작 / 상태</th><td>필수 기본정보 입력 완료 후 Home으로 진입한다.</td></tr>
+        <tr><th>Validation</th><td>성별과 생년월일은 필수. 세부 입력 오류 문구는 현재 화면에서 미정.</td></tr>
+        <tr><th>이동 / 다음</th><td>Home</td></tr>
+        <tr><th>비고</th><td>닉네임과 프로필 사진 설정은 first-run에서 강제하지 않는다.</td></tr>
+      </tbody></table></aside></div>
+    </article>
 
-      <article class="case review"><div class="case-head"><strong>01C · 프로필 기본값</strong><em>REVIEW</em></div><div class="phone">
+    <article class="screen-spec">
+      <div class="screen-strip"><div><small>Screen ID / Name</small><b>01C · 프로필 기본값</b></div><div><small>Screen Path</small><span>가입 관련 프로필 기본값 검토안</span></div><div><small>Review State</small><span><i class="state-chip review">REVIEW</i></span></div></div>
+      <div class="screen-grid"><div class="screen-preview"><div class="phone">
         <div class="status"><span>9:41</span><span>● ● ●</span></div><div class="appbar">프로필</div>
         <div class="profile-center"><div class="avatar">G</div><h3>user_K7M2Q</h3><p>기본 이미지 · 자동 생성 닉네임</p></div>
         <div class="list"><div><span><b>닉네임</b><small>user_K7M2Q</small></span><strong>›</strong></div><div><span><b>프로필 사진</b><small>기본 이미지</small></span><strong>›</strong></div></div>
-        <div class="open-box"><b>OPEN</b><span>자동 닉네임 규칙과 변경 정책은 추후 결정.</span></div>
-      </div></article>
-    </div>
+      </div></div><aside class="screen-notes"><table class="spec-table"><tbody>
+        <tr><th>화면 목적</th><td>자동 생성되는 공개 닉네임과 기본 프로필 이미지의 표현 방식을 검토한다.</td></tr>
+        <tr><th>진입 조건</th><td class="note-muted">별도 first-run 화면으로 둘지는 미확정.</td></tr>
+        <tr><th>주요 요소</th><td><ul><li>기본 중성 프로필 이미지</li><li>자동 생성 공개 닉네임</li><li>닉네임 / 프로필 사진 항목</li></ul></td></tr>
+        <tr><th>동작 / 상태</th><td>프로필 기본값은 계정 생성 시 자동 부여하고 Settings에서 변경할 수 있는 방향.</td></tr>
+        <tr><th>Validation</th><td>-</td></tr>
+        <tr><th>이동 / 다음</th><td>현재 확정 first-run은 01B → Home.</td></tr>
+        <tr><th>비고</th><td><span class="note-open">OPEN:</span> 자동 닉네임 exact format과 이 화면 자체의 필요 여부. 현재 정책을 역으로 변경하지 않는다.</td></tr>
+      </tbody></table></aside></div>
+    </article>
   </section>
 
-  <section id="home" class="section">
-    <header class="section-head"><div><div class="eyebrow review">02 · HOME</div><h2>기존 Figma Home 문법 위에서 상태별 Home을 비교</h2></div><p>AppLogo/알림 헤더, 320×128 hero card, heatmap, 60px recent row의 비례를 그대로 사용한 검토안입니다.</p></header>
-    <div class="rail">
-      <article class="case review"><div class="case-head"><strong>02A · 루틴 없음</strong><em>REVIEW</em></div><div class="phone with-nav long-phone">
+  <section id="home" class="section-spec">
+    <header class="section-spec-head"><div><span class="section-no">02 · HOME</span><h2>사용자 상태별 Home</h2></div><p>루틴 없음 / 요일 미지정 / 요일 지정 / 운동 진행 중 네 상태를 비교한다. 루틴이 있는 사용자는 추천 콘텐츠보다 오늘·다음 운동과 최근 상태가 우선한다.</p></header>
+
+    <article class="screen-spec">
+      <div class="screen-strip"><div><small>Screen ID / Name</small><b>02A · 루틴 없음</b></div><div><small>Screen Path</small><span>Home · 신규 / 저장된 내 루틴 없음</span></div><div><small>Review State</small><span><i class="state-chip review">REVIEW</i></span></div></div>
+      <div class="screen-grid"><div class="screen-preview"><div class="phone with-nav long-phone">
         <div class="status"><span>9:41</span><span>● ● ●</span></div><div class="home-header"><div class="app-logo">G FIT</div><div class="bell"></div></div>
         <div class="section-label"><span>G Fit 추천 루틴</span><small>미리 구성한 루틴</small></div>
         <div class="routine-card feature"><div class="routine-copy"><small>추천 루틴</small><h4>무분할 전신 루틴</h4><p>벤치프레스 · 랫풀다운 · 레그프레스 외 3개</p><div class="meta"><span>CORE</span><span>6개 운동</span></div></div><b>›</b></div>
         <div class="routine-card compact"><div><small>추천 루틴</small><h4>상체 루틴</h4><p>가슴 · 등 · 어깨 · 팔</p><div class="meta"><span>CORE</span><span>7개 운동</span></div></div><b>›</b></div>
         <div class="routine-card compact"><div><small>추천 루틴</small><h4>하체 루틴</h4><p>대퇴사두 · 둔근 · 햄스트링</p><div class="meta"><span>LEGS</span><span>6개 운동</span></div></div><b>›</b></div>
         <button class="secondary">내 루틴 만들기</button>
-        <div class="open-box"><b>OPEN</b><span>신규 Home에서 추천 루틴을 몇 장까지 즉시 보여줄지.</span></div>
         <div class="bottom-nav"><b>⌂<small>홈</small></b><span>▤<small>루틴</small></span><span>⌁<small>분석</small></span><span>⚙<small>설정</small></span></div>
-      </div></article>
+      </div></div><aside class="screen-notes"><table class="spec-table"><tbody>
+        <tr><th>화면 목적</th><td>루틴이 없는 사용자가 바로 사용할 수 있는 G Fit 추천 루틴을 탐색하거나 직접 루틴을 만들게 한다.</td></tr>
+        <tr><th>진입 조건</th><td>로그인 완료 + 저장된 내 루틴 없음.</td></tr>
+        <tr><th>주요 요소</th><td><ul><li>G Fit 추천 루틴 카드</li><li>무분할 전신 / 상체 / 하체 예시</li><li>내 루틴 만들기</li><li>Bottom navigation</li></ul></td></tr>
+        <tr><th>동작 / 상태</th><td>추천 카드 1개는 완성된 ready-made routine 1개를 의미한다. 카드 탭 후 상세/저장/시작 semantics는 별도 검토.</td></tr>
+        <tr><th>Validation</th><td>-</td></tr>
+        <tr><th>이동 / 다음</th><td>추천 루틴 상세 또는 루틴 만들기.</td></tr>
+        <tr><th>비고</th><td><span class="note-open">OPEN:</span> 신규 Home에서 추천 루틴을 몇 장까지 즉시 노출할지.</td></tr>
+      </tbody></table></aside></div>
+    </article>
 
-      <article class="case review"><div class="case-head"><strong>02B · 내 루틴 있음 · 요일 미지정</strong><em>OPEN</em></div><div class="phone with-nav">
+    <article class="screen-spec">
+      <div class="screen-strip"><div><small>Screen ID / Name</small><b>02B · 내 루틴 있음 · 요일 미지정</b></div><div><small>Screen Path</small><span>Home · 내 루틴 있음 · weekday unscheduled</span></div><div><small>Review State</small><span><i class="state-chip open">OPEN</i></span></div></div>
+      <div class="screen-grid"><div class="screen-preview"><div class="phone with-nav">
         <div class="status"><span>9:41</span><span>● ● ●</span></div><div class="home-header"><div class="app-logo">G FIT</div><div class="bell"></div></div>
-        <div class="section-label"><span>다음 운동</span><small>검토안</small></div>
+        <div class="section-label"><span>다음 운동</span></div>
         <div class="today-card"><div class="kicker">다음 루틴</div><h3>등 · 팔</h3><p>최근 운동 52분</p><div class="tag-row"><span class="tag-chip core">CORE</span><span class="tag-chip neutral">6개 운동</span></div><button class="round-play">▶</button></div>
         <div class="section-label"><span>이번 달 운동 진행율</span><small>8 / 12회</small></div>
         <div class="heatmap-card"><div class="heatmap-title"><b>9월</b><span>67%</span></div><div class="heatmap-grid"><i class="l3"></i><i></i><i class="l2"></i><i></i><i class="l1"></i><i></i><i class="l3"></i><i></i><i class="l2"></i><i></i><i class="l1"></i><i></i><i></i><i></i><i></i><i class="l2"></i><i></i><i class="l3"></i><i></i><i></i><i class="l1"></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div></div>
         <div class="section-label"><span>최근 운동</span><small>전체 보기</small></div><div class="workout-row"><div><b>가슴 · 어깨</b><small>8월 31일 · 58분</small></div><strong>›</strong></div><div class="workout-row"><div><b>하체</b><small>8월 29일 · 61분</small></div><strong>›</strong></div>
         <div class="bottom-nav"><b>⌂<small>홈</small></b><span>▤<small>루틴</small></span><span>⌁<small>분석</small></span><span>⚙<small>설정</small></span></div>
-      </div></article>
+      </div></div><aside class="screen-notes"><table class="spec-table"><tbody>
+        <tr><th>화면 목적</th><td>요일을 지정하지 않은 사용자가 다음에 수행할 루틴과 최근 운동 상태를 빠르게 확인한다.</td></tr>
+        <tr><th>진입 조건</th><td>내 루틴 있음 + weekday 미지정 + active workout 없음.</td></tr>
+        <tr><th>주요 요소</th><td><ul><li>다음 루틴 hero</li><li>월간 운동 진행율</li><li>최근 운동</li></ul></td></tr>
+        <tr><th>동작 / 상태</th><td>Hero의 시작 액션을 통해 선택된 다음 루틴을 시작하는 방향의 검토안.</td></tr>
+        <tr><th>Validation</th><td>-</td></tr>
+        <tr><th>이동 / 다음</th><td>Active workout / 최근 운동 상세.</td></tr>
+        <tr><th>비고</th><td><span class="note-open">OPEN:</span> unscheduled 사용자의 Home에서 어떤 규칙으로 ‘다음 루틴’을 선정할지.</td></tr>
+      </tbody></table></aside></div>
+    </article>
 
-      <article class="case review"><div class="case-head"><strong>02C · 내 루틴 있음 · 요일 지정</strong><em>OPEN</em></div><div class="phone with-nav">
+    <article class="screen-spec">
+      <div class="screen-strip"><div><small>Screen ID / Name</small><b>02C · 내 루틴 있음 · 요일 지정</b></div><div><small>Screen Path</small><span>Home · 내 루틴 있음 · weekday scheduled</span></div><div><small>Review State</small><span><i class="state-chip open">OPEN</i></span></div></div>
+      <div class="screen-grid"><div class="screen-preview"><div class="phone with-nav">
         <div class="status"><span>9:41</span><span>● ● ●</span></div><div class="home-header"><div class="app-logo">G FIT</div><div class="bell"></div></div>
         <div class="section-label"><span>오늘 진행 운동</span><small>9월 1일 화요일</small></div>
         <div class="today-card"><h3>하체 루틴</h3><p>매주 화요일 · 금요일</p><div class="tag-row"><span class="tag-chip legs">LEGS</span><span class="tag-chip core">CORE</span></div><button class="round-play">▶</button></div>
         <div class="section-label"><span>이번 달 운동 진행율</span><small>8 / 12회</small></div>
         <div class="heatmap-card"><div class="heatmap-title"><b>9월</b><span>67%</span></div><div class="heatmap-grid"><i class="l3"></i><i></i><i class="l2"></i><i></i><i class="l1"></i><i></i><i class="l3"></i><i></i><i class="l2"></i><i></i><i class="l1"></i><i></i><i></i><i></i><i></i><i class="l2"></i><i></i><i class="l3"></i><i></i><i></i><i class="l1"></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div></div>
         <div class="section-label"><span>최근 운동</span><small>전체 보기</small></div><div class="workout-row"><div><b>가슴 · 어깨</b><small>8월 31일 · 58분</small></div><strong>›</strong></div>
-        <div class="open-box"><b>OPEN</b><span>요일 지정 사용자는 오늘 운동, 미지정 사용자는 다음 루틴을 우선할지.</span></div>
         <div class="bottom-nav"><b>⌂<small>홈</small></b><span>▤<small>루틴</small></span><span>⌁<small>분석</small></span><span>⚙<small>설정</small></span></div>
-      </div></article>
+      </div></div><aside class="screen-notes"><table class="spec-table"><tbody>
+        <tr><th>화면 목적</th><td>요일을 지정한 사용자가 오늘 예정된 운동을 최우선으로 확인하고 시작한다.</td></tr>
+        <tr><th>진입 조건</th><td>내 루틴 있음 + weekday 지정 + active workout 없음.</td></tr>
+        <tr><th>주요 요소</th><td><ul><li>오늘 진행 운동 hero</li><li>주간 일정 정보</li><li>월간 진행율</li><li>최근 운동</li></ul></td></tr>
+        <tr><th>동작 / 상태</th><td>예정 루틴이 있을 때 오늘 운동을 첫 번째 액션으로 노출하는 방향.</td></tr>
+        <tr><th>Validation</th><td>-</td></tr>
+        <tr><th>이동 / 다음</th><td>Active workout / 최근 운동 상세.</td></tr>
+        <tr><th>비고</th><td><span class="note-open">OPEN:</span> scheduled 사용자는 ‘오늘 운동’, unscheduled 사용자는 ‘다음 루틴’을 우선할지 최종 결정 필요.</td></tr>
+      </tbody></table></aside></div>
+    </article>
 
-      <article class="case confirmed"><div class="case-head"><strong>02D · 운동 진행 중</strong><em>BEHAVIOR CONFIRMED</em></div><div class="phone with-nav">
+    <article class="screen-spec">
+      <div class="screen-strip"><div><small>Screen ID / Name</small><b>02D · 운동 진행 중</b></div><div><small>Screen Path</small><span>Home · active workout 존재</span></div><div><small>Review State</small><span><i class="state-chip confirmed">BEHAVIOR CONFIRMED</i></span></div></div>
+      <div class="screen-grid"><div class="screen-preview"><div class="phone with-nav">
         <div class="status"><span>9:41</span><span>● ● ●</span></div><div class="home-header"><div class="app-logo">G FIT</div><div class="bell"></div></div>
         <div class="section-label"><span>운동 진행 중</span><small>18:24</small></div>
         <div class="active-card"><div class="pulse"></div><div><small>운동 진행 중</small><h3>하체 루틴</h3><p>레그 프레스 · 8 / 19세트 완료</p></div><button>돌아가기</button></div>
         <div class="section-label"><span>이번 달 운동 진행율</span><small>운동 중</small></div>
         <div class="heatmap-card"><div class="heatmap-title"><b>9월</b><span>현재 세션 제외</span></div><div class="heatmap-grid"><i class="l3"></i><i></i><i class="l2"></i><i></i><i class="l1"></i><i></i><i class="l3"></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div></div>
-        <div class="wire-note">진행 중 운동 복귀 영역은 Home에만 노출하는 기존 확정 정책.</div>
         <div class="bottom-nav"><b>⌂<small>홈</small></b><span>▤<small>루틴</small></span><span>⌁<small>분석</small></span><span>⚙<small>설정</small></span></div>
-      </div></article>
-    </div>
+      </div></div><aside class="screen-notes"><table class="spec-table"><tbody>
+        <tr><th>화면 목적</th><td>앱을 벗어났다가 돌아온 사용자가 진행 중인 운동으로 즉시 복귀할 수 있게 한다.</td></tr>
+        <tr><th>진입 조건</th><td>active workout 존재.</td></tr>
+        <tr><th>주요 요소</th><td><ul><li>진행 중 세션 카드</li><li>경과 시간</li><li>현재 운동 / 완료 세트</li><li>돌아가기 CTA</li></ul></td></tr>
+        <tr><th>동작 / 상태</th><td>진행 중 운동 복귀 indicator는 Home에만 노출한다.</td></tr>
+        <tr><th>Validation</th><td>동시에 하나의 active workout만 유지.</td></tr>
+        <tr><th>이동 / 다음</th><td>05A Active workout</td></tr>
+        <tr><th>비고</th><td>기존 확정 behavior. 앱 재시작 후에도 active session이 유지되는 정책과 연결.</td></tr>
+      </tbody></table></aside></div>
+    </article>
   </section>
 
-  <section id="routine" class="section">
-    <header class="section-head"><div><div class="eyebrow review">03 · ROUTINE</div><h2>Figma RoutineCard 문법으로 내 루틴과 추천 루틴을 비교</h2></div><p>독립 일일 루틴 모델은 유지. 요일은 선택사항.</p></header>
-    <div class="rail">
-      <article class="case review"><div class="case-head"><strong>03A · 루틴 탭</strong><em>REVIEW</em></div><div class="phone with-nav long-phone">
+  <section id="routine" class="section-spec">
+    <header class="section-spec-head"><div><span class="section-no">03 · ROUTINE</span><h2>내 루틴과 G Fit 추천 루틴</h2></div><p>독립 일일 루틴 모델을 유지하고 weekday scheduling은 선택사항으로 둔다.</p></header>
+
+    <article class="screen-spec">
+      <div class="screen-strip"><div><small>Screen ID / Name</small><b>03A · 루틴 탭</b></div><div><small>Screen Path</small><span>루틴</span></div><div><small>Review State</small><span><i class="state-chip review">REVIEW</i></span></div></div>
+      <div class="screen-grid"><div class="screen-preview"><div class="phone with-nav long-phone">
         <div class="status"><span>9:41</span><span>● ● ●</span></div><div class="page-title"><h3>루틴</h3><button>＋</button></div>
         <div class="section-label"><span>내 루틴</span><small>3개</small></div><div class="routine-list"><div><span><b>가슴 · 어깨</b><small>매주 월요일</small></span><strong>•••</strong></div><div><span><b>등 · 팔</b><small>요일 미지정</small></span><strong>•••</strong></div><div><span><b>하체</b><small>매주 금요일</small></span><strong>•••</strong></div></div>
         <div class="section-label"><span>G Fit 추천 루틴</span><small>둘러보기</small></div><div class="horizontal-cards"><div><small>추천</small><b>무분할 전신</b><span>6개 운동</span></div><div><small>추천</small><b>상체</b><span>7개 운동</span></div></div>
         <div class="bottom-nav"><span>⌂<small>홈</small></span><b>▤<small>루틴</small></b><span>⌁<small>분석</small></span><span>⚙<small>설정</small></span></div>
-      </div></article>
+      </div></div><aside class="screen-notes"><table class="spec-table"><tbody>
+        <tr><th>화면 목적</th><td>저장된 내 루틴을 관리하면서 G Fit 추천 루틴도 탐색할 수 있게 한다.</td></tr>
+        <tr><th>진입 조건</th><td>Bottom navigation의 루틴 탭.</td></tr>
+        <tr><th>주요 요소</th><td><ul><li>내 루틴 목록</li><li>요일 지정/미지정 상태</li><li>추가 버튼</li><li>G Fit 추천 루틴 영역</li></ul></td></tr>
+        <tr><th>동작 / 상태</th><td>내 루틴은 상세/수정/관리로, 추천 루틴은 추천 상세로 진입.</td></tr>
+        <tr><th>Validation</th><td>-</td></tr>
+        <tr><th>이동 / 다음</th><td>03B 추천 상세 / 03C 내 루틴 상세 / 03D 생성·수정</td></tr>
+        <tr><th>비고</th><td>루틴 hierarchy와 추천 영역의 노출 우선순위는 UI 검토 대상.</td></tr>
+      </tbody></table></aside></div>
+    </article>
 
-      <article class="case review"><div class="case-head"><strong>03B · 추천 루틴 상세</strong><em>OPEN</em></div><div class="phone long-phone">
+    <article class="screen-spec">
+      <div class="screen-strip"><div><small>Screen ID / Name</small><b>03B · 추천 루틴 상세</b></div><div><small>Screen Path</small><span>루틴 &gt; G Fit 추천 루틴 &gt; 상세</span></div><div><small>Review State</small><span><i class="state-chip open">OPEN</i></span></div></div>
+      <div class="screen-grid"><div class="screen-preview"><div class="phone long-phone">
         <div class="status"><span>9:41</span><span>● ● ●</span></div><div class="appbar back-title">‹ <span>추천 루틴</span><span></span></div>
         <div class="routine-hero"><small>G Fit 추천 루틴</small><h3>무분할 전신 루틴</h3><p>전신의 큰 근육을 한 번에 훈련하는 기본 구성</p><div class="meta"><span>6개 운동</span><span>18세트</span><span>약 50분</span></div></div>
         <div class="section-label"><span>운동 구성</span><small>샘플</small></div><div class="exercise-rows"><div><span><i>01</i><b>벤치프레스</b></span><strong>8–12 × 3</strong></div><div><span><i>02</i><b>랫풀다운</b></span><strong>8–12 × 3</strong></div><div><span><i>03</i><b>레그프레스</b></span><strong>10–15 × 3</strong></div><div><span><i>04</i><b>숄더프레스</b></span><strong>8–12 × 3</strong></div><div><span><i>05</i><b>레그컬</b></span><strong>10–15 × 3</strong></div><div><span><i>06</i><b>케이블 크런치</b></span><strong>10–15 × 3</strong></div></div>
-        <button class="primary">이 루틴으로 시작하기</button><div class="open-box"><b>OPEN</b><span>상세 확인 뒤 바로 시작할지, 내 루틴에 먼저 저장할지.</span></div>
-      </div></article>
+        <button class="primary">이 루틴으로 시작하기</button>
+      </div></div><aside class="screen-notes"><table class="spec-table"><tbody>
+        <tr><th>화면 목적</th><td>추천 루틴의 전체 운동 구성과 예상 분량을 확인한 뒤 사용 여부를 결정한다.</td></tr>
+        <tr><th>진입 조건</th><td>Home 또는 루틴 탭의 추천 루틴 카드 선택.</td></tr>
+        <tr><th>주요 요소</th><td><ul><li>루틴 설명</li><li>운동 수 / 세트 / 예상 시간</li><li>운동별 반복 범위와 세트 수</li><li>시작 CTA</li></ul></td></tr>
+        <tr><th>동작 / 상태</th><td>현재 CTA 문구는 ‘이 루틴으로 시작하기’ 검토안.</td></tr>
+        <tr><th>Validation</th><td>-</td></tr>
+        <tr><th>이동 / 다음</th><td>Active workout 또는 저장 flow.</td></tr>
+        <tr><th>비고</th><td><span class="note-open">OPEN:</span> 상세 확인 뒤 바로 시작할지, 내 루틴에 먼저 저장할지.</td></tr>
+      </tbody></table></aside></div>
+    </article>
 
-      <article class="case confirmed"><div class="case-head"><strong>03C · 내 루틴 상세</strong><em>MODEL CONFIRMED</em></div><div class="phone long-phone">
+    <article class="screen-spec">
+      <div class="screen-strip"><div><small>Screen ID / Name</small><b>03C · 내 루틴 상세</b></div><div><small>Screen Path</small><span>루틴 &gt; 내 루틴 &gt; 상세</span></div><div><small>Review State</small><span><i class="state-chip confirmed">MODEL CONFIRMED</i></span></div></div>
+      <div class="screen-grid"><div class="screen-preview"><div class="phone long-phone">
         <div class="status"><span>9:41</span><span>● ● ●</span></div><div class="appbar back-title">‹ <span>루틴 상세</span><button>•••</button></div>
         <div class="routine-hero"><small>내 루틴</small><h3>가슴 · 어깨</h3><p>매주 월요일 · 최근 8월 31일</p></div>
         <div class="section-label"><span>운동</span><small>4개</small></div><div class="exercise-rows"><div><span><i>01</i><b>벤치프레스</b></span><strong>3세트 · 8–12회</strong></div><div><span><i>02</i><b>인클라인 덤벨 프레스</b></span><strong>3세트 · 8–12회</strong></div><div><span><i>03</i><b>체스트 프레스</b></span><strong>3세트 · 10–12회</strong></div><div><span><i>04</i><b>숄더 프레스</b></span><strong>3세트 · 8–12회</strong></div></div>
         <div class="sub-action-row"><button>요일 설정</button><button>루틴 수정</button></div><button class="primary">운동 시작</button>
-      </div></article>
+      </div></div><aside class="screen-notes"><table class="spec-table"><tbody>
+        <tr><th>화면 목적</th><td>내 루틴의 구성, 일정, 최근 수행 정보를 확인하고 운동을 시작하거나 수정한다.</td></tr>
+        <tr><th>진입 조건</th><td>내 루틴 선택.</td></tr>
+        <tr><th>주요 요소</th><td><ul><li>루틴명 / 요일 / 최근 수행</li><li>운동 구성</li><li>요일 설정</li><li>루틴 수정</li><li>운동 시작</li></ul></td></tr>
+        <tr><th>동작 / 상태</th><td>weekday scheduling은 선택사항이며 미지정도 정상 상태다.</td></tr>
+        <tr><th>Validation</th><td>active workout이 존재하면 다른 루틴 시작 시 05D 정책 적용.</td></tr>
+        <tr><th>이동 / 다음</th><td>03D 생성·수정 / 05 Active workout</td></tr>
+        <tr><th>비고</th><td>독립 daily-routine model 유지.</td></tr>
+      </tbody></table></aside></div>
+    </article>
 
-      <article class="case review"><div class="case-head"><strong>03D · 루틴 만들기 / 수정</strong><em>REVIEW</em></div><div class="phone long-phone">
+    <article class="screen-spec">
+      <div class="screen-strip"><div><small>Screen ID / Name</small><b>03D · 루틴 만들기 / 수정</b></div><div><small>Screen Path</small><span>루틴 &gt; 만들기 / 수정</span></div><div><small>Review State</small><span><i class="state-chip review">REVIEW</i></span></div></div>
+      <div class="screen-grid"><div class="screen-preview"><div class="phone long-phone">
         <div class="status"><span>9:41</span><span>● ● ●</span></div><div class="appbar back-title">취소 <span>루틴 만들기</span><button>저장</button></div>
         <label>루틴 이름</label><div class="input">가슴 · 어깨</div><label>운동 요일</label><div class="day-row"><button class="day selected">월</button><button class="day">화</button><button class="day">수</button><button class="day">목</button><button class="day">금</button><button class="day">토</button><button class="day">일</button></div>
         <div class="section-label"><span>운동</span><small>드래그로 순서 변경</small></div><div class="edit-ex"><div class="drag">≡</div><span><b>벤치프레스</b><small>3세트 · 8–12회</small></span><button>›</button></div><div class="edit-ex"><div class="drag">≡</div><span><b>인클라인 덤벨 프레스</b><small>3세트 · 8–12회</small></span><button>›</button></div><div class="edit-ex"><div class="drag">≡</div><span><b>숄더 프레스</b><small>3세트 · 8–12회</small></span><button>›</button></div>
         <button class="secondary">운동 추가</button>
-      </div></article>
-    </div>
+      </div></div><aside class="screen-notes"><table class="spec-table"><tbody>
+        <tr><th>화면 목적</th><td>사용자가 루틴 이름, 선택 요일, 운동 구성과 순서를 직접 관리한다.</td></tr>
+        <tr><th>진입 조건</th><td>새 루틴 만들기 또는 기존 루틴 수정.</td></tr>
+        <tr><th>주요 요소</th><td><ul><li>루틴 이름</li><li>선택형 요일 설정</li><li>운동 목록 / 순서 변경</li><li>운동 추가</li><li>저장</li></ul></td></tr>
+        <tr><th>동작 / 상태</th><td>요일은 선택사항. 운동별 세트·반복 설정은 상세 편집 흐름과 연결된다.</td></tr>
+        <tr><th>Validation</th><td>세부 저장 validation 규칙은 현재 문서에서 확정하지 않음.</td></tr>
+        <tr><th>이동 / 다음</th><td>03A 루틴 탭 또는 03C 상세.</td></tr>
+        <tr><th>비고</th><td>운동 순서 변경 UI와 weekday control placement는 design review 대상.</td></tr>
+      </tbody></table></aside></div>
+    </article>
   </section>
 
-  <section id="exercise" class="section">
-    <header class="section-head"><div><div class="eyebrow review">04 · EXERCISE DB / GUIDE</div><h2>검색과 운동 정보도 기존 ExerciseItem 비례로</h2></div><p>검색 44px, filter 32px, exercise item 96px. 운동 비주얼은 중성 해부학 3D 방향.</p></header>
-    <div class="rail">
-      <article class="case review"><div class="case-head"><strong>04A · 운동 선택</strong><em>REVIEW</em></div><div class="phone long-phone">
+  <section id="exercise" class="section-spec">
+    <header class="section-spec-head"><div><span class="section-no">04 · EXERCISE DB / GUIDE</span><h2>운동 검색 · 상세 · 커스텀 운동</h2></div><p>운동 visual은 중성적으로 보이는 해부학 느낌의 3D avatar 한 계열을 baseline으로 한다.</p></header>
+
+    <article class="screen-spec">
+      <div class="screen-strip"><div><small>Screen ID / Name</small><b>04A · 운동 선택</b></div><div><small>Screen Path</small><span>루틴 만들기 / 운동 중 &gt; 운동 추가</span></div><div><small>Review State</small><span><i class="state-chip review">REVIEW</i></span></div></div>
+      <div class="screen-grid"><div class="screen-preview"><div class="phone long-phone">
         <div class="status"><span>9:41</span><span>● ● ●</span></div><div class="appbar back-title">‹ <span>운동 추가</span><button>완료</button></div>
         <div class="search">⌕ 운동 이름 검색</div><div class="filter-row"><button class="selected">전체</button><button>가슴</button><button>등</button><button>하체</button><button>어깨</button></div>
         <div class="exercise-pick"><div class="thumb anatomy">3D</div><span><b>벤치프레스</b><small>가슴 · 바벨</small></span><button>＋</button></div><div class="exercise-pick"><div class="thumb anatomy">3D</div><span><b>체스트 프레스 머신</b><small>가슴 · 머신</small></span><button>＋</button></div><div class="exercise-pick"><div class="thumb anatomy">3D</div><span><b>랫풀다운</b><small>등 · 케이블</small></span><button>＋</button></div><div class="exercise-pick"><div class="thumb anatomy">3D</div><span><b>레그프레스</b><small>하체 · 머신</small></span><button>＋</button></div>
         <button class="secondary">직접 운동 만들기</button>
-      </div></article>
+      </div></div><aside class="screen-notes"><table class="spec-table"><tbody>
+        <tr><th>화면 목적</th><td>루틴 또는 현재 운동에 추가할 운동을 검색·필터·선택한다.</td></tr>
+        <tr><th>진입 조건</th><td>루틴 편집 또는 active workout의 운동 추가.</td></tr>
+        <tr><th>주요 요소</th><td><ul><li>검색</li><li>부위 필터</li><li>운동 리스트 / 3D thumbnail</li><li>추가 액션</li><li>직접 운동 만들기</li></ul></td></tr>
+        <tr><th>동작 / 상태</th><td>검색/필터 결과에서 운동을 선택하여 호출한 context에 추가.</td></tr>
+        <tr><th>Validation</th><td>검색/중복 추가/필터 상세 동작은 현재 OPEN.</td></tr>
+        <tr><th>이동 / 다음</th><td>호출한 루틴 편집 또는 active workout으로 복귀.</td></tr>
+        <tr><th>비고</th><td>운동 DB identity와 필터 구조는 후속 상세 검토.</td></tr>
+      </tbody></table></aside></div>
+    </article>
 
-      <article class="case review"><div class="case-head"><strong>04B · 운동 상세</strong><em>REVIEW</em></div><div class="phone long-phone">
+    <article class="screen-spec">
+      <div class="screen-strip"><div><small>Screen ID / Name</small><b>04B · 운동 상세</b></div><div><small>Screen Path</small><span>운동 DB / 운동 메뉴 &gt; 운동 정보</span></div><div><small>Review State</small><span><i class="state-chip review">REVIEW</i></span></div></div>
+      <div class="screen-grid"><div class="screen-preview"><div class="phone long-phone">
         <div class="status"><span>9:41</span><span>● ● ●</span></div><div class="appbar back-title">‹ <span>운동 정보</span><span></span></div>
         <div class="demo-visual"><div class="anatomy-person">3D<br>ANATOMY</div><div class="muscle-chip">가슴 · 삼두</div></div>
         <div class="title-block"><h3>체스트 프레스 머신</h3><p>머신 · 가슴</p></div>
         <div class="guide-block"><b>동작 가이드</b><ol><li>등과 엉덩이를 패드에 붙입니다.</li><li>손잡이를 가슴 중앙 높이에 맞춥니다.</li><li>가슴을 유지한 채 앞으로 밀고 천천히 돌아옵니다.</li></ol></div>
         <div class="grip-card"><div><b>그립 확인</b><small>손 위치가 중요한 운동에서 제공</small></div><div class="grips"><span>┫ ┣<small>기본</small></span><span>┫━┣<small>넓게</small></span></div></div>
         <div class="video-row"><div class="video-thumb">▶</div><span><b>YouTube 자세 가이드</b><small>검수된 영상 · 외부 콘텐츠</small></span><strong>›</strong></div>
-      </div></article>
+      </div></div><aside class="screen-notes"><table class="spec-table"><tbody>
+        <tr><th>화면 목적</th><td>운동 수행에 필요한 동작·타깃 부위·그립·외부 자세 영상을 한곳에서 제공한다.</td></tr>
+        <tr><th>진입 조건</th><td>운동 리스트 또는 active workout의 ‘운동 정보 보기’.</td></tr>
+        <tr><th>주요 요소</th><td><ul><li>중성 3D 운동 시범 visual</li><li>동작 가이드</li><li>필요 운동의 grip guide</li><li>검수된 YouTube slot</li></ul></td></tr>
+        <tr><th>동작 / 상태</th><td>운동에 따라 grip guide가 없는 상태도 정상.</td></tr>
+        <tr><th>Validation</th><td>운동 콘텐츠 검수 기준과 video source 정책은 후속 정의 필요.</td></tr>
+        <tr><th>이동 / 다음</th><td>이전 context로 복귀 / 외부 자세 가이드.</td></tr>
+        <tr><th>비고</th><td>남/녀 exercise asset 이중 제작은 baseline에서 요구하지 않는다.</td></tr>
+      </tbody></table></aside></div>
+    </article>
 
-      <article class="case review"><div class="case-head"><strong>04C · 직접 만든 운동</strong><em>REVIEW</em></div><div class="phone">
+    <article class="screen-spec">
+      <div class="screen-strip"><div><small>Screen ID / Name</small><b>04C · 직접 만든 운동</b></div><div><small>Screen Path</small><span>운동 추가 &gt; 직접 운동 만들기</span></div><div><small>Review State</small><span><i class="state-chip review">REVIEW</i></span></div></div>
+      <div class="screen-grid"><div class="screen-preview"><div class="phone">
         <div class="status"><span>9:41</span><span>● ● ●</span></div><div class="appbar back-title">취소 <span>운동 만들기</span><button>저장</button></div>
         <div class="profile-center"><div class="avatar">3D</div></div><label>운동명</label><div class="input placeholder">예: 해머 체스트 프레스</div><label>운동 설정</label><div class="select">무게 단위 <b>kg ›</b></div><div style="height:12px"></div><div class="select">기록 방식 <b>중량 + 횟수 ›</b></div>
-        <div class="wire-note">커스텀 운동도 독립 기록 히스토리를 가진 운동 엔티티.</div>
-      </div></article>
-    </div>
+      </div></div><aside class="screen-notes"><table class="spec-table"><tbody>
+        <tr><th>화면 목적</th><td>DB에 없는 운동을 사용자가 직접 운동 엔티티로 추가한다.</td></tr>
+        <tr><th>진입 조건</th><td>04A의 ‘직접 운동 만들기’.</td></tr>
+        <tr><th>주요 요소</th><td><ul><li>운동명</li><li>무게 단위</li><li>기록 방식</li><li>저장</li></ul></td></tr>
+        <tr><th>동작 / 상태</th><td>커스텀 운동도 독립적인 운동 identity와 기록 히스토리를 가진다.</td></tr>
+        <tr><th>Validation</th><td>이름 중복/필수값 등의 상세 규칙은 후속 정의.</td></tr>
+        <tr><th>이동 / 다음</th><td>운동 선택 화면 또는 호출 context로 복귀.</td></tr>
+        <tr><th>비고</th><td>Custom exercise support는 기존 foundation 유지.</td></tr>
+      </tbody></table></aside></div>
+    </article>
   </section>
 
-  <section id="workout" class="section">
-    <header class="section-head"><div><div class="eyebrow confirmed">05 · ACTIVE WORKOUT</div><h2>운동 중 화면은 기존 Active Workout 비례를 우선</h2></div><p>진행률, ExerciseCard, 이전 기록, 휴식, 운동 추가를 한 흐름 안에서 검토합니다.</p></header>
-    <div class="rail">
-      <article class="case review"><div class="case-head"><strong>05A · 운동 기록</strong><em>REVIEW UI</em></div><div class="phone with-nav long-phone">
+  <section id="workout" class="section-spec">
+    <header class="section-spec-head"><div><span class="section-no">05 · ACTIVE WORKOUT</span><h2>운동 실행과 기록</h2></div><p>빠른 기록, 이전 수행 가시성, 자유로운 세션 수정, 기록 무결성이 핵심이다.</p></header>
+
+    <article class="screen-spec">
+      <div class="screen-strip"><div><small>Screen ID / Name</small><b>05A · 운동 기록</b></div><div><small>Screen Path</small><span>루틴 시작 &gt; Active workout</span></div><div><small>Review State</small><span><i class="state-chip review">REVIEW UI</i></span></div></div>
+      <div class="screen-grid"><div class="screen-preview"><div class="phone with-nav long-phone">
         <div class="status"><span>9:41</span><span>● ● ●</span></div><div class="workout-head"><div><small>18:24 진행 중</small><h3>하체 루틴</h3></div><button>운동 종료</button></div>
         <div class="workout-progress"><div class="progress-info"><span>운동 진행률</span><span>42%</span></div><div class="progress-track"><i></i></div></div>
         <div class="work-ex"><div class="work-ex-head"><span><b>레그 프레스</b><small>하체 · 머신</small></span><button>•••</button></div><div class="set-head"><span>세트</span><span>이전</span><span>kg</span><span>횟수</span><span></span></div><div class="set-row done"><b>1</b><small>100×12</small><i>105</i><i>12</i><strong>✓</strong></div><div class="set-row done"><b>2</b><small>100×12</small><i>105</i><i>11</i><strong>✓</strong></div><div class="set-row"><b>3</b><small>100×10</small><i>105</i><i>10</i><strong>○</strong></div><button class="add-set">세트 추가</button></div>
@@ -172,89 +334,215 @@
         <div class="work-ex collapsed"><div class="work-ex-head"><span><b>레그 컬</b><small>이전 45kg × 12 · 11 · 10</small></span><button>•••</button></div></div><div class="work-ex collapsed"><div class="work-ex-head"><span><b>카프 레이즈</b><small>이전 60kg × 15 · 14 · 13</small></span><button>•••</button></div></div>
         <button class="primary">운동 추가</button>
         <div class="bottom-nav"><span>⌂<small>홈</small></span><span>▤<small>루틴</small></span><span>⌁<small>분석</small></span><span>⚙<small>설정</small></span></div>
-      </div></article>
+      </div></div><aside class="screen-notes"><table class="spec-table"><tbody>
+        <tr><th>화면 목적</th><td>운동 중 중량·횟수·세트를 빠르게 기록하고 이전 수행을 참고한다.</td></tr>
+        <tr><th>진입 조건</th><td>루틴 또는 추천 루틴으로 운동 시작.</td></tr>
+        <tr><th>주요 요소</th><td><ul><li>진행률</li><li>운동별 이전 기록</li><li>세트 입력 / 완료</li><li>휴식 타이머</li><li>운동 메뉴</li><li>운동 추가</li></ul></td></tr>
+        <tr><th>동작 / 상태</th><td>운동 중 구조 수정은 유연하게 허용. load/reps 변경은 수행 기록이며 저장 루틴 구조 변경과 별개.</td></tr>
+        <tr><th>Validation</th><td>one active workout. 세션은 finish/discard 전까지 앱 재시작 후에도 유지.</td></tr>
+        <tr><th>이동 / 다음</th><td>05B 메뉴 / 06 완료 summary</td></tr>
+        <tr><th>비고</th><td>Active-workout visual density와 입력 ergonomics는 후속 UI 검토.</td></tr>
+      </tbody></table></aside></div>
+    </article>
 
-      <article class="case confirmed"><div class="case-head"><strong>05B · 운동 메뉴</strong><em>BEHAVIOR CONFIRMED</em></div><div class="phone sheet-phone">
+    <article class="screen-spec">
+      <div class="screen-strip"><div><small>Screen ID / Name</small><b>05B · 운동 메뉴</b></div><div><small>Screen Path</small><span>Active workout &gt; 운동별 •••</span></div><div><small>Review State</small><span><i class="state-chip confirmed">BEHAVIOR CONFIRMED</i></span></div></div>
+      <div class="screen-grid"><div class="screen-preview"><div class="phone sheet-phone">
         <div class="status"><span>9:41</span><span>● ● ●</span></div><div class="dim-content"><div class="work-ex"><div class="work-ex-head"><span><b>레그 프레스</b><small>하체 · 머신</small></span><button>•••</button></div></div></div>
         <div class="sheet"><div class="handle"></div><h3>레그 프레스</h3><div class="sheet-list"><button>운동 정보 보기 <b>›</b></button><button>운동 교체 <b>›</b></button><button>순서 변경 <b>›</b></button><button class="danger">이번 운동에서 삭제</button></div></div>
-      </div></article>
+      </div></div><aside class="screen-notes"><table class="spec-table"><tbody>
+        <tr><th>화면 목적</th><td>현재 세션 안에서 특정 운동에 대한 정보 확인과 구조 변경 액션을 제공한다.</td></tr>
+        <tr><th>진입 조건</th><td>05A 운동 카드의 메뉴 선택.</td></tr>
+        <tr><th>주요 요소</th><td><ul><li>운동 정보 보기</li><li>운동 교체</li><li>순서 변경</li><li>이번 운동에서 삭제</li></ul></td></tr>
+        <tr><th>동작 / 상태</th><td>구조 변경은 현재 세션에 우선 적용되고, 저장 루틴 반영 여부는 완료 시 물을 수 있다.</td></tr>
+        <tr><th>Validation</th><td>현재 세션의 기록 무결성을 유지해야 함.</td></tr>
+        <tr><th>이동 / 다음</th><td>운동 정보 / 운동 선택 / Active workout</td></tr>
+        <tr><th>비고</th><td>Flexible live-workout structural edits는 기존 확정 foundation.</td></tr>
+      </tbody></table></aside></div>
+    </article>
 
-      <article class="case confirmed"><div class="case-head"><strong>05C · 운동 중 루틴 구조 변경</strong><em>CONFIRMED RULE</em></div><div class="phone">
-        <div class="status"><span>9:41</span><span>● ● ●</span></div><div class="appbar">운동 완료</div><div class="dialog-wrap"><div class="dialog"><h3>루틴도 변경할까요?</h3><p>이번 운동에서 하체 루틴 구성이 변경됐어요. 다음 운동에도 이 구성을 사용할까요?</p><button class="primary">하체 루틴에도 반영</button><button class="secondary">이번 운동에만 적용</button></div></div><div class="wire-note">중량/횟수 변경은 루틴 구조 변경이 아님.</div>
-      </div></article>
+    <article class="screen-spec">
+      <div class="screen-strip"><div><small>Screen ID / Name</small><b>05C · 운동 중 루틴 구조 변경</b></div><div><small>Screen Path</small><span>Active workout 완료 &gt; 저장 루틴 반영 여부</span></div><div><small>Review State</small><span><i class="state-chip confirmed">CONFIRMED RULE</i></span></div></div>
+      <div class="screen-grid"><div class="screen-preview"><div class="phone">
+        <div class="status"><span>9:41</span><span>● ● ●</span></div><div class="appbar">운동 완료</div><div class="dialog-wrap"><div class="dialog"><h3>루틴도 변경할까요?</h3><p>이번 운동에서 하체 루틴 구성이 변경됐어요. 다음 운동에도 이 구성을 사용할까요?</p><button class="primary">하체 루틴에도 반영</button><button class="secondary">이번 운동에만 적용</button></div></div>
+      </div></div><aside class="screen-notes"><table class="spec-table"><tbody>
+        <tr><th>화면 목적</th><td>세션 중 구조 변경이 저장 루틴에도 반영될지 사용자가 명시적으로 결정하게 한다.</td></tr>
+        <tr><th>진입 조건</th><td>Active workout에서 운동 추가/삭제/교체/순서 등의 구조 변경 발생 후 완료.</td></tr>
+        <tr><th>주요 요소</th><td><ul><li>저장 루틴에도 반영</li><li>이번 운동에만 적용</li></ul></td></tr>
+        <tr><th>동작 / 상태</th><td>중량/횟수 변경은 구조 변경이 아니므로 이 dialog trigger가 아니다.</td></tr>
+        <tr><th>Validation</th><td>사용자 선택 없이 저장 루틴을 silent update 하지 않는다.</td></tr>
+        <tr><th>이동 / 다음</th><td>06 Workout complete</td></tr>
+        <tr><th>비고</th><td>기존 확정 rule.</td></tr>
+      </tbody></table></aside></div>
+    </article>
 
-      <article class="case confirmed"><div class="case-head"><strong>05D · 다른 루틴 시작</strong><em>CONFIRMED RULE</em></div><div class="phone">
-        <div class="status"><span>9:41</span><span>● ● ●</span></div><div class="appbar">루틴</div><div class="dialog-wrap"><div class="dialog"><h3>진행 중인 운동이 있어요</h3><p>하체 루틴을 어떻게 처리할까요?</p><button class="primary">지금까지 기록 저장하고 새 운동 시작</button><button class="secondary danger-text">기록 폐기하고 새 운동 시작</button><button class="text-btn">취소</button></div></div><div class="wire-note">부분 저장은 실제 완료한 세트만 저장.</div>
-      </div></article>
-    </div>
+    <article class="screen-spec">
+      <div class="screen-strip"><div><small>Screen ID / Name</small><b>05D · 다른 루틴 시작</b></div><div><small>Screen Path</small><span>Active workout 존재 &gt; 다른 루틴 시작 시도</span></div><div><small>Review State</small><span><i class="state-chip confirmed">CONFIRMED RULE</i></span></div></div>
+      <div class="screen-grid"><div class="screen-preview"><div class="phone">
+        <div class="status"><span>9:41</span><span>● ● ●</span></div><div class="appbar">루틴</div><div class="dialog-wrap"><div class="dialog"><h3>진행 중인 운동이 있어요</h3><p>하체 루틴을 어떻게 처리할까요?</p><button class="primary">지금까지 기록 저장하고 새 운동 시작</button><button class="secondary danger-text">기록 폐기하고 새 운동 시작</button><button class="text-btn">취소</button></div></div>
+      </div></div><aside class="screen-notes"><table class="spec-table"><tbody>
+        <tr><th>화면 목적</th><td>동시에 하나의 active workout만 허용하면서 기존 세션을 안전하게 처리한다.</td></tr>
+        <tr><th>진입 조건</th><td>Active workout 존재 상태에서 다른 루틴 시작 시도.</td></tr>
+        <tr><th>주요 요소</th><td><ul><li>지금까지 기록 저장 후 새 운동 시작</li><li>기록 폐기 후 새 운동 시작</li><li>취소</li></ul></td></tr>
+        <tr><th>동작 / 상태</th><td>부분 저장 선택 시 실제 완료한 세트만 저장한다.</td></tr>
+        <tr><th>Validation</th><td>새 세션 생성 전 기존 세션 처리 결정 필수.</td></tr>
+        <tr><th>이동 / 다음</th><td>새 Active workout 또는 기존 세션 유지.</td></tr>
+        <tr><th>비고</th><td>one active workout + partial save 기존 확정 rule.</td></tr>
+      </tbody></table></aside></div>
+    </article>
   </section>
 
-  <section id="summary" class="section">
-    <header class="section-head"><div><div class="eyebrow review">06 · WORKOUT COMPLETE</div><h2>기존 완료 화면의 metric card 비례로 확장안을 검토</h2></div><p>기존 154×94 metric card와 320px content width를 유지하면서 어떤 정보를 더 보여줄지 봅니다.</p></header>
-    <div class="rail">
-      <article class="case review"><div class="case-head"><strong>06A · 운동 완료 대시보드</strong><em>OPEN METRICS</em></div><div class="phone long-phone">
+  <section id="summary" class="section-spec">
+    <header class="section-spec-head"><div><span class="section-no">06 · WORKOUT COMPLETE</span><h2>운동 완료 요약</h2></div><p>단순 완료 메시지보다 운동 결과를 직관적으로 보여주는 summary dashboard를 지향한다. MVP metric 범위는 아직 검토 중.</p></header>
+
+    <article class="screen-spec">
+      <div class="screen-strip"><div><small>Screen ID / Name</small><b>06A · 운동 완료 대시보드</b></div><div><small>Screen Path</small><span>Active workout &gt; 운동 종료</span></div><div><small>Review State</small><span><i class="state-chip open">OPEN METRICS</i></span></div></div>
+      <div class="screen-grid"><div class="screen-preview"><div class="phone long-phone">
         <div class="status"><span>9:41</span><span>● ● ●</span></div><div class="complete-hero"><div class="check">✓</div><small>운동 완료</small><h3>하체 루틴</h3><p>9월 1일 화요일 · 58분</p></div>
         <div class="metric-2"><div><small>완료 세트</small><b>19</b></div><div><small>총 볼륨</small><b>12,480 kg</b></div></div>
         <div class="insight-card"><span><b>↑ 8%</b><small>지난 하체 운동보다 총 볼륨 증가</small></span><strong>좋은 흐름</strong></div>
-        <div class="section-label"><span>오늘의 부위</span><small>검토안</small></div><div class="muscle-bars"><div><span>대퇴사두</span><i><b style="width:82%"></b></i><strong>8</strong></div><div><span>둔근</span><i><b style="width:58%"></b></i><strong>5</strong></div><div><span>햄스트링</span><i><b style="width:64%"></b></i><strong>6</strong></div></div>
+        <div class="section-label"><span>오늘의 부위</span></div><div class="muscle-bars"><div><span>대퇴사두</span><i><b style="width:82%"></b></i><strong>8</strong></div><div><span>둔근</span><i><b style="width:58%"></b></i><strong>5</strong></div><div><span>햄스트링</span><i><b style="width:64%"></b></i><strong>6</strong></div></div>
         <div class="section-label"><span>기록</span><small>2개</small></div><div class="pr-row"><span>레그 프레스</span><b>최고 볼륨</b></div><div class="pr-row"><span>레그 컬</span><b>반복 PR</b></div>
-        <button class="primary">완료</button><div class="open-box"><b>OPEN</b><span>총 볼륨 / 근육 분포 / PR / 이전 대비 중 MVP 범위.</span></div>
-      </div></article>
+        <button class="primary">완료</button>
+      </div></div><aside class="screen-notes"><table class="spec-table"><tbody>
+        <tr><th>화면 목적</th><td>방금 수행한 운동의 핵심 결과와 변화 신호를 한 화면에서 요약한다.</td></tr>
+        <tr><th>진입 조건</th><td>운동 완료 및 기록 저장.</td></tr>
+        <tr><th>주요 요소</th><td><ul><li>운동명 / 시간</li><li>완료 세트</li><li>총 볼륨</li><li>이전 대비 변화</li><li>부위별 세트</li><li>PR</li></ul></td></tr>
+        <tr><th>동작 / 상태</th><td>실제 완료 기록을 기반으로 summary 생성.</td></tr>
+        <tr><th>Validation</th><td>Metric 계산 rule은 Analysis planning에서 확정 필요.</td></tr>
+        <tr><th>이동 / 다음</th><td>Home 또는 기록 상세.</td></tr>
+        <tr><th>비고</th><td><span class="note-open">OPEN:</span> 총 볼륨 / 근육 분포 / PR / 이전 대비 중 MVP metric 범위.</td></tr>
+      </tbody></table></aside></div>
+    </article>
 
-      <article class="case review"><div class="case-head"><strong>06B · 부분 기록 완료</strong><em>REVIEW</em></div><div class="phone">
-        <div class="status"><span>9:41</span><span>● ● ●</span></div><div class="complete-hero"><div class="partial">◐</div><small>부분 기록 저장</small><h3>가슴 · 어깨</h3><p>계획한 운동을 모두 끝내지는 않았어요.</p></div><div class="metric-2"><div><small>완료 세트</small><b>7</b></div><div><small>수행 운동</small><b>3</b></div></div><div class="wire-note">실제 완료한 운동과 세트만 분석에 반영.</div><button class="primary">기록 보기</button>
-      </div></article>
-    </div>
+    <article class="screen-spec">
+      <div class="screen-strip"><div><small>Screen ID / Name</small><b>06B · 부분 기록 완료</b></div><div><small>Screen Path</small><span>Active workout &gt; 부분 저장</span></div><div><small>Review State</small><span><i class="state-chip review">REVIEW</i></span></div></div>
+      <div class="screen-grid"><div class="screen-preview"><div class="phone">
+        <div class="status"><span>9:41</span><span>● ● ●</span></div><div class="complete-hero"><div class="partial">◐</div><small>부분 기록 저장</small><h3>가슴 · 어깨</h3><p>계획한 운동을 모두 끝내지는 않았어요.</p></div><div class="metric-2"><div><small>완료 세트</small><b>7</b></div><div><small>수행 운동</small><b>3</b></div></div><button class="primary">기록 보기</button>
+      </div></div><aside class="screen-notes"><table class="spec-table"><tbody>
+        <tr><th>화면 목적</th><td>계획을 모두 끝내지 못해도 실제 수행한 기록만 안전하게 저장됐음을 보여준다.</td></tr>
+        <tr><th>진입 조건</th><td>05D 등에서 부분 저장 선택 또는 세션 조기 종료 저장.</td></tr>
+        <tr><th>주요 요소</th><td><ul><li>부분 기록 상태</li><li>완료 세트</li><li>수행 운동 수</li><li>기록 보기</li></ul></td></tr>
+        <tr><th>동작 / 상태</th><td>실제 완료한 운동과 세트만 분석/이력에 반영.</td></tr>
+        <tr><th>Validation</th><td>미완료 세트는 수행 기록으로 저장하지 않는다.</td></tr>
+        <tr><th>이동 / 다음</th><td>07C 운동 기록 상세.</td></tr>
+        <tr><th>비고</th><td>Partial save invariant 유지.</td></tr>
+      </tbody></table></aside></div>
+    </article>
   </section>
 
-  <section id="analysis" class="section">
-    <header class="section-head"><div><div class="eyebrow review">07 · ANALYSIS / HISTORY</div><h2>분석도 동일한 surface와 metric hierarchy로</h2></div><p>AI 해석은 아직 넣지 않고 기본 데이터 정보량만 검토합니다.</p></header>
-    <div class="rail">
-      <article class="case review"><div class="case-head"><strong>07A · 분석 홈</strong><em>OPEN</em></div><div class="phone with-nav long-phone">
+  <section id="analysis" class="section-spec">
+    <header class="section-spec-head"><div><span class="section-no">07 · ANALYSIS / HISTORY</span><h2>기본 분석과 운동 이력</h2></div><p>현재는 AI 해석보다 사용자가 직접 읽을 수 있는 기본 운동 데이터와 이력을 먼저 검토한다.</p></header>
+
+    <article class="screen-spec">
+      <div class="screen-strip"><div><small>Screen ID / Name</small><b>07A · 분석 홈</b></div><div><small>Screen Path</small><span>분석</span></div><div><small>Review State</small><span><i class="state-chip open">OPEN</i></span></div></div>
+      <div class="screen-grid"><div class="screen-preview"><div class="phone with-nav long-phone">
         <div class="status"><span>9:41</span><span>● ● ●</span></div><div class="page-title"><h3>분석</h3><button class="period">최근 4주</button></div>
         <div class="analysis-summary"><small>최근 4주</small><h3>총 14회 운동</h3><div class="metric-row"><span><b>214</b><small>세트</small></span><span><b>132K</b><small>볼륨 kg</small></span><span><b>7</b><small>PR</small></span></div></div>
         <div class="chart-card"><div><b>주간 운동 볼륨</b><small>최근 4주</small></div><div class="bars"><i style="height:46%"></i><i style="height:70%"></i><i style="height:58%"></i><i style="height:86%"></i></div><div class="axis"><span>1주</span><span>2주</span><span>3주</span><span>이번 주</span></div></div>
         <div class="section-label"><span>부위별 세트</span><small>최근 4주</small></div><div class="muscle-bars"><div><span>가슴</span><i><b style="width:72%"></b></i><strong>34</strong></div><div><span>등</span><i><b style="width:84%"></b></i><strong>40</strong></div><div><span>하체</span><i><b style="width:90%"></b></i><strong>43</strong></div><div><span>어깨</span><i><b style="width:58%"></b></i><strong>28</strong></div></div>
         <div class="section-label"><span>최근 운동 기록</span><small>전체 보기</small></div><div class="workout-row"><div><b>하체 루틴</b><small>9월 1일 · 58분 · 19세트</small></div><strong>›</strong></div><div class="workout-row"><div><b>가슴 · 어깨</b><small>8월 31일 · 52분 · 18세트</small></div><strong>›</strong></div>
         <div class="bottom-nav"><span>⌂<small>홈</small></span><span>▤<small>루틴</small></span><b>⌁<small>분석</small></b><span>⚙<small>설정</small></span></div>
-      </div></article>
+      </div></div><aside class="screen-notes"><table class="spec-table"><tbody>
+        <tr><th>화면 목적</th><td>최근 운동 빈도·세트·볼륨·PR·부위 분포와 기록 이력을 요약한다.</td></tr>
+        <tr><th>진입 조건</th><td>Bottom navigation의 분석 탭.</td></tr>
+        <tr><th>주요 요소</th><td><ul><li>기간 selector</li><li>요약 metric</li><li>주간 볼륨 chart</li><li>부위별 세트</li><li>최근 운동 기록</li></ul></td></tr>
+        <tr><th>동작 / 상태</th><td>기간에 따라 summary와 차트/리스트를 갱신하는 방향.</td></tr>
+        <tr><th>Validation</th><td>Metric definition/calculation은 미확정.</td></tr>
+        <tr><th>이동 / 다음</th><td>07B 종목 분석 / 07C 운동 기록 상세.</td></tr>
+        <tr><th>비고</th><td><span class="note-open">OPEN:</span> Analysis MVP depth와 어떤 metric을 첫 출시에서 유지할지.</td></tr>
+      </tbody></table></aside></div>
+    </article>
 
-      <article class="case review"><div class="case-head"><strong>07B · 종목 분석</strong><em>REVIEW</em></div><div class="phone long-phone">
+    <article class="screen-spec">
+      <div class="screen-strip"><div><small>Screen ID / Name</small><b>07B · 종목 분석</b></div><div><small>Screen Path</small><span>분석 / 운동 기록 &gt; 종목 기록</span></div><div><small>Review State</small><span><i class="state-chip review">REVIEW</i></span></div></div>
+      <div class="screen-grid"><div class="screen-preview"><div class="phone long-phone">
         <div class="status"><span>9:41</span><span>● ● ●</span></div><div class="appbar back-title">‹ <span>종목 기록</span><span></span></div><div class="title-block"><h3>벤치프레스</h3><p>가슴 · 바벨</p></div><div class="metric-2"><div><small>최고 중량</small><b>85 kg</b></div><div><small>최근</small><b>80 × 10</b></div></div>
         <div class="chart-card"><div><b>최고 수행 중량</b><small>최근 8회</small></div><div class="line-chart"><svg viewBox="0 0 280 100" aria-label="벤치프레스 중량 증가 추세"><polyline points="5,82 45,74 85,72 125,58 165,60 205,44 245,34 275,26" fill="none" stroke="currentColor" stroke-width="3"/><circle cx="275" cy="26" r="5" fill="currentColor"/></svg></div></div>
         <div class="section-label"><span>최근 기록</span><small>세트 상세</small></div><div class="workout-row"><div><b>8월 31일</b><small>80kg × 10 · 9 · 8</small></div><strong>›</strong></div><div class="workout-row"><div><b>8월 26일</b><small>77.5kg × 10 · 10 · 9</small></div><strong>›</strong></div>
-      </div></article>
+      </div></div><aside class="screen-notes"><table class="spec-table"><tbody>
+        <tr><th>화면 목적</th><td>특정 운동의 최근 수행과 장기 추세를 확인한다.</td></tr>
+        <tr><th>진입 조건</th><td>분석 또는 기록 이력에서 운동 선택.</td></tr>
+        <tr><th>주요 요소</th><td><ul><li>최고 중량</li><li>최근 수행</li><li>최근 8회 추세</li><li>최근 세트 기록</li></ul></td></tr>
+        <tr><th>동작 / 상태</th><td>운동 identity별 독립 history를 기준으로 표시.</td></tr>
+        <tr><th>Validation</th><td>추세 metric 정의는 후속 확정.</td></tr>
+        <tr><th>이동 / 다음</th><td>해당 날짜의 기록 상세.</td></tr>
+        <tr><th>비고</th><td>그래프와 metric 정보량은 review 대상.</td></tr>
+      </tbody></table></aside></div>
+    </article>
 
-      <article class="case review"><div class="case-head"><strong>07C · 운동 기록 상세</strong><em>REVIEW</em></div><div class="phone">
+    <article class="screen-spec">
+      <div class="screen-strip"><div><small>Screen ID / Name</small><b>07C · 운동 기록 상세</b></div><div><small>Screen Path</small><span>분석 / 최근 운동 &gt; 기록 상세</span></div><div><small>Review State</small><span><i class="state-chip review">REVIEW</i></span></div></div>
+      <div class="screen-grid"><div class="screen-preview"><div class="phone">
         <div class="status"><span>9:41</span><span>● ● ●</span></div><div class="appbar back-title">‹ <span>운동 기록</span><button>•••</button></div><div class="title-block"><h3>하체 루틴</h3><p>9월 1일 · 58분</p></div><div class="metric-2"><div><small>세트</small><b>19</b></div><div><small>볼륨</small><b>12,480 kg</b></div></div>
         <div class="section-label"><span>수행 운동</span><small>3개</small></div><div class="exercise-rows"><div><span><i>01</i><b>레그 프레스</b></span><strong>105×12 · 11 · 10</strong></div><div><span><i>02</i><b>레그 컬</b></span><strong>47.5×12 · 11 · 10</strong></div><div><span><i>03</i><b>카프 레이즈</b></span><strong>62.5×15 · 14 · 13</strong></div></div>
-      </div></article>
-    </div>
+      </div></div><aside class="screen-notes"><table class="spec-table"><tbody>
+        <tr><th>화면 목적</th><td>한 번의 운동 세션에서 실제 저장된 수행 결과를 상세 확인한다.</td></tr>
+        <tr><th>진입 조건</th><td>최근 운동 기록 또는 완료 summary의 기록 보기.</td></tr>
+        <tr><th>주요 요소</th><td><ul><li>세션명 / 날짜 / 시간</li><li>세트 / 볼륨 summary</li><li>운동별 중량·횟수 기록</li></ul></td></tr>
+        <tr><th>동작 / 상태</th><td>부분 저장 세션이면 실제 완료된 운동/세트만 표시.</td></tr>
+        <tr><th>Validation</th><td>저장된 immutable history와 편집 정책은 후속 상세 정의.</td></tr>
+        <tr><th>이동 / 다음</th><td>종목 분석 또는 이전 화면.</td></tr>
+        <tr><th>비고</th><td>운동 기록 무결성 확인의 핵심 surface.</td></tr>
+      </tbody></table></aside></div>
+    </article>
   </section>
 
-  <section id="settings" class="section">
-    <header class="section-head"><div><div class="eyebrow review">08 · SETTINGS</div><h2>설정은 Figma list-row 체계로 단순하게</h2></div><p>프로필과 운동 설정, 계정/데이터를 분리합니다.</p></header>
-    <div class="rail">
-      <article class="case review"><div class="case-head"><strong>08A · 설정 홈</strong><em>REVIEW</em></div><div class="phone with-nav">
+  <section id="settings" class="section-spec">
+    <header class="section-spec-head"><div><span class="section-no">08 · SETTINGS</span><h2>운동 · 프로필 · 계정 및 데이터</h2></div><p>첫 출시 설정은 운동 기록에 필요한 항목과 프로필/계정·데이터 관리를 우선한다.</p></header>
+
+    <article class="screen-spec">
+      <div class="screen-strip"><div><small>Screen ID / Name</small><b>08A · 설정 홈</b></div><div><small>Screen Path</small><span>설정</span></div><div><small>Review State</small><span><i class="state-chip review">REVIEW</i></span></div></div>
+      <div class="screen-grid"><div class="screen-preview"><div class="phone with-nav">
         <div class="status"><span>9:41</span><span>● ● ●</span></div><div class="page-title"><h3>설정</h3></div><div class="profile-row"><div class="avatar small">G</div><span><b>user_K7M2Q</b><small>프로필 보기 / 수정</small></span><strong>›</strong></div>
         <div class="section-label"><span>운동</span></div><div class="setting-list"><div><span><b>무게 단위</b></span><strong>kg ›</strong></div><div><span><b>기본 휴식 타이머</b></span><strong>2분 ›</strong></div><div><span><b>세트 완료 진동</b></span><i class="toggle on"></i></div><div><span><b>첫 중량 가이드</b></span><i class="toggle on"></i></div></div>
         <div class="section-label"><span>계정 및 데이터</span></div><div class="setting-list"><div><span><b>계정</b><small>로그인 정보 · 탈퇴</small></span><strong>›</strong></div><div><span><b>데이터 및 개인정보</b></span><strong>›</strong></div><div><span><b>이용약관</b></span><strong>›</strong></div></div>
         <div class="bottom-nav"><span>⌂<small>홈</small></span><span>▤<small>루틴</small></span><span>⌁<small>분석</small></span><b>⚙<small>설정</small></b></div>
-      </div></article>
+      </div></div><aside class="screen-notes"><table class="spec-table"><tbody>
+        <tr><th>화면 목적</th><td>프로필, 운동 기록 환경, 계정/데이터 관리로 진입하는 설정 hub.</td></tr>
+        <tr><th>진입 조건</th><td>Bottom navigation의 설정 탭.</td></tr>
+        <tr><th>주요 요소</th><td><ul><li>프로필</li><li>무게 단위</li><li>기본 휴식 타이머</li><li>세트 완료 진동</li><li>첫 중량 가이드</li><li>계정 / 개인정보 / 약관</li></ul></td></tr>
+        <tr><th>동작 / 상태</th><td>설정 항목별 상세 화면 또는 toggle/action으로 연결.</td></tr>
+        <tr><th>Validation</th><td>-</td></tr>
+        <tr><th>이동 / 다음</th><td>08B 프로필 및 각 설정 상세.</td></tr>
+        <tr><th>비고</th><td>첫 출시 Settings detail scope는 후속 검토.</td></tr>
+      </tbody></table></aside></div>
+    </article>
 
-      <article class="case review"><div class="case-head"><strong>08B · 프로필 설정</strong><em>REVIEW</em></div><div class="phone">
-        <div class="status"><span>9:41</span><span>● ● ●</span></div><div class="appbar back-title">‹ <span>프로필</span><button>저장</button></div><div class="profile-center"><div class="avatar editable">G<span>✎</span></div></div><label>닉네임</label><div class="input">user_K7M2Q</div><label>성별</label><div class="select">남성 <b>›</b></div><label>생년월일</label><div class="input">1999-01-01</div><div class="wire-note">운동 시범 3D 아바타와 프로필 이미지는 연결하지 않음.</div>
-      </div></article>
+    <article class="screen-spec">
+      <div class="screen-strip"><div><small>Screen ID / Name</small><b>08B · 프로필 설정</b></div><div><small>Screen Path</small><span>설정 &gt; 프로필</span></div><div><small>Review State</small><span><i class="state-chip review">REVIEW</i></span></div></div>
+      <div class="screen-grid"><div class="screen-preview"><div class="phone">
+        <div class="status"><span>9:41</span><span>● ● ●</span></div><div class="appbar back-title">‹ <span>프로필</span><button>저장</button></div><div class="profile-center"><div class="avatar editable">G<span>✎</span></div></div><label>닉네임</label><div class="input">user_K7M2Q</div><label>성별</label><div class="select">남성 <b>›</b></div><label>생년월일</label><div class="input">1999-01-01</div>
+      </div></div><aside class="screen-notes"><table class="spec-table"><tbody>
+        <tr><th>화면 목적</th><td>가입 후 자동 부여/입력된 프로필 정보를 사용자가 필요할 때 수정한다.</td></tr>
+        <tr><th>진입 조건</th><td>08A 프로필 행 선택.</td></tr>
+        <tr><th>주요 요소</th><td><ul><li>프로필 이미지</li><li>닉네임</li><li>성별</li><li>생년월일</li><li>저장</li></ul></td></tr>
+        <tr><th>동작 / 상태</th><td>변경 후 저장. social profile image와 운동 시범 3D avatar는 별도 개념.</td></tr>
+        <tr><th>Validation</th><td>닉네임 규칙 exact format/중복 정책은 미확정.</td></tr>
+        <tr><th>이동 / 다음</th><td>08A 설정 홈.</td></tr>
+        <tr><th>비고</th><td>프로필 설정은 first-run 강제 flow가 아니다.</td></tr>
+      </tbody></table></aside></div>
+    </article>
 
-      <article class="case review"><div class="case-head"><strong>08C · 미래 기능 자리</strong><em>POST-MVP</em></div><div class="phone">
-        <div class="status"><span>9:41</span><span>● ● ●</span></div><div class="appbar">향후 확장</div><div class="future-card"><small>PERSONAL INTELLIGENCE</small><h3>내 기록을 바탕으로 한 제안</h3><p>중량 증가, 정체, 부위별 운동량 등을 제안하되 기록이나 루틴을 자동 변경하지 않습니다.</p></div><div class="future-card"><small>SOCIAL</small><h3>운동과 루틴 공유</h3><p>사진 · 좋아요 · 공개 루틴. 공개 여부는 사용자가 선택합니다.</p></div><div class="wire-note">첫 출시 UI가 아니라 장기 IA 확장 메모.</div>
-      </div></article>
-    </div>
+    <article class="screen-spec">
+      <div class="screen-strip"><div><small>Screen ID / Name</small><b>08C · 미래 기능 자리</b></div><div><small>Screen Path</small><span>Settings / Long-term IA reference</span></div><div><small>Review State</small><span><i class="state-chip post">POST-MVP</i></span></div></div>
+      <div class="screen-grid"><div class="screen-preview"><div class="phone">
+        <div class="status"><span>9:41</span><span>● ● ●</span></div><div class="appbar">향후 확장</div><div class="future-card"><small>PERSONAL INTELLIGENCE</small><h3>내 기록을 바탕으로 한 제안</h3><p>중량 증가, 정체, 부위별 운동량 등을 제안하되 기록이나 루틴을 자동 변경하지 않습니다.</p></div><div class="future-card"><small>SOCIAL</small><h3>운동과 루틴 공유</h3><p>사진 · 좋아요 · 공개 루틴. 공개 여부는 사용자가 선택합니다.</p></div>
+      </div></div><aside class="screen-notes"><table class="spec-table"><tbody>
+        <tr><th>화면 목적</th><td>장기 IA에서 Personal Intelligence와 Social이 들어갈 가능성을 시각적으로 확인하기 위한 reference.</td></tr>
+        <tr><th>진입 조건</th><td class="note-muted">첫 출시 실제 UI 아님.</td></tr>
+        <tr><th>주요 요소</th><td><ul><li>기록 기반 제안</li><li>운동/루틴 공유</li></ul></td></tr>
+        <tr><th>동작 / 상태</th><td>AI는 제안 가능하지만 기록/루틴을 자동 변경하지 않는다. Social 공개 여부는 사용자 선택.</td></tr>
+        <tr><th>Validation</th><td>-</td></tr>
+        <tr><th>이동 / 다음</th><td>-</td></tr>
+        <tr><th>비고</th><td>POST-MVP extension memo. 첫 출시 범위를 의미하지 않는다.</td></tr>
+      </tbody></table></aside></div>
+    </article>
   </section>
 
-  <section class="decision-board">
-    <div class="eyebrow open">NEXT REVIEW ORDER</div><h2>이제 디자인 차이보다 제품 구조 자체를 보면서 결정하면 됩니다.</h2>
-    <ol><li><b>Home</b><span>루틴 없음 / 요일 미지정 / 요일 지정 상태</span></li><li><b>추천 루틴</b><span>카드 정보량과 시작/저장 시점</span></li><li><b>루틴</b><span>목록·상세·생성 구조</span></li><li><b>운동 DB</b><span>탐색·3D·그립·영상</span></li><li><b>운동 중</b><span>입력 UI와 휴식 흐름</span></li><li><b>완료/분석</b><span>MVP 지표 범위</span></li><li><b>설정</b><span>프로필·운동·계정 범위</span></li></ol>
+  <section class="review-queue">
+    <header><h2>Next review order</h2><p>이 페이지는 제품 결정을 자동으로 확정하지 않는다. Product Owner가 화면을 보고 아래 순서로 검토한다.</p></header>
+    <ol><li><b>1. Home</b><span>루틴 없음 / 요일 미지정 / 요일 지정 / 운동 진행 중</span></li><li><b>2. 추천 루틴</b><span>카드 정보량과 상세 → 저장/시작 semantics</span></li><li><b>3. Routine</b><span>목록 · 상세 · 생성/수정 hierarchy</span></li><li><b>4. Exercise DB</b><span>탐색 · 3D · 그립 · 영상 · 운동 identity</span></li><li><b>5. Active workout</b><span>입력 UI와 휴식/구조 변경 흐름</span></li><li><b>6. 완료 / 분석</b><span>MVP metric과 계산 규칙</span></li><li><b>7. Settings</b><span>프로필 · 운동 · 계정/데이터 범위</span></li></ol>
   </section>
 </main>
 </body>
