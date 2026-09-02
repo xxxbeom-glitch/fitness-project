@@ -4,9 +4,9 @@
 
 ## Current mode
 
-`PRODUCT / UX PLANNING — G FIT WHOLE-APP WIREFRAME v2026-09-02.14 · PLANNING-SPEC LAYOUT · PO REVIEW PENDING`
+`PRODUCT / UX PLANNING — HOME DASHBOARD IA REVIEW · G FIT WHOLE-APP WIREFRAME v2026-09-02.14 · PO DECISION PENDING`
 
-Product Owner가 제품 전체 방향을 먼저 화면으로 확인한 뒤 Home부터 천천히 결정하기로 했다.
+Planning-spec 형식의 whole-app wireframe은 준비된 상태다. 현재 Product Owner가 **Home을 어떤 대시보드 구조로 가져갈지** 정보 위계와 역할부터 결정하는 단계다.
 
 Current product-direction authority:
 - `docs/24_PRODUCT_DIRECTION_V2.md`
@@ -76,7 +76,7 @@ Canonical Figma:
 Important:
 
 - v14은 final UI spec이 아니라 **current product review content를 실제 화면설계서 형태로 읽기 쉽게 정리한 planning artifact**다.
-- phone 내부의 visual language는 Figma baseline을 유지한다.
+- phone 내부의 visual language는 아직 기존 Figma dark baseline을 유지한다.
 - working name은 `G Fit`이므로 기존 Figma logo asset 자체를 복제하지 않고 placeholder text를 사용한다.
 - 디자인시스템 sync와 planning-spec layout은 `REVIEW / OPEN` 제품 가설을 확정시키지 않는다.
 
@@ -172,18 +172,43 @@ Existing account:
 - default neutral profile image
 - public nickname과 internal immutable user ID는 별도 개념
 
-## Exercise visual direction — CONFIRMED
+## Exercise visual / asset direction — UPDATED
 
-운동 시범은 profile sex와 매핑된 male/female 두 벌 구조를 사용하지 않는다.
+운동 visual은 기존처럼 해부학적이고 동작 이해가 쉬운 한 계열의 visual language를 유지한다. 다만 **전체 운동 에셋을 새로 만들거나 추가 대형 라이브러리를 구매하는 방향은 중단**한다.
 
-Baseline:
+Product Owner 결정:
 
-- **중성적으로 보이는 해부학 느낌의 3D avatar 한 계열**
-- 동일 운동의 남/녀 asset 중복 제작은 요구하지 않음
-- social profile image와 exercise demo visual은 분리
+- 이미 구매한 exercise asset / metadata를 **기본 Exercise Asset Library**로 활용
+- 구매한 자료와 겹치는 운동은 새로 제작하지 않음
+- 국내 헬스장에서 필요한 핵심 운동 중 실제로 없는 운동만 gap으로 추림
+- 누락 운동은 기존 구매 에셋의 카메라, crop, 배경, 인체 비율, 근육 highlight 체계와 최대한 같은 계열로 추가 제작
+- 동일 운동의 male/female asset을 이중 제작하는 것은 baseline에서 요구하지 않음
+- social profile image와 exercise demo visual은 별도 개념 유지
 - grip 시각화는 실제 수행 이해에 가치가 있는 운동에서 제공
 
-운동 DB / visual asset은 장기 제품 자산으로 직접 구축하는 방향이다. 핵심 운동부터 우선순위를 나눠 제작하고 출시 후 지속 확장 가능하다.
+중요한 라이선스 체크:
+
+- 구매 에셋의 **상업 앱 사용 권한**과 **원본을 AI reference로 넣어 derivative asset을 만드는 권한**은 별개일 수 있음
+- 원본 에셋을 AI/reference workflow에 직접 넣기 전 구매 라이선스의 modification / derivative / AI 관련 조항을 확인해야 함
+- 라이선스가 불명확하면 원본 파일 자체를 AI에 제공하지 않고, 일반적인 visual grammar만 참고해 새 에셋을 제작
+
+### Theme direction — PO preference / VALIDATION PENDING
+
+구매한 운동 에셋이 밝은 배경에서 자연스럽게 보이기 때문에 Product Owner는 **앱도 light theme 기반으로 전환하는 방향을 선호**한다.
+
+아직 전체 디자인시스템 변경으로 확정·반영하지는 않았다.
+
+검증 방법:
+
+1. Exercise Search / Select
+2. Exercise Detail
+3. Active Workout
+
+위 3개 핵심 화면에 실제 구매 에셋을 넣고 light theme prototype을 먼저 검증한다.
+
+세 화면에서 에셋과 UI의 결합이 좋으면 Home / Routine / Analysis까지 전체 light system으로 확장한다.
+
+현재 v14 Vercel wireframe의 phone UI는 기존 dark Figma baseline이며, light theme 변경은 아직 runtime/Figma에 적용하지 않았다.
 
 ## Recommended routine — CONFIRMED DIRECTION
 
@@ -206,6 +231,111 @@ Home에서 여러 추천 루틴 카드를 볼 수 있다.
 - 추천 카드 탭 이후 detail / save / start semantics는 OPEN
 
 루틴이 이미 있는 일반 Home에서는 추천 콘텐츠보다 오늘/다음 운동 시작과 최근 상태가 우선한다.
+
+## Home dashboard research checkpoint — RESEARCH / PO DECISION PENDING
+
+Home을 단순 카드 모음이 아니라 **대시보드형 메인**으로 볼 때의 UX 원칙과 Mobbin 레퍼런스를 검토했다.
+
+### Dashboard role
+
+현재 G Fit에는 별도의 `분석` 탭이 있으므로 Home은 상세 분석 dashboard가 아니라 **operational / action-first dashboard**에 가깝게 가져가는 것이 가장 논리적이라는 연구 결론이다.
+
+Home이 몇 초 안에 답해야 할 핵심 질문:
+
+1. **지금 나는 뭘 해야 하지?**
+2. **요즘 나는 운동을 잘 하고 있나?**
+3. **최근에 뭐 했지?**
+
+상세 volume trend, muscle distribution, exercise progress chart 등은 Analysis로 보내고 Home에는 행동과 상태 판단에 필요한 최소 context만 둔다.
+
+### UX principles used
+
+Dashboard는 정보를 많이 보여주는 화면이 아니라 **사용자 목표와 현재 상황을 빠르게 파악하고 다음 행동을 결정하게 하는 화면**으로 접근한다.
+
+적용 원칙:
+
+- 화면부터 그리지 않고 `사용자가 왜 Home에 들어오는가 → 무엇을 판단하는가 → 어떤 행동을 하는가` 순으로 설계
+- `must-see / must-do`를 가장 높은 visual hierarchy에 배치
+- 관련 정보끼리 묶고 상세 분석은 progressive disclosure / Analysis로 이동
+- chart 자체보다 사용자가 바로 이해할 수 있는 상태/변화 메시지를 우선
+- 모든 카드에 동일한 visual weight를 주지 않음
+- 평상시 필요 없는 insight는 상시 고정 영역이 아니라 exception-based information으로 처리 가능
+
+참고한 외부 UX 자료:
+
+- UXmatters — Dashboard Design 101: `https://www.uxmatters.com/mt/archives/2010/11/dashboard-design-101.php`
+- UXmatters / Stephen Few dashboard review: `https://www.uxmatters.com/mt/archives/2007/04/book-review-information-dashboard-design.php`
+- Apple HIG Layout: `https://developer.apple.com/design/human-interface-guidelines/layout`
+- Apple HIG Charts: `https://developer.apple.com/design/human-interface-guidelines/charts`
+
+### Mobbin reference patterns reviewed
+
+피트니스만 보지 않고 금융 / 업무 / 생산성 / 건강 앱까지 함께 비교했다.
+
+핵심 패턴:
+
+- **Action-first:** Mimo, N26, Chime — 가장 중요한 현재 상태/행동을 크게, 그 아래 보조 정보
+- **Equal modular KPI dashboard:** Hevy, MacroFactor, Todoist — 여러 widget을 비슷한 무게로 배열
+- **Context / activity feed:** Remote Global HR, Monzo, Withings — 현재 중요한 것 → 최근 상태/이력 → 다음 참고 정보
+
+대표 Mobbin screens:
+
+- Hevy: `https://mobbin.com/screens/2e109a73-9c45-4f56-94fb-062038f53a6e`
+- MacroFactor: `https://mobbin.com/screens/bd079a0d-9ba0-4672-882d-b0a2ce05b9cd`
+- Todoist: `https://mobbin.com/screens/fd6d1d04-fc19-4e7f-b43c-7a9f970aedf6`
+- Remote Global HR: `https://mobbin.com/screens/5d1526a7-e3e1-44e7-bef0-c51f21a67e01`
+- Monzo: `https://mobbin.com/screens/f8295bc6-41ee-463f-987c-4cec448c6fea`
+- Withings Health Mate: `https://mobbin.com/screens/72f11245-eb96-405a-be2a-91b05ce7b01c`
+- N26: `https://mobbin.com/screens/52ecfd8a-5c0a-4a0d-bf1f-518ee3b88767`
+- Mimo: `https://mobbin.com/screens/54b61209-26b8-4d28-ac60-9f888e099b6e`
+
+### Three Home directions reviewed
+
+#### A. Action-first dashboard — RECOMMENDED
+
+정보 위계 예시:
+
+- `NOW / ACTION`: 약 40–45%
+- `CURRENT STATUS`: 약 25–30%
+- `RECENT`: 약 20–25%
+- `EXCEPTION / INSIGHT`: 필요할 때만
+
+핵심은 Home에서 **오늘/다음 운동 시작**이 가장 큰 카드/영역을 차지하는 것.
+
+#### B. Metric dashboard
+
+Hevy처럼 `루틴 선택 / 운동 기록 / 볼륨 / streak / rest` 등을 modular KPI로 구성.
+
+장점은 누적 데이터가 많을 때 풍성하고 수치 확인이 빠르다는 것.
+
+단점은 모든 정보가 비슷하게 중요해 보여 G Fit의 핵심 행동인 `운동 시작`이 묻힐 수 있고, 신규 사용자는 빈 dashboard가 되기 쉬움.
+
+#### C. Context feed dashboard
+
+현재 중요한 상태 → 이번 주 흐름 → 최근 운동 → 다음 정보 순으로 내려가는 구조.
+
+장기적으로 Personal Intelligence를 붙이기 쉽지만 feed가 계속 확장되면 Home의 중심이 흐려질 위험이 있음.
+
+### Current recommendation — NOT YET CONFIRMED
+
+현재 추천은 **A(Action-first) 약 70% + C(Context feed) 약 30%** 조합이다.
+
+동일한 Home skeleton을 유지하면서 최상단 primary action만 상태에 따라 변경:
+
+- `02A` 루틴 없음 → `G Fit 추천 루틴으로 시작 / 내 루틴 만들기`
+- `02B` 루틴 있음 · 요일 미지정 → `다음 루틴`
+- `02C` 루틴 있음 · 요일 지정 → `오늘 운동`
+- `02D` active workout 존재 → `운동 계속하기`
+
+그 아래에는 공통적으로:
+
+- 이번 주 운동 상태
+- 최근 운동
+- 특별한 변화가 있을 때만 exception / insight
+
+를 배치하는 방향.
+
+이 구조는 현재 **Research recommendation**이며 Product Owner가 아직 최종 CONFIRMED하지 않았다.
 
 ## Personalization / AI — CONFIRMED DIRECTION
 
@@ -296,16 +426,28 @@ Current direction이 아닌 항목:
 
 ## Next resume point
 
-**PO whole-app review feedback pending. 첫 검토 대상은 Home.**
+**다음 작업은 Home dashboard 구조를 Product Owner가 확정하는 것부터 재개한다.**
 
-Home review states:
+현재 첫 결정 대상:
+
+- Home의 역할을 `Action-first operational dashboard`로 확정할지
+- 최상단 primary action의 visual weight / 정보량
+- `이번 주 상태`에 어떤 수치를 노출할지 (`운동 횟수 / 세트 / 목표 대비` 등)
+- `최근 운동`에 어떤 정보까지 표시할지
+- exception / insight를 상시 영역이 아니라 조건부로 둘지
+
+현재 추천 baseline:
+
+`NOW/ACTION 40–45% → CURRENT STATUS 25–30% → RECENT 20–25% → EXCEPTION/INSIGHT 필요 시`
+
+Home state review:
 
 - `02A` 루틴 없음 — G Fit 추천 루틴 + 내 루틴 만들기
-- `02B` 내 루틴 있음 / 요일 미지정 — `다음 루틴` 중심 검토안
-- `02C` 내 루틴 있음 / 요일 지정 — `오늘 운동` 중심 검토안
-- `02D` 운동 진행 중 — confirmed active-workout return behavior
+- `02B` 내 루틴 있음 / 요일 미지정 — `다음 루틴`
+- `02C` 내 루틴 있음 / 요일 지정 — `오늘 운동`
+- `02D` 운동 진행 중 — confirmed `운동 계속하기` behavior
 
-Product Owner가 수정/삭제/확정 의견을 주면 Home부터 wireframe과 관련 Decision을 순차 반영한다.
+Home IA를 확정한 다음 같은 skeleton을 `02A / 02B / 02C / 02D`에 적용해 wireframe을 갱신한다.
 
 그 다음 검토 순서:
 
