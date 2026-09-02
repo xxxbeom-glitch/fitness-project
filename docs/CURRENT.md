@@ -1,18 +1,20 @@
 # CURRENT — Fitness Project
 
-**Updated:** 2026-09-02 23:46 KST
+**Updated:** 2026-09-03 00:35 KST
 
 ## Current mode
 
-`PRODUCT / UX PLANNING — EXERCISE DB v1 CANDIDATE BUILT · CABLE/PULLEY GRIP SCOPE APPROVED · NEXT: FULL METADATA ENRICHMENT + CABLE GRIP MAPPING · CANONICAL WIREFRAME v2026-09-02.14`
+`PRODUCT / UX PLANNING — EXERCISE DB v0.3 CABLE/PULLEY MAPPING COMPLETE · HIGH 55 / MEDIUM 1 / LOW 150 · NEXT: REMAINING METADATA ENRICHMENT · CANONICAL WIREFRAME v2026-09-02.14`
 
 Product Owner가 운동 DB의 핵심 기록 기준인 **장비별 분리**, **각도/주요 자세별 분리**, **케이블/풀리 운동에 한정한 선택형 그립 기록**, **한국어/영어 표시명 병행**, **구매 에셋 내부의 실제 중복 통합 규칙**, **큰 부위 중심의 사용자 필터 + 세부 근육 데이터 병행**을 승인했다. 제조사 / 브랜드별 머신 DB는 MVP 기본 범위에서 제외한다.
 
-구매 에셋 **206개 파일명 기반 v0.1** 이후 실제 `metadata.json`과 일부 poster를 다시 검수한 **v0.2 QA**를 진행했다. 그 결과 v0.1의 중복 후보 5개 중 현재 **실제 중복으로 high-confidence 확인된 것은 `bodyweight-elevated-push-up` → `incline-push-up` 1건**이며, dumbbell/kettlebell row 후보는 주요 자세/에셋 차이 때문에 자동 통합을 취소했다. `machine-cable-v-bar-push-downs`, `machine-seated-cable-row`는 duplicate가 아니라 canonical 이름/장비 분류 정정으로 변경했다.
+구매 에셋 **206개 파일명 기반 v0.1** 이후 실제 `metadata.json`과 일부 poster를 다시 검수한 **v0.2 QA**, 그리고 케이블 / 풀리 계열을 실제 source metadata로 재수집한 **v0.3**을 진행했다. v0.3 기준 source row 206개는 그대로 보존하며, high-confidence 55개 / medium 1개 / low-confidence 150개 상태다. 이번 v0.3에서 실제 metadata를 직접 enrichment한 row는 30개이며 v0.2 대비 분류/데이터가 바뀐 source row는 34개다. 따라서 아직 production-final DB는 아니다.
 
-별도 G Fit Exercise DB v1 candidate를 생성했으며 원본 구매 에셋/metadata는 수정하지 않았다. 현재 206 row 중 source metadata/poster로 직접 검수한 high-confidence 26개, medium 4개, 아직 전체 metadata enrichment가 필요한 low-confidence 176개 상태다. 따라서 이 candidate는 production-final이 아니다.
+현재 실제 중복으로 high-confidence 확인된 것은 `bodyweight-elevated-push-up` → `incline-push-up` 1건이다. dumbbell/kettlebell row 후보는 주요 자세/에셋 차이 때문에 자동 통합을 취소했다. `machine-cable-v-bar-push-downs`, `machine-seated-cable-row`는 duplicate가 아니라 canonical 이름/장비 분류 정정이다.
 
-선택형 그립 기록의 MVP 범위는 **케이블 / 풀리 기반 운동**으로 제한한다. 랫풀다운·시티드 케이블 로우처럼 같은 운동으로 보는 것이 자연스러운 경우에만 대표 그립을 하위 기록으로 둔다. 바벨·덤벨·일반 머신 운동에는 이 기능을 확장하지 않는다. 따라서 `Close-Grip Bench Press` 같은 비케이블 운동은 별도 운동 identity로 처리하며 전역 그립 예외 규칙은 더 이상 필요하지 않다.
+선택형 그립 기록의 MVP 범위는 **케이블 / 풀리 기반 운동**으로 제한한다. v0.3에서 실제 mapping을 적용해 `원암 케이블 로우`는 neutral / underhand를 같은 parent 아래 별도 이력으로, `랫풀다운`은 기본 기록 + narrow neutral(V-handle)을 같은 parent 아래 별도 이력으로 정리했다. `Cable Supinating Row`처럼 반복 동작 중 grip rotation 자체가 수행 패턴인 운동은 별도 운동으로 유지한다. 바벨·덤벨·일반 머신·Smith의 grip 명칭 변형은 별도 exercise identity로 처리한다.
+
+케이블 attachment 차이도 무조건 하나로 합치지 않는다. v0.3에서는 straight bar / rope / V-bar pushdown을 각각 별도 운동으로 유지한다. 현재 사용자 검색 중복보다 기록 의미를 과도하게 합치는 위험을 더 크게 본 보수적 정리이며, 실제 사용성 문제가 확인되면 다시 검토할 수 있다.
 
 Cursor 제품 구현은 아직 승인되지 않았다.
 
@@ -23,11 +25,12 @@ Cursor 제품 구현은 아직 승인되지 않았다.
 1. 현재 Product Owner 결정
 2. `docs/24_PRODUCT_DIRECTION_V2.md`
 3. `docs/ux-decisions/2026-09-02-exercise-db-normalization.md`
-4. `docs/exercise-db/purchased-asset-classification-v0.2.md`
-5. `docs/exercise-db/purchased-asset-classification-v0.1.md`
-6. `docs/ux-decisions/2026-09-02-home-workout-routine-completion-locks.md`
-7. `docs/08_DECISIONS.md` 중 위 문서들과 충돌하지 않는 기존 기반 결정
-8. 현재 canonical wireframe / Figma
+4. `docs/exercise-db/purchased-asset-classification-v0.3.md`
+5. `docs/exercise-db/purchased-asset-classification-v0.2.md`
+6. `docs/exercise-db/purchased-asset-classification-v0.1.md`
+7. `docs/ux-decisions/2026-09-02-home-workout-routine-completion-locks.md`
+8. `docs/08_DECISIONS.md` 중 위 문서들과 충돌하지 않는 기존 기반 결정
+9. 현재 canonical wireframe / Figma
 
 기존 recommendation-heavy onboarding 관련 DEC-005 / DEC-006 / DEC-009 / DEC-014의 오래된 흐름은 `docs/24_PRODUCT_DIRECTION_V2.md`의 2026-09-01 reset보다 우선하지 않는다.
 
@@ -193,7 +196,13 @@ Custom exercise 기반 결정은 DEC-003 / DEC-012 유지.
 
 `클로즈그립 벤치프레스`처럼 케이블 / 풀리 범위 밖에서 별도 운동명으로 통용되는 운동은 별도 exercise identity로 처리한다.
 
-어떤 케이블 / 풀리 운동에 그립 선택을 실제로 노출할지, 대표 그립 목록, 마지막 선택 기억 여부는 아직 OPEN.
+v0.3에서 source metadata로 직접 확인해 현재 grip parent는 다음처럼 잡았다.
+
+- `원암 케이블 로우` → 기본 parent 아래 neutral / underhand 기록
+- `랫풀다운` → 기본 기록 + narrow neutral(V-handle) 기록
+- `Cable Supinating Row` → 반복 중 grip rotation이 수행 자체이므로 별도 운동
+
+대표 그립 전체 목록, grip 선택 UI 세부 형태, 마지막 선택 기억 여부는 아직 OPEN.
 
 ### 7. Body-part classification / Custom exercise
 
@@ -291,12 +300,46 @@ commit:
 
 v1 candidate에는 `source` 값과 G Fit `normalized` 값을 분리해 보존하고 `qa_basis / qa_confidence / qa_flags`를 추가했다. low-confidence row는 production 확정으로 취급하지 않는다.
 
+### Cable / pulley metadata + grip mapping v0.3 — PARTIAL COMPLETE
+
+기록 문서:
+
+`docs/exercise-db/purchased-asset-classification-v0.3.md`
+
+commit:
+
+`84a14a2ae500bd38f7fbdd7f672538afe1db296f`
+
+핵심 결과:
+
+- source rows: 206 유지
+- high-confidence: 55
+- medium-confidence: 1
+- low-confidence / metadata pending: 150
+- v0.3 actual source metadata enrichment: 30 rows
+- v0.2 대비 분류/데이터 변경: 34 source rows
+- confirmed true duplicate merge: 1
+- cable / pulley grip-subrecord source rows: 3
+- confirmed cable / pulley grip parent groups: 2
+- non-cable grip rows separate identity로 명시 정리: 6
+- shared canonical groups: 3 (`incline-push-up`, `cable-single-arm-row`, `lat-pulldown`)
+- required core candidate fields blank: 0
+- 남은 asset/metadata conflict 또는 mismatch row: 4
+
+Cable / pulley grip mapping:
+
+- `cable-single-arm-neutral-grip-row` + `cable-single-arm-underhand-grip-row` → canonical `cable-single-arm-row`; neutral / underhand 별도 기록
+- `machine-pulldown` + `narrow-pulldown` → canonical `lat-pulldown`; 기본 기록 + `neutral_close` 별도 기록
+- `cable-supinating-row` → dynamic grip movement이므로 별도 운동 유지
+
+Attachment 계열은 과도한 통합을 피하기 위해 v0.3에서 `Cable Bar Pushdown` / `Cable Rope Pushdown` / `Cable V-Bar Pushdown`을 각각 별도 운동으로 유지한다.
+
 ### Next
 
-1. 남은 low-confidence 176 row를 실제 `metadata.json`으로 전수 enrichment한다.
-2. `qa_flags`가 있는 posture / cable-grip / category 예외만 poster를 추가 확인한다.
-3. 케이블 / 풀리 운동 중 실제 그립 하위 기록이 필요한 운동과 대표 그립 목록을 정리한다.
-4. canonical ID / aliases / bilingual display names를 최종 검증해 production Exercise DB v1로 승격한다.
+1. 남은 low-confidence **150 row**를 실제 `metadata.json`으로 전수 enrichment한다.
+2. `machine-face-pulls` 1개 medium row와 asset/metadata conflict 또는 mismatch 4개 row만 poster를 추가 검수한다.
+3. canonical ID / aliases / bilingual display names를 전체 검증한다.
+4. 검증이 끝나면 production Exercise DB v1로 승격한다.
 5. 확정된 G Fit DB를 국내 핵심 운동 및 Planfit·Hevy 레퍼런스와 비교해 **핵심 누락 운동과 추가 이미지 제작 수량**을 산출한다.
 
 ## Theme — VALIDATION PENDING
@@ -388,6 +431,15 @@ Purchased asset metadata/poster QA v0.2:
 - v0.1 heuristic errors and false duplicate assumptions documented
 - production-final DB is not yet claimed
 
+Purchased asset metadata/grip mapping v0.3:
+
+- report commit: `84a14a2ae500bd38f7fbdd7f672538afe1db296f`
+- high 55 / medium 1 / low 150
+- 30 rows source metadata enriched in this batch
+- 34 source rows changed from v0.2
+- cable/pulley grip mapping applied to `cable-single-arm-row` and `lat-pulldown`
+- production-final DB is not yet claimed
+
 Review-only previews do not automatically replace canonical production.
 
 ## Implementation status
@@ -398,10 +450,10 @@ Planning / UX approval is still in progress. Product implementation should begin
 
 ## Open items / blockers
 
-- remaining 176 low-confidence purchased metadata rows enrichment
-- asset/metadata posture conflicts in dumbbell/kettlebell row assets
-- cable / pulley exercise representative grip mapping
-- production Exercise DB v1 promotion after QA
+- remaining 150 low-confidence purchased metadata rows enrichment
+- `machine-face-pulls` 1 medium-confidence metadata/category QA
+- asset/metadata posture conflicts or mismatch 4 rows
+- production Exercise DB v1 promotion after full QA
 - core missing-exercise / additional asset gap analysis after DB v1
 - grip selection UI exact form / last-used behavior
 - purchased asset license check for AI-reference derivative work
