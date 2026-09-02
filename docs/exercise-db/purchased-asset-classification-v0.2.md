@@ -11,6 +11,15 @@ v0.1은 Google Drive poster 파일명 중심의 1차 분류였다. v0.2는 실�
 
 중요: 현재 환경에서는 File Library의 `metadata.json` 전체를 로컬 파일로 일괄 export하지 못했기 때문에 **206개 전체를 metadata 기반으로 검증했다고 주장하지 않는다.** 직접 검색·검수한 항목만 high/medium confidence로 올리고 나머지는 v0.1 값을 유지한 low-confidence candidate로 남겼다.
 
+## PO review note — Korean display naming
+
+2026-09-02 Product Owner가 현재 `name_ko`에 적용된 한국어 표시명 방향을 검토하고 **전반적으로 무난하다고 승인**했다.
+
+- 현재 적용된 한국어 표기 톤을 v1 정리의 기준으로 유지한다.
+- 영어가 임시값으로 남아 있는 `name_ko` 항목은 같은 톤으로 한국어 표시명을 채운다.
+- 이 승인은 개별 운동의 metadata / 중복 / 자세 판정을 승인한 것이 아니라 **한국어 표시명 스타일 방향에 대한 승인**이다.
+- 영어 표시명 `name_en`과 원본 추적용 `source_name_en`은 별도로 계속 보존한다.
+
 ## QA summary
 
 - Source rows preserved: **206**
