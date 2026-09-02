@@ -1,12 +1,12 @@
 # CURRENT — Fitness Project
 
-**Updated:** 2026-09-02 22:14 KST
+**Updated:** 2026-09-02 22:16 KST
 
 ## Current mode
 
 `PRODUCT / UX PLANNING — EXERCISE DB NORMALIZATION RULES APPROVED · NEXT: CLASSIFY PURCHASED METADATA · CANONICAL WIREFRAME v2026-09-02.14`
 
-Product Owner가 운동 DB의 핵심 기록 기준인 **장비별 분리**, **각도/주요 자세별 분리**, **대표 그립은 선택적인 하위 기록**, **국내 통용명을 우선한 표시명**, **구매 에셋 내부의 실제 중복 통합 규칙**을 승인했다. 제조사 / 브랜드별 머신 DB는 MVP 기본 범위에서 제외한다. 다음은 실제 구매 metadata를 이 기준으로 분류하는 단계다.
+Product Owner가 운동 DB의 핵심 기록 기준인 **장비별 분리**, **각도/주요 자세별 분리**, **대표 그립은 선택적인 하위 기록**, **국내 통용명을 우선한 표시명**, **구매 에셋 내부의 실제 중복 통합 규칙**, **큰 부위 중심의 사용자 필터 + 세부 근육 데이터 병행**을 승인했다. 제조사 / 브랜드별 머신 DB는 MVP 기본 범위에서 제외한다. 다음은 실제 구매 metadata를 이 기준으로 분류하는 단계다.
 
 Cursor 제품 구현은 아직 승인되지 않았다.
 
@@ -187,6 +187,25 @@ Custom exercise 기반 결정은 DEC-003 / DEC-012 유지.
 
 대표 그립의 정확한 전체 목록, 그립 선택 UI의 세부 형태, 마지막 선택 기억 여부는 아직 OPEN.
 
+### 7. Body-part classification / Custom exercise
+
+운동을 찾는 기본 부위 필터는 접근성을 우선해 큰 부위로 단순화한다.
+
+기본 큰 부위:
+
+`가슴 / 등 / 어깨 / 팔 / 하체 / 코어 / 전신 / 기타`
+
+세부 근육은 DB와 분석용 데이터로 별도 유지한다. 예를 들어 `등` 아래에서 광배근 / 승모근 / 등 상부 등을 세밀하게 기록할 수 있고, `하체` 아래에서 대퇴사두근 / 햄스트링 / 둔근 / 내전근 / 외전근 / 종아리 등을 구분할 수 있다.
+
+직접 만든 운동은 다음 원칙을 따른다.
+
+- 운동 이름 / 장비 / 큰 부위 / 기록 방식은 필수
+- 세부 주요 근육 / 보조 근육은 선택
+- 큰 부위만 입력해도 운동 생성 가능
+- 사용자가 큰 부위만 입력했다면 G Fit이 특정 세부 근육을 임의로 추론해 확정하지 않음
+
+즉 **찾을 때는 쉽게, 내부 데이터와 분석은 세밀하게** 가져간다.
+
 ## Exercise DB / asset direction
 
 기본 Exercise Asset Library는 이미 구매한 exercise asset / metadata를 사용한다.
@@ -226,6 +245,7 @@ MVP 기본 운동 DB에서는 Hammer Strength / Cybex 등 **제조사·브랜드
 - 구매 에셋 안에서 **이름만 다르지만 실제 수행이 같은 항목은 하나의 G Fit 운동으로 통합**
 - 중복 통합 여부는 이름만 보지 않고 기본 동작 / 장비 / 각도·주요 자세 / 한쪽·양쪽 같은 주요 수행 방식과 가능한 경우 실제 운동 이미지까지 함께 확인
 - 통합된 원본 이름은 alias / 검색어 / source metadata로 보존
+- 사용자 기본 부위 분류는 큰 부위 중심으로 단순화하되, 기본 운동 DB의 세부 근육 데이터는 별도로 유지
 
 ### Next
 
@@ -303,6 +323,11 @@ Purchased DB duplicate normalization lock:
 
 - Product Owner approval: 2026-09-02
 - decision doc create commit: `04157dc2be2d5fa3afb9de873d98b41e493e3dea`
+
+Body-part classification / custom exercise lock:
+
+- Product Owner approval: 2026-09-02
+- decision doc update commit: `f763e8e6a86aea9ceb071327a397250467382497`
 
 Review-only previews do not automatically replace canonical production.
 
