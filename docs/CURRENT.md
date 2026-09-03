@@ -1,10 +1,10 @@
 # CURRENT — Fitness Project
 
-**Updated:** 2026-09-03 15:05 KST
+**Updated:** 2026-09-03 15:52 KST
 
 ## Current mode
 
-`PRODUCT / UX PLANNING — PRODUCTION EXERCISE DB v1 APPROVED · 195 CANONICAL / 206 SOURCE · GAP ANALYSIS v1 COMPLETE · P0 NEW ASSET PACK 16 PO APPROVED · NEXT: P0 CANONICAL ROW SPEC + PURCHASED-ASSET AI/DERIVATIVE LICENSE GATE · CANONICAL WIREFRAME v2026-09-02.14`
+`PRODUCT / UX PLANNING — PRODUCTION EXERCISE DB v1 APPROVED · 195 CANONICAL / 206 SOURCE · GAP ANALYSIS v1 COMPLETE · P0 NEW ASSET PACK 16 PO APPROVED · P0 CANONICAL ROW SPEC v1 APPROVED · ASSISTED WEIGHT RECORDING APPROVED · NEXT: P0 DATA-ONLY SHOULDER PRESS ALIAS + PURCHASED-ASSET AI/DERIVATIVE LICENSE GATE · CANONICAL WIREFRAME v2026-09-02.14`
 
 구매 운동 에셋과 `metadata.json` 원본은 계속 **read-only**로 보존한다. G Fit용 정규화 DB와 신규 제작 에셋은 별도 파생 데이터로 관리한다.
 
@@ -58,7 +58,11 @@ PO 승인 P0 16개:
 15. 크런치
 16. 라잉 레그 레이즈
 
-기존 후보의 `레그 레이즈`는 행잉/라잉 동작 혼동을 피하기 위해 `라잉 레그 레이즈`로 명확히 고정했다. P0 운동 범위는 승인됐지만 신규 이미지 제작은 아직 시작하지 않는다. 구매 에셋과 같은 시각 계열을 AI reference로 활용하기 전 modification / derivative / AI 관련 라이선스 확인이 선행되어야 한다.
+기존 후보의 `레그 레이즈`는 행잉/라잉 동작 혼동을 피하기 위해 `라잉 레그 레이즈`로 명확히 고정했다.
+
+P0 16개 canonical row spec v1도 승인 완료했다. `machine-assisted-pull-up`, `machine-assisted-dip`은 일반 `weight_reps`가 아니라 **`assisted_weight_reps` = 보조중량 + 횟수**로 기록한다. UI에서는 일반 `kg` 대신 `보조 kg` 의미를 사용하고, 일반 중량 운동처럼 `더 높은 kg = 더 좋은 기록`으로 해석하지 않는다. MVP에서는 assisted 운동에 일반 weight PR / 1RM / bodyweight 기반 effective-load 계산을 적용하지 않는다.
+
+P0 운동 범위와 canonical spec은 승인됐지만 신규 이미지 제작은 아직 시작하지 않는다. 구매 에셋과 같은 시각 계열을 AI reference로 활용하기 전 modification / derivative / AI 관련 라이선스 확인이 선행되어야 한다.
 
 Cursor 제품 구현은 아직 승인되지 않았다.
 
@@ -69,17 +73,19 @@ Cursor 제품 구현은 아직 승인되지 않았다.
 1. 현재 Product Owner 결정
 2. `docs/24_PRODUCT_DIRECTION_V2.md`
 3. `docs/ux-decisions/2026-09-02-exercise-db-normalization.md`
-4. `docs/exercise-db/exercise-db-gap-analysis-v1.md`
-5. `docs/exercise-db/exercise-db-v1-production.md`
-6. `docs/exercise-db/purchased-asset-classification-v0.6.md`
-7. `docs/exercise-db/purchased-asset-classification-v0.5.md`
-8. `docs/exercise-db/purchased-asset-classification-v0.4.md`
-9. `docs/exercise-db/purchased-asset-classification-v0.3.md`
-10. `docs/exercise-db/purchased-asset-classification-v0.2.md`
-11. `docs/exercise-db/purchased-asset-classification-v0.1.md`
-12. `docs/ux-decisions/2026-09-02-home-workout-routine-completion-locks.md`
-13. `docs/08_DECISIONS.md` 중 위 문서들과 충돌하지 않는 기존 기반 결정
-14. 현재 canonical wireframe / Figma
+4. `docs/ux-decisions/2026-09-03-assisted-machine-recording.md`
+5. `docs/exercise-db/p0-canonical-row-spec-v1.md`
+6. `docs/exercise-db/exercise-db-gap-analysis-v1.md`
+7. `docs/exercise-db/exercise-db-v1-production.md`
+8. `docs/exercise-db/purchased-asset-classification-v0.6.md`
+9. `docs/exercise-db/purchased-asset-classification-v0.5.md`
+10. `docs/exercise-db/purchased-asset-classification-v0.4.md`
+11. `docs/exercise-db/purchased-asset-classification-v0.3.md`
+12. `docs/exercise-db/purchased-asset-classification-v0.2.md`
+13. `docs/exercise-db/purchased-asset-classification-v0.1.md`
+14. `docs/ux-decisions/2026-09-02-home-workout-routine-completion-locks.md`
+15. `docs/08_DECISIONS.md` 중 위 문서들과 충돌하지 않는 기존 기반 결정
+16. 현재 canonical wireframe / Figma
 
 기존 recommendation-heavy onboarding 관련 DEC-005 / DEC-006 / DEC-009 / DEC-014의 오래된 흐름은 `docs/24_PRODUCT_DIRECTION_V2.md`의 2026-09-01 reset보다 우선하지 않는다.
 
@@ -193,6 +199,7 @@ Home 최우선 역할은 **운동 시작 / 운동 복귀**다.
 - 사용자 부위 필터는 `가슴 / 등 / 어깨 / 팔 / 하체 / 코어 / 전신 / 기타`
 - 내부 DB에는 가능한 범위에서 세부 주요/보조 근육 유지
 - 직접 만든 운동은 큰 부위까지 필수, 세부 근육은 선택이며 앱이 임의 추정하지 않음
+- 어시스트 머신은 `assisted_weight_reps`로 별도 기록하며 `보조 kg + 횟수` 의미를 사용
 
 ## Purchased exercise DB QA history
 
@@ -233,6 +240,14 @@ Home 최우선 역할은 **운동 시작 / 운동 복귀**다.
   latest approval commit `1ab822c0e2caac94f4162f286e2a11af7f393b74`  
   P0 new assets 16 / P0 data-only 1 / P1 17 / NO_ADD 4
 
+- **Assisted machine recording** — 어시스트 풀업/딥스 `보조중량 + 횟수` semantics PO approved  
+  `docs/ux-decisions/2026-09-03-assisted-machine-recording.md`  
+  commit `aa699dc3d73236d23115419c3bbc48f934fec1c9`
+
+- **P0 Canonical Row Spec v1** — 신규 P0 16개 canonical data spec approved, asset pending  
+  `docs/exercise-db/p0-canonical-row-spec-v1.md`  
+  commit `eacf9451f63af7f32c09bdd724ec4482a7aadc89`
+
 ### Current grip mapping
 
 - `cable-single-arm-neutral-grip-row` + `cable-single-arm-underhand-grip-row` → `cable-single-arm-row`; neutral / underhand 별도 이력
@@ -243,12 +258,11 @@ Home 최우선 역할은 **운동 시작 / 운동 복귀**다.
 
 ### Next DB / asset work
 
-1. PO 승인 P0 신규 운동 16개의 canonical row spec 확정
-2. `machine-front-military-press`를 `숄더 프레스 머신`으로 찾기 쉬운 display / alias 구조 검수
-3. 신규 에셋 제작 전에 구매 에셋의 modification / derivative / AI-reference 라이선스 확인
-4. canonical spec + 라이선스가 확인되면 신규 poster 제작 → image/body/equipment/name QA
-5. poster/source mismatch 3개는 운동 상세에 source 설명을 재사용하지 않고 G Fit normalized 설명 별도 작성
-6. `machine-45-degree-back-extension` raw structured header provenance gap은 추정 없이 계속 추적하되 production blocker로 취급하지 않음
+1. `machine-front-military-press`를 `숄더 프레스 머신`으로 찾기 쉬운 display / alias 구조 검수
+2. 신규 에셋 제작 전에 구매 에셋의 modification / derivative / AI-reference 라이선스 확인
+3. canonical spec + 라이선스가 확인되면 신규 poster 제작 → image/body/equipment/name QA
+4. poster/source mismatch 3개는 운동 상세에 source 설명을 재사용하지 않고 G Fit normalized 설명 별도 작성
+5. `machine-45-degree-back-extension` raw structured header provenance gap은 추정 없이 계속 추적하되 production blocker로 취급하지 않음
 
 ## Exercise asset direction
 
@@ -308,7 +322,6 @@ Planning / UX / Exercise DB normalization + gap analysis가 진행 중이다. Pr
 
 ## Open items / blockers
 
-- P0 신규 운동 16개 canonical row spec
 - purchased asset modification / derivative / AI-reference license check
 - `machine-front-military-press` → `숄더 프레스 머신` display / alias 정리
 - P0 신규 에셋 production / QA
