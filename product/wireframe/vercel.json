@@ -5,6 +5,7 @@
     { "src": "style.css", "use": "@vercel/static" },
     { "src": "grip-record-review.html", "use": "@vercel/static" },
     { "src": "assisted-record-review.html", "use": "@vercel/static" },
-    { "src": "workout-card-actions-review.html", "use": "@vercel/static" }
+    { "src": "workout-card-actions-review.html", "use": "@vercel/static" },
+    { "src": "rest-timer-review.html", "use": "@vercel/static" }
   ]
 }
