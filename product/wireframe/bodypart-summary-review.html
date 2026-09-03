@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>G Fit 오늘 운동 부위 카드 검토안</title>
+<style>
+*{box-sizing:border-box}body{margin:0;background:#eef0f3;color:#20242a;font-family:Pretendard,SUIT,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}button{font:inherit}.top{position:sticky;top:0;z-index:5;display:flex;justify-content:space-between;align-items:center;padding:14px 22px;background:#fff;border-bottom:1px solid #d8dce1}.top b{font-size:18px}.top span{margin-left:8px;color:#737b86;font-size:12px}.top a{font-size:12px;color:#444;text-decoration:none}main{max-width:1180px;margin:auto;padding:28px 20px 64px}.head{display:flex;justify-content:space-between;gap:20px;padding-bottom:16px;border-bottom:2px solid #272c33}.head h1{margin:6px 0;font-size:28px}.head p{margin:0;color:#6c7480;font-size:14px;line-height:1.65}.badge{height:max-content;padding:7px 10px;border-radius:999px;background:#fff4d8;color:#8b6200;font-size:11px;font-weight:900}.layout{display:grid;grid-template-columns:440px 1fr;margin-top:18px;border:1px solid #d6dbe1;background:#fff}.preview{padding:28px 22px 36px;background:#fafbfc;border-right:1px solid #d8dce1}.phone{width:354px;max-width:100%;min-height:760px;margin:auto;padding:0 18px 28px;border-radius:26px;background:#0b0b0d;color:#f2f2f4;box-shadow:0 12px 30px #191e261f}.status{height:34px;display:flex;justify-content:space-between;align-items:center;color:#aaa;font-size:11px}.appbar{height:58px;display:flex;align-items:center;justify-content:space-between}.appbar h2{margin:0;font-size:18px}.appbar span{width:22px;color:#777}.eyebrow{color:#8fdfc1;font-size:9px;font-weight:900}.card{margin-top:8px;padding:18px;border:1px solid #2d2d32;border-radius:18px;background:#171719}.card h3{margin:15px 0 6px;font-size:23px}.card>p{margin:0;color:#94959b;font-size:10px;line-height:1.55}.total{display:flex;justify-content:space-between;align-items:end;margin-top:18px;padding:12px 13px;border-radius:12px;background:#222226}.total span{font-size:9px;color:#85868d}.total b{font-size:18px}.parts{display:grid;grid-template-columns:100px 1fr;gap:14px;margin-top:16px}.map{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:7px;min-height:210px;border:1px solid #2c2c31;border-radius:14px;background:#111113}.map .headx{width:32px;height:32px;border-radius:50%;background:#25252a}.map .shoulder{width:74px;height:18px;border-radius:14px;background:#355e50;color:#a9ead2;display:grid;place-items:center;font-size:7px;font-weight:900}.map .chest{width:58px;height:52px;border-radius:14px 14px 9px 9px;background:#235846;color:#a9ead2;display:grid;place-items:center;font-size:8px;font-weight:900}.map .arms{display:flex;gap:44px;margin-top:-54px}.map .arms i{width:15px;height:66px;border-radius:12px;background:#2f5147;color:#a9ead2;font-style:normal;writing-mode:vertical-rl;display:grid;place-items:center;font-size:7px;font-weight:900}.map .core{width:44px;height:42px;margin-top:-9px;border-radius:8px;background:#26262a;color:#666;display:grid;place-items:center;font-size:7px}.bars{padding-top:3px}.bar{margin-bottom:14px}.barline{display:flex;justify-content:space-between;gap:8px;margin-bottom:6px;font-size:10px}.barline b{font-size:10px}.track{height:8px;border-radius:99px;background:#29292e;overflow:hidden}.track i{display:block;height:100%;border-radius:99px;background:#34d399}.sub{margin-top:15px;padding-top:13px;border-top:1px solid #2d2d31}.sub b{font-size:10px}.exercise{display:grid;grid-template-columns:1fr 58px 45px;gap:8px;padding:8px 0;border-bottom:1px solid #29292e;font-size:9px}.exercise:last-child{border-bottom:0}.exercise span{color:#8d8e94}.exercise strong{text-align:right;color:#8fdfc1}.note{margin-top:12px;padding:11px 12px;border-radius:11px;background:#101815;border:1px solid #315847;color:#9bc6b6;font-size:9px;line-height:1.55}.dots{display:flex;justify-content:center;gap:5px;margin:12px 0}.dots i{width:6px;height:6px;border-radius:50%;background:#3a3a40}.dots i.on{background:#34d399}.shares{display:grid;grid-template-columns:repeat(4,1fr);gap:7px;margin-top:16px}.shares div{height:56px;display:grid;place-items:center;border:1px solid #2d2d32;border-radius:11px;background:#171719;color:#aaa;font-size:8px}.notes{padding:24px}.notes h2{margin:0 0 8px;font-size:21px}.lead{margin:0 0 18px;color:#6f7782;font-size:13px;line-height:1.65}.rule{padding:14px 0;border-top:1px solid #e1e4e8}.rule b{display:block;margin-bottom:5px;font-size:13px}.rule p{margin:0;color:#505862;font-size:12px;line-height:1.6}.example{margin-top:14px;border:1px solid #dde1e5;border-radius:10px;overflow:hidden}.example div{display:grid;grid-template-columns:150px 1fr;gap:10px;padding:11px 12px;border-bottom:1px solid #e3e6e9;font-size:12px}.example div:last-child{border:0}.decision{margin-top:14px;padding:14px;border:1px solid #c9daf5;border-radius:11px;background:#eef4ff;color:#40566f;font-size:12px;line-height:1.55}@media(max-width:860px){.layout{grid-template-columns:1fr}.preview{border-right:0;border-bottom:1px solid #d8dce1}.head{flex-direction:column}}
+</style>
+</head>
+<body>
+<header class="top"><div><b>G FIT</b><span>오늘 운동 부위 · REVIEW ONLY</span></div><a href="./completion-review.html">완료 화면 검토안</a></header>
+<main>
+<section class="head"><div><small>POST WORKOUT · BODY PART SUMMARY</small><h1>오늘 어떤 부위를 얼마나 했는지 한 장으로 보여준다</h1><p>복잡한 ‘근육 자극률’을 추정하지 않고, 오늘 완료한 운동의 <strong>주요 부위와 세트 수</strong>만 간단히 합산하는 검토안입니다.</p></div><div class="badge">검토안 · 아직 미확정</div></section>
+<section class="layout">
+<div class="preview"><div class="phone">
+<div class="status"><span>9:41</span><span>● ● ●</span></div>
+<div class="appbar"><span>‹</span><h2>운동 완료</h2><span></span></div>
+<div class="card">
+<span class="eyebrow">오늘 운동 부위 · 5 / 7</span>
+<h3>가슴을 가장 많이 했어요</h3>
+<p>완료한 운동의 주요 부위만 기준으로 세트를 합산합니다.</p>
+<div class="total"><span>오늘 완료 세트</span><b>12세트</b></div>
+<div class="parts">
+<div class="map"><div class="headx"></div><div class="shoulder">어깨</div><div class="chest">가슴</div><div class="arms"><i>팔</i><i>팔</i></div><div class="core">기타</div></div>
+<div class="bars">
+<div class="bar"><div class="barline"><span>가슴</span><b>6세트</b></div><div class="track"><i style="width:100%"></i></div></div>
+<div class="bar"><div class="barline"><span>팔</span><b>3세트</b></div><div class="track"><i style="width:50%"></i></div></div>
+<div class="bar"><div class="barline"><span>어깨</span><b>3세트</b></div><div class="track"><i style="width:50%"></i></div></div>
+</div>
+</div>
+<div class="sub"><b>어떻게 계산됐나요?</b>
+<div class="exercise"><span>벤치프레스</span><span>가슴</span><strong>3세트</strong></div>
+<div class="exercise"><span>체스트 프레스</span><span>가슴</span><strong>3세트</strong></div>
+<div class="exercise"><span>푸시다운</span><span>팔</span><strong>3세트</strong></div>
+<div class="exercise"><span>숄더 프레스</span><span>어깨</span><strong>3세트</strong></div>
+</div>
+<div class="note">벤치프레스가 삼두와 어깨도 쓰더라도, MVP에서는 가슴 3세트로만 계산합니다. 같은 세트를 여러 부위에 중복해서 더하지 않습니다.</div>
+</div>
+<div class="dots"><i></i><i></i><i></i><i></i><i class="on"></i><i></i><i></i></div>
+<div class="shares"><div>사진 저장</div><div>스토리</div><div>카카오톡</div><div>더보기</div></div>
+</div></div>
+<aside class="notes"><h2>이 화면의 뜻</h2><p class="lead">예를 들어 오늘 12세트를 했다면, 그 12세트를 <strong>운동 DB의 주요 부위 기준</strong>으로 나눠 보여주는 카드입니다.</p>
+<div class="rule"><b>벤치프레스 3세트</b><p>벤치프레스의 주요 부위가 `가슴`이면 가슴에 3세트만 더합니다. 삼두·어깨까지 동시에 +3씩 넣지 않습니다.</p></div>
+<div class="rule"><b>왜 이렇게 단순하게?</b><p>보조근까지 전부 계산하면 실제 완료 세트는 12세트인데 화면에서는 20~30세트처럼 불어나기 쉽습니다. 첫 버전은 사용자가 바로 이해할 수 있는 숫자를 우선합니다.</p></div>
+<div class="rule"><b>인체 표시는 무엇인가?</b><p>정밀한 ‘자극 지도’가 아니라 오늘 기록된 주요 부위를 빠르게 알아보게 하는 시각 보조입니다. 나중에 해부학 아바타가 준비되면 같은 역할로 대체할 수 있습니다.</p></div>
+<div class="example"><div><b>가슴</b><span>벤치 3 + 체스트 프레스 3 = 6세트</span></div><div><b>팔</b><span>푸시다운 3 = 3세트</span></div><div><b>어깨</b><span>숄더 프레스 3 = 3세트</span></div></div>
+<div class="decision"><strong>지금 결정할 것</strong><br>완료 카드에서 이렇게 ‘오늘 주요 부위별 세트’를 보여주는 것 자체가 필요한지 먼저 보면 됩니다. 보조근 계산이나 아바타 디테일은 지금 정하지 않아도 됩니다.</div>
+</aside>
+</section>
+</main>
+</body>
+</html>
