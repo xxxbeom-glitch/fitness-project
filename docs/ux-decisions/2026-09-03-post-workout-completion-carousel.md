@@ -1,6 +1,6 @@
 # Post-workout completion carousel / export UX
 
-**Status:** PO APPROVED — content / interaction direction approved, exact visual copy and production implementation pending
+**Status:** PO APPROVED — content / interaction direction approved, including routine trend graph + next workout hint; exact visual copy and production implementation pending
 
 **Date:** 2026-09-03
 
@@ -31,7 +31,7 @@ Hevy의 `완료 후 여러 장의 요약 카드를 넘겨보는 패턴`은 레�
    - 의미 있는 변화가 없으면 카드 생략 가능
    - `assisted_weight_reps` 운동은 일반 중량 운동처럼 `더 높은 kg = 더 좋은 기록`으로 해석하지 않음
 
-4. **최근 루틴 흐름 + 다음 운동 힌트** — 조건부
+4. **최근 루틴 흐름 + 다음 운동 힌트** — 조건부 · **PO APPROVED**
    - 단순히 `증량해보세요` 문장만 보여주지 않고, **해당 루틴의 최근 변화 그래프와 함께 힌트를 설명**한다.
    - 그래프에는 루틴 전체 흐름과 루틴에 포함된 각 운동의 흐름을 여러 개의 꺾은선으로 겹쳐 보여주는 방향을 사용한다.
    - 루틴 전체의 현재 총 수치는 별도로 보여주고, 운동별 현재 수치 / 상태도 범례나 보조 정보로 확인할 수 있게 한다.
@@ -91,7 +91,9 @@ Hevy의 `완료 후 여러 장의 요약 카드를 넘겨보는 패턴`은 레�
 - `product/wireframe/completion-review.html`
 - `product/wireframe/progression-hint-review.html`
 
-현재 review artifact는 위 방향을 확인하기 위한 preview이며 canonical production wireframe 승격은 별도 결정 전까지 하지 않는다.
+`progression-hint-review.html`의 **루틴 전체 + 운동별 꺾은선 흐름을 함께 보고, 그 맥락에서 다음 운동 힌트를 주는 구조**는 PO 승인되었다.
+
+현재 review artifact는 승인된 방향을 확인하기 위한 preview이며 canonical production wireframe 승격은 별도 결정 전까지 하지 않는다.
 
 ## Deferred
 
