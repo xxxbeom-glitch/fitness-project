@@ -7,6 +7,7 @@
     { "src": "assisted-record-review.html", "use": "@vercel/static" },
     { "src": "workout-card-actions-review.html", "use": "@vercel/static" },
     { "src": "rest-timer-review.html", "use": "@vercel/static" },
-    { "src": "workout-end-review.html", "use": "@vercel/static" }
+    { "src": "workout-end-review.html", "use": "@vercel/static" },
+    { "src": "completion-review.html", "use": "@vercel/static" }
   ]
 }
