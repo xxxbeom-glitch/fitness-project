@@ -1,41 +1,64 @@
 # CURRENT — Fitness Project
 
-**Updated:** 2026-09-03 11:52 KST
+**Updated:** 2026-09-03 12:28 KST
 
 ## Current mode
 
-`PRODUCT / UX PLANNING — EXERCISE DB v0.6 NEAR-FINAL · HIGH 205 / MEDIUM 1 / LOW 0 · 4 POSTERS QA DONE (1 MATCH / 3 MISMATCH) · NEXT: RESOLVE 1 STRUCTURED-METADATA GAP + 3 ASSET MISMATCHES → PRODUCTION EXERCISE DB v1 · CANONICAL WIREFRAME v2026-09-02.14`
+`PRODUCT / UX PLANNING — PRODUCTION EXERCISE DB v1 APPROVED · 195 CANONICAL / 206 SOURCE · GAP ANALYSIS v1 COMPLETE · RECOMMENDED P0 NEW ASSET PACK 16 · NEXT: PO REVIEW P0 PACK + PURCHASED-ASSET AI/DERIVATIVE LICENSE GATE · CANONICAL WIREFRAME v2026-09-02.14`
 
-구매 운동 에셋과 `metadata.json` 원본은 계속 **read-only**로 보존한다. G Fit용 정규화 DB는 별도 파생 파일로 관리한다.
+구매 운동 에셋과 `metadata.json` 원본은 계속 **read-only**로 보존한다. G Fit용 정규화 DB와 신규 제작 에셋은 별도 파생 데이터로 관리한다.
 
-현재 source row **206개**는 그대로 유지한다. v0.6 결과:
+Production Exercise DB v1은 현재 구매 source **206개**를 기준으로 정규화한 제품 baseline이다.
 
-- high-confidence: **205**
-- medium-confidence: **1**
-- low-confidence: **0**
-- v0.6에서 새로 actual source metadata를 반영/해결한 row: **36**
-- required core field blank: **0**
-- high-confidence row의 structured source field 누락: **0**
+- purchased source rows preserved: **206**
+- app-facing canonical exercises: **195**
+- MVP default search 제외 source rows: **8**
+- source QA: **high 205 / medium 1 / low 0**
+- production exception: **4**
+- required canonical field blank: **0**
 - English-only `name_ko`: **0**
 - unexpected shared canonical group: **0**
-- formula errors: **0**
 
-4개 poster 직접 QA 결과는 **1 match / 3 metadata-posture mismatch**다.
+MVP 기본 검색에서는 `Abdominals Stretch Variation 1–4`와 장비별 `Spinal Jefferson Curl` 4종을 제외한다. 원본 row / asset은 삭제하지 않고 source trace에 계속 보존한다.
 
-- `dumbbell-row-unilateral` — source/poster 일치 확인, 기존 conflict 해소
-- `dumbbell-single-arm-row` — source는 bench-supported, poster는 staggered stance + one-hand support → mismatch 확정
-- `kettlebell-row-single` — source는 staggered one-arm row, poster는 한 개 kettlebell을 양손으로 잡는 bent-over row → mismatch 확정
-- `kettlebell-single-arm-row` — source는 bench-supported, poster는 staggered one-arm row + non-working hand on thigh → mismatch 확정
+production exception 4건은 현재 제품 DB 사용을 막지 않는 non-blocking exception으로 관리한다.
 
-세 mismatch row는 **자동 통합하지 않고 별도 exercise identity로 유지**한다. 원본 source metadata는 보존한다.
+- `machine-45-degree-back-extension` — source prose / poster로 운동 identity는 확인했으나 현재 retrieval에서 raw structured header 1건을 정확히 회수하지 못함. raw source field를 추정 입력하지 않음.
+- `dumbbell-single-arm-row`
+- `kettlebell-row-single`
+- `kettlebell-single-arm-row`
 
-`machine-face-pulls`는 실제 source가 `Cable Rope Face Pulls / Cable Machine / Shoulders / Pull`이므로 G Fit에서는 `cable-rope-face-pull` / `케이블 로프 페이스풀`로 정규화했다. 중복 통합이 아니라 이름/장비 분류 정정이다.
-
-`kettlebell-row`는 source instructions가 양손에 kettlebell 하나씩을 사용하는 동작이므로 사용자 display를 **`더블 케틀벨 로우`**로 명확화했다. `kettlebell-row-single`은 poster 기준 한 개 kettlebell을 사용하는 asset이라 **`싱글 케틀벨 로우`**로 명확화해 검색 display 충돌을 제거했다. 단 후자는 source/poster mismatch flag를 유지한다.
-
-현재 유일한 medium row는 `machine-45-degree-back-extension`이다. source prose와 posterFile로 45도 back extension / hyperextension 동작은 확인했지만, File Library 경로에서 source structured header의 `primaryMuscles / secondaryMuscles / movementPattern / difficulty`를 정확히 회수하지 못했다. **임의 추정하지 않고 raw structured fields를 비워둔 채 medium으로 유지**한다.
+마지막 3개는 구매 poster와 source 설명의 자세가 불일치한다. G Fit에서는 실제 poster 수행을 기준으로 별도 exercise identity를 유지하고 구매 raw metadata는 그대로 보존한다. source instructions / description은 자세가 충돌하므로 사용자-facing 운동 설명으로 직접 재사용하지 않고 향후 G Fit normalized copy를 별도 작성한다.
 
 선택형 그립 기록은 **MVP에서 케이블 / 풀리 기반 운동에만 적용**한다. 바벨·덤벨·일반 머신·Smith의 named grip variant는 별도 exercise identity / 별도 이력으로 관리한다.
+
+Production v1 기준으로 Planfit / Hevy + 국내 상용 헬스장 핵심 운동 gap analysis를 진행했다. 경쟁 앱의 전체 catalog 크기를 따라가지 않고, 현재 G Fit에 실제 공백이 큰 후보 **38개**를 검토했다.
+
+- **P0 신규 에셋 추천: 16개**
+- **P0 data-only 정리: 1개** (`machine-front-military-press`를 `숄더 프레스 머신`으로 찾기 쉬운 rename / alias 검토)
+- **P1 후속 후보: 17개**
+- **NO_ADD / 신규 에셋 불필요: 4개**
+
+추천 P0 16개:
+
+1. 바벨 루마니안 데드리프트
+2. 덤벨 루마니안 데드리프트
+3. 바벨 힙 쓰러스트
+4. 라잉 레그 컬 머신
+5. 시티드 레그 컬 머신
+6. 시티드 카프 레이즈 머신
+7. 힙 어브덕션 머신
+8. 힙 어덕션 머신
+9. 스미스 머신 벤치프레스
+10. 스미스 머신 스쿼트
+11. 어시스트 풀업
+12. 어시스트 딥스
+13. 핵 스쿼트 머신
+14. 플랭크
+15. 크런치
+16. 레그 레이즈
+
+이 16개는 **추천안이며 아직 신규 이미지 제작 승인으로 간주하지 않는다.** PO가 pack 방향을 검토한 뒤 제작 범위를 확정한다. 구매 에셋과 같은 시각 계열을 AI reference로 활용하기 전 modification / derivative / AI 관련 라이선스 확인이 선행되어야 한다.
 
 Cursor 제품 구현은 아직 승인되지 않았다.
 
@@ -46,15 +69,17 @@ Cursor 제품 구현은 아직 승인되지 않았다.
 1. 현재 Product Owner 결정
 2. `docs/24_PRODUCT_DIRECTION_V2.md`
 3. `docs/ux-decisions/2026-09-02-exercise-db-normalization.md`
-4. `docs/exercise-db/purchased-asset-classification-v0.6.md`
-5. `docs/exercise-db/purchased-asset-classification-v0.5.md`
-6. `docs/exercise-db/purchased-asset-classification-v0.4.md`
-7. `docs/exercise-db/purchased-asset-classification-v0.3.md`
-8. `docs/exercise-db/purchased-asset-classification-v0.2.md`
-9. `docs/exercise-db/purchased-asset-classification-v0.1.md`
-10. `docs/ux-decisions/2026-09-02-home-workout-routine-completion-locks.md`
-11. `docs/08_DECISIONS.md` 중 위 문서들과 충돌하지 않는 기존 기반 결정
-12. 현재 canonical wireframe / Figma
+4. `docs/exercise-db/exercise-db-gap-analysis-v1.md`
+5. `docs/exercise-db/exercise-db-v1-production.md`
+6. `docs/exercise-db/purchased-asset-classification-v0.6.md`
+7. `docs/exercise-db/purchased-asset-classification-v0.5.md`
+8. `docs/exercise-db/purchased-asset-classification-v0.4.md`
+9. `docs/exercise-db/purchased-asset-classification-v0.3.md`
+10. `docs/exercise-db/purchased-asset-classification-v0.2.md`
+11. `docs/exercise-db/purchased-asset-classification-v0.1.md`
+12. `docs/ux-decisions/2026-09-02-home-workout-routine-completion-locks.md`
+13. `docs/08_DECISIONS.md` 중 위 문서들과 충돌하지 않는 기존 기반 결정
+14. 현재 canonical wireframe / Figma
 
 기존 recommendation-heavy onboarding 관련 DEC-005 / DEC-006 / DEC-009 / DEC-014의 오래된 흐름은 `docs/24_PRODUCT_DIRECTION_V2.md`의 2026-09-01 reset보다 우선하지 않는다.
 
@@ -197,6 +222,16 @@ Home 최우선 역할은 **운동 시작 / 운동 복귀**다.
   commit `fcf4ac79fd91aa5729e47a86de96a4cbddc19959`  
   high 205 / medium 1 / low 0
 
+- **Production v1** — purchased-asset baseline promotion  
+  `docs/exercise-db/exercise-db-v1-production.md`  
+  commit `c213fb40da273328ab7094bca74eda86027fa2a3`  
+  195 app-facing canonical / 206 source / 8 default-search exclusions / 4 non-blocking exceptions
+
+- **Gap Analysis v1** — Planfit / Hevy + 국내 핵심 운동 gap review  
+  `docs/exercise-db/exercise-db-gap-analysis-v1.md`  
+  commit `86e38d693c474c147001734a5a14f6420b43ce66`  
+  P0 new assets 16 / P0 data-only 1 / P1 17 / NO_ADD 4
+
 ### Current grip mapping
 
 - `cable-single-arm-neutral-grip-row` + `cable-single-arm-underhand-grip-row` → `cable-single-arm-row`; neutral / underhand 별도 이력
@@ -204,13 +239,14 @@ Home 최우선 역할은 **운동 시작 / 운동 복귀**다.
 - `cable-supinating-row` → dynamic grip movement이므로 별도 운동
 - `Cable Bar Pushdown / Cable Rope Pushdown / Cable V-Bar Pushdown` → 현재 각각 별도 운동
 
-### Next DB work
+### Next DB / asset work
 
-1. `machine-45-degree-back-extension` structured source header 1건을 **추정 없이** 회수/검증
-2. confirmed asset/metadata posture mismatch 3건의 production asset 처리: repair / regenerate / replace / explicit exception 중 결정
-3. 위 4건 해결 후 final row-count / canonical / aliases / bilingual display / source-trace QA
-4. **Production Exercise DB v1 승격**
-5. 그 뒤 Planfit / Hevy + 국내 핵심 운동과 비교해 **추가 제작 필요한 핵심 누락 운동 수량** 산출
+1. PO가 P0 신규 에셋 16개 pack을 검토하고 범위를 승인 / 조정
+2. `machine-front-military-press`를 `숄더 프레스 머신`으로 찾기 쉬운 display / alias 구조 검수
+3. 신규 에셋 제작 전에 구매 에셋의 modification / derivative / AI-reference 라이선스 확인
+4. 범위 + 라이선스가 확인되면 P0 16개 canonical spec → 신규 poster 제작 → image/body/equipment/name QA
+5. poster/source mismatch 3개는 운동 상세에 source 설명을 재사용하지 않고 G Fit normalized 설명 별도 작성
+6. `machine-45-degree-back-extension` raw structured header provenance gap은 추정 없이 계속 추적하되 production blocker로 취급하지 않음
 
 ## Exercise asset direction
 
@@ -266,16 +302,17 @@ Relevant review sources:
 
 **No Cursor handoff yet.**
 
-Planning / UX / Exercise DB normalization is still in progress. Product implementation begins only after current planning behavior is stable enough to write Issues / Acceptance Criteria without avoidable rework.
+Planning / UX / Exercise DB normalization + gap analysis가 진행 중이다. Product implementation은 현재 운동 DB / 에셋 범위와 주요 기획 동작이 충분히 안정된 뒤 Issue / Acceptance Criteria로 전환한다.
 
 ## Open items / blockers
 
-- `machine-45-degree-back-extension` structured source header 1건
-- confirmed asset/metadata posture mismatch 3건의 production asset 처리
-- production Exercise DB v1 promotion after final QA
-- core missing-exercise / additional asset gap analysis after DB v1
+- P0 신규 에셋 16개 pack PO review / approval
+- purchased asset modification / derivative / AI-reference license check
+- `machine-front-military-press` → `숄더 프레스 머신` display / alias 정리
+- P0 신규 에셋 production / QA
+- poster/source mismatch 3개 G Fit normalized user-facing 설명
+- `machine-45-degree-back-extension` raw structured source header provenance gap — non-blocking
 - grip selection UI exact form / last-used behavior
-- purchased asset license check for AI-reference derivative work
 - actual purchased-asset light-theme validation
 - recommended routine exact program contents
 - completion dashboard exact metrics / formulas
