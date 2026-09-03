@@ -1,10 +1,10 @@
 # CURRENT — Fitness Project
 
-**Updated:** 2026-09-03 20:30 KST
+**Updated:** 2026-09-03 21:40 KST
 
 ## Current mode
 
-`PRODUCT / UX PLANNING — FIGMA ↔ LATEST PRODUCT DECISION AUDIT COMPLETE · CURRENT FOCUS: FIGMA CORE LOOP SYNC PASS 1 · EXERCISE DB / ASSET WORK HOLD · NO CURSOR HANDOFF`
+`PRODUCT / UX PLANNING — HOME PRODUCT STRUCTURE LOCKED · CURRENT FOCUS: FIGMA CORE LOOP SYNC PASS 1 — EXERCISE SEARCH + ATTACHMENT BRANCH · EXERCISE DB / ASSET WORK HOLD · NO CURSOR HANDOFF`
 
 ## Immediate checkpoint
 
@@ -20,10 +20,28 @@ Audit:
 
 이미 Figma에 있는 흐름을 확인하지 않고 같은 화면을 처음부터 다시 기획하지 않는다.
 
-현재 다음 단계는 **Figma Core Loop Sync Pass 1**이다.
+### Home checkpoint — PO RECONFIRMED / LOCKED
 
-1. Home (`110 / 111`)
-2. Exercise Search (`301 / 301a / 302`) + attachment branch
+Home은 2026-09-03 PO가 **기존에 새로 정한 Home 구조를 그대로 확정**한다고 재확인했다. Home 제품 구조를 다시 기획하거나 대안을 재논의하지 않는다.
+
+확정 구조:
+
+- Home의 최우선 역할은 운동 시작 / 운동 복귀
+- 루틴 없음 → G Fit 추천 루틴 + 내 루틴 만들기
+- 추천 루틴은 개인화 추천이 아니라 G Fit이 미리 구성·검수한 ready-made routine
+- 카드 1개 = 완성된 루틴 1개
+- 추천 루틴 카드에서 실제 운동 구성이 보이는 방향
+- 루틴 있음 + 요일 미지정 → 다음 운동
+- 루틴 있음 + 요일 지정 → 오늘의 운동
+- active workout → 운동 계속하기
+- 추천 루틴은 저장 없이 먼저 시작 가능하고, 완료 후 내 루틴 저장 여부를 결정
+
+기존 Figma `110 / 111 Home`은 위 구조에 맞춰 **디자인 sync만 수행**한다. 제품 구조를 다시 결정하지 않는다.
+
+현재 **Figma Core Loop Sync Pass 1** 진행 순서:
+
+1. Home (`110 / 111`) — **PRODUCT STRUCTURE LOCKED / 디자인 sync 대상**
+2. Exercise Search (`301 / 301a / 302`) + attachment branch — **CURRENT FOCUS**
 3. Active Workout (`401a`)
 4. Rest Timer (`410`)
 5. End Flow (`403a / 403b / 403c`)
@@ -91,7 +109,7 @@ Existing account:
 
 ## Approved UX locks
 
-### Home
+### Home — PO RECONFIRMED / LOCKED
 
 Home의 최우선 역할은 **운동 시작 / 운동 복귀**다.
 
@@ -104,9 +122,14 @@ Home의 최우선 역할은 **운동 시작 / 운동 복귀**다.
 
 - 카드 1개 = 완성된 루틴 1개
 - 예: 무분할 전신 / 상체 / 하체
+- 추천 루틴 카드 안에서 실제 운동 구성 확인 가능
 - `프리셋`보다 사용자-facing 용어 `추천 루틴` 사용
+- 추천 루틴은 먼저 저장하지 않고 바로 운동 시작 가능
+- 운동 완료 후 내 루틴 저장 여부 결정
 
-현재 Figma `111_Home_Empty`는 단순 empty state라 이 방향을 반영하도록 구조 수정이 필요하다.
+2026-09-03 PO가 **이 기존 신규 Home 구조를 그대로 최종 확정**했다. Home 제품 구조는 추가 기획 대상이 아니며, 이후에는 Figma 디자인 반영만 진행한다.
+
+현재 Figma `111_Home_Empty`는 단순 empty state라 위 구조에 맞춰 디자인 수정이 필요하다.
 
 ### Exercise Search / Add
 
@@ -274,7 +297,7 @@ Figma `410_Rest_Timer`의 상단 toast / pill 구조를 visual reference로 유�
 
 ### 기존 화면 유지 + 기능/상태 수정
 
-- `110_Home`
+- `110_Home` — 제품 구조 LOCKED, 디자인 sync만 수행
 - `220_Routine_Create`
 - `230_Routine_Edit`
 - `301_Exercise_Search`
@@ -287,7 +310,7 @@ Figma `410_Rest_Timer`의 상단 toast / pill 구조를 visual reference로 유�
 
 ### 구조 / 의미 큰 수정 필요
 
-- `111_Home_Empty` — 추천 루틴 + 내 루틴 만들기 방향 반영
+- `111_Home_Empty` — 확정된 추천 루틴 + 내 루틴 만들기 구조로 디자인 변경; 제품 재기획 금지
 - `403a_Workout_End_Incomplete`
 - `403b_Workout_End_Complete`
 - `403c_Workout_Save_Or_Discard` — 최신 routine-update semantics와 재정렬
@@ -384,8 +407,8 @@ Relevant review artifacts:
 
 기존 Core Loop를 최신 정책과 맞춘다.
 
-1. Home
-2. Exercise Search + attachment selection branch
+1. Home — **제품 구조 LOCKED / 디자인 반영만 남음**
+2. Exercise Search + attachment selection branch — **현재 논의 대상**
 3. Active Workout
 4. Rest Timer
 5. Workout End Flow
@@ -408,7 +431,7 @@ Pass 1 이후:
 
 ### Design / planning
 
-- Figma Sync Pass 1
+- Figma Sync Pass 1 — Home 제품 구조는 완료, Exercise Search + attachment branch부터 계속
 - 추천 루틴 exact program contents
 - 추천 루틴 상세 / 저장 edge cases 및 copy
 - completion exact metrics / formulas
