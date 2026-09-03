@@ -1,7 +1,7 @@
 # G Fit Exercise DB Gap Analysis v1
 
 **Date:** 2026-09-03  
-**Status:** RECOMMENDED — P0 ASSET PACK AWAITS PO REVIEW  
+**Status:** APPROVED — P0 ASSET PACK 16 LOCKED BY PO  
 **Baseline:** `exercise-db-v1-production.md` — 195 app-facing canonical exercises / 206 purchased source rows
 
 ## Goal
@@ -17,7 +17,7 @@
 
 ## Conclusion
 
-### Recommended P0 new asset pack: **16개**
+### Approved P0 new asset pack: **16개**
 
 1. 바벨 루마니안 데드리프트
 2. 덤벨 루마니안 데드리프트
@@ -34,7 +34,9 @@
 13. 핵 스쿼트 머신
 14. 플랭크
 15. 크런치
-16. 레그 레이즈
+16. 라잉 레그 레이즈
+
+2026-09-03 Product Owner review에서 위 16개를 P0로 승인했다. 기존 후보의 `레그 레이즈`는 행잉/라잉 동작 혼동을 피하기 위해 **`라잉 레그 레이즈`**로 명확히 고정한다.
 
 이 16개는 현재 DB의 195개 수량을 단순히 늘리기 위한 목록이 아니다. **기본적인 상용 헬스장 패턴이 비어 있거나, 초보 추천/대체에서 공백이 크거나, 같은 이름으로 기존 기록에 합치면 안 되는 장비/자세 차이가 큰 항목**을 우선했다.
 
@@ -82,7 +84,7 @@ Planfit / Hevy 모두 별도 이름으로 제공하지만 동작 이미지는 �
 
 ### Lat pulldown grip variants
 
-Planfit은 parallel / underhand / close-grip 등을 별도 이름으로 노출한다. G Fit은 이미 PO가 승인한 정책대로 **케이블 / 풀리 운동 안의 optional grip history**를 유지하며 기본 검색 목록을 변형명으로 확대하지 않는다.
+Planfit은 parallel / underhand / close-grip 등을 별도 이름으로 노출한다. G Fit은 이미 PO가 승인한 정책대로 **케이블 / 풀리 운동 안의 optional grip history**를 유지하며 기본 검색 목록을 변형명으로 확대하지 않는다. 같은 그립 안의 손 간격(좁게 / 보통 / 넓게)은 MVP 별도 기록 차원으로 나누지 않는다.
 
 ## Why not copy the full competitor catalog
 
@@ -139,12 +141,12 @@ Hevy built-in template catalog에서 이번 패스에 직접 확인한 대표 ga
 
 ## Next
 
-Product Owner가 P0 16개 방향을 승인하면:
+P0 16개 방향은 Product Owner 승인 완료. 다음 순서:
 
 1. 16개 canonical row spec 확정
-2. 기존 구매 asset과 같은 시각 계열로 신규 poster 제작
-3. source provenance와 분리된 G Fit-created asset으로 관리
-4. image QA + body/equipment/name QA
-5. Production Exercise DB v1.x에 추가
-
-추가 제작 전에 구매 에셋을 AI reference로 사용하는 범위의 modification / derivative / AI license 확인은 별도 gate로 남긴다.
+2. `machine-front-military-press`의 `숄더 프레스 머신` display / alias 정리
+3. 기존 구매 asset과 같은 시각 계열로 신규 poster를 제작하기 전 modification / derivative / AI-reference 라이선스 확인
+4. 라이선스 gate 통과 후 신규 poster 제작
+5. source provenance와 분리된 G Fit-created asset으로 관리
+6. image QA + body/equipment/name QA
+7. Production Exercise DB v1.x에 추가
