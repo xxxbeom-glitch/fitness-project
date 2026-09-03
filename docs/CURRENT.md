@@ -1,10 +1,10 @@
 # CURRENT — Fitness Project
 
-**Updated:** 2026-09-03 15:52 KST
+**Updated:** 2026-09-03 18:05 KST
 
 ## Current mode
 
-`PRODUCT / UX PLANNING — PRODUCTION EXERCISE DB v1 APPROVED · 195 CANONICAL / 206 SOURCE · GAP ANALYSIS v1 COMPLETE · P0 NEW ASSET PACK 16 PO APPROVED · P0 CANONICAL ROW SPEC v1 APPROVED · ASSISTED WEIGHT RECORDING APPROVED · NEXT: P0 DATA-ONLY SHOULDER PRESS ALIAS + PURCHASED-ASSET AI/DERIVATIVE LICENSE GATE · CANONICAL WIREFRAME v2026-09-02.14`
+`PRODUCT / UX PLANNING — EXERCISE DB / ASSET WORK HOLD · ACTIVE WORKOUT CABLE ATTACHMENT CARD UX PO APPROVED · CURRENT FOCUS: ACTIVE WORKOUT REMAINING DETAILS · CANONICAL WIREFRAME v2026-09-02.14`
 
 구매 운동 에셋과 `metadata.json` 원본은 계속 **read-only**로 보존한다. G Fit용 정규화 DB와 신규 제작 에셋은 별도 파생 데이터로 관리한다.
 
@@ -30,7 +30,11 @@ production exception 4건은 현재 제품 DB 사용을 막지 않는 non-blocki
 
 마지막 3개는 구매 poster와 source 설명의 자세가 불일치한다. G Fit에서는 실제 poster 수행을 기준으로 별도 exercise identity를 유지하고 구매 raw metadata는 그대로 보존한다. source instructions / description은 자세가 충돌하므로 사용자-facing 운동 설명으로 직접 재사용하지 않고 향후 G Fit normalized copy를 별도 작성한다.
 
-선택형 그립 기록은 **MVP에서 케이블 / 풀리 기반 운동에만 적용**한다. 바벨·덤벨·일반 머신·Smith의 named grip variant는 별도 exercise identity / 별도 이력으로 관리한다. 같은 그립 안의 손 간격/그립 넓이(좁게 / 보통 / 넓게)는 MVP에서 별도 기록 차원으로 구분하지 않는다.
+케이블 / 풀리 운동에서 선택 기록하려는 대상은 `오버핸드 / 언더핸드 / 뉴트럴` 같은 손바닥 방향이 아니라 **스트레이트 바 / 와이드 랫 바 / 맥그립 계열 같은 손잡이(attachment)**다. 사용자-facing 용어는 `손잡이`, 내부 데이터 용어는 `attachment`를 권장한다.
+
+Active Workout에서 손잡이는 카드 내부 chip / label로 **표시만** 하고 카드 안에서 수정하지 않는다. 같은 운동을 손잡이 2개로 할 예정이면 카드도 2개로 둔다. 운동 중 다른 손잡이로 더 하려면 `운동 추가 → 운동 선택 → 손잡이 선택 → 새 카드 추가` 흐름을 사용한다. 기존 카드의 세트 / 이전 기록 / kg / 횟수 / 완료 상태를 다른 손잡이로 변환하거나 덮어쓰지 않는다.
+
+이 결정은 `docs/ux-decisions/2026-09-03-cable-attachment-active-workout.md`가 기준이며, 기존 normalization 문서의 `오버핸드 / 뉴트럴 / 언더핸드` 중심 선택형 grip 가정은 superseded 상태다.
 
 Production v1 기준으로 Planfit / Hevy + 국내 상용 헬스장 핵심 운동 gap analysis를 진행했다. 경쟁 앱의 전체 catalog 크기를 따라가지 않고, 현재 G Fit에 실제 공백이 큰 후보 **38개**를 검토했다.
 
@@ -64,6 +68,8 @@ P0 16개 canonical row spec v1도 승인 완료했다. `machine-assisted-pull-up
 
 P0 운동 범위와 canonical spec은 승인됐지만 신규 이미지 제작은 아직 시작하지 않는다. 구매 에셋과 같은 시각 계열을 AI reference로 활용하기 전 modification / derivative / AI 관련 라이선스 확인이 선행되어야 한다.
 
+**Exercise DB / asset 상세 작업은 현재 HOLD다.** PO가 대규모 Gym Animations 계열 추가 구매 여부를 확인한 뒤 재개한다. HOLD 동안 Production 195, P0 16 approved spec, assisted recording semantics는 그대로 보존한다. 기존 `machine-front-military-press` shoulder press alias-only 결론과 hand-orientation grip mapping은 재개 시 다시 검수하며 지금 실행하지 않는다.
+
 Cursor 제품 구현은 아직 승인되지 않았다.
 
 ## Current authority
@@ -72,20 +78,21 @@ Cursor 제품 구현은 아직 승인되지 않았다.
 
 1. 현재 Product Owner 결정
 2. `docs/24_PRODUCT_DIRECTION_V2.md`
-3. `docs/ux-decisions/2026-09-02-exercise-db-normalization.md`
-4. `docs/ux-decisions/2026-09-03-assisted-machine-recording.md`
-5. `docs/exercise-db/p0-canonical-row-spec-v1.md`
-6. `docs/exercise-db/exercise-db-gap-analysis-v1.md`
-7. `docs/exercise-db/exercise-db-v1-production.md`
-8. `docs/exercise-db/purchased-asset-classification-v0.6.md`
-9. `docs/exercise-db/purchased-asset-classification-v0.5.md`
-10. `docs/exercise-db/purchased-asset-classification-v0.4.md`
-11. `docs/exercise-db/purchased-asset-classification-v0.3.md`
-12. `docs/exercise-db/purchased-asset-classification-v0.2.md`
-13. `docs/exercise-db/purchased-asset-classification-v0.1.md`
-14. `docs/ux-decisions/2026-09-02-home-workout-routine-completion-locks.md`
-15. `docs/08_DECISIONS.md` 중 위 문서들과 충돌하지 않는 기존 기반 결정
-16. 현재 canonical wireframe / Figma
+3. `docs/ux-decisions/2026-09-03-cable-attachment-active-workout.md`
+4. `docs/ux-decisions/2026-09-02-exercise-db-normalization.md` — cable grip subsection은 위 2026-09-03 attachment 결정이 supersede
+5. `docs/ux-decisions/2026-09-03-assisted-machine-recording.md`
+6. `docs/exercise-db/p0-canonical-row-spec-v1.md`
+7. `docs/exercise-db/exercise-db-gap-analysis-v1.md`
+8. `docs/exercise-db/exercise-db-v1-production.md`
+9. `docs/exercise-db/purchased-asset-classification-v0.6.md`
+10. `docs/exercise-db/purchased-asset-classification-v0.5.md`
+11. `docs/exercise-db/purchased-asset-classification-v0.4.md`
+12. `docs/exercise-db/purchased-asset-classification-v0.3.md`
+13. `docs/exercise-db/purchased-asset-classification-v0.2.md`
+14. `docs/exercise-db/purchased-asset-classification-v0.1.md`
+15. `docs/ux-decisions/2026-09-02-home-workout-routine-completion-locks.md`
+16. `docs/08_DECISIONS.md` 중 위 문서들과 충돌하지 않는 기존 기반 결정
+17. 현재 canonical wireframe / Figma
 
 기존 recommendation-heavy onboarding 관련 DEC-005 / DEC-006 / DEC-009 / DEC-014의 오래된 흐름은 `docs/24_PRODUCT_DIRECTION_V2.md`의 2026-09-01 reset보다 우선하지 않는다.
 
@@ -147,6 +154,15 @@ Home 최우선 역할은 **운동 시작 / 운동 복귀**다.
 - 휴식 타이머는 작은 형태
 - 운동 하나마다 별도 화면으로 이동하는 구조는 기본값이 아님
 
+케이블 손잡이(attachment) UX — **PO APPROVED**:
+
+- 카드 하나 = 오늘 실제로 수행할 하나의 운동 블록
+- 손잡이는 카드 안에 chip / label로 표시하되 수정 UI로 사용하지 않음
+- 같은 운동을 손잡이 2개로 할 계획이면 루틴부터 별도 카드 2개로 저장
+- 운동 중 다른 손잡이를 추가하려면 `운동 추가 → 운동 선택 → 손잡이 선택 → 새 카드 추가`
+- 기존 카드의 손잡이 / 완료 세트 / 이전 기록을 다른 손잡이로 바꾸지 않음
+- 각 카드에는 기존 `세트 / 이전 / kg / 횟수 / 완료` 구조를 그대로 사용
+
 ### Recommended Routine Save Flow
 
 `추천 루틴 선택 → 저장 없이 운동 시작 → 운동 완료 → 사용자가 내 루틴 저장 여부 결정`
@@ -177,6 +193,7 @@ Home 최우선 역할은 **운동 시작 / 운동 복귀**다.
 - 이름/이미지 선택 시 상세는 선택적으로 진입
 - 없으면 직접 만들기
 - Custom exercise는 MVP first-class history entity
+- 손잡이 선택을 지원하는 운동은 `운동 선택 → 손잡이 선택 → 카드 추가`의 다음 단계를 사용
 
 ## Exercise DB normalization — APPROVED
 
@@ -184,14 +201,19 @@ Home 최우선 역할은 **운동 시작 / 운동 복귀**다.
 
 `docs/ux-decisions/2026-09-02-exercise-db-normalization.md`
 
+케이블 손잡이 기록 부분은 다음 문서가 최신 기준이다.
+
+`docs/ux-decisions/2026-09-03-cable-attachment-active-workout.md`
+
 핵심 규칙:
 
 - 장비가 다르면 별도 운동 / 별도 이력
 - 각도 / 주요 자세가 다르면 별도 운동 / 별도 이력
 - 기본 identity는 최소 `동작 + 장비 + 각도/주요 자세`
-- 선택형 그립 기록은 MVP에서 **케이블 / 풀리 운동에만** 적용
-- 같은 그립의 손 간격/그립 넓이(좁게 / 보통 / 넓게)는 MVP 별도 기록으로 나누지 않음
-- 케이블 / 풀리라도 별도 운동명으로 통용되는 attachment/movement 변형은 무조건 합치지 않음
+- 케이블 기록 선택 대상은 hand-orientation grip이 아니라 **손잡이 / attachment**
+- attachment를 기록 차원으로 사용하는 운동은 attachment별 수행 카드 / 이전 기록을 분리
+- Cable Bar Pushdown / Cable Rope Pushdown처럼 별도 운동명으로 통용되는 attachment/movement 변형은 자동으로 하나의 운동에 합치지 않음
+- 정확한 운동별 attachment 허용 목록 / taxonomy는 DB HOLD 해제 후 확정
 - 하나의 standard exercise identity에 `name_ko` + `name_en` 동시 유지
 - 구매 원본 영문은 `source_name_en`, 통합 전 다른 이름은 aliases/source metadata로 보존
 - 제조사/브랜드별 머신 DB는 MVP 기본 범위에서 제외
@@ -244,25 +266,52 @@ Home 최우선 역할은 **운동 시작 / 운동 복귀**다.
   `docs/ux-decisions/2026-09-03-assisted-machine-recording.md`  
   commit `aa699dc3d73236d23115419c3bbc48f934fec1c9`
 
+- **Cable attachment Active Workout UX** — 손잡이 표시-only chip + 새 손잡이는 새 카드 추가 PO approved  
+  `docs/ux-decisions/2026-09-03-cable-attachment-active-workout.md`  
+  commit `ad6fbdfe2222f44a245b85c1e03280993f00fe91`
+
 - **P0 Canonical Row Spec v1** — 신규 P0 16개 canonical data spec approved, asset pending  
   `docs/exercise-db/p0-canonical-row-spec-v1.md`  
   commit `eacf9451f63af7f32c09bdd724ec4482a7aadc89`
 
-### Current grip mapping
+### Legacy grip mapping — RE-REVIEW REQUIRED
 
-- `cable-single-arm-neutral-grip-row` + `cable-single-arm-underhand-grip-row` → `cable-single-arm-row`; neutral / underhand 별도 이력
-- `machine-pulldown` + `narrow-pulldown` → `lat-pulldown`; 기본 기록 + `neutral_close` 별도 이력
-- `cable-supinating-row` → dynamic grip movement이므로 별도 운동
+2026-09-03 PO clarification으로 제품의 선택 기능은 hand-orientation grip이 아니라 cable **attachment / 손잡이**를 의미하는 것으로 정리됐다.
+
+따라서 아래 과거 mapping은 source/history 참고용이며 **현재 제품 정책으로 구현하지 않는다.** DB / asset HOLD 해제 후 attachment 관점으로 재검수한다.
+
+- `cable-single-arm-neutral-grip-row` + `cable-single-arm-underhand-grip-row` → `cable-single-arm-row`; 과거에는 neutral / underhand 별도 이력으로 해석
+- `machine-pulldown` + `narrow-pulldown` → `lat-pulldown`; 과거에는 기본 기록 + `neutral_close` 별도 이력으로 해석
+- `cable-supinating-row` → dynamic grip movement이므로 별도 운동으로 분류됨
 - `Cable Bar Pushdown / Cable Rope Pushdown / Cable V-Bar Pushdown` → 현재 각각 별도 운동
-- 같은 그립의 narrow / medium / wide 손 간격 차이는 MVP 별도 이력으로 나누지 않음
 
-### Next DB / asset work
+원본 source row / asset은 수정하거나 삭제하지 않는다.
 
-1. `machine-front-military-press`를 `숄더 프레스 머신`으로 찾기 쉬운 display / alias 구조 검수
-2. 신규 에셋 제작 전에 구매 에셋의 modification / derivative / AI-reference 라이선스 확인
-3. canonical spec + 라이선스가 확인되면 신규 poster 제작 → image/body/equipment/name QA
-4. poster/source mismatch 3개는 운동 상세에 source 설명을 재사용하지 않고 G Fit normalized 설명 별도 작성
-5. `machine-45-degree-back-extension` raw structured header provenance gap은 추정 없이 계속 추적하되 production blocker로 취급하지 않음
+### Next DB / asset work — HOLD
+
+PO의 추가 에셋 패키지 구매 여부 확인 전까지 상세 DB / 신규 에셋 작업을 진행하지 않는다.
+
+HOLD checkpoint:
+
+1. Production Exercise DB v1 **195 canonical / 206 source** 유지
+2. P0 신규 16개 approved scope + canonical row spec 유지
+3. Assisted pull-up / dip `assisted_weight_reps` semantics 유지
+4. shoulder press alias-only 결론은 실행하지 않고 재검수 대기
+5. hand-orientation grip mapping은 실행하지 않고 attachment 기준 재검수 대기
+6. P0 신규 이미지 생성 시작하지 않음
+
+구매 시 재개 순서:
+
+1. 전달 패키지 / 전체 목록 / 라이선스 확인
+2. 원본 source read-only 보존
+3. G Fit gym / strength 범위 필터
+4. 기존 Production 195 mapping
+5. P0 16 mapping
+6. shoulder press 포함 variant 재검수
+7. attachment taxonomy / 운동별 허용 손잡이 mapping
+8. gap / duplicate report 후 PO 검토
+
+구매하지 않으면 현재 Production 195 + P0 16 기준에서 shoulder 분류 / missing asset 작업을 재개한다.
 
 ## Exercise asset direction
 
@@ -308,7 +357,7 @@ Living planning deck:
 Relevant review sources:
 
 - `product/wireframe/exercise-review.html` — Exercise Search/Add PO approved
-- `product/wireframe/grip-record-review.html` — optional grip interaction review; MVP scope later narrowed to cable/pulley only
+- `product/wireframe/grip-record-review.html` — latest cable attachment/card flow review prototype; direction PO approved, canonical promotion pending
 - `product/wireframe/home-review.html`
 - `product/wireframe/workout-review.html`
 - `product/wireframe/completion-review.html`
@@ -318,16 +367,19 @@ Relevant review sources:
 
 **No Cursor handoff yet.**
 
-Planning / UX / Exercise DB normalization + gap analysis가 진행 중이다. Product implementation은 현재 운동 DB / 에셋 범위와 주요 기획 동작이 충분히 안정된 뒤 Issue / Acceptance Criteria로 전환한다.
+Planning / UX가 현재 진행 중이며 Exercise DB / asset 상세 작업은 HOLD다. Product implementation은 주요 UX와 운동 DB / 에셋 범위가 충분히 안정된 뒤 Issue / Acceptance Criteria로 전환한다.
 
 ## Open items / blockers
 
 - purchased asset modification / derivative / AI-reference license check
-- `machine-front-military-press` → `숄더 프레스 머신` display / alias 정리
-- P0 신규 에셋 production / QA
+- 추가 Gym Animations 계열 package 구매 여부
+- attachment taxonomy / 표준 명칭 / 운동별 허용 손잡이 mapping — DB HOLD 해제 후
+- shoulder press plate-loaded / selectorized / iso-lateral 분류 재검수 — DB HOLD 해제 후
+- P0 신규 에셋 production / QA — HOLD
 - poster/source mismatch 3개 G Fit normalized user-facing 설명
 - `machine-45-degree-back-extension` raw structured source header provenance gap — non-blocking
-- grip selection UI exact form / last-used behavior
+- approved attachment/card flow의 canonical wireframe 반영
+- Active Workout remaining details
 - actual purchased-asset light-theme validation
 - recommended routine exact program contents
 - completion dashboard exact metrics / formulas
