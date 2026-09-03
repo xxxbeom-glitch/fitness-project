@@ -1,6 +1,6 @@
 # Post-workout completion carousel / export UX
 
-**Status:** PO APPROVED — content / interaction direction approved, including routine trend graph + next workout hint and completion card content-density constraint; exact visual copy and production implementation pending
+**Status:** PO APPROVED — completion card content/system direction passed for design handoff; exact visual treatment and production implementation pending
 
 **Date:** 2026-09-03
 
@@ -25,6 +25,15 @@ Hevy의 `완료 후 여러 장의 요약 카드를 넘겨보는 패턴`은 레�
 - wireframe review에서는 정보 구조를 확인하되, 최종 밀도 / 여백 / 타이포 / 시각적 균형은 Figma 디자인 단계에서 확정한다.
 
 즉, 완료 카드 설계의 공통 기준은 **“한 장에서 바로 이해되는 정보량”**이다.
+
+### 2026-09-03 PO review result
+
+`product/wireframe/completion-cards-all-review.html`에 전체 카드 후보를 1:1.25 비율로 맞춰 함께 검토했고, **현재 정보 구조와 카드 구성은 기획 단계 기준 PASS**로 확정했다.
+
+- 현재 wireframe에서 추가적인 미세 레이아웃 조정은 더 진행하지 않는다.
+- 카드별 여백, 글자 크기, 그래프 밀도, 아바타 크기, 실제 목록 노출량 등은 **Figma 디자인 단계에서 균형을 보며 조정**한다.
+- 디자인 단계에서 1:1.25 카드 안의 균형이 깨지면 정보량을 줄이거나 표현 방식을 바꿀 수 있다.
+- 이 PASS는 **콘텐츠 구조 / 정보 우선순위 승인**이며, 현재 wireframe 시각 디자인 자체를 최종 디자인으로 승인한 의미는 아니다.
 
 ### Carousel content direction
 
@@ -109,8 +118,12 @@ Hevy의 `완료 후 여러 장의 요약 카드를 넘겨보는 패턴`은 레�
 
 - `product/wireframe/completion-review.html`
 - `product/wireframe/progression-hint-review.html`
+- `product/wireframe/bodypart-summary-review.html`
+- `product/wireframe/completion-cards-all-review.html`
 
 `progression-hint-review.html`의 **루틴 전체 + 운동별 꺾은선 흐름을 함께 보고, 그 맥락에서 다음 운동 힌트를 주는 구조**는 PO 승인되었다.
+
+`completion-cards-all-review.html`의 전체 카드 정보 구조는 **기획 단계 PASS**이며, 최종 시각 균형은 Figma에서 조정한다.
 
 현재 review artifact는 승인된 방향을 확인하기 위한 preview이며 canonical production wireframe 승격은 별도 결정 전까지 하지 않는다.
 
