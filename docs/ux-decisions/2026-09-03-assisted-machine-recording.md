@@ -47,6 +47,37 @@ Hevy의 authenticated built-in catalog도 `Pull Up (Assisted)`, `Chest Dip (Assi
 
 향후 progression/PR 규칙이 필요해지면 별도 Product Decision으로 정의한다.
 
+## Active Workout UI — PO APPROVED
+
+Active Workout에서는 일반 운동 카드와 다른 별도 화면을 만들지 않는다. **기존 운동 카드 구조를 그대로 재사용**하고, 세트 입력의 `kg` 의미만 `보조 kg`로 바꾼다.
+
+기본 카드 정보:
+
+- 세트
+- 이전 기록
+- 보조 kg
+- 횟수
+- 완료 체크
+- 세트 추가
+
+예:
+
+`이전 40×10 | 보조 kg 35 | 횟수 10`
+
+어시스트 운동이라고 해서 카드에 항상 긴 설명이나 경고를 붙이지 않는다. 기록 속도를 우선한다.
+
+### First-use helper
+
+사용자가 어시스트 기록을 처음 접할 때만 짧은 안내를 한 번 보여주는 방향을 승인한다.
+
+권장 의미:
+
+> `보조 kg가 클수록 머신의 도움도 커집니다.`
+
+- 첫 사용 이해를 돕는 보조 안내이며 매 세션 반복 노출하지 않는다.
+- 이후 카드에는 `보조 kg` 레이블 자체만으로 기록한다.
+- 높은 보조중량을 성과 상승처럼 색상 / PR 배지로 강조하지 않는다.
+
 ## Dip identity
 
 이번 결정은 **어시스트 딥스를 가슴/삼두 버전으로 추가 분리하는 결정이 아니다.**
@@ -55,6 +86,6 @@ Hevy의 authenticated built-in catalog도 `Pull Up (Assisted)`, `Chest Dip (Assi
 
 ## Implementation note
 
-이 문서는 제품/데이터 의미를 확정한 Decision이다. Cursor 제품 구현은 아직 승인되지 않았다.
+이 문서는 제품/데이터 의미와 Active Workout UI 방향을 확정한 Decision이다. Cursor 제품 구현은 아직 승인되지 않았다.
 
 구현 단계에서는 기존 Active Workout 세트 row 구조를 재사용하되 `recording_type == assisted_weight_reps`일 때 입력 레이블과 기록 비교 semantics만 분기하는 방향을 우선한다.
