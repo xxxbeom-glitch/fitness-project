@@ -1,100 +1,61 @@
 # CURRENT — Fitness Project
 
-**Updated:** 2026-09-03 18:05 KST
+**Updated:** 2026-09-03 20:30 KST
 
 ## Current mode
 
-`PRODUCT / UX PLANNING — EXERCISE DB / ASSET WORK HOLD · ACTIVE WORKOUT CABLE ATTACHMENT CARD UX PO APPROVED · CURRENT FOCUS: ACTIVE WORKOUT REMAINING DETAILS · CANONICAL WIREFRAME v2026-09-02.14`
+`PRODUCT / UX PLANNING — FIGMA ↔ LATEST PRODUCT DECISION AUDIT COMPLETE · CURRENT FOCUS: FIGMA CORE LOOP SYNC PASS 1 · EXERCISE DB / ASSET WORK HOLD · NO CURSOR HANDOFF`
 
-구매 운동 에셋과 `metadata.json` 원본은 계속 **read-only**로 보존한다. G Fit용 정규화 DB와 신규 제작 에셋은 별도 파생 데이터로 관리한다.
+## Immediate checkpoint
 
-Production Exercise DB v1은 현재 구매 source **206개**를 기준으로 정규화한 제품 baseline이다.
+2026-09-03 기존 Figma 전체 Page `0:1`을 최신 GitHub / PO 결정과 대조했다.
 
-- purchased source rows preserved: **206**
-- app-facing canonical exercises: **195**
-- MVP default search 제외 source rows: **8**
-- source QA: **high 205 / medium 1 / low 0**
-- production exception: **4**
-- required canonical field blank: **0**
-- English-only `name_ko`: **0**
-- unexpected shared canonical group: **0**
+Audit:
 
-MVP 기본 검색에서는 `Abdominals Stretch Variation 1–4`와 장비별 `Spinal Jefferson Curl` 4종을 제외한다. 원본 row / asset은 삭제하지 않고 source trace에 계속 보존한다.
+`docs/figma-product-sync-audit-2026-09-03.md`
 
-production exception 4건은 현재 제품 DB 사용을 막지 않는 non-blocking exception으로 관리한다.
+핵심 운영 원칙:
 
-- `machine-45-degree-back-extension` — source prose / poster로 운동 identity는 확인했으나 현재 retrieval에서 raw structured header 1건을 정확히 회수하지 못함. raw source field를 추정 입력하지 않음.
-- `dumbbell-single-arm-row`
-- `kettlebell-row-single`
-- `kettlebell-single-arm-row`
+`최신 GitHub 정책 확인 → 기존 Figma frame 확인 → 있으면 차이만 수정 → 없을 때만 신규 화면/와이어프레임 생성`
 
-마지막 3개는 구매 poster와 source 설명의 자세가 불일치한다. G Fit에서는 실제 poster 수행을 기준으로 별도 exercise identity를 유지하고 구매 raw metadata는 그대로 보존한다. source instructions / description은 자세가 충돌하므로 사용자-facing 운동 설명으로 직접 재사용하지 않고 향후 G Fit normalized copy를 별도 작성한다.
+이미 Figma에 있는 흐름을 확인하지 않고 같은 화면을 처음부터 다시 기획하지 않는다.
 
-케이블 / 풀리 운동에서 선택 기록하려는 대상은 `오버핸드 / 언더핸드 / 뉴트럴` 같은 손바닥 방향이 아니라 **스트레이트 바 / 와이드 랫 바 / 맥그립 계열 같은 손잡이(attachment)**다. 사용자-facing 용어는 `손잡이`, 내부 데이터 용어는 `attachment`를 권장한다.
+현재 다음 단계는 **Figma Core Loop Sync Pass 1**이다.
 
-Active Workout에서 손잡이는 카드 내부 chip / label로 **표시만** 하고 카드 안에서 수정하지 않는다. 같은 운동을 손잡이 2개로 할 예정이면 카드도 2개로 둔다. 운동 중 다른 손잡이로 더 하려면 `운동 추가 → 운동 선택 → 손잡이 선택 → 새 카드 추가` 흐름을 사용한다. 기존 카드의 세트 / 이전 기록 / kg / 횟수 / 완료 상태를 다른 손잡이로 변환하거나 덮어쓰지 않는다.
+1. Home (`110 / 111`)
+2. Exercise Search (`301 / 301a / 302`) + attachment branch
+3. Active Workout (`401a`)
+4. Rest Timer (`410`)
+5. End Flow (`403a / 403b / 403c`)
+6. Workout Complete (`501`)
 
-이 결정은 `docs/ux-decisions/2026-09-03-cable-attachment-active-workout.md`가 기준이며, 기존 normalization 문서의 `오버핸드 / 뉴트럴 / 언더핸드` 중심 선택형 grip 가정은 superseded 상태다.
-
-Production v1 기준으로 Planfit / Hevy + 국내 상용 헬스장 핵심 운동 gap analysis를 진행했다. 경쟁 앱의 전체 catalog 크기를 따라가지 않고, 현재 G Fit에 실제 공백이 큰 후보 **38개**를 검토했다.
-
-- **P0 신규 에셋 승인: 16개**
-- **P0 data-only 정리: 1개** (`machine-front-military-press`를 `숄더 프레스 머신`으로 찾기 쉬운 rename / alias 검토)
-- **P1 후속 후보: 17개**
-- **NO_ADD / 신규 에셋 불필요: 4개**
-
-PO 승인 P0 16개:
-
-1. 바벨 루마니안 데드리프트
-2. 덤벨 루마니안 데드리프트
-3. 바벨 힙 쓰러스트
-4. 라잉 레그 컬 머신
-5. 시티드 레그 컬 머신
-6. 시티드 카프 레이즈 머신
-7. 힙 어브덕션 머신
-8. 힙 어덕션 머신
-9. 스미스 머신 벤치프레스
-10. 스미스 머신 스쿼트
-11. 어시스트 풀업
-12. 어시스트 딥스
-13. 핵 스쿼트 머신
-14. 플랭크
-15. 크런치
-16. 라잉 레그 레이즈
-
-기존 후보의 `레그 레이즈`는 행잉/라잉 동작 혼동을 피하기 위해 `라잉 레그 레이즈`로 명확히 고정했다.
-
-P0 16개 canonical row spec v1도 승인 완료했다. `machine-assisted-pull-up`, `machine-assisted-dip`은 일반 `weight_reps`가 아니라 **`assisted_weight_reps` = 보조중량 + 횟수**로 기록한다. UI에서는 일반 `kg` 대신 `보조 kg` 의미를 사용하고, 일반 중량 운동처럼 `더 높은 kg = 더 좋은 기록`으로 해석하지 않는다. MVP에서는 assisted 운동에 일반 weight PR / 1RM / bodyweight 기반 effective-load 계산을 적용하지 않는다.
-
-P0 운동 범위와 canonical spec은 승인됐지만 신규 이미지 제작은 아직 시작하지 않는다. 구매 에셋과 같은 시각 계열을 AI reference로 활용하기 전 modification / derivative / AI 관련 라이선스 확인이 선행되어야 한다.
-
-**Exercise DB / asset 상세 작업은 현재 HOLD다.** PO가 대규모 Gym Animations 계열 추가 구매 여부를 확인한 뒤 재개한다. HOLD 동안 Production 195, P0 16 approved spec, assisted recording semantics는 그대로 보존한다. 기존 `machine-front-military-press` shoulder press alias-only 결론과 hand-orientation grip mapping은 재개 시 다시 검수하며 지금 실행하지 않는다.
+이 단계는 신규 제품 기획이 아니라 **기존 Figma에 이미 있는 화면을 최신 승인 정책에 맞게 수정하는 디자인 sync**다.
 
 Cursor 제품 구현은 아직 승인되지 않았다.
 
+---
+
 ## Current authority
 
-우선순위:
+충돌 시 우선순위:
 
-1. 현재 Product Owner 결정
+1. 현재 Product Owner의 최신 명시적 결정
 2. `docs/24_PRODUCT_DIRECTION_V2.md`
-3. `docs/ux-decisions/2026-09-03-cable-attachment-active-workout.md`
-4. `docs/ux-decisions/2026-09-02-exercise-db-normalization.md` — cable grip subsection은 위 2026-09-03 attachment 결정이 supersede
-5. `docs/ux-decisions/2026-09-03-assisted-machine-recording.md`
-6. `docs/exercise-db/p0-canonical-row-spec-v1.md`
-7. `docs/exercise-db/exercise-db-gap-analysis-v1.md`
-8. `docs/exercise-db/exercise-db-v1-production.md`
-9. `docs/exercise-db/purchased-asset-classification-v0.6.md`
-10. `docs/exercise-db/purchased-asset-classification-v0.5.md`
-11. `docs/exercise-db/purchased-asset-classification-v0.4.md`
-12. `docs/exercise-db/purchased-asset-classification-v0.3.md`
-13. `docs/exercise-db/purchased-asset-classification-v0.2.md`
-14. `docs/exercise-db/purchased-asset-classification-v0.1.md`
-15. `docs/ux-decisions/2026-09-02-home-workout-routine-completion-locks.md`
-16. `docs/08_DECISIONS.md` 중 위 문서들과 충돌하지 않는 기존 기반 결정
-17. 현재 canonical wireframe / Figma
+3. `docs/ux-decisions/2026-09-03-active-workout-routine-update.md`
+4. `docs/ux-decisions/2026-09-03-rest-timer-behavior.md`
+5. `docs/ux-decisions/2026-09-03-post-workout-completion-carousel.md`
+6. `docs/ux-decisions/2026-09-03-cable-attachment-active-workout.md`
+7. `docs/ux-decisions/2026-09-03-assisted-machine-recording.md`
+8. `docs/ux-decisions/2026-09-02-exercise-db-normalization.md` — cable grip subsection은 2026-09-03 attachment 결정이 supersede
+9. `docs/exercise-db/p0-canonical-row-spec-v1.md`
+10. `docs/exercise-db/exercise-db-gap-analysis-v1.md`
+11. `docs/exercise-db/exercise-db-v1-production.md`
+12. `docs/ux-decisions/2026-09-02-home-workout-routine-completion-locks.md` 중 위 최신 문서들과 충돌하지 않는 부분
+13. 기존 canonical Figma / Vercel wireframe
 
-기존 recommendation-heavy onboarding 관련 DEC-005 / DEC-006 / DEC-009 / DEC-014의 오래된 흐름은 `docs/24_PRODUCT_DIRECTION_V2.md`의 2026-09-01 reset보다 우선하지 않는다.
+`docs/figma-product-sync-audit-2026-09-03.md`는 **결정 문서가 아니라 현재 Figma와 최신 결정의 차이를 기록한 audit evidence**다.
+
+---
 
 ## Product definition — CONFIRMED
 
@@ -102,16 +63,9 @@ Working name: `G Fit` (`Go Fitness`) — 가칭.
 
 G Fit은 **운동 루틴을 만들고, 실제 운동을 빠르게 기록하고, 기록이 쌓일수록 성장과 개인화 가치를 높이는 웨이트 트레이닝 앱**이다.
 
-제품 성격:
-
-- 빠른 운동 기록이 본체
-- 추천 루틴 / 운동 정보는 선택을 돕는 보조층
-- 기록이 쌓이면 분석 / 개인화 가치가 커짐
-- AI coach/chat-first 제품이 아님
-
 Core loop:
 
-`Home에서 다음 운동 바로 시작 → 운동 중 빠르게 기록 → 완료에서 오늘 결과 확인 → 분석에서 누적 변화 확인`
+`Home에서 오늘/다음 운동 바로 시작 → 운동 중 빠르게 기록 → 완료에서 오늘 결과 확인 → 분석에서 누적 변화 확인`
 
 Bottom navigation:
 
@@ -119,7 +73,7 @@ Bottom navigation:
 
 Exercise Library는 독립 primary tab이 아니라 루틴/운동 흐름 안에서 contextual하게 사용한다.
 
-## First-run — CONFIRMED RESET
+### First-run — CONFIRMED RESET
 
 New account:
 
@@ -129,59 +83,30 @@ Existing account:
 
 `로그인 → Home`
 
-기존 추천 설문 / 추천 결과 캐러셀 onboarding은 superseded.
+기존 추천 설문 / 추천 결과 onboarding은 superseded.
 
 닉네임 / 프로필 사진은 first-run 필수가 아니며 기본값을 자동 부여하고 Settings에서 변경한다.
+
+---
 
 ## Approved UX locks
 
 ### Home
 
-Home 최우선 역할은 **운동 시작 / 운동 복귀**다.
+Home의 최우선 역할은 **운동 시작 / 운동 복귀**다.
 
 - 루틴 없음 → 추천 루틴 / 내 루틴 만들기
 - 루틴 있음 + 요일 미지정 → 다음 운동
 - 루틴 있음 + 요일 지정 → 오늘의 운동
 - active workout → 운동 계속하기
 
-### Active Workout
+추천 루틴은 개인화 추천이 아니라 G Fit이 미리 준비하고 검수한 ready-made routine이다.
 
-**전체 운동을 한 화면에서 이어서 보고 현재 운동만 펼쳐 기록**한다.
+- 카드 1개 = 완성된 루틴 1개
+- 예: 무분할 전신 / 상체 / 하체
+- `프리셋`보다 사용자-facing 용어 `추천 루틴` 사용
 
-- 세트 / 이전 기록 / kg / 횟수 / 완료
-- 다음 운동은 아래에 접어서 계속 보임
-- 이전 기록은 입력 가까이에 표시
-- 휴식 타이머는 작은 형태
-- 운동 하나마다 별도 화면으로 이동하는 구조는 기본값이 아님
-
-케이블 손잡이(attachment) UX — **PO APPROVED**:
-
-- 카드 하나 = 오늘 실제로 수행할 하나의 운동 블록
-- 손잡이는 카드 안에 chip / label로 표시하되 수정 UI로 사용하지 않음
-- 같은 운동을 손잡이 2개로 할 계획이면 루틴부터 별도 카드 2개로 저장
-- 운동 중 다른 손잡이를 추가하려면 `운동 추가 → 운동 선택 → 손잡이 선택 → 새 카드 추가`
-- 기존 카드의 손잡이 / 완료 세트 / 이전 기록을 다른 손잡이로 바꾸지 않음
-- 각 카드에는 기존 `세트 / 이전 / kg / 횟수 / 완료` 구조를 그대로 사용
-
-### Recommended Routine Save Flow
-
-`추천 루틴 선택 → 저장 없이 운동 시작 → 운동 완료 → 사용자가 내 루틴 저장 여부 결정`
-
-- 오늘 운동 기록은 항상 저장
-- 루틴 저장은 별도 선택
-- 운동 중 구성이 바뀌었다면 저장 시 `오늘 한 구성 / 원래 추천 구성`을 추가로 선택하는 방향
-
-### Post-workout Completion
-
-완료 화면은 **오늘 운동을 풍부하게 복기**하는 화면이다.
-
-상단 후보 카드:
-
-1. 오늘 운동 요약
-2. 오늘 좋아진 기록
-3. 이번 주 기록
-
-그 아래 오늘 실제 운동 결과 전체를 보여준다. 월별 추세 / 장기 그래프 / 깊은 종목 분석은 Analysis가 담당한다.
+현재 Figma `111_Home_Empty`는 단순 empty state라 이 방향을 반영하도록 구조 수정이 필요하다.
 
 ### Exercise Search / Add
 
@@ -189,199 +114,326 @@ Home 최우선 역할은 **운동 시작 / 운동 복귀**다.
 
 - 루틴 만들기와 운동 중 추가에서 같은 선택 흐름 재사용
 - 목록에서 상세 진입 없이 바로 추가 가능
-- 목록 우선 정보: 운동명 / 장비 / 주요 부위 / 이미지 / 최근 기록
-- 이름/이미지 선택 시 상세는 선택적으로 진입
+- 이름/이미지 선택 시 Exercise Detail은 선택 진입
 - 없으면 직접 만들기
-- Custom exercise는 MVP first-class history entity
-- 손잡이 선택을 지원하는 운동은 `운동 선택 → 손잡이 선택 → 카드 추가`의 다음 단계를 사용
+- Custom exercise는 일반 운동처럼 이력을 가짐
+- 손잡이 선택 지원 운동은 `운동 선택 → 손잡이 선택 → 카드 추가`
 
-## Exercise DB normalization — APPROVED
+현재 Figma `301 / 301a / 302`의 검색 구조는 재사용하되 attachment picker branch가 필요하다.
 
-기준 문서:
+### Active Workout
 
-`docs/ux-decisions/2026-09-02-exercise-db-normalization.md`
+기본 구조는 **전체 운동을 한 화면에서 이어서 보고 현재 운동만 펼쳐 기록**이다.
 
-케이블 손잡이 기록 부분은 다음 문서가 최신 기준이다.
+- 세트 / 이전 기록 / kg / 횟수 / 완료
+- 다음 운동은 아래에 계속 보임
+- 이전 기록은 입력 가까이 표시
+- 사용자는 원하는 운동 카드를 바로 열어 수행 가능
+- 강제 수행 순서 없음
+- `건너뛰기` 상태 없음
+- `다른 운동 먼저` 같은 별도 상태 없음
+- 실제 수행 순서가 달라도 루틴 변경으로 보지 않음
+- 미수행 운동은 그냥 미수행 상태이며 자동 삭제하지 않음
+
+#### Cable attachment — PO APPROVED
+
+- 사용자 용어: `손잡이`
+- 내부 용어: `attachment`
+- 카드 하나 = 하나의 실제 수행 블록
+- 손잡이는 카드 안에서 표시만 하고 수정하지 않음
+- 같은 운동을 손잡이 2개로 하면 카드도 2개
+- 다른 손잡이로 추가 수행 → `운동 추가 → 운동 선택 → 손잡이 선택 → 새 카드`
+- 기존 카드의 기록 / 완료 상태 / 손잡이를 다른 카드로 변환하지 않음
+
+기준:
 
 `docs/ux-decisions/2026-09-03-cable-attachment-active-workout.md`
 
-핵심 규칙:
+#### Assisted machine — PO APPROVED
 
-- 장비가 다르면 별도 운동 / 별도 이력
-- 각도 / 주요 자세가 다르면 별도 운동 / 별도 이력
-- 기본 identity는 최소 `동작 + 장비 + 각도/주요 자세`
-- 케이블 기록 선택 대상은 hand-orientation grip이 아니라 **손잡이 / attachment**
-- attachment를 기록 차원으로 사용하는 운동은 attachment별 수행 카드 / 이전 기록을 분리
-- Cable Bar Pushdown / Cable Rope Pushdown처럼 별도 운동명으로 통용되는 attachment/movement 변형은 자동으로 하나의 운동에 합치지 않음
-- 정확한 운동별 attachment 허용 목록 / taxonomy는 DB HOLD 해제 후 확정
-- 하나의 standard exercise identity에 `name_ko` + `name_en` 동시 유지
-- 구매 원본 영문은 `source_name_en`, 통합 전 다른 이름은 aliases/source metadata로 보존
-- 제조사/브랜드별 머신 DB는 MVP 기본 범위에서 제외
-- 같은 실제 수행만 duplicate merge; 애매하면 자동 통합하지 않음
-- 사용자 부위 필터는 `가슴 / 등 / 어깨 / 팔 / 하체 / 코어 / 전신 / 기타`
-- 내부 DB에는 가능한 범위에서 세부 주요/보조 근육 유지
-- 직접 만든 운동은 큰 부위까지 필수, 세부 근육은 선택이며 앱이 임의 추정하지 않음
-- 어시스트 머신은 `assisted_weight_reps`로 별도 기록하며 `보조 kg + 횟수` 의미를 사용
+`machine-assisted-pull-up`, `machine-assisted-dip` 등 assisted 운동은:
 
-## Purchased exercise DB QA history
+- recording type `assisted_weight_reps`
+- `보조 kg + 횟수` 기록
+- 일반 `kg` 대신 `보조 kg`
+- 더 높은 보조 kg를 더 좋은 기록으로 해석하지 않음
+- 일반 중량 PR / 1RM / weight-volume 의미를 그대로 적용하지 않음
+- 첫 사용에만 짧은 helper: `보조 kg가 클수록 머신의 도움도 커집니다.`
 
-- **v0.1** — 파일명 기반 206개 1차 분류  
-  `docs/exercise-db/purchased-asset-classification-v0.1.md`  
-  commit `544e39a0744278362ff0fbf6745908424edbeffe`
+### Active Workout routine changes — PO APPROVED
 
-- **v0.2** — metadata / poster 일부 재검수, false duplicate 정정  
-  `docs/exercise-db/purchased-asset-classification-v0.2.md`
+루틴 구조 변경으로 보는 것:
 
-- **v0.3** — 케이블 / 풀리 metadata + grip mapping  
-  `docs/exercise-db/purchased-asset-classification-v0.3.md`  
-  commit `84a14a2ae500bd38f7fbdd7f672538afe1db296f`  
-  high 55 / medium 1 / low 150
+- 운동 추가
+- 운동 삭제
+- 세트 추가
+- 세트 삭제
+- 다른 손잡이의 새 카드 추가 등 실제 카드 구조 변경
 
-- **v0.4** — Band 11 + Barbell 24 source metadata enrichment  
-  `docs/exercise-db/purchased-asset-classification-v0.4.md`  
-  commit `3130116899bbbc55293b9fa0df533396c15841a6`  
-  high 90 / medium 1 / low 115
+루틴 구조 변경이 아닌 것:
 
-- **v0.5** — Bodyweight 30 + Dumbbell 51 source metadata enrichment  
-  `docs/exercise-db/purchased-asset-classification-v0.5.md`  
-  commit `80106e804bf8fbdddd0eb2f54f1f48d63bc3584a`  
-  high 171 / medium 1 / low 34
+- 실제 수행 순서
+- 일부 운동 미수행
+- kg 변경
+- 횟수 변경
+- 완료 세트 결과 자체
 
-- **v0.6** — remaining metadata enrichment + 4 poster visual QA + canonical/display integrity pass  
-  `docs/exercise-db/purchased-asset-classification-v0.6.md`  
-  commit `fcf4ac79fd91aa5729e47a86de96a4cbddc19959`  
-  high 205 / medium 1 / low 0
+운동 종료 시 구조 변경이 있었다면 한 번만 요약해서 묻는다.
 
-- **Production v1** — purchased-asset baseline promotion  
-  `docs/exercise-db/exercise-db-v1-production.md`  
-  commit `c213fb40da273328ab7094bca74eda86027fa2a3`  
-  195 app-facing canonical / 206 source / 8 default-search exclusions / 4 non-blocking exceptions
+예:
 
-- **Gap Analysis v1** — Planfit / Hevy + 국내 핵심 운동 gap review; P0 pack PO approved  
-  `docs/exercise-db/exercise-db-gap-analysis-v1.md`  
-  latest approval commit `1ab822c0e2caac94f4162f286e2a11af7f393b74`  
-  P0 new assets 16 / P0 data-only 1 / P1 17 / NO_ADD 4
+`운동 추가 2개 · 운동 삭제 1개 · 세트 추가 1개`
 
-- **Assisted machine recording** — 어시스트 풀업/딥스 `보조중량 + 횟수` semantics PO approved  
-  `docs/ux-decisions/2026-09-03-assisted-machine-recording.md`  
-  commit `aa699dc3d73236d23115419c3bbc48f934fec1c9`
+선택:
 
-- **Cable attachment Active Workout UX** — 손잡이 표시-only chip + 새 손잡이는 새 카드 추가 PO approved  
-  `docs/ux-decisions/2026-09-03-cable-attachment-active-workout.md`  
-  commit `ad6fbdfe2222f44a245b85c1e03280993f00fe91`
+- `오늘만 적용`
+- `루틴 업데이트`
 
-- **P0 Canonical Row Spec v1** — 신규 P0 16개 canonical data spec approved, asset pending  
-  `docs/exercise-db/p0-canonical-row-spec-v1.md`  
-  commit `eacf9451f63af7f32c09bdd724ec4482a7aadc89`
+오늘 운동 기록은 어느 쪽을 선택해도 보존한다.
 
-### Legacy grip mapping — RE-REVIEW REQUIRED
+현재 Figma `403c_Workout_Save_Or_Discard`는 기본 종료 단계로 그대로 사용하지 않고, 최신 정책에 맞춘 routine-change confirmation으로 repurpose하거나 실제 전체 폐기 edge case와 분리해야 한다.
 
-2026-09-03 PO clarification으로 제품의 선택 기능은 hand-orientation grip이 아니라 cable **attachment / 손잡이**를 의미하는 것으로 정리됐다.
+### Rest Timer — PO APPROVED
 
-따라서 아래 과거 mapping은 source/history 참고용이며 **현재 제품 정책으로 구현하지 않는다.** DB / asset HOLD 해제 후 attachment 관점으로 재검수한다.
+Figma `410_Rest_Timer`의 상단 toast / pill 구조를 visual reference로 유지한다.
 
-- `cable-single-arm-neutral-grip-row` + `cable-single-arm-underhand-grip-row` → `cable-single-arm-row`; 과거에는 neutral / underhand 별도 이력으로 해석
-- `machine-pulldown` + `narrow-pulldown` → `lat-pulldown`; 과거에는 기본 기록 + `neutral_close` 별도 이력으로 해석
-- `cable-supinating-row` → dynamic grip movement이므로 별도 운동으로 분류됨
-- `Cable Bar Pushdown / Cable Rope Pushdown / Cable V-Bar Pushdown` → 현재 각각 별도 운동
+- 세트 완료 체크 → 자동 시작
+- 설정 시간 카운트다운
+- 잠깐 노출 후 UI는 사라질 수 있음
+- UI가 사라져도 타이머는 계속 진행 가능
+- 사용자는 기다리지 않고 다음 세트 / 다른 운동 진행 가능
+- toast가 보일 때 `X`로 닫을 수 있음
+- `+15초 / -15초`는 MVP에서 사용하지 않음
+- 타이머는 운동 순서나 진행을 막지 않음
+- 정확한 종료 진동 / 소리 / 알림은 디자인·구현 단계에서 확정
 
-원본 source row / asset은 수정하거나 삭제하지 않는다.
+기준:
 
-### Next DB / asset work — HOLD
+`docs/ux-decisions/2026-09-03-rest-timer-behavior.md`
 
-PO의 추가 에셋 패키지 구매 여부 확인 전까지 상세 DB / 신규 에셋 작업을 진행하지 않는다.
+### Post-workout Completion — PO APPROVED / PLANNING PASS
 
-HOLD checkpoint:
+기존 Figma `501_Workout_Complete`의 단순 요약 구조는 최신 방향으로 교체한다.
 
-1. Production Exercise DB v1 **195 canonical / 206 source** 유지
-2. P0 신규 16개 approved scope + canonical row spec 유지
-3. Assisted pull-up / dip `assisted_weight_reps` semantics 유지
-4. shoulder press alias-only 결론은 실행하지 않고 재검수 대기
-5. hand-orientation grip mapping은 실행하지 않고 attachment 기준 재검수 대기
-6. P0 신규 이미지 생성 시작하지 않음
+완료 화면 중심은 **1:1.25 비율의 카드 캐러셀**이다.
 
-구매 시 재개 순서:
+기본 카드 후보:
 
-1. 전달 패키지 / 전체 목록 / 라이선스 확인
-2. 원본 source read-only 보존
-3. G Fit gym / strength 범위 필터
-4. 기존 Production 195 mapping
-5. P0 16 mapping
-6. shoulder press 포함 variant 재검수
-7. attachment taxonomy / 운동별 허용 손잡이 mapping
-8. gap / duplicate report 후 PO 검토
+1. 오늘 기록 요약
+2. 총 볼륨 비유
+3. 오늘의 발전
+4. 최근 루틴 흐름 + 다음 운동 힌트 — 조건부
+5. 오늘 운동 부위
+6. 오늘 한 운동 / 실제 수행 결과
+7. 최근 흐름 — 조건부
 
-구매하지 않으면 현재 Production 195 + P0 16 기준에서 shoulder 분류 / missing asset 작업을 재개한다.
+공통 원칙:
 
-## Exercise asset direction
+- 한 카드에서 바로 이해되는 정보량
+- 내부 스크롤을 기본으로 하지 않음
+- 카드마다 시각적 중심 하나
+- 의미 없는 카드는 생략 가능
+- 정확한 여백 / 글자 크기 / 그래프 밀도 / 아바타 크기는 Figma 디자인 단계에서 조정
 
-- 이미 구매한 exercise asset / metadata를 기본 라이브러리로 사용
-- 원본은 read-only 보존, G Fit 정규화 결과는 별도 생성
-- 겹치는 운동을 대규모 새 제작하지 않음
-- 국내 헬스장 핵심 누락만 추가 제작
-- 누락 에셋은 기존 구매 자료의 camera / crop / background / body proportion / muscle highlight 계열에 맞춤
-- 중성적으로 보이는 해부학 3D 아바타 1계열 baseline
-- 동일 운동 male/female 이중 에셋은 baseline에서 요구하지 않음
-- 구매 원본을 AI reference로 직접 사용하기 전 modification / derivative / AI 관련 라이선스 확인 필요
+`최근 루틴 흐름 + 다음 운동 힌트`는 루틴 전체 + 포함 운동별 여러 꺾은선을 함께 보고 그 맥락에서 힌트를 설명하는 구조로 PO 승인됐다.
+
+현재 카드 기준 export 방향:
+
+- 사진 저장
+- 스토리 공유
+- 카카오톡
+- 더보기 / 시스템 공유
+
+추천 루틴으로 시작한 세션은 운동 완료 후 `내 루틴으로 저장` 선택을 조건부로 추가한다.
+
+기준:
+
+`docs/ux-decisions/2026-09-03-post-workout-completion-carousel.md`
+
+### Recommended Routine Save Flow
+
+`추천 루틴 선택 → 저장 없이 운동 시작 → 운동 완료 → 사용자가 내 루틴 저장 여부 결정`
+
+- 오늘 운동 기록은 항상 저장
+- 루틴 저장은 별도 선택
+- 운동 중 추천 구성을 바꿨다면 저장 시 `오늘 한 구성 / 원래 추천 구성`을 추가로 선택하는 방향
+
+정확한 추천 루틴 상세 화면 / 저장 버튼 copy는 아직 OPEN.
+
+---
+
+## Figma sync audit result
+
+### 기본 구조 재사용 가능
+
+- `201_Routine_List`
+- `203_Routine_List_Empty`
+- `210_Routine_Detail`
+- `341_Library_Exercise_History` — recording type별 label semantics 보완
+- `630_Unit_Settings_Sheet`
+
+### 기존 화면 유지 + 기능/상태 수정
+
+- `110_Home`
+- `220_Routine_Create`
+- `230_Routine_Edit`
+- `301_Exercise_Search`
+- `301a_Exercise_Search_Selected`
+- `302_Exercise_Search_Empty`
+- `310_Custom_Exercise_Create`
+- `311_Custom_Exercise_Edit`
+- `401a_Workout_Active`
+- `410_Rest_Timer`
+
+### 구조 / 의미 큰 수정 필요
+
+- `111_Home_Empty` — 추천 루틴 + 내 루틴 만들기 방향 반영
+- `403a_Workout_End_Incomplete`
+- `403b_Workout_End_Complete`
+- `403c_Workout_Save_Or_Discard` — 최신 routine-update semantics와 재정렬
+- `421_Exercise_Reorder` — 단순 다른 운동 선행 용도로 쓰지 않음; 유지 목적 재검토
+- `501_Workout_Complete` — 승인 완료 캐러셀 구조로 교체
+
+### 현재 Figma에 별도 frame 미확인
+
+- 추천 루틴 상세 / 사용 flow
+- attachment picker
+- assisted first-use helper state
+- routine-change confirmation 전용 상태 (`403c` repurpose 가능)
+- Exercise Detail
+- Analysis first screen / drilldown
+- Settings main
+- first-run 기본정보 화면 — 현재 디자인 우선순위 밖으로 둔 기존 맥락이 있어 즉시 blocker는 아님
+
+---
+
+## Exercise DB / asset — HOLD
+
+구매 원본 source / metadata는 계속 read-only 보존한다.
+
+Production baseline:
+
+- purchased source: **206**
+- app-facing canonical: **195**
+- default search exclusion: **8**
+- production non-blocking exception: **4**
+
+P0 신규 16개 canonical spec은 승인됐지만 신규 asset production은 시작하지 않는다.
+
+HOLD 해제 전까지 실행하지 않는 것:
+
+- shoulder press alias / variant 최종 처리
+- hand-orientation grip mapping 구현
+- attachment taxonomy / 운동별 허용 손잡이 전체 mapping
+- P0 신규 이미지 제작
+
+재개 조건:
+
+- 추가 Gym Animations 계열 package 구매 여부 결정
+- purchased asset modification / derivative / AI-reference license 확인
+
+---
 
 ## Theme — VALIDATION PENDING
 
-PO는 구매 에셋과의 결합 때문에 light theme를 선호한다. 아직 global theme로 확정하지 않는다.
+PO는 구매 운동 에셋과의 결합을 고려해 light theme를 선호하지만 global theme로 아직 확정하지 않는다.
 
-실제 구매 에셋으로 먼저 검증할 화면:
+실제 구매 에셋으로 우선 검증할 화면:
 
 1. Exercise Search / Select
 2. Exercise Detail
 3. Active Workout
 
+---
+
 ## Canonical artifacts
-
-Canonical production wireframe:
-
-`https://liftly-wireframe.vercel.app`
-
-- Vercel project: `liftly-wireframe`
-- project ID: `prj_w7P1KrlqbzDq9dBQ0UcFh2VuQipG`
-- team ID: `team_cAq2nylL00z8u39kpinhZXQa`
-- canonical version: `2026-09-02.14`
-- production deployment: `dpl_FhbswP4x1T8oat9yQQKgsRic8hV8`
 
 Canonical Figma:
 
 `https://www.figma.com/design/W3lZurXCXbThP67rF2xk2b/LIFTLY_%EC%B5%9C%EC%A2%85?node-id=0-1`
 
-Living planning deck:
+Canonical production wireframe:
 
-`https://docs.google.com/presentation/d/1F0EYIvZ2xfbi2hR0kdjyW8c-gXAHWaBLIajmPamczJM/edit`
+`https://liftly-wireframe.vercel.app`
 
-Relevant review sources:
+- canonical wireframe version: `2026-09-02.14`
+- 현재 최신 PO 결정들이 모두 canonical production wireframe에 반영된 상태는 아님
+- review preview와 canonical production을 구분한다
 
-- `product/wireframe/exercise-review.html` — Exercise Search/Add PO approved
-- `product/wireframe/grip-record-review.html` — latest cable attachment/card flow review prototype; direction PO approved, canonical promotion pending
-- `product/wireframe/home-review.html`
-- `product/wireframe/workout-review.html`
+Current sync audit:
+
+`docs/figma-product-sync-audit-2026-09-03.md`
+
+Relevant review artifacts:
+
+- `product/wireframe/exercise-review.html`
+- `product/wireframe/grip-record-review.html`
+- `product/wireframe/workout-card-actions-review.html`
+- `product/wireframe/rest-timer-review.html` — visual/controls 일부 superseded
+- `product/wireframe/workout-end-review.html`
 - `product/wireframe/completion-review.html`
-- `product/wireframe/routine-review.html`
+- `product/wireframe/progression-hint-review.html`
+- `product/wireframe/bodypart-summary-review.html`
+- `product/wireframe/completion-cards-all-review.html`
+
+---
+
+## Next
+
+### Figma Sync Pass 1
+
+기존 Core Loop를 최신 정책과 맞춘다.
+
+1. Home
+2. Exercise Search + attachment selection branch
+3. Active Workout
+4. Rest Timer
+5. Workout End Flow
+6. Workout Complete carousel
+
+Figma 작업 방식은 **기존 frame을 기준으로 변경점만 전달**한다. 이미 있는 화면을 처음부터 다시 생성하는 프롬프트를 만들지 않는다.
+
+### Figma Sync Pass 2 / 신규 화면
+
+Pass 1 이후:
+
+1. 추천 루틴 flow
+2. Exercise Detail
+3. Analysis first screen
+4. Settings main
+
+---
+
+## Open items / blockers
+
+### Design / planning
+
+- Figma Sync Pass 1
+- 추천 루틴 exact program contents
+- 추천 루틴 상세 / 저장 edge cases 및 copy
+- completion exact metrics / formulas
+- progression hint exact metric / observation threshold
+- Analysis first-screen metrics / drilldown scope
+- Exercise Detail scope
+- Settings main scope
+- `421_Exercise_Reorder`의 향후 역할 확정
+- 전체 workout discard edge case의 정확한 진입 / copy
+
+### DB / asset
+
+- purchased asset modification / derivative / AI-reference license check
+- 추가 Gym Animations package 구매 여부
+- attachment taxonomy / 표준 명칭 / 운동별 허용 손잡이 mapping — HOLD 해제 후
+- shoulder press plate-loaded / selectorized / iso-lateral 재검수 — HOLD 해제 후
+- P0 신규 asset production / QA — HOLD
+- poster/source mismatch 3개 G Fit normalized user-facing 설명
+- `machine-45-degree-back-extension` raw structured source provenance gap — non-blocking
+- actual purchased-asset light-theme validation
+
+---
 
 ## Implementation status
 
 **No Cursor handoff yet.**
 
-Planning / UX가 현재 진행 중이며 Exercise DB / asset 상세 작업은 HOLD다. Product implementation은 주요 UX와 운동 DB / 에셋 범위가 충분히 안정된 뒤 Issue / Acceptance Criteria로 전환한다.
-
-## Open items / blockers
-
-- purchased asset modification / derivative / AI-reference license check
-- 추가 Gym Animations 계열 package 구매 여부
-- attachment taxonomy / 표준 명칭 / 운동별 허용 손잡이 mapping — DB HOLD 해제 후
-- shoulder press plate-loaded / selectorized / iso-lateral 분류 재검수 — DB HOLD 해제 후
-- P0 신규 에셋 production / QA — HOLD
-- poster/source mismatch 3개 G Fit normalized user-facing 설명
-- `machine-45-degree-back-extension` raw structured source header provenance gap — non-blocking
-- approved attachment/card flow의 canonical wireframe 반영
-- Active Workout remaining details
-- actual purchased-asset light-theme validation
-- recommended routine exact program contents
-- completion dashboard exact metrics / formulas
-- Analysis first-screen metrics / drilldown scope
-- recommendation routine save button copy / detailed edge cases
+현재는 Figma / Product sync 단계다. 주요 Core Loop 디자인이 최신 결정과 동기화되고, 신규 핵심 MVP 화면 범위가 충분히 안정된 뒤 Issue / Acceptance Criteria로 구현 단계에 넘긴다.
