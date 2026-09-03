@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>G Fit 운동 중 카드 액션 검토안</title>
+<style>
+*{box-sizing:border-box}body{margin:0;background:#eef0f3;color:#20242a;font-family:Pretendard,SUIT,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}button{font:inherit}.top{position:sticky;top:0;z-index:20;padding:14px 22px;background:#fff;border-bottom:1px solid #d8dce1}.top b{font-size:18px}.top span{margin-left:8px;color:#737b86;font-size:12px}main{max-width:1260px;margin:auto;padding:28px 20px 72px}.head{display:flex;justify-content:space-between;gap:20px;padding-bottom:16px;border-bottom:2px solid #272c33}.head h1{margin:5px 0;font-size:28px}.head p{margin:0;color:#6c7480;font-size:14px;line-height:1.6}.badge{height:max-content;padding:7px 10px;border-radius:999px;background:#fff4d8;color:#8b6200;font-size:11px;font-weight:900}.tabs{display:flex;gap:6px;margin:18px 0 0;overflow:auto}.tabs button{white-space:nowrap;padding:9px 12px;border:1px solid #d4d9df;border-radius:8px;background:#fff;color:#5c6470;font-size:12px;font-weight:800;cursor:pointer}.tabs button.on{background:#20252b;color:#fff;border-color:#20252b}.layout{display:grid;grid-template-columns:470px 1fr;margin-top:14px;border:1px solid #d6dbe1;background:#fff}.preview{padding:28px 24px 36px;background:#fafbfc;border-right:1px solid #d8dce1}.phone{position:relative;overflow:hidden;width:360px;max-width:100%;min-height:800px;margin:auto;padding:0 18px 88px;border-radius:26px;background:#0a0a0c;color:#f0f0f2;box-shadow:0 12px 30px #191e261f}.status{height:34px;display:flex;align-items:center;justify-content:space-between;color:#bbb;font-size:11px}.appbar{height:58px;display:flex;align-items:center;justify-content:space-between}.appbar small{display:block;color:#8e8e93;font-size:9px}.appbar h2{margin:2px 0 0;font-size:18px}.end{border:0;background:transparent;color:#f08b8b;font-size:10px;font-weight:800}.progress{display:flex;justify-content:space-between;color:#7d7f85;font-size:9px}.track{height:5px;margin:7px 0 14px;border-radius:99px;background:#232327;overflow:hidden}.track i{display:block;width:42%;height:100%;background:#34d399}.screen{display:none}.screen.on{display:block}.card{margin-bottom:9px;border:1px solid #29292e;border-radius:14px;background:#161618;overflow:hidden}.card.active{border-color:#315847}.card.skipped{border-color:#2d2d32;background:#121214}.card.ended{border-color:#3b3322;background:#18150f}.headrow{display:flex;align-items:center;justify-content:space-between;gap:8px;padding:13px}.headrow b{font-size:15px}.headrow small{display:block;margin-top:3px;color:#8e8e93;font-size:9px}.menu{border:0;background:transparent;color:#8d8f95;font-weight:900;cursor:pointer}.tag{display:inline-block;padding:4px 7px;border-radius:999px;background:#222227;color:#b8bbc1;font-size:8px;font-weight:900}.tag.green{background:#15392c;color:#74ddb4}.tag.gray{background:#252529;color:#9799a0}.tag.amber{background:#3a2d12;color:#e2c474}.body{padding:0 12px 12px}.grid{display:grid;grid-template-columns:30px 1.18fr .92fr .92fr 32px;gap:5px;align-items:center}.grid.h{padding:0 1px 5px;color:#6f6f76;font-size:8px;text-align:center}.row{min-height:38px;margin-bottom:5px;padding:3px 1px;border-radius:8px;background:#0f0f11}.row.done{background:#10221c}.row span,.row small{text-align:center;font-size:9px}.row small{color:#8b8b92}.input{height:29px;display:grid;place-items:center;border:1px solid #2c2c31;border-radius:6px;background:#1b1b1f;color:#f1f1f2;font-size:10px}.check{width:28px;height:28px;display:grid;place-items:center;border:1px solid #3a3a40;border-radius:7px;background:#202024;color:#87878e;font-size:10px}.row.done .check{border-color:#2d7659;background:#1a4a39;color:#72e5b8}.addset{width:100%;height:31px;border:0;border-radius:7px;background:#202024;color:#c8c8ce;font-size:9px;font-weight:800}.collapsed{padding:12px 13px;display:flex;align-items:center;justify-content:space-between}.collapsed .left b{font-size:14px}.collapsed .left small{display:block;margin-top:3px;color:#83858b;font-size:9px}.collapsed .meta{text-align:right;color:#777980;font-size:9px}.collapsed .meta b{display:block;color:#b9bbc0;font-size:10px}.hint{margin:9px 0;padding:10px 11px;border:1px solid #2b3a34;border-radius:10px;background:#101815;color:#a5c9ba;font-size:9px;line-height:1.5}.warn{margin:9px 0;padding:10px 11px;border:1px solid #443921;border-radius:10px;background:#1d180e;color:#d2bf89;font-size:9px;line-height:1.5}.undo{height:28px;padding:0 9px;border:1px solid #3a3a40;border-radius:7px;background:#202024;color:#bbb;font-size:9px;font-weight:800}.fakeMenu{margin:6px 0 10px 88px;padding:7px;border:1px solid #34343a;border-radius:11px;background:#202024;box-shadow:0 8px 20px #0008}.fakeMenu button{width:100%;padding:10px;border:0;border-bottom:1px solid #303035;background:transparent;color:#eee;text-align:left;font-size:10px}.fakeMenu button:last-child{border-bottom:0}.fakeMenu .danger{color:#f09a9a}.bottom{position:absolute;left:0;right:0;bottom:0;height:70px;padding:9px 20px;background:#111114;border-top:1px solid #242429;display:grid;grid-template-columns:repeat(4,1fr)}.bottom div{text-align:center;color:#74747b;font-size:14px}.bottom .on{color:#f0f0f2}.bottom small{display:block;margin-top:3px;font-size:8px}.notes{padding:24px}.notes h2{margin:0 0 7px;font-size:21px}.lead{margin:0 0 18px;color:#6f7782;font-size:13px;line-height:1.6}.rule{padding:14px 0;border-top:1px solid #e1e4e8}.rule b{display:block;margin-bottom:5px;font-size:13px}.rule p{margin:0;color:#505862;font-size:12px;line-height:1.55}.decision{margin-top:14px;padding:14px;border:1px solid #c9daf5;border-radius:11px;background:#eef4ff;color:#40566f;font-size:12px;line-height:1.55}.decision b{display:block;margin-bottom:5px}.warning{margin-top:10px;padding:13px 15px;border:1px solid #ead8ad;border-radius:11px;background:#fffaf0;color:#745813;font-size:12px;line-height:1.5}@media(max-width:900px){.layout{grid-template-columns:1fr}.preview{border-right:0;border-bottom:1px solid #d8dce1}.head{flex-direction:column}}
+</style>
+</head>
+<body>
+<header class="top"><b>G FIT</b><span>Active Workout 카드 액션 · REVIEW ONLY</span></header>
+<main>
+<section class="head"><div><small>ACTIVE WORKOUT · REVIEW ONLY</small><h1>운동 중 순서 변경, 건너뛰기, 제거를 어떻게 다룰까?</h1><p>기존 확정 구조인 <strong>한 화면 전체 운동 + 현재 운동만 펼침</strong>을 유지하면서, 실제 헬스장에서 자주 생기는 기구 대기·종목 생략·잘못 추가 상황만 단순하게 처리하는 안입니다.</p></div><div class="badge">검토안 · 아직 미확정</div></section>
+<div class="tabs"><button class="on" data-view="base">1. 기본</button><button data-view="switch">2. 다른 운동 먼저</button><button data-view="skip">3. 오늘 건너뛰기</button><button data-view="remove">4. 제거 / 중단</button></div>
+<section class="layout">
+<div class="preview"><div class="phone">
+<div class="status"><span>9:41</span><span>● ● ●</span></div>
+<div class="appbar"><div><small>18:24 진행 중</small><h2>등 루틴</h2></div><button class="end">운동 종료</button></div>
+<div class="progress"><span>운동 진행률</span><span>5 / 15세트</span></div><div class="track"><i></i></div>
+
+<div class="screen on" data-screen="base">
+<div class="card active"><div class="headrow"><div><b>랫풀다운</b><small>손잡이 · 맥그립 미디엄</small></div><button class="menu">•••</button></div><div class="body"><div class="grid h"><span>세트</span><span>이전</span><span>kg</span><span>횟수</span><span></span></div><div class="grid row done"><span>1</span><small>65×10</small><div class="input">65</div><div class="input">10</div><div class="check">✓</div></div><div class="grid row"><span>2</span><small>65×9</small><div class="input">65</div><div class="input">9</div><div class="check">○</div></div><div class="grid row"><span>3</span><small>60×10</small><div class="input">60</div><div class="input">10</div><div class="check">○</div></div><button class="addset">+ 세트 추가</button></div></div>
+<div class="card"><div class="collapsed"><div class="left"><b>시티드 케이블 로우</b><small>다음 운동</small></div><div class="meta"><b>55kg</b>12 · 11 · 10</div></div></div>
+<div class="card"><div class="collapsed"><div class="left"><b>리어 델트 플라이</b><small>그다음 운동</small></div><div class="meta"><b>35kg</b>15 · 13 · 12</div></div></div>
+<div class="hint">기본 화면에는 드래그 손잡이, 삭제 버튼 같은 관리 UI를 상시 노출하지 않습니다.</div>
+</div>
+
+<div class="screen" data-screen="switch">
+<div class="card"><div class="collapsed"><div class="left"><b>랫풀다운</b><small>1세트 완료 · 잠시 뒤 계속 가능</small></div><span class="tag">보류</span></div></div>
+<div class="card active"><div class="headrow"><div><b>시티드 케이블 로우</b><small>탭해서 지금 할 운동으로 전환</small></div><span class="tag green">진행 중</span></div><div class="body"><div class="grid h"><span>세트</span><span>이전</span><span>kg</span><span>횟수</span><span></span></div><div class="grid row"><span>1</span><small>55×12</small><div class="input">55</div><div class="input">12</div><div class="check">○</div></div><div class="grid row"><span>2</span><small>55×11</small><div class="input">55</div><div class="input">11</div><div class="check">○</div></div><div class="grid row"><span>3</span><small>50×12</small><div class="input">50</div><div class="input">12</div><div class="check">○</div></div><button class="addset">+ 세트 추가</button></div></div>
+<div class="card"><div class="collapsed"><div class="left"><b>리어 델트 플라이</b><small>원래 순서는 그대로</small></div><div class="meta"><b>35kg</b>15 · 13 · 12</div></div></div>
+<div class="hint">기구가 차 있으면 카드 순서를 편집하지 않고, 하고 싶은 운동 카드를 눌러 바로 현재 운동으로 전환합니다.</div>
+</div>
+
+<div class="screen" data-screen="skip">
+<div class="card active"><div class="headrow"><div><b>랫풀다운</b><small>손잡이 · 맥그립 미디엄</small></div><button class="menu">•••</button></div><div class="body"><div class="grid h"><span>세트</span><span>이전</span><span>kg</span><span>횟수</span><span></span></div><div class="grid row done"><span>1</span><small>65×10</small><div class="input">65</div><div class="input">10</div><div class="check">✓</div></div><div class="grid row"><span>2</span><small>65×9</small><div class="input">65</div><div class="input">9</div><div class="check">○</div></div></div></div>
+<div class="fakeMenu"><button>다른 운동 먼저 하기</button><button>오늘 건너뛰기</button><button class="danger">오늘 운동에서 제거</button></div>
+<div class="card skipped"><div class="collapsed"><div class="left"><b>리어 델트 플라이</b><small>오늘은 수행하지 않음</small></div><div><span class="tag gray">건너뜀</span> <button class="undo">다시 하기</button></div></div></div>
+<div class="hint">건너뛴 카드는 사라지지 않고 남겨둡니다. 사용자가 빼먹은 건지, 의도적으로 건너뛴 건지 구분되고 즉시 되돌릴 수 있습니다.</div>
+</div>
+
+<div class="screen" data-screen="remove">
+<div class="card"><div class="collapsed"><div class="left"><b>원암 케이블 로우</b><small>0세트 · 방금 잘못 추가함</small></div><span class="tag">미시작</span></div></div>
+<div class="fakeMenu"><button>오늘 건너뛰기</button><button class="danger">오늘 운동에서 제거</button></div>
+<div class="warn">0세트인 카드는 현재 운동에서 바로 제거할 수 있습니다. 루틴 원본까지 자동으로 지우지는 않습니다.</div>
+<div class="card ended"><div class="headrow"><div><b>랫풀다운</b><small>2세트 완료 후 중단</small></div><span class="tag amber">여기서 끝냄</span></div><div class="body"><div class="grid h"><span>세트</span><span>이전</span><span>kg</span><span>횟수</span><span></span></div><div class="grid row done"><span>1</span><small>65×10</small><div class="input">65</div><div class="input">10</div><div class="check">✓</div></div><div class="grid row done"><span>2</span><small>65×9</small><div class="input">65</div><div class="input">9</div><div class="check">✓</div></div></div></div>
+<div class="warn">이미 1세트라도 기록했다면 일반적인 “삭제” 대신 <strong>이 운동 여기서 끝내기</strong>를 우선합니다. 완료한 세트는 보존하고 남은 예정 세트만 그만둡니다.</div>
+</div>
+<div class="bottom"><div>⌂<small>홈</small></div><div>▤<small>루틴</small></div><div class="on">●<small>운동 중</small></div><div>⚙<small>설정</small></div></div>
+</div></div>
+<aside class="notes">
+<h2 id="noteTitle">추천: ‘순서 편집’을 먼저 만들지 않는다</h2>
+<p class="lead" id="noteLead">실제 운동 중 필요한 건 목록 자체를 재정렬하는 것보다 <strong>지금 가능한 운동으로 바로 옮겨가는 것</strong>에 가깝습니다.</p>
+<div id="rules">
+<div class="rule"><b>다른 운동 먼저 하기</b><p>아래 접힌 카드를 누르면 그 카드만 펼치고 현재 운동을 바꿉니다. 루틴의 원래 카드 순서는 건드리지 않습니다.</p></div>
+<div class="rule"><b>오늘 건너뛰기</b><p>카드를 삭제하지 않고 `건너뜀` 상태로 남깁니다. 실수로 넘긴 것과 의도적인 생략을 구분하고 되돌리기 쉽습니다.</p></div>
+<div class="rule"><b>오늘 운동에서 제거</b><p>잘못 추가한 0세트 카드 정리에 사용합니다. 현재 세션에서만 제거하고 원래 루틴은 자동 수정하지 않습니다.</p></div>
+<div class="rule"><b>이미 기록했다면 삭제 대신 중단</b><p>1세트 이상 완료했다면 완료 세트를 보존한 채 `여기서 끝내기`로 남은 예정 세트만 종료하는 쪽이 기록 안전성이 높습니다.</p></div>
+</div>
+<div class="decision"><b>내 추천</b>운동 중에는 <strong>탭으로 현재 운동 전환 + 건너뛰기 + 0세트 카드 제거 + 기록 후에는 여기서 끝내기</strong>까지만 두고, 별도 드래그 순서 편집은 MVP에서 빼는 안이 가장 단순합니다.</div>
+<div class="warning">아직 결정하지 않는 것: 건너뛴 운동을 장기 분석 데이터로 저장할지, 운동 완료 후 “오늘 구성”을 루틴에 반영할 때 실제 수행 순서를 저장할지는 후속 정책으로 분리합니다.</div>
+</aside>
+</section>
+</main>
+<script>
+const tabs=[...document.querySelectorAll('[data-view]')], screens=[...document.querySelectorAll('[data-screen]')];
+tabs.forEach(btn=>btn.addEventListener('click',()=>{tabs.forEach(x=>x.classList.remove('on'));screens.forEach(x=>x.classList.remove('on'));btn.classList.add('on');document.querySelector(`[data-screen="${btn.dataset.view}"]`).classList.add('on')}));
+</script>
+</body>
+</html>
