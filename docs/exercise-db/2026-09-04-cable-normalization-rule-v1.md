@@ -1,7 +1,7 @@
 # Cable Normalization Rule v1
 
 **Date:** 2026-09-04  
-**Status:** PO APPROVED / APPLY TO FULL 297 CABLE RAW CATALOG  
+**Status:** PO APPROVED / APPLY TO FULL CABLE SOURCE SCOPE  
 **Scope:** `MP4/MALE/Library_database` Cable source normalization
 
 ## Purpose
@@ -16,6 +16,25 @@ Reference:
 
 - `docs/exercise-db/2026-09-04-cable-visual-review-14.md`
 - `docs/ux-decisions/2026-09-03-cable-attachment-active-workout.md`
+- `docs/exercise-db/2026-09-04-cable-normalization-map-v0.1.md`
+
+## Source scope note
+
+초기 first-pass의 **297 Cable raw videos**는 filename이 `Cable`로 시작하는 source count다.
+
+후속 filename/size manifest를 넓게 `cable` 문자열로 추출하면서 아래 1개가 추가 발견되었다.
+
+- `Inverse-Leg-Curl-(on-pull-up-cable-machine)_Thighs.mp4`
+
+따라서 현재 derived normalization scope는:
+
+- `Cable*` prefix source: **297**
+- cable-associated extra: **1**
+- manifest total: **298**
+
+으로 구분한다.
+
+이 reconciliation은 이전 297 source fact를 덮어쓰는 것이 아니다. `source_scope`를 분리하여 raw provenance를 그대로 보존한다.
 
 ## PO-approved core rules
 
@@ -112,10 +131,11 @@ vendor filename의 운동명/부위 suffix가 실제 영상과 충돌하면 raw 
 
 ## Full-catalog mapping fields
 
-297개 Cable raw source를 적용할 때 최소 다음 derived fields를 만든다.
+Cable source scope를 적용할 때 최소 다음 derived fields를 만든다.
 
 - `raw_filename`
 - `raw_size_bytes`
+- `source_scope`
 - `canonical_parent_candidate`
 - `normalized_name_candidate`
 - `variant_class`
@@ -149,12 +169,12 @@ Cable attachment UX의 기존 승인 정책을 유지한다.
 
 ## Current application plan
 
-1. 297개 Cable raw filename/size manifest 확보
-2. filename 기반 전체 1차 mapping
-3. 14개 visual-reviewed 결과를 확정값으로 반영
-4. duplicate candidate groups 검증
+1. filename/size manifest 확보 — **DONE: 298 rows = 297 prefix + 1 associated extra**
+2. filename 기반 전체 1차 mapping — **DONE: v0.1**
+3. 14개 visual-reviewed 결과 반영 — **DONE**
+4. duplicate candidate groups **18 groups / 38 files** visual/hash 검증 — **NEXT**
 5. naming-review cases 정리
-6. Cable canonical parent / attachment / grip / execution / duplicate map 산출
+6. Cable canonical parent / attachment / grip / execution / duplicate map 확정
 7. 그 다음 Machine / Barbell / Dumbbell / Kettlebell / Smith / Landmine으로 동일 프레임 확장
 
 No Cursor implementation handoff is implied. This is Exercise DB/source normalization work.
