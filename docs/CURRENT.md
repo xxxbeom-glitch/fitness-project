@@ -1,10 +1,10 @@
 # CURRENT — Fitness Project
 
-**Updated:** 2026-09-03 22:30 KST
+**Updated:** 2026-09-04 21:30 KST
 
 ## Current mode
 
-`PRODUCT / UX PLANNING PAUSED — LATEST APPROVED UX CHECKPOINT SAVED · NEXT: RECOMMENDED ROUTINE POST-WORKOUT SAVE EDGE CASE · FIGMA SYNC PENDING · EXERCISE DB / ASSET WORK HOLD · NO CURSOR HANDOFF`
+`EXERCISE DB / ASSET SOURCE ANALYSIS ACTIVE · GYM ANIMATIONS PURCHASED · RAW R2 UPLOAD IN PROGRESS · CABLE NORMALIZATION STARTED · PRODUCT/UX BASELINE PRESERVED · NO CURSOR IMPLEMENTATION HANDOFF`
 
 ## Resume rule
 
@@ -12,7 +12,7 @@
 
 재개 순서:
 
-`CURRENT 확인 → 아래 Latest checkpoint 확인 → NEXT OPEN ITEM부터 바로 논의`
+`CURRENT 확인 → 아래 Latest checkpoint 확인 → NEXT OPEN ITEM부터 바로 진행`
 
 기존 화면을 다룰 때는 항상:
 
@@ -20,106 +20,144 @@
 
 ---
 
-## Latest checkpoint — 2026-09-03 session end
+## Latest checkpoint — 2026-09-04 Gym Animations source analysis
 
-오늘 제품/UX 논의에서 아래 항목을 추가 확정했다.
-
-### 1. Workout End Flow — PO APPROVED
+### 1. Gym Animations package purchased / source HOLD resolved
 
 기준:
 
-`docs/ux-decisions/2026-09-03-workout-end-flow.md`
+`docs/exercise-db/2026-09-03-asset-source-purchase-hold.md`
 
-확정:
+구매:
 
-- 모든 예정 세트를 완료해도 자동 종료하지 않음
-- 사용자가 `운동 종료`를 누르면 확인창 표시
-- 완료 상태 의미: `모든 세트를 완료했습니다. 운동을 종료할까요?`
-- 미완료 세트/운동이 있어도 사용자는 언제든 조기 종료 가능
-- 미완료 상태에서는 완료 체크된 세트까지만 기록된다는 점을 안내
-- 미완료 운동은 루틴에서 자동 삭제하지 않음
-- 일반 종료에서 `저장하지 않기`를 기본 선택지로 두지 않음
-- 루틴 구조 변경이 있으면 종료 이후 기존 정책대로 `오늘만 적용 / 루틴 업데이트` 확인
-- 전체 운동 기록 자체를 통째로 폐기하는 별도 edge case는 아직 OPEN
+- Gym Animations
+- `Gym Workout Man Package`
 
-Figma mapping:
+기존 Exercise DB / asset source purchase HOLD는 해제되었다.
 
-- `403a_Workout_End_Incomplete` → 미완료 상태 조기 종료 확인
-- `403b_Workout_End_Complete` → 모든 세트 완료 후 종료 확인
-- `403c_Workout_Save_Or_Discard` → 기존 save/discard 의미로 사용하지 않음
+새 패키지는 **G Fit canonical exercise DB 자체가 아니라 raw source catalog**로 취급한다.
 
-### 2. Exercise Reorder — PO APPROVED
+기존 Production Exercise DB v1과 P0 승인 상태는 보존하고, 새 소스를 기준으로 중복/variant/gap을 다시 판단한다.
 
-기준:
+### 2. Delivered source structure confirmed
 
-`docs/ux-decisions/2026-09-03-active-workout-routine-update.md`
+상세:
 
-확정:
+`docs/exercise-db/2026-09-04-gym-animations-source-analysis-checkpoint.md`
 
-- `421_Exercise_Reorder`는 유지
-- 사용자가 순서변경 화면에서 **직접 드래그해 운동 목록 순서를 바꾸면 즉시 루틴 순서에 자동 저장**
-- 종료 시 `오늘만 적용 / 루틴 업데이트`를 다시 묻지 않음
-- 단순히 화면상 3번째 운동을 먼저 수행한 것은 순서 변경이 아님
-- 실제 수행 순서는 계속 자유롭고, 수행 순서만 달라졌다고 루틴 순서를 바꾸지 않음
+확인된 전체 원본:
 
-따라서 `421_Exercise_Reorder`의 역할은 더 이상 OPEN이 아니다.
+- **17,085 files**
+- **98.69 GB**
+- top level: `GIFS`, `MP4`
 
-### 3. Recommended Routine Detail Flow — PO APPROVED
+주요 Male MP4 폴더:
 
-기준:
+- `MP4/MALE/Gym_Workout_` → 2,081 MP4
+- `MP4/MALE/Home_Workout_` → 2,120 MP4
+- `MP4/MALE/Library_database` → 2,109 MP4
 
-`docs/ux-decisions/2026-09-03-recommended-routine-detail-flow.md`
+중복 비교 결과:
 
-Flow:
+- `Gym_Workout_` 2,081개는 모두 `Library_database`에 동일 파일로 존재
+- 2,081개 SHA256 비교 결과 전부 동일
+- `Library_database`에 28개 추가
+- `Home_Workout_`은 Gym 계열과 exact overlap 6개뿐이라 거의 별도 catalog
 
-`Home 추천 루틴 카드 → 추천 루틴 상세 → 운동 시작 → Active Workout`
+따라서 향후 Male Gym raw 분석 기준은:
 
-확정:
+`MP4/MALE/Library_database`
 
-- 추천 카드를 누르자마자 운동을 시작시키지 않음
-- 시작 전에 간단한 상세 화면을 한 번 거침
-- 상세에서 루틴명 / 짧은 설명 / 운동 수 / 총 세트 / 예상 시간 / 전체 운동 목록 / 세트·반복 범위를 확인
-- 하단 고정 CTA는 `운동 시작`
-- 추천 루틴 상세에는 `내 루틴으로 저장` 버튼을 두지 않음
-- 기존 정책대로 저장 없이 먼저 운동하고, 운동 완료 후 내 루틴 저장 여부를 결정
+로 잡는다.
 
-Review source:
+원본 filename/path는 변경하지 않고 보존한다.
 
-`product/wireframe/recommended-routine-detail-review.html`
+### 3. Cable source first-pass classification
 
-Review deployment used for PO review:
+`Library_database` 기준 Cable raw videos:
 
-- deployment: `dpl_GEXDsSQWhYbMKA19udGDWWx8Ma1G`
-- PO response: 방향 PASS
-- final visual styling은 Figma 단계에서 조정 가능하지만 제품 흐름은 재논의하지 않음
+- **297**
+- broad exercise groups: **58**
+- direct visual review needed: **14**
+- duplicate candidate groups: **18 groups / 38 files**
+- explicit attachment/accessory wording detected: **56 files**
 
----
+중요 확인:
 
-## NEXT OPEN ITEM — 다음 대화에서 여기부터
-
-### Recommended Routine post-workout save edge case
-
-이미 확정된 기본 정책:
-
-`추천 루틴 선택 → 상세 확인 → 저장 없이 운동 시작 → 운동 완료 → 내 루틴 저장 여부 선택`
-
-아직 정하지 않은 부분:
-
-추천 루틴을 실제 운동 중 수정한 경우, 완료 후 `내 루틴으로 저장`할 때 **어떤 구성을 저장할지**.
+source에는 attachment별 Cable media가 실제로 다수 존재한다.
 
 예:
 
-- 원래 추천: 운동 6개
-- 실제 수행 중 운동 삭제 / 추가 / 세트 변경 등 구조 변경 발생
+- lat pulldown + rope
+- lat pulldown + MAG grip
+- lat pulldown + V-bar
+- pro lat bar pulldown
+- twin handle / parallel grip pulldown
+- attachment별 triceps pushdown / row variants
 
-검토할 후보:
+따라서 PO-approved Cable UX의 실현 가능성이 강해졌다.
 
-- `오늘 한 구성으로 저장`
-- `원래 추천 구성으로 저장`
+기본 구조:
 
-이 선택을 **구조 변경이 있었을 때만 보여줄지**, 정확한 문구와 예외를 다음 대화에서 결정한다.
+`canonical exercise + attachment context + attachment-specific media`
 
-**아직 PO 결정 아님. 다음 대화의 첫 논의 대상이다.**
+예:
+
+- `exercise_id = lat_pulldown`
+- 기본/초기 손잡이는 wide lat bar로 둘 수 있음
+- V-bar / MAG / rope 등을 선택하면 attachment context와 매칭 media가 바뀜
+- 검색 목록에서 source variant를 전부 별도 canonical exercise로 노출할 필요는 없음
+
+단, 모든 attachment 변형을 하나로 강제 통합하지는 않는다. 실제로 별도 운동으로 통용되는 경우는 normalization 결과에 따라 별도 identity를 유지할 수 있다.
+
+기준 UX 문서:
+
+`docs/ux-decisions/2026-09-03-cable-attachment-active-workout.md`
+
+### 4. Cloudflare R2 raw source setup
+
+Raw source bucket:
+
+`gfit-source-original`
+
+정책:
+
+- 구매 원본 폴더 트리 / 파일명 그대로 업로드
+- raw bucket과 향후 app-serving derivative media는 분리
+- 원본은 read-only provenance layer로 유지
+
+Windows `rclone` + Cloudflare R2 S3 endpoint 연결 완료.
+
+빈 버킷 연결 테스트 성공.
+
+현재 업로드 명령 실행 중:
+
+`D:\project\111111111\Animations` → `r2:gfit-source-original/Animations`
+
+현재 상태는 **UPLOAD IN PROGRESS**다.
+
+완료 판정 전 반드시 remote 검증:
+
+- expected files: **17,085**
+- expected size: **~98.69 GB**
+
+`rclone size`로 remote count/size를 확인하기 전에는 DONE으로 처리하지 않는다.
+
+---
+
+## NEXT OPEN ITEM — Exercise DB / asset
+
+R2 raw upload 완료 후:
+
+1. remote file count / total size 검증
+2. Cable visual-review 14개 QA
+3. Cable에서 `canonical exercise / attachment / grip-posture variant / duplicate` 규칙 확정
+4. 같은 규칙을 Machine / Barbell / Dumbbell / Kettlebell / Smith / Landmine으로 확장
+5. 기존 Production Exercise DB v1과 mapping
+6. 최종 G Fit canonical 후보 수 / 실제 gap 재산출
+7. production media transform / app-serving storage 구조 결정
+
+**현재는 raw source analysis 단계이며 Cursor 구현 handoff 없음.**
 
 ---
 
@@ -155,6 +193,7 @@ Review deployment used for PO review:
 - 사용자 용어 `손잡이`, 내부 `attachment`
 - 같은 운동 + 다른 손잡이 = 별도 카드
 - Active Workout 기존 카드에서 손잡이 자체를 mutate하지 않음
+- 같은 canonical exercise에서 attachment에 따라 media를 다르게 연결할 수 있음
 
 ### Active Workout
 
@@ -205,6 +244,61 @@ Review deployment used for PO review:
 - 완료 카드 구성/방향은 planning PASS
 - final visual polish는 Figma에서 조정
 
+### Workout End Flow
+
+기준:
+
+`docs/ux-decisions/2026-09-03-workout-end-flow.md`
+
+- 모든 예정 세트를 완료해도 자동 종료하지 않음
+- 사용자가 `운동 종료`를 누르면 확인
+- 미완료 상태에서도 조기 종료 가능
+- 완료 체크된 세트까지만 기록
+- 전체 workout discard 별도 edge case는 아직 OPEN
+
+### Exercise Reorder
+
+기준:
+
+`docs/ux-decisions/2026-09-03-active-workout-routine-update.md`
+
+- 직접 drag reorder 시 즉시 루틴 순서에 자동 저장
+- 단순 수행 순서 변화는 루틴 reorder가 아님
+
+### Recommended Routine Detail Flow
+
+기준:
+
+`docs/ux-decisions/2026-09-03-recommended-routine-detail-flow.md`
+
+Flow:
+
+`Home 추천 루틴 카드 → 추천 루틴 상세 → 운동 시작 → Active Workout`
+
+- 추천 카드를 누르자마자 운동 시작하지 않음
+- 상세에서 루틴 구성 확인
+- CTA `운동 시작`
+- 상세에 `내 루틴으로 저장` 없음
+- 저장 없이 운동 후 완료 시 저장 여부 결정
+
+---
+
+## Product/UX OPEN items preserved
+
+Exercise DB / asset source analysis와 별개로 아래 제품 항목은 여전히 OPEN이다.
+
+- 추천 루틴 실제 프로그램 contents
+- 추천 루틴 완료 후 save edge case / copy
+- 전체 workout discard 별도 진입 / copy
+- completion exact metric / formula
+- progression hint exact metric / observation threshold
+- Exercise Detail scope
+- Analysis first screen / drilldown scope
+- Settings main scope
+- rest timer 종료 signal 세부 동작
+
+Exercise DB 분석 중이라고 해서 이 항목들이 결정된 것으로 간주하지 않는다.
+
 ---
 
 ## Figma status
@@ -232,44 +326,7 @@ Canonical Figma:
 - assisted first-use helper
 - 향후 필요한 routine-change confirmation 정리
 
-**이번 세션에서 제품 결정은 진행했지만 해당 결정들의 실제 Figma sync 작업은 아직 완료하지 않았다.**
-
----
-
-## Exercise DB / asset — HOLD
-
-Production baseline 및 P0 16 승인 상태는 유지.
-
-HOLD 해제 전까지 실행하지 않음:
-
-- 신규 P0 asset production
-- attachment taxonomy 전체 mapping
-- shoulder press variant 최종 정리
-
-주요 blocker:
-
-- Gym Animations 추가 package 구매 여부
-- purchased asset modification / derivative / AI-reference license 확인
-
----
-
-## Remaining planning OPEN items
-
-다음 항목은 아직 남아 있으나, **다음 대화에서는 Recommended Routine post-workout save edge case부터 시작한다.**
-
-- 추천 루틴 실제 프로그램 contents
-- 추천 루틴 완료 후 save edge case / copy
-- 전체 workout discard 별도 진입 / copy
-- completion exact metric / formula
-- progression hint exact metric / observation threshold
-- Exercise Detail scope
-- Analysis first screen / drilldown scope
-- Settings main scope
-- rest timer 종료 signal 세부 동작
-
-`421_Exercise_Reorder` 목적은 해결됨.
-`추천 루틴 상세 → 운동 시작` 흐름도 해결됨.
-`Workout End 기본/조기 종료` 흐름도 해결됨.
+**최신 제품 결정들의 실제 Figma sync는 아직 완료되지 않았다.**
 
 ---
 
@@ -284,14 +341,10 @@ Canonical production wireframe:
 - canonical production 전체 앱 wireframe에는 최신 모든 PO 결정이 아직 반영되지 않음
 - review artifact와 canonical production을 구분
 
-Latest recommendation detail review source:
-
-`product/wireframe/recommended-routine-detail-review.html`
-
 ---
 
 ## Implementation status
 
-**No Cursor handoff.**
+**No Cursor implementation handoff.**
 
-현재는 제품/UX 결정 + Figma sync 준비 단계다. 다음 대화에서 남은 제품 결정을 이어간 뒤, 핵심 화면이 충분히 안정되면 Figma sync 및 이후 구현 Issue/AC로 넘긴다.
+현재는 Exercise DB / source asset analysis + raw media ops 단계다. Source normalization과 canonical mapping이 안정된 뒤 필요한 구현 Issue/AC로 넘긴다.
