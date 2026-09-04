@@ -4,7 +4,7 @@
 
 ## Current mode
 
-`EXERCISE DB / ASSET SOURCE ANALYSIS ACTIVE · GYM ANIMATIONS PURCHASED · RAW R2 UPLOAD VERIFIED · CABLE VISUAL QA COMPLETE · CABLE NORMALIZATION RULE NEXT · PRODUCT/UX BASELINE PRESERVED · NO CURSOR IMPLEMENTATION HANDOFF`
+`EXERCISE DB / ASSET SOURCE ANALYSIS ACTIVE · GYM ANIMATIONS PURCHASED · RAW R2 UPLOAD VERIFIED · CABLE VISUAL QA COMPLETE · CABLE NORMALIZATION RULE V1 APPROVED · CABLE FULL-CATALOG MAPPING NEXT · PRODUCT/UX BASELINE PRESERVED · NO CURSOR IMPLEMENTATION HANDOFF`
 
 ## Resume rule
 
@@ -162,21 +162,42 @@ Expected source count **17,085**와 remote count가 정확히 일치하고 total
 - Male raw analysis catalog 안에서 female model media 1개 확인:
   - `Cable-Seated-Chest-Press-(female)_Chest_.mp4`
 
-Visual QA는 완료했지만 Cable 전체 normalization rule은 아직 PO-final이 아니다.
+### 6. Cable normalization rule v1 — PO APPROVED
+
+기준:
+
+`docs/exercise-db/2026-09-04-cable-normalization-rule-v1.md`
+
+PO-approved core rule:
+
+1. 같은 운동 + 손잡이만 다름 → `same canonical + attachment context/media`
+2. 그립만 다름 → `same parent family + grip variant/context`
+3. 자세 / 한손·양손 / behind-neck / 큰 수행 경로 차이 → explicit execution variant, performance history 자동 병합 금지
+4. 회전 / 관절 패턴 / 운동 자체가 materially 다름 → separate canonical movement candidate
+
+Supporting invariants:
+
+- true duplicate는 실제 수행이 사실상 동일할 때만 판정
+- vendor filename은 evidence일 뿐 normalized truth가 아님
+- raw filename/path/media는 immutable provenance
+- source-media exception은 exercise identity와 별도 추적
+- attachment별 Active Workout card / 이전 기록 맥락은 기존 Cable UX 승인 정책대로 보존
 
 ---
 
 ## NEXT OPEN ITEM — Exercise DB / asset
 
-Cable visual-review 14개 QA가 완료되었으므로 다음 순서로 진행한다.
+Cable visual QA와 normalization rule v1이 확정되었으므로 다음 순서로 진행한다.
 
-1. **Cable `canonical exercise / attachment / grip-posture-execution variant / duplicate` 규칙 PO 확정**
-2. 확정 규칙을 Cable raw 297개 전체에 적용
-3. Cable normalized parent / attachment / variant / duplicate map 생성 + naming-review 해소
+1. **확정 규칙을 Cable raw 297개 전체에 적용**
+2. Cable normalized parent / attachment / grip / execution variant / duplicate map 생성
+3. naming-review cases 해소 + duplicate candidate groups 검증
 4. 같은 규칙을 Machine / Barbell / Dumbbell / Kettlebell / Smith / Landmine으로 확장
 5. 기존 Production Exercise DB v1과 mapping
 6. 최종 G Fit canonical 후보 수 / 실제 gap 재산출
 7. production media transform / app-serving storage 구조 결정
+
+Full 297 mapping을 위해 active analysis runtime에 `raw_filename + size` manifest가 필요하다. 원본 영상 자체는 R2/local read-only source에 유지하고, manifest/derived mapping만 별도 생성한다.
 
 **현재는 raw source analysis / normalization 단계이며 Cursor 구현 handoff 없음.**
 
