@@ -1,10 +1,10 @@
 # CURRENT — Fitness Project
 
-**Updated:** 2026-09-04 23:04 KST
+**Updated:** 2026-09-04 23:27 KST
 
 ## Current mode
 
-`EXERCISE DB / ASSET SOURCE ANALYSIS ACTIVE · GYM ANIMATIONS PURCHASED · RAW R2 UPLOAD VERIFIED · CABLE VISUAL QA COMPLETE · CABLE NORMALIZATION RULE V1 APPROVED · CABLE FULL-CATALOG MAPPING NEXT · PRODUCT/UX BASELINE PRESERVED · NO CURSOR IMPLEMENTATION HANDOFF`
+`EXERCISE DB / ASSET SOURCE ANALYSIS ACTIVE · GYM ANIMATIONS PURCHASED · RAW R2 UPLOAD VERIFIED · CABLE NORMALIZATION RULE V1 APPROVED · CABLE MANIFEST MAP V0.1 COMPLETE · DUPLICATE VISUAL QA 38 NEXT · PRODUCT/UX BASELINE PRESERVED · NO CURSOR IMPLEMENTATION HANDOFF`
 
 ## Resume rule
 
@@ -12,7 +12,7 @@
 
 재개 순서:
 
-`CURRENT 확인 → 아래 Latest checkpoint 확인 → NEXT OPEN ITEM부터 바로 진행`
+`CURRENT 확인 → Latest checkpoint 확인 → NEXT OPEN ITEM부터 바로 진행`
 
 기존 화면을 다룰 때는 항상:
 
@@ -20,186 +20,154 @@
 
 ---
 
-## Latest checkpoint — 2026-09-04 Gym Animations source analysis
+## Latest checkpoint — 2026-09-04 Gym Animations / Cable normalization
 
-### 1. Gym Animations package purchased / source HOLD resolved
-
-기준:
-
-`docs/exercise-db/2026-09-03-asset-source-purchase-hold.md`
+### 1. Purchased source / canonical analysis base
 
 구매:
 
 - Gym Animations
 - `Gym Workout Man Package`
 
-기존 Exercise DB / asset source purchase HOLD는 해제되었다.
-
-새 패키지는 **G Fit canonical exercise DB 자체가 아니라 raw source catalog**로 취급한다.
-
-기존 Production Exercise DB v1과 P0 승인 상태는 보존하고, 새 소스를 기준으로 중복/variant/gap을 다시 판단한다.
-
-### 2. Delivered source structure confirmed
-
 상세:
 
-`docs/exercise-db/2026-09-04-gym-animations-source-analysis-checkpoint.md`
+- `docs/exercise-db/2026-09-04-gym-animations-source-analysis-checkpoint.md`
 
-확인된 전체 원본:
+전체 원본:
 
 - **17,085 files**
 - **98.69 GB**
 - top level: `GIFS`, `MP4`
 
-주요 Male MP4 폴더:
+Male MP4 주요 폴더:
 
-- `MP4/MALE/Gym_Workout_` → 2,081 MP4
-- `MP4/MALE/Home_Workout_` → 2,120 MP4
-- `MP4/MALE/Library_database` → 2,109 MP4
+- `Gym_Workout_` → 2,081
+- `Home_Workout_` → 2,120
+- `Library_database` → 2,109
 
-중복 비교 결과:
+`Gym_Workout_` 2,081개는 `Library_database`의 동일 파일과 SHA256까지 전부 동일하며, `Library_database`가 28개 더 많다.
 
-- `Gym_Workout_` 2,081개는 모두 `Library_database`에 동일 파일로 존재
-- 2,081개 SHA256 비교 결과 전부 동일
-- `Library_database`에 28개 추가
-- `Home_Workout_`은 Gym 계열과 exact overlap 6개뿐이라 거의 별도 catalog
-
-따라서 향후 Male Gym raw 분석 기준은:
+따라서 Male Gym raw 분석 기준은:
 
 `MP4/MALE/Library_database`
 
-로 잡는다.
+구매 원본 filename/path/media는 read-only provenance로 유지한다.
 
-원본 filename/path는 변경하지 않고 보존한다.
+### 2. Cloudflare R2 raw upload — VERIFIED / DONE
 
-### 3. Cable source first-pass classification
-
-`Library_database` 기준 Cable raw videos:
-
-- **297**
-- broad exercise groups: **58**
-- direct visual review needed: **14**
-- duplicate candidate groups: **18 groups / 38 files**
-- explicit attachment/accessory wording detected: **56 files**
-
-중요 확인:
-
-source에는 attachment별 Cable media가 실제로 다수 존재한다.
-
-예:
-
-- lat pulldown + rope
-- lat pulldown + MAG grip
-- lat pulldown + V-bar
-- pro lat bar pulldown
-- twin handle / parallel grip pulldown
-- attachment별 triceps pushdown / row variants
-
-따라서 PO-approved Cable UX의 실현 가능성이 강해졌다.
-
-기본 구조:
-
-`canonical exercise + attachment context + attachment-specific media`
-
-예:
-
-- `exercise_id = lat_pulldown`
-- 기본/초기 손잡이는 wide lat bar로 둘 수 있음
-- V-bar / MAG / rope 등을 선택하면 attachment context와 매칭 media가 바뀜
-- 검색 목록에서 source variant를 전부 별도 canonical exercise로 노출할 필요는 없음
-
-단, 모든 attachment 변형을 하나로 강제 통합하지는 않는다. 실제로 별도 운동으로 통용되는 경우는 normalization 결과에 따라 별도 identity를 유지할 수 있다.
-
-기준 UX 문서:
-
-`docs/ux-decisions/2026-09-03-cable-attachment-active-workout.md`
-
-### 4. Cloudflare R2 raw source upload — VERIFIED
-
-Raw source bucket:
+Raw bucket:
 
 `gfit-source-original`
 
-정책:
-
-- 구매 원본 폴더 트리 / 파일명 그대로 업로드
-- raw bucket과 향후 app-serving derivative media는 분리
-- 원본은 read-only provenance layer로 유지
-
-Upload target:
+Upload:
 
 `D:\project\111111111\Animations` → `r2:gfit-source-original/Animations`
 
-2026-09-04 remote verification result:
+검증 결과:
 
-- `rclone copy`: **17,085 / 17,085 transferred, 100%**
-- `rclone size` Total objects: **17,085**
-- Total size: **98.694 GiB**
-- Exact remote size: **105,972,019,458 Byte**
+- objects: **17,085**
+- size: **98.694 GiB**
+- exact: **105,972,019,458 Byte**
 
-Expected source count **17,085**와 remote count가 정확히 일치하고 total size도 expected ~98.69 GB와 일치한다.
+원본 count/size와 일치하므로 raw R2 upload는 **DONE / VERIFIED**다.
 
-따라서 raw R2 upload는 **DONE / VERIFIED**다.
-
-### 5. Cable visual-review 14 — COMPLETE
+### 3. Cable direct visual QA — COMPLETE
 
 상세:
 
-`docs/exercise-db/2026-09-04-cable-visual-review-14.md`
+- `docs/exercise-db/2026-09-04-cable-visual-review-14.md`
 
-직접 영상 검수 대상 14개를 별도 review ZIP으로 복사해 실제 동작을 확인했다. 구매 원본은 수정하지 않았다.
+14개 ambiguous Cable 영상을 직접 검수했다.
 
 결과:
 
-- **14 / 14 visual review 완료**
-- review subset 내부 exact app-facing duplicate: **0**
-- clear attachment handling 확인: standing cable curl + multipurpose V-bar
-- lat pulldown rear/behind-neck 계열은 동일 parent family + grip/posture context로 묶는 방향이 타당
-- cable diagonal lift 계열에서 half-kneeling / standing unilateral / standing bilateral execution 차이 확인
-- vendor filename만으로 사용자-facing 이름을 확정하면 안 되는 naming-review 사례 확인
-  - `Cable-Incline-Pushdown_Back_`
-  - `Cable-Standing-Pulldown-(with-rope)_Forearms_`
-- Male raw analysis catalog 안에서 female model media 1개 확인:
-  - `Cable-Seated-Chest-Press-(female)_Chest_.mp4`
+- **14 / 14 complete**
+- review subset exact duplicate: **0**
+- attachment-only variant가 실제로 존재함을 확인
+- lat pulldown rear/behind-neck 계열은 동일 parent family + grip/posture context가 타당
+- half-kneeling / unilateral / bilateral 등 큰 실행 차이는 attachment swap으로 흡수하지 않음
+- vendor filename과 실제 동작이 충돌하는 naming 사례 확인
+- Male 분석 catalog 안 female-model Cable Seated Chest Press 1개를 media exception으로 확인
 
-### 6. Cable normalization rule v1 — PO APPROVED
+### 4. Cable normalization rule v1 — PO APPROVED
 
 기준:
 
-`docs/exercise-db/2026-09-04-cable-normalization-rule-v1.md`
+- `docs/exercise-db/2026-09-04-cable-normalization-rule-v1.md`
+- `docs/ux-decisions/2026-09-03-cable-attachment-active-workout.md`
 
-PO-approved core rule:
+Core rule:
 
 1. 같은 운동 + 손잡이만 다름 → `same canonical + attachment context/media`
 2. 그립만 다름 → `same parent family + grip variant/context`
-3. 자세 / 한손·양손 / behind-neck / 큰 수행 경로 차이 → explicit execution variant, performance history 자동 병합 금지
+3. 자세 / 한손·양손 / behind-neck / 큰 수행 경로 차이 → explicit execution variant, history 자동 병합 금지
 4. 회전 / 관절 패턴 / 운동 자체가 materially 다름 → separate canonical movement candidate
+5. true duplicate는 filename 유사성이 아니라 실제 수행이 사실상 동일할 때만 확정
+6. raw source는 수정하지 않고 normalized derived data를 별도 관리
 
-Supporting invariants:
+### 5. Cable manifest normalization map v0.1 — COMPLETE
 
-- true duplicate는 실제 수행이 사실상 동일할 때만 판정
-- vendor filename은 evidence일 뿐 normalized truth가 아님
-- raw filename/path/media는 immutable provenance
-- source-media exception은 exercise identity와 별도 추적
-- attachment별 Active Workout card / 이전 기록 맥락은 기존 Cable UX 승인 정책대로 보존
+상세:
+
+- `docs/exercise-db/2026-09-04-cable-normalization-map-v0.1.md`
+
+업로드된 filename/size manifest 결과:
+
+- manifest rows: **298**
+- `Cable*` prefix rows: **297**
+- cable-associated extra: **1**
+  - `Inverse-Leg-Curl-(on-pull-up-cable-machine)_Thighs.mp4`
+
+즉 기존 **297 Cable raw videos**는 prefix catalog count로 유지하고, 후속 broad manifest에서 cable-machine 관련 1개를 별도 `source_scope`로 추가 발견한 것이다.
+
+v0.1 결과:
+
+- mapped: **298 / 298**
+- unresolved movement-family rows: **0**
+- direct visual-QA overrides: **14**
+- duplicate candidates: **18 groups / 38 rows**
+- derived attachment-context rows: **57**
+- working movement-family labels: **71**
+
+주의:
+
+- 71은 normalization 작업용 family label 수이며 최종 G Fit canonical exercise 수가 아니다.
+- 이전 first-pass attachment metric 56은 당시 detector 결과로 보존한다.
+- v0.1의 57은 `Cable-Bar-Lateral-Pulldown`을 `bar_unspecified` attachment context로 추가 인식한 expanded detector 결과다.
+
+Naming correction candidate:
+
+- `Cable-Incline-Pushdown_Back_` → `Incline Cable Straight-Arm Pulldown`
+- `Cable-Standing-Pulldown-(with-rope)_Forearms_` → `Standing High Cable Rope Curl` candidate, Medium-High confidence
+
+Full derived row map은 현재 review artifact `cable_normalization_map_v0_1.csv`로 생성되어 있으며, duplicate 판정이 끝난 뒤 canonical map으로 승격한다.
 
 ---
 
 ## NEXT OPEN ITEM — Exercise DB / asset
 
-Cable visual QA와 normalization rule v1이 확정되었으므로 다음 순서로 진행한다.
+### Immediate next
 
-1. **확정 규칙을 Cable raw 297개 전체에 적용**
-2. Cable normalized parent / attachment / grip / execution variant / duplicate map 생성
-3. naming-review cases 해소 + duplicate candidate groups 검증
-4. 같은 규칙을 Machine / Barbell / Dumbbell / Kettlebell / Smith / Landmine으로 확장
-5. 기존 Production Exercise DB v1과 mapping
-6. 최종 G Fit canonical 후보 수 / 실제 gap 재산출
-7. production media transform / app-serving storage 구조 결정
+**18 duplicate candidate groups / 38 files direct visual QA**
 
-Full 297 mapping을 위해 active analysis runtime에 `raw_filename + size` manifest가 필요하다. 원본 영상 자체는 R2/local read-only source에 유지하고, manifest/derived mapping만 별도 생성한다.
+목적:
 
-**현재는 raw source analysis / normalization 단계이며 Cursor 구현 handoff 없음.**
+- true duplicate인지
+- 실제 수행/자세가 다른 version인지
+- media만 다른 동일 exercise인지
+
+를 확정한다.
+
+그 다음 순서:
+
+1. duplicate visual QA 38 완료
+2. Cable parent / attachment / grip / execution / duplicate map 확정
+3. Machine / Barbell / Dumbbell / Kettlebell / Smith / Landmine으로 동일 normalization rule 확장
+4. 기존 Production Exercise DB v1과 mapping
+5. 최종 G Fit canonical 후보 수 / 실제 gap 재산출
+6. production media transform / app-serving storage 구조 결정
+
+**현재는 source normalization 단계이며 Cursor 구현 handoff 없음.**
 
 ---
 
@@ -207,23 +175,18 @@ Full 297 mapping을 위해 active analysis runtime에 `raw_filename + size` mani
 
 ### Home
 
-- 최우선 역할 = 운동 시작 / 운동 복귀
+- 운동 시작 / 복귀가 최우선
 - 루틴 없음 → G Fit 추천 루틴 + 내 루틴 만들기
-- 추천 루틴 = 개인화 AI가 아니라 G Fit curated ready-made routine
-- 카드 1개 = 완성된 루틴 1개
-- 추천 카드에서 실제 운동 구성 노출
-- 루틴 있음 + 요일 미지정 → 다음 운동
-- 루틴 있음 + 요일 지정 → 오늘 운동
-- active workout → 운동 계속하기
-- 추천 루틴은 먼저 저장하지 않고 운동 가능
+- 추천 루틴은 curated ready-made routine, AI 생성 아님
+- 카드 1개 = 완성 루틴 1개, 실제 운동 구성 노출
+- 추천 루틴은 저장 전 바로 운동 가능
 
 ### Exercise Search / Add
 
-- 검색 중심
-- 목록에서 바로 추가
-- 루틴 만들기와 운동 중 추가에서 같은 선택 흐름 재사용
-- 이름/이미지 선택 시 Exercise Detail은 선택 진입
-- 없으면 Custom Exercise 생성
+- search-first, 목록에서 바로 추가
+- 루틴 만들기 / 운동 중 추가 흐름 재사용
+- Exercise Detail은 선택 진입
+- 없으면 Custom Exercise
 - 손잡이 지원 운동: `운동 선택 → 손잡이 선택 → 카드 추가`
 
 ### Exercise Detail
@@ -232,15 +195,12 @@ Full 297 mapping을 위해 active analysis runtime에 `raw_filename + size` mani
 
 `docs/ux-decisions/2026-09-04-exercise-detail-scope.md`
 
-- 기존 Figma `341_Library_Exercise_History`의 `운동 정보 | 최근 기록` 2탭 구조 유지
-- 새 Exercise Detail IA를 만들지 않고 `운동 정보` 탭을 완성
-- 운동 정보 우선순위 = 동작 미디어 → 운동명 → 장비 + 주요 근육 → 보조 근육 → 짧은 운동 방법 → 핵심 체크포인트
-- 구매한 Gym Animations media가 있으면 상단 주요 visual로 활용 가능
-- media가 없어도 상세 화면은 완전해야 하며 빈 media slot을 고정 예약하지 않음
-- `최근 기록`은 기존 날짜별 세트 / 중량 / 반복 기록 구조 유지
-- Exercise Detail 안에 장기 분석 dashboard를 중복하지 않음
-- MVP에서는 `How to`, `Leaderboard` 등 추가 tab을 만들지 않음
-- 운동 검색에서 Exercise Detail을 반드시 거치지 않고 목록에서 바로 추가 가능
+- 기존 Figma `341_Library_Exercise_History`의 `운동 정보 | 최근 기록` 2탭 유지
+- `운동 정보`: 동작 미디어 → 운동명 → 장비/주요 근육 → 보조 근육 → 짧은 방법 → 핵심 체크포인트
+- Gym Animations media가 있으면 상단 visual로 활용 가능
+- media가 없어도 화면은 완전해야 함
+- `최근 기록`: 날짜별 세트 / 중량 / 반복
+- 장기 분석 dashboard는 Exercise Detail에 중복하지 않음
 
 ### Cable attachment
 
@@ -249,23 +209,21 @@ Full 297 mapping을 위해 active analysis runtime에 `raw_filename + size` mani
 `docs/ux-decisions/2026-09-03-cable-attachment-active-workout.md`
 
 - 사용자 용어 `손잡이`, 내부 `attachment`
-- 같은 운동 + 다른 손잡이 = 별도 카드
-- Active Workout 기존 카드에서 손잡이 자체를 mutate하지 않음
-- 같은 canonical exercise에서 attachment에 따라 media를 다르게 연결할 수 있음
+- 같은 운동 + 다른 손잡이 = Active에서 별도 카드
+- 기존 카드의 손잡이를 운동 중 mutate하지 않음
+- attachment별 media / 이전 기록 맥락 보존
 
-### Active Workout
+### Active Workout / Routine update
 
 기준:
 
 `docs/ux-decisions/2026-09-03-active-workout-routine-update.md`
 
 - 강제 운동 순서 없음
-- 원하는 운동부터 수행 가능
-- `건너뛰기`, `다른 운동 먼저` 같은 별도 상태 없음
-- 미수행 운동은 그냥 미수행 상태
-- 실제 수행 순서는 루틴 구조 변경이 아님
-- 운동/세트 추가·삭제 등 실제 구조 변경만 종료 시 루틴 반영 여부 확인
-- explicit reorder만 즉시 자동 저장
+- 미수행 운동은 그냥 미수행
+- 실제 수행 순서는 루틴 구조 변경 아님
+- 운동/세트 추가·삭제 같은 구조 변경만 종료 시 반영 여부 확인
+- explicit drag reorder는 즉시 saved routine 순서에 저장
 
 ### Rest Timer
 
@@ -273,12 +231,12 @@ Full 297 mapping을 위해 active analysis runtime에 `raw_filename + size` mani
 
 `docs/ux-decisions/2026-09-03-rest-timer-behavior.md`
 
-- 세트 완료 체크 → 자동 시작
-- 상단 toast/pill
-- 사용자를 막지 않음
-- UI가 사라져도 countdown 지속 가능
-- X로 현재 표시 닫기
-- ±15초는 MVP 제외
+- 세트 체크 → 자동 timer
+- 상단 nonblocking toast/pill
+- UI를 닫아도 countdown 지속
+- X는 표시만 숨김
+- ±15초 MVP 제외
+- **정확한 종료 signal은 OPEN**
 
 ### Assisted machine
 
@@ -287,7 +245,7 @@ Full 297 mapping을 위해 active analysis runtime에 `raw_filename + size` mani
 `docs/ux-decisions/2026-09-03-assisted-machine-recording.md`
 
 - `assisted_weight_reps`
-- `보조 kg + 횟수`
+- 보조 kg + 횟수
 - 높은 보조 kg를 더 좋은 기록으로 해석하지 않음
 
 ### Workout Complete
@@ -297,18 +255,14 @@ Full 297 mapping을 위해 active analysis runtime에 `raw_filename + size` mani
 - `docs/ux-decisions/2026-09-03-post-workout-completion-carousel.md`
 - `docs/ux-decisions/2026-09-04-workout-completion-metrics.md`
 
-- 1:1.25 카드 캐러셀
-- 내부 스크롤 기본 사용 안 함
-- 의미 있는 카드만 조건부 노출 가능
-- 완료 카드 구성/방향은 planning PASS
-- final visual polish는 Figma에서 조정
-- 운동 시간 = 시작~종료 경과시간에서 명시적 pause 제외
-- 완료 세트 = 종료 시 최종 체크 상태인 세트 수
-- 같은 세트를 체크/해제/재체크해도 최종 체크라면 1세트만 계산
-- 완료 운동 수 = 완료 세트가 1개 이상인 운동 수
-- 일반 weight/reps 총 볼륨 = 완료 세트의 `Σ(기록 중량 × 실제 반복수)`
-- assisted / duration / distance 등은 일반 kg 총 볼륨에 억지로 포함하지 않음
-- 장비별 hidden multiplier는 별도 semantics 확정 전 임의 적용하지 않음
+- 1:1.25 카드 carousel, 내부 스크롤 기본 사용 안 함
+- 의미 있는 카드만 조건부 노출
+- 운동 시간 = 시작~종료에서 명시적 pause 제외
+- 완료 세트 = 종료 시 최종 체크 상태
+- 체크/해제/재체크 반복해도 같은 세트는 1세트
+- 완료 운동 수 = 완료 세트 1개 이상인 운동
+- 일반 weight/reps 볼륨 = 완료 세트 `Σ(weight × reps)`
+- assisted / duration / distance는 일반 kg volume에 억지로 포함하지 않음
 
 ### Progression Hint
 
@@ -316,84 +270,50 @@ Full 297 mapping을 위해 active analysis runtime에 `raw_filename + size` mani
 
 `docs/ux-decisions/2026-09-04-progression-hint-threshold.md`
 
-- MVP v1의 일반 증량 힌트는 달력 기간이 아니라 실제 수행 기록 기준
-- 같은 루틴의 같은 운동 + 같은 중량에서 최근 5회 기록을 관찰
-- 최근 5회 중 4회 이상 성공 + 가장 최근 수행도 성공이면 증량 힌트 후보
-- 성공 = 예정 세트 전체 완료 + 모든 예정 세트에서 목표 반복 범위 상단 달성
-- 한 번의 컨디션 흔들림은 허용하지만 짧은 성공 2번만으로 바로 증량을 권하지 않음
-- 사용자가 먼저 중량을 올리거나 낮추면 새 중량에서 다시 관찰
-- 세트 수 / 목표 반복 범위가 바뀌면 새 조건에서 다시 관찰
-- `7일`, `2주` 같은 달력 기간은 MVP 증량 조건으로 사용하지 않음
-- `+2.5kg`, `+5%` 같은 정확한 증량 폭은 MVP에서 자동 처방하지 않고 `한 단계 올려봐도 좋아요` 수준으로 제안
-- assisted / bodyweight / duration / distance 등은 일반 증량 규칙에서 제외
-- `4/5`는 제품 MVP 임계값이며 실제 데이터 / 사용자 피드백에 따라 후속 수정 가능
+- 같은 루틴 + 같은 운동 + 같은 중량 최근 5회 관찰
+- 5회 중 4회 성공 + 최신 수행 성공이면 증량 힌트 후보
+- 성공 = 예정 세트 전체 완료 + 모든 세트 목표 반복 상단 달성
+- 달력 기간은 조건 아님
+- 정확한 증량 kg/%는 처방하지 않음
+- `4/5`는 조정 가능한 MVP 제품 임계값
 
-### Workout End Flow / Whole Workout Discard
+### Workout End / Discard
 
 기준:
 
 `docs/ux-decisions/2026-09-03-workout-end-flow.md`
 
-- 모든 예정 세트를 완료해도 자동 종료하지 않음
-- 사용자가 `운동 종료`를 누르면 확인
-- 미완료 상태에서도 조기 종료 가능
-- 일반 종료는 완료 체크된 세트까지 저장
-- 전체 운동 기록을 버리는 기능은 일반 종료와 별도 destructive action
-- 기존 Figma `403c_Workout_Save_Or_Discard`를 전체 운동 기록 삭제 최종 확인으로 재사용
-- 전체 삭제 확정 시 이번 세션의 운동 기록 / 완료 세트 / active session을 남기지 않음
-- 이미 즉시 저장된 explicit routine reorder는 workout discard로 자동 롤백하지 않음
+- 자동 종료 없음, 사용자가 `운동 종료`
+- 조기 종료 가능, 체크된 세트만 저장
+- 전체 운동 버리기는 일반 종료와 별도 destructive action
+- 기존 Figma `403c`를 whole-workout discard confirmation으로 재사용
+- discard가 explicit reorder 자동 저장을 롤백하지 않음
 
-### Exercise Reorder
+### Recommended Routine
 
 기준:
 
-`docs/ux-decisions/2026-09-03-active-workout-routine-update.md`
+- `docs/ux-decisions/2026-09-03-recommended-routine-detail-flow.md`
+- `docs/ux-decisions/2026-09-04-recommended-routine-post-workout-save.md`
 
-- 직접 drag reorder 시 즉시 루틴 순서에 자동 저장
-- 단순 수행 순서 변화는 루틴 reorder가 아님
-
-### Recommended Routine Detail Flow
-
-기준:
-
-`docs/ux-decisions/2026-09-03-recommended-routine-detail-flow.md`
-
-Flow:
-
-`Home 추천 루틴 카드 → 추천 루틴 상세 → 운동 시작 → Active Workout`
-
-- 추천 카드를 누르자마자 운동 시작하지 않음
-- 상세에서 루틴 구성 확인
-- CTA `운동 시작`
-- 상세에 `내 루틴으로 저장` 없음
-- 저장 없이 운동 후 완료 시 저장 여부 결정
-
-### Recommended Routine Post-workout Save
-
-기준:
-
-`docs/ux-decisions/2026-09-04-recommended-routine-post-workout-save.md`
-
-- 추천 루틴으로 수행한 오늘 운동 기록은 항상 저장
-- 운동 기록 저장과 추천 루틴을 `내 루틴`으로 저장하는 것은 별개
-- 완료 후 Primary `내 루틴으로 저장`
-- Secondary `루틴은 저장하지 않기`
-- 사용자의 선택 없이 추천 루틴을 자동 저장하지 않음
-- 실제 루틴 구조를 변경했고 저장을 선택한 경우에만 `오늘 한 구성 / 원래 추천 구성` 추가 선택
-- kg / 반복수 / 일부 미완료 / 단순 수행 순서 차이는 루틴 구조 변경이 아님
+- Home 추천 카드 → 상세 → `운동 시작` → Active
+- 상세에서 pre-save 없음
+- 오늘 운동 기록 저장과 `내 루틴` 저장은 별개
+- 완료 후 `내 루틴으로 저장` / `루틴은 저장하지 않기`
+- 구조 변경 후 저장을 고른 경우에만 `오늘 한 구성 / 원래 추천 구성`
 
 ---
 
 ## Product/UX OPEN items preserved
 
-Exercise DB / asset source analysis와 별개로 아래 제품 항목은 여전히 OPEN이다.
+Exercise DB / asset source analysis와 별개로 여전히 OPEN:
 
 - 추천 루틴 실제 프로그램 contents — Exercise DB / substitution data 선행 필요
 - Analysis first screen / drilldown scope
 - Settings main scope
 - rest timer 종료 signal 세부 동작
 
-Exercise DB 분석 중이라고 해서 이 항목들이 결정된 것으로 간주하지 않는다.
+최근 Analysis 논의에서 `기간 선택 / 운동 요약 / 운동 빈도 / 바디맵 기반 운동 부위 분포` 방향을 검토했지만, 아직 별도 PO-approved decision으로 승격하지 않았다.
 
 ---
 
@@ -402,8 +322,6 @@ Exercise DB 분석 중이라고 해서 이 항목들이 결정된 것으로 간�
 Canonical Figma:
 
 `https://www.figma.com/design/W3lZurXCXbThP67rF2xk2b/LIFTLY_%EC%B5%9C%EC%A2%85?node-id=0-1`
-
-기존 screen을 새로 기획하지 않고 최신 승인 정책에 맞춰 sync한다.
 
 주요 기존 frames:
 
@@ -416,7 +334,7 @@ Canonical Figma:
 - `421 Exercise Reorder`
 - `501 Workout Complete`
 
-추가/신규 state 또는 sync가 필요한 것:
+추가/신규 state 또는 sync 필요:
 
 - attachment picker
 - `341` 운동 정보 tab content
@@ -424,9 +342,10 @@ Canonical Figma:
 - assisted first-use helper
 - recommended routine post-workout save state
 - routine-change confirmation 정리
-- `403c`를 whole-workout discard confirmation copy로 sync
+- `403c` whole-workout discard copy sync
+- Analysis screen은 아직 미작성 / scope OPEN
 
-**최신 제품 결정들의 실제 Figma sync는 아직 완료되지 않았다.**
+최신 제품 결정들의 실제 Figma sync는 아직 완료되지 않았다.
 
 ---
 
@@ -436,10 +355,7 @@ Canonical production wireframe:
 
 `https://liftly-wireframe.vercel.app`
 
-주의:
-
-- canonical production 전체 앱 wireframe에는 최신 모든 PO 결정이 아직 반영되지 않음
-- review artifact와 canonical production을 구분
+최신 모든 PO 결정이 아직 반영된 것은 아니다. GitHub Decision / CURRENT가 더 최신이면 GitHub를 우선한다.
 
 ---
 
