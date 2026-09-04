@@ -1,10 +1,10 @@
 # CURRENT — Fitness Project
 
-**Updated:** 2026-09-05 00:10 KST
+**Updated:** 2026-09-05 00:15 KST
 
 ## Current mode
 
-`EXERCISE DB / ASSET SOURCE ANALYSIS ACTIVE · RAW R2 VERIFIED · CABLE COMPLETE · MACHINE QA COMPLETE · BARBELL QA COMPLETE · DUMBBELL TARGETED VISUAL QA NEXT · PRODUCT/UX BASELINE PRESERVED · NO CURSOR IMPLEMENTATION HANDOFF`
+`EXERCISE DB / ASSET SOURCE ANALYSIS ACTIVE · RAW R2 VERIFIED · CABLE COMPLETE · MACHINE QA COMPLETE · BARBELL QA COMPLETE · DUMBBELL QA COMPLETE · KETTLEBELL TARGETED VISUAL QA NEXT · PRODUCT/UX BASELINE PRESERVED · NO CURSOR IMPLEMENTATION HANDOFF`
 
 ## Resume rule
 
@@ -197,30 +197,16 @@ Machine boundary:
 
 - `docs/exercise-db/2026-09-05-barbell-visual-qa-18.md`
 
-8 duplicate candidate groups / 18 files를 timeline frame으로 직접 비교했다.
-
-검증:
-
-- groups: **8 / 8**
-- files: **18 / 18**
-- binary-identical SHA256 duplicate: **0**
-
-결과:
+8 duplicate candidate groups / 18 files 직접 비교:
 
 - same canonical + POV/load/render/timing media variant: **7 groups**
-  - Barbell Curl
-  - Barbell Deadlift
-  - Barbell Full Clean
-  - Barbell Full Squat
-  - Barbell Hang Snatch
-  - Barbell Standing Military Press
-  - Barbell Upright Row
 - execution variant: **1 group**
   - Barbell Rear Lunge
-    - `front_foot_elevated` version
-    - standard `floor` version
+    - `front_foot_elevated`
+    - standard `floor`
     - performance history 자동 병합 금지
 - unresolved: **0**
+- binary-identical SHA256 duplicate: **0**
 
 Barbell boundary:
 
@@ -229,24 +215,58 @@ Barbell boundary:
 - animation timing 차이만 있고 movement sequence 같음 → 별도 canonical 근거 아님
 - step/platform처럼 ROM/수행 조건을 크게 바꾸면 explicit execution variant
 
+## 7. Dumbbell targeted visual QA — COMPLETE
+
+기준:
+
+- `docs/exercise-db/2026-09-05-dumbbell-visual-qa-20.md`
+
+9 duplicate candidate groups / 20 files 직접 비교:
+
+- same canonical + media/render/POV/bench variant: **8 groups**
+  - Alternate Shoulder Press
+  - Chest-Supported Lateral Raise
+  - Close-Grip Curl
+  - Cross-Body Hammer Curl
+  - Hip Thrust
+  - Squat
+  - Standing Scapular External Rotation
+  - Stiff-Leg Deadlift
+- load-position / execution variant: **1 group**
+  - Dumbbell Hyperextension
+    - `hanging_load`: 두 dumbbell을 아래로 뻗어 든 수행
+    - `chest_close_load`: load를 몸통 가까이/가슴 쪽에 둔 수행
+    - leverage와 같은 kg의 기록 의미가 달라 performance history 자동 병합 금지
+- unresolved: **0**
+- binary-identical SHA256 duplicate: **0**
+
+Media-selection note:
+
+- Alternate Shoulder Press의 multi-view/composite source 등은 identity 문제는 아니며, 후속 app-serving media selection에서 UI 일관성 기준으로 우선순위를 정한다.
+
+Dumbbell boundary:
+
+- POV/render/model presentation 차이 → same canonical + media variant
+- bench 디자인/지지 표현 차이만 있고 joint path가 같음 → same canonical
+- load position이 leverage와 기록 의미를 크게 바꾸면 execution/load-position variant
+
 ---
 
 # NEXT OPEN ITEM — Exercise DB / asset
 
 ## Immediate next
 
-**Dumbbell targeted visual QA — 9 groups / 20 files**
+**Kettlebell targeted visual QA — 6 groups / 12 files**
 
 후속 순서:
 
-1. Dumbbell 20 direct visual QA
-2. Kettlebell 6 groups / 12 files QA
-3. Smith 1 group / 2 files QA
-4. Landmine 4 groups / 8 files QA
-5. 필요 시 각 family의 ambiguous naming/media exception 추가 targeted QA
-6. 전체 normalized source를 기존 Production Exercise DB v1과 mapping
-7. 최종 G Fit canonical 후보 수 / 실제 gap 재산출
-8. canonical mapping 안정화 후 production media transform / app-serving storage 결정
+1. Kettlebell 12 direct visual QA
+2. Smith 1 group / 2 files QA
+3. Landmine 4 groups / 8 files QA
+4. 필요 시 각 family의 ambiguous naming/media exception 추가 targeted QA
+5. 전체 normalized source를 기존 Production Exercise DB v1과 mapping
+6. 최종 G Fit canonical 후보 수 / 실제 gap 재산출
+7. canonical mapping 안정화 후 production media transform / app-serving storage 결정
 
 **현재는 source normalization 단계이며 Cursor implementation handoff 없음.**
 
