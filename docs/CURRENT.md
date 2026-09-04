@@ -1,10 +1,10 @@
 # CURRENT — Fitness Project
 
-**Updated:** 2026-09-04 23:27 KST
+**Updated:** 2026-09-04 23:46 KST
 
 ## Current mode
 
-`EXERCISE DB / ASSET SOURCE ANALYSIS ACTIVE · GYM ANIMATIONS PURCHASED · RAW R2 UPLOAD VERIFIED · CABLE NORMALIZATION RULE V1 APPROVED · CABLE MANIFEST MAP V0.1 COMPLETE · DUPLICATE VISUAL QA 38 NEXT · PRODUCT/UX BASELINE PRESERVED · NO CURSOR IMPLEMENTATION HANDOFF`
+`EXERCISE DB / ASSET SOURCE ANALYSIS ACTIVE · GYM ANIMATIONS PURCHASED · RAW R2 UPLOAD VERIFIED · CABLE NORMALIZATION RULE V1 APPROVED · CABLE MAP V0.2 COMPLETE · DUPLICATE VISUAL QA 38 COMPLETE · FULL LIBRARY / NON-CABLE NORMALIZATION NEXT · PRODUCT/UX BASELINE PRESERVED · NO CURSOR IMPLEMENTATION HANDOFF`
 
 ## Resume rule
 
@@ -140,7 +140,50 @@ Naming correction candidate:
 - `Cable-Incline-Pushdown_Back_` → `Incline Cable Straight-Arm Pulldown`
 - `Cable-Standing-Pulldown-(with-rope)_Forearms_` → `Standing High Cable Rope Curl` candidate, Medium-High confidence
 
-Full derived row map은 현재 review artifact `cable_normalization_map_v0_1.csv`로 생성되어 있으며, duplicate 판정이 끝난 뒤 canonical map으로 승격한다.
+### 6. Cable duplicate visual QA 38 / normalization map v0.2 — COMPLETE
+
+상세:
+
+- `docs/exercise-db/2026-09-04-cable-duplicate-visual-qa-38.md`
+
+18 duplicate candidate groups / 38 files를 timeline frame sampling으로 직접 비교했다.
+
+검증:
+
+- candidate groups: **18 / 18 reviewed**
+- files: **38 / 38 reviewed**
+- binary-identical SHA256 duplicate: **0**
+
+Group result:
+
+- **true app-facing duplicate groups: 14**
+- **execution-variant groups: 2**
+  - Cable Kneeling Triceps Extension → `kneeling_overhead` vs `prone_bench`
+  - Cable Straight Arm Pulldown → `bent_over` vs `standing_upright_slight_lean`
+- **attachment-variant groups: 1**
+  - Neutral-Grip Wide Pulldown 3개 → same parent + 서로 다른 attachment form
+- **mixed source-media exception groups: 1**
+  - One Arm Front Raise group의 `Cable One Arm Front Raise.mp4`는 실제로 cable이 아니라 two-dumbbell squat-to-overhead-press / thruster-like media
+
+Row-level result inside 38-file subset:
+
+- `DUPLICATE_CONFIRMED`: **30 rows**
+- `EXECUTION_VARIANT`: **4 rows**
+- `ATTACHMENT_VARIANT`: **3 rows**
+- `SOURCE_MEDIA_EXCEPTION`: **1 row**
+
+Additional media exception:
+
+- `Cable One Arm Front Raise .mp4` → female model inside Male catalog
+- `Cable-Seated-Chest-Press-(female)_Chest_.mp4` → female model inside Male catalog
+
+이 둘은 exercise identity 문제와 분리하여 media-selection exception으로 추적한다.
+
+Derived review artifact:
+
+- `cable_normalization_map_v0_2.csv`
+
+Cable duplicate candidates는 모두 해소되었고, Cable의 `canonical / attachment / grip / execution / duplicate / media exception` 경계는 현재 규칙으로 정리되었다.
 
 ---
 
@@ -148,21 +191,30 @@ Full derived row map은 현재 review artifact `cable_normalization_map_v0_1.csv
 
 ### Immediate next
 
-**18 duplicate candidate groups / 38 files direct visual QA**
+**`MP4/MALE/Library_database` 전체 2,109개 filename/size manifest 확보 → non-Cable normalization 확장**
 
-목적:
+Cable에서 검증한 normalization framework를 다음 계열에 확장한다.
 
-- true duplicate인지
-- 실제 수행/자세가 다른 version인지
-- media만 다른 동일 exercise인지
+우선순위:
 
-를 확정한다.
+1. Machine
+2. Barbell
+3. Dumbbell
+4. Kettlebell
+5. Smith
+6. Landmine
+
+효율 원칙:
+
+- 장비별 manifest를 매번 따로 만들지 않고 **Library_database 전체 2,109개 manifest 1개**를 기준으로 분류한다.
+- filename/size 기반 1차 분류 후 ambiguous / duplicate candidate만 targeted visual QA한다.
+- 구매 원본은 계속 read-only로 유지한다.
 
 그 다음 순서:
 
-1. duplicate visual QA 38 완료
-2. Cable parent / attachment / grip / execution / duplicate map 확정
-3. Machine / Barbell / Dumbbell / Kettlebell / Smith / Landmine으로 동일 normalization rule 확장
+1. full 2,109 manifest 확보 / equipment-family 1차 분류
+2. Machine / Barbell / Dumbbell / Kettlebell / Smith / Landmine normalization
+3. ambiguous / duplicate targeted visual QA
 4. 기존 Production Exercise DB v1과 mapping
 5. 최종 G Fit canonical 후보 수 / 실제 gap 재산출
 6. production media transform / app-serving storage 구조 결정
