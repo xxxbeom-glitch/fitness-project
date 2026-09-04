@@ -1,105 +1,67 @@
 # Exercise DB Normalization — Resume Checkpoint
 
 **Date:** 2026-09-05  
-**Status:** HANDOFF CHECKPOINT / RESUME FROM SMITH + LANDMINE FINAL QA
+**Status:** SMITH + LANDMINE QA COMPLETE / RESUME FROM PRODUCTION DB MAPPING
 
-## Why this checkpoint exists
+## Source of Truth
 
-새 채팅에서 현재 위치를 다시 묻지 않고 바로 이어가기 위한 handoff 문서다.
+Primary: `docs/CURRENT.md`
 
-Source of Truth 우선순위는 계속 `docs/CURRENT.md`이며, 이 문서는 현재 Exercise DB normalization 작업의 압축 checkpoint다.
-
----
+This file is the compact resume checkpoint for the current Exercise DB normalization work.
 
 ## Raw source / storage
 
 Purchased source:
 
 - Gym Animations — `Gym Workout Man Package`
-
-Raw source:
-
-- total files: **17,085**
-- total size: **98.69 GB**
 - Male analysis base: `MP4/MALE/Library_database`
 - analysis-base MP4 count: **2,109**
 
 Cloudflare R2 raw upload:
 
 - bucket: `gfit-source-original`
-- remote objects: **17,085**
-- remote size: **98.694 GiB**
-- exact: **105,972,019,458 Byte**
+- objects: **17,085**
+- exact size: **105,972,019,458 Byte**
 - status: **VERIFIED / DONE**
 
-Raw filename/path/media는 read-only provenance로 유지하며 rename/delete/overwrite하지 않는다.
+Raw filename/path/media remains read-only provenance.
 
----
+## Completed targeted normalization / visual QA
 
-## Completed normalization / visual QA
+- Cable — COMPLETE
+- Machine — COMPLETE
+- Barbell — COMPLETE
+- Dumbbell — COMPLETE
+- Kettlebell — COMPLETE
+- Smith — COMPLETE
+- Landmine — COMPLETE
 
-### Cable — COMPLETE
+### Smith + Landmine final QA
 
-- `Cable*` raw: 297
-- cable-associated extra: 1
-- working manifest: 298 rows
-- ambiguous direct visual QA: 14 complete
-- duplicate candidates: 18 groups / 38 files complete
-- result includes canonical / attachment / grip / execution / duplicate / media-exception boundaries
-- reference artifact: `cable_normalization_map_v0_2.csv`
+Result doc:
 
-Key rule:
+- `docs/exercise-db/2026-09-05-smith-landmine-visual-qa-10.md`
 
-- same movement + attachment only → same canonical + attachment context/media
-- grip-only difference → same family + grip context
-- posture/laterality/path materially different → execution variant, history auto-merge 금지
-- vendor filename보다 실제 visual movement를 우선
+Input:
 
-### Machine — COMPLETE
+- Smith: **1 group / 2 files**
+- Landmine: **4 groups / 8 files**
+- total: **5 groups / 10 files**
 
-- 33 files direct visual QA complete
-- duplicate candidates: 25 files / 12 groups
-- ambiguous machine/non-machine: 8
-- result:
-  - same canonical + media/machine-design variant: 10 groups
-  - grip variant: 1 — Lever High Row
-  - execution variant: 1 — Lever Triceps Extension
-  - ambiguous machine confirmed: 5
-  - ambiguous non-machine confirmed: 3
-- current Machine source-scope candidate: **207 raw rows**
-- unresolved: 0
+Results:
 
-### Barbell — COMPLETE
+- Smith Close Grip Bench Press — **exact binary duplicate**
+- Landmine Kneeling One Arm Shoulder Press — **same canonical + media/render variant**
+- Landmine One Arm Bent Over Row — **same canonical + POV/render/posture media variant**
+- Landmine Rear Lunge — **execution/load-position variant**
+  - high/front two-hand hold vs low-side one-hand hold
+  - history auto-merge prohibited until explicit production policy says otherwise
+- Landmine Romanian Deadlift — **same canonical + POV/render media variant**
+- unresolved: **0**
 
-- 8 groups / 18 files direct visual QA complete
-- same canonical + media/POV/load/render/timing: 7 groups
-- execution variant: 1 — Barbell Rear Lunge (`front_foot_elevated` vs `floor`)
-- unresolved: 0
+This completes the planned ZIP-based duplicate/ambiguity visual-QA sequence for the main equipment families. Small targeted QA may still be added later only if Production DB mapping reveals a new filename/visual conflict.
 
-### Dumbbell — COMPLETE
-
-- 9 groups / 20 files direct visual QA complete
-- same canonical + media/render/POV/bench: 8 groups
-- load-position / execution variant: 1 — Dumbbell Hyperextension (`hanging_load` vs `chest_close_load`)
-- unresolved: 0
-
-### Kettlebell — COMPLETE
-
-- 6 groups / 12 files direct visual QA complete
-- same canonical + render/POV/timing: 3 groups
-- load-position / implement-count variant: 2 groups
-  - Forward Lunge — single goblet/front hold vs two kettlebells at sides
-  - Sumo Squat — low-hang vs goblet/high-front hold
-- naming / movement mismatch: 1 group
-  - `Kettlebell-Good-Morning-(male)` → true good morning
-  - `Kettlebell-Good-Morning_Hips_` → visually closer to kettlebell deadlift/RDL family candidate
-- unresolved: 0
-
----
-
-## Full 2,109 equipment pass baseline
-
-Filename/path/size first-pass counts:
+## Full 2,109 equipment-pass baseline
 
 - Machine high-confidence: 202
 - Barbell: 212
@@ -111,80 +73,48 @@ Filename/path/size first-pass counts:
 - Machine-or-nonmachine ambiguous: 8
 - Other / not-yet-normalized: 579
 
-Remaining duplicate candidates after completed families:
-
-- **Smith: 1 group / 2 files**
-- **Landmine: 4 groups / 8 files**
-
----
+These are source-family/raw-row counts, not final canonical exercise counts.
 
 ## Immediate next — DO THIS FIRST
 
-**Smith + Landmine final targeted visual QA — 10 files total**
+**Map the normalized purchased source against the existing Production Exercise DB v1.**
 
-Reason:
+Reference:
 
-- Smith 2 + Landmine 8을 한 ZIP으로 묶어 사용자 반복 작업을 줄이기로 했다.
-- assistant-side extraction script artifact was prepared as `Smith_Landmine_Final_Review_10.ps1`.
-- user has not yet uploaded the final `Smith_Landmine_Final_Review_10.zip` at this checkpoint.
+- `docs/exercise-db/exercise-db-v1-production.md`
+- existing normalization result docs under `docs/exercise-db/`
 
-When the ZIP arrives:
+Next sequence:
 
-1. verify 10 files present
-2. SHA256 / timeline-frame visual comparison
-3. resolve Smith 1 duplicate group
-4. resolve Landmine 4 duplicate groups
-5. classify same canonical vs execution/load/grip/media variant
-6. update GitHub result doc + `CURRENT.md`
+1. consolidate normalized source decisions
+2. map source rows/families to Production canonical exercises
+3. absorb duplicates/media variants into canonical rows
+4. preserve attachment / grip / execution contexts where material
+5. recalculate final G Fit canonical candidate count
+6. recalculate actual missing/gap exercises for gym-first MVP
+7. prioritize only the real gaps that G Fit needs
+8. after canonical mapping stabilizes, decide production media selection / transform / app-serving storage
 
-이 단계가 끝나면 **기본적인 ZIP 기반 duplicate visual-QA 반복은 종료**한다. 단, 이후 DB mapping에서 filename/visual 충돌이 새로 발견되면 소량 targeted QA가 추가될 수 있다.
+No Cursor implementation handoff yet.
 
----
+## Product/UX parallel context preserved
 
-## After final Smith + Landmine QA
+Still OPEN separately from DB normalization:
 
-다음 메인 단계:
-
-1. 전체 normalized source 정리
-2. 기존 Production Exercise DB v1과 mapping
-3. source variant를 app-facing canonical exercise / attachment / grip / execution context로 흡수
-4. 실제 중복 제거 후 최종 G Fit canonical 후보 수 계산
-5. 기존 DB에 없는 **실제 gap 운동 수** 재산출
-6. gap 중 G Fit gym-first MVP에서 필요한 운동 우선순위 결정
-7. canonical mapping 안정화 후 production media selection / transform / app-serving storage 결정
-
-아직 Cursor 구현 handoff 단계가 아니다.
-
----
-
-## Product/UX parallel context to preserve
-
-Exercise DB normalization과 별개로 Product/UX OPEN은 유지한다.
-
-- 추천 루틴 실제 프로그램 contents — Exercise DB/substitution data 선행 필요
+- recommended-routine actual program contents — depends on Exercise DB/substitution data
 - Analysis first screen / drilldown scope
 - Settings main scope
-- rest timer 종료 signal 세부 동작
+- rest timer end signal detail
 
-최근 Analysis 논의에서는 아래 방향을 검토했지만 별도 승인 문서로 확정하지 않았다.
+Recent Analysis exploration (`period selection / exercise summary / frequency / front-back body-map distribution`) is not yet a PO-approved decision.
 
-- 기간 선택
-- 운동 요약
-- 운동 빈도
-- 구매한 인체 visual 스타일을 활용한 front/back body-map 기반 운동 부위 분포
+## Resume instruction
 
-Exercise Detail scope 등 기존 PO-approved UX는 `CURRENT.md` 기준으로 보존하고 다시 열지 않는다.
+On the next continuation:
 
----
-
-## Resume instruction for next chat
-
-새 채팅에서 사용자가 `이어가자`, `다음`, `깃헙 확인하고 진행해`처럼 말하면:
-
-1. `docs/CURRENT.md` 확인
-2. 이 checkpoint 확인
-3. Smith + Landmine final ZIP이 현재 대화에 있으면 즉시 visual QA
-4. 없으면 `Smith_Landmine_Final_Review_10.zip`만 요청
-5. 이미 완료된 Cable / Machine / Barbell / Dumbbell / Kettlebell 내용을 재논의하지 않는다.
+1. check `docs/CURRENT.md`
+2. check this checkpoint
+3. do **not** redo Cable / Machine / Barbell / Dumbbell / Kettlebell / Smith / Landmine visual QA
+4. resume directly from **Production Exercise DB v1 mapping / true-gap recalculation**
 
 No Cursor implementation handoff.
