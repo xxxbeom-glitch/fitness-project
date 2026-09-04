@@ -1,16 +1,18 @@
 # Exercise DB / Asset Source Purchase Hold
 
 **Date:** 2026-09-03
-**Status:** CONFIRMED HOLD
+**Status:** RESOLVED 2026-09-04 — PACKAGE PURCHASED / SOURCE ANALYSIS ACTIVE
 **Authority:** Product Owner decision
 
 ## Decision
 
-Exercise DB expansion and new exercise-asset production are paused until the Product Owner decides whether to purchase the Gym Animations exercise package being reviewed.
+Exercise DB expansion and new exercise-asset production were paused until the Product Owner decided whether to purchase the Gym Animations exercise package being reviewed.
 
-This is a pause, not a rollback of completed DB work.
+This hold is now **resolved**. The Product Owner purchased the **Gym Animations — Gym Workout Man Package** and source analysis began on 2026-09-04.
 
-## Preserve as-is during hold
+The completed DB work from before the hold remains preserved; the new package is treated as a larger raw source catalog, not as an automatic replacement for the G Fit canonical exercise DB.
+
+## Preserve as-is
 
 - Production Exercise DB v1: 195 app-facing canonical / 206 purchased source baseline
 - Existing purchased source and metadata: read-only
@@ -19,7 +21,7 @@ This is a pause, not a rollback of completed DB work.
 - Assisted pull-up / assisted dip recording: `assisted_weight_reps`
 - Existing exercise normalization rules and history identity rules
 
-## Specifically paused
+## Items that were paused
 
 - `machine-front-military-press` shoulder-press rename / alias finalization
 - pin-stack vs plate-loaded vs ISO-lateral shoulder-press expansion decisions
@@ -27,13 +29,15 @@ This is a pause, not a rollback of completed DB work.
 - new AI-created exercise posters
 - production promotion of P0 new exercise assets
 
-## Why
+These items are **not automatically resumed as-is**. They are re-evaluated against the newly purchased source catalog so that we do not create duplicate mapping/asset work.
 
-If the new package is purchased, it will provide a larger source catalog and video/visual assets. Finalizing detailed machine variants and missing-exercise coverage before reviewing that source could create avoidable remapping and duplicate work.
+## Why the hold existed
 
-The larger package, if purchased, is treated as a source catalog rather than automatically becoming the G Fit canonical exercise list.
+The purchased package provides a much larger source catalog and video/visual asset set. Finalizing detailed machine variants and missing-exercise coverage before reviewing that source would have created avoidable remapping and duplicate work.
 
-## Resume path — if package is purchased
+The larger package is treated as a **source catalog**, not as the G Fit canonical exercise list.
+
+## Resumed path — package purchased
 
 1. Preserve the purchased package in a raw/read-only source layer.
 2. Inspect actual package contents, IDs/names, visual/video assets and available metadata.
@@ -43,14 +47,24 @@ The larger package, if purchased, is treated as a source catalog rather than aut
 6. Finalize G Fit canonical DB independently of replaceable image/video assets.
 7. QA assets and promote only approved canonical rows/assets to production.
 
-## Resume path — if package is not purchased
+## 2026-09-04 source checkpoint
 
-Resume from the current checkpoint:
+Confirmed from the delivered package structure scan:
 
-1. shoulder-press machine identity/display split review
-2. remaining P0 asset strategy
-3. new poster production and QA
+- total source package: **17,085 files / 98.69 GB**
+- top-level media: `GIFS` and `MP4`
+- `MP4/MALE/Gym_Workout_`: 2,081 MP4 files
+- `MP4/MALE/Library_database`: 2,109 MP4 files
+- all 2,081 `Gym_Workout_` files are byte-identical matches inside `Library_database`; `Library_database` has 28 additional files
+- `MP4/MALE/Home_Workout_`: 2,120 MP4 files and is almost entirely distinct from the gym set (6 exact overlaps)
+- therefore `Library_database` is the preferred raw gym catalog for ongoing analysis; `Gym_Workout_` is not counted as an additional 2,081 unique exercises
 
-## Parallel work while DB is on hold
+Raw source filenames and paths remain unchanged. App-facing canonical IDs/names/attachment mapping are created only in derived data.
 
-Product/UX work that does not depend on the final exercise source catalog may continue. Current next area is Active Workout UX, beginning with the optional grip-selection interaction for cable/pulley exercises.
+Detailed checkpoint:
+
+`docs/exercise-db/2026-09-04-gym-animations-source-analysis-checkpoint.md`
+
+## Parallel product work
+
+Product/UX work may continue independently. Cable attachment UX is already PO-approved and source analysis has now provided evidence that attachment-specific media variants are available for multiple cable exercises.
