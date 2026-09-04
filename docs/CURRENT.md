@@ -1,6 +1,6 @@
 # CURRENT — Fitness Project
 
-**Updated:** 2026-09-04 22:21 KST
+**Updated:** 2026-09-04 22:35 KST
 
 ## Current mode
 
@@ -252,6 +252,24 @@ R2 raw upload 완료 후:
 - assisted / duration / distance 등은 일반 kg 총 볼륨에 억지로 포함하지 않음
 - 장비별 hidden multiplier는 별도 semantics 확정 전 임의 적용하지 않음
 
+### Progression Hint
+
+기준:
+
+`docs/ux-decisions/2026-09-04-progression-hint-threshold.md`
+
+- MVP v1의 일반 증량 힌트는 달력 기간이 아니라 실제 수행 기록 기준
+- 같은 루틴의 같은 운동 + 같은 중량에서 최근 5회 기록을 관찰
+- 최근 5회 중 4회 이상 성공 + 가장 최근 수행도 성공이면 증량 힌트 후보
+- 성공 = 예정 세트 전체 완료 + 모든 예정 세트에서 목표 반복 범위 상단 달성
+- 한 번의 컨디션 흔들림은 허용하지만 짧은 성공 2번만으로 바로 증량을 권하지 않음
+- 사용자가 먼저 중량을 올리거나 낮추면 새 중량에서 다시 관찰
+- 세트 수 / 목표 반복 범위가 바뀌면 새 조건에서 다시 관찰
+- `7일`, `2주` 같은 달력 기간은 MVP 증량 조건으로 사용하지 않음
+- `+2.5kg`, `+5%` 같은 정확한 증량 폭은 MVP에서 자동 처방하지 않고 `한 단계 올려봐도 좋아요` 수준으로 제안
+- assisted / bodyweight / duration / distance 등은 일반 증량 규칙에서 제외
+- `4/5`는 제품 MVP 임계값이며 실제 데이터 / 사용자 피드백에 따라 후속 수정 가능
+
 ### Workout End Flow / Whole Workout Discard
 
 기준:
@@ -313,7 +331,6 @@ Flow:
 Exercise DB / asset source analysis와 별개로 아래 제품 항목은 여전히 OPEN이다.
 
 - 추천 루틴 실제 프로그램 contents — Exercise DB / substitution data 선행 필요
-- progression hint exact metric / observation threshold
 - Exercise Detail scope
 - Analysis first screen / drilldown scope
 - Settings main scope
