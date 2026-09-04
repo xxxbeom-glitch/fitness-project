@@ -1,6 +1,6 @@
 # CURRENT — Fitness Project
 
-**Updated:** 2026-09-04 22:16 KST
+**Updated:** 2026-09-04 22:21 KST
 
 ## Current mode
 
@@ -236,13 +236,21 @@ R2 raw upload 완료 후:
 
 기준:
 
-`docs/ux-decisions/2026-09-03-post-workout-completion-carousel.md`
+- `docs/ux-decisions/2026-09-03-post-workout-completion-carousel.md`
+- `docs/ux-decisions/2026-09-04-workout-completion-metrics.md`
 
 - 1:1.25 카드 캐러셀
 - 내부 스크롤 기본 사용 안 함
 - 의미 있는 카드만 조건부 노출 가능
 - 완료 카드 구성/방향은 planning PASS
 - final visual polish는 Figma에서 조정
+- 운동 시간 = 시작~종료 경과시간에서 명시적 pause 제외
+- 완료 세트 = 종료 시 최종 체크 상태인 세트 수
+- 같은 세트를 체크/해제/재체크해도 최종 체크라면 1세트만 계산
+- 완료 운동 수 = 완료 세트가 1개 이상인 운동 수
+- 일반 weight/reps 총 볼륨 = 완료 세트의 `Σ(기록 중량 × 실제 반복수)`
+- assisted / duration / distance 등은 일반 kg 총 볼륨에 억지로 포함하지 않음
+- 장비별 hidden multiplier는 별도 semantics 확정 전 임의 적용하지 않음
 
 ### Workout End Flow / Whole Workout Discard
 
@@ -305,7 +313,6 @@ Flow:
 Exercise DB / asset source analysis와 별개로 아래 제품 항목은 여전히 OPEN이다.
 
 - 추천 루틴 실제 프로그램 contents — Exercise DB / substitution data 선행 필요
-- completion exact metric / formula
 - progression hint exact metric / observation threshold
 - Exercise Detail scope
 - Analysis first screen / drilldown scope
