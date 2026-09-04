@@ -1,10 +1,10 @@
 # CURRENT — Fitness Project
 
-**Updated:** 2026-09-04 23:47 KST
+**Updated:** 2026-09-05 00:05 KST
 
 ## Current mode
 
-`EXERCISE DB / ASSET SOURCE ANALYSIS ACTIVE · GYM ANIMATIONS PURCHASED · RAW R2 UPLOAD VERIFIED · CABLE MAP V0.2 COMPLETE · FULL LIBRARY 2,109 EQUIPMENT PASS V0.1 COMPLETE · MACHINE TARGETED VISUAL QA 33 NEXT · PRODUCT/UX BASELINE PRESERVED · NO CURSOR IMPLEMENTATION HANDOFF`
+`EXERCISE DB / ASSET SOURCE ANALYSIS ACTIVE · GYM ANIMATIONS PURCHASED · RAW R2 UPLOAD VERIFIED · CABLE MAP V0.2 COMPLETE · FULL LIBRARY 2,109 EQUIPMENT PASS V0.1 COMPLETE · MACHINE TARGETED VISUAL QA 33 COMPLETE · BARBELL TARGETED VISUAL QA NEXT · PRODUCT/UX BASELINE PRESERVED · NO CURSOR IMPLEMENTATION HANDOFF`
 
 ## Resume rule
 
@@ -20,7 +20,7 @@
 
 ---
 
-## Latest checkpoint — 2026-09-04 Gym Animations / source normalization
+## Latest checkpoint — 2026-09-05 Gym Animations / source normalization
 
 ### 1. Purchased source / canonical analysis base
 
@@ -224,18 +224,55 @@ Non-Cable duplicate candidate scan:
 
 이 duplicate group은 filename cleanup 기반 **review candidate**일 뿐 자동 merge하지 않는다.
 
-Machine 우선순위에 따라 targeted visual review set을 **33 files**로 준비했다.
+### 8. Machine targeted visual QA 33 — COMPLETE
 
-구성:
+상세:
 
-- Machine duplicate-candidate rows: **25**
-- `Assisted-*` / `Hack-Calf-Raise` machine-or-nonmachine ambiguous rows: **8**
+- `docs/exercise-db/2026-09-04-machine-visual-qa-33.md`
 
-Derived review artifacts:
+검수 대상:
 
-- `library_2109_equipment_pass_v0_1.csv`
-- `machine_review_candidates_v0_1.csv`
-- `Machine_Review_Candidates.ps1`
+- Machine duplicate-candidate rows: **25 files / 12 groups**
+- `Assisted-*` / `Hack-*` machine-or-nonmachine ambiguous: **8 files**
+- total: **33 / 33 reviewed**
+- binary-identical SHA256 duplicate: **0**
+
+12 duplicate-candidate groups 결과:
+
+- **same canonical + media/machine-design variant: 10 groups**
+- **grip variant: 1 group**
+  - Lever High Row (plate-loaded) → 실제 handle/grip 형태 차이; non-Cable grip policy에 따라 자동 history 병합 금지
+- **execution variant: 1 group**
+  - Lever Triceps Extension → elbows-forward/support-pad vs upper-arms-beside-torso execution 차이; 자동 history 병합 금지
+- unresolved: **0**
+
+8 ambiguous rows 결과:
+
+Machine confirmed **5 / 8**:
+
+- Assisted Parallel Close Grip Pull-up
+- Assisted Pull-up
+- Assisted Single Leg Press
+- Assisted Triceps Dip (kneeling)
+- Hack Calf Raise
+
+Non-Machine confirmed **3 / 8**:
+
+- Assisted Bulgarian Split Squat → support-assisted/bodyweight
+- Assisted Chin-Up on a bench → bench-assisted/bodyweight
+- Assisted Single-Arm Pull-up → 일반 rack one-arm pull-up이며 영상상 machine/외부 assistance 없음; vendor `Assisted` wording exception
+
+따라서 filename-only Machine 202 + visual-confirmed 5 = **Machine source scope candidate 207 rows**.
+
+이 수치는 raw source row 수이며 final unique canonical exercise 수가 아니다.
+
+Machine normalization boundary:
+
+1. 같은 자세/관절 패턴/수행 경로인데 기구 프레임·렌더·카메라만 다름 → same canonical + media variant
+2. grip/handle orientation 차이가 의미 있음 → grip variant 보존
+3. 자세/관절 위치/수행 경로가 크게 다름 → execution variant, history 자동 병합 금지
+4. `Assisted` filename만으로 assisted machine 추정 금지; 실제 counterweight/knee-pad/platform 확인
+5. raw filename과 영상이 충돌하면 raw는 보존하고 derived normalization에서 예외 처리
 
 ---
 
@@ -243,23 +280,21 @@ Derived review artifacts:
 
 ### Immediate next
 
-**Machine targeted visual QA — 33 files**
+**Barbell duplicate targeted visual QA — 8 groups / 18 files**
 
-목적:
-
-- 12 duplicate candidate groups를 true duplicate / execution variant / media-only variant로 해소
-- 8 ambiguous Assisted/Hack rows가 실제 machine exercise인지 판단
-- Machine normalized candidate map을 확정 가능한 수준으로 올림
+대상은 full 2,109 equipment pass에서 이미 추출 가능하다.
 
 그 다음 순서:
 
-1. Machine visual QA 33 완료
-2. Machine normalized map 정리
-3. Barbell duplicate/ambiguous targeted visual QA
-4. Dumbbell → Kettlebell → Smith → Landmine 순으로 반복
-5. 기존 Production Exercise DB v1과 mapping
-6. 최종 G Fit canonical 후보 수 / 실제 gap 재산출
-7. production media transform / app-serving storage 구조 결정
+1. Barbell visual QA 18 완료
+2. Dumbbell duplicate/ambiguous targeted visual QA
+3. Kettlebell
+4. Smith
+5. Landmine
+6. 필요 시 EZ Bar / Other 핵심 범위 정리
+7. 전체 normalized source를 기존 Production Exercise DB v1과 mapping
+8. 최종 G Fit canonical 후보 수 / 실제 gap 재산출
+9. production media transform / app-serving storage 구조 결정
 
 **현재는 source normalization 단계이며 Cursor 구현 handoff 없음.**
 
