@@ -1,10 +1,10 @@
 # CURRENT — Fitness Project
 
-**Updated:** 2026-09-04 22:43 KST
+**Updated:** 2026-09-04 23:00 KST
 
 ## Current mode
 
-`EXERCISE DB / ASSET SOURCE ANALYSIS ACTIVE · GYM ANIMATIONS PURCHASED · RAW R2 UPLOAD IN PROGRESS · CABLE NORMALIZATION STARTED · PRODUCT/UX BASELINE PRESERVED · NO CURSOR IMPLEMENTATION HANDOFF`
+`EXERCISE DB / ASSET SOURCE ANALYSIS ACTIVE · GYM ANIMATIONS PURCHASED · RAW R2 UPLOAD VERIFIED · CABLE NORMALIZATION STARTED · PRODUCT/UX BASELINE PRESERVED · NO CURSOR IMPLEMENTATION HANDOFF`
 
 ## Resume rule
 
@@ -114,7 +114,7 @@ source에는 attachment별 Cable media가 실제로 다수 존재한다.
 
 `docs/ux-decisions/2026-09-03-cable-attachment-active-workout.md`
 
-### 4. Cloudflare R2 raw source setup
+### 4. Cloudflare R2 raw source upload — VERIFIED
 
 Raw source bucket:
 
@@ -126,38 +126,35 @@ Raw source bucket:
 - raw bucket과 향후 app-serving derivative media는 분리
 - 원본은 read-only provenance layer로 유지
 
-Windows `rclone` + Cloudflare R2 S3 endpoint 연결 완료.
-
-빈 버킷 연결 테스트 성공.
-
-현재 업로드 명령 실행 중:
+Upload target:
 
 `D:\project\111111111\Animations` → `r2:gfit-source-original/Animations`
 
-현재 상태는 **UPLOAD IN PROGRESS**다.
+2026-09-04 remote verification result:
 
-완료 판정 전 반드시 remote 검증:
+- `rclone copy`: **17,085 / 17,085 transferred, 100%**
+- `rclone size` Total objects: **17,085**
+- Total size: **98.694 GiB**
+- Exact remote size: **105,972,019,458 Byte**
 
-- expected files: **17,085**
-- expected size: **~98.69 GB**
+Expected source count **17,085**와 remote count가 정확히 일치하고 total size도 expected ~98.69 GB와 일치한다.
 
-`rclone size`로 remote count/size를 확인하기 전에는 DONE으로 처리하지 않는다.
+따라서 raw R2 upload는 **DONE / VERIFIED**다.
 
 ---
 
 ## NEXT OPEN ITEM — Exercise DB / asset
 
-R2 raw upload 완료 후:
+R2 raw upload verification이 완료되었으므로 다음 순서로 진행한다.
 
-1. remote file count / total size 검증
-2. Cable visual-review 14개 QA
-3. Cable에서 `canonical exercise / attachment / grip-posture variant / duplicate` 규칙 확정
-4. 같은 규칙을 Machine / Barbell / Dumbbell / Kettlebell / Smith / Landmine으로 확장
-5. 기존 Production Exercise DB v1과 mapping
-6. 최종 G Fit canonical 후보 수 / 실제 gap 재산출
-7. production media transform / app-serving storage 구조 결정
+1. **Cable visual-review 14개 QA**
+2. Cable에서 `canonical exercise / attachment / grip-posture variant / duplicate` 규칙 확정
+3. 같은 규칙을 Machine / Barbell / Dumbbell / Kettlebell / Smith / Landmine으로 확장
+4. 기존 Production Exercise DB v1과 mapping
+5. 최종 G Fit canonical 후보 수 / 실제 gap 재산출
+6. production media transform / app-serving storage 구조 결정
 
-**현재는 raw source analysis 단계이며 Cursor 구현 handoff 없음.**
+**현재는 raw source analysis / normalization 단계이며 Cursor 구현 handoff 없음.**
 
 ---
 
@@ -405,4 +402,4 @@ Canonical production wireframe:
 
 **No Cursor implementation handoff.**
 
-현재는 Exercise DB / source asset analysis + raw media ops 단계다. Source normalization과 canonical mapping이 안정된 뒤 필요한 구현 Issue/AC로 넘긴다.
+현재는 Exercise DB / source asset analysis + normalization 단계다. Source normalization과 canonical mapping이 안정된 뒤 필요한 구현 Issue/AC로 넘긴다.
