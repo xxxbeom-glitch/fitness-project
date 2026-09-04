@@ -1,10 +1,10 @@
 # CURRENT — Fitness Project
 
-**Updated:** 2026-09-05 00:29 KST
+**Updated:** 2026-09-05
 
 ## Current mode
 
-`EXERCISE DB / ASSET SOURCE ANALYSIS ACTIVE · RAW R2 VERIFIED · CABLE COMPLETE · MACHINE QA COMPLETE · BARBELL QA COMPLETE · DUMBBELL QA COMPLETE · KETTLEBELL QA COMPLETE · SMITH + LANDMINE FINAL TARGETED VISUAL QA NEXT · PRODUCT/UX BASELINE PRESERVED · NO CURSOR IMPLEMENTATION HANDOFF`
+`EXERCISE DB / ASSET SOURCE ANALYSIS ACTIVE · RAW R2 VERIFIED · CABLE/MACHINE/BARBELL/DUMBBELL/KETTLEBELL/SMITH/LANDMINE TARGETED QA COMPLETE · OLD P0 16/16 SOURCE FOUND · P1 14 SOURCE FOUND + 3 IDENTITY REVIEW · PRODUCTION MAPPING ACTIVE · PRODUCT/UX BASELINE PRESERVED · NO CURSOR IMPLEMENTATION HANDOFF`
 
 ## Resume rule
 
@@ -20,7 +20,7 @@
 
 ---
 
-# Latest checkpoint — Gym Animations source normalization
+# Latest checkpoint — Gym Animations source normalization / Production remap
 
 ## 1. Purchased source / raw analysis base
 
@@ -29,29 +29,24 @@
 - Gym Animations
 - `Gym Workout Man Package`
 
-전체 원본:
+원본 전체:
 
 - **17,085 files**
 - **98.69 GB**
-- top level: `GIFS`, `MP4`
 
-Male MP4 주요 폴더:
+Male Gym 분석 기준:
 
-- `Gym_Workout_` → 2,081
-- `Home_Workout_` → 2,120
-- `Library_database` → 2,109
+- `MP4/MALE/Library_database`
+- **2,109 MP4 rows**
 
-`Gym_Workout_` 2,081개는 `Library_database` 대응 파일과 SHA256까지 모두 동일하고, `Library_database`가 28개 더 많다.
-
-따라서 Male Gym raw 분석 기준:
-
-`MP4/MALE/Library_database`
+`Gym_Workout_` 대응 2,081개는 `Library_database`와 SHA256까지 동일하고, `Library_database`가 28개 더 많으므로 Male source 분석 기준은 `Library_database`다.
 
 구매 원본 filename/path/media는 **read-only provenance**로 유지한다.
 
 기준:
 
 - `docs/exercise-db/2026-09-04-gym-animations-source-analysis-checkpoint.md`
+- `docs/exercise-db/2026-09-05-normalization-resume-checkpoint.md`
 
 ## 2. Cloudflare R2 raw upload — VERIFIED / DONE
 
@@ -59,74 +54,67 @@ Raw bucket:
 
 `gfit-source-original`
 
-Upload:
-
-`D:\project\111111111\Animations` → `r2:gfit-source-original/Animations`
-
 검증:
 
 - objects: **17,085**
 - size: **98.694 GiB**
 - exact: **105,972,019,458 Byte**
 
-원본 count/size와 일치하므로 raw upload는 DONE이다.
+원본 count/size와 일치. Raw upload DONE.
 
-## 3. Cable normalization — COMPLETE
+## 3. Main equipment targeted visual QA — COMPLETE
 
-기준:
+완료:
+
+- Cable
+- Machine
+- Barbell
+- Dumbbell
+- Kettlebell
+- Smith
+- Landmine
+
+주요 결과 문서:
 
 - `docs/exercise-db/2026-09-04-cable-normalization-rule-v1.md`
 - `docs/exercise-db/2026-09-04-cable-visual-review-14.md`
-- `docs/exercise-db/2026-09-04-cable-normalization-map-v0.1.md`
 - `docs/exercise-db/2026-09-04-cable-duplicate-visual-qa-38.md`
-- `docs/ux-decisions/2026-09-03-cable-attachment-active-workout.md`
+- `docs/exercise-db/2026-09-04-machine-visual-qa-33.md`
+- `docs/exercise-db/2026-09-05-barbell-visual-qa-18.md`
+- `docs/exercise-db/2026-09-05-dumbbell-visual-qa-20.md`
+- `docs/exercise-db/2026-09-05-kettlebell-visual-qa-12.md`
+- `docs/exercise-db/2026-09-05-smith-landmine-visual-qa-10.md`
 
-핵심 rule:
+공통 boundary:
 
-1. 같은 운동 + 손잡이만 다름 → `same canonical + attachment context/media`
-2. 그립만 다름 → `same parent family + grip variant/context`
-3. 자세 / 한손·양손 / behind-neck / 큰 수행 경로 차이 → execution variant, history 자동 병합 금지
-4. 운동 자체가 materially 다름 → separate canonical candidate
-5. true duplicate는 filename이 아니라 실제 수행 기준
-6. raw source는 수정하지 않고 derived normalized data를 별도 관리
+1. 같은 운동 + 미디어/렌더/POV 차이만 있음 → same canonical + media variant
+2. cable attachment 차이 → same canonical + attachment context/media
+3. grip-only 차이 → same parent family + grip context
+4. 자세 / laterality / load position / implement count / 수행 경로가 기록 의미를 materially 바꾸면 execution/load context로 보존
+5. vendor filename보다 실제 visual movement를 우선
+6. raw source는 수정하지 않고 normalized data를 별도 관리
 
-Cable source:
+### Smith + Landmine final QA
 
-- `Cable*` raw: **297**
-- cable-associated extra: **1**
-- working manifest: **298 rows**
+Smith 1 group / 2 files + Landmine 4 groups / 8 files = **10 files** 검수 완료.
 
-Visual QA:
+결과:
 
-- ambiguous 14개 직접 검수 완료
-- duplicate candidates 18 groups / 38 files 직접 검수 완료
-- true app-facing duplicate groups: **14**
-- execution-variant groups: **2**
-- attachment-variant groups: **1**
-- mixed source-media exception groups: **1**
+- Smith Close Grip Bench Press → exact binary duplicate
+- Landmine Kneeling One Arm Shoulder Press → same canonical + media/render variant
+- Landmine One Arm Bent Over Row → same canonical + POV/render/posture media variant
+- Landmine Rear Lunge → **execution/load-position variant**
+  - high/front two-hand hold
+  - low-side one-hand hold
+  - history auto-merge 금지
+- Landmine Romanian Deadlift → same canonical + POV/render variant
+- unresolved: **0**
 
-주요 source exception:
+기본 ZIP 기반 duplicate/ambiguity visual-QA 반복은 여기서 종료한다. 이후 Production mapping 중 새 충돌이 발견될 때만 소량 targeted QA를 추가한다.
 
-- `Cable One Arm Front Raise.mp4` → 실제로는 dumbbell squat-to-overhead-press / thruster-like media
-- Male catalog 내 female-model Cable media 존재
+## 4. Full 2,109 equipment-pass baseline
 
-Cable derived reference artifact:
-
-- `cable_normalization_map_v0_2.csv`
-
-## 4. Full Library_database 2,109 equipment pass — COMPLETE
-
-기준:
-
-- `docs/exercise-db/2026-09-04-library-2109-equipment-pass-v0.1.md`
-
-Manifest integrity:
-
-- rows: **2,109**
-- unique filenames: **2,109**
-- blank filenames: **0**
-
-1차 분류:
+Raw/source-family first pass:
 
 - Machine high-confidence: **202**
 - Barbell: **212**
@@ -138,107 +126,63 @@ Manifest integrity:
 - Machine-or-nonmachine ambiguous: **8**
 - Other / not-yet-normalized: **579**
 
-Duplicate candidate scan:
+이 수치는 **raw/source-family rows**이며 final canonical exercise count가 아니다.
 
-- Machine: **12 groups / 25 files**
-- Barbell: **8 groups / 18 files**
-- Dumbbell: **9 groups / 20 files**
-- Kettlebell: **6 groups / 12 files**
-- Smith: **1 group / 2 files**
-- Landmine: **4 groups / 8 files**
-- EZ Bar: **0**
-
-이 수치는 filename cleanup 기반 review candidate이며 자동 merge하지 않는다.
-
-## 5. Machine targeted visual QA — COMPLETE
+## 5. Production DB gap remap — COMPLETE AT SOURCE-AVAILABILITY LEVEL
 
 기준:
 
-- `docs/exercise-db/2026-09-04-machine-visual-qa-33.md`
+- 기존 Production DB v1: **195 app-facing canonical / 206 source rows**
+- 기존 gap doc: `docs/exercise-db/exercise-db-gap-analysis-v1.md`
+- 새 remap: `docs/exercise-db/2026-09-05-production-gap-remap-after-gym-animations.md`
 
-33 files 직접 검수:
+### Old P0 16
 
-- duplicate candidates: **25 files / 12 groups**
-- ambiguous machine/non-machine: **8 files**
-- binary-identical SHA256 duplicate: **0**
+기존에 `P0 new asset pack 16`으로 승인했던 운동을 새 2,109 source와 다시 비교했다.
 
-12 group 결과:
+결과:
 
-- same canonical + machine-design/media variant: **10 groups**
-- grip variant: **1 group** — Lever High Row
-- execution variant: **1 group** — Lever Triceps Extension
-- unresolved: **0**
+- **16 / 16 source candidate found**
+- source-availability 기준 신규 asset 제작 필요: **16 → 0**
+- P0 운동의 제품 우선순위 자체는 유지
+- 바뀐 것은 `새 에셋 제작` 필요성이다.
 
-8 ambiguous 결과:
+따라서 P0 기본 행동은 이제:
 
-- Machine confirmed: **5**
-- Non-Machine confirmed: **3**
-- unresolved: **0**
+`기존 구매 source 선택 → canonical mapping → naming/equipment/body-part QA → Production 승격`
 
-현재 Machine source-scope candidate = **207 raw rows**. Final canonical count가 아님.
+이다.
 
-## 6. Barbell targeted visual QA — COMPLETE
+### Old P1 17
 
-기준:
+현재 remap:
 
-- `docs/exercise-db/2026-09-05-barbell-visual-qa-18.md`
+- clear source candidate: **14 / 17**
+- identity review: **3 / 17**
+- proven new-asset gap: **0**
 
-8 groups / 18 files 직접 비교:
+Identity review 3:
 
-- same canonical + POV/load/render/timing media variant: **7 groups**
-- execution variant: **1 group**
-  - Barbell Rear Lunge → `front_foot_elevated` vs standard `floor`
-- unresolved: **0**
+1. standard bilateral `Dumbbell Deadlift`
+2. standard-stance `Smith Machine Romanian Deadlift`
+3. standard floor bodyweight `Sit Up`
 
-Barbell boundary:
+관련 변형 source는 있지만 exact identity를 filename만으로 자동 합치지 않는다.
 
-- 카메라/플레이트/render/FIX 차이만으로 identity 분리하지 않음
-- step/platform처럼 ROM/수행 조건이 크게 달라지면 execution variant
+Trap Bar Deadlift는 source가 확인되었으므로 asset gap이 아니다. Production 승격 시 `Trap Bar` equipment taxonomy 결정이 별도로 필요하다.
 
-## 7. Dumbbell targeted visual QA — COMPLETE
+## 6. Important boundary — final canonical count NOT VERIFIED
 
-기준:
+아직 `2,109 raw rows → final G Fit canonical count`를 숫자로 확정하지 않는다.
 
-- `docs/exercise-db/2026-09-05-dumbbell-visual-qa-20.md`
+이유:
 
-9 groups / 20 files 직접 비교:
+- **579 Other / not-yet-normalized rows**가 남아 있음
+- attachment / grip / execution context 흡수 필요
+- 일부 vendor filename과 실제 movement 충돌 사례 존재
+- targeted duplicate QA 완료 ≠ full canonical mapping 완료
 
-- same canonical + media/render/POV/bench variant: **8 groups**
-- load-position / execution variant: **1 group**
-  - Dumbbell Hyperextension → `hanging_load` vs `chest_close_load`
-- unresolved: **0**
-
-Dumbbell boundary:
-
-- render/POV/bench 디자인 차이만으로 identity를 나누지 않음
-- load position이 leverage와 기록 의미를 크게 바꾸면 별도 execution/load context로 보존
-
-## 8. Kettlebell targeted visual QA — COMPLETE
-
-기준:
-
-- `docs/exercise-db/2026-09-05-kettlebell-visual-qa-12.md`
-
-6 groups / 12 files 직접 비교:
-
-- same canonical + render/POV/timing media variant: **3 groups**
-  - Bent Press
-  - Rear Lunge
-  - Upright Row
-- load-position / implement-count variant: **2 groups**
-  - Forward Lunge → single goblet/front hold vs two kettlebells at sides
-  - Sumo Squat → low-hang vs goblet/high-front hold
-- naming / movement mismatch: **1 group**
-  - `Kettlebell-Good-Morning-(male)` → true good morning, kettlebell upper-back/behind-head
-  - `Kettlebell-Good-Morning_Hips_` → visual movement is hanging kettlebell hip hinge, closer to kettlebell deadlift/RDL family candidate
-- unresolved: **0**
-
-Kettlebell boundary:
-
-- render/POV/timing만 다름 → same canonical + media variant
-- single vs double kettlebell처럼 implement count가 달라 총 external-load 의미가 달라지면 explicit variant
-- goblet/high-front vs low-hang처럼 load position이 기록 의미를 materially 바꾸면 history 자동 병합 금지
-- vendor filename과 실제 movement가 충돌하면 raw filename은 보존하고 normalized family를 별도로 정함
+따라서 단순히 reviewed duplicate 수를 2,109에서 빼서 canonical 수를 만드는 것은 금지한다.
 
 ---
 
@@ -246,22 +190,35 @@ Kettlebell boundary:
 
 ## Immediate next
 
-기본 targeted visual QA의 마지막 묶음:
+**P1 identity-review 3건을 최소 targeted visual QA로 해결한다.**
 
-- **Smith: 1 group / 2 files**
-- **Landmine: 4 groups / 8 files**
+대상:
 
-사용자 반복 작업을 줄이기 위해 **Smith + Landmine 10 files를 한 ZIP으로 묶어 한 번에 검수**한다.
+- Dumbbell Deadlift 후보군
+- Smith Machine Romanian Deadlift 후보군
+- standard bodyweight Sit Up 후보군
 
-그 다음 순서:
+사용자 반복 작업을 줄이기 위해 후보 영상을 **한 ZIP**으로 묶어서 한 번만 검수한다.
 
-1. Smith + Landmine 10 direct visual QA
-2. 필요 시 각 family의 naming/media exception만 소량 추가 QA
-3. 전체 normalized source를 기존 Production Exercise DB v1과 mapping
-4. 최종 G Fit canonical 후보 수 / 실제 gap 재산출
-5. canonical mapping 안정화 후 production media selection/transform / app-serving storage 결정
+그 다음:
 
-**현재는 source normalization 단계이며 Cursor implementation handoff 없음.**
+1. 3 identity review resolve
+2. 기존 Production 195 canonical을 anchor로 2,109 source mapping 계속 진행
+3. 각 source row를 다음 중 하나로 분류
+   - existing Production canonical
+   - new canonical candidate
+   - attachment context
+   - grip context
+   - execution/load context
+   - media duplicate/variant
+   - excluded/non-gym-first
+   - unresolved
+4. 실제 source-derived canonical candidate count 계산
+5. 실제 gym-first MVP gap 수 재산출
+6. 정말 필요한 G Fit-created 신규 asset만 최종 확정
+7. canonical mapping 안정화 후 production media selection / transform / app-serving storage 결정
+
+**현재 Cursor implementation handoff 없음.**
 
 ---
 
@@ -400,7 +357,7 @@ Kettlebell boundary:
 
 # Product/UX OPEN items preserved
 
-Exercise DB / asset source normalization과 별개로 여전히 OPEN:
+Exercise DB / asset source normalization과 별개로 OPEN:
 
 - 추천 루틴 실제 프로그램 contents — Exercise DB / substitution data 선행 필요
 - Analysis first screen / drilldown scope
@@ -457,4 +414,4 @@ Canonical production wireframe:
 
 **No Cursor implementation handoff.**
 
-현재는 Exercise DB / source asset analysis + normalization 단계다. Source normalization과 canonical mapping이 안정된 뒤 필요한 구현 Issue/AC로 넘긴다.
+현재는 Exercise DB / source asset analysis + normalization + Production mapping 단계다. Canonical mapping이 안정된 뒤 필요한 구현 Issue/AC로 넘긴다.
