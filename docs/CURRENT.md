@@ -1,10 +1,10 @@
 # CURRENT — Fitness Project
 
-**Updated:** 2026-09-04 23:46 KST
+**Updated:** 2026-09-04 23:47 KST
 
 ## Current mode
 
-`EXERCISE DB / ASSET SOURCE ANALYSIS ACTIVE · GYM ANIMATIONS PURCHASED · RAW R2 UPLOAD VERIFIED · CABLE NORMALIZATION RULE V1 APPROVED · CABLE MAP V0.2 COMPLETE · DUPLICATE VISUAL QA 38 COMPLETE · FULL LIBRARY / NON-CABLE NORMALIZATION NEXT · PRODUCT/UX BASELINE PRESERVED · NO CURSOR IMPLEMENTATION HANDOFF`
+`EXERCISE DB / ASSET SOURCE ANALYSIS ACTIVE · GYM ANIMATIONS PURCHASED · RAW R2 UPLOAD VERIFIED · CABLE MAP V0.2 COMPLETE · FULL LIBRARY 2,109 EQUIPMENT PASS V0.1 COMPLETE · MACHINE TARGETED VISUAL QA 33 NEXT · PRODUCT/UX BASELINE PRESERVED · NO CURSOR IMPLEMENTATION HANDOFF`
 
 ## Resume rule
 
@@ -20,7 +20,7 @@
 
 ---
 
-## Latest checkpoint — 2026-09-04 Gym Animations / Cable normalization
+## Latest checkpoint — 2026-09-04 Gym Animations / source normalization
 
 ### 1. Purchased source / canonical analysis base
 
@@ -185,39 +185,81 @@ Derived review artifact:
 
 Cable duplicate candidates는 모두 해소되었고, Cable의 `canonical / attachment / grip / execution / duplicate / media exception` 경계는 현재 규칙으로 정리되었다.
 
+### 7. Full Library_database 2,109 equipment pass v0.1 — COMPLETE
+
+상세:
+
+- `docs/exercise-db/2026-09-04-library-2109-equipment-pass-v0.1.md`
+
+업로드된 전체 manifest 무결성:
+
+- rows: **2,109**
+- unique filenames: **2,109**
+- blank filenames: **0**
+
+Filename/path/size evidence 기반 non-Cable 1차 장비 분류:
+
+- Machine high-confidence: **202**
+  - `Lever-*`: 183
+  - `Sled-*` machine family: 17
+  - explicit machine rows: 2
+- Barbell: **212**
+- Dumbbell: **493**
+- Kettlebell: **188**
+- Smith: **61**
+- Landmine: **33**
+- EZ Bar: **35**
+- Machine-or-nonmachine ambiguous review rows: **8**
+- Other / not-yet-normalized pool: **579**
+
+Non-Cable duplicate candidate scan:
+
+- Machine: **12 groups / 25 files**
+- Barbell: **8 groups / 18 files**
+- Dumbbell: **9 groups / 20 files**
+- Kettlebell: **6 groups / 12 files**
+- Smith: **1 group / 2 files**
+- Landmine: **4 groups / 8 files**
+- EZ Bar: **0**
+
+이 duplicate group은 filename cleanup 기반 **review candidate**일 뿐 자동 merge하지 않는다.
+
+Machine 우선순위에 따라 targeted visual review set을 **33 files**로 준비했다.
+
+구성:
+
+- Machine duplicate-candidate rows: **25**
+- `Assisted-*` / `Hack-Calf-Raise` machine-or-nonmachine ambiguous rows: **8**
+
+Derived review artifacts:
+
+- `library_2109_equipment_pass_v0_1.csv`
+- `machine_review_candidates_v0_1.csv`
+- `Machine_Review_Candidates.ps1`
+
 ---
 
 ## NEXT OPEN ITEM — Exercise DB / asset
 
 ### Immediate next
 
-**`MP4/MALE/Library_database` 전체 2,109개 filename/size manifest 확보 → non-Cable normalization 확장**
+**Machine targeted visual QA — 33 files**
 
-Cable에서 검증한 normalization framework를 다음 계열에 확장한다.
+목적:
 
-우선순위:
-
-1. Machine
-2. Barbell
-3. Dumbbell
-4. Kettlebell
-5. Smith
-6. Landmine
-
-효율 원칙:
-
-- 장비별 manifest를 매번 따로 만들지 않고 **Library_database 전체 2,109개 manifest 1개**를 기준으로 분류한다.
-- filename/size 기반 1차 분류 후 ambiguous / duplicate candidate만 targeted visual QA한다.
-- 구매 원본은 계속 read-only로 유지한다.
+- 12 duplicate candidate groups를 true duplicate / execution variant / media-only variant로 해소
+- 8 ambiguous Assisted/Hack rows가 실제 machine exercise인지 판단
+- Machine normalized candidate map을 확정 가능한 수준으로 올림
 
 그 다음 순서:
 
-1. full 2,109 manifest 확보 / equipment-family 1차 분류
-2. Machine / Barbell / Dumbbell / Kettlebell / Smith / Landmine normalization
-3. ambiguous / duplicate targeted visual QA
-4. 기존 Production Exercise DB v1과 mapping
-5. 최종 G Fit canonical 후보 수 / 실제 gap 재산출
-6. production media transform / app-serving storage 구조 결정
+1. Machine visual QA 33 완료
+2. Machine normalized map 정리
+3. Barbell duplicate/ambiguous targeted visual QA
+4. Dumbbell → Kettlebell → Smith → Landmine 순으로 반복
+5. 기존 Production Exercise DB v1과 mapping
+6. 최종 G Fit canonical 후보 수 / 실제 gap 재산출
+7. production media transform / app-serving storage 구조 결정
 
 **현재는 source normalization 단계이며 Cursor 구현 handoff 없음.**
 
