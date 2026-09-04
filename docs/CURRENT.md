@@ -1,10 +1,10 @@
 # CURRENT — Fitness Project
 
-**Updated:** 2026-09-04 23:00 KST
+**Updated:** 2026-09-04 23:04 KST
 
 ## Current mode
 
-`EXERCISE DB / ASSET SOURCE ANALYSIS ACTIVE · GYM ANIMATIONS PURCHASED · RAW R2 UPLOAD VERIFIED · CABLE NORMALIZATION STARTED · PRODUCT/UX BASELINE PRESERVED · NO CURSOR IMPLEMENTATION HANDOFF`
+`EXERCISE DB / ASSET SOURCE ANALYSIS ACTIVE · GYM ANIMATIONS PURCHASED · RAW R2 UPLOAD VERIFIED · CABLE VISUAL QA COMPLETE · CABLE NORMALIZATION RULE NEXT · PRODUCT/UX BASELINE PRESERVED · NO CURSOR IMPLEMENTATION HANDOFF`
 
 ## Resume rule
 
@@ -141,18 +141,42 @@ Expected source count **17,085**와 remote count가 정확히 일치하고 total
 
 따라서 raw R2 upload는 **DONE / VERIFIED**다.
 
+### 5. Cable visual-review 14 — COMPLETE
+
+상세:
+
+`docs/exercise-db/2026-09-04-cable-visual-review-14.md`
+
+직접 영상 검수 대상 14개를 별도 review ZIP으로 복사해 실제 동작을 확인했다. 구매 원본은 수정하지 않았다.
+
+결과:
+
+- **14 / 14 visual review 완료**
+- review subset 내부 exact app-facing duplicate: **0**
+- clear attachment handling 확인: standing cable curl + multipurpose V-bar
+- lat pulldown rear/behind-neck 계열은 동일 parent family + grip/posture context로 묶는 방향이 타당
+- cable diagonal lift 계열에서 half-kneeling / standing unilateral / standing bilateral execution 차이 확인
+- vendor filename만으로 사용자-facing 이름을 확정하면 안 되는 naming-review 사례 확인
+  - `Cable-Incline-Pushdown_Back_`
+  - `Cable-Standing-Pulldown-(with-rope)_Forearms_`
+- Male raw analysis catalog 안에서 female model media 1개 확인:
+  - `Cable-Seated-Chest-Press-(female)_Chest_.mp4`
+
+Visual QA는 완료했지만 Cable 전체 normalization rule은 아직 PO-final이 아니다.
+
 ---
 
 ## NEXT OPEN ITEM — Exercise DB / asset
 
-R2 raw upload verification이 완료되었으므로 다음 순서로 진행한다.
+Cable visual-review 14개 QA가 완료되었으므로 다음 순서로 진행한다.
 
-1. **Cable visual-review 14개 QA**
-2. Cable에서 `canonical exercise / attachment / grip-posture variant / duplicate` 규칙 확정
-3. 같은 규칙을 Machine / Barbell / Dumbbell / Kettlebell / Smith / Landmine으로 확장
-4. 기존 Production Exercise DB v1과 mapping
-5. 최종 G Fit canonical 후보 수 / 실제 gap 재산출
-6. production media transform / app-serving storage 구조 결정
+1. **Cable `canonical exercise / attachment / grip-posture-execution variant / duplicate` 규칙 PO 확정**
+2. 확정 규칙을 Cable raw 297개 전체에 적용
+3. Cable normalized parent / attachment / variant / duplicate map 생성 + naming-review 해소
+4. 같은 규칙을 Machine / Barbell / Dumbbell / Kettlebell / Smith / Landmine으로 확장
+5. 기존 Production Exercise DB v1과 mapping
+6. 최종 G Fit canonical 후보 수 / 실제 gap 재산출
+7. production media transform / app-serving storage 구조 결정
 
 **현재는 raw source analysis / normalization 단계이며 Cursor 구현 handoff 없음.**
 
