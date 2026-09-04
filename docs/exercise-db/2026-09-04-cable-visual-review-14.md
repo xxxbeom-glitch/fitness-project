@@ -1,7 +1,7 @@
 # Cable Visual Review — 14 Ambiguous Source Videos
 
 **Date:** 2026-09-04  
-**Status:** VISUAL QA COMPLETE / NORMALIZATION RULE PENDING PO CONFIRMATION  
+**Status:** VISUAL QA COMPLETE / NORMALIZATION RULE V1 PO APPROVED  
 **Source scope:** `MP4/MALE/Library_database` Cable ambiguous-review subset
 
 ## Review boundary
@@ -90,23 +90,26 @@ Raw filenames remain preserved. G Fit normalized display naming must be derived 
 
 This does not invalidate the exercise identity, but the asset should be flagged during production media selection so a wrong-model asset is not accidentally served in a male visual set.
 
-## Proposed rule to decide next
+## PO-approved normalization rule
 
-The visual review supports the following normalization principle, but this section is **not yet PO-final**:
+Final rule is now recorded in:
+
+`docs/exercise-db/2026-09-04-cable-normalization-rule-v1.md`
+
+Core handling:
 
 1. same movement + only attachment difference → one parent exercise + attachment context/media
-2. grip-only difference on Cable/Pulley → parent + grip variant where history can remain meaningfully grouped
-3. body position / unilateral-bilateral / behind-neck path / large execution-path change → keep as explicit execution variant and do not automatically merge performance history
-4. visually movement-defining rotation or a materially different joint pattern → retain as separate canonical candidate until naming/taxonomy review
+2. grip-only difference → same parent family + grip variant/context
+3. body position / unilateral-bilateral / behind-neck path / large execution-path change → explicit execution variant; do not automatically merge performance history
+4. visually movement-defining rotation or materially different joint pattern → separate canonical movement candidate
 5. true duplicate requires visually equivalent execution, not just similar filename
 6. raw source filename/path remains immutable provenance regardless of normalized decision
 
 ## Next
 
-1. PO confirm/refine the Cable normalization rule above
-2. apply the rule to all 297 Cable raw videos
-3. resolve normalized names for the naming-review cases
-4. produce Cable canonical parent / attachment / grip-posture variant / duplicate map
-5. then expand the same framework to Machine / Barbell / Dumbbell / Kettlebell / Smith / Landmine
+1. apply the approved rule to all 297 Cable raw videos
+2. resolve normalized names for the naming-review cases
+3. produce Cable canonical parent / attachment / grip-posture variant / duplicate map
+4. then expand the same framework to Machine / Barbell / Dumbbell / Kettlebell / Smith / Landmine
 
 No Cursor implementation handoff is implied by this review.
