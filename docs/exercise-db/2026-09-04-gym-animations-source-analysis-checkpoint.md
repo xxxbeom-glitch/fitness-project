@@ -1,7 +1,7 @@
 # Gym Animations Source Analysis Checkpoint
 
 **Date:** 2026-09-04
-**Status:** ACTIVE SOURCE ANALYSIS / R2 RAW UPLOAD IN PROGRESS
+**Status:** ACTIVE SOURCE ANALYSIS / R2 RAW UPLOAD VERIFIED
 **Scope:** Purchased Gym Animations package structure, deduplication, cable classification, raw media storage setup
 
 ## 1. Purchased source
@@ -134,26 +134,40 @@ Storage policy:
 
 Windows `rclone` is configured against Cloudflare R2 using the S3-compatible endpoint.
 
-Connection test to the empty bucket succeeded.
-
-Current operation in progress:
+Upload target:
 
 ```text
-rclone copy D:\project\111111111\Animations -> r2:gfit-source-original/Animations
+D:\project\111111111\Animations -> r2:gfit-source-original/Animations
 ```
 
-The raw upload is **in progress** at this checkpoint; completion has not yet been independently verified.
+### Remote verification — VERIFIED 2026-09-04
 
-Post-upload verification target:
+User-provided terminal result after upload:
 
-- expected file count: **17,085**
-- expected total size: **about 98.69 GB**
+```text
+Transferred: 98.694 GiB / 98.694 GiB, 100%
+Transferred: 17085 / 17085, 100%
+```
 
-Do not mark raw upload DONE until remote `rclone size` / object count is checked against the source scan.
+Independent remote size command used:
+
+```text
+rclone size r2:gfit-source-original/Animations
+```
+
+Verified result:
+
+- Total objects: **17,085**
+- Total size: **98.694 GiB**
+- Exact byte count: **105,972,019,458 Byte**
+
+The remote object count exactly matches the expected source count (**17,085 / 17,085**), and the remote total size matches the expected source total (~98.69 GB).
+
+Therefore the raw R2 upload is **DONE / VERIFIED**.
 
 ## 7. Next source-analysis steps
 
-After raw upload verification:
+With raw upload verified, proceed to:
 
 1. finish visual QA of the 14 ambiguous Cable files
 2. finalize Cable grouping rules: canonical exercise vs attachment vs grip/posture/variant vs duplicate
