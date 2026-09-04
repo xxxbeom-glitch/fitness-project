@@ -1,6 +1,6 @@
 # CURRENT — Fitness Project
 
-**Updated:** 2026-09-04 21:30 KST
+**Updated:** 2026-09-04 22:16 KST
 
 ## Current mode
 
@@ -244,7 +244,7 @@ R2 raw upload 완료 후:
 - 완료 카드 구성/방향은 planning PASS
 - final visual polish는 Figma에서 조정
 
-### Workout End Flow
+### Workout End Flow / Whole Workout Discard
 
 기준:
 
@@ -253,8 +253,11 @@ R2 raw upload 완료 후:
 - 모든 예정 세트를 완료해도 자동 종료하지 않음
 - 사용자가 `운동 종료`를 누르면 확인
 - 미완료 상태에서도 조기 종료 가능
-- 완료 체크된 세트까지만 기록
-- 전체 workout discard 별도 edge case는 아직 OPEN
+- 일반 종료는 완료 체크된 세트까지 저장
+- 전체 운동 기록을 버리는 기능은 일반 종료와 별도 destructive action
+- 기존 Figma `403c_Workout_Save_Or_Discard`를 전체 운동 기록 삭제 최종 확인으로 재사용
+- 전체 삭제 확정 시 이번 세션의 운동 기록 / 완료 세트 / active session을 남기지 않음
+- 이미 즉시 저장된 explicit routine reorder는 workout discard로 자동 롤백하지 않음
 
 ### Exercise Reorder
 
@@ -281,15 +284,27 @@ Flow:
 - 상세에 `내 루틴으로 저장` 없음
 - 저장 없이 운동 후 완료 시 저장 여부 결정
 
+### Recommended Routine Post-workout Save
+
+기준:
+
+`docs/ux-decisions/2026-09-04-recommended-routine-post-workout-save.md`
+
+- 추천 루틴으로 수행한 오늘 운동 기록은 항상 저장
+- 운동 기록 저장과 추천 루틴을 `내 루틴`으로 저장하는 것은 별개
+- 완료 후 Primary `내 루틴으로 저장`
+- Secondary `루틴은 저장하지 않기`
+- 사용자의 선택 없이 추천 루틴을 자동 저장하지 않음
+- 실제 루틴 구조를 변경했고 저장을 선택한 경우에만 `오늘 한 구성 / 원래 추천 구성` 추가 선택
+- kg / 반복수 / 일부 미완료 / 단순 수행 순서 차이는 루틴 구조 변경이 아님
+
 ---
 
 ## Product/UX OPEN items preserved
 
 Exercise DB / asset source analysis와 별개로 아래 제품 항목은 여전히 OPEN이다.
 
-- 추천 루틴 실제 프로그램 contents
-- 추천 루틴 완료 후 save edge case / copy
-- 전체 workout discard 별도 진입 / copy
+- 추천 루틴 실제 프로그램 contents — Exercise DB / substitution data 선행 필요
 - completion exact metric / formula
 - progression hint exact metric / observation threshold
 - Exercise Detail scope
@@ -319,12 +334,14 @@ Canonical Figma:
 - `421 Exercise Reorder`
 - `501 Workout Complete`
 
-추가/신규 state가 필요한 것:
+추가/신규 state 또는 sync가 필요한 것:
 
 - attachment picker
 - recommended routine detail
 - assisted first-use helper
-- 향후 필요한 routine-change confirmation 정리
+- recommended routine post-workout save state
+- routine-change confirmation 정리
+- `403c`를 whole-workout discard confirmation copy로 sync
 
 **최신 제품 결정들의 실제 Figma sync는 아직 완료되지 않았다.**
 
