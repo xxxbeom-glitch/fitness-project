@@ -1,37 +1,33 @@
 # CURRENT — Fitness Project
 
-**Updated:** 2026-09-05 00:05 KST
+**Updated:** 2026-09-05 00:10 KST
 
 ## Current mode
 
-`EXERCISE DB / ASSET SOURCE ANALYSIS ACTIVE · GYM ANIMATIONS PURCHASED · RAW R2 UPLOAD VERIFIED · CABLE MAP V0.2 COMPLETE · FULL LIBRARY 2,109 EQUIPMENT PASS V0.1 COMPLETE · MACHINE TARGETED VISUAL QA 33 COMPLETE · BARBELL TARGETED VISUAL QA NEXT · PRODUCT/UX BASELINE PRESERVED · NO CURSOR IMPLEMENTATION HANDOFF`
+`EXERCISE DB / ASSET SOURCE ANALYSIS ACTIVE · RAW R2 VERIFIED · CABLE COMPLETE · MACHINE QA COMPLETE · BARBELL QA COMPLETE · DUMBBELL TARGETED VISUAL QA NEXT · PRODUCT/UX BASELINE PRESERVED · NO CURSOR IMPLEMENTATION HANDOFF`
 
 ## Resume rule
 
-다음 대화에서는 **이미 PO가 패스/승인한 항목을 다시 설명하거나 재논의하지 않는다.**
+다음 대화에서는 이미 PO가 승인/패스한 항목을 다시 설명하거나 재논의하지 않는다.
 
 재개 순서:
 
 `CURRENT 확인 → Latest checkpoint 확인 → NEXT OPEN ITEM부터 바로 진행`
 
-기존 화면을 다룰 때는 항상:
+기존 화면을 다룰 때는:
 
 `최신 GitHub 결정 확인 → 기존 Figma frame 확인 → 있으면 변경점만 sync → 없을 때만 신규 화면 생성`
 
 ---
 
-## Latest checkpoint — 2026-09-05 Gym Animations / source normalization
+# Latest checkpoint — Gym Animations source normalization
 
-### 1. Purchased source / canonical analysis base
+## 1. Purchased source / raw analysis base
 
 구매:
 
 - Gym Animations
 - `Gym Workout Man Package`
-
-상세:
-
-- `docs/exercise-db/2026-09-04-gym-animations-source-analysis-checkpoint.md`
 
 전체 원본:
 
@@ -45,15 +41,19 @@ Male MP4 주요 폴더:
 - `Home_Workout_` → 2,120
 - `Library_database` → 2,109
 
-`Gym_Workout_` 2,081개는 `Library_database`의 동일 파일과 SHA256까지 전부 동일하며, `Library_database`가 28개 더 많다.
+`Gym_Workout_` 2,081개는 `Library_database`의 대응 파일과 SHA256까지 모두 동일하고, `Library_database`가 28개 더 많다.
 
-따라서 Male Gym raw 분석 기준은:
+따라서 Male Gym raw 분석 기준:
 
 `MP4/MALE/Library_database`
 
-구매 원본 filename/path/media는 read-only provenance로 유지한다.
+구매 원본 filename/path/media는 **read-only provenance**로 유지한다.
 
-### 2. Cloudflare R2 raw upload — VERIFIED / DONE
+기준 문서:
+
+- `docs/exercise-db/2026-09-04-gym-animations-source-analysis-checkpoint.md`
+
+## 2. Cloudflare R2 raw upload — VERIFIED / DONE
 
 Raw bucket:
 
@@ -63,156 +63,85 @@ Upload:
 
 `D:\project\111111111\Animations` → `r2:gfit-source-original/Animations`
 
-검증 결과:
+검증:
 
 - objects: **17,085**
 - size: **98.694 GiB**
 - exact: **105,972,019,458 Byte**
 
-원본 count/size와 일치하므로 raw R2 upload는 **DONE / VERIFIED**다.
+원본 count/size와 일치하므로 raw upload는 DONE이다.
 
-### 3. Cable direct visual QA — COMPLETE
-
-상세:
-
-- `docs/exercise-db/2026-09-04-cable-visual-review-14.md`
-
-14개 ambiguous Cable 영상을 직접 검수했다.
-
-결과:
-
-- **14 / 14 complete**
-- review subset exact duplicate: **0**
-- attachment-only variant가 실제로 존재함을 확인
-- lat pulldown rear/behind-neck 계열은 동일 parent family + grip/posture context가 타당
-- half-kneeling / unilateral / bilateral 등 큰 실행 차이는 attachment swap으로 흡수하지 않음
-- vendor filename과 실제 동작이 충돌하는 naming 사례 확인
-- Male 분석 catalog 안 female-model Cable Seated Chest Press 1개를 media exception으로 확인
-
-### 4. Cable normalization rule v1 — PO APPROVED
+## 3. Cable normalization — COMPLETE
 
 기준:
 
 - `docs/exercise-db/2026-09-04-cable-normalization-rule-v1.md`
+- `docs/exercise-db/2026-09-04-cable-visual-review-14.md`
+- `docs/exercise-db/2026-09-04-cable-normalization-map-v0.1.md`
+- `docs/exercise-db/2026-09-04-cable-duplicate-visual-qa-38.md`
 - `docs/ux-decisions/2026-09-03-cable-attachment-active-workout.md`
 
-Core rule:
+핵심 rule:
 
 1. 같은 운동 + 손잡이만 다름 → `same canonical + attachment context/media`
 2. 그립만 다름 → `same parent family + grip variant/context`
-3. 자세 / 한손·양손 / behind-neck / 큰 수행 경로 차이 → explicit execution variant, history 자동 병합 금지
-4. 회전 / 관절 패턴 / 운동 자체가 materially 다름 → separate canonical movement candidate
-5. true duplicate는 filename 유사성이 아니라 실제 수행이 사실상 동일할 때만 확정
-6. raw source는 수정하지 않고 normalized derived data를 별도 관리
+3. 자세 / 한손·양손 / behind-neck / 큰 수행 경로 차이 → execution variant, history 자동 병합 금지
+4. 회전 / 관절 패턴 / 운동 자체가 materially 다름 → separate canonical candidate
+5. true duplicate는 filename이 아니라 실제 수행 기준
+6. raw source는 수정하지 않고 derived normalized data를 별도 관리
 
-### 5. Cable manifest normalization map v0.1 — COMPLETE
+Cable source:
 
-상세:
-
-- `docs/exercise-db/2026-09-04-cable-normalization-map-v0.1.md`
-
-업로드된 filename/size manifest 결과:
-
-- manifest rows: **298**
-- `Cable*` prefix rows: **297**
+- `Cable*` prefix raw: **297**
 - cable-associated extra: **1**
   - `Inverse-Leg-Curl-(on-pull-up-cable-machine)_Thighs.mp4`
+- working manifest rows: **298**
 
-즉 기존 **297 Cable raw videos**는 prefix catalog count로 유지하고, 후속 broad manifest에서 cable-machine 관련 1개를 별도 `source_scope`로 추가 발견한 것이다.
+14 ambiguous direct visual QA 완료.
 
-v0.1 결과:
+18 duplicate candidate groups / 38 files direct visual QA 완료:
 
-- mapped: **298 / 298**
-- unresolved movement-family rows: **0**
-- direct visual-QA overrides: **14**
-- duplicate candidates: **18 groups / 38 rows**
-- derived attachment-context rows: **57**
-- working movement-family labels: **71**
+- true app-facing duplicate groups: **14**
+- execution-variant groups: **2**
+- attachment-variant groups: **1**
+- mixed source-media exception groups: **1**
 
-주의:
+주요 source exception:
 
-- 71은 normalization 작업용 family label 수이며 최종 G Fit canonical exercise 수가 아니다.
-- 이전 first-pass attachment metric 56은 당시 detector 결과로 보존한다.
-- v0.1의 57은 `Cable-Bar-Lateral-Pulldown`을 `bar_unspecified` attachment context로 추가 인식한 expanded detector 결과다.
+- `Cable One Arm Front Raise.mp4` → 실제로는 dumbbell squat-to-overhead-press / thruster-like media
+- Male catalog 내 female-model Cable media 존재
 
-Naming correction candidate:
-
-- `Cable-Incline-Pushdown_Back_` → `Incline Cable Straight-Arm Pulldown`
-- `Cable-Standing-Pulldown-(with-rope)_Forearms_` → `Standing High Cable Rope Curl` candidate, Medium-High confidence
-
-### 6. Cable duplicate visual QA 38 / normalization map v0.2 — COMPLETE
-
-상세:
-
-- `docs/exercise-db/2026-09-04-cable-duplicate-visual-qa-38.md`
-
-18 duplicate candidate groups / 38 files를 timeline frame sampling으로 직접 비교했다.
-
-검증:
-
-- candidate groups: **18 / 18 reviewed**
-- files: **38 / 38 reviewed**
-- binary-identical SHA256 duplicate: **0**
-
-Group result:
-
-- **true app-facing duplicate groups: 14**
-- **execution-variant groups: 2**
-  - Cable Kneeling Triceps Extension → `kneeling_overhead` vs `prone_bench`
-  - Cable Straight Arm Pulldown → `bent_over` vs `standing_upright_slight_lean`
-- **attachment-variant groups: 1**
-  - Neutral-Grip Wide Pulldown 3개 → same parent + 서로 다른 attachment form
-- **mixed source-media exception groups: 1**
-  - One Arm Front Raise group의 `Cable One Arm Front Raise.mp4`는 실제로 cable이 아니라 two-dumbbell squat-to-overhead-press / thruster-like media
-
-Row-level result inside 38-file subset:
-
-- `DUPLICATE_CONFIRMED`: **30 rows**
-- `EXECUTION_VARIANT`: **4 rows**
-- `ATTACHMENT_VARIANT`: **3 rows**
-- `SOURCE_MEDIA_EXCEPTION`: **1 row**
-
-Additional media exception:
-
-- `Cable One Arm Front Raise .mp4` → female model inside Male catalog
-- `Cable-Seated-Chest-Press-(female)_Chest_.mp4` → female model inside Male catalog
-
-이 둘은 exercise identity 문제와 분리하여 media-selection exception으로 추적한다.
-
-Derived review artifact:
+Cable derived reference artifact:
 
 - `cable_normalization_map_v0_2.csv`
 
-Cable duplicate candidates는 모두 해소되었고, Cable의 `canonical / attachment / grip / execution / duplicate / media exception` 경계는 현재 규칙으로 정리되었다.
+Cable의 `canonical / attachment / grip / execution / duplicate / media exception` 경계는 현재 v1 rule로 해소됨.
 
-### 7. Full Library_database 2,109 equipment pass v0.1 — COMPLETE
+## 4. Full Library_database 2,109 equipment pass — COMPLETE
 
-상세:
+기준:
 
 - `docs/exercise-db/2026-09-04-library-2109-equipment-pass-v0.1.md`
 
-업로드된 전체 manifest 무결성:
+Manifest integrity:
 
 - rows: **2,109**
 - unique filenames: **2,109**
 - blank filenames: **0**
 
-Filename/path/size evidence 기반 non-Cable 1차 장비 분류:
+1차 filename/path/size 분류:
 
 - Machine high-confidence: **202**
-  - `Lever-*`: 183
-  - `Sled-*` machine family: 17
-  - explicit machine rows: 2
 - Barbell: **212**
 - Dumbbell: **493**
 - Kettlebell: **188**
 - Smith: **61**
 - Landmine: **33**
 - EZ Bar: **35**
-- Machine-or-nonmachine ambiguous review rows: **8**
-- Other / not-yet-normalized pool: **579**
+- Machine-or-nonmachine ambiguous: **8**
+- Other / not-yet-normalized: **579**
 
-Non-Cable duplicate candidate scan:
+Duplicate candidate scan:
 
 - Machine: **12 groups / 25 files**
 - Barbell: **8 groups / 18 files**
@@ -222,87 +151,110 @@ Non-Cable duplicate candidate scan:
 - Landmine: **4 groups / 8 files**
 - EZ Bar: **0**
 
-이 duplicate group은 filename cleanup 기반 **review candidate**일 뿐 자동 merge하지 않는다.
+이 수치는 filename cleanup 기반 review candidate이며 자동 merge하지 않는다.
 
-### 8. Machine targeted visual QA 33 — COMPLETE
+## 5. Machine targeted visual QA — COMPLETE
 
-상세:
+기준:
 
 - `docs/exercise-db/2026-09-04-machine-visual-qa-33.md`
 
-검수 대상:
+33 files 직접 검수:
 
-- Machine duplicate-candidate rows: **25 files / 12 groups**
-- `Assisted-*` / `Hack-*` machine-or-nonmachine ambiguous: **8 files**
-- total: **33 / 33 reviewed**
+- Machine duplicate candidate: **25 files / 12 groups**
+- Machine-or-nonmachine ambiguous: **8 files**
 - binary-identical SHA256 duplicate: **0**
 
-12 duplicate-candidate groups 결과:
+12 group 결과:
 
-- **same canonical + media/machine-design variant: 10 groups**
-- **grip variant: 1 group**
-  - Lever High Row (plate-loaded) → 실제 handle/grip 형태 차이; non-Cable grip policy에 따라 자동 history 병합 금지
-- **execution variant: 1 group**
-  - Lever Triceps Extension → elbows-forward/support-pad vs upper-arms-beside-torso execution 차이; 자동 history 병합 금지
+- same canonical + machine-design/media variant: **10 groups**
+- grip variant: **1 group**
+  - Lever High Row
+- execution variant: **1 group**
+  - Lever Triceps Extension
 - unresolved: **0**
 
-8 ambiguous rows 결과:
+8 ambiguous 결과:
 
-Machine confirmed **5 / 8**:
+- Machine confirmed: **5**
+- Non-Machine confirmed: **3**
+- unresolved: **0**
 
-- Assisted Parallel Close Grip Pull-up
-- Assisted Pull-up
-- Assisted Single Leg Press
-- Assisted Triceps Dip (kneeling)
-- Hack Calf Raise
+따라서 현재 **Machine source-scope candidate = 207 raw rows**.
 
-Non-Machine confirmed **3 / 8**:
+주의: raw row 수이며 final G Fit canonical exercise 수가 아니다.
 
-- Assisted Bulgarian Split Squat → support-assisted/bodyweight
-- Assisted Chin-Up on a bench → bench-assisted/bodyweight
-- Assisted Single-Arm Pull-up → 일반 rack one-arm pull-up이며 영상상 machine/외부 assistance 없음; vendor `Assisted` wording exception
+Machine boundary:
 
-따라서 filename-only Machine 202 + visual-confirmed 5 = **Machine source scope candidate 207 rows**.
+- 기구 프레임/브랜드/render 차이만으로 새 exercise identity를 만들지 않음
+- 실제 grip/handle orientation이 의미 있으면 grip variant
+- 자세/관절경로가 크게 다르면 execution variant
+- `Assisted` filename만으로 assisted machine을 가정하지 않음
 
-이 수치는 raw source row 수이며 final unique canonical exercise 수가 아니다.
+## 6. Barbell targeted visual QA — COMPLETE
 
-Machine normalization boundary:
+기준:
 
-1. 같은 자세/관절 패턴/수행 경로인데 기구 프레임·렌더·카메라만 다름 → same canonical + media variant
-2. grip/handle orientation 차이가 의미 있음 → grip variant 보존
-3. 자세/관절 위치/수행 경로가 크게 다름 → execution variant, history 자동 병합 금지
-4. `Assisted` filename만으로 assisted machine 추정 금지; 실제 counterweight/knee-pad/platform 확인
-5. raw filename과 영상이 충돌하면 raw는 보존하고 derived normalization에서 예외 처리
+- `docs/exercise-db/2026-09-05-barbell-visual-qa-18.md`
+
+8 duplicate candidate groups / 18 files를 timeline frame으로 직접 비교했다.
+
+검증:
+
+- groups: **8 / 8**
+- files: **18 / 18**
+- binary-identical SHA256 duplicate: **0**
+
+결과:
+
+- same canonical + POV/load/render/timing media variant: **7 groups**
+  - Barbell Curl
+  - Barbell Deadlift
+  - Barbell Full Clean
+  - Barbell Full Squat
+  - Barbell Hang Snatch
+  - Barbell Standing Military Press
+  - Barbell Upright Row
+- execution variant: **1 group**
+  - Barbell Rear Lunge
+    - `front_foot_elevated` version
+    - standard `floor` version
+    - performance history 자동 병합 금지
+- unresolved: **0**
+
+Barbell boundary:
+
+- front/back/side/360 camera only → same canonical + POV/media variant
+- plate 유무 / render revision / FIX 여부 → same canonical + media variant
+- animation timing 차이만 있고 movement sequence 같음 → 별도 canonical 근거 아님
+- step/platform처럼 ROM/수행 조건을 크게 바꾸면 explicit execution variant
 
 ---
 
-## NEXT OPEN ITEM — Exercise DB / asset
+# NEXT OPEN ITEM — Exercise DB / asset
 
-### Immediate next
+## Immediate next
 
-**Barbell duplicate targeted visual QA — 8 groups / 18 files**
+**Dumbbell targeted visual QA — 9 groups / 20 files**
 
-대상은 full 2,109 equipment pass에서 이미 추출 가능하다.
+후속 순서:
 
-그 다음 순서:
+1. Dumbbell 20 direct visual QA
+2. Kettlebell 6 groups / 12 files QA
+3. Smith 1 group / 2 files QA
+4. Landmine 4 groups / 8 files QA
+5. 필요 시 각 family의 ambiguous naming/media exception 추가 targeted QA
+6. 전체 normalized source를 기존 Production Exercise DB v1과 mapping
+7. 최종 G Fit canonical 후보 수 / 실제 gap 재산출
+8. canonical mapping 안정화 후 production media transform / app-serving storage 결정
 
-1. Barbell visual QA 18 완료
-2. Dumbbell duplicate/ambiguous targeted visual QA
-3. Kettlebell
-4. Smith
-5. Landmine
-6. 필요 시 EZ Bar / Other 핵심 범위 정리
-7. 전체 normalized source를 기존 Production Exercise DB v1과 mapping
-8. 최종 G Fit canonical 후보 수 / 실제 gap 재산출
-9. production media transform / app-serving storage 구조 결정
-
-**현재는 source normalization 단계이며 Cursor 구현 handoff 없음.**
+**현재는 source normalization 단계이며 Cursor implementation handoff 없음.**
 
 ---
 
-## Approved UX baseline — do not reopen
+# Approved UX baseline — do not reopen
 
-### Home
+## Home
 
 - 운동 시작 / 복귀가 최우선
 - 루틴 없음 → G Fit 추천 루틴 + 내 루틴 만들기
@@ -310,7 +262,7 @@ Machine normalization boundary:
 - 카드 1개 = 완성 루틴 1개, 실제 운동 구성 노출
 - 추천 루틴은 저장 전 바로 운동 가능
 
-### Exercise Search / Add
+## Exercise Search / Add
 
 - search-first, 목록에서 바로 추가
 - 루틴 만들기 / 운동 중 추가 흐름 재사용
@@ -318,7 +270,7 @@ Machine normalization boundary:
 - 없으면 Custom Exercise
 - 손잡이 지원 운동: `운동 선택 → 손잡이 선택 → 카드 추가`
 
-### Exercise Detail
+## Exercise Detail
 
 기준:
 
@@ -331,7 +283,7 @@ Machine normalization boundary:
 - `최근 기록`: 날짜별 세트 / 중량 / 반복
 - 장기 분석 dashboard는 Exercise Detail에 중복하지 않음
 
-### Cable attachment
+## Cable attachment
 
 기준:
 
@@ -342,7 +294,7 @@ Machine normalization boundary:
 - 기존 카드의 손잡이를 운동 중 mutate하지 않음
 - attachment별 media / 이전 기록 맥락 보존
 
-### Active Workout / Routine update
+## Active Workout / Routine update
 
 기준:
 
@@ -354,7 +306,7 @@ Machine normalization boundary:
 - 운동/세트 추가·삭제 같은 구조 변경만 종료 시 반영 여부 확인
 - explicit drag reorder는 즉시 saved routine 순서에 저장
 
-### Rest Timer
+## Rest Timer
 
 기준:
 
@@ -367,7 +319,7 @@ Machine normalization boundary:
 - ±15초 MVP 제외
 - **정확한 종료 signal은 OPEN**
 
-### Assisted machine
+## Assisted machine
 
 기준:
 
@@ -377,7 +329,7 @@ Machine normalization boundary:
 - 보조 kg + 횟수
 - 높은 보조 kg를 더 좋은 기록으로 해석하지 않음
 
-### Workout Complete
+## Workout Complete
 
 기준:
 
@@ -393,7 +345,7 @@ Machine normalization boundary:
 - 일반 weight/reps 볼륨 = 완료 세트 `Σ(weight × reps)`
 - assisted / duration / distance는 일반 kg volume에 억지로 포함하지 않음
 
-### Progression Hint
+## Progression Hint
 
 기준:
 
@@ -406,7 +358,7 @@ Machine normalization boundary:
 - 정확한 증량 kg/%는 처방하지 않음
 - `4/5`는 조정 가능한 MVP 제품 임계값
 
-### Workout End / Discard
+## Workout End / Discard
 
 기준:
 
@@ -418,7 +370,7 @@ Machine normalization boundary:
 - 기존 Figma `403c`를 whole-workout discard confirmation으로 재사용
 - discard가 explicit reorder 자동 저장을 롤백하지 않음
 
-### Recommended Routine
+## Recommended Routine
 
 기준:
 
@@ -433,20 +385,20 @@ Machine normalization boundary:
 
 ---
 
-## Product/UX OPEN items preserved
+# Product/UX OPEN items preserved
 
-Exercise DB / asset source analysis와 별개로 여전히 OPEN:
+Exercise DB / asset source normalization과 별개로 여전히 OPEN:
 
 - 추천 루틴 실제 프로그램 contents — Exercise DB / substitution data 선행 필요
 - Analysis first screen / drilldown scope
 - Settings main scope
 - rest timer 종료 signal 세부 동작
 
-최근 Analysis 논의에서 `기간 선택 / 운동 요약 / 운동 빈도 / 바디맵 기반 운동 부위 분포` 방향을 검토했지만, 아직 별도 PO-approved decision으로 승격하지 않았다.
+최근 Analysis 논의에서 `기간 선택 / 운동 요약 / 운동 빈도 / 바디맵 기반 운동 부위 분포` 방향을 검토했지만 아직 별도 PO-approved decision으로 승격하지 않았다.
 
 ---
 
-## Figma status
+# Figma status
 
 Canonical Figma:
 
@@ -472,13 +424,13 @@ Canonical Figma:
 - recommended routine post-workout save state
 - routine-change confirmation 정리
 - `403c` whole-workout discard copy sync
-- Analysis screen은 아직 미작성 / scope OPEN
+- Analysis screen 미작성 / scope OPEN
 
 최신 제품 결정들의 실제 Figma sync는 아직 완료되지 않았다.
 
 ---
 
-## Canonical / review artifacts
+# Canonical / review artifacts
 
 Canonical production wireframe:
 
@@ -488,7 +440,7 @@ Canonical production wireframe:
 
 ---
 
-## Implementation status
+# Implementation status
 
 **No Cursor implementation handoff.**
 
