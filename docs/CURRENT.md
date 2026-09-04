@@ -1,6 +1,6 @@
 # CURRENT — Fitness Project
 
-**Updated:** 2026-09-04 22:35 KST
+**Updated:** 2026-09-04 22:43 KST
 
 ## Current mode
 
@@ -184,6 +184,22 @@ R2 raw upload 완료 후:
 - 없으면 Custom Exercise 생성
 - 손잡이 지원 운동: `운동 선택 → 손잡이 선택 → 카드 추가`
 
+### Exercise Detail
+
+기준:
+
+`docs/ux-decisions/2026-09-04-exercise-detail-scope.md`
+
+- 기존 Figma `341_Library_Exercise_History`의 `운동 정보 | 최근 기록` 2탭 구조 유지
+- 새 Exercise Detail IA를 만들지 않고 `운동 정보` 탭을 완성
+- 운동 정보 우선순위 = 동작 미디어 → 운동명 → 장비 + 주요 근육 → 보조 근육 → 짧은 운동 방법 → 핵심 체크포인트
+- 구매한 Gym Animations media가 있으면 상단 주요 visual로 활용 가능
+- media가 없어도 상세 화면은 완전해야 하며 빈 media slot을 고정 예약하지 않음
+- `최근 기록`은 기존 날짜별 세트 / 중량 / 반복 기록 구조 유지
+- Exercise Detail 안에 장기 분석 dashboard를 중복하지 않음
+- MVP에서는 `How to`, `Leaderboard` 등 추가 tab을 만들지 않음
+- 운동 검색에서 Exercise Detail을 반드시 거치지 않고 목록에서 바로 추가 가능
+
 ### Cable attachment
 
 기준:
@@ -331,7 +347,6 @@ Flow:
 Exercise DB / asset source analysis와 별개로 아래 제품 항목은 여전히 OPEN이다.
 
 - 추천 루틴 실제 프로그램 contents — Exercise DB / substitution data 선행 필요
-- Exercise Detail scope
 - Analysis first screen / drilldown scope
 - Settings main scope
 - rest timer 종료 signal 세부 동작
@@ -352,6 +367,7 @@ Canonical Figma:
 
 - `110 / 111 Home`
 - `301 / 301a / 302 Exercise Search`
+- `341 Library Exercise Detail / History`
 - `401a Workout Active`
 - `410 Rest Timer`
 - `403a / 403b / 403c Workout End`
@@ -361,6 +377,7 @@ Canonical Figma:
 추가/신규 state 또는 sync가 필요한 것:
 
 - attachment picker
+- `341` 운동 정보 tab content
 - recommended routine detail
 - assisted first-use helper
 - recommended routine post-workout save state
