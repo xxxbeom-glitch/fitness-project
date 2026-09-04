@@ -1,7 +1,7 @@
 # Workout End Flow — 2026-09-03
 
 **Status:** PO APPROVED
-**Scope:** Active Workout 종료 확인과 미완료 세트가 있을 때의 조기 종료
+**Scope:** Active Workout 종료 확인, 미완료 세트가 있을 때의 조기 종료, 전체 운동 기록 폐기
 
 ## Decision
 
@@ -68,25 +68,71 @@
 
 `docs/ux-decisions/2026-09-03-active-workout-routine-update.md`
 
-## 4. Figma mapping
+## 4. 전체 운동 기록 폐기 — PO APPROVED 2026-09-04
 
-기존 Figma의 종료 modal shell은 재사용할 수 있다.
+일반 `운동 종료`는 기록을 저장하는 동작으로 유지한다.
+
+사용자가 이번 세션 자체를 잘못 시작했거나 테스트 입력 등으로 **오늘 운동 기록 전체를 남기고 싶지 않은 경우**에만 별도의 `운동 기록 삭제` 흐름을 사용한다.
+
+이 기능은 일반 종료의 동등한 기본 선택지로 강조하지 않는다. 실수로 누르기 어려운 별도 destructive action으로 노출하고, 실제 삭제 전에는 반드시 한 번 더 확인한다.
+
+확인 상태는 기존 Figma `403c_Workout_Save_Or_Discard`를 **전체 운동 기록 삭제 확인 modal**로 repurpose한다.
+
+권장 카피:
+
+> **이번 운동 기록을 삭제할까요?**
+>
+> 지금까지 입력한 운동 기록이 모두 삭제됩니다.
+
+행동:
+
+- `계속 운동`
+- `운동 기록 삭제`
+
+`운동 기록 삭제`를 확정하면:
+
+- 이번 세션의 오늘 운동 기록을 남기지 않음
+- 완료 체크한 세트도 History에 남기지 않음
+- 진행 중 세션을 종료하고 복구 대상에서도 제거
+- 오늘 세션 안에서만 존재하던 임시 구조 변경은 저장하지 않음
+- Home으로 돌아감
+
+단, 기존 정책에 따라 **사용자가 명시적으로 drag reorder하여 이미 루틴에 즉시 저장된 순서 변경은 workout 기록과 별개**이므로 전체 운동 기록을 삭제해도 자동 롤백하지 않는다.
+
+추천 루틴을 저장하지 않은 상태에서 이번 운동 기록을 삭제한 경우에는 해당 추천 루틴도 `내 루틴`으로 생성하지 않는다.
+
+### Entry prominence
+
+정확한 버튼 위치와 visual treatment는 Figma sync에서 정리하되 다음 원칙을 지킨다.
+
+- `운동 종료`보다 눈에 띄는 primary action으로 두지 않음
+- 일반 종료 확인에서 실수로 바로 삭제되지 않음
+- 삭제 action을 선택한 뒤 `403c`에서 최종 확인
+
+따라서 별도 신규 discard screen을 만들지 않고 기존 `403c` modal shell을 재사용한다.
+
+## 5. Figma mapping
+
+기존 Figma의 종료 modal shell을 재사용한다.
 
 - `403a_Workout_End_Incomplete` → 미완료 세트 / 운동이 남은 조기 종료 확인
 - `403b_Workout_End_Complete` → 모든 예정 세트 완료 후 종료 확인
-- `403c_Workout_Save_Or_Discard` → 일반 종료의 `저장하지 않기` 화면으로 사용하지 않는다. 루틴 구조 변경 확인으로 repurpose하거나, 전체 운동 기록 폐기 edge case를 별도 흐름으로 분리한다.
+- `403c_Workout_Save_Or_Discard` → **전체 운동 기록 삭제 최종 확인**
 
-## 5. Explicit non-goals
+`403c`는 더 이상 일반 종료의 `저장하지 않기` 화면이 아니다.
+
+## 6. Explicit non-goals
 
 - 모든 세트 완료 시 자동 종료하지 않음
 - 미완료 세트가 있으면 종료 자체를 막지 않음
 - 일반 종료 흐름에서 `저장하지 않기`를 기본 선택지로 제공하지 않음
 - 운동 완료 여부 때문에 루틴을 자동 수정하지 않음
+- 전체 운동 기록 삭제를 primary 종료 행동으로 강조하지 않음
 
 ## Deferred
 
-- 전체 운동 기록을 통째로 폐기하는 별도 진입점과 확인 카피
-- 종료 확인 modal의 최종 디자인 / 문구 미세 조정
+- 종료 / discard modal의 최종 typography, spacing, destructive color 등 visual polish
+- discard action의 정확한 화면 내 배치 위치는 Figma sync에서 결정
 
 ## Implementation
 
