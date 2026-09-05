@@ -1,7 +1,7 @@
 # Exercise DB Normalization — Resume Checkpoint
 
 **Date:** 2026-09-05  
-**Status:** P0 SOURCE COVERAGE LOCKED 16/16 / RESUME FROM P0 PRODUCTION PROMOTION REVIEW
+**Status:** P0 SOURCE COVERAGE LOCKED 16/16 / PLANK DURATION APPROVED / RESUME FROM PRODUCTION PROMOTION QA
 
 ## Source of Truth
 
@@ -105,6 +105,33 @@ Expected curated MVP catalog after P0 promotion:
 
 ---
 
+## Timed exercise recording — PO APPROVED
+
+Policy:
+
+- Plank and other exercises whose meaningful performance value is hold time use `recording_type = duration`
+- do not convert duration seconds into fake reps
+- `plank` is now locked as `duration`
+- `crunch` and `lying-leg-raise` remain `reps`
+
+Timed-set performance measurement and the existing Rest Timer are separate concepts.
+
+UI detail is deferred:
+
+- TIME row presentation
+- start/stop interaction
+- countdown vs stopwatch
+- timed-set end signal
+- handoff from timed-set completion to Rest Timer
+
+These do not block P0 data promotion.
+
+Reference:
+
+- `docs/ux-decisions/2026-09-05-duration-exercise-recording.md`
+
+---
+
 ## P1 — non-blocking
 
 Current result:
@@ -124,35 +151,22 @@ P1 is post-MVP and does not block the 211 target.
 
 ## Immediate next — DO THIS FIRST
 
-**PO decision: Plank recording type.**
+**Run P0 16 Production promotion QA.**
 
-Recommendation:
+1. canonical ID uniqueness against current Production 195
+2. Korean/English naming + aliases
+3. equipment / body part normalization
+4. recording types
+   - Plank = `duration`
+   - Assisted Pull-Up / Dip = `assisted_weight_reps`
+5. source provenance integrity
+6. verify final expected app-facing count = **211**
 
-`recording_type = duration`
+After the rows are locked:
 
-Reason:
-
-- standard forearm plank is a static/isometric hold
-- hold time is the meaningful performance value
-- forcing it into `reps` would create invalid history semantics
-
-Status:
-
-**RECOMMENDED / NOT YET PO-APPROVED**
-
-After PO approval:
-
-1. lock the P0 16 normalized row spec
-2. Production promotion QA
-   - unique canonical IDs
-   - Korean/English naming + aliases
-   - equipment/body part
-   - recording types
-   - assisted-machine semantics
-   - source provenance
-3. expected app-facing count = 211
-4. select production-serving media for the 16 promoted rows
-5. decide transform/compression/storage/app-serving structure
+1. select production-serving media for the 16 promoted rows
+2. decide transform/compression/storage/app-serving structure
+3. only then create implementation Issue/AC if code changes are the next dependency
 
 No Cursor implementation handoff yet.
 
@@ -166,6 +180,7 @@ On continuation:
 2. read this checkpoint
 3. do not redo completed ZIP/video QA
 4. do not reopen P0 source coverage — it is 16/16 locked
-5. resume from **Plank recording-type PO decision → P0 Production promotion QA**
+5. do not reopen Plank recording type — `duration` is PO approved
+6. resume directly from **P0 Production promotion QA**
 
 No Cursor implementation handoff.
