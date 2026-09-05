@@ -4,7 +4,7 @@
 
 ## Current mode
 
-`EXERCISE DB / ASSET NORMALIZATION ACTIVE · RAW R2 VERIFIED · 2,109 BULK MAPPING COMPLETE · P0 SOURCE COVERAGE LOCKED 16/16 · RECORDING MODEL 5 ACTIVE + 3 RESERVED APPROVED · P0 16 DATA ROW LOCK QA PASS · P0 DEFAULT MEDIA SOURCE INPUT LOCKED 16/16 · 211 MERGE SAFE · MEDIA TRANSFORM SAMPLE / SERVING STRUCTURE NEXT · P1 15/17 SOURCE-COVERED · PRODUCT/UX BASELINE PRESERVED · NO CURSOR IMPLEMENTATION HANDOFF`
+`PRODUCT/UX ANALYSIS IA ACTIVE · ANALYSIS 5-SCREEN HIERARCHY PO APPROVED · ANALYSIS HOME CONTENT / METRIC RULES NEXT · EXERCISE DB P0 DEFAULT MEDIA SOURCE INPUT LOCKED 16/16 · 211 MERGE SAFE · MEDIA TRANSFORM SAMPLE DEFERRED PARALLEL · P1 15/17 SOURCE-COVERED · NO CURSOR IMPLEMENTATION HANDOFF`
 
 ## Resume rule
 
@@ -12,7 +12,79 @@
 
 재개 순서:
 
-`CURRENT 확인 → latest exercise-db checkpoint 확인 → NEXT OPEN ITEM부터 바로 진행`
+`CURRENT 확인 → latest active-track checkpoint 확인 → NEXT OPEN ITEM부터 바로 진행`
+
+---
+
+# CURRENT PRODUCT/UX TRACK — Analysis IA
+
+The Product Owner intentionally paused exercise-media transform/export work and resumed screen IA planning.
+
+## Analysis tab hierarchy — PO APPROVED
+
+Approved screen structure:
+
+1. `분석 홈`
+2. `부위별 분석`
+3. `운동별 성장`
+4. `운동 기록`
+5. `운동 기록 상세`
+
+Hierarchy rule:
+
+- `분석 홈` is a summary/navigation surface
+- deep charts and full histories are not all placed on the first screen
+- body-area/distribution -> `부위별 분석`
+- exercise progress -> `운동별 성장`
+- history/more -> `운동 기록`
+- individual workout -> `운동 기록 상세`
+
+Approved Analysis-home content direction:
+
+- period selection
+- compact workout summary metrics
+- front/back body-area distribution visualization
+- workout frequency summary
+- recent exercise-progress summary
+- recent workout records
+
+Body-map direction:
+
+- use front/back neutral-body visual assets
+- highlight trained areas as data visualization
+- do not treat this as a second exercise-demo asset system
+
+Important OPEN details:
+
+- default period and period options
+- exact top summary metrics
+- body-map calculation input / normalization / color rule
+- workout-frequency definition
+- `최근 성장한 운동` selection rule
+- recent-record information density
+- empty / insufficient-data states
+- exact chart type and metric rules by exercise recording type
+
+References:
+
+- `docs/ux-decisions/2026-09-05-analysis-tab-ia.md`
+- `docs/14_IA_STORYBOARD.md`
+
+# NEXT OPEN ITEM — Analysis Home content contract
+
+Define the exact first-screen data/content rules before detailed wireframe/Figma composition.
+
+Immediate next:
+
+1. lock default period + period choices
+2. lock top summary metric set
+3. define what drives the body-map intensity/distribution
+4. define workout-frequency calculation/presentation
+5. define how `최근 성장한 운동` is selected
+6. define recent-workout row/card contents
+7. define empty and insufficient-data states
+
+No Cursor implementation handoff yet.
 
 ---
 
@@ -252,9 +324,11 @@ Trap Bar Deadlift source exists but `Trap Bar` equipment taxonomy remains a futu
 
 ---
 
-# NEXT OPEN ITEM — Media transform sample + derived 211 artifact
+# DEFERRED PARALLEL ITEM — Media transform sample + derived 211 artifact
 
-## Immediate next
+The Product Owner explicitly deferred this work while Product/UX Analysis IA is active.
+
+When resumed:
 
 1. define a small representative media-transform sample rather than bulk-processing the catalog
 2. decide/test the derived media contract:
@@ -278,8 +352,6 @@ Trap Bar Deadlift source exists but `Trap Bar` equipment taxonomy remains a futu
    - raw source unchanged
 6. only when application implementation becomes the next dependency, create Issue/AC and hand off to Cursor
 
-No Cursor implementation handoff yet.
-
 ---
 
 # Approved Product/UX baseline — preserve, do not reopen
@@ -297,16 +369,16 @@ Existing approved UX decisions remain canonical in their individual docs. Import
 - Workout Complete: `docs/ux-decisions/2026-09-03-post-workout-completion-carousel.md`, `docs/ux-decisions/2026-09-04-workout-completion-metrics.md`
 - Progression Hint: `docs/ux-decisions/2026-09-04-progression-hint-threshold.md`
 - Workout End / Discard: `docs/ux-decisions/2026-09-03-workout-end-flow.md`
+- Analysis tab IA: `docs/ux-decisions/2026-09-05-analysis-tab-ia.md`
 
 Parallel OPEN Product/UX items remain:
 
 - timed exercise Active Workout UI details
 - recommended-routine actual program contents — DB/substitution data dependency
-- Analysis first screen / drilldown scope
 - Settings main scope
 - rest timer end signal detail
 
-Recent Analysis exploration (`period selection / exercise summary / frequency / front-back body-map distribution`) is not yet a PO-approved decision.
+Analysis screen hierarchy is no longer OPEN; the current Analysis work is exact home content/metric/state definition.
 
 ---
 
