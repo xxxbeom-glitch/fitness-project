@@ -4,7 +4,7 @@
 
 ## Current mode
 
-`PRODUCT/UX ANALYSIS IA ACTIVE · ANALYSIS 5-SCREEN HIERARCHY PO APPROVED · ANALYSIS HOME CONTENT / METRIC RULES NEXT · EXERCISE DB P0 DEFAULT MEDIA SOURCE INPUT LOCKED 16/16 · 211 MERGE SAFE · MEDIA TRANSFORM SAMPLE DEFERRED PARALLEL · P1 15/17 SOURCE-COVERED · NO CURSOR IMPLEMENTATION HANDOFF`
+`PRODUCT/UX ANALYSIS HOME CONTENT ACTIVE · ANALYSIS 5-SCREEN HIERARCHY PO APPROVED · ANALYSIS PERIOD 4W/3M/6M/1Y LOCKED · TOP METRICS WORKOUTS/SETS/TIME LOCKED · BODY-MAP CALCULATION RULE NEXT · EXERCISE DB P0 DEFAULT MEDIA SOURCE INPUT LOCKED 16/16 · 211 MERGE SAFE · MEDIA TRANSFORM SAMPLE DEFERRED PARALLEL · P1 15/17 SOURCE-COVERED · NO CURSOR IMPLEMENTATION HANDOFF`
 
 ## Resume rule
 
@@ -16,7 +16,7 @@
 
 ---
 
-# CURRENT PRODUCT/UX TRACK — Analysis IA
+# CURRENT PRODUCT/UX TRACK — Analysis Home content
 
 The Product Owner intentionally paused exercise-media transform/export work and resumed screen IA planning.
 
@@ -48,6 +48,38 @@ Approved Analysis-home content direction:
 - recent exercise-progress summary
 - recent workout records
 
+## Analysis Home period — PO APPROVED
+
+Default:
+
+- `최근 4주`
+
+Choices:
+
+- `4주`
+- `3개월`
+- `6개월`
+- `1년`
+
+`1주` and `전체` are not primary MVP Analysis-home choices.
+
+## Analysis Home top summary metrics — PO APPROVED
+
+Fixed headline metrics:
+
+1. `운동 횟수`
+2. `완료 세트`
+3. `운동 시간`
+
+Rules:
+
+- saved partial workouts with real persisted performed work count toward `운동 횟수`
+- discarded / empty sessions do not count
+- `완료 세트` uses final persisted completion state only
+- `운동 시간` sums approved saved-session elapsed workout time under the existing workout-time policy
+
+`총 볼륨` is not a universal headline metric because approved recording types do not share one valid kg-volume calculation. It may still appear in workout detail, exercise-specific progress, or a clearly scoped secondary module where valid.
+
 Body-map direction:
 
 - use front/back neutral-body visual assets
@@ -56,8 +88,6 @@ Body-map direction:
 
 Important OPEN details:
 
-- default period and period options
-- exact top summary metrics
 - body-map calculation input / normalization / color rule
 - workout-frequency definition
 - `최근 성장한 운동` selection rule
@@ -68,21 +98,21 @@ Important OPEN details:
 References:
 
 - `docs/ux-decisions/2026-09-05-analysis-tab-ia.md`
+- `docs/ux-decisions/2026-09-04-workout-completion-metrics.md`
 - `docs/14_IA_STORYBOARD.md`
 
-# NEXT OPEN ITEM — Analysis Home content contract
+# NEXT OPEN ITEM — Analysis body-map rule
 
-Define the exact first-screen data/content rules before detailed wireframe/Figma composition.
+Define what actually drives the front/back body-map before drawing the detailed Analysis Home UI.
 
 Immediate next:
 
-1. lock default period + period choices
-2. lock top summary metric set
-3. define what drives the body-map intensity/distribution
-4. define workout-frequency calculation/presentation
-5. define how `최근 성장한 운동` is selected
-6. define recent-workout row/card contents
-7. define empty and insufficient-data states
+1. decide whether body-map intensity is based on completed sets, exercise count, volume, or another normalized score
+2. define how primary vs secondary muscles contribute
+3. define whether the map is relative within the selected period or uses fixed thresholds
+4. define body-area granularity / mapping to available front-back visual assets
+5. then define workout-frequency calculation/presentation
+6. then define `최근 성장한 운동`, recent-record density, and empty states
 
 No Cursor implementation handoff yet.
 
@@ -155,10 +185,10 @@ Main references:
 
 Normalization boundary:
 
-1. same movement + render/POV/media difference → same canonical + media variant
-2. Cable attachment-only difference → same canonical + attachment context/media
-3. grip-only difference → same parent family + grip context
-4. posture / laterality / load position / implement count / movement path that materially changes recording meaning → execution/load context; history auto-merge prohibited
+1. same movement + render/POV/media difference -> same canonical + media variant
+2. Cable attachment-only difference -> same canonical + attachment context/media
+3. grip-only difference -> same parent family + grip context
+4. posture / laterality / load position / implement count / movement path that materially changes recording meaning -> execution/load context; history auto-merge prohibited
 5. vendor filename is evidence, not normalized truth; actual movement wins
 6. raw source remains immutable; all normalized values are derived
 
@@ -282,19 +312,19 @@ Current model:
 
 P0 critical locks:
 
-- `plank` → `duration`
-- `crunch` → `reps`
-- `lying-leg-raise` → `reps`
-- `machine-assisted-pull-up` → `assisted_weight_reps`
-- `machine-assisted-dip` → `assisted_weight_reps`
-- remaining weighted P0 rows → `weight_reps`
+- `plank` -> `duration`
+- `crunch` -> `reps`
+- `lying-leg-raise` -> `reps`
+- `machine-assisted-pull-up` -> `assisted_weight_reps`
+- `machine-assisted-dip` -> `assisted_weight_reps`
+- remaining weighted P0 rows -> `weight_reps`
 
 Final 211 consistency QA also found four legacy values in the existing 195 baseline that must migrate when the derived artifact is regenerated:
 
-- `elbow-side-plank`: `time` → `duration`
-- `hand-plank`: `time` → `duration`
-- `wall-sit`: `time` → `duration`
-- `kettlebell-farmers-carry`: `weight_distance_or_time` → `distance_weight`
+- `elbow-side-plank`: `time` -> `duration`
+- `hand-plank`: `time` -> `duration`
+- `wall-sit`: `time` -> `duration`
+- `kettlebell-farmers-carry`: `weight_distance_or_time` -> `distance_weight`
 
 These are schema cleanup only; completed source/video QA is not reopened.
 
@@ -347,7 +377,7 @@ When resumed:
 5. rerun machine-verifiable integrity QA:
    - exact canonical count = **211**
    - canonical uniqueness = **211 / 211**
-   - recording_type vocabulary ⊆ approved 5+3
+   - recording_type vocabulary subset of approved 5+3
    - P0 provenance/default-source links present
    - raw source unchanged
 6. only when application implementation becomes the next dependency, create Issue/AC and hand off to Cursor
