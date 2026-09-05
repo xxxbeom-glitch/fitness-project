@@ -11,6 +11,7 @@
     { "src": "completion-review.html", "use": "@vercel/static" },
     { "src": "progression-hint-review.html", "use": "@vercel/static" },
     { "src": "bodypart-summary-review.html", "use": "@vercel/static" },
-    { "src": "completion-cards-all-review.html", "use": "@vercel/static" }
+    { "src": "completion-cards-all-review.html", "use": "@vercel/static" },
+    { "src": "analysis-structure-review.html", "use": "@vercel/static" }
   ]
 }
