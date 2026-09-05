@@ -1,7 +1,7 @@
 # Analysis Tab IA
 
 **Date:** 2026-09-05  
-**Status:** PO APPROVED / IA LOCKED / HOME PERIOD + TOP METRICS LOCKED / BODY-MAP RULE NEXT
+**Status:** PO APPROVED / IA LOCKED / HOME PERIOD + TOP METRICS LOCKED / BODY-MAP COLOR BEHAVIOR LOCKED / CALCULATION RULE NEXT
 
 ## Decision
 
@@ -132,10 +132,36 @@ Approved direction:
 - highlight only the relevant trained areas rather than showing a decorative anatomical image with no data meaning
 - support a readable body-area breakdown alongside the visual
 
+### Body-map visual behavior — PO APPROVED
+
+The body map uses a neutral base body plus independently controllable muscle-area highlight layers.
+
+Behavioral rule:
+
+- untrained / zero-value area -> neutral / gray base state
+- trained area -> one highlight color family
+- lower amount -> lighter/weaker highlight
+- higher amount -> stronger/darker highlight
+- front and back body views use the same semantic intensity rule
+
+The purpose is to communicate **amount/intensity through one color family's strength**, not to assign unrelated categorical colors to different muscles.
+
+Exact visual color is intentionally deferred until the G Fit brand/main color and design system are defined.
+
+Therefore this decision does **not** lock:
+
+- blue, green, orange, or any other specific hue
+- exact hex/RGB values
+- exact opacity percentages
+- final neutral-gray values
+
+If the eventual primary brand color has poor readability for intensity visualization, the Analysis body map may use a separate analytics/data-visualization accent color while preserving the same semantic rule.
+
 Important boundary:
 
 - the body map is a data visualization layer, not a second exercise-demo asset system
-- exact scoring/intensity formula, color scale, and whether distribution uses sets, effective volume, or another normalized measure remain OPEN
+- exact scoring formula, primary/secondary muscle weighting, normalization, and intensity thresholds remain OPEN
+- exact color tokens are a later visual-design/design-system decision, not an IA/product-logic decision
 
 ---
 
@@ -231,14 +257,15 @@ Already locked:
 
 1. default period + period options
 2. top summary metric set
+3. body-map visual color behavior; exact color tokens deferred to design system
 
 Next:
 
-3. body-map calculation input and display rule
-4. workout-frequency definition
-5. `최근 성장한 운동` selection rule
-6. recent-record card/list information density
-7. empty / insufficient-data states
+4. body-map calculation input, primary/secondary weighting, normalization, and intensity thresholds
+5. workout-frequency definition
+6. `최근 성장한 운동` selection rule
+7. recent-record card/list information density
+8. empty / insufficient-data states
 
 After those are locked, proceed to wireframe/Figma composition.
 
