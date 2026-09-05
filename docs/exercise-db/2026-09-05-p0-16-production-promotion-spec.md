@@ -1,7 +1,7 @@
 # P0 16 — Production Promotion Spec
 
 **Date:** 2026-09-05  
-**Status:** DRAFT / SOURCE COVERAGE LOCKED 16 OF 16 / READY FOR PO REVIEW
+**Status:** P0 RECORDING SCHEMA LOCKED / READY FOR PRODUCTION PROMOTION QA
 
 ## Purpose
 
@@ -42,7 +42,7 @@ This spec does not mutate raw assets and does not yet select final transformed/a
 | 11 | `machine-assisted-pull-up` | 어시스트 풀업 | Pull Up (Assisted) | Machine | 등 | Pull | counterweight_kneeling_pad | `assisted_weight_reps` | `Assisted-Pull-up_Back.mp4` | Library | direct Machine visual QA confirmed |
 | 12 | `machine-assisted-dip` | 어시스트 딥스 | Dip (Assisted) | Machine | 가슴 | Push | counterweight_kneeling_pad | `assisted_weight_reps` | `Assisted-Triceps-Dip-(kneeling)_Upper-Arms.mp4` | Library | direct Machine visual QA confirmed |
 | 13 | `machine-hack-squat` | 핵 스쿼트 머신 | Hack Squat (Machine) | Machine | 하체 | Squat | hack_sled | `weight_reps` | `Lever-Linear-Hack-Squat-(male)_Thighs_.mp4` | Library | ready |
-| 14 | `plank` | 플랭크 | Plank | Bodyweight | 코어 | Isometric | forearm_plank | **OPEN — `duration` recommended** | `Front-Elbow-Plank-(male)_Waist-FIX_.mp4` | Home fallback | direct visual QA passed |
+| 14 | `plank` | 플랭크 | Plank | Bodyweight | 코어 | Isometric | forearm_plank | `duration` | `Front-Elbow-Plank-(male)_Waist-FIX_.mp4` | Home fallback | direct visual QA passed; PO-approved duration recording |
 | 15 | `crunch` | 크런치 | Crunch | Bodyweight | 코어 | Core | supine_floor_crunch | `reps` | `Crunch-Floor-(male)_waist.mp4` | Home fallback | direct visual QA passed |
 | 16 | `lying-leg-raise` | 라잉 레그 레이즈 | Lying Leg Raise | Bodyweight | 코어 | Core | supine_bilateral_leg_raise | `reps` | `Lying-Leg-Raise_Waist-FIX_.mp4` | Home fallback | direct visual QA passed |
 
@@ -75,23 +75,28 @@ These are G Fit normalized values. They do not overwrite raw vendor metadata.
 
 ---
 
-## One remaining product decision before Production lock
+## Plank recording type — PO APPROVED
 
-### Plank recording type
+Decision:
 
-Forcing a static forearm plank into `reps` would make the recording model semantically wrong.
+- `plank.recording_type = duration`
+- user performance is stored as hold duration, not repetitions
+- seconds are not converted into fake reps
 
-Recommended:
+This follows the broader approved rule that exercises whose meaningful performance value is time should use `duration`.
 
-- add/use `duration` recording type for Plank
-- user records hold time, not repetitions
-- do not convert seconds into fake reps
+Reference:
 
-Status:
+- `docs/ux-decisions/2026-09-05-duration-exercise-recording.md`
 
-**RECOMMENDATION / NOT YET PO-APPROVED**
+### UI boundary
 
-The source identity and P0 media approval are already complete; only the app-facing recording schema remains open.
+The data decision is locked, but the timed-set UI is intentionally deferred.
+
+- duration exercise performance timing and Rest Timer remain separate concepts
+- existing Rest Timer decision remains unchanged
+- Active Workout TIME row / timer start-stop / countdown-vs-stopwatch / end signal are future Figma/UX details
+- UI detail does **not** block P0 data promotion
 
 ---
 
@@ -99,13 +104,12 @@ The source identity and P0 media approval are already complete; only the app-fac
 
 Before declaring the catalog Production 211:
 
-1. PO approves Plank recording type
-2. confirm all 16 canonical IDs are unique against current Production 195
-3. confirm no P0 row is accidentally absorbed into an existing identity whose equipment/history must remain separate
-4. confirm `assisted_weight_reps` on Assisted Pull-Up / Dip
-5. verify Korean / English display names and search aliases
-6. attach source provenance path without modifying raw media
-7. choose one default production-serving media per canonical only after canonical rows are locked
-8. rerun final row count: expected **211**
+1. confirm all 16 canonical IDs are unique against current Production 195
+2. confirm no P0 row is accidentally absorbed into an existing identity whose equipment/history must remain separate
+3. confirm `duration` on Plank and `assisted_weight_reps` on Assisted Pull-Up / Dip
+4. verify Korean / English display names and search aliases
+5. attach source provenance path without modifying raw media
+6. choose one default production-serving media per canonical only after canonical rows are locked
+7. rerun final row count: expected **211**
 
 No Cursor implementation handoff yet.
