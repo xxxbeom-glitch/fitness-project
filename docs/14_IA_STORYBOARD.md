@@ -1,7 +1,7 @@
 # 14 IA / STORYBOARD
 
 **Status:** IN PROGRESS
-**Updated:** 2026-09-01
+**Updated:** 2026-09-05
 
 This document records confirmed IA and storyboard-level decisions for the current planning pass. It should stay focused on product structure, navigation, core flows, and screen relationships. Detailed visual styling remains in the screen/design documents.
 
@@ -257,6 +257,60 @@ Technically, only the source routine would need conflict protection, but a sourc
 
 The tradeoff is that users cannot prepare or edit another saved routine during rest periods. For the MVP, this cost is accepted in favor of a simpler and less ambiguous active-workout state model.
 
+## Confirmed — Analysis tab hierarchy
+
+The primary `분석` tab uses a summary-first home with contextual drilldowns.
+
+Approved screen inventory:
+
+1. `분석 홈`
+2. `부위별 분석`
+3. `운동별 성장`
+4. `운동 기록`
+5. `운동 기록 상세`
+
+### 분석 홈
+
+The first screen is a summary/navigation surface, not a page that contains every deep chart and full historical table.
+
+Approved content direction:
+
+- period selection
+- compact workout summary metrics
+- front/back body-area distribution visualization
+- workout frequency summary
+- recent exercise-progress summary
+- recent workout records
+
+Navigation relationships:
+
+- body-area/distribution item -> `부위별 분석`
+- exercise-progress item -> `운동별 성장`
+- history/more -> `운동 기록`
+- individual workout record -> `운동 기록 상세`
+
+### 부위별 분석
+
+Use front/back neutral-body visual assets as a data visualization and highlight the relevant trained areas for the selected period.
+
+The exact scoring formula, color scale, and whether the visualization is driven by sets, normalized volume, or another metric remain open for the next content-definition pass.
+
+### 운동별 성장
+
+This screen focuses on one selected exercise and shows performance trends appropriate to that exercise's recording type.
+
+Do not force every exercise into a `kg` graph. Duration, bodyweight-rep, assisted, and other recording semantics must remain valid.
+
+### 운동 기록 / 운동 기록 상세
+
+`운동 기록` provides chronological workout-session history. `운동 기록 상세` shows the work actually persisted for one session.
+
+Partial records remain distinguishable and may not display unperformed planned work as completed training.
+
+Reference:
+
+- `docs/ux-decisions/2026-09-05-analysis-tab-ia.md`
+
 ## Planning sequence
 
 Current planning order:
@@ -269,4 +323,6 @@ Current planning order:
 6. define screen-level content / CTA / states
 7. return to Figma execution
 
-Exercise DB normalization and Planfit gap analysis remain backlog work and must not block this planning sequence.
+Current Analysis pass has completed the high-level screen inventory. The next Analysis task is to lock `분석 홈` content, metric definitions, and empty/insufficient-data states before detailed wireframe composition.
+
+Exercise DB media-transform/export work remains a parallel deferred track and does not block the current Analysis IA pass.
