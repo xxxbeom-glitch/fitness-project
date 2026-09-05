@@ -4,7 +4,7 @@
 
 ## Current mode
 
-`PRODUCT/UX ANALYSIS HOME CONTENT ACTIVE · ANALYSIS 5-SCREEN HIERARCHY PO APPROVED · ANALYSIS PERIOD 4W/3M/6M/1Y LOCKED · TOP METRICS WORKOUTS/SETS/TIME LOCKED · BODY-MAP CALCULATION RULE NEXT · EXERCISE DB P0 DEFAULT MEDIA SOURCE INPUT LOCKED 16/16 · 211 MERGE SAFE · MEDIA TRANSFORM SAMPLE DEFERRED PARALLEL · P1 15/17 SOURCE-COVERED · NO CURSOR IMPLEMENTATION HANDOFF`
+`PRODUCT/UX ANALYSIS HOME CONTENT ACTIVE · ANALYSIS 5-SCREEN HIERARCHY PO APPROVED · ANALYSIS PERIOD 4W/3M/6M/1Y LOCKED · TOP METRICS WORKOUTS/SETS/TIME LOCKED · BODY-MAP COLOR BEHAVIOR LOCKED · BODY-MAP CALCULATION INPUT/WEIGHTING NEXT · EXERCISE DB P0 DEFAULT MEDIA SOURCE INPUT LOCKED 16/16 · 211 MERGE SAFE · MEDIA TRANSFORM SAMPLE DEFERRED PARALLEL · P1 15/17 SOURCE-COVERED · NO CURSOR IMPLEMENTATION HANDOFF`
 
 ## Resume rule
 
@@ -80,15 +80,33 @@ Rules:
 
 `총 볼륨` is not a universal headline metric because approved recording types do not share one valid kg-volume calculation. It may still appear in workout detail, exercise-specific progress, or a clearly scoped secondary module where valid.
 
-Body-map direction:
+## Analysis body-map visual behavior — PO APPROVED
+
+Structural direction:
 
 - use front/back neutral-body visual assets
-- highlight trained areas as data visualization
-- do not treat this as a second exercise-demo asset system
+- use independently controllable muscle-area highlight layers over the neutral base
+- zero/untrained area remains neutral/gray
+- trained areas use one highlight color family
+- lower value -> lighter/weaker highlight
+- higher value -> stronger/darker highlight
+- front/back use the same semantic intensity rule
+
+Color boundary:
+
+- exact hue is **not** locked before the G Fit brand/main color and design system are defined
+- exact hex/RGB/opacity/neutral values are deferred to the visual-design pass
+- if the eventual brand color is poor for readable intensity visualization, Analysis may use a separate data-visualization accent color
+- do not assign unrelated categorical colors to individual muscles merely for decoration
+
+The body map is a data visualization layer, not a second exercise-demo asset system.
 
 Important OPEN details:
 
-- body-map calculation input / normalization / color rule
+- body-map calculation input
+- primary vs secondary muscle contribution
+- normalization / fixed threshold rule
+- body-area granularity / mapping to available visual layers
 - workout-frequency definition
 - `최근 성장한 운동` selection rule
 - recent-record information density
@@ -101,16 +119,16 @@ References:
 - `docs/ux-decisions/2026-09-04-workout-completion-metrics.md`
 - `docs/14_IA_STORYBOARD.md`
 
-# NEXT OPEN ITEM — Analysis body-map rule
+# NEXT OPEN ITEM — Analysis body-map calculation rule
 
-Define what actually drives the front/back body-map before drawing the detailed Analysis Home UI.
+The visual color behavior is locked. Next define what actually drives the front/back body-map intensity.
 
 Immediate next:
 
 1. decide whether body-map intensity is based on completed sets, exercise count, volume, or another normalized score
 2. define how primary vs secondary muscles contribute
-3. define whether the map is relative within the selected period or uses fixed thresholds
-4. define body-area granularity / mapping to available front-back visual assets
+3. define whether map intensity uses fixed thresholds or is only relative within the selected period
+4. define body-area granularity / mapping to available front-back visual layers
 5. then define workout-frequency calculation/presentation
 6. then define `최근 성장한 운동`, recent-record density, and empty states
 
@@ -154,8 +172,6 @@ References:
 - `docs/exercise-db/2026-09-04-gym-animations-source-analysis-checkpoint.md`
 - `docs/exercise-db/2026-09-05-library-2109-bulk-mapping-v0.2.md`
 
----
-
 ## 2. Targeted normalization / visual QA — COMPLETE
 
 Completed:
@@ -170,6 +186,17 @@ Completed:
 - P1 identity review 3
 - P0 Home fallback 3
 
+Broad manual ZIP review is finished. New visual QA is exception-only when a specific Production identity conflict appears.
+
+Normalization boundary:
+
+1. same movement + render/POV/media difference -> same canonical + media variant
+2. Cable attachment-only difference -> same canonical + attachment context/media
+3. grip-only difference -> same parent family + grip context
+4. posture / laterality / load position / implement count / movement path that materially changes recording meaning -> execution/load context; history auto-merge prohibited
+5. vendor filename is evidence, not normalized truth; actual movement wins
+6. raw source remains immutable; all normalized values are derived
+
 Main references:
 
 - `docs/exercise-db/2026-09-04-cable-normalization-rule-v1.md`
@@ -183,38 +210,9 @@ Main references:
 - `docs/exercise-db/2026-09-05-p1-identity-review-3-result.md`
 - `docs/exercise-db/2026-09-05-p0-home-fallback-visual-qa-3.md`
 
-Normalization boundary:
-
-1. same movement + render/POV/media difference -> same canonical + media variant
-2. Cable attachment-only difference -> same canonical + attachment context/media
-3. grip-only difference -> same parent family + grip context
-4. posture / laterality / load position / implement count / movement path that materially changes recording meaning -> execution/load context; history auto-merge prohibited
-5. vendor filename is evidence, not normalized truth; actual movement wins
-6. raw source remains immutable; all normalized values are derived
-
-Broad manual ZIP review is finished. New visual QA is exception-only when a specific Production identity conflict appears.
-
----
-
 ## 3. Library_database 2,109 bulk mapping — COMPLETE
 
-Actual source-family counts from full manifest:
-
-- Dumbbell: **494**
-- Cable: **298**
-- Other: **264**
-- Barbell: **212**
-- Machine: **207**
-- Kettlebell: **188**
-- Band: **122**
-- Rings: **80**
-- Weighted Bodyweight: **69**
-- Smith Machine: **61**
-- Suspension: **40**
-- EZ Bar: **35**
-- Landmine: **33**
-- Trap Bar: **6**
-- total: **2,109**
+Source-family total: **2,109**.
 
 Conservative source identity/history layer:
 
@@ -227,15 +225,15 @@ Conservative source identity/history layer:
 
 **Do not interpret 1,912 active buckets as app-facing exercises.**
 
-They preserve source/history-relevant execution differences. G Fit search/catalog remains curated from the Production baseline.
-
 Current explicit Library identity unresolved:
 
 - `Kettlebell-Good-Morning_Hips_.mp4`
   - visual movement is a hanging two-hand hip hinge, not a true Good Morning
   - exact Deadlift vs RDL-like parent remains deferred until this source is actually needed for curated Production
 
----
+Reference:
+
+- `docs/exercise-db/2026-09-05-library-2109-bulk-mapping-v0.2.md`
 
 ## 4. Production baseline / P0 / P1
 
@@ -244,14 +242,12 @@ Existing Production DB v1:
 - purchased source rows: **206**
 - app-facing canonical exercises: **195**
 
-Reference:
+References:
 
 - `docs/exercise-db/exercise-db-v1-production.md`
 - `docs/exercise-db/exercise-db-gap-analysis-v1.md`
 
 ### P0 16 — DATA ROW LOCK QA PASS
-
-PO-approved P0 identities remain unchanged.
 
 Source coverage:
 
@@ -260,7 +256,7 @@ Source coverage:
 - unresolved: **0**
 - package-level source coverage: **16 / 16**
 
-P0 Production-promotion QA result:
+P0 Production-promotion QA:
 
 - 16 canonical IDs unique vs current Production 195: **PASS**
 - accidental merge/history absorption: **PASS**
@@ -270,25 +266,20 @@ P0 Production-promotion QA result:
 - source provenance: **PASS**
 - final arithmetic target: **195 + 16 = 211**
 
-Reference:
-
-- `docs/exercise-db/2026-09-05-p0-211-production-promotion-qa-result.md`
-
 Important boundary:
 
 - P0 16 canonical/data rows are Production-locked
 - the derived workbook/runtime DB has **not yet been regenerated as 211 rows**
-- therefore do not claim a physical 211-row Production artifact exists until merge/generation + count QA is executed
+
+Reference:
+
+- `docs/exercise-db/2026-09-05-p0-211-production-promotion-qa-result.md`
 
 ### P0 16 default media source inputs — LOCKED 16/16
-
-One already-reviewed purchased source video is now explicitly locked as the default transform/edit input for each P0 canonical row.
 
 - Library_database default inputs: **13 / 16**
 - Home_Workout_ fallback default inputs: **3 / 16**
 - missing: **0**
-
-This does not mean raw R2 MP4 files are the final app-serving media.
 
 Boundary:
 
@@ -305,10 +296,19 @@ Reference:
 
 ### Recording model — PO APPROVED
 
-Current model:
+MVP ACTIVE:
 
-- MVP ACTIVE: `weight_reps`, `reps`, `duration`, `added_weight_reps`, `assisted_weight_reps`
-- schema RESERVED: `weight_duration`, `distance_duration`, `distance_weight`
+- `weight_reps`
+- `reps`
+- `duration`
+- `added_weight_reps`
+- `assisted_weight_reps`
+
+Schema RESERVED:
+
+- `weight_duration`
+- `distance_duration`
+- `distance_weight`
 
 P0 critical locks:
 
@@ -319,26 +319,22 @@ P0 critical locks:
 - `machine-assisted-dip` -> `assisted_weight_reps`
 - remaining weighted P0 rows -> `weight_reps`
 
-Final 211 consistency QA also found four legacy values in the existing 195 baseline that must migrate when the derived artifact is regenerated:
+Four existing 195-row legacy values must migrate when the derived artifact is regenerated:
 
 - `elbow-side-plank`: `time` -> `duration`
 - `hand-plank`: `time` -> `duration`
 - `wall-sit`: `time` -> `duration`
 - `kettlebell-farmers-carry`: `weight_distance_or_time` -> `distance_weight`
 
-These are schema cleanup only; completed source/video QA is not reopened.
-
-Reference:
+References:
 
 - `docs/ux-decisions/2026-09-05-exercise-recording-types.md`
 - `docs/ux-decisions/2026-09-05-duration-exercise-recording.md`
 
 ### P1 17 — non-blocking
 
-Current reviewed result:
-
 - source-covered: **15 / 17**
-- true source gaps under current evidence: **2**
+- true source gaps: **2**
 - unresolved: **0**
 
 True gaps:
@@ -348,10 +344,6 @@ True gaps:
 
 P1 remains post-MVP / non-blocking.
 
-Smith Machine Romanian Deadlift is source-covered by `Smith-Deadlift_Hips.mp4` after direct visual review.
-
-Trap Bar Deadlift source exists but `Trap Bar` equipment taxonomy remains a future Production decision if P1 is activated.
-
 ---
 
 # DEFERRED PARALLEL ITEM — Media transform sample + derived 211 artifact
@@ -360,33 +352,18 @@ The Product Owner explicitly deferred this work while Product/UX Analysis IA is 
 
 When resumed:
 
-1. define a small representative media-transform sample rather than bulk-processing the catalog
-2. decide/test the derived media contract:
-   - background removal / transparency requirement
-   - export/master boundary
-   - app-serving container/codec
-   - resolution / FPS / quality target
-   - file-size target
-   - derived R2 bucket/path/naming structure
-3. validate sample playback/quality/size before processing all Production media
-4. generate/update the derived Production exercise DB artifact with:
-   - existing 195 baseline
-   - four legacy recording-type migrations
-   - locked P0 16 rows
-   - P0 default media source linkage
-5. rerun machine-verifiable integrity QA:
-   - exact canonical count = **211**
-   - canonical uniqueness = **211 / 211**
-   - recording_type vocabulary subset of approved 5+3
-   - P0 provenance/default-source links present
-   - raw source unchanged
+1. define a small representative media-transform sample
+2. decide/test background removal/transparency, export boundary, app-serving codec/container, resolution/FPS/quality, file-size target, and derived R2 path/naming
+3. validate sample playback/quality/size before bulk conversion
+4. generate/update the derived Production exercise DB artifact with existing 195 + four recording migrations + locked P0 16 + P0 default media source linkage
+5. rerun integrity QA: exact count 211, uniqueness 211/211, recording vocabulary within approved 5+3, P0 source links present, raw source unchanged
 6. only when application implementation becomes the next dependency, create Issue/AC and hand off to Cursor
 
 ---
 
 # Approved Product/UX baseline — preserve, do not reopen
 
-Existing approved UX decisions remain canonical in their individual docs. Important references:
+Important references:
 
 - Home / Recommended Routine: `docs/ux-decisions/2026-09-03-recommended-routine-detail-flow.md`, `docs/ux-decisions/2026-09-04-recommended-routine-post-workout-save.md`
 - Exercise Detail: `docs/ux-decisions/2026-09-04-exercise-detail-scope.md`
@@ -401,14 +378,14 @@ Existing approved UX decisions remain canonical in their individual docs. Import
 - Workout End / Discard: `docs/ux-decisions/2026-09-03-workout-end-flow.md`
 - Analysis tab IA: `docs/ux-decisions/2026-09-05-analysis-tab-ia.md`
 
-Parallel OPEN Product/UX items remain:
+Parallel OPEN Product/UX items:
 
 - timed exercise Active Workout UI details
 - recommended-routine actual program contents — DB/substitution data dependency
 - Settings main scope
 - rest timer end signal detail
 
-Analysis screen hierarchy is no longer OPEN; the current Analysis work is exact home content/metric/state definition.
+Analysis screen hierarchy is locked; the active Analysis work is exact home calculation/content/state definition.
 
 ---
 
