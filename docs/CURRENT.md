@@ -4,7 +4,7 @@
 
 ## Current mode
 
-`EXERCISE DB / ASSET NORMALIZATION ACTIVE · RAW R2 VERIFIED · 2,109 BULK MAPPING COMPLETE · P0 SOURCE COVERAGE LOCKED 16/16 · PLANK DURATION APPROVED · P0 211 PRODUCTION PROMOTION QA NEXT · P1 15/17 SOURCE-COVERED · PRODUCT/UX BASELINE PRESERVED · NO CURSOR IMPLEMENTATION HANDOFF`
+`EXERCISE DB / ASSET NORMALIZATION ACTIVE · RAW R2 VERIFIED · 2,109 BULK MAPPING COMPLETE · P0 SOURCE COVERAGE LOCKED 16/16 · RECORDING MODEL 5 ACTIVE + 3 RESERVED APPROVED · P0 16 DATA ROW LOCK QA PASS · 211 MERGE SAFE · DEFAULT PRODUCTION-SERVING MEDIA SELECTION NEXT · P1 15/17 SOURCE-COVERED · PRODUCT/UX BASELINE PRESERVED · NO CURSOR IMPLEMENTATION HANDOFF`
 
 ## Resume rule
 
@@ -147,68 +147,65 @@ Reference:
 - `docs/exercise-db/exercise-db-v1-production.md`
 - `docs/exercise-db/exercise-db-gap-analysis-v1.md`
 
-### P0 16 — SOURCE COVERAGE LOCKED 16/16
+### P0 16 — DATA ROW LOCK QA PASS
 
 PO-approved P0 identities remain unchanged.
 
-Library source directly covers **13 / 16**.
+Source coverage:
 
-The 3 identities absent from Library were directly reviewed from purchased Home source:
-
-1. Plank → `Front-Elbow-Plank-(male)_Waist-FIX_.mp4`
-2. Crunch → `Crunch-Floor-(male)_waist.mp4`
-3. Lying Leg Raise → `Lying-Leg-Raise_Waist-FIX_.mp4`
-
-Direct visual QA result:
-
-- Plank: standard forearm plank — PASS
-- Crunch: standard floor bodyweight crunch — PASS
-- Lying Leg Raise: standard supine bilateral leg raise — PASS
+- Library source: **13 / 16**
+- Home fallback source: **3 / 16**
 - unresolved: **0**
+- package-level source coverage: **16 / 16**
 
-Therefore package-level P0 source coverage is now:
+P0 Production-promotion QA result:
 
-**16 / 16**
-
-Source absence-driven new P0 media creation need:
-
-**0 / 16**
-
-Reference:
-
-- `docs/exercise-db/2026-09-05-p0-home-fallback-visual-qa-3.md`
-
-Promotion draft:
-
-- `docs/exercise-db/2026-09-05-p0-16-production-promotion-spec.md`
-
-If all 16 are promoted, curated MVP catalog target:
-
-**195 + 16 = 211 app-facing exercises**
-
-### Timed exercise recording — PO APPROVED
-
-Policy:
-
-- Plank처럼 수행 성과가 유지시간인 운동은 `recording_type = duration`
-- duration seconds를 가짜 reps로 변환하지 않음
-- P0 `plank`는 `duration`으로 lock
-- `crunch`, `lying-leg-raise`는 `reps` 유지
-
-시간제 운동의 수행시간 측정과 Rest Timer는 별도 개념으로 유지한다.
-
-UI 상세는 후속으로 미룬다:
-
-- TIME 세트 행 UI
-- 시작/정지 방식
-- countdown vs stopwatch
-- 시간 종료 signal
-- timed set 종료 후 Rest Timer 시작 조건
-
-이 UI 미확정은 P0 211 데이터 승격을 막지 않는다.
+- 16 canonical IDs unique vs current Production 195: **PASS**
+- accidental merge/history absorption: **PASS**
+- Korean/English display + aliases: **PASS / LOCKED**
+- equipment/body-part/movement taxonomy: **PASS / normalized to current Production style**
+- recording semantics: **PASS**
+- source provenance: **PASS**
+- final arithmetic target: **195 + 16 = 211**
 
 Reference:
 
+- `docs/exercise-db/2026-09-05-p0-211-production-promotion-qa-result.md`
+
+Important boundary:
+
+- P0 16 canonical/data rows are Production-locked
+- the derived workbook/runtime DB has **not yet been regenerated as 211 rows**
+- therefore do not claim a physical 211-row Production artifact exists until merge/generation + count QA is executed
+
+### Recording model — PO APPROVED
+
+Current model:
+
+- MVP ACTIVE: `weight_reps`, `reps`, `duration`, `added_weight_reps`, `assisted_weight_reps`
+- schema RESERVED: `weight_duration`, `distance_duration`, `distance_weight`
+
+P0 critical locks:
+
+- `plank` → `duration`
+- `crunch` → `reps`
+- `lying-leg-raise` → `reps`
+- `machine-assisted-pull-up` → `assisted_weight_reps`
+- `machine-assisted-dip` → `assisted_weight_reps`
+- remaining weighted P0 rows → `weight_reps`
+
+Final 211 consistency QA also found four legacy values in the existing 195 baseline that must migrate when the derived artifact is regenerated:
+
+- `elbow-side-plank`: `time` → `duration`
+- `hand-plank`: `time` → `duration`
+- `wall-sit`: `time` → `duration`
+- `kettlebell-farmers-carry`: `weight_distance_or_time` → `distance_weight`
+
+These are schema cleanup only; completed source/video QA is not reopened.
+
+Reference:
+
+- `docs/ux-decisions/2026-09-05-exercise-recording-types.md`
 - `docs/ux-decisions/2026-09-05-duration-exercise-recording.md`
 
 ### P1 17 — non-blocking
@@ -232,30 +229,25 @@ Trap Bar Deadlift source exists but `Trap Bar` equipment taxonomy remains a futu
 
 ---
 
-# NEXT OPEN ITEM — P0 Production promotion QA
+# NEXT OPEN ITEM — Default production-serving media + derived 211 artifact
 
 ## Immediate next
 
-**Run P0 16 Production promotion QA.**
+1. choose one default production-serving media source for each P0 16 canonical row
+2. define media transform/compression/storage/app-serving structure
+3. generate/update the derived Production exercise DB artifact with:
+   - existing 195 baseline
+   - four legacy recording-type migrations
+   - locked P0 16 rows
+4. rerun machine-verifiable integrity QA:
+   - exact canonical count = **211**
+   - canonical uniqueness = **211 / 211**
+   - recording_type vocabulary ⊆ approved 5+3
+   - P0 provenance links present
+   - raw source unchanged
+5. only when application implementation becomes the next dependency, create Issue/AC and hand off to Cursor
 
-Check:
-
-1. canonical ID uniqueness against current Production 195
-2. Korean / English display names and search aliases
-3. equipment / body part normalization
-4. recording semantics
-   - Plank = `duration`
-   - Assisted Pull-Up / Dip = `assisted_weight_reps`
-5. source provenance integrity
-6. verify expected app-facing row count = **211**
-
-After row lock:
-
-1. choose default production-serving media for each promoted row
-2. decide media transform/compression/storage/app-serving structure
-3. only when implementation becomes the next dependency, create Issue/AC and hand off to Cursor
-
-No Cursor implementation handoff until canonical/data promotion is stable.
+No Cursor implementation handoff yet.
 
 ---
 
@@ -269,6 +261,7 @@ Existing approved UX decisions remain canonical in their individual docs. Import
 - Active Workout / routine update: `docs/ux-decisions/2026-09-03-active-workout-routine-update.md`
 - Rest Timer: `docs/ux-decisions/2026-09-03-rest-timer-behavior.md`
 - Timed exercise recording: `docs/ux-decisions/2026-09-05-duration-exercise-recording.md`
+- Exercise recording types: `docs/ux-decisions/2026-09-05-exercise-recording-types.md`
 - Assisted machine recording: `docs/ux-decisions/2026-09-03-assisted-machine-recording.md`
 - Workout Complete: `docs/ux-decisions/2026-09-03-post-workout-completion-carousel.md`, `docs/ux-decisions/2026-09-04-workout-completion-metrics.md`
 - Progression Hint: `docs/ux-decisions/2026-09-04-progression-hint-threshold.md`
