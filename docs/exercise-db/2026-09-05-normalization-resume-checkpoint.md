@@ -1,7 +1,7 @@
 # Exercise DB Normalization — Resume Checkpoint
 
 **Date:** 2026-09-05  
-**Status:** PRODUCTION GAP REMAP COMPLETE / RESUME FROM P1 IDENTITY REVIEW 3
+**Status:** P1 IDENTITY REVIEW COMPLETE / RESUME FROM FULL PRODUCTION MAPPING
 
 ## Source of Truth
 
@@ -39,17 +39,15 @@ Raw filename/path/media remains read-only provenance.
 - Kettlebell — COMPLETE
 - Smith — COMPLETE
 - Landmine — COMPLETE
+- P1 identity review 3 — COMPLETE
 
-Smith + Landmine result:
+Main-family result docs remain under `docs/exercise-db/`.
 
-- `docs/exercise-db/2026-09-05-smith-landmine-visual-qa-10.md`
-- 5 groups / 10 files resolved
-- exact duplicate: 1 group
-- same canonical + media/render/POV: 3 groups
-- execution/load-position variant: 1 group — Landmine Rear Lunge
-- unresolved: 0
+Latest P1 result:
 
-The planned ZIP-based duplicate/ambiguity pass for the main equipment families is complete. New visual QA is added only if Production mapping exposes a specific identity conflict.
+- `docs/exercise-db/2026-09-05-p1-identity-review-3-result.md`
+
+The planned duplicate/ambiguity visual-QA sequence is complete. New targeted visual QA should be added only when Production mapping exposes a specific unresolved identity conflict.
 
 ---
 
@@ -71,13 +69,14 @@ Final G Fit canonical count remains **NOT VERIFIED** until full mapping stabiliz
 
 ---
 
-## Production DB / old gap remap — COMPLETE AT SOURCE-AVAILABILITY LEVEL
+## Production DB / old gap remap
 
 Reference:
 
 - `docs/exercise-db/exercise-db-v1-production.md`
 - `docs/exercise-db/exercise-db-gap-analysis-v1.md`
 - `docs/exercise-db/2026-09-05-production-gap-remap-after-gym-animations.md`
+- `docs/exercise-db/2026-09-05-p1-identity-review-3-result.md`
 
 Existing Production baseline:
 
@@ -86,30 +85,32 @@ Existing Production baseline:
 
 ### Old P0 16
 
-Result after Gym Animations purchase:
+After Gym Animations purchase:
 
 - source candidates found: **16 / 16**
-- source-availability level new-asset need: **16 → 0**
-- P0 priority/importance remains valid
-- only the need to create new visual assets is superseded
+- source-availability new-asset need: **0 / 16**
+- P0 priority remains valid
+- default action: existing purchased source → canonical mapping → QA → Production promotion
 
-Default action is now:
+### Old P1 17 — VISUAL REVIEW COMPLETE
 
-`existing purchased source → canonical mapping → QA → Production promotion`
+After final targeted visual QA:
 
-### Old P1 17
+- source-covered: **15 / 17**
+- true source gaps: **2 / 17**
+- unresolved: **0**
 
-Current source remap:
+Resolved cases:
 
-- clear source candidates: **14 / 17**
-- identity review: **3 / 17**
-- proven new-asset gaps: **0** at this checkpoint
+1. standard bilateral `Dumbbell Deadlift` → **TRUE_GAP_REMAINS**
+   - reviewed family contains RDL / stiff-leg / straight-leg / sumo / unilateral variants, not the intended conventional bilateral identity
+2. standard-stance `Smith Machine Romanian Deadlift` → **SOURCE_COVERS_EXISTING_IDENTITY**
+   - `Smith-Deadlift_Hips.mp4` visually performs an RDL-like standard-stance hip hinge and can represent the normalized Smith RDL identity
+   - raw filename remains unchanged
+3. standard floor bodyweight `Sit Up` → **TRUE_GAP_REMAINS**
+   - reviewed source contains decline / vertical / twisting / loaded / band variants, not a plain floor bodyweight sit-up
 
-Remaining identity-review cases:
-
-1. standard bilateral `Dumbbell Deadlift`
-2. standard-stance `Smith Machine Romanian Deadlift`
-3. standard floor bodyweight `Sit Up`
+Therefore P1 future asset need is currently **2**, but these remain P1 and are not MVP blockers.
 
 Trap Bar Deadlift source exists. If promoted, `Trap Bar` equipment taxonomy still needs an explicit Production decision.
 
@@ -117,63 +118,34 @@ Trap Bar Deadlift source exists. If promoted, `Trap Bar` equipment taxonomy stil
 
 ## Immediate next — DO THIS FIRST
 
-**One targeted visual ZIP for the remaining P1 identity-review 3 cases.**
+**Continue full 2,109 → Production canonical mapping.**
 
-Target-set doc:
+Use existing Production 195 canonical exercises as anchors; do not rebuild taxonomy from scratch.
 
-- `docs/exercise-db/2026-09-05-p1-identity-review-3-target-set.md`
+For each source row classify as one of:
 
-Expected ZIP:
+- existing Production canonical
+- new canonical candidate
+- attachment context
+- grip context
+- execution/load context
+- media duplicate/variant
+- excluded/non-gym-first
+- unresolved
 
-- `P1_Identity_Review_3_8.zip`
-- **8 files**
+### Input needed for the next bulk pass
 
-### Dumbbell Deadlift candidates
+A full filename/path/size manifest for `MP4/MALE/Library_database` is required in the active working context. If it is not already directly available, regenerate/export the 2,109-row manifest from the local source folder and upload it once; do not ask the user to hand-select more videos.
 
-- `Dumbbell-Stiff-Leg-Deadlift_Hips.mp4`
-- `Dumbbell-Straight-Leg-Deadlift_Hips_.mp4`
-- `Dumbbell-Straight-Legs-Deadlift_Hips.mp4`
+Then:
 
-### Smith Machine Romanian Deadlift candidates
-
-- `Smith-Deadlift_Hips.mp4`
-- `Smith-Stiff-Legged-Deadlift_Hips_.mp4`
-
-### Sit Up candidates
-
-- `Wide-Leg-Sit-Up-(male)_Waist_.mp4`
-- `Vertical-Sit-Up-(male)_Waist_.mp4`
-- `Decline-Sit-Up-(VERSION-3)_Waist_.mp4`
-
-When ZIP arrives:
-
-1. verify 8 / 8
-2. inspect video / normalized timeline frames
-3. resolve each old P1 identity as:
-   - `SOURCE_COVERS_EXISTING_IDENTITY`
-   - `SEPARATE_VARIANT_ONLY`
-   - `TRUE_GAP_REMAINS`
-   - `UNRESOLVED`
-4. update target result, gap remap, CURRENT, this checkpoint
-
----
-
-## After the 3-case review
-
-1. continue mapping 2,109 source against existing 195 Production canonical anchors
-2. classify each source as:
-   - existing Production canonical
-   - new canonical candidate
-   - attachment context
-   - grip context
-   - execution/load context
-   - media duplicate/variant
-   - excluded/non-gym-first
-   - unresolved
-3. calculate actual source-derived canonical candidate count
-4. recalculate true gym-first MVP gaps
-5. identify only exercises that genuinely need a G Fit-created new asset
-6. after canonical mapping stabilizes, decide production media selection / transform / app-serving storage
+1. bulk filename/rule mapping against existing Production 195 anchors
+2. isolate only unresolved identity conflicts
+3. use small targeted visual QA only for those conflicts
+4. calculate actual source-derived canonical candidate count
+5. calculate true gym-first MVP gap count
+6. confirm only genuinely missing G Fit-created assets
+7. after canonical mapping stabilizes, decide production media selection / transform / app-serving storage
 
 No Cursor implementation handoff yet.
 
@@ -198,9 +170,9 @@ On the next continuation:
 
 1. check `docs/CURRENT.md`
 2. check this checkpoint
-3. do not redo completed family visual QA
-4. if `P1_Identity_Review_3_8.zip` is present, immediately perform the 3-case visual QA
-5. otherwise request/generate only that one 8-file ZIP
-6. after resolving it, continue Production mapping / true-gap recalculation
+3. do not redo completed family or P1 visual QA
+4. resume directly from full Production mapping
+5. if the 2,109-row manifest is not available in active context, request/export only that manifest once
+6. targeted ZIP review is now exception-only, not the default workflow
 
 No Cursor implementation handoff.
