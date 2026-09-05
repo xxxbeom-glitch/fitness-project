@@ -4,7 +4,7 @@
 
 ## Current mode
 
-`EXERCISE DB / ASSET SOURCE ANALYSIS ACTIVE · RAW R2 VERIFIED · MAIN EQUIPMENT TARGETED QA COMPLETE · OLD P0 16/16 SOURCE COVERED · P1 15/17 SOURCE COVERED + 2 TRUE SOURCE GAPS · P1 IDENTITY REVIEW COMPLETE · FULL PRODUCTION MAPPING NEXT · PRODUCT/UX BASELINE PRESERVED · NO CURSOR IMPLEMENTATION HANDOFF`
+`EXERCISE DB / ASSET SOURCE ANALYSIS ACTIVE · RAW R2 VERIFIED · MAIN EQUIPMENT TARGETED QA COMPLETE · 2,109 BULK MAPPING V0.2 COMPLETE · P0 LIBRARY 13/16 + HOME FALLBACK 3 VISUAL QA NEXT · P1 LIBRARY 15/17 · PRODUCT/UX BASELINE PRESERVED · NO CURSOR IMPLEMENTATION HANDOFF`
 
 ## Resume rule
 
@@ -34,12 +34,21 @@
 - **17,085 files**
 - **98.69 GB**
 
-Male Gym 분석 기준:
+Male Gym 기본 분석 기준:
 
 - `MP4/MALE/Library_database`
 - **2,109 MP4 rows**
 
-`Gym_Workout_` 대응 2,081개는 `Library_database`와 SHA256까지 동일하고, `Library_database`가 28개 더 많으므로 Male source 분석 기준은 `Library_database`다.
+폴더 관계 검증:
+
+- `Gym_Workout_`: **2,081 MP4**
+- `Library_database`: **2,109 MP4**
+- Gym 2,081개는 Library와 filename+size+SHA256까지 동일
+- Library가 Gym보다 28개 더 많음
+- `Home_Workout_`: **2,120 MP4**
+- Home ↔ Library exact filename overlap은 **6개뿐**
+
+따라서 `Library_database`는 Male Gym source의 superset으로 사용 가능하지만, **Home source까지 포함하는 package-wide master는 아니다.**
 
 구매 원본 filename/path/media는 **read-only provenance**로 유지한다.
 
@@ -47,6 +56,7 @@ Male Gym 분석 기준:
 
 - `docs/exercise-db/2026-09-04-gym-animations-source-analysis-checkpoint.md`
 - `docs/exercise-db/2026-09-05-normalization-resume-checkpoint.md`
+- `docs/exercise-db/2026-09-05-library-2109-bulk-mapping-v0.2.md`
 
 ## 2. Cloudflare R2 raw upload — VERIFIED / DONE
 
@@ -98,23 +108,48 @@ Raw bucket:
 
 기본 ZIP 기반 대량 duplicate/ambiguity 검수는 종료한다. 이후 Production mapping 중 특정 identity conflict가 새로 발견될 때만 소량 targeted visual QA를 추가한다.
 
-## 4. Full 2,109 equipment-pass baseline
+## 4. Full 2,109 bulk mapping v0.2 — COMPLETE
 
-Raw/source-family first pass:
+업로드된 `Library_database` full manifest를 기준으로 **2,109 / 2,109 전체 bulk pass 완료**.
 
-- Machine high-confidence: **202**
+실제 source-family row counts:
+
+- Dumbbell: **494**
+- Cable: **298**
+- Other: **264**
 - Barbell: **212**
-- Dumbbell: **493**
+- Machine: **207**
 - Kettlebell: **188**
-- Smith: **61**
-- Landmine: **33**
+- Band: **122**
+- Rings: **80**
+- Weighted Bodyweight: **69**
+- Smith Machine: **61**
+- Suspension: **40**
 - EZ Bar: **35**
-- Machine-or-nonmachine ambiguous: **8**
-- Other / not-yet-normalized: **579**
+- Landmine: **33**
+- Trap Bar: **6**
 
-이 수치는 **raw/source-family rows**이며 final canonical exercise count가 아니다.
+기존 equipment-pass의 Dumbbell 493은 actual manifest 기준 **494로 정정**한다.
 
-## 5. Production DB / old gap remap
+보수적 source identity/history bucket 결과:
+
+- total: **1,954**
+- active: **1,912**
+- excluded: **42**
+- unresolved: **1**
+- existing Production canonical에 연결된 bucket: **75**
+- new source-derived candidate bucket: **1,836**
+
+**중요:** 1,912 active buckets는 app-facing 운동 수가 아니다. 자세/laterality/load/execution 차이를 기록 분석용으로 보존한 source layer다. 이 숫자를 검색 목록 운동 수로 사용하지 않는다.
+
+현재 explicit unresolved Library identity는 1개:
+
+- `Kettlebell-Good-Morning_Hips_.mp4`
+  - 기존 visual QA상 실제 동작은 hanging two-hand hip hinge
+  - `Deadlift` vs `RDL-like` normalized parent는 아직 확정하지 않음
+  - curated Production에 필요해질 때만 최소 targeted QA로 해결
+
+## 5. Production DB / P0 / P1
 
 기준:
 
@@ -123,59 +158,75 @@ Raw/source-family first pass:
 - `docs/exercise-db/exercise-db-gap-analysis-v1.md`
 - `docs/exercise-db/2026-09-05-production-gap-remap-after-gym-animations.md`
 - `docs/exercise-db/2026-09-05-p1-identity-review-3-result.md`
+- `docs/exercise-db/2026-09-05-library-2109-bulk-mapping-v0.2.md`
 
-### Old P0 16
+### Old P0 16 — source scope corrected
 
-새 2,109 source와 다시 비교한 결과:
+Actual `Library_database` 2,109 manifest 기준:
 
-- **16 / 16 source candidate found**
-- source-availability 기준 신규 asset 제작 필요: **16 → 0**
-- P0 운동의 제품 우선순위 자체는 유지
-- 바뀐 것은 `새 에셋 제작` 필요성이다.
+- source-covered: **13 / 16**
+- Library source gap: **3 / 16**
 
-따라서 P0 기본 행동:
+Library에 없는 3개 standard identity:
 
-`기존 구매 source 선택 → canonical mapping → naming/equipment/body-part QA → Production 승격`
+1. Plank
+2. Crunch
+3. Lying Leg Raise
 
-### Old P1 17 — IDENTITY REVIEW COMPLETE
+하지만 purchased `Home_Workout_`에는 각각 exact-name fallback candidate가 존재:
 
-최종 결과:
+- `Front-Elbow-Plank-(male)_Waist-FIX_.mp4`
+- `Crunch-Floor-(male)_waist.mp4`
+- `Lying-Leg-Raise_Waist-FIX_.mp4`
+
+현재 정확한 상태:
+
+`P0 = Library 13/16 covered + Home fallback 3 pending direct visual QA`
+
+3개가 visual QA를 통과하면 package-level P0 source availability는 **16 / 16**, source-availability 기준 신규 P0 asset 제작 필요는 **0**으로 확정 가능하다.
+
+P0 제품 우선순위 자체는 유지한다.
+
+P0 16 전부 Production 승격 시 curated MVP target:
+
+`195 + 16 = 211 app-facing exercises`
+
+### Old P1 17
+
+Library 기준 targeted identity review 결과 유지:
 
 - source-covered: **15 / 17**
-- true source gaps: **2 / 17**
-- unresolved: **0**
+- reviewed gaps: **2 / 17**
+- unresolved in reviewed Library scope: **0**
 
-3건 최종 판정:
+현재 2개:
 
-1. standard bilateral `Dumbbell Deadlift` → **TRUE_GAP_REMAINS**
-   - RDL / stiff-leg / straight-leg / sumo / unilateral source는 있으나 conventional bilateral identity는 없음
-2. standard-stance `Smith Machine Romanian Deadlift` → **SOURCE_COVERS_EXISTING_IDENTITY**
-   - `Smith-Deadlift_Hips.mp4` 실제 영상은 standard-stance RDL-like hip hinge
-   - raw filename은 그대로 보존하고 normalized identity만 Smith RDL로 mapping 가능
-3. standard floor bodyweight `Sit Up` → **TRUE_GAP_REMAINS**
-   - decline / vertical / twisting / loaded / band variants만 확인되고 plain floor sit-up은 없음
+1. standard bilateral `Dumbbell Deadlift`
+2. standard floor bodyweight `Sit Up`
 
-따라서 향후 P1 전체를 확장할 경우 현재 신규 source/asset 필요 후보는:
+`Dumbbell Deadlift`는 current evidence상 conventional bilateral identity source가 없다.
 
-- Dumbbell Deadlift
-- Sit Up
+Home에는 여러 Sit Up variant가 있지만 standard floor `Sit Up` identity로 승인된 것은 아직 없다. 따라서 P1 확장을 실제로 할 때만 small Home identity review로 확인한다.
 
-**2개**다. 둘 다 P1이며 MVP blocker는 아니다.
+P1은 MVP blocker가 아니다.
 
-Trap Bar Deadlift source는 존재한다. Production 승격 시 `Trap Bar` equipment taxonomy 결정이 별도로 필요하다.
+참고 target:
 
-## 6. Important boundary — final canonical count NOT VERIFIED
+- Production + P0 = **211**
+- + current 15 source-covered P1 = **226**
+- + all 17 P1 = **228** only if 2 remaining identities are resolved or media is intentionally optional
 
-아직 `2,109 raw rows → final G Fit canonical count`를 숫자로 확정하지 않는다.
+## 6. Important boundary — source buckets ≠ final app catalog
 
-이유:
+`2,109 raw rows → 1,954 source identity/history buckets` bulk analysis는 완료했지만, 이를 `1,954 canonical exercises`로 해석하면 안 된다.
 
-- **579 Other / not-yet-normalized rows**가 남아 있음
-- attachment / grip / execution context 흡수 필요
-- 일부 vendor filename과 실제 movement 충돌 사례 존재
-- targeted duplicate QA 완료 ≠ full canonical mapping 완료
+제품 검색 목록은 curated Production catalog를 기준으로 확장한다.
 
-단순히 reviewed duplicate 수를 2,109에서 빼서 canonical 수를 만드는 것은 금지한다.
+현재 우선순위:
+
+`Production 195 → P0 16 승격 → MVP 211`
+
+P1과 나머지 source-derived candidates는 필요성/중복/검색 노이즈/기록 분리 의미를 따져 후속 확장한다.
 
 ---
 
@@ -183,33 +234,28 @@ Trap Bar Deadlift source는 존재한다. Production 승격 시 `Trap Bar` equip
 
 ## Immediate next
 
-**2,109 source 전체를 기존 Production 195 canonical anchor에 bulk mapping한다.**
+**Home source의 P0 fallback 3개를 direct visual QA한다.**
 
-각 source row를 다음 중 하나로 분류:
+대상:
 
-- existing Production canonical
-- new canonical candidate
-- attachment context
-- grip context
-- execution/load context
-- media duplicate/variant
-- excluded/non-gym-first
-- unresolved
+1. `Front-Elbow-Plank-(male)_Waist-FIX_.mp4`
+2. `Crunch-Floor-(male)_waist.mp4`
+3. `Lying-Leg-Raise_Waist-FIX_.mp4`
 
-다음 bulk pass에 필요한 입력:
+목표:
 
-- `MP4/MALE/Library_database`의 **2,109-row full filename/path/size manifest**
-
-현재 active context에 그 full manifest가 직접 없으면 로컬 source folder에서 한 번만 다시 export해서 업로드한다. 사용자가 영상을 일일이 고르는 방식으로 돌아가지 않는다.
+- 표준 Plank / Crunch / Lying Leg Raise identity가 맞는지 확인
+- 맞으면 P0 package source coverage 16/16 lock
+- G Fit naming / equipment / body-part / recording schema로 정규화
+- 16 P0 Production 승격 준비
 
 그 다음:
 
-1. filename/rule 기반 bulk mapping
-2. unresolved identity만 최소 targeted visual QA
-3. 실제 source-derived canonical candidate count 계산
-4. 실제 gym-first MVP gap 수 재산출
-5. 정말 필요한 G Fit-created 신규 asset만 최종 확정
-6. canonical mapping 안정화 후 production media selection / transform / app-serving storage 결정
+1. P0 16 normalized row 확정
+2. Production DB promotion QA
+3. 실제 app-serving media selection / transform / storage 구조 결정
+4. 필요 시에만 `Kettlebell-Good-Morning_Hips_.mp4` identity conflict 해결
+5. P1은 MVP 이후 확장 시 재개
 
 **현재 Cursor implementation handoff 없음.**
 
@@ -407,4 +453,4 @@ Canonical production wireframe:
 
 **No Cursor implementation handoff.**
 
-현재는 Exercise DB / source asset analysis + normalization + Production mapping 단계다. Canonical mapping이 안정된 뒤 필요한 구현 Issue/AC로 넘긴다.
+현재는 Exercise DB / source asset analysis + normalization + Production mapping 단계다. P0 source/normalized rows가 안정된 뒤 필요한 구현 Issue/AC로 넘긴다.
