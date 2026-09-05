@@ -3,222 +3,249 @@
 **Updated:** 2026-09-05  
 **Status:** ACTIVE PLANNING INDEX / NOT A NEW PRODUCT DECISION
 
-이 문서는 `온보딩 → Home → 루틴 → 운동 DB → Active Workout → 완료 → 분석 → 설정`의 **1차 MVP 전체 화면/상태를 한 곳에서 찾기 위한 인덱스**다.
+이 문서는 1차 MVP의 **실제 화면**과 그 화면 안에서 바뀌는 **상태 / 모드 / 팝업 / 시트**를 분리해 관리하기 위한 인덱스다.
 
-목적:
+이번 정리의 핵심:
 
-- Product Owner가 전체 흐름과 남은 결정을 한 번에 본다.
-- ChatGPT가 다음 대화에서 화면 ID만으로 관련 Decision/Figma/OPEN 항목을 빠르게 복원한다.
-- 이미 확정된 항목을 다시 묻지 않는다.
-- `PO가 결정해야 하는 것`, `ChatGPT가 기존 정책/레퍼런스로 정리해도 되는 것`, `디자인/개발 단계에서 결정할 것`을 분리한다.
+- 같은 페이지에서 내용만 달라지는 경우를 별도 화면으로 세지 않는다.
+- 기존 참조 번호는 버리지 않는다. 예: Home은 하나의 화면이지만 `02A~02D`는 Home의 상태 번호로 계속 사용한다.
+- 팝업, 바텀시트, 토스트도 실제 페이지와 구분한다.
+- 제품 의미는 최신 Decision / Product Policy / CURRENT가 우선한다.
 
-중요: 이 인덱스는 기존 Decision을 요약/연결하는 문서다. 충돌 시 `PROJECT_INSTRUCTIONS.md → 최신 Decision/Product Policy → CURRENT`가 우선한다.
+## 표시 기준
 
-## 상태 표기
+- `화면` — 실제로 다른 페이지/화면으로 이동하는 단위
+- `상태` — 같은 화면에서 데이터나 조건에 따라 UI가 달라지는 경우
+- `팝업/시트` — 기존 화면 위에 잠깐 뜨는 보조 UI
+- `확정` — 제품 의미가 충분히 승인됨
+- `구조 승인` — 큰 구조는 승인, 계산/세부 표현 일부가 남음
+- `결정 필요` — 아직 제품/UX 결정이 남음
+- `후순위` — 1차 MVP 차단 요소가 아님
 
-- `LOCKED` — 제품/UX 의미가 충분히 확정됨. PO 재결정 불필요.
-- `STRUCTURE PASS` — 화면 구조는 승인됐고 계산/세부 상태 일부만 OPEN.
-- `OPEN` — 제품/UX 결정이 남음.
-- `DEFER` — MVP 차단 요소가 아니며 이후 단계로 미룸.
-- `DEPENDENCY` — 화면이 아니라 구현/데이터/디자인 의존성.
+## 현재 사용자 직접 결정 후보
 
-## 결정 담당
+현재 전체 흐름 기준으로 Product Owner가 직접 결정해야 할 우선 항목은 2개로 줄인다.
 
-- `PO` — 핵심 제품 의미/MVP 범위라 Product Owner 확인 필요.
-- `GPT` — 기존 정책, Figma, Hevy/Mobbin 패턴을 기반으로 ChatGPT가 안을 정리하고 기본안을 잠글 수 있음. PO가 이견 있을 때만 재검토.
-- `DESIGN` — 제품 의미를 바꾸지 않는 시각/밀도/인터랙션 표현.
-- `ENG` — 승인된 의미를 구현하는 기술 세부.
-- `RELEASE` — 법률/스토어/실기기 등 출시 전 확인.
+1. `02E` — 저장 루틴 없이 `빈 운동 바로 시작`을 1차 MVP에 넣을지
+2. `06J` — 운동 완료 카드의 이미지 저장/공유 기능을 1차 MVP에 넣을지
 
----
-
-## 01 · Account / First run
-
-| ID | 화면/상태 | 상태 | 남은 담당 | Figma | 핵심 Ref |
-|---|---|---|---|---|---|
-| `01A` | 로그인 / provider 계속하기 | LOCKED | DESIGN · ENG · RELEASE | 없음 | `DEC-015`, `docs/01_PRODUCT_POLICY.md`, `docs/13_SCREEN_DESIGN_DECISIONS.md` |
-| `01B` | 신규 사용자 약관 확인 | LOCKED | DESIGN · RELEASE | 없음 | `docs/01_PRODUCT_POLICY.md`, `docs/13_SCREEN_DESIGN_DECISIONS.md` |
-| `01C` | 기본정보 — 성별 + 생년월일 | STRUCTURE PASS | GPT · PO(연령정책) · RELEASE | 없음 | `docs/00_PROJECT_BRIEF.md`, `docs/13_SCREEN_DESIGN_DECISIONS.md` |
-| `01D` | 인증 loading / cancel / recoverable error | LOCKED STATE | DESIGN · ENG | 없음 | `docs/13_SCREEN_DESIGN_DECISIONS.md` |
-
-Current first run is `로그인 → 기본정보 → Home`. 과거 추천 설문/결과 onboarding은 superseded.
+최소 연령, 법률 문구, 삭제 backend 처리 등은 화면 설계를 막지 않으므로 출시 전 정책/법률/개발 검수로 넘긴다.
 
 ---
 
-## 02 · Home
+# 01 · 로그인 / 첫 진입
 
-| ID | 화면/상태 | 상태 | 남은 담당 | Figma | 핵심 Ref |
-|---|---|---|---|---|---|
-| `02A` | Home — 저장 루틴 없음 | STRUCTURE PASS | GPT · DESIGN | `111_Home_Empty` `1:674` | `docs/00_PROJECT_BRIEF.md`, `2026-09-02-home-workout-routine-completion-locks.md` |
-| `02B` | Home — 루틴 있음 / 요일 미지정 / 다음 운동 | STRUCTURE PASS | GPT | `110_Home` 기반 | `DEC-007`, `docs/14_IA_STORYBOARD.md` |
-| `02C` | Home — 루틴 있음 / 요일 지정 / 오늘 운동 | LOCKED DIRECTION | DESIGN | `110_Home` `1:641` | `DEC-007`, `docs/14_IA_STORYBOARD.md` |
-| `02D` | Home — 운동 진행 중 / 돌아가기 | LOCKED | DESIGN · ENG | `110_Home` 파생 | `docs/14_IA_STORYBOARD.md`, `DEC-018` |
-| `02E` | 빈 운동 / 즉흥 운동 Quick Start | OPEN GAP | **PO** | 없음 | `DEC-001`, Hevy logging flow reference |
+### 실제 화면
 
-`02A`에서는 ready-made `G Fit 추천 루틴`과 `내 루틴 만들기`를 노출할 수 있다. 추천 설문은 없다.
+| 화면 | 역할 | 상태 | 주요 Ref |
+|---|---|---|---|
+| `01A` 로그인 | Google/Kakao/Apple 등 지원 로그인 수단으로 진입 | 확정 | `docs/01_PRODUCT_POLICY.md` |
+| `01B` 신규 사용자 약관 확인 | 첫 가입자의 이용약관 명시 동의 | 확정 | `docs/01_PRODUCT_POLICY.md` |
+| `01C` 기본정보 | 성별 + 생년월일 입력 | 구조 승인 | `docs/00_PROJECT_BRIEF.md` |
 
----
+### 같은 화면 상태
 
-## 03 · Routine / Ready-made routine
+- `01D` 인증 중 / 취소 / 복구 가능한 오류 → `01A 로그인`의 상태
 
-| ID | 화면/상태 | 상태 | 남은 담당 | Figma | 핵심 Ref |
-|---|---|---|---|---|---|
-| `03A` | 루틴 목록 | LOCKED BASE | DESIGN | `201_Routine_List` `1:701` | `docs/14_IA_STORYBOARD.md` |
-| `03B` | 루틴 Empty | LOCKED BASE | DESIGN | `203_Routine_List_Empty` `1:738` | `docs/00_PROJECT_BRIEF.md` |
-| `03C` | G Fit 추천 루틴 상세 | LOCKED | DESIGN | 없음 | `2026-09-03-recommended-routine-detail-flow.md` |
-| `03D` | 내 루틴 상세 | LOCKED BASE | DESIGN | `210_Routine_Detail` `1:747` | `docs/00_PROJECT_BRIEF.md`, `docs/14_IA_STORYBOARD.md` |
-| `03E` | 루틴 만들기 | LOCKED BASE | DESIGN | `220_Routine_Create` `1:757` | `DEC-012`, `docs/00_PROJECT_BRIEF.md` |
-| `03F` | 루틴 수정 | LOCKED BASE | DESIGN | `230_Routine_Edit` `1:777` | `DEC-012`, `docs/00_PROJECT_BRIEF.md` |
-| `03G` | Active Workout 중 Routine read-only 상태 | LOCKED | DESIGN · ENG | 기존 Routine 파생 | `docs/14_IA_STORYBOARD.md` |
-| `03H` | 추천 루틴 실제 템플릿/운동 구성 | OPEN / DATA DEP | GPT · PO REVIEW | 없음 | `docs/00_PROJECT_BRIEF.md`, Exercise DB P0 211 |
+현재 first-run 제품 흐름은 정책상:
 
-추천 루틴 상세 CTA는 `운동 시작`. 운동 전 자동 저장하지 않고 운동 완료 후 저장 여부를 묻는다.
+`로그인 → 신규 사용자 약관 확인 → 성별/생년월일 → Home`
+
+닉네임/프로필 사진은 first-run 완료를 막지 않는다.
 
 ---
 
-## 04 · Exercise Library / Detail
+# 02 · Home
 
-| ID | 화면/상태 | 상태 | 남은 담당 | Figma | 핵심 Ref |
-|---|---|---|---|---|---|
-| `04A` | 운동 검색 / 추가 | LOCKED DIRECTION | DESIGN | `301_Exercise_Search` `1:799` | `2026-09-02-home-workout-routine-completion-locks.md` |
-| `04B` | 운동 다중 선택 상태 | LOCKED BASE | DESIGN | `301a_Exercise_Search_Selected` `1:820` | Figma + same add flow |
-| `04C` | 검색 Empty / 직접 만들기 | LOCKED BASE | DESIGN | `302_Exercise_Search_Empty` `1:851` | `DEC-003`, `DEC-012` |
-| `04D` | 운동 상세 / 가이드 / 최근 기록 | LOCKED | DESIGN | 현재 Figma top-level 없음 | `DEC-011`, `2026-09-04-exercise-detail-scope.md` |
-| `04E` | 커스텀 운동 만들기 | LOCKED | DESIGN | `310_Custom_Exercise_Create` `1:870` | `DEC-003`, `DEC-012` |
-| `04F` | 커스텀 운동 수정 | LOCKED BASE | DESIGN | `311_Custom_Exercise_Edit` `1:890` | `DEC-003`, `DEC-012` |
-| `04G` | 특정 운동 과거 세트 기록 | LOCKED DATA VIEW / ROUTE REVIEW | GPT | `341_Library_Exercise_History` `1:912` | Figma; 07C와 중복 역할 정리 필요 |
-| `04H` | 케이블 손잡이 선택 | LOCKED MEANING / MAPPING OPEN | GPT · DATA | 없음 | `2026-09-03-cable-attachment-active-workout.md` |
+### 실제 화면
 
-운동 추가는 `검색 → 목록에서 바로 추가`가 기본. 상세 화면은 선택적 확인 단계다.
+**Home은 1개 화면이다.**
 
----
+### Home 상태 번호
 
-## 05 · Active Workout
+| 상태 | 의미 | 현재 상태 |
+|---|---|---|
+| `02A` | 저장된 내 루틴 없음 | 구조 승인 |
+| `02B` | 내 루틴 있음 / 요일 미지정 / 다음 운동 | 구조 승인 |
+| `02C` | 요일 지정 / 오늘 운동 있음 | 확정 |
+| `02D` | active workout 존재 / 운동으로 돌아가기 | 확정 |
+| `02E` | 빈 운동 바로 시작 진입 후보 | **결정 필요 · PO** |
 
-| ID | 화면/상태 | 상태 | 남은 담당 | Figma | 핵심 Ref |
-|---|---|---|---|---|---|
-| `05A` | Active Workout — weight + reps | LOCKED CORE | DESIGN | `401a_Workout_Active` `1:986` | `DEC-002`, `DEC-004`, `docs/14_IA_STORYBOARD.md` |
-| `05B` | reps-only 세트 행 | STRUCTURE PASS | GPT · DESIGN | `05A` 파생 | `2026-09-05-exercise-recording-types.md` |
-| `05C` | duration 세트 행 | OPEN UI | **GPT** | `05A` 파생 | `2026-09-05-duration-exercise-recording.md` |
-| `05D` | added-weight 세트 행 | STRUCTURE PASS | GPT | `05A` 파생 | `2026-09-05-exercise-recording-types.md` |
-| `05E` | assisted 세트 행 — 보조 kg | LOCKED | DESIGN | `05A` 파생 | `2026-09-03-assisted-machine-recording.md` |
-| `05F` | 자동 Rest Timer pill | LOCKED BEHAVIOR | DESIGN · ENG | `410_Rest_Timer` `1:1003` | `2026-09-03-rest-timer-behavior.md` |
-| `05G` | 첫 중량 가이드 coach mark | LOCKED CONCEPT | GPT · DESIGN | Active 파생 | `DEC-010`, `DEC-013` |
-| `05H` | 첫 세트 체감 피드백 sheet | LOCKED CONCEPT | DESIGN | Active 파생 | `DEC-010`, `DEC-013` |
-| `05I` | 운동 메뉴 — 정보/교체/순서/삭제 | LOCKED | DESIGN | Active 파생 | `2026-09-03-active-workout-routine-update.md` |
-| `05J` | 운동 순서 변경 | LOCKED | DESIGN · ENG | `421_Exercise_Reorder` `1:1019` | `2026-09-03-active-workout-routine-update.md` |
-| `05K` | 미완료 운동 종료 확인 | LOCKED | DESIGN | `403a_Workout_End_Incomplete` `1:1010` | `2026-09-03-workout-end-flow.md` |
-| `05L` | 전체 완료 후 종료 확인 | LOCKED | DESIGN | `403b_Workout_End_Complete` `1:1013` | `2026-09-03-workout-end-flow.md` |
-| `05M` | 전체 운동 기록 삭제 최종 확인 | LOCKED | DESIGN · ENG | `403c_Workout_Save_Or_Discard` `1:1016` | `2026-09-03-workout-end-flow.md` |
-| `05N` | 진행 중 다른 루틴 시작 | LOCKED | DESIGN · ENG | dialog 파생 | `docs/14_IA_STORYBOARD.md` |
-| `05O` | 세션 구조 변경 → 저장 루틴 반영 여부 | LOCKED | DESIGN · ENG | dialog 파생 | `2026-09-03-active-workout-routine-update.md` |
-| `05P` | 앱 interruption/restart 세션 복구 | LOCKED POLICY | ENG | UI state 필요 | `DEC-004`, `DEC-018`, `docs/01_PRODUCT_POLICY.md` |
+따라서 `02A~02D`를 서로 다른 Home 페이지로 그리지 않는다.
 
 ---
 
-## 06 · Workout Complete
+# 03 · 루틴
 
-| ID | 화면/상태 | 상태 | 남은 담당 | Figma | 핵심 Ref |
-|---|---|---|---|---|---|
-| `06A` | 운동 완료 캐러셀 shell | LOCKED CONTENT SYSTEM | DESIGN | `501_Workout_Complete` `1:1030`은 구형 baseline | `2026-09-03-post-workout-completion-carousel.md` |
-| `06B` | 오늘 기록 요약 카드 | LOCKED | DESIGN | 06A 파생 | `2026-09-04-workout-completion-metrics.md` |
-| `06C` | 오늘의 발전 / PR 카드 | STRUCTURE PASS | GPT | 06A 파생 | `2026-09-03-post-workout-completion-carousel.md` |
-| `06D` | 최근 루틴 흐름 + 다음 운동 힌트 | LOCKED for general weight/reps | DESIGN | 06A 파생 | `2026-09-04-progression-hint-threshold.md` |
-| `06E` | 오늘 운동 부위 카드 | STRUCTURE PASS | DESIGN | 06A 파생 | Completion doc + Analysis body-map 1.0/0.5 policy |
-| `06F` | 오늘 한 운동 / 실제 수행 결과 카드 | LOCKED | DESIGN | 06A 파생 | `2026-09-03-post-workout-completion-carousel.md` |
-| `06G` | 추천 루틴 → 내 루틴 저장 여부 | LOCKED | DESIGN | conditional | `2026-09-04-recommended-routine-post-workout-save.md` |
-| `06H` | 추천 루틴 구조 변경 후 저장 구성 선택 | LOCKED | DESIGN | conditional | `2026-09-04-recommended-routine-post-workout-save.md` |
-| `06I` | 부분 저장 완료 표현 | LOCKED DATA / UI REVIEW | GPT · DESIGN | completion 파생 | `2026-09-03-workout-end-flow.md` |
-| `06J` | 사진 저장 / 스토리 / 카카오 / 시스템 공유 | APPROVED DIRECTION / MVP PRIORITY OPEN | **PO** 또는 DEFER | 없음 | `2026-09-03-post-workout-completion-carousel.md`, Project Brief out-of-MVP social boundary |
+### 실제 화면
 
----
+| 화면 | 역할 | Figma / Ref |
+|---|---|---|
+| `03A` 루틴 목록 | 내 루틴 탐색/관리 | `201_Routine_List` `1:701` |
+| `03C` G Fit 추천 루틴 상세 | 추천 루틴 시작 전 구성 확인 | `2026-09-03-recommended-routine-detail-flow.md` |
+| `03D` 내 루틴 상세 | 저장 루틴 구성 확인/시작 | `210_Routine_Detail` `1:747` |
+| `03E/03F` 루틴 편집 | 만들기 / 수정이 같은 편집 틀을 재사용 | `220_Routine_Create` / `230_Routine_Edit` |
 
-## 07 · Analysis / History
+### 같은 화면 상태
 
-| ID | 화면/상태 | 상태 | 남은 담당 | Figma | 핵심 Ref |
-|---|---|---|---|---|---|
-| `07A` | 분석 홈 | STRUCTURE PASS | GPT · DESIGN | 아직 없음 | `2026-09-05-analysis-tab-ia.md`, current review |
-| `07B` | 부위별 분석 | FIRST-PASS LOCKED | DESIGN | 아직 없음 | `2026-09-05-analysis-body-area-drilldown.md` |
-| `07C` | 운동별 성장 | FIRST-PASS LOCKED | **GPT** calculation | 아직 없음 | `2026-09-05-analysis-exercise-progress.md` |
-| `07D` | 운동 기록 — 날짜순 세션 history | OPEN DETAIL | **GPT** | 기존 Figma pattern 재사용 | `2026-09-05-analysis-tab-ia.md` |
-| `07E` | 운동 기록 상세 | STRUCTURE PASS | **GPT** density | 기존 wireframe + Figma history pattern | `2026-09-05-analysis-tab-ia.md` |
-| `07F` | 분석 Empty / insufficient-data states | OPEN | **GPT** | 없음 | Analysis decision deferred items |
+- `03B` 루틴 Empty → `03A 루틴 목록`의 빈 상태
+- `03G` Active Workout 중 Routine read-only → `03A/03D`의 읽기 전용 상태
 
-07A 기간은 `4주 / 3개월 / 6개월 / 1년`. Body-map 계산은 완료 세트의 primary `1.0`, secondary `0.5` 규칙으로 LOCKED. 시각 표현은 DESIGN에서 조정.
+### 화면 밖 데이터 의존성
+
+- `03H` 추천 루틴 실제 템플릿/운동 구성 → 화면이 아니라 데이터 작업
 
 ---
 
-## 08 · Settings / Account
+# 04 · 운동 목록 / 운동 상세
 
-| ID | 화면/상태 | 상태 | 남은 담당 | Figma | 핵심 Ref |
-|---|---|---|---|---|---|
-| `08A` | 설정 홈 | OPEN DETAIL / SCOPE BASE LOCKED | **GPT** | 아직 top-level 없음 | `docs/00_PROJECT_BRIEF.md`, `docs/01_PRODUCT_POLICY.md` |
-| `08B` | 프로필 설정 | STRUCTURE PASS | GPT · DESIGN | existing profile fields only | Project Brief + screen decisions |
-| `08C` | kg/lb 단위 설정 | LOCKED | DESIGN · ENG | `630_Unit_Settings_Sheet` `1:1069` | `docs/00_PROJECT_BRIEF.md` |
-| `08D` | 계정 관리 / 연결 provider | LOCKED POLICY / UI OPEN | **GPT** | 없음 | `DEC-019`, `docs/01_PRODUCT_POLICY.md` |
-| `08E` | 계정 삭제 최종 확인 | LOCKED POLICY / UI OPEN | GPT · RELEASE | 없음 | `DEC-020`, `docs/01_PRODUCT_POLICY.md` |
-| `08F` | 이용약관 / 개인정보처리방침 진입 | LOCKED ACCESS / COPY RELEASE CHECK | RELEASE | 없음 | `docs/01_PRODUCT_POLICY.md` |
-| `08G` | 기본 휴식시간/진동 등 추가 운동 설정 | DEFER / OPTIONAL | GPT | 일부 old draft only | MVP Basic settings currently requires kg/lb only |
+### 실제 화면
 
----
+| 화면 | 역할 | Figma / Ref |
+|---|---|---|
+| `04A` 운동 검색 / 추가 | 검색, 필터, 운동 선택 | `301_Exercise_Search` `1:799` |
+| `04D` 운동 상세 / 가이드 | 운동 정보, 동작 가이드, 최근 기록 | `2026-09-04-exercise-detail-scope.md` |
+| `04G` 특정 운동 과거 세트 기록 | 날짜별 실제 세트 기록 | `341_Library_Exercise_History` `1:912` |
+| `04E/04F` 직접 만든 운동 편집 | 만들기 / 수정 | `310/311_Custom_Exercise` |
 
-## 09 · Non-screen MVP dependencies
+### 같은 화면 상태 / 보조 UI
 
-| ID | 의존성 | 상태 | 다음 담당 | Ref |
-|---|---|---|---|---|
-| `09A` | Production exercise DB derived artifact `211` rows | DEPENDENCY / DATA LOCKED, ARTIFACT PENDING | GPT/QA → ENG later | `docs/CURRENT.md`, `docs/exercise-db/2026-09-05-p0-211-production-promotion-qa-result.md` |
-| `09B` | 운동 media transform sample / serving format | DEFERRED PARALLEL | GPT/QA | `docs/CURRENT.md` |
-| `09C` | offline-first persistence / sync / active-session recovery | POLICY LOCKED / IMPLEMENTATION PENDING | ENG + QA | `DEC-004`, `DEC-016~021`, `docs/01_PRODUCT_POLICY.md` |
-| `09D` | Analysis / Settings final Figma pass | PENDING | DESIGN | canonical Figma `W3lZurXCXbThP67rF2xk2b` |
-| `09E` | MVP implementation Issue/AC decomposition | PENDING AFTER FLOW LOCK | GPT → Cursor | `PROJECT_INSTRUCTIONS.md` |
+- `04B` 여러 운동 선택 중 → `04A` 상태
+- `04C` 검색 결과 없음 → `04A` 상태
+- `04H` 케이블 손잡이 선택 → `04A` 이후 보조 시트
+
+`04G`와 `07C`의 역할은 구분한다.
+
+- `04G` = 원시 세트 이력 조회
+- `07C` = 성장/변화 해석
 
 ---
 
-# PO decision queue — keep intentionally small
+# 05 · 운동 중
 
-현재 Product Owner가 직접 개입할 가치가 큰 항목은 우선 아래만 잡는다.
+### 실제 화면
 
-1. `02E` — **빈 운동/즉흥 운동 Quick Start를 1차 MVP에 넣을지**. General-purpose tracker와 DEC-001에는 맞지만 현재 Figma/핵심 흐름에 명시적 진입점이 없다.
-2. `06J` — **완료 카드 외부 공유 기능을 1차 MVP까지 넣을지, 후순위로 미룰지**. 완료 카드 콘텐츠 구조와 별개로 native share는 구현 범위를 키운다.
-3. `01C` — **최소 연령/연령 제한 정책**. 화면 설계는 진행할 수 있지만 출시 전에 제품/법률 기준 확정 필요.
+| 화면 | 역할 | Figma / Ref |
+|---|---|---|
+| `05A` 운동 기록 | 이전 기록을 보며 현재 세트 입력 | `401a_Workout_Active` `1:986` |
+| `05J` 운동 순서 변경 | 명시적으로 표시 순서 재정렬 | `421_Exercise_Reorder` `1:1019` |
 
-그 외 OPEN 항목은 우선 ChatGPT가 기존 Decision/Figma/Hevy reference를 바탕으로 1차안을 만든 뒤, 의미가 바뀌는 경우에만 PO에게 올린다.
+### `05A` 안의 기록 방식 상태
 
-# ChatGPT autonomous queue
+| 상태 | 기록 의미 | 현재 상태 |
+|---|---|---|
+| `05A` | 중량 + 횟수 | 확정 |
+| `05B` | 횟수만 | 구조 승인 |
+| `05C` | 시간제 운동 | UI 결정 필요 · GPT 선행 |
+| `05D` | 추가중량 + 횟수 | 구조 승인 |
+| `05E` | 보조중량 + 횟수 | 확정 |
 
-Product Owner를 멈춰 세우지 않고 ChatGPT가 먼저 정리할 항목:
+### `05A` 위에 뜨는 보조 상태
 
-1. `07D / 07E` 운동 기록 / 상세 wireframe
-2. `08A~08E` Settings / account-management 기본 IA
-3. `05C` duration Active Workout 상세 UI
-4. `07C` recording type별 progress / PR 비교 규칙 후보
-5. `07A / 07F` frequency, recent-record density, empty/insufficient states
-6. `04G` Figma exercise history와 Analysis 07C 역할 중복 정리
-7. `02B` unscheduled `다음 운동` 선정 기본 규칙
-8. Rest Timer 종료 signal 등 구현/디자인 세부
+- `05F` 자동 휴식 타이머 pill
+- `05G` 첫 중량 가이드
+- `05H` 첫 세트 체감 피드백
+- `05I` 운동 메뉴
+- `05P` interruption/restart 세션 복구
 
-# Figma source inventory checked
+### `05A` 위에 뜨는 종료/확인 팝업
 
-Canonical Figma: `W3lZurXCXbThP67rF2xk2b`
+- `05K` 미완료 상태 종료 확인
+- `05L` 전체 완료 후 종료 확인
+- `05M` 이번 운동 기록 전체 삭제 확인
+- `05N` 진행 중 다른 루틴 시작
+- `05O` 오늘 변경을 저장 루틴에도 반영할지
 
-현재 확인된 authored top-level frames:
+위 항목들은 서로 다른 앱 페이지가 아니다.
 
-- `110_Home` / `111_Home_Empty`
-- `201_Routine_List` / `203_Routine_List_Empty` / `210_Routine_Detail`
-- `220_Routine_Create` / `230_Routine_Edit`
-- `301_Exercise_Search` / `301a_Exercise_Search_Selected` / `302_Exercise_Search_Empty`
-- `310_Custom_Exercise_Create` / `311_Custom_Exercise_Edit`
-- `341_Library_Exercise_History`
-- `401a_Workout_Active`
-- `403a / 403b / 403c` workout-end modal shells
-- `410_Rest_Timer`
-- `421_Exercise_Reorder`
-- `501_Workout_Complete`
-- `630_Unit_Settings_Sheet`
-- `REF_하단앱바 배치 기준`
+---
 
-Current authored phone baseline is 360px wide, 20px side inset, SUIT, dark neutral surfaces, radius 12, current mint accent `#34D399`, and floating 4-tab bottom app bar.
+# 06 · 운동 완료
 
-# Reference note
+### 실제 화면
 
-Hevy is used as a practical strength-training interaction reference, especially for routine detail, quick start, previous-performance set logging, timers, workout completion, history, and analysis. Hevy behavior is not automatically adopted when it conflicts with G Fit decisions.
+**운동 완료는 1개의 캐러셀 화면이다.**
+
+### 완료 캐러셀 안의 카드/상태
+
+- `06B` 오늘 기록 요약
+- `06C` 오늘의 발전 / PR — 구조 승인, 계산 규칙 GPT 선행
+- `06D` 최근 루틴 흐름 + 다음 운동 힌트
+- `06E` 오늘 운동 부위
+- `06F` 실제 수행 운동
+- `06I` 부분 기록 저장 완료 상태
+- `06J` 현재 카드 공유 / 이미지 저장 — **1차 MVP 포함 여부 PO 결정 필요**
+
+### 완료 화면 위의 조건부 팝업
+
+- `06G` 추천 루틴 → 내 루틴 저장 여부
+- `06H` 추천 루틴 구조를 바꾼 뒤 어떤 구성으로 저장할지
+
+따라서 `06B~06F`를 각각 별도 완료 페이지로 만들지 않는다.
+
+---
+
+# 07 · 분석 / 운동 기록
+
+분석은 Product Owner가 승인한 **5개 실제 화면**을 그대로 유지한다.
+
+| 화면 | 역할 | 상태 |
+|---|---|---|
+| `07A` 분석 홈 | 요약 + 상세 진입 허브 | 구조 승인 |
+| `07B` 부위별 분석 | 부위 분포 + 해당 기간 실제 운동 drill-down | 구조 승인 |
+| `07C` 운동별 성장 | 최근 변화 결론 + 기록 추이 | 구조 승인 |
+| `07D` 운동 기록 | 날짜순 세션 이력 | GPT 선행 정리 |
+| `07E` 운동 기록 상세 | 한 세션의 실제 수행 결과 | 구조 승인 |
+
+`07F` 데이터 부족/빈 상태는 별도 화면이 아니라 위 분석 화면들의 상태로 관리한다.
+
+현재 남은 큰 계산/표현 항목:
+
+- body-area granularity / DB mapping
+- workout frequency 계산
+- 최근 성장 운동 선정
+- `07C` recording type별 비교/PR/graph 규칙
+- `07D/07E` 밀도와 필터/상세 행동
+- empty / insufficient state
+
+---
+
+# 08 · 설정 / 계정
+
+### 실제 화면
+
+| 화면 | 역할 | 상태 |
+|---|---|---|
+| `08A` 설정 홈 | 프로필 / 운동 / 계정 / 법률 문서 진입 | GPT 선행 정리 |
+| `08B` 프로필 설정 | 기본정보 + 선택적 닉네임/프로필 수정 | 구조 승인 |
+| `08D` 계정 관리 | 로그인 수단 / 탈퇴 진입 | 구조 승인 |
+| `08F` 이용약관 / 개인정보처리방침 | 문서 열람 | 확정 |
+
+### 보조 UI
+
+- `08C` kg / lb 선택 → `08A` 위의 bottom sheet
+- `08E` 계정 탈퇴 최종 확인 → `08D` 위의 destructive confirm
+- `08G` 추가 운동 설정(휴식/진동 등) → 후순위 후보, 별도 화면으로 확정하지 않음
+
+---
+
+# 화면 밖 MVP 의존성
+
+| ID | 작업 | 상태 |
+|---|---|---|
+| `09A` | Production Exercise DB 211 runtime artifact 재생성 | 대기 |
+| `09B` | 운동 media transform sample | 후순위 병렬 |
+| `09C` | offline-first sync / active-session recovery 실제 구현 및 기기 QA | 구현 의존성 |
+| `09D` | Analysis / Settings 최종 Figma | 디자인 의존성 |
+| `09E` | Issue / Acceptance Criteria / Cursor handoff | 전체 흐름 잠금 뒤 |
+
+---
+
+# 앞으로의 운영 규칙
+
+1. Product Owner에게는 **실제 화면**을 먼저 보여준다.
+2. 같은 화면의 상태는 그 화면 안의 탭/상태로 묶는다.
+3. popup / sheet / toast는 실제 페이지와 같은 레벨로 세지 않는다.
+4. 사용자가 `02C`, `05F`, `07D`처럼 기존 번호를 말하면 그 상태/화면을 바로 찾는다.
+5. 제품 의미가 바뀌는 결정만 Product Owner에게 묻고, 계산/밀도/표현은 ChatGPT가 먼저 안을 만든다.
+6. 이 인덱스는 탐색용이다. 실제 제품 결정은 최신 Decision / Product Policy / CURRENT가 우선한다.
