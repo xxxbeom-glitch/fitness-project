@@ -4,7 +4,7 @@
 
 ## Current mode
 
-`EXERCISE DB / ASSET NORMALIZATION ACTIVE · RAW R2 VERIFIED · 2,109 BULK MAPPING COMPLETE · P0 SOURCE COVERAGE LOCKED 16/16 · RECORDING MODEL 5 ACTIVE + 3 RESERVED APPROVED · P0 16 DATA ROW LOCK QA PASS · 211 MERGE SAFE · DEFAULT PRODUCTION-SERVING MEDIA SELECTION NEXT · P1 15/17 SOURCE-COVERED · PRODUCT/UX BASELINE PRESERVED · NO CURSOR IMPLEMENTATION HANDOFF`
+`EXERCISE DB / ASSET NORMALIZATION ACTIVE · RAW R2 VERIFIED · 2,109 BULK MAPPING COMPLETE · P0 SOURCE COVERAGE LOCKED 16/16 · RECORDING MODEL 5 ACTIVE + 3 RESERVED APPROVED · P0 16 DATA ROW LOCK QA PASS · P0 DEFAULT MEDIA SOURCE INPUT LOCKED 16/16 · 211 MERGE SAFE · MEDIA TRANSFORM SAMPLE / SERVING STRUCTURE NEXT · P1 15/17 SOURCE-COVERED · PRODUCT/UX BASELINE PRESERVED · NO CURSOR IMPLEMENTATION HANDOFF`
 
 ## Resume rule
 
@@ -178,6 +178,29 @@ Important boundary:
 - the derived workbook/runtime DB has **not yet been regenerated as 211 rows**
 - therefore do not claim a physical 211-row Production artifact exists until merge/generation + count QA is executed
 
+### P0 16 default media source inputs — LOCKED 16/16
+
+One already-reviewed purchased source video is now explicitly locked as the default transform/edit input for each P0 canonical row.
+
+- Library_database default inputs: **13 / 16**
+- Home_Workout_ fallback default inputs: **3 / 16**
+- missing: **0**
+
+This does not mean raw R2 MP4 files are the final app-serving media.
+
+Boundary:
+
+- raw source stays immutable
+- selected raw source is the transform input
+- background removal / transparent export / resize / compression happen later as derived-media processing
+- completed source/video QA is not reopened
+- GIF is not selected as the production format
+- final codec/container, transparency method, resolution/FPS/quality, and derived R2 serving path remain OPEN for sample validation
+
+Reference:
+
+- `docs/exercise-db/2026-09-05-p0-16-default-media-source-lock.md`
+
 ### Recording model — PO APPROVED
 
 Current model:
@@ -229,23 +252,31 @@ Trap Bar Deadlift source exists but `Trap Bar` equipment taxonomy remains a futu
 
 ---
 
-# NEXT OPEN ITEM — Default production-serving media + derived 211 artifact
+# NEXT OPEN ITEM — Media transform sample + derived 211 artifact
 
 ## Immediate next
 
-1. choose one default production-serving media source for each P0 16 canonical row
-2. define media transform/compression/storage/app-serving structure
-3. generate/update the derived Production exercise DB artifact with:
+1. define a small representative media-transform sample rather than bulk-processing the catalog
+2. decide/test the derived media contract:
+   - background removal / transparency requirement
+   - export/master boundary
+   - app-serving container/codec
+   - resolution / FPS / quality target
+   - file-size target
+   - derived R2 bucket/path/naming structure
+3. validate sample playback/quality/size before processing all Production media
+4. generate/update the derived Production exercise DB artifact with:
    - existing 195 baseline
    - four legacy recording-type migrations
    - locked P0 16 rows
-4. rerun machine-verifiable integrity QA:
+   - P0 default media source linkage
+5. rerun machine-verifiable integrity QA:
    - exact canonical count = **211**
    - canonical uniqueness = **211 / 211**
    - recording_type vocabulary ⊆ approved 5+3
-   - P0 provenance links present
+   - P0 provenance/default-source links present
    - raw source unchanged
-5. only when application implementation becomes the next dependency, create Issue/AC and hand off to Cursor
+6. only when application implementation becomes the next dependency, create Issue/AC and hand off to Cursor
 
 No Cursor implementation handoff yet.
 
