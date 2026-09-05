@@ -4,7 +4,7 @@
 
 ## Current mode
 
-`EXERCISE DB / ASSET SOURCE ANALYSIS ACTIVE · RAW R2 VERIFIED · CABLE/MACHINE/BARBELL/DUMBBELL/KETTLEBELL/SMITH/LANDMINE TARGETED QA COMPLETE · OLD P0 16/16 SOURCE FOUND · P1 14 SOURCE FOUND + 3 IDENTITY REVIEW · PRODUCTION MAPPING ACTIVE · PRODUCT/UX BASELINE PRESERVED · NO CURSOR IMPLEMENTATION HANDOFF`
+`EXERCISE DB / ASSET SOURCE ANALYSIS ACTIVE · RAW R2 VERIFIED · MAIN EQUIPMENT TARGETED QA COMPLETE · OLD P0 16/16 SOURCE COVERED · P1 15/17 SOURCE COVERED + 2 TRUE SOURCE GAPS · P1 IDENTITY REVIEW COMPLETE · FULL PRODUCTION MAPPING NEXT · PRODUCT/UX BASELINE PRESERVED · NO CURSOR IMPLEMENTATION HANDOFF`
 
 ## Resume rule
 
@@ -20,7 +20,7 @@
 
 ---
 
-# Latest checkpoint — Gym Animations source normalization / Production remap
+# Latest checkpoint — Gym Animations normalization / Production mapping
 
 ## 1. Purchased source / raw analysis base
 
@@ -62,7 +62,7 @@ Raw bucket:
 
 원본 count/size와 일치. Raw upload DONE.
 
-## 3. Main equipment targeted visual QA — COMPLETE
+## 3. Targeted normalization / visual QA — COMPLETE
 
 완료:
 
@@ -73,6 +73,7 @@ Raw bucket:
 - Kettlebell
 - Smith
 - Landmine
+- P1 identity review 3
 
 주요 결과 문서:
 
@@ -84,6 +85,7 @@ Raw bucket:
 - `docs/exercise-db/2026-09-05-dumbbell-visual-qa-20.md`
 - `docs/exercise-db/2026-09-05-kettlebell-visual-qa-12.md`
 - `docs/exercise-db/2026-09-05-smith-landmine-visual-qa-10.md`
+- `docs/exercise-db/2026-09-05-p1-identity-review-3-result.md`
 
 공통 boundary:
 
@@ -94,23 +96,7 @@ Raw bucket:
 5. vendor filename보다 실제 visual movement를 우선
 6. raw source는 수정하지 않고 normalized data를 별도 관리
 
-### Smith + Landmine final QA
-
-Smith 1 group / 2 files + Landmine 4 groups / 8 files = **10 files** 검수 완료.
-
-결과:
-
-- Smith Close Grip Bench Press → exact binary duplicate
-- Landmine Kneeling One Arm Shoulder Press → same canonical + media/render variant
-- Landmine One Arm Bent Over Row → same canonical + POV/render/posture media variant
-- Landmine Rear Lunge → **execution/load-position variant**
-  - high/front two-hand hold
-  - low-side one-hand hold
-  - history auto-merge 금지
-- Landmine Romanian Deadlift → same canonical + POV/render variant
-- unresolved: **0**
-
-기본 ZIP 기반 duplicate/ambiguity visual-QA 반복은 여기서 종료한다. 이후 Production mapping 중 새 충돌이 발견될 때만 소량 targeted QA를 추가한다.
+기본 ZIP 기반 대량 duplicate/ambiguity 검수는 종료한다. 이후 Production mapping 중 특정 identity conflict가 새로 발견될 때만 소량 targeted visual QA를 추가한다.
 
 ## 4. Full 2,109 equipment-pass baseline
 
@@ -128,48 +114,55 @@ Raw/source-family first pass:
 
 이 수치는 **raw/source-family rows**이며 final canonical exercise count가 아니다.
 
-## 5. Production DB gap remap — COMPLETE AT SOURCE-AVAILABILITY LEVEL
+## 5. Production DB / old gap remap
 
 기준:
 
 - 기존 Production DB v1: **195 app-facing canonical / 206 source rows**
-- 기존 gap doc: `docs/exercise-db/exercise-db-gap-analysis-v1.md`
-- 새 remap: `docs/exercise-db/2026-09-05-production-gap-remap-after-gym-animations.md`
+- `docs/exercise-db/exercise-db-v1-production.md`
+- `docs/exercise-db/exercise-db-gap-analysis-v1.md`
+- `docs/exercise-db/2026-09-05-production-gap-remap-after-gym-animations.md`
+- `docs/exercise-db/2026-09-05-p1-identity-review-3-result.md`
 
 ### Old P0 16
 
-기존에 `P0 new asset pack 16`으로 승인했던 운동을 새 2,109 source와 다시 비교했다.
-
-결과:
+새 2,109 source와 다시 비교한 결과:
 
 - **16 / 16 source candidate found**
 - source-availability 기준 신규 asset 제작 필요: **16 → 0**
 - P0 운동의 제품 우선순위 자체는 유지
 - 바뀐 것은 `새 에셋 제작` 필요성이다.
 
-따라서 P0 기본 행동은 이제:
+따라서 P0 기본 행동:
 
 `기존 구매 source 선택 → canonical mapping → naming/equipment/body-part QA → Production 승격`
 
-이다.
+### Old P1 17 — IDENTITY REVIEW COMPLETE
 
-### Old P1 17
+최종 결과:
 
-현재 remap:
+- source-covered: **15 / 17**
+- true source gaps: **2 / 17**
+- unresolved: **0**
 
-- clear source candidate: **14 / 17**
-- identity review: **3 / 17**
-- proven new-asset gap: **0**
+3건 최종 판정:
 
-Identity review 3:
+1. standard bilateral `Dumbbell Deadlift` → **TRUE_GAP_REMAINS**
+   - RDL / stiff-leg / straight-leg / sumo / unilateral source는 있으나 conventional bilateral identity는 없음
+2. standard-stance `Smith Machine Romanian Deadlift` → **SOURCE_COVERS_EXISTING_IDENTITY**
+   - `Smith-Deadlift_Hips.mp4` 실제 영상은 standard-stance RDL-like hip hinge
+   - raw filename은 그대로 보존하고 normalized identity만 Smith RDL로 mapping 가능
+3. standard floor bodyweight `Sit Up` → **TRUE_GAP_REMAINS**
+   - decline / vertical / twisting / loaded / band variants만 확인되고 plain floor sit-up은 없음
 
-1. standard bilateral `Dumbbell Deadlift`
-2. standard-stance `Smith Machine Romanian Deadlift`
-3. standard floor bodyweight `Sit Up`
+따라서 향후 P1 전체를 확장할 경우 현재 신규 source/asset 필요 후보는:
 
-관련 변형 source는 있지만 exact identity를 filename만으로 자동 합치지 않는다.
+- Dumbbell Deadlift
+- Sit Up
 
-Trap Bar Deadlift는 source가 확인되었으므로 asset gap이 아니다. Production 승격 시 `Trap Bar` equipment taxonomy 결정이 별도로 필요하다.
+**2개**다. 둘 다 P1이며 MVP blocker는 아니다.
+
+Trap Bar Deadlift source는 존재한다. Production 승격 시 `Trap Bar` equipment taxonomy 결정이 별도로 필요하다.
 
 ## 6. Important boundary — final canonical count NOT VERIFIED
 
@@ -182,7 +175,7 @@ Trap Bar Deadlift는 source가 확인되었으므로 asset gap이 아니다. Pro
 - 일부 vendor filename과 실제 movement 충돌 사례 존재
 - targeted duplicate QA 완료 ≠ full canonical mapping 완료
 
-따라서 단순히 reviewed duplicate 수를 2,109에서 빼서 canonical 수를 만드는 것은 금지한다.
+단순히 reviewed duplicate 수를 2,109에서 빼서 canonical 수를 만드는 것은 금지한다.
 
 ---
 
@@ -190,33 +183,33 @@ Trap Bar Deadlift는 source가 확인되었으므로 asset gap이 아니다. Pro
 
 ## Immediate next
 
-**P1 identity-review 3건을 최소 targeted visual QA로 해결한다.**
+**2,109 source 전체를 기존 Production 195 canonical anchor에 bulk mapping한다.**
 
-대상:
+각 source row를 다음 중 하나로 분류:
 
-- Dumbbell Deadlift 후보군
-- Smith Machine Romanian Deadlift 후보군
-- standard bodyweight Sit Up 후보군
+- existing Production canonical
+- new canonical candidate
+- attachment context
+- grip context
+- execution/load context
+- media duplicate/variant
+- excluded/non-gym-first
+- unresolved
 
-사용자 반복 작업을 줄이기 위해 후보 영상을 **한 ZIP**으로 묶어서 한 번만 검수한다.
+다음 bulk pass에 필요한 입력:
+
+- `MP4/MALE/Library_database`의 **2,109-row full filename/path/size manifest**
+
+현재 active context에 그 full manifest가 직접 없으면 로컬 source folder에서 한 번만 다시 export해서 업로드한다. 사용자가 영상을 일일이 고르는 방식으로 돌아가지 않는다.
 
 그 다음:
 
-1. 3 identity review resolve
-2. 기존 Production 195 canonical을 anchor로 2,109 source mapping 계속 진행
-3. 각 source row를 다음 중 하나로 분류
-   - existing Production canonical
-   - new canonical candidate
-   - attachment context
-   - grip context
-   - execution/load context
-   - media duplicate/variant
-   - excluded/non-gym-first
-   - unresolved
-4. 실제 source-derived canonical candidate count 계산
-5. 실제 gym-first MVP gap 수 재산출
-6. 정말 필요한 G Fit-created 신규 asset만 최종 확정
-7. canonical mapping 안정화 후 production media selection / transform / app-serving storage 결정
+1. filename/rule 기반 bulk mapping
+2. unresolved identity만 최소 targeted visual QA
+3. 실제 source-derived canonical candidate count 계산
+4. 실제 gym-first MVP gap 수 재산출
+5. 정말 필요한 G Fit-created 신규 asset만 최종 확정
+6. canonical mapping 안정화 후 production media selection / transform / app-serving storage 결정
 
 **현재 Cursor implementation handoff 없음.**
 
@@ -244,7 +237,7 @@ Trap Bar Deadlift는 source가 확인되었으므로 asset gap이 아니다. Pro
 
 기준:
 
-`docs/ux-decisions/2026-09-04-exercise-detail-scope.md`
+- `docs/ux-decisions/2026-09-04-exercise-detail-scope.md`
 
 - 기존 Figma `341_Library_Exercise_History`의 `운동 정보 | 최근 기록` 2탭 유지
 - `운동 정보`: 동작 미디어 → 운동명 → 장비/주요 근육 → 보조 근육 → 짧은 방법 → 핵심 체크포인트
@@ -257,7 +250,7 @@ Trap Bar Deadlift는 source가 확인되었으므로 asset gap이 아니다. Pro
 
 기준:
 
-`docs/ux-decisions/2026-09-03-cable-attachment-active-workout.md`
+- `docs/ux-decisions/2026-09-03-cable-attachment-active-workout.md`
 
 - 사용자 용어 `손잡이`, 내부 `attachment`
 - 같은 운동 + 다른 손잡이 = Active에서 별도 카드
@@ -268,7 +261,7 @@ Trap Bar Deadlift는 source가 확인되었으므로 asset gap이 아니다. Pro
 
 기준:
 
-`docs/ux-decisions/2026-09-03-active-workout-routine-update.md`
+- `docs/ux-decisions/2026-09-03-active-workout-routine-update.md`
 
 - 강제 운동 순서 없음
 - 미수행 운동은 그냥 미수행
@@ -280,7 +273,7 @@ Trap Bar Deadlift는 source가 확인되었으므로 asset gap이 아니다. Pro
 
 기준:
 
-`docs/ux-decisions/2026-09-03-rest-timer-behavior.md`
+- `docs/ux-decisions/2026-09-03-rest-timer-behavior.md`
 
 - 세트 체크 → 자동 timer
 - 상단 nonblocking toast/pill
@@ -293,7 +286,7 @@ Trap Bar Deadlift는 source가 확인되었으므로 asset gap이 아니다. Pro
 
 기준:
 
-`docs/ux-decisions/2026-09-03-assisted-machine-recording.md`
+- `docs/ux-decisions/2026-09-03-assisted-machine-recording.md`
 
 - `assisted_weight_reps`
 - 보조 kg + 횟수
@@ -319,7 +312,7 @@ Trap Bar Deadlift는 source가 확인되었으므로 asset gap이 아니다. Pro
 
 기준:
 
-`docs/ux-decisions/2026-09-04-progression-hint-threshold.md`
+- `docs/ux-decisions/2026-09-04-progression-hint-threshold.md`
 
 - 같은 루틴 + 같은 운동 + 같은 중량 최근 5회 관찰
 - 5회 중 4회 성공 + 최신 수행 성공이면 증량 힌트 후보
@@ -332,7 +325,7 @@ Trap Bar Deadlift는 source가 확인되었으므로 asset gap이 아니다. Pro
 
 기준:
 
-`docs/ux-decisions/2026-09-03-workout-end-flow.md`
+- `docs/ux-decisions/2026-09-03-workout-end-flow.md`
 
 - 자동 종료 없음, 사용자가 `운동 종료`
 - 조기 종료 가능, 체크된 세트만 저장
@@ -357,14 +350,14 @@ Trap Bar Deadlift는 source가 확인되었으므로 asset gap이 아니다. Pro
 
 # Product/UX OPEN items preserved
 
-Exercise DB / asset source normalization과 별개로 OPEN:
+Exercise DB / asset normalization과 별개로 OPEN:
 
 - 추천 루틴 실제 프로그램 contents — Exercise DB / substitution data 선행 필요
 - Analysis first screen / drilldown scope
 - Settings main scope
 - rest timer 종료 signal 세부 동작
 
-최근 Analysis 논의에서 `기간 선택 / 운동 요약 / 운동 빈도 / 바디맵 기반 운동 부위 분포` 방향을 검토했지만 아직 별도 PO-approved decision으로 승격하지 않았다.
+최근 Analysis 논의의 `기간 선택 / 운동 요약 / 운동 빈도 / 바디맵 기반 운동 부위 분포`는 아직 별도 PO-approved decision으로 승격하지 않았다.
 
 ---
 
