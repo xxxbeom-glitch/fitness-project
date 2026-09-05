@@ -4,7 +4,7 @@
 
 ## Current mode
 
-`PRODUCT/UX ANALYSIS HOME CONTENT ACTIVE · ANALYSIS 5-SCREEN HIERARCHY PO APPROVED · ANALYSIS PERIOD 4W/3M/6M/1Y LOCKED · TOP METRICS WORKOUTS/SETS/TIME LOCKED · BODY-MAP VISUAL TREATMENT DEFERRED TO DESIGN · BODY-MAP CALCULATION INPUT/WEIGHTING NEXT · EXERCISE DB P0 DEFAULT MEDIA SOURCE INPUT LOCKED 16/16 · 211 MERGE SAFE · MEDIA TRANSFORM SAMPLE DEFERRED PARALLEL · P1 15/17 SOURCE-COVERED · NO CURSOR IMPLEMENTATION HANDOFF`
+`PRODUCT/UX ANALYSIS HOME CONTENT ACTIVE · ANALYSIS 5-SCREEN HIERARCHY PO APPROVED · ANALYSIS PERIOD 4W/3M/6M/1Y LOCKED · TOP METRICS WORKOUTS/SETS/TIME LOCKED · BODY-MAP DATA BASIS PRIMARY1/SECONDARY0.5 LOCKED · BODY-MAP VISUAL TREATMENT DEFERRED TO DESIGN · BODY-AREA GRANULARITY NEXT · EXERCISE DB P0 DEFAULT MEDIA SOURCE INPUT LOCKED 16/16 · 211 MERGE SAFE · MEDIA TRANSFORM SAMPLE DEFERRED PARALLEL · P1 15/17 SOURCE-COVERED · NO CURSOR IMPLEMENTATION HANDOFF`
 
 ## Resume rule
 
@@ -80,6 +80,46 @@ Rules:
 
 `총 볼륨` is not a universal headline metric because approved recording types do not share one valid kg-volume calculation. It may still appear in workout detail, exercise-specific progress, or a clearly scoped secondary module where valid.
 
+## Analysis body-map data basis — PRODUCT DECISION LOCKED
+
+The Product Owner delegated the underlying calculation choice.
+
+Base rule:
+
+- count only final completed/persisted sets
+- primary muscle contribution per completed set: `1.0`
+- secondary muscle contribution per completed set: `0.5`
+- incomplete/unpersisted set: `0`
+- multiple primary muscles each receive `1.0`
+- multiple secondary muscles each receive `0.5`
+
+This creates a per-muscle **muscle-set exposure score**. It is not the same thing as global completed-set count and must not be presented as a literal total-set number across muscles.
+
+Recording-type rule:
+
+- do not multiply the body-map score by kg, reps, duration, or assistance value
+- weighted, bodyweight, timed, and assisted completed sets can all contribute through their canonical primary/secondary muscle mapping
+- exercises without valid muscle mapping remain in history/global summaries but are excluded from the body-map calculation rather than guessed at runtime
+
+Retained derived values per muscle:
+
+1. selected-period weighted score
+2. weekly-average weighted score for comparable rate-based views
+3. distribution share of total muscle score for relative-distribution views
+
+Weekly-average uses only the actual account-history span available inside the selected period; dates before the account existed are not counted. Fewer than 7 eligible days is treated as insufficient/unstable for weekly-average display and will be handled in the later insufficient-data state pass.
+
+Interpretation boundary:
+
+- `1.0 / 0.5` is a practical fractional-set convention, not a claim that secondary muscles receive exactly 50% of physiological stimulus
+- do not label values as `optimal`, `undertrained`, `overtrained`, or `recovered`
+- do not infer fatigue/readiness from this score in MVP
+- recent resistance-training literature supports weekly set volume as a useful dosage variable and has explicitly evaluated fractional `0.5` counting for indirect sets; this is used as a tracking heuristic, not biological truth
+
+Reference:
+
+- `docs/ux-decisions/2026-09-05-analysis-tab-ia.md`
+
 ## Analysis body-map visual treatment — OPEN / DESIGN-PHASE DECISION
 
 Current structural direction:
@@ -98,15 +138,13 @@ Deferred to the design pass:
 - exact brand color vs separate analytics accent color
 - exact opacity/lightness/saturation/gradient/border/texture behavior
 - final readable contrast at the real body-map size
+- final visual mapping from retained data values to appearance
 
 Competitor color systems are references only, not adopted product policy.
 
 Important OPEN product/data details:
 
-- body-map calculation input
-- primary vs secondary muscle contribution
-- normalization / calculation-threshold rule
-- body-area granularity / mapping to available visual areas
+- body-area granularity / mapping to available front-back visual areas
 - workout-frequency definition
 - `최근 성장한 운동` selection rule
 - recent-record information density
@@ -119,18 +157,17 @@ References:
 - `docs/ux-decisions/2026-09-04-workout-completion-metrics.md`
 - `docs/14_IA_STORYBOARD.md`
 
-# NEXT OPEN ITEM — Analysis body-map calculation rule
+# NEXT OPEN ITEM — Analysis body-area granularity
 
-The body-map visual treatment is intentionally deferred to the design phase. Next define the underlying data rule without locking how that value is ultimately colored/rendered.
+The underlying body-map score is now locked. The body-map color/rendering remains intentionally deferred to the design phase.
 
 Immediate next:
 
-1. decide whether body-map calculation is based on completed sets, exercise count, volume, or another normalized score
-2. define how primary vs secondary muscles contribute
-3. define whether calculation uses fixed thresholds or another normalization rule
-4. define body-area granularity / mapping to available front-back visual areas
-5. then define workout-frequency calculation/presentation
-6. then define `최근 성장한 운동`, recent-record density, and empty states
+1. map current canonical muscle/body-part taxonomy into a practical front/back body-map region set
+2. avoid visual regions more granular than the actual exercise DB can support consistently
+3. define how combined DB labels such as upper back / lats or broader core categories map to body regions
+4. then define workout-frequency calculation/presentation
+5. then define `최근 성장한 운동`, recent-record density, and empty states
 
 No Cursor implementation handoff yet.
 
