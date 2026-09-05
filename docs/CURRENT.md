@@ -4,7 +4,7 @@
 
 ## Current mode
 
-`PRODUCT/UX ANALYSIS HOME CONTENT ACTIVE · ANALYSIS 5-SCREEN HIERARCHY PO APPROVED · ANALYSIS PERIOD 4W/3M/6M/1Y LOCKED · TOP METRICS WORKOUTS/SETS/TIME LOCKED · BODY-MAP COLOR BEHAVIOR LOCKED · BODY-MAP CALCULATION INPUT/WEIGHTING NEXT · EXERCISE DB P0 DEFAULT MEDIA SOURCE INPUT LOCKED 16/16 · 211 MERGE SAFE · MEDIA TRANSFORM SAMPLE DEFERRED PARALLEL · P1 15/17 SOURCE-COVERED · NO CURSOR IMPLEMENTATION HANDOFF`
+`PRODUCT/UX ANALYSIS HOME CONTENT ACTIVE · ANALYSIS 5-SCREEN HIERARCHY PO APPROVED · ANALYSIS PERIOD 4W/3M/6M/1Y LOCKED · TOP METRICS WORKOUTS/SETS/TIME LOCKED · BODY-MAP VISUAL TREATMENT DEFERRED TO DESIGN · BODY-MAP CALCULATION INPUT/WEIGHTING NEXT · EXERCISE DB P0 DEFAULT MEDIA SOURCE INPUT LOCKED 16/16 · 211 MERGE SAFE · MEDIA TRANSFORM SAMPLE DEFERRED PARALLEL · P1 15/17 SOURCE-COVERED · NO CURSOR IMPLEMENTATION HANDOFF`
 
 ## Resume rule
 
@@ -80,33 +80,33 @@ Rules:
 
 `총 볼륨` is not a universal headline metric because approved recording types do not share one valid kg-volume calculation. It may still appear in workout detail, exercise-specific progress, or a clearly scoped secondary module where valid.
 
-## Analysis body-map visual behavior — PO APPROVED
+## Analysis body-map visual treatment — OPEN / DESIGN-PHASE DECISION
 
-Structural direction:
+Current structural direction:
 
-- use front/back neutral-body visual assets
-- use independently controllable muscle-area highlight layers over the neutral base
-- zero/untrained area remains neutral/gray
-- trained areas use one highlight color family
-- lower value -> lighter/weaker highlight
-- higher value -> stronger/darker highlight
-- front/back use the same semantic intensity rule
+- use front/back neutral-body visual assets as the body-map concept
+- body areas must visually reflect the underlying training data
+- the body map remains a data visualization layer, not a second exercise-demo asset system
 
-Color boundary:
+The Product Owner explicitly does **not** lock the visual encoding before actual UI composition.
 
-- exact hue is **not** locked before the G Fit brand/main color and design system are defined
-- exact hex/RGB/opacity/neutral values are deferred to the visual-design pass
-- if the eventual brand color is poor for readable intensity visualization, Analysis may use a separate data-visualization accent color
-- do not assign unrelated categorical colors to individual muscles merely for decoration
+Deferred to the design pass:
 
-The body map is a data visualization layer, not a second exercise-demo asset system.
+- overlay-layer vs fill/mask/other rendering technique
+- one-hue intensity vs another color/visual encoding
+- neutral/untrained treatment
+- exact brand color vs separate analytics accent color
+- exact opacity/lightness/saturation/gradient/border/texture behavior
+- final readable contrast at the real body-map size
 
-Important OPEN details:
+Competitor color systems are references only, not adopted product policy.
+
+Important OPEN product/data details:
 
 - body-map calculation input
 - primary vs secondary muscle contribution
-- normalization / fixed threshold rule
-- body-area granularity / mapping to available visual layers
+- normalization / calculation-threshold rule
+- body-area granularity / mapping to available visual areas
 - workout-frequency definition
 - `최근 성장한 운동` selection rule
 - recent-record information density
@@ -121,14 +121,14 @@ References:
 
 # NEXT OPEN ITEM — Analysis body-map calculation rule
 
-The visual color behavior is locked. Next define what actually drives the front/back body-map intensity.
+The body-map visual treatment is intentionally deferred to the design phase. Next define the underlying data rule without locking how that value is ultimately colored/rendered.
 
 Immediate next:
 
-1. decide whether body-map intensity is based on completed sets, exercise count, volume, or another normalized score
+1. decide whether body-map calculation is based on completed sets, exercise count, volume, or another normalized score
 2. define how primary vs secondary muscles contribute
-3. define whether map intensity uses fixed thresholds or is only relative within the selected period
-4. define body-area granularity / mapping to available front-back visual layers
+3. define whether calculation uses fixed thresholds or another normalization rule
+4. define body-area granularity / mapping to available front-back visual areas
 5. then define workout-frequency calculation/presentation
 6. then define `최근 성장한 운동`, recent-record density, and empty states
 
