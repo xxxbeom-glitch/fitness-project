@@ -1,13 +1,13 @@
 # Exercise DB Normalization — Resume Checkpoint
 
 **Date:** 2026-09-05  
-**Status:** P1 IDENTITY REVIEW COMPLETE / RESUME FROM FULL PRODUCTION MAPPING
+**Status:** P0 SOURCE COVERAGE LOCKED 16/16 / RESUME FROM P0 PRODUCTION PROMOTION REVIEW
 
 ## Source of Truth
 
 Primary: `docs/CURRENT.md`
 
-This file is the compact resume checkpoint for the current Exercise DB normalization / Production mapping work.
+This is the compact resume checkpoint for Exercise DB normalization / Production promotion work.
 
 ---
 
@@ -16,163 +16,156 @@ This file is the compact resume checkpoint for the current Exercise DB normaliza
 Purchased source:
 
 - Gym Animations — `Gym Workout Man Package`
-- Male analysis base: `MP4/MALE/Library_database`
-- analysis-base MP4 count: **2,109**
-
-Cloudflare R2 raw upload:
-
-- bucket: `gfit-source-original`
-- objects: **17,085**
-- exact size: **105,972,019,458 Byte**
-- status: **VERIFIED / DONE**
+- full raw: **17,085 files / 98.69 GB**
+- R2 bucket: `gfit-source-original`
+- R2 verified exact size: **105,972,019,458 Byte**
+- raw upload: **DONE**
 
 Raw filename/path/media remains read-only provenance.
 
----
+Male source pools:
 
-## Completed targeted normalization / visual QA
+- `MP4/MALE/Gym_Workout_`: 2,081 MP4
+- `MP4/MALE/Library_database`: 2,109 MP4 — primary gym analysis base
+- `MP4/MALE/Home_Workout_`: 2,120 MP4 — separate fallback source pool
 
-- Cable — COMPLETE
-- Machine — COMPLETE
-- Barbell — COMPLETE
-- Dumbbell — COMPLETE
-- Kettlebell — COMPLETE
-- Smith — COMPLETE
-- Landmine — COMPLETE
-- P1 identity review 3 — COMPLETE
-
-Main-family result docs remain under `docs/exercise-db/`.
-
-Latest P1 result:
-
-- `docs/exercise-db/2026-09-05-p1-identity-review-3-result.md`
-
-The planned duplicate/ambiguity visual-QA sequence is complete. New targeted visual QA should be added only when Production mapping exposes a specific unresolved identity conflict.
+Library contains all Gym MP4s plus 28 extra, but it is not a package-wide superset of Home.
 
 ---
 
-## Full 2,109 equipment-pass baseline
+## Completed work
 
-- Machine high-confidence: 202
-- Barbell: 212
-- Dumbbell: 493
-- Kettlebell: 188
-- Smith: 61
-- Landmine: 33
-- EZ Bar: 35
-- Machine-or-nonmachine ambiguous: 8
-- Other / not-yet-normalized: **579**
+Targeted visual QA complete:
 
-These are source-family/raw-row counts, not final canonical exercise counts.
+- Cable
+- Machine
+- Barbell
+- Dumbbell
+- Kettlebell
+- Smith
+- Landmine
+- P1 identity review 3
+- P0 Home fallback 3
 
-Final G Fit canonical count remains **NOT VERIFIED** until full mapping stabilizes.
+2,109 Library bulk mapping:
 
----
-
-## Production DB / old gap remap
+- **COMPLETE**
+- source identity/history buckets: 1,954 total / 1,912 active / 42 excluded / 1 unresolved
+- these bucket counts are analysis structure, **not app-facing catalog size**
 
 Reference:
 
-- `docs/exercise-db/exercise-db-v1-production.md`
-- `docs/exercise-db/exercise-db-gap-analysis-v1.md`
-- `docs/exercise-db/2026-09-05-production-gap-remap-after-gym-animations.md`
-- `docs/exercise-db/2026-09-05-p1-identity-review-3-result.md`
+- `docs/exercise-db/2026-09-05-library-2109-bulk-mapping-v0.2.md`
+
+---
+
+## P0 16 — SOURCE COVERAGE LOCKED
 
 Existing Production baseline:
 
-- source rows: **206**
-- app-facing canonical exercises: **195**
+- **195 app-facing canonical exercises**
 
-### Old P0 16
+PO-approved P0:
 
-After Gym Animations purchase:
+- **16 identities**
 
-- source candidates found: **16 / 16**
-- source-availability new-asset need: **0 / 16**
-- P0 priority remains valid
-- default action: existing purchased source → canonical mapping → QA → Production promotion
+Library source coverage:
 
-### Old P1 17 — VISUAL REVIEW COMPLETE
+- **13 / 16**
 
-After final targeted visual QA:
+The three Library-missing identities were reviewed from purchased Home source:
 
-- source-covered: **15 / 17**
-- true source gaps: **2 / 17**
-- unresolved: **0**
+1. Plank — `Front-Elbow-Plank-(male)_Waist-FIX_.mp4`
+2. Crunch — `Crunch-Floor-(male)_waist.mp4`
+3. Lying Leg Raise — `Lying-Leg-Raise_Waist-FIX_.mp4`
 
-Resolved cases:
+Direct visual QA:
 
-1. standard bilateral `Dumbbell Deadlift` → **TRUE_GAP_REMAINS**
-   - reviewed family contains RDL / stiff-leg / straight-leg / sumo / unilateral variants, not the intended conventional bilateral identity
-2. standard-stance `Smith Machine Romanian Deadlift` → **SOURCE_COVERS_EXISTING_IDENTITY**
-   - `Smith-Deadlift_Hips.mp4` visually performs an RDL-like standard-stance hip hinge and can represent the normalized Smith RDL identity
-   - raw filename remains unchanged
-3. standard floor bodyweight `Sit Up` → **TRUE_GAP_REMAINS**
-   - reviewed source contains decline / vertical / twisting / loaded / band variants, not a plain floor bodyweight sit-up
+- Plank → standard forearm plank — PASS
+- Crunch → standard floor bodyweight crunch — PASS
+- Lying Leg Raise → standard supine bilateral leg raise — PASS
+- unresolved: 0
 
-Therefore P1 future asset need is currently **2**, but these remain P1 and are not MVP blockers.
+Package-level P0 source coverage:
 
-Trap Bar Deadlift source exists. If promoted, `Trap Bar` equipment taxonomy still needs an explicit Production decision.
+**16 / 16**
+
+Source-absence-driven P0 new-media creation need:
+
+**0 / 16**
+
+References:
+
+- `docs/exercise-db/2026-09-05-p0-home-fallback-visual-qa-3.md`
+- `docs/exercise-db/2026-09-05-p0-16-production-promotion-spec.md`
+
+Expected curated MVP catalog after P0 promotion:
+
+**195 + 16 = 211**
+
+---
+
+## P1 — non-blocking
+
+Current result:
+
+- source-covered: 15 / 17
+- true gaps: 2 / 17
+- unresolved: 0
+
+True gaps under current evidence:
+
+- standard bilateral Dumbbell Deadlift
+- standard floor bodyweight Sit Up
+
+P1 is post-MVP and does not block the 211 target.
 
 ---
 
 ## Immediate next — DO THIS FIRST
 
-**Continue full 2,109 → Production canonical mapping.**
+**PO decision: Plank recording type.**
 
-Use existing Production 195 canonical exercises as anchors; do not rebuild taxonomy from scratch.
+Recommendation:
 
-For each source row classify as one of:
+`recording_type = duration`
 
-- existing Production canonical
-- new canonical candidate
-- attachment context
-- grip context
-- execution/load context
-- media duplicate/variant
-- excluded/non-gym-first
-- unresolved
+Reason:
 
-### Input needed for the next bulk pass
+- standard forearm plank is a static/isometric hold
+- hold time is the meaningful performance value
+- forcing it into `reps` would create invalid history semantics
 
-A full filename/path/size manifest for `MP4/MALE/Library_database` is required in the active working context. If it is not already directly available, regenerate/export the 2,109-row manifest from the local source folder and upload it once; do not ask the user to hand-select more videos.
+Status:
 
-Then:
+**RECOMMENDED / NOT YET PO-APPROVED**
 
-1. bulk filename/rule mapping against existing Production 195 anchors
-2. isolate only unresolved identity conflicts
-3. use small targeted visual QA only for those conflicts
-4. calculate actual source-derived canonical candidate count
-5. calculate true gym-first MVP gap count
-6. confirm only genuinely missing G Fit-created assets
-7. after canonical mapping stabilizes, decide production media selection / transform / app-serving storage
+After PO approval:
+
+1. lock the P0 16 normalized row spec
+2. Production promotion QA
+   - unique canonical IDs
+   - Korean/English naming + aliases
+   - equipment/body part
+   - recording types
+   - assisted-machine semantics
+   - source provenance
+3. expected app-facing count = 211
+4. select production-serving media for the 16 promoted rows
+5. decide transform/compression/storage/app-serving structure
 
 No Cursor implementation handoff yet.
 
 ---
 
-## Product/UX parallel context preserved
-
-Still OPEN separately from DB normalization:
-
-- recommended-routine actual program contents — depends on Exercise DB/substitution data
-- Analysis first screen / drilldown scope
-- Settings main scope
-- rest timer end signal detail
-
-Recent Analysis exploration (`period selection / exercise summary / frequency / front-back body-map distribution`) is not yet a PO-approved decision.
-
----
-
 ## Resume instruction
 
-On the next continuation:
+On continuation:
 
-1. check `docs/CURRENT.md`
-2. check this checkpoint
-3. do not redo completed family or P1 visual QA
-4. resume directly from full Production mapping
-5. if the 2,109-row manifest is not available in active context, request/export only that manifest once
-6. targeted ZIP review is now exception-only, not the default workflow
+1. read `docs/CURRENT.md`
+2. read this checkpoint
+3. do not redo completed ZIP/video QA
+4. do not reopen P0 source coverage — it is 16/16 locked
+5. resume from **Plank recording-type PO decision → P0 Production promotion QA**
 
 No Cursor implementation handoff.
