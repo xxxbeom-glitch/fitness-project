@@ -4,7 +4,7 @@
 
 ## Current mode
 
-`EXERCISE DB / ASSET NORMALIZATION ACTIVE · RAW R2 VERIFIED · 2,109 BULK MAPPING COMPLETE · P0 SOURCE COVERAGE LOCKED 16/16 · P0 211 PROMOTION SPEC READY FOR PO REVIEW · P1 15/17 SOURCE-COVERED · PRODUCT/UX BASELINE PRESERVED · NO CURSOR IMPLEMENTATION HANDOFF`
+`EXERCISE DB / ASSET NORMALIZATION ACTIVE · RAW R2 VERIFIED · 2,109 BULK MAPPING COMPLETE · P0 SOURCE COVERAGE LOCKED 16/16 · PLANK DURATION APPROVED · P0 211 PRODUCTION PROMOTION QA NEXT · P1 15/17 SOURCE-COVERED · PRODUCT/UX BASELINE PRESERVED · NO CURSOR IMPLEMENTATION HANDOFF`
 
 ## Resume rule
 
@@ -186,6 +186,31 @@ If all 16 are promoted, curated MVP catalog target:
 
 **195 + 16 = 211 app-facing exercises**
 
+### Timed exercise recording — PO APPROVED
+
+Policy:
+
+- Plank처럼 수행 성과가 유지시간인 운동은 `recording_type = duration`
+- duration seconds를 가짜 reps로 변환하지 않음
+- P0 `plank`는 `duration`으로 lock
+- `crunch`, `lying-leg-raise`는 `reps` 유지
+
+시간제 운동의 수행시간 측정과 Rest Timer는 별도 개념으로 유지한다.
+
+UI 상세는 후속으로 미룬다:
+
+- TIME 세트 행 UI
+- 시작/정지 방식
+- countdown vs stopwatch
+- 시간 종료 signal
+- timed set 종료 후 Rest Timer 시작 조건
+
+이 UI 미확정은 P0 211 데이터 승격을 막지 않는다.
+
+Reference:
+
+- `docs/ux-decisions/2026-09-05-duration-exercise-recording.md`
+
 ### P1 17 — non-blocking
 
 Current reviewed result:
@@ -207,41 +232,28 @@ Trap Bar Deadlift source exists but `Trap Bar` equipment taxonomy remains a futu
 
 ---
 
-# NEXT OPEN ITEM — P0 Production promotion
+# NEXT OPEN ITEM — P0 Production promotion QA
 
 ## Immediate next
 
-**PO decision: Plank recording type.**
+**Run P0 16 Production promotion QA.**
 
-Production v1 currently uses `reps` / `weight_reps` and the separately approved assisted-machine model `assisted_weight_reps`.
+Check:
 
-Standard forearm Plank is static/isometric. Recommended:
+1. canonical ID uniqueness against current Production 195
+2. Korean / English display names and search aliases
+3. equipment / body part normalization
+4. recording semantics
+   - Plank = `duration`
+   - Assisted Pull-Up / Dip = `assisted_weight_reps`
+5. source provenance integrity
+6. verify expected app-facing row count = **211**
 
-`recording_type = duration`
+After row lock:
 
-Reason:
-
-- hold time is the actual performance value
-- forcing Plank into `reps` creates meaningless history
-- this is a recording-schema decision, not a source/media problem
-
-Status:
-
-**RECOMMENDED / PO APPROVAL OPEN**
-
-After approval:
-
-1. lock P0 16 normalized row spec
-2. run Production promotion QA
-   - canonical uniqueness
-   - naming / aliases
-   - equipment / body part
-   - recording type
-   - assisted-machine semantics
-   - source provenance
-3. verify expected app-facing row count = **211**
-4. then choose default production-serving media for each promoted row
-5. then decide media transform/compression/storage/app-serving structure
+1. choose default production-serving media for each promoted row
+2. decide media transform/compression/storage/app-serving structure
+3. only when implementation becomes the next dependency, create Issue/AC and hand off to Cursor
 
 No Cursor implementation handoff until canonical/data promotion is stable.
 
@@ -256,6 +268,7 @@ Existing approved UX decisions remain canonical in their individual docs. Import
 - Cable attachment: `docs/ux-decisions/2026-09-03-cable-attachment-active-workout.md`
 - Active Workout / routine update: `docs/ux-decisions/2026-09-03-active-workout-routine-update.md`
 - Rest Timer: `docs/ux-decisions/2026-09-03-rest-timer-behavior.md`
+- Timed exercise recording: `docs/ux-decisions/2026-09-05-duration-exercise-recording.md`
 - Assisted machine recording: `docs/ux-decisions/2026-09-03-assisted-machine-recording.md`
 - Workout Complete: `docs/ux-decisions/2026-09-03-post-workout-completion-carousel.md`, `docs/ux-decisions/2026-09-04-workout-completion-metrics.md`
 - Progression Hint: `docs/ux-decisions/2026-09-04-progression-hint-threshold.md`
@@ -263,6 +276,7 @@ Existing approved UX decisions remain canonical in their individual docs. Import
 
 Parallel OPEN Product/UX items remain:
 
+- timed exercise Active Workout UI details
 - recommended-routine actual program contents — DB/substitution data dependency
 - Analysis first screen / drilldown scope
 - Settings main scope
