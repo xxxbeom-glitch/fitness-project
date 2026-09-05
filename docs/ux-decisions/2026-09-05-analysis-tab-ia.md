@@ -1,7 +1,7 @@
 # Analysis Tab IA
 
 **Date:** 2026-09-05  
-**Status:** PO APPROVED / IA LOCKED / HOME PERIOD + TOP METRICS LOCKED / BODY-MAP VISUAL TREATMENT DEFERRED TO DESIGN / CALCULATION RULE NEXT
+**Status:** PO APPROVED / IA LOCKED / HOME PERIOD + TOP METRICS LOCKED / BODY-MAP DATA BASIS LOCKED / VISUAL TREATMENT DEFERRED / BODY-AREA GRANULARITY NEXT
 
 ## Decision
 
@@ -132,6 +132,78 @@ Approved direction:
 - visually distinguish the body areas represented by the underlying training data
 - support a readable body-area breakdown alongside the visual
 
+### Body-map data calculation — PO DELEGATED / PRODUCT DECISION LOCKED
+
+The body map is driven by **completed-set muscle exposure**, not by kg volume, exercise count, or a recovery/fatigue estimate.
+
+For every final completed/persisted set:
+
+- each mapped **primary muscle** receives `1.0` muscle-set point
+- each mapped **secondary muscle** receives `0.5` muscle-set point
+- an unfinished/unpersisted set contributes `0`
+
+If an exercise has more than one primary muscle, each primary muscle receives the full `1.0` contribution for that completed set. If it has multiple secondary muscles, each receives `0.5`.
+
+This means muscle-set points are **per-muscle exposure scores**. Their sum across muscles can exceed the global completed-set count and must not be presented as if it were the user's literal total number of sets.
+
+Examples:
+
+- bench press, 4 completed sets -> chest `4.0`; triceps `2.0`; anterior deltoid `2.0` when those mappings are primary/secondary in the canonical exercise data
+- an exercise with glutes + hamstrings both marked primary, 3 completed sets -> glutes `3.0`; hamstrings `3.0`
+
+#### Recording-type rule
+
+The body-map score deliberately does not multiply by load, reps, duration, or assistance value.
+
+Therefore a completed set can contribute to body-area exposure whether the exercise uses:
+
+- `weight_reps`
+- `reps`
+- `duration`
+- `added_weight_reps`
+- `assisted_weight_reps`
+- future set-based recording types
+
+This keeps the body map usable across weighted, bodyweight, timed, and assisted exercises without inventing a false common kg-volume formula.
+
+#### Missing muscle mapping
+
+If an exercise has no usable primary/secondary muscle mapping:
+
+- it remains part of workout history and global workout/set summaries
+- it is excluded only from the body-map muscle calculation until valid mapping exists
+- the UI must not guess a muscle solely from exercise name text at runtime
+
+#### Period values retained for design/use
+
+For each muscle, Analysis should be able to derive and retain three related values from the same underlying score:
+
+1. **period score** — total weighted muscle-set points in the selected period
+2. **weekly-average score** — period score normalized by the eligible date span, used when a comparable rate across `4주 / 3개월 / 6개월 / 1년` is needed
+3. **distribution share** — that muscle's period score divided by the sum of all muscle scores, used when a relative distribution view is useful
+
+Weekly-average normalization uses the actual available account-history span inside the selected period rather than counting dates before the account existed. If fewer than 7 eligible days exist, the weekly-average value is treated as insufficient/unstable and the raw period score remains available; exact empty/insufficient-data presentation is decided in the later state pass.
+
+The visual design is **not required to expose all three numbers**. Retaining them prevents the UI from forcing a new backend calculation later when the actual body-map composition is tested.
+
+#### Interpretation boundary
+
+`1.0 / 0.5` is a pragmatic fractional-set accounting convention for visualization and training-distribution analysis. It is **not** a claim that every secondary muscle receives exactly 50% of a primary muscle's physiological stimulus.
+
+For MVP:
+
+- do not label body-map levels as `optimal`, `undertrained`, `overtrained`, `recovered`, or similar physiological judgments
+- do not derive readiness/recovery from these values
+- do not set scientific-looking target bands solely to determine color strength
+
+Recent resistance-training literature commonly analyzes weekly set volume, and a 2026 meta-regression explicitly evaluated indirect sets with a fractional `0.5` accounting model among its volume definitions. Hevy also documents primary `1` / secondary `0.5` as one practical way to account for overlapping volume. These support the convention as a reasonable tracking heuristic, not as an exact biological measurement.
+
+Evidence references:
+
+- Pelland et al., *Sports Medicine* (2026), PMID `41343037`
+- Schoenfeld et al., *Journal of Sports Sciences* (2017), PMID `27433992`
+- Hevy, `How Many Sets Per Muscle Group For Optimal Growth?`
+
 ### Body-map visual treatment — OPEN / DESIGN-PHASE DECISION
 
 The Product Owner explicitly does **not** lock the color/rendering behavior before actual visual design.
@@ -144,14 +216,16 @@ The following remain open and should be decided while composing the real Analysi
 - exact brand color vs separate analytics accent color
 - exact opacity, lightness, saturation, gradient, border, texture, or other visual states
 - how much visual differentiation is readable at the final body-map size
+- whether the final visual maps primarily from weekly-average score, distribution share, or a tested combination of the retained values
 
 Competitor references such as Hevy, Peloton, Tonal, Equinox+, and others are design references only; their color behavior is not adopted as product policy.
 
 Important boundary:
 
 - the body map remains a data visualization layer, not a second exercise-demo asset system
-- exact scoring formula, primary/secondary muscle weighting, normalization, and calculation thresholds are separate product/data decisions and remain OPEN
-- the eventual visual mapping from calculated values to color/appearance is deliberately deferred to the design pass so it can react to the final G Fit brand palette, contrast, asset style, and screen composition
+- underlying completed-set weighting is locked as above
+- exact visual thresholds and rendering remain open until real design calibration
+- body-area granularity / mapping to the final front-back visual regions remains a separate next decision
 
 ---
 
@@ -247,18 +321,21 @@ Already locked:
 
 1. default period + period options
 2. top summary metric set
+3. body-map completed-set data basis: primary `1.0` / secondary `0.5`
+4. period / weekly-average / distribution-share derived values retained
 
 Explicitly deferred to visual design:
 
 - body-map color/rendering treatment
+- exact visual thresholds / final mapping from calculated values to appearance
 
 Next product/data decisions:
 
-3. body-map calculation input, primary/secondary weighting, normalization, and calculation thresholds
-4. workout-frequency definition
-5. `최근 성장한 운동` selection rule
-6. recent-record card/list information density
-7. empty / insufficient-data states
+5. body-area granularity / mapping to the final front-back visual regions
+6. workout-frequency definition
+7. `최근 성장한 운동` selection rule
+8. recent-record card/list information density
+9. empty / insufficient-data states
 
 After those product/data rules are defined, detailed wireframe/Figma composition can determine the final body-map visual treatment together with the G Fit design system.
 
