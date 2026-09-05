@@ -1,7 +1,7 @@
 # Analysis Tab IA
 
 **Date:** 2026-09-05  
-**Status:** PO APPROVED / IA LOCKED / SCREEN CONTENT DETAILS OPEN
+**Status:** PO APPROVED / IA LOCKED / HOME PERIOD + TOP METRICS LOCKED / BODY-MAP RULE NEXT
 
 ## Decision
 
@@ -30,7 +30,7 @@ Purpose:
 Approved content direction:
 
 - period selection
-- compact summary metrics such as workout count / completed sets / training volume where valid
+- compact top summary metrics
 - front/back body visualization for muscle-area distribution
 - workout frequency summary
 - recent exercise-progress summary
@@ -43,7 +43,80 @@ Navigation:
 - workout-record item -> `운동 기록 상세`
 - history entry / more -> `운동 기록`
 
-The exact visible metric set and ordering remain OPEN for the next screen-content pass.
+### Analysis Home period — PO APPROVED
+
+Default:
+
+- `최근 4주`
+
+Selectable periods:
+
+- `4주`
+- `3개월`
+- `6개월`
+- `1년`
+
+Rules:
+
+- `4주` is the default because it is long enough to reflect a repeated training pattern while remaining recent enough for actionable review.
+- `1주` is not a primary Analysis-home period because it is too sensitive to one missed or shifted session and duplicates short-term status better handled by Home/recent history.
+- `전체` is not a primary MVP period because long account history can flatten recent changes and make the first Analysis screen less actionable.
+- the selected period applies to Analysis-home aggregate sections unless a later section-specific decision explicitly states otherwise.
+
+### Analysis Home top summary metrics — PO APPROVED
+
+The fixed top summary set is:
+
+1. `운동 횟수`
+2. `완료 세트`
+3. `운동 시간`
+
+#### 1. 운동 횟수
+
+Count saved workout sessions in the selected period that contain actual persisted performed work.
+
+- fully completed saved workout -> count 1
+- saved partial workout with at least one completed/persisted set -> count 1
+- discarded session -> count 0
+- empty planned session with no persisted performed work -> count 0
+
+Partial sessions remain distinguishable in workout history, but they still represent real training activity and therefore contribute to Analysis workout count.
+
+#### 2. 완료 세트
+
+Sum only final completed/persisted sets across saved sessions in the selected period.
+
+- use the same final-state rule as Workout Completion Metrics
+- checking/unchecking the same set multiple times does not create multiple completed sets
+- planned but unfinished sets do not count
+- this metric remains valid across `weight_reps`, `reps`, `duration`, `added_weight_reps`, `assisted_weight_reps`, and future set-based recording types
+
+#### 3. 운동 시간
+
+Sum actual saved-session exercise durations in the selected period.
+
+- use the approved workout-time calculation rule from Workout Completion Metrics
+- explicit paused time is excluded
+- app backgrounding alone does not automatically remove time
+- recovered sessions continue from preserved session state when technically supported
+
+Display formatting can use human-readable total duration such as `12시간 40분`; exact typography remains a visual-design decision.
+
+### Why `총 볼륨` is not one of the fixed three headline metrics
+
+`총 볼륨` remains useful, but it is not universal across the approved exercise recording model.
+
+Existing policy already excludes or limits several cases:
+
+- `assisted_weight_reps` should not be treated as ordinary `kg × reps` volume
+- `duration` should not be converted to kg volume
+- bodyweight / future distance types do not share one meaningful hidden conversion
+
+Therefore a fixed top-row `총 볼륨` number could represent only part of a user's actual training while visually appearing to summarize all training.
+
+For MVP, volume may still appear in workout detail, exercise-specific progress, or a clearly scoped secondary Analysis module where the calculation is valid. It is not used as the universal third headline metric.
+
+No previous-period percentage delta is locked into the top summary row yet. That can be considered later after the basic Analysis calculation/state rules are complete.
 
 ---
 
@@ -154,10 +227,13 @@ Advanced analytics remain outside MVP unless separately approved.
 
 ## Next design pass
 
-Next task is to define the exact `분석 홈` content contract before drawing detailed UI:
+Already locked:
 
-1. default period and period options
-2. exact top summary metrics
+1. default period + period options
+2. top summary metric set
+
+Next:
+
 3. body-map calculation input and display rule
 4. workout-frequency definition
 5. `최근 성장한 운동` selection rule
@@ -165,3 +241,7 @@ Next task is to define the exact `분석 홈` content contract before drawing de
 7. empty / insufficient-data states
 
 After those are locked, proceed to wireframe/Figma composition.
+
+Related metric calculation policy:
+
+- `docs/ux-decisions/2026-09-04-workout-completion-metrics.md`
