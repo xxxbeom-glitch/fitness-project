@@ -15,6 +15,12 @@
 
 시간제 운동의 기록값은 초 단위 duration으로 저장하고, 의미 없는 가짜 reps로 변환하지 않는다.
 
+이 결정은 이후 PO가 승인한 전체 운동 기록 타입 정책의 일부다.
+
+Broader policy:
+
+- `docs/ux-decisions/2026-09-05-exercise-recording-types.md`
+
 ## Rest Timer와의 경계
 
 시간제 운동의 **수행시간 측정**과 기존 **휴식 타이머**는 서로 다른 기능이다.
