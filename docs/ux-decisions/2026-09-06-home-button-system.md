@@ -50,8 +50,10 @@ Home에서 새 버튼 종류를 추가하지 않고 기존 `Compact Button` / `C
   - 루틴 선택 즉시 반영 후 닫힘
   - 별도 저장 CTA 없음
 - `02D_Home_Active`
-  - `돌아가기`: Primary Compact `280 x 44`
-  - 카드 하단 action row 전체 폭
+  - `돌아가기`: Primary Compact
+  - `운동 종료`: Secondary Compact
+  - 카드 하단 action row
+  - `136 + 8 + 136`
 
 ## MVP scope note
 
@@ -78,5 +80,7 @@ Home page:
 2026-09-06 visual QA에서 카드 하단 단독 Primary를 `88 x 44`로 좌측 정렬하면 빈 공간이 과도해 전체 폭 `280 x 44`로 수정했다.
 
 이후 Home 루틴 선택 정책이 확정되면서 `02B`는 단독 Primary가 아니라 `운동 시작 / 다른 루틴`의 2버튼 구조로 변경했다. `02A`와 동일하게 `136 + 8 + 136`을 사용한다.
+
+`02D`도 진행 중 운동 상태에서 즉시 복귀와 종료를 모두 제공하기 위해 `돌아가기 / 운동 종료` 2버튼 구조로 변경했다. `돌아가기`를 Primary, `운동 종료`를 Secondary로 두고 동일하게 `136 + 8 + 136`을 사용한다.
 
 현재 `Compact Button` 원본 컴포넌트의 Secondary default 텍스트 토큰은 Primary와 같은 어두운 텍스트를 사용해 대비가 낮다. Home의 Secondary instance는 밝은 텍스트 override를 사용하고, 전체 Compact Button source/component QA는 별도 공용 UI 정리에서 처리한다.
