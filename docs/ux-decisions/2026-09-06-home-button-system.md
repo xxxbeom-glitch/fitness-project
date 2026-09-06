@@ -13,7 +13,8 @@ Home에서 새 버튼 종류를 추가하지 않고 기존 `Compact Button` / `C
 - 텍스트: `14 / 20`
 - 좌우 패딩: `14px`
 - 용도: 카드 내부의 작은 국소 행동
-- 카드 하단 단독 버튼: 최소 폭 `88px`, 텍스트 아래 하단 action row에 좌측 정렬
+- 카드 하단 단독 Primary: 카드 콘텐츠 폭 전체 사용
+- Home 카드 기준 단독 Primary 폭: `280 x 44`
 - 두 버튼 병렬: 같은 폭 + `8px` gap
 
 ### CTA Button
@@ -39,14 +40,14 @@ Home에서 새 버튼 종류를 추가하지 않고 기존 `Compact Button` / `C
   - 카드 하단 action row
   - `136 + 8 + 136`
 - `02B_Home_Next`
-  - `운동 시작`: Primary Compact `88 x 44`
-  - 카드 하단 action row 좌측 정렬
+  - `운동 시작`: Primary Compact `280 x 44`
+  - 카드 하단 action row 전체 폭
 - `02C_Home_Today`
-  - `운동 시작`: Primary Compact `88 x 44`
-  - 카드 하단 action row 좌측 정렬
+  - `운동 시작`: Primary Compact `280 x 44`
+  - 카드 하단 action row 전체 폭
 - `02D_Home_Active`
-  - `돌아가기`: Primary Compact `88 x 44`
-  - 카드 하단 action row 좌측 정렬
+  - `돌아가기`: Primary Compact `280 x 44`
+  - 카드 하단 action row 전체 폭
 
 ## MVP scope note
 
@@ -68,5 +69,7 @@ Home page:
 - page: `02 홈`
 
 ## QA note
+
+2026-09-06 visual QA에서 `02B~02D`의 단독 Primary를 `88 x 44`로 좌측 정렬하면 카드 하단의 빈 공간이 과도하고 `02A`와 action area의 시각 규칙이 깨지는 문제가 확인되었다. 따라서 단독 Primary는 카드 콘텐츠 폭 전체(`280 x 44`)로 수정했다.
 
 현재 `Compact Button` 원본 컴포넌트의 Secondary default 텍스트 토큰은 Primary와 같은 어두운 텍스트를 사용해 대비가 낮다. 원본 컴포넌트가 직접 수정 가능한 로컬 source가 아니어서 Home의 Secondary instance와 공용 UI 예시에만 밝은 텍스트 override를 적용했다. 전체 Compact Button source/component QA는 별도 공용 UI 정리에서 처리한다.
