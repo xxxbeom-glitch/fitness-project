@@ -43,8 +43,11 @@ Home에서 새 버튼 종류를 추가하지 않고 기존 `Compact Button` / `C
   - `운동 시작`: Primary Compact `88 x 44`
 - `02D_Home_Active`
   - `돌아가기`: Primary Compact `88 x 44`
-- `02E_PROPOSAL_QuickStart`
-  - `빈 운동 시작`: Primary CTA `280 x 58`
+
+## MVP scope note
+
+- `루틴 없이 바로 운동하기` / `빈 운동 시작`은 MVP 1차에서 제외한다.
+- 따라서 `02E_PROPOSAL_QuickStart`는 Home state로 사용하지 않으며 Figma Home 페이지에서도 제거한다.
 
 ## Figma
 
