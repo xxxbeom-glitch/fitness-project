@@ -1,10 +1,10 @@
 # CURRENT — Fitness Project
 
-**Updated:** 2026-09-05
+**Updated:** 2026-09-06
 
 ## Current mode
 
-`PRODUCT/UX ANALYSIS HOME CONTENT ACTIVE · ANALYSIS 5-SCREEN HIERARCHY PO APPROVED · ANALYSIS PERIOD 4W/3M/6M/1Y LOCKED · TOP METRICS WORKOUTS/SETS/TIME LOCKED · BODY-MAP DATA BASIS PRIMARY1/SECONDARY0.5 LOCKED · BODY-MAP VISUAL TREATMENT DEFERRED TO DESIGN · BODY-AREA GRANULARITY NEXT · EXERCISE DB P0 DEFAULT MEDIA SOURCE INPUT LOCKED 16/16 · 211 MERGE SAFE · MEDIA TRANSFORM SAMPLE DEFERRED PARALLEL · P1 15/17 SOURCE-COVERED · NO CURSOR IMPLEMENTATION HANDOFF`
+`PRODUCT/UX FIGMA GROUP 04 EXERCISE LIBRARY QA ACTIVE · EXERCISE DETAIL 2-TAB FIGMA ALIGNED · ATTACHMENT H/I DUPLICATE CLEANED · 04H ATTACHMENT BOTTOM-SHEET STATE KEPT · EXERCISE SEARCH LIST MOBBIN SYNTHESIS 04I PROPOSAL OPEN · GROUP 04 DATA/METADATA QA OPEN · ANALYSIS BODY-AREA GRANULARITY DEFERRED RESUME ITEM · EXERCISE DB P0 DEFAULT MEDIA SOURCE INPUT LOCKED 16/16 · 211 MERGE SAFE · MEDIA TRANSFORM SAMPLE DEFERRED PARALLEL · P1 15/17 SOURCE-COVERED · NO CURSOR IMPLEMENTATION HANDOFF`
 
 ## Resume rule
 
@@ -16,9 +16,119 @@
 
 ---
 
-# CURRENT PRODUCT/UX TRACK — Analysis Home content
+# CURRENT PRODUCT/UX TRACK — Figma Group 04 Exercise library/search QA
 
-The Product Owner intentionally paused exercise-media transform/export work and resumed screen IA planning.
+The Product Owner moved the active design pass to Figma `GROUP_04_운동 목록 / 상세`.
+
+Latest checkpoint:
+
+- `docs/ux-decisions/2026-09-06-exercise-library-figma-04-checkpoint.md`
+
+Canonical Figma group:
+
+- file: `W3lZurXCXbThP67rF2xk2b`
+- group: `GROUP_04_운동 목록 / 상세` — node `34:1880`
+
+## Group 04 current structure
+
+Current canonical states are A~H:
+
+1. `04A` 운동 검색 / 추가
+2. `04B` 운동 여러 개 선택 중
+3. `04C` 검색 결과 없음
+4. `04D` 운동 상세 / 운동 정보
+5. `04E` 직접 운동 만들기
+6. `04F` 직접 만든 운동 수정
+7. `04G` 운동 상세 / 최근 기록
+8. `04H` 운동 선택 → 손잡이 바텀시트
+
+### Exercise Detail D/G — ALIGNED
+
+The approved 2-tab structure is now represented correctly in Figma:
+
+- `04D` = `운동 정보`
+- `04G` = `최근 기록`
+- same screen, different tab state
+- same sample exercise name (`벤치프레스`)
+- duplicate `내 최근 기록 / 기록 전체 보기` block removed from 04D
+
+Reference:
+
+- `docs/ux-decisions/2026-09-04-exercise-detail-scope.md`
+
+### Attachment H/I duplicate — CLEANED
+
+The previous duplicate attachment-bottom-sheet states were consolidated.
+
+- old 04H removed
+- old 04I promoted to canonical `04H`
+- card node: `170:2169`
+- screen name: `04H_Exercise_Attachment_Selection`
+- no remaining old attachment-state `04I`
+
+The attachment UX still follows the existing rule that supported exercises choose a `손잡이` in the add flow.
+
+Current refinement boundary:
+
+- real gym attachment possibilities should drive the product taxonomy, not purchased asset filenames
+- purchased media should be matched only as far as the source actually supports
+- exact per-exercise attachment lists, MAG subtype hierarchy, direct-input behavior, and final 04H copy remain OPEN
+
+Reference:
+
+- `docs/ux-decisions/2026-09-03-cable-attachment-active-workout.md`
+
+### Exercise search list proposal — OPEN / NOT PO APPROVED
+
+Mobbin review covered representative patterns from Hevy, Bevel, Peloton Strength+, Equinox+, MyFitnessPal, Garmin, and WHOOP.
+
+Current synthesis proposal:
+
+- exercise thumbnail
+- exercise name
+- secondary line `부위 · 장비`
+- right-side `+`
+- flat separator list instead of heavy card/tag treatment
+- multi-select state can replace `+` with selected/check state and use a bottom add CTA
+
+Comparison-only Figma proposal:
+
+- `CARD_04I_LIST_PROPOSAL`
+- node `207:1233`
+- screen `04I_Search_List_Proposal`
+- existing 04A remains unchanged
+- status: **NOT PO APPROVED**
+
+## Group 04 QA open items
+
+Still open before closing Group 04:
+
+1. `04A/04B` mock exercise-to-body-part labels contain incorrect pairings; `코어` filter coverage also needs cleanup
+2. `04C` uses `레그프레스` as a no-result example and should use a valid no-result mock instead
+3. `04D` still needs approved detail metadata coverage review: equipment, primary/secondary muscle separation, checkpoint/caution
+4. `04E/04F` need required custom-exercise metadata coverage: equipment and recording type
+5. `04H` needs final attachment taxonomy/copy/direct-input decision
+6. `04I_LIST_PROPOSAL` must be accepted or rejected; if accepted, propagate the list pattern to 04A/04B
+
+# NEXT OPEN ITEM — Review 04I exercise-search list proposal
+
+Immediate next:
+
+1. compare current 04A list against `04I_LIST_PROPOSAL`
+2. Product Owner accepts/rejects the proposed `thumbnail + name + body part/equipment + add` flat-list pattern
+3. if approved, apply to 04A/04B; if rejected, remove the proposal
+4. finish 04A/B/C data QA
+5. finish D/E/F metadata QA
+6. finish 04H attachment/direct-input UX
+7. run full Group 04 layout/state QA and decide whether Group 04 can close
+
+No Cursor implementation handoff yet.
+
+---
+
+# DEFERRED PRODUCT/UX TRACK — Analysis Home content
+
+The Analysis track remains approved and resumable after the current Figma Group 04 pass.
 
 ## Analysis tab hierarchy — PO APPROVED
 
@@ -157,11 +267,9 @@ References:
 - `docs/ux-decisions/2026-09-04-workout-completion-metrics.md`
 - `docs/14_IA_STORYBOARD.md`
 
-# NEXT OPEN ITEM — Analysis body-area granularity
+# ANALYSIS RESUME ITEM — Body-area granularity
 
-The underlying body-map score is now locked. The body-map color/rendering remains intentionally deferred to the design phase.
-
-Immediate next:
+When the Analysis track resumes:
 
 1. map current canonical muscle/body-part taxonomy into a practical front/back body-map region set
 2. avoid visual regions more granular than the actual exercise DB can support consistently
@@ -385,7 +493,7 @@ P1 remains post-MVP / non-blocking.
 
 # DEFERRED PARALLEL ITEM — Media transform sample + derived 211 artifact
 
-The Product Owner explicitly deferred this work while Product/UX Analysis IA is active.
+The Product Owner explicitly deferred this work while the Product/UX design track is active.
 
 When resumed:
 
@@ -404,6 +512,7 @@ Important references:
 
 - Home / Recommended Routine: `docs/ux-decisions/2026-09-03-recommended-routine-detail-flow.md`, `docs/ux-decisions/2026-09-04-recommended-routine-post-workout-save.md`
 - Exercise Detail: `docs/ux-decisions/2026-09-04-exercise-detail-scope.md`
+- Exercise library Figma Group 04 checkpoint: `docs/ux-decisions/2026-09-06-exercise-library-figma-04-checkpoint.md`
 - Cable attachment: `docs/ux-decisions/2026-09-03-cable-attachment-active-workout.md`
 - Active Workout / routine update: `docs/ux-decisions/2026-09-03-active-workout-routine-update.md`
 - Rest Timer: `docs/ux-decisions/2026-09-03-rest-timer-behavior.md`
@@ -421,8 +530,9 @@ Parallel OPEN Product/UX items:
 - recommended-routine actual program contents — DB/substitution data dependency
 - Settings main scope
 - rest timer end signal detail
+- Analysis body-area granularity / frequency / recent-growth / empty-state detail
 
-Analysis screen hierarchy is locked; the active Analysis work is exact home calculation/content/state definition.
+Exercise search / library Group 04 is the current active design track. Analysis screen hierarchy remains locked and resumes afterward.
 
 ---
 
@@ -431,6 +541,15 @@ Analysis screen hierarchy is locked; the active Analysis work is exact home calc
 Canonical Figma:
 
 `https://www.figma.com/design/W3lZurXCXbThP67rF2xk2b/LIFTLY_%EC%B5%9C%EC%A2%85?node-id=0-1`
+
+Current Group 04:
+
+`https://www.figma.com/design/W3lZurXCXbThP67rF2xk2b/LIFTLY_%EC%B5%9C%EC%A2%85?node-id=34-1880`
+
+Current comparison-only exercise-list proposal:
+
+- `CARD_04I_LIST_PROPOSAL` — node `207:1233`
+- not PO approved
 
 Canonical production wireframe:
 
