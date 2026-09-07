@@ -10,6 +10,18 @@ Login failures are presented as a modal/dialog state over `01A_로그인`.
 
 The previous `01D_로그인_오류` full screen is removed from Figma.
 
+## Canonical dialog UI
+
+Login errors must **reuse the existing product `DialogCard` component** already used by workout confirmation dialogs. Do not create a separate login-only card/dialog visual style.
+
+Canonical component references in Figma:
+
+- `DialogCard` component set key: `ecefb0480cb53f8ab31bfc3a5e8e8c5cb1b0e0ee`
+- `DialogButtons` component set key: `84076d0cd6693e265e5f6045e7e10024b2196ad0`
+- existing reference use: workout-end confirmation states such as `403a_Workout_End_Incomplete` / `403b_Workout_End_Complete`
+
+Login-error examples use the `DialogCard` **Default** variant without inventing new radius, padding, surface, text hierarchy, divider, or button treatment.
+
 ## Dialog cases represented in Figma
 
 1. **일반 로그인 실패**
@@ -40,11 +52,11 @@ Common actions:
 
 File: `W3lZurXCXbThP67rF2xk2b`
 
-Page: `01 로그인 · 첫 진입`
+Page/group: `01 로그인 · 첫 진입`
 
 Reference block:
 
 - `LOGIN_ERROR_DIALOG_CASES`
 - node: `322:908`
 
-The reference uses the current local typography, color, spacing, radius and button typography rules.
+The previous ad-hoc login-dialog construction was replaced after QA. The current reference block consists of actual `DialogCard` component instances with text/action overrides only.
