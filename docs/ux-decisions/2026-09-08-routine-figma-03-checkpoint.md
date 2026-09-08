@@ -32,15 +32,26 @@ No weekday-assignment UI remains in the canonical Group 03 states.
 
 The current MVP pass does not require a routine to be assigned to a specific weekday.
 
-### Recommended-routine review
+### Recommended-routine detail alignment — PO APPROVED
 
-`03C_추천루틴상세` keeps the approved recommendation-review role:
+`03C_추천루틴상세` now uses the same detail-screen structure as `03D_Routine_Detail`.
 
-- one recommended routine is reviewed
-- primary CTA is `이 루틴 사용하기`
-- accepting it saves the routine and continues according to the existing recommendation-flow policy
+Approved UI rule:
 
-Reference: `DEC-014` in `docs/08_DECISIONS.md`.
+- do not show a separate recommendation-description card above the routine contents
+- use the same three-column routine summary component as `03D`: `총 운동 / 예상 시간 / 총 세트`
+- show the actual routine name in the header instead of a generic `추천 루틴` title
+- use the same exercise-card layout and spacing as the standard routine detail screen
+- use the same primary CTA label `운동 시작`
+- the intended visible control difference is that a recommended routine detail has **no header Edit action** (`RightAction=None`), while a normal saved routine detail uses `RightAction=Edit`
+
+Current `03C` example summary:
+
+- 총 운동: `6개`
+- 예상 시간: `55분`
+- 총 세트: `18세트`
+
+This Figma alignment changes the previous `03C` CTA from `이 루틴 사용하기` to `운동 시작`. The existing repository decision `DEC-014` still describes the older acceptance-to-Home flow. Recommendation persistence/navigation semantics therefore need one explicit reconciliation before implementation handoff; this checkpoint records the approved screen state without silently rewriting that product-flow decision.
 
 ### Routine prescription / card look
 
@@ -135,7 +146,7 @@ Current canonical heights:
 
 - 03A: `780`
 - 03B: `780`
-- 03C: `2746`
+- 03C: `2672`
 - 03D: `1908`
 - 03E: `780`
 - 03E2: `2518`
@@ -163,6 +174,7 @@ Applied/verified:
 - CTA text uses `button/cta`; Primary CTA text uses `text/on-brand`
 - all Group 03 headers use the balanced local `Nav Header` variants with fixed left/right action slots
 - root list states use `LeftAction=None`; child/detail/create/edit states use `LeftAction=Back`
+- `03C` and `03D` now share the same summary/content spacing model; `03C` alone omits the header Edit action
 - new Overflow Menu components use local semantic color/radius/typography tokens and `shadow/menu`; audit found no unbound menu fills/strokes
 
 ## QA result
@@ -173,8 +185,10 @@ PASS:
 - canonical screen backgrounds: local `bg/default`
 - base-height screens normalized to `360 x 780`
 - long-content screens remain unconstrained above 780
-- `03C` CTA = `이 루틴 사용하기`
-- `03D` CTA = `운동 시작`
+- `03C` uses the same `총 운동 / 예상 시간 / 총 세트` summary pattern as `03D`
+- `03C` header title = routine name; RightAction = `None`
+- `03C` CTA = `운동 시작`
+- `03D` CTA = `운동 시작`; RightAction = `Edit`
 - `03E` save CTA = Disabled until a valid routine is composed
 - `03F` / `03E2` use the original edit-card visual pattern
 - duplicate `3세트 · 8–12회` header summary removed from routine ExerciseCards
@@ -196,5 +210,7 @@ Before implementation handoff, routine-template data shown inside the set table 
 - `DEC-012`: self-built routines require explicit set count + target rep prescription
 
 Do not treat the current sample `80 / 35` values as approved default routine data.
+
+A separate flow-policy reconciliation is also required because the approved 03C screen now uses `운동 시작`, while `DEC-014` still documents `이 루틴 사용하기 → save → Home`.
 
 No Cursor implementation handoff yet.
