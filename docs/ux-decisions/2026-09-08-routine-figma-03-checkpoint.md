@@ -21,9 +21,8 @@ Current canonical states on the `03 루틴` page:
 5. `03E_Routine_Create` — `34:1457`
 6. `03E2_Routine_Create_WithExercises` — `352:896`
 7. `03F_Routine_Edit` — `34:1477`
-8. `03G_Routine_Readonly` — `34:1499`
 
-Canvas order was cleaned to follow the same logical sequence.
+Canvas order follows the same logical sequence.
 
 ## Product alignment applied
 
@@ -53,13 +52,21 @@ The Product Owner explicitly chose the previously authored routine-card visual l
 
 The create/edit screens do not restore the old weekday selector when reusing the `230` card look.
 
-### Read-only state
+### Active-workout routine access guard
 
-`03G_Routine_Readonly` now includes the existing notice:
+The previous `03G_Routine_Readonly` state and inline notice `운동 진행 중 · 루틴 편집은 종료 후 가능` are no longer part of the canonical routine flow.
 
-`운동 진행 중 · 루틴 편집은 종료 후 가능`
+Approved direction:
 
-Routine-card more/menu icons are hidden in this read-only state so the screen does not visually imply an available edit action.
+- while a workout session is active, block entry into routine-management surfaces at the entry point rather than navigating into a read-only routine screen
+- keep the user on the current screen when the blocked entry is attempted
+- provide a lightweight toast-style message explaining that routine management is unavailable during the active workout
+- exact toast component, placement, duration, and final copy are deferred to the later interaction-state pass
+
+Figma action in this checkpoint:
+
+- removed `03G_Routine_Readonly` — old node `34:1499`
+- no separate read-only routine screen is required for this state
 
 ## Screen-height rule
 
@@ -76,7 +83,6 @@ Current canonical heights:
 - 03E: `780`
 - 03E2: `2518`
 - 03F: `2518`
-- 03G: `780`
 
 ## Design-system normalization applied
 
@@ -112,9 +118,7 @@ PASS:
 - `03D` CTA = `운동 시작`
 - `03E` save CTA = Disabled until a valid routine is composed
 - `03F` / `03E2` use the original edit-card visual pattern
-- `03G` notice is inside the canonical screen, not left as a detached canvas object
-- `03G` routine-card menu icons are hidden
-- no detached read-only notice remains at page level
+- obsolete `03G_Routine_Readonly` removed from canonical Group 03
 
 ## Remaining product-content QA
 
