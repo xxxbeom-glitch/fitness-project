@@ -30,7 +30,18 @@ For `LeftAction=Back`, reuse the existing Figma back icon artwork exactly as alr
 - artwork size: `24 x 24`
 - placement inside the fixed `44 x 44` left slot: `x=10`, `y=10`
 
-Do not redraw, replace, enlarge, or stylistically reinterpret the back icon when creating or migrating header variants. The same preservation rule applies to existing right-action icons unless a separate PO decision changes the icon itself.
+For all non-None right actions, reuse the complete existing remote right-action slot rather than recreating or resizing the icon artwork manually:
+
+- right action slot: `44 x 44`
+- slot layout: horizontal auto layout
+- horizontal alignment: center
+- vertical alignment: center
+- existing action artwork: preserved exactly from the original remote header
+- standard artwork placement: `24 x 24` at `x=10`, `y=10` inside the slot where applicable
+
+This applies to `Plus`, `Edit`, `Trash`, `Pause`, `More`, `Save`, and `Play`. `RightAction=None` keeps the same empty `44 x 44` centered slot structure.
+
+Do not redraw, replace, enlarge, flatten, or stylistically reinterpret existing header icons during structural header work.
 
 ## Variant model
 
@@ -83,6 +94,8 @@ PASS:
 - all 16 variants retain `44px` left and right slots
 - title area resolves to `232px`
 - all 8 `LeftAction=Back` variants reuse the original `icon/arrow-left` artwork at `24 x 24`, centered in the `44 x 44` slot
+- all right-action variants reuse the original remote right-action slot structure with horizontal/vertical center alignment
+- `Plus`, `Edit`, `Trash`, `Pause`, `More`, `Save`, and `Play` artwork is preserved from the original remote header rather than manually redrawn or resized
 - representative root state (`Left=None / Right=Plus`) keeps title centered
 - representative child state (`Left=Back / Right=None`) keeps title centered
 - representative `03`, `04`, and `05` migrated headers render correctly after migration
