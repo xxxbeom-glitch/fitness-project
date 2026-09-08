@@ -52,6 +52,22 @@ The Product Owner explicitly chose the previously authored routine-card visual l
 
 The create/edit screens do not restore the old weekday selector when reusing the `230` card look.
 
+### Exercise-card header content / attachment display — PO APPROVED 2026-09-08
+
+The Product Owner approved the cleaner card-header treatment currently applied in `03C / 03D / 03E2 / 03F`.
+
+Rules:
+
+- do **not** repeat summary text such as `3세트 · 8–12회` under the exercise name when the same card already exposes the full `SET / KG / REPS` rows below
+- ordinary exercises show only the muscle/body-area tag and exercise name in the card header
+- when an exercise has a separately selected cable attachment, show the selected attachment as a small **separate status chip** beside the muscle/body-area tag
+- example: `등` + `맥그립 미디엄` above `랫풀다운`
+- the attachment chip is display-only in the card; selection still occurs in the exercise-add flow
+- do not show an empty placeholder line for exercises without an attachment
+- exercise identities whose attachment is already part of the canonical exercise name do not need the same attachment repeated as an extra chip
+
+This display rule is consistent with `docs/ux-decisions/2026-09-03-cable-attachment-active-workout.md` and does not finalize the remaining attachment taxonomy / allowed-attachment mapping.
+
 ### Active-workout routine access guard
 
 The previous `03G_Routine_Readonly` state and inline notice `운동 진행 중 · 루틴 편집은 종료 후 가능` are no longer part of the canonical routine flow.
@@ -99,9 +115,10 @@ Applied/verified:
 - section/card titles use the appropriate local heading styles
 - copied ExerciseCard core text roles are locally normalized while preserving the original visual look:
   - exercise title → `heading/01 + text/primary`
-  - exercise prescription/meta → `label/02 + text/secondary`
   - SET/KG/REPS labels → `caption/01 + text/tertiary`
   - set/value text → `body/01 + text/primary`
+- the duplicated exercise-summary line under the title is hidden in canonical Group 03 routine cards
+- selected attachment, when applicable, is shown as a separate compact status chip in the card header
 - CTA text uses `button/cta`; Primary CTA text uses `text/on-brand`
 - all Group 03 headers use the balanced local `Nav Header` variants with fixed left/right action slots
 - root list states use `LeftAction=None`; child/detail/create/edit states use `LeftAction=Back`
@@ -118,6 +135,8 @@ PASS:
 - `03D` CTA = `운동 시작`
 - `03E` save CTA = Disabled until a valid routine is composed
 - `03F` / `03E2` use the original edit-card visual pattern
+- duplicate `3세트 · 8–12회` header summary removed from routine ExerciseCards
+- attachment-capable example (`랫풀다운`) shows `맥그립 미디엄` as a separate header status chip
 - obsolete `03G_Routine_Readonly` removed from canonical Group 03
 
 ## Remaining product-content QA
