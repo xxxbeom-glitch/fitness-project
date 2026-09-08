@@ -1,14 +1,14 @@
 # Group 03 Routine Figma Checkpoint — 2026-09-08
 
-**Status:** FIGMA APPLIED / PRODUCT OWNER VISUAL REVIEW PENDING
+**Status:** PO APPROVED / FIGMA CLOSED
 **Figma file:** `W3lZurXCXbThP67rF2xk2b`
 **Page:** `03 루틴` — node `233:2074`
 
 ## Scope
 
-This checkpoint records the current `03 루틴` Figma state after aligning the page to already-confirmed product rules and the local Figma design-system rules.
+This checkpoint records the Product Owner-approved final Figma state for `03 루틴`.
 
-This document does **not** declare final PO approval of the whole Group 03 pass yet.
+The Group 03 visual/interaction-definition pass is closed. Do not continue visual iteration on this page unless a later implementation or runtime QA finding requires a specific correction.
 
 ## Canonical states
 
@@ -52,9 +52,7 @@ The Product Owner explicitly chose the previously authored routine-card visual l
 
 The create/edit screens do not restore the old weekday selector when reusing the `230` card look.
 
-### Exercise-card header content / attachment display — PO APPROVED 2026-09-08
-
-The Product Owner approved the cleaner card-header treatment currently applied in `03C / 03D / 03E2 / 03F`.
+### Exercise-card header content / attachment display — PO APPROVED
 
 Rules:
 
@@ -68,6 +66,49 @@ Rules:
 
 This display rule is consistent with `docs/ux-decisions/2026-09-03-cable-attachment-active-workout.md` and does not finalize the remaining attachment taxonomy / allowed-attachment mapping.
 
+### Card overflow menu — PO APPROVED
+
+The `⋮` overflow interaction for Group 03 is now defined and no longer open.
+
+Shared local Figma components:
+
+- `Overflow Menu Item` — node `415:876`
+- `Overflow Menu` — node `416:884`
+- local Effect Style: `shadow/menu`
+
+Approved menu variants:
+
+**Routine card (`03A`)**
+
+1. `편집`
+2. `복제`
+3. `삭제`
+
+**Exercise card (`03E2`, `03F`)**
+
+1. `운동 교체`
+2. `운동 삭제`
+
+Visual/interaction rules:
+
+- anchored popup opened from the card `⋮` action
+- no dim layer
+- outside tap closes the menu
+- align to the `⋮` side and open downward by default; if it would overflow the viewport, reposition inward rather than clipping
+- width: `152px`
+- Routine height: `148px`
+- Exercise height: `104px`
+- each menu item height: `44px`
+- menu surface: `bg/elevated`
+- border: `border/subtle`
+- radius: `radius/md`
+- shadow: `shadow/menu`
+- ordinary item text: `body/01 + text/primary`
+- destructive item text: `body/01 + state/danger`
+- all `⋮` touch targets in `03A / 03E2 / 03F` are verified at `44 x 44`
+
+The temporary 03A trial overlay used for visual approval was removed after componentization; canonical screens remain in their normal closed-menu states.
+
 ### Active-workout routine access guard
 
 The previous `03G_Routine_Readonly` state and inline notice `운동 진행 중 · 루틴 편집은 종료 후 가능` are no longer part of the canonical routine flow.
@@ -79,7 +120,7 @@ Approved direction:
 - provide a lightweight toast-style message explaining that routine management is unavailable during the active workout
 - exact toast component, placement, duration, and final copy are deferred to the later interaction-state pass
 
-Figma action in this checkpoint:
+Figma action:
 
 - removed `03G_Routine_Readonly` — old node `34:1499`
 - no separate read-only routine screen is required for this state
@@ -117,11 +158,12 @@ Applied/verified:
   - exercise title → `heading/01 + text/primary`
   - SET/KG/REPS labels → `caption/01 + text/tertiary`
   - set/value text → `body/01 + text/primary`
-- the duplicated exercise-summary line under the title is hidden in canonical Group 03 routine cards
+- duplicated exercise-summary line under the title is hidden in canonical Group 03 routine cards
 - selected attachment, when applicable, is shown as a separate compact status chip in the card header
 - CTA text uses `button/cta`; Primary CTA text uses `text/on-brand`
 - all Group 03 headers use the balanced local `Nav Header` variants with fixed left/right action slots
 - root list states use `LeftAction=None`; child/detail/create/edit states use `LeftAction=Back`
+- new Overflow Menu components use local semantic color/radius/typography tokens and `shadow/menu`; audit found no unbound menu fills/strokes
 
 ## QA result
 
@@ -137,15 +179,18 @@ PASS:
 - `03F` / `03E2` use the original edit-card visual pattern
 - duplicate `3세트 · 8–12회` header summary removed from routine ExerciseCards
 - attachment-capable example (`랫풀다운`) shows `맥그립 미디엄` as a separate header status chip
+- `03A / 03E2 / 03F` overflow-menu actions are defined
+- all overflow triggers use `44 x 44` touch targets
+- reusable Overflow Menu components and local token/effect bindings verified
 - obsolete `03G_Routine_Readonly` removed from canonical Group 03
 
-## Remaining product-content QA
+## Non-blocking implementation content follow-up
 
 The reused `210/230` ExerciseCard visual samples still contain legacy/sample set-table values such as `W / D / F`, `80 KG`, and `35 REPS`.
 
-These values are currently treated as **visual sample content, not final prescription policy**.
+These remain **visual sample content, not final prescription policy** and are not a blocker for closing the Group 03 Figma design pass.
 
-Before implementation handoff, the routine-template data shown inside the set table must be reconciled with the confirmed product rules:
+Before implementation handoff, routine-template data shown inside the set table must still be reconciled with the confirmed product rules:
 
 - `DEC-010`: do not guess a first working weight from demographics; actual first-load calibration belongs in workout execution
 - `DEC-012`: self-built routines require explicit set count + target rep prescription
