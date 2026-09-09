@@ -1,10 +1,10 @@
 # CURRENT — Fitness Project
 
-**Updated:** 2026-09-06
+**Updated:** 2026-09-09
 
 ## Current mode
 
-`PRODUCT/UX FIGMA GROUP 04 EXERCISE LIBRARY QA ACTIVE · EXERCISE DETAIL 2-TAB FIGMA ALIGNED · ATTACHMENT H/I DUPLICATE CLEANED · 04H ATTACHMENT BOTTOM-SHEET STATE KEPT · EXERCISE SEARCH LIST MOBBIN SYNTHESIS 04I PROPOSAL OPEN · GROUP 04 DATA/METADATA QA OPEN · ANALYSIS BODY-AREA GRANULARITY DEFERRED RESUME ITEM · EXERCISE DB P0 DEFAULT MEDIA SOURCE INPUT LOCKED 16/16 · 211 MERGE SAFE · MEDIA TRANSFORM SAMPLE DEFERRED PARALLEL · P1 15/17 SOURCE-COVERED · NO CURSOR IMPLEMENTATION HANDOFF`
+`PRODUCT/UX FIGMA GROUP 04 EXERCISE LIBRARY QA ACTIVE · 04I FLAT LIST + PRIMARY MUSCLE/EQUIPMENT METADATA PROPOSAL REFINED · BODY/EQUIPMENT FILTER FULL-PAGE PROPOSALS ADDED · FIGMA STRUCTURE/BINDING QA RULE RE-ENFORCED · EXERCISE DETAIL 2-TAB FIGMA ALIGNED · 04H ATTACHMENT TAXONOMY OPEN · GROUP 04 DATA/METADATA QA OPEN · ANALYSIS BODY-AREA GRANULARITY DEFERRED RESUME ITEM · EXERCISE DB P0 DEFAULT MEDIA SOURCE INPUT LOCKED 16/16 · 211 MERGE SAFE · MEDIA TRANSFORM SAMPLE DEFERRED PARALLEL · P1 15/17 SOURCE-COVERED · NO CURSOR IMPLEMENTATION HANDOFF`
 
 ## Resume rule
 
@@ -18,20 +18,28 @@
 
 # CURRENT PRODUCT/UX TRACK — Figma Group 04 Exercise library/search QA
 
-The Product Owner moved the active design pass to Figma `GROUP_04_운동 목록 / 상세`.
+The Product Owner moved the active design pass to Figma `04 운동 목록 · 상세`.
 
-Latest checkpoint:
+Latest checkpoints:
 
+- `docs/ux-decisions/2026-09-08-exercise-library-figma-04-list-filter-checkpoint.md`
 - `docs/ux-decisions/2026-09-06-exercise-library-figma-04-checkpoint.md`
 
-Canonical Figma group:
+Canonical Figma target:
 
 - file: `W3lZurXCXbThP67rF2xk2b`
-- group: `GROUP_04_운동 목록 / 상세` — node `34:1880`
+- page: `04 운동 목록 · 상세` — node `233:2075`
+- URL: `https://www.figma.com/design/W3lZurXCXbThP67rF2xk2b/LIFTLY_%EC%B5%9C%EC%A2%85?node-id=233-2075`
+
+Important correction:
+
+- older Group 04 docs referenced node `34:1880`
+- current working page is node `233:2075`
+- do not mutate `Page 1` or infer another page when continuing Group 04
 
 ## Group 04 current structure
 
-Current canonical states are A~H:
+Current canonical states remain A~H; 04I-series screens are comparison/proposal states until PO promotion:
 
 1. `04A` 운동 검색 / 추가
 2. `04B` 운동 여러 개 선택 중
@@ -44,7 +52,7 @@ Current canonical states are A~H:
 
 ### Exercise Detail D/G — ALIGNED
 
-The approved 2-tab structure is now represented correctly in Figma:
+The approved 2-tab structure is represented correctly in Figma:
 
 - `04D` = `운동 정보`
 - `04G` = `최근 기록`
@@ -64,7 +72,6 @@ The previous duplicate attachment-bottom-sheet states were consolidated.
 - old 04I promoted to canonical `04H`
 - card node: `170:2169`
 - screen name: `04H_Exercise_Attachment_Selection`
-- no remaining old attachment-state `04I`
 
 The attachment UX still follows the existing rule that supported exercises choose a `손잡이` in the add flow.
 
@@ -78,49 +85,110 @@ Reference:
 
 - `docs/ux-decisions/2026-09-03-cable-attachment-active-workout.md`
 
-### Exercise search list proposal — OPEN / NOT PO APPROVED
+### Exercise search list proposal — REFINED / PROMOTION STILL OPEN
 
-Mobbin review covered representative patterns from Hevy, Bevel, Peloton Strength+, Equinox+, MyFitnessPal, Garmin, and WHOOP.
+Current comparison proposal:
 
-Current synthesis proposal:
+- screen: `04I_Search_List_Proposal` — node `207:1238`
+- existing canonical 04A/04B are not yet replaced by this pattern
+
+Current list direction:
 
 - exercise thumbnail
 - exercise name
-- secondary line `부위 · 장비`
+- secondary line `주동근 · 장비`
 - right-side `+`
-- flat separator list instead of heavy card/tag treatment
-- multi-select state can replace `+` with selected/check state and use a bottom add CTA
+- flat list rather than large card rows
+- when dividers are used, they span the full list container width
+- Korean display names are grouped by Hangul initial consonant in the proposal; future locale can change grouping/order (for example A–Z in English)
 
-Comparison-only Figma proposal:
+Muscle metadata rule for compact exercise lists:
 
-- `CARD_04I_LIST_PROPOSAL`
-- node `207:1233`
-- screen `04I_Search_List_Proposal`
-- existing 04A remains unchanged
-- status: **NOT PO APPROVED**
+- show primary muscle only
+- keep secondary-muscle data in the model
+- do not display secondary muscles in the compact list row
+- primary/secondary separation remains appropriate in Exercise Detail and later analytics/data use
+
+### Body / equipment filter proposal — FULL PAGE
+
+The former horizontal body-part chip carousel is being replaced in the proposal with two entry controls:
+
+- `부위 전체`
+- `장비 전체`
+
+Applied values can remain visible as removable chips, e.g. `등 ×`, `케이블 ×`.
+
+Selection proposals are full-page states, not bottom sheets:
+
+- `04I2_Filter_BodyPart_FullPage_Proposal` — node `451:984`
+- `04I3_Filter_Equipment_FullPage_Proposal` — node `465:1150`
+
+Current examples:
+
+- body selected: `등`
+- equipment selected: `케이블`
+
+Exact filter option labels must ultimately align with canonical exercise DB taxonomy.
+
+### Figma construction rule — STANDING REQUIREMENT
+
+All future Figma mutations in this project must follow the GitHub design-system and QA contract from the first pass, even when the PO does not restate it.
+
+Canonical rules:
+
+- `docs/09_DESIGN_SYSTEM.md`
+- `docs/15_TONAL_DESIGN_SYSTEM_SPEC.md`
+- `docs/16_FIGMA_TONAL_BUILD_INSTRUCTIONS.md`
+- `docs/17_FIGMA_AGENT_EXECUTION_QA.md`
+
+Required execution order:
+
+1. read CURRENT + relevant product/UX decision
+2. read canonical design-system/QA rules
+3. inspect/reuse existing Figma components and patterns before creating new UI
+4. encode semantic hierarchy with Auto Layout
+5. define Fixed / Hug / Fill independently per axis
+6. bind supported typography/color/spacing/radius/divider values to actual styles/variables
+7. avoid unnecessary absolute positioning, detached instances, and repeated raw-value drift
+8. run structure QA, binding QA, then screenshot/visual QA
+
+Current full-page filter proposals were corrected to this model:
+
+- screen shell: Vertical Auto Layout / fixed viewport `360 × 954`
+- existing `Nav Header` instance reused
+- content: Vertical / Fill / Fill
+- list: Vertical / Fill / Hug
+- option row: Horizontal / Fill / Hug
+- leading cluster: Fill / Hug
+- selected trailing value: Hug / Hug
+- divider: Fill / Fixed
+- existing `RowLabel` / `RowValue` instances reused where appropriate
+- current bindings include `spacing/20`, `spacing/16`, `spacing/12`, `bg/default`, `border/default`, `radius/md`, `text/primary`, `brand/primary`
 
 ## Group 04 QA open items
 
 Still open before closing Group 04:
 
-1. `04A/04B` mock exercise-to-body-part labels contain incorrect pairings; `코어` filter coverage also needs cleanup
-2. `04C` uses `레그프레스` as a no-result example and should use a valid no-result mock instead
-3. `04D` still needs approved detail metadata coverage review: equipment, primary/secondary muscle separation, checkpoint/caution
-4. `04E/04F` need required custom-exercise metadata coverage: equipment and recording type
-5. `04H` needs final attachment taxonomy/copy/direct-input decision
-6. `04I_LIST_PROPOSAL` must be accepted or rejected; if accepted, propagate the list pattern to 04A/04B
+1. PO decides whether current `04I` flat-list + full-page filter proposal is promoted to canonical `04A/04B`
+2. if promoted, propagate list/filter behavior and define 04B selected/multi-select state consistently
+3. `04A/04B` mock exercise-to-primary-muscle labels and filter coverage cleanup
+4. `04C` no-result mock cleanup
+5. `04D` metadata QA: equipment, primary/secondary muscle separation, checkpoint/caution
+6. `04E/04F` custom-exercise metadata QA: equipment and recording type
+7. `04H` final attachment taxonomy/copy/direct-input decision
+8. run full Group 04 structure/binding/visual QA and decide whether Group 04 can close
 
-# NEXT OPEN ITEM — Review 04I exercise-search list proposal
+# NEXT OPEN ITEM — Review updated 04I list + filter proposal as one flow
 
 Immediate next:
 
-1. compare current 04A list against `04I_LIST_PROPOSAL`
-2. Product Owner accepts/rejects the proposed `thumbnail + name + body part/equipment + add` flat-list pattern
-3. if approved, apply to 04A/04B; if rejected, remove the proposal
+1. inspect `04I_Search_List_Proposal` together with `04I2` body filter and `04I3` equipment filter
+2. Product Owner accepts/rejects promotion to canonical 04A/04B
+3. if approved, propagate the pattern to 04A/04B and finish their selected/multi-select state
 4. finish 04A/B/C data QA
 5. finish D/E/F metadata QA
 6. finish 04H attachment/direct-input UX
-7. run full Group 04 layout/state QA and decide whether Group 04 can close
+7. run full Group 04 layout/structure/binding/state QA
 
 No Cursor implementation handoff yet.
 
@@ -512,7 +580,7 @@ Important references:
 
 - Home / Recommended Routine: `docs/ux-decisions/2026-09-03-recommended-routine-detail-flow.md`, `docs/ux-decisions/2026-09-04-recommended-routine-post-workout-save.md`
 - Exercise Detail: `docs/ux-decisions/2026-09-04-exercise-detail-scope.md`
-- Exercise library Figma Group 04 checkpoint: `docs/ux-decisions/2026-09-06-exercise-library-figma-04-checkpoint.md`
+- Exercise library Figma Group 04 checkpoints: `docs/ux-decisions/2026-09-08-exercise-library-figma-04-list-filter-checkpoint.md`, `docs/ux-decisions/2026-09-06-exercise-library-figma-04-checkpoint.md`
 - Cable attachment: `docs/ux-decisions/2026-09-03-cable-attachment-active-workout.md`
 - Active Workout / routine update: `docs/ux-decisions/2026-09-03-active-workout-routine-update.md`
 - Rest Timer: `docs/ux-decisions/2026-09-03-rest-timer-behavior.md`
@@ -542,14 +610,16 @@ Canonical Figma:
 
 `https://www.figma.com/design/W3lZurXCXbThP67rF2xk2b/LIFTLY_%EC%B5%9C%EC%A2%85?node-id=0-1`
 
-Current Group 04:
+Current Group 04 page:
 
-`https://www.figma.com/design/W3lZurXCXbThP67rF2xk2b/LIFTLY_%EC%B5%9C%EC%A2%85?node-id=34-1880`
+`https://www.figma.com/design/W3lZurXCXbThP67rF2xk2b/LIFTLY_%EC%B5%9C%EC%A2%85?node-id=233-2075`
 
-Current comparison-only exercise-list proposal:
+Current comparison proposal states:
 
-- `CARD_04I_LIST_PROPOSAL` — node `207:1233`
-- not PO approved
+- `04I_Search_List_Proposal` — node `207:1238`
+- `04I2_Filter_BodyPart_FullPage_Proposal` — node `451:984`
+- `04I3_Filter_Equipment_FullPage_Proposal` — node `465:1150`
+- promotion to canonical 04A/04B is still open
 
 Canonical production wireframe:
 
