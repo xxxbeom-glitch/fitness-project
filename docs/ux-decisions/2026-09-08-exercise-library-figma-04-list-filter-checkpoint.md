@@ -33,7 +33,7 @@ Current row pattern:
 - exercise thumbnail
 - exercise name
 - secondary line `주동근 · 장비`
-- right-side `+`
+- right-side add/select control
 - flat list rather than large cards
 - list dividers, when used, span the full list container width instead of starting after the thumbnail/text column
 
@@ -57,6 +57,38 @@ Therefore the list metadata contract is:
 `주동근 · 장비`
 
 not a combined primary+secondary muscle string.
+
+### Selected exercise state — PO DIRECTION / FIGMA APPLIED
+
+Selected exercises remain visually lightweight inside the flat list.
+
+- unselected row trailing control: existing `+` action
+- selected row trailing control: **check state**
+- do not turn the full row into a heavy selected card or large color-filled surface
+- exercise thumbnail/name/`주동근 · 장비` stay structurally unchanged between default and selected states
+
+Existing design-system assets were checked before implementation.
+
+- existing local `icon/check` is reused
+- the imported/read-only `ActionChip` component did not expose a `Selected` variant
+- rather than detach or patch the imported component, a local reusable wrapper component set was added to `MVP_공용_UI`
+
+New reusable local component:
+
+- `ExerciseSelectionControl` — component set node `500:2932`
+- `State=Default` — node `500:2923`, wraps the existing `ActionChip`
+- `State=Selected` — node `500:2929`, uses the existing `icon/check`
+- both variants keep the same `44 × 44` interaction geometry
+- the selected check stroke follows the existing selected-state `brand/primary` binding
+
+`04I_Search_List_Proposal` now uses this control on all sample rows.
+
+Current visual example:
+
+- `랫풀다운` = Selected/check state
+- other sample exercises = Default/`+` state
+
+Bottom selected-count CTA behavior remains part of the later canonical multi-select propagation review rather than being silently added to this proposal state.
 
 ## 2. Top filter control direction — PO-DIRECTED PROPOSAL
 
@@ -190,7 +222,7 @@ The current 04I direction has been materially refined, but final promotion to ca
 Still open:
 
 1. decide whether the current 04I flat-list + filter pattern is promoted to 04A/04B
-2. if promoted, propagate the list/filter pattern consistently to 04A/04B and define selected/multi-select state
+2. if promoted, propagate the list/filter pattern and the approved `+ ↔ check` row state consistently to 04A/04B; selected-count bottom CTA behavior remains to be finalized with the multi-select state
 3. clean 04A/04B mock exercise-to-primary-muscle labels and filter coverage
 4. fix 04C no-result mock
 5. complete 04D equipment + primary/secondary muscle + checkpoint/caution metadata QA
