@@ -4,7 +4,7 @@
 
 ## Current mode
 
-`PRODUCT/UX FIGMA GROUP 04 EXERCISE LIBRARY QA ACTIVE · 04I FLAT LIST + PRIMARY MUSCLE/EQUIPMENT METADATA PROPOSAL REFINED · BODY/EQUIPMENT FILTER FULL-PAGE PROPOSALS ADDED · FIGMA STRUCTURE/BINDING QA RULE RE-ENFORCED · EXERCISE DETAIL 2-TAB FIGMA ALIGNED · 04H ATTACHMENT TAXONOMY OPEN · GROUP 04 DATA/METADATA QA OPEN · ANALYSIS BODY-AREA GRANULARITY DEFERRED RESUME ITEM · EXERCISE DB P0 DEFAULT MEDIA SOURCE INPUT LOCKED 16/16 · 211 MERGE SAFE · MEDIA TRANSFORM SAMPLE DEFERRED PARALLEL · P1 15/17 SOURCE-COVERED · NO CURSOR IMPLEMENTATION HANDOFF`
+`PRODUCT/UX FIGMA GROUP 04 EXERCISE LIBRARY QA ACTIVE · HEVY-ALIGNED ADD EXERCISE LIST/FILTER/MULTI-SELECT DIRECTION LOCKED · 04I BASE + EQUIPMENT SHEET + BODY SHEET + MULTI-SELECT STATE FIGMA UPDATED · PRIMARY MUSCLE/EQUIPMENT COMPACT METADATA KEPT · FIGMA STRUCTURE/BINDING QA RULE ACTIVE · EXERCISE DETAIL 2-TAB FIGMA ALIGNED · 04H ATTACHMENT TAXONOMY OPEN · GROUP 04 DATA/METADATA QA OPEN · ANALYSIS BODY-AREA GRANULARITY DEFERRED RESUME ITEM · EXERCISE DB P0 DEFAULT MEDIA SOURCE INPUT LOCKED 16/16 · 211 MERGE SAFE · MEDIA TRANSFORM SAMPLE DEFERRED PARALLEL · P1 15/17 SOURCE-COVERED · NO CURSOR IMPLEMENTATION HANDOFF`
 
 ## Resume rule
 
@@ -18,10 +18,11 @@
 
 # CURRENT PRODUCT/UX TRACK — Figma Group 04 Exercise library/search QA
 
-The Product Owner moved the active design pass to Figma `04 운동 목록 · 상세`.
+The Product Owner moved the active design pass to Figma `04 운동 목록 · 상세` and explicitly directed the exercise-library/add-exercise interaction to follow **Hevy's proven list logic where practical**.
 
-Latest checkpoints:
+Latest checkpoints / decisions:
 
+- `docs/ux-decisions/2026-09-09-exercise-library-hevy-alignment.md`
 - `docs/ux-decisions/2026-09-08-exercise-library-figma-04-list-filter-checkpoint.md`
 - `docs/ux-decisions/2026-09-06-exercise-library-figma-04-checkpoint.md`
 
@@ -39,7 +40,7 @@ Important correction:
 
 ## Group 04 current structure
 
-Current canonical states remain A~H; 04I-series screens are comparison/proposal states until PO promotion:
+Current canonical states remain A~H; 04I-series screens are the active replacement proposals until PO promotes them:
 
 1. `04A` 운동 검색 / 추가
 2. `04B` 운동 여러 개 선택 중
@@ -85,50 +86,93 @@ Reference:
 
 - `docs/ux-decisions/2026-09-03-cable-attachment-active-workout.md`
 
-### Exercise search list proposal — REFINED / PROMOTION STILL OPEN
+### Add Exercise / exercise list — HEVY-ALIGNED DIRECTION LOCKED
 
-Current comparison proposal:
+Hevy is now the primary interaction reference for this list flow, while LIFTLY keeps its own Tracker APP design system and product data model.
 
-- screen: `04I_Search_List_Proposal` — node `207:1238`
-- existing canonical 04A/04B are not yet replaced by this pattern
+Current Figma proposal states on canonical page `233:2075`:
 
-Current list direction:
+- `04I_Search_List_Proposal` — node `207:1238`
+- `04I2_Filter_Equipment_Sheet_Proposal` — node `515:3327`
+- `04I3_Filter_BodyPart_Sheet_Proposal` — node `515:3514`
+- `04I4_Search_Selected_HevyStyle_Proposal` — node `515:1140`
+
+Current base-list structure:
+
+1. search
+2. `장비 전체`
+3. `부위 전체`
+4. `최근 운동`
+5. `전체 운동`
+
+The earlier explicit `ㄱ/ㄴ/ㄷ...` section-header proposal is superseded as the primary MVP list hierarchy.
+
+Compact row contract remains LIFTLY-specific:
 
 - exercise thumbnail
 - exercise name
-- secondary line `주동근 · 장비`
-- right-side `+`
-- flat list rather than large card rows
-- when dividers are used, they span the full list container width
-- Korean display names are grouped by Hangul initial consonant in the proposal; future locale can change grouping/order (for example A–Z in English)
+- `주동근 · 장비`
+- right-side detail affordance
 
-Muscle metadata rule for compact exercise lists:
+Primary/secondary muscle rule:
 
-- show primary muscle only
-- keep secondary-muscle data in the model
-- do not display secondary muscles in the compact list row
-- primary/secondary separation remains appropriate in Exercise Detail and later analytics/data use
+- compact list exposes primary muscle only
+- secondary-muscle data remains stored
+- secondary muscles remain available in Exercise Detail/custom metadata/later analysis logic
 
-### Body / equipment filter proposal — FULL PAGE
+### Multi-selection — HEVY-ALIGNED
 
-The former horizontal body-part chip carousel is being replaced in the proposal with two entry controls:
+The previous right-side `+ -> check` selection control is superseded.
 
-- `부위 전체`
-- `장비 전체`
+Current interaction rule:
 
-Applied values can remain visible as removable chips, e.g. `등 ×`, `케이블 ×`.
+- row body tap -> select / deselect exercise
+- selected row -> slim left-side `brand/primary` indicator
+- right-side detail affordance remains available and is not the selection control
+- selected count > 0 -> fixed bottom CTA `N개 운동 추가`
+- current Figma example -> `3개 운동 추가`
+- selection should survive normal search/filter navigation until deselect, add completion, or exit/cancel
 
-Selection proposals are full-page states, not bottom sheets:
+Current reusable pieces:
 
-- `04I2_Filter_BodyPart_FullPage_Proposal` — node `451:984`
-- `04I3_Filter_Equipment_FullPage_Proposal` — node `465:1150`
+- `ExerciseRowSelectionIndicator` — Default / Selected
+- `ExerciseRowDetailAction`
+- existing `CTA Button`
 
-Current examples:
+### Filters — HEVY-ALIGNED BOTTOM SHEETS
 
-- body selected: `등`
-- equipment selected: `케이블`
+The previous full-page body/equipment filter proposals are superseded and removed.
 
-Exact filter option labels must ultimately align with canonical exercise DB taxonomy.
+Current interaction:
+
+- `장비 전체` -> equipment bottom sheet
+- `부위 전체` -> body-part bottom sheet
+- single-select per category
+- selected value returns into the filter control
+- no extra removable selected-filter chip row
+
+Current Figma sheets reuse:
+
+- existing 04H bottom-sheet structural pattern
+- existing Tracker APP `OptionItem` selected/unselected component
+- opaque `bg/default` sheet treatment for legibility
+
+Removed/superseded:
+
+- `04I2_Filter_BodyPart_FullPage_Proposal`
+- `04I3_Filter_Equipment_FullPage_Proposal`
+- old `ExerciseSelectionControl` check/+ component
+
+Filter option labels remain UI examples until final alignment with canonical exercise DB taxonomy.
+
+### Direct custom exercise entry
+
+Hevy exposes Create from Add Exercise. LIFTLY now mirrors that intent with the existing Nav Header component:
+
+- `RightAction=Plus`
+- top-right `+` -> 직접 운동 만들기
+
+This supplements the no-result create entry rather than replacing it.
 
 ### Figma construction rule — STANDING REQUIREMENT
 
@@ -152,40 +196,40 @@ Required execution order:
 7. avoid unnecessary absolute positioning, detached instances, and repeated raw-value drift
 8. run structure QA, binding QA, then screenshot/visual QA
 
-Current full-page filter proposals were corrected to this model:
+Current 04I base was normalized to:
 
-- screen shell: Vertical Auto Layout / fixed viewport `360 × 954`
-- existing `Nav Header` instance reused
-- content: Vertical / Fill / Fill
+- screen shell: Vertical Auto Layout / fixed `360 × 954`
+- StatusArea: Fill / Fixed
+- Nav Header: Fill / Fixed
+- SearchContent: Fill / Fill
+- search tool group: Vertical / Fill / Hug
 - list: Vertical / Fill / Hug
-- option row: Horizontal / Fill / Hug
-- leading cluster: Fill / Hug
-- selected trailing value: Hug / Hug
-- divider: Fill / Fixed
-- existing `RowLabel` / `RowValue` instances reused where appropriate
-- current bindings include `spacing/20`, `spacing/16`, `spacing/12`, `bg/default`, `border/default`, `radius/md`, `text/primary`, `brand/primary`
+- row: Horizontal Auto Layout with fixed selection-indicator slot, Fill main content, fixed detail action
+- selected indicator uses `brand/primary`
+- dividers remain full-width
+- bottom-sheet filters reuse design-system components/tokens
 
 ## Group 04 QA open items
 
 Still open before closing Group 04:
 
-1. PO decides whether current `04I` flat-list + full-page filter proposal is promoted to canonical `04A/04B`
-2. if promoted, propagate list/filter behavior and define 04B selected/multi-select state consistently
-3. `04A/04B` mock exercise-to-primary-muscle labels and filter coverage cleanup
-4. `04C` no-result mock cleanup
+1. visually review the four Hevy-aligned 04I states as one flow
+2. if no blocking issue remains, promote `04I_Search_List_Proposal` -> canonical 04A and `04I4_Search_Selected_HevyStyle_Proposal` -> canonical 04B
+3. update canonical 04C no-result to the same header/search/filter system
+4. final exercise list/filter data QA against canonical exercise DB taxonomy
 5. `04D` metadata QA: equipment, primary/secondary muscle separation, checkpoint/caution
 6. `04E/04F` custom-exercise metadata QA: equipment and recording type
 7. `04H` final attachment taxonomy/copy/direct-input decision
 8. run full Group 04 structure/binding/visual QA and decide whether Group 04 can close
 
-# NEXT OPEN ITEM — Review updated 04I list + filter proposal as one flow
+# NEXT OPEN ITEM — Decide promotion of Hevy-aligned 04I states to canonical 04A/04B
 
 Immediate next:
 
-1. inspect `04I_Search_List_Proposal` together with `04I2` body filter and `04I3` equipment filter
-2. Product Owner accepts/rejects promotion to canonical 04A/04B
-3. if approved, propagate the pattern to 04A/04B and finish their selected/multi-select state
-4. finish 04A/B/C data QA
+1. PO reviews `04I_Search_List_Proposal`, equipment sheet, body sheet, and `04I4_Search_Selected_HevyStyle_Proposal`
+2. if accepted, replace old canonical 04A/04B with the Hevy-aligned states
+3. bring 04C onto the same system
+4. finish A/B/C data-state QA
 5. finish D/E/F metadata QA
 6. finish 04H attachment/direct-input UX
 7. run full Group 04 layout/structure/binding/state QA
@@ -580,6 +624,7 @@ Important references:
 
 - Home / Recommended Routine: `docs/ux-decisions/2026-09-03-recommended-routine-detail-flow.md`, `docs/ux-decisions/2026-09-04-recommended-routine-post-workout-save.md`
 - Exercise Detail: `docs/ux-decisions/2026-09-04-exercise-detail-scope.md`
+- Exercise library Hevy alignment: `docs/ux-decisions/2026-09-09-exercise-library-hevy-alignment.md`
 - Exercise library Figma Group 04 checkpoints: `docs/ux-decisions/2026-09-08-exercise-library-figma-04-list-filter-checkpoint.md`, `docs/ux-decisions/2026-09-06-exercise-library-figma-04-checkpoint.md`
 - Cable attachment: `docs/ux-decisions/2026-09-03-cable-attachment-active-workout.md`
 - Active Workout / routine update: `docs/ux-decisions/2026-09-03-active-workout-routine-update.md`
@@ -614,12 +659,13 @@ Current Group 04 page:
 
 `https://www.figma.com/design/W3lZurXCXbThP67rF2xk2b/LIFTLY_%EC%B5%9C%EC%A2%85?node-id=233-2075`
 
-Current comparison proposal states:
+Current Hevy-aligned comparison proposal states:
 
 - `04I_Search_List_Proposal` — node `207:1238`
-- `04I2_Filter_BodyPart_FullPage_Proposal` — node `451:984`
-- `04I3_Filter_Equipment_FullPage_Proposal` — node `465:1150`
-- promotion to canonical 04A/04B is still open
+- `04I2_Filter_Equipment_Sheet_Proposal` — node `515:3327`
+- `04I3_Filter_BodyPart_Sheet_Proposal` — node `515:3514`
+- `04I4_Search_Selected_HevyStyle_Proposal` — node `515:1140`
+- promotion to canonical 04A/04B is the next open decision
 
 Canonical production wireframe:
 
