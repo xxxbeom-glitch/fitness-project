@@ -42,15 +42,18 @@ Group 05 current binding state:
 - repeated attachment status UI is local `AttachmentTag` component `693:6035`
 - 05I uses local icon-action `ActionSheet` / `ActionRows`
 - local action icons include `icon/replace`, `icon/trash`, `icon/copy`; existing local `icon/edit` / `icon/drag-handle` are reused
-- new action-menu family is fully rebound to existing local colors / spacing / radius / typography styles; no new token was added
-- `ActionRows`, `ActionSheet`, `05I`, `03A_Routine_List_Menu`, `03F_Routine_Exercise_Menu`: missing main 0 / remote main 0 / missing Variable 0 / remote Variable 0 / missing Style 0 / remote Style 0
+- new action-menu family is rebound to existing local colors / spacing / radius / typography styles; no new token was added
+- bottom-sheet `ActionSheet` variants now match canonical `BottomSheet / Menu` surface semantics: `glass/surface-20` + existing GLASS effect
+- 03A floating routine action panel now matches canonical `Overflow Menu / Type=Routine` surface semantics: `bg/elevated` + `border/subtle` + existing drop shadow
+- bottom-sheet action rows remain `bg/default`; 03A floating-panel dividers use `border/subtle`
+- `ActionRows`, `ActionSheet`, `05I`, `03A_Routine_List_Menu`, `03F_Routine_Exercise_Menu`: missing main 0 / remote main 0
 - `ActionRows` / `ActionSheet` each have exactly one same-role local master set on `MVP_공용_UI`
 - 05J uses local `ReorderRow` / `icon/drag-handle`
 - visible Group 05 dialog states use local `DialogCard` / `DialogButtons`
 - visible raw `AttachmentTag` frame 0
 - `ExerciseCard` / `DialogCard` stale visual-layout overrides 0
 
-Representative post-binding visual read-back: `05I`, `03A_Routine_List_Menu`, `03F_Routine_Exercise_Menu` PASS.
+Representative post-binding visual read-back after second-pass surface correction: `05I`, `03A_Routine_List_Menu`, `03F_Routine_Exercise_Menu` PASS.
 
 ### Action-menu presentation + binding
 
@@ -70,13 +73,19 @@ Figma reflection:
 - `03F_Routine_Exercise_Menu` — `706:5087`
 - imported temporary action-menu reference screens removed from Group 05 after localization
 
-Binding QA correction:
+Binding QA final correction:
 
-- `ActionRows` surface / border → local `bg/default` / `border/default`
+- bottom-sheet `ActionRows` surface → local `bg/default`
+- bottom-sheet action-row border → existing local border treatment
+- 03A `Mode=RoutineList` floating panel surface → `bg/elevated`
+- 03A floating panel border → `border/subtle`
+- 03A floating panel shadow → canonical `Overflow Menu / Type=Routine` drop shadow
+- 03A floating-panel internal dividers → `border/subtle`
+- bottom-sheet action-row dividers → local `bg/elevated`
 - labels → local `label/02` + `text/primary`
-- dividers → local `bg/elevated`
 - `icon/replace`, `icon/trash`, `icon/copy` foregrounds → local `text/primary`
 - `ActionSheet` surface → local `glass/surface-20`
+- `ActionSheet` effect → canonical `BottomSheet / Menu` GLASS effect
 - ActionSheet title → `heading/01` + `text/primary`
 - ActionSheet subtitle → `body/02` + `text/secondary`
 
@@ -85,7 +94,7 @@ Canonical records:
 - `docs/ux-decisions/2026-09-10-action-menu-presentation.md`
 - `docs/ux-decisions/2026-09-10-action-menu-binding-qa.md`
 
-Do not reopen this action-menu binding range without a new conflicting change.
+The first binding-pass interpretation was superseded by the second-pass surface-semantic correction above.
 
 ### Active-session recovery presentation correction
 
@@ -147,7 +156,7 @@ Return to the temporarily deferred product-flow review for:
 
 - `05N_Workout_OtherRoutine` — `148:3561`
 
-Re-present the switch-to-another-routine behavior to the PO and decide it before changing 05N. Do not reopen the just-passed action-menu work.
+Re-present the switch-to-another-routine behavior to the PO and decide it before changing 05N. Do not reopen the just-passed action-menu work without a concrete conflict.
 
 Hidden `05F_Workout_RestTimer_TBD` remains deferred.
 
