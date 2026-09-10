@@ -4,7 +4,7 @@
 
 ## Current mode
 
-`PRODUCT/UX FIGMA GROUP 04 FINAL QA ACTIVE · 04A/04B HEVY-ALIGNED CANONICAL · 04B V2 SELECTED-CHIPS CANONICAL · 04B CTA SCROLL-SAFETY PASS · 04C/04D/04E/04F/04G/04H SCREEN PASS ALIGNED · GROUP 04 SAMPLE-DATA QA NEXT · ATTACHMENT PRODUCTION ALLOWLIST DATA QA DEFERRED · ANALYSIS BODY-AREA GRANULARITY DEFERRED RESUME ITEM · EXERCISE DB P0 16 DATA + DEFAULT MEDIA INPUT LOCKED · 211 DERIVED ARTIFACT NOT YET REGENERATED · NO CURSOR IMPLEMENTATION HANDOFF`
+`PRODUCT/UX FIGMA GROUP 04 FINAL QA ACTIVE · 04A/04B HEVY-ALIGNED CANONICAL · 04A EQUIPMENT/BODY FILTERS FULL-PAGE CANONICAL · 04B V2 SELECTED-CHIPS CANONICAL · SELECTED-CHIP 44PX REMOVE HIT TARGET PASS · 04B CTA SCROLL-SAFETY PASS · 04C/04D/04E/04F/04G/04H SCREEN PASS ALIGNED · GROUP 04 SAMPLE-DATA QA NEXT · ATTACHMENT PRODUCTION ALLOWLIST DATA QA DEFERRED · ANALYSIS BODY-AREA GRANULARITY DEFERRED RESUME ITEM · EXERCISE DB P0 16 DATA + DEFAULT MEDIA INPUT LOCKED · 211 DERIVED ARTIFACT NOT YET REGENERATED · NO CURSOR IMPLEMENTATION HANDOFF`
 
 ## Resume rule
 
@@ -20,8 +20,9 @@
 
 운동 목록 / Add Exercise interaction은 가능한 범위에서 Hevy의 검증된 상호작용 구조를 우선 참고하되, LIFTLY Tracker APP 디자인 시스템과 현재 제품/데이터 정책을 유지한다.
 
-Latest active checkpoint:
+Latest active checkpoints:
 
+- `docs/ux-decisions/2026-09-10-exercise-filter-full-page-approved.md`
 - `docs/ux-decisions/2026-09-10-exercise-library-04b-selected-chips-approved.md`
 
 Other relevant decisions:
@@ -58,8 +59,8 @@ Important correction:
 
 Supporting states:
 
-- `04A_Filter_Equipment_Sheet` — `515:3327`
-- `04A_Filter_BodyPart_Sheet` — `515:3514`
+- `04A_Filter_Equipment_Page` — `515:3327` — **FULL-PAGE / CANONICAL**
+- `04A_Filter_BodyPart_Page` — `515:3514` — **FULL-PAGE / CANONICAL**
 - `04H_Custom_Attachment_Input` — `552:3356`
 
 ## 04A / 04B — locked base behavior
@@ -88,11 +89,18 @@ Rules:
 
 Filters:
 
-- `장비 전체` / `부위 전체` open bottom sheets
-- single-select per category
+- `장비 전체` / `부위 전체` open dedicated full-page selectors
+- equipment = single-select, one value at a time
+- body part = single-select, one value at a time
+- both categories can be active together and combine on the same exercise list
+- tapping an option applies immediately and returns to Add Exercise; no Apply CTA
 - current value returns into the trigger
-- no removable filter-chip row in the canonical filter pattern
-- existing `OptionItem`, glass sheet shell and overlay are reused
+- `전체` clears that category filter
+- full-page content is vertically scrollable so shorter devices do not depend on a tall nested bottom sheet
+- existing `Nav Header` and `OptionItem` components are reused
+- no filter overlay, sheet handle, glass sheet shell, or removable filter-chip row in the canonical filter pattern
+
+This full-page filter decision supersedes only the filter-surface section of `2026-09-09-exercise-library-hevy-alignment.md`; the rest of the Hevy-aligned Add Exercise behavior remains valid.
 
 ## 04B selected-exercise overview — PO APPROVED / CANONICAL
 
@@ -103,22 +111,28 @@ Canonical behavior:
 - heading = `선택한 운동 (N개)`
 - one horizontal free-scroll chip row; no snap-card carousel
 - each selected exercise remains individually visible by horizontal scrolling
-- each chip uses `운동명 ×` and removes/deselects that exercise from the shared selection state
+- each chip removes/deselects that exercise from the shared selection state
 - selected strip disappears when selected count becomes 0
 - previous comparison-only `+N` summary chip is not used
 - `최근 운동` remains historical recency and is not reused as selected-state UI
 
-Component reuse:
+Canonical selected chip:
 
-- existing Tracker APP `FilterChip`
-- state = `Active`
-- existing semantic typography/color/spacing/radius bindings retained
-- no detached/ad-hoc selected-chip family introduced
+- reusable component = `SelectedExerciseChip` — `569:1335`
+- transparent/no fill + 1px `border/default` outline
+- height = `32px`
+- label-to-close gap = `4px`
+- left padding = `12px`, right padding = `8px`, vertical padding = `8px`
+- visible X icon remains `16x16`
+- invisible `CloseHitArea` = `44x44`, centered on the X
+- horizontal chip viewport height = `44px` so the enlarged remove hit target is not clipped
+- spacing/radius/text/border use the current design-system bindings
 
 Canonical Figma implementation:
 
 - `04B_Search_Selected` — `515:1140`
 - promoted selected section — `SelectedExerciseChips_HorizontalScroll` `566:1340`
+- horizontal viewport — `566:1343`
 - approved proposal reference — `04B_V2_Selected_Chips_APPROVED` `560:1293`
 - current 10-item sample exists only to stress-test overflow; sample names are not a Production taxonomy decision
 
@@ -128,6 +142,19 @@ Canonical Figma implementation:
 - scrollable `SearchContent` bottom padding = `120px`
 - final list content can therefore scroll above `N개 운동 추가` instead of remaining hidden behind it
 - structure QA / binding QA / screenshot QA completed
+
+## 04A filter full-page conversion — PASS
+
+The previous canonical bottom-sheet surfaces were converted in place to full-page selectors.
+
+- equipment page = `04A_Filter_Equipment_Page` `515:3327`
+- body-part page = `04A_Filter_BodyPart_Page` `515:3514`
+- both remain `360 × 954` vertical Auto Layout screens
+- existing `Nav Header` retained with `Back`, no right action
+- titles = `장비 선택` / `부위 선택`
+- `FilterPageContent` = 20px inset, vertical scroll enabled
+- existing `OptionItem` instances/variants retained without detaching
+- screenshot QA completed for both pages
 
 ## 04C — no result
 
