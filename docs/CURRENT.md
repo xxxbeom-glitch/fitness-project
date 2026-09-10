@@ -4,7 +4,7 @@
 
 ## Current mode
 
-`PRODUCT/UX FIGMA · GROUP 05 ACTIVE WORKOUT ACTIVE · EXERCISE REPLACEMENT LOCALIZATION QA PASS · NO CURSOR IMPLEMENTATION HANDOFF`
+`PRODUCT/UX FIGMA · GROUP 05 ACTIVE WORKOUT ACTIVE · EXERCISE CARD INFO ALIGNMENT QA PASS · NO CURSOR IMPLEMENTATION HANDOFF`
 
 ## Resume rule
 
@@ -16,10 +16,11 @@
 
 ## Latest active checkpoint
 
-- `docs/ux-decisions/2026-09-10-group05-exercise-replacement-localization.md`
+- `docs/ux-decisions/2026-09-10-exercisecard-exerciseinfo-layout.md`
 
 Supporting checkpoints:
 
+- `docs/ux-decisions/2026-09-10-group05-exercise-replacement-localization.md`
 - `docs/ux-decisions/2026-09-10-group05-rest-timer-localization.md`
 - `docs/ux-decisions/2026-09-10-routinelist-action-bottomsheet-correction.md`
 - `docs/ux-decisions/2026-09-10-action-menu-binding-qa.md`
@@ -43,6 +44,8 @@ Current Group 05 foundation:
 Group 05 current binding state:
 
 - active workout `ExerciseCard` variants are local and stale visual/layout instance overrides were cleaned from visible Group 05 screens
+- local `ExerciseCard` component set `637:3561` now uses `ExerciseInfo` with vertical Fill container (`layoutAlign=STRETCH`) + vertically centered content (`primaryAxisAlignItems=CENTER`) across all seven variants
+- `ExerciseCard` focused QA after the alignment correction: missing main 0 / remote main 0 / missing Variable 0 / remote Variable 0 / missing Style 0 / remote Style 0
 - `LeftAction=Back, RightAction=Timer` is a true variant inside the local `Nav Header` component set
 - `icon/timer-refresh` is inside `LOCAL_COMPONENT_LIBRARY`
 - repeated attachment status UI is local `AttachmentTag` component `693:6035`
@@ -67,7 +70,31 @@ Group 05 current binding state:
 - visible raw `AttachmentTag` frame 0
 - `ExerciseCard` / `DialogCard` stale visual-layout overrides 0
 
-Representative visual read-back after latest changes: `05F_Workout_RestTimer`, `05G_Exercise_Replace_Suggest`, `05H_Exercise_Replace_Selected`, `05I`, `03A_Routine_List_Menu`, `03F_Routine_Exercise_Menu` PASS.
+Representative visual read-back after latest changes: Active Workout `어시스트 풀업` card, `05F_Workout_RestTimer`, `05G_Exercise_Replace_Suggest`, `05H_Exercise_Replace_Selected`, `05I`, `03A_Routine_List_Menu`, `03F_Routine_Exercise_Menu` PASS.
+
+### ExerciseCard ExerciseInfo alignment
+
+Confirmed layout:
+
+- `ExerciseInfo` fills the `CardHeader` vertically
+- the tag + exercise-name group is vertically centered inside `ExerciseInfo`
+- horizontal/text alignment remains left-aligned
+- this is the same layout principle the PO directly applied to 05G/05H `ExerciseInfo`
+
+Figma reflection:
+
+- local `ExerciseCard` component set — `637:3561`
+- all seven `ExerciseInfo` frames: `layoutAlign=STRETCH`, `primaryAxisAlignItems=CENTER`
+
+Focused QA:
+
+- representative Active Workout assisted card (`어시스트 풀업`) visual read-back: PASS
+- `ExerciseCard`: missing main 0 / remote main 0 / missing Variable 0 / remote Variable 0 / missing Style 0 / remote Style 0
+- no new token or component added
+
+Canonical record:
+
+- `docs/ux-decisions/2026-09-10-exercisecard-exerciseinfo-layout.md`
 
 ### Exercise replacement presentation + binding
 
@@ -84,6 +111,7 @@ Confirmed presentation:
 - `다른 운동 보기` is the escape path to browse outside the recommended three
 - duplicated content heading was removed; local `Nav Header` owns `대체 운동 선택` and the body keeps only the helper copy
 - copied 360×800 reference screens were normalized to Group 05 360×780
+- 05G/05H `ExerciseInfo` uses vertical Fill container with vertically centered contents per PO correction
 
 Figma reflection:
 
@@ -227,6 +255,7 @@ Canonical Figma:
 - 05 Active Workout main UI continues from `03E2_Routine_Create_WithExercises`, not from a parallel card system.
 - KG / REPS editable exercise-card structure is reused from the current local `ExerciseCard` family.
 - Active Workout uses local `Mode=Workout` variant.
+- `ExerciseCard > CardHeader > ExerciseInfo` fills vertically and centers its content vertically.
 - attachment status chip remains visually aligned with Group 03 approved treatment.
 - rest timer uses local `RestTimerPill` and is an overlay toast/pill, not an inline persistent banner.
 - replacement recommendations use local `ExerciseReplaceItem` + `RadioButton`; no copied external replacement components remain in canonical 05G/05H.
@@ -260,7 +289,7 @@ After that, return to:
 - while it is active, the user goes to the Routine list and attempts to start a different routine
 - `05N` is the conflict-confirmation state shown at that point
 
-Do not reopen passed 05F/action-menu/replacement localization work without a concrete conflict.
+Do not reopen passed 05F/action-menu/replacement localization/ExerciseInfo layout work without a concrete conflict.
 
 Related locked policy references include:
 
@@ -277,6 +306,7 @@ Related locked policy references include:
 - `docs/ux-decisions/2026-09-10-routinelist-action-bottomsheet-correction.md`
 - `docs/ux-decisions/2026-09-10-group05-rest-timer-localization.md`
 - `docs/ux-decisions/2026-09-10-group05-exercise-replacement-localization.md`
+- `docs/ux-decisions/2026-09-10-exercisecard-exerciseinfo-layout.md`
 
 ---
 
@@ -317,6 +347,7 @@ Important component cleanup:
 - existing Group 04 `ExerciseRowDetailAction` / `FilterSelectButton` nested chevron is now local
 - `ExerciseSearchRow_Selected` master `598:1392` is now placed on `MVP_공용_UI` while preserving the same master ID and existing instance links
 - 03A has an explicit bottom-sheet `...` representative state using shared `ActionSheet / Mode=RoutineList`; this explicit PO change does not reopen unrelated Group 03 QA
+- local `ExerciseCard` now uses vertically filling and vertically centered `ExerciseInfo` consistently across all variants
 
 Checkpoint:
 
@@ -324,6 +355,7 @@ Checkpoint:
 - `docs/ux-decisions/2026-09-10-action-menu-presentation.md`
 - `docs/ux-decisions/2026-09-10-action-menu-binding-qa.md`
 - `docs/ux-decisions/2026-09-10-routinelist-action-bottomsheet-correction.md`
+- `docs/ux-decisions/2026-09-10-exercisecard-exerciseinfo-layout.md`
 
 Do not reopen 01–04 visual design solely because component ownership changed.
 
