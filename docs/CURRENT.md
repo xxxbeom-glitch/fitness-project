@@ -188,7 +188,8 @@ Current sample:
 - metadata row dividers remain for scanability
 - metadata content aligns directly to the page content inset
 - `운동 방법` = heading + numbered list directly on the page, no inner card
-- `핵심 체크포인트` = heading + bullet list directly on the page, no inner card
+- `핵심 체크포인트` = heading + numbered list directly on the page, no inner card
+- both lists share the same `spacing/12` list rhythm and FILL + height-auto long-copy behavior
 - section hierarchy is carried by typography + 24px parent spacing rather than stacked boxes
 - structure / binding / screenshot QA completed after flattening
 
