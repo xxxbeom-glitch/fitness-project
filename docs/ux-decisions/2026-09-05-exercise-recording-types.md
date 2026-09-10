@@ -1,7 +1,8 @@
 # Exercise Recording Types
 
 **Date:** 2026-09-05  
-**Status:** PO APPROVED / MVP 5 TYPES ACTIVE / 3 TYPES RESERVED
+**Updated:** 2026-09-10  
+**Status:** PO APPROVED / MVP 4 TYPES ACTIVE / 3 TYPES RESERVED
 
 ## Decision
 
@@ -9,14 +10,13 @@ G Fit은 모든 운동을 `중량 + 횟수` 한 가지 방식으로 기록하지
 
 운동 identity마다 `recording_type`을 지정하고, Active Workout의 세트 입력 UI는 해당 타입에 맞춰 달라진다.
 
-현재 MVP에서 실제 사용하는 기본 recording type은 **5종**으로 확정한다.
+현재 MVP에서 실제 사용하는 기본 recording type은 **4종**으로 확정한다.
 
 | recording_type | 기록값 | 대표 예시 | MVP |
 |---|---|---|---|
 | `weight_reps` | 중량 + 횟수 | 벤치프레스, 스쿼트, 일반 머신 | ACTIVE |
 | `reps` | 횟수 | 푸시업, 크런치, 라잉 레그 레이즈 | ACTIVE |
 | `duration` | 시간 | 플랭크, 데드행, 월싯 | ACTIVE |
-| `added_weight_reps` | 추가중량 + 횟수 | 중량 풀업, 중량 딥스 | ACTIVE |
 | `assisted_weight_reps` | 보조중량 + 횟수 | 어시스트 풀업, 어시스트 딥스 | ACTIVE |
 
 향후 확장을 위해 아래 **3종은 schema-level reserved**로 둔다. MVP에서 별도 UI를 우선 구현하지 않는다.
@@ -27,7 +27,16 @@ G Fit은 모든 운동을 `중량 + 횟수` 한 가지 방식으로 기록하지
 | `distance_duration` | 거리 + 시간 | 러닝, 로잉 등 | RESERVED |
 | `distance_weight` | 거리 + 중량 | 파머스 워크, 수트케이스 캐리 | RESERVED |
 
-따라서 현재 G Fit recording model은 **5 active + 3 reserved = 8종**으로 관리한다.
+따라서 현재 G Fit recording model은 **4 active + 3 reserved = 7종**으로 관리한다.
+
+### MVP에서 제외한 방식
+
+`added_weight_reps` / Weighted Bodyweight처럼 체중에 외부 중량을 추가하여 `+KG + 횟수`로 기록하는 별도 방식은 **MVP 기획에서 제외**한다.
+
+- 전용 Active Workout 입력 UI를 만들지 않는다.
+- Weighted Pull-Up / Weighted Dip 등의 별도 `+KG` 기록 semantics는 MVP에서 지원하지 않는다.
+- 이를 `weight_reps` 또는 `reps`로 임의 변환하여 의미가 다른 기록을 저장하지 않는다.
+- 향후 필요 시 별도 PO 결정으로 다시 연다.
 
 ---
 
@@ -71,17 +80,6 @@ Reference:
 
 - `docs/ux-decisions/2026-09-05-duration-exercise-recording.md`
 
-### `added_weight_reps`
-
-사용자의 체중에 **추가한 외부 중량**을 기록한다.
-
-예:
-
-- Weighted Pull-Up: +20 kg × 5 reps
-- Weighted Dip: +15 kg × 8 reps
-
-이 값이 커지는 것은 일반적으로 더 큰 외부 부하를 의미한다.
-
 ### `assisted_weight_reps`
 
 사용자의 체중을 상쇄하는 **보조 중량**을 기록한다.
@@ -90,7 +88,7 @@ Reference:
 
 - Assisted Pull-Up: 30 kg assistance × 8 reps
 
-추가중량과 해석 방향이 반대이므로 `added_weight_reps` 또는 `weight_reps`와 합치지 않는다.
+보조 중량은 일반 외부 중량과 해석 방향이 다르므로 `weight_reps`와 합치지 않는다.
 
 Reference:
 
@@ -103,7 +101,6 @@ Reference:
 같은 숫자라도 recording semantics가 다르다.
 
 - Bench Press 30 kg → 사용자가 들어 올린 외부 중량
-- Weighted Pull-Up +30 kg → 체중에 추가된 부하
 - Assisted Pull-Up 30 kg → 체중에서 상쇄된 보조량
 - Plank 30 sec → 유지시간
 
@@ -122,7 +119,6 @@ Reference:
 - `weight_reps` → `KG / 횟수`
 - `reps` → `횟수`
 - `duration` → `시간`
-- `added_weight_reps` → `추가중량 / 횟수`
 - `assisted_weight_reps` → `보조중량 / 횟수`
 
 다만 현재 단계에서 각 타입의 세부 UI를 모두 새로 설계하지 않는다.
@@ -140,6 +136,7 @@ Reference:
 - 동일 장비라도 운동에 따라 recording type이 달라질 수 있다.
 - recording type이 다르면 history / PR 계산을 무리하게 같은 공식으로 처리하지 않는다.
 - Reserved 3종은 미래 호환성을 위한 schema 범위이며, 현재 MVP catalog를 cardio/home-workout 방향으로 확장한다는 의미가 아니다.
+- `added_weight_reps`는 현재 MVP 범위 밖이며 전용 UI/기록 로직을 만들지 않는다.
 
 ---
 
@@ -159,7 +156,6 @@ P0 16 Production promotion QA는 이 recording-type policy를 기준으로 진�
 후속 UX / implementation에서 결정:
 
 - `duration` timed-set UI
-- `added_weight_reps` 세트 입력 copy / 표시 방식
 - reserved 3종의 실제 Active Workout UI
 - recording type별 PR / progression 계산 세부 규칙
 
