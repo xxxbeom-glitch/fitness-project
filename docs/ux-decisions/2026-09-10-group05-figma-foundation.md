@@ -162,3 +162,25 @@ Continue Product/UX and Figma together from the current `05A_Workout_Weight` fou
 Review one workout interaction/state at a time, decide it, and immediately reflect it in Figma before moving on. Start with the common 05A workout structure and identify only the missing states/screens actually required for MVP.
 
 No Cursor implementation handoff is implied.
+
+## Latest Active Workout presentation cleanup — 2026-09-10 / PO APPROVED / FIGMA REFLECTED
+
+PO requested a final simplification/localization pass on the common Active Workout card presentation.
+
+Applied in canonical Figma:
+
+- remove the redundant `운동 구성` section title from 05A-like Active Workout list states
+- affected representative states: `05A_Workout_Weight`, `05K_End_Incomplete`, `05L_End_Complete`, `05M_Discard`
+- local Active Workout `ExerciseCard` variants use Korean column labels rather than mixed English/Korean
+- standard reps/weight cards: `세트 / 중량 / 횟수 / 완료`
+- duration card keeps its specialized measurement: `세트 / 중량 / 시간 / 완료`
+- assisted card keeps its specialized measurement: `세트 / 보조중량 / 횟수 / 완료`
+- Group 03 `Mode=View` / `Mode=Edit` variants were not reopened by this Group 05-only change
+
+Focused read-back QA:
+
+- `운동 구성` remaining count on 05A/05K/05L/05M = 0
+- Active Workout component variants contain no remaining `SET` or `KG` labels
+- 05A visible instances read back as `세트 / 중량 / 횟수 / 완료`
+- 05A screenshot read-back after the change = PASS
+- no new token/component/style/variable created
