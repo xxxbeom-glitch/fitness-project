@@ -1,6 +1,6 @@
 # Exercise Library Filters — Full Page Selection — 2026-09-10
 
-**Status:** PO APPROVED / CANONICAL
+**Status:** PO APPROVED / CANONICAL / CLOSURE QA PASS
 **Scope:** Group 04 Add Exercise equipment/body-part filter selection surfaces
 
 ## Decision
@@ -11,7 +11,7 @@ This supersedes the bottom-sheet filter direction recorded in `2026-09-09-exerci
 
 Reason:
 
-- equipment has 10 current UI options and body part has 8
+- equipment has 10 current UI options and body part has 9 after final Production taxonomy alignment
 - the previous sheets were already tall on the 360x954 reference viewport
 - on shorter phones they would require a large nested scroll surface inside a sheet, reducing the main benefit of a bottom sheet
 - full-page selection scales better if filter options grow later
@@ -25,6 +25,39 @@ Reason:
 - selected value is shown in the filter trigger when returning
 - `전체` clears that category filter
 - no Apply CTA is required
+
+## Final Production taxonomy alignment — 2026-09-10
+
+Body-part filtering uses the approved **large body-part category**, not the detailed primary-muscle field.
+
+Canonical body-part UI options:
+
+1. `전체`
+2. `가슴`
+3. `등`
+4. `어깨`
+5. `팔`
+6. `하체`
+7. `코어`
+8. `전신`
+9. `기타`
+
+This follows `2026-09-02-exercise-db-normalization.md`. The temporary `이두 / 삼두` filter samples were removed because those are detailed muscle concepts, not the canonical large body-part filter categories.
+
+Canonical equipment UI options remain:
+
+1. `전체`
+2. `바벨`
+3. `덤벨`
+4. `머신`
+5. `케이블`
+6. `스미스 머신`
+7. `EZ바`
+8. `케틀벨`
+9. `맨몸`
+10. `기타`
+
+`기타` is the MVP user-facing aggregate for lower-frequency Production equipment categories that are not exposed as their own top-level filter, including categories such as Plate and Landmine. Exact runtime row/category mapping is finalized when the derived 211-row Production artifact is regenerated.
 
 ## Canonical Figma
 
@@ -56,25 +89,32 @@ Both pages:
 - content has 20px page inset and vertical scrolling enabled
 - existing `OptionItem` instances are reused without detaching
 - selected `OptionItem` remains the existing green text + check state
+- row content has 0 left/right inner padding
+- list dividers remain between items and are excluded from the final item
 - no dim overlay, sheet handle, sheet glass shell, or rounded sheet container remains
 
 ## QA
 
 ### Structure QA — PASS
 
-- page shells remain 360x954 vertical Auto Layout
+- page shells are `360 x 954` vertical Auto Layout
 - `FilterPageContent` fills the area below status/header using Fill sizing on both axes
 - content is vertical-scroll capable for shorter/runtime viewports
 - option lists remain semantic vertical Auto Layout
+- equipment options = 10 rows / `520px`
+- body-part options = 9 rows / `468px`
 - no bottom-sheet overlay/shell remains
 
 ### Component / binding QA — PASS for canonical filter screens
 
 - existing `Nav Header` instance retained
-- existing `OptionItem` instances retained with their component variants/properties
-- no detached or screen-only duplicate option rows introduced
-- `FilterPageContent` 20px padding is bound to Tracker APP `spacing/20`
-- the two currently selected `전체` labels are locally bound to Tracker APP `brand/primary`, matching the existing check-icon token binding
+- all filter rows remain existing `OptionItem` instances; the added `기타` body-part row is also an instance of the existing unselected `OptionItem` component
+- no detached or screen-only duplicate option component was introduced
+- row label x-position = 0 inside the 320px list line, matching the 20px page inset
+- dividers use the existing `border/default` stroke and `border/thin` (`0.5px`) weight between items
+- the final item has no divider
+- `FilterPageContent` 20px padding remains bound to Tracker APP `spacing/20`
+- the two currently selected `전체` labels remain locally bound to Tracker APP `brand/primary`, matching the existing check-icon token binding
 
 Library note:
 
@@ -85,9 +125,9 @@ Library note:
 ### Screenshot QA — PASS
 
 - equipment page shows all 10 current options cleanly as a full-page list
-- body-part page shows all 8 current options cleanly as a full-page list
+- body-part page shows all 9 canonical options cleanly as a full-page list
 - selected `전체` state and check remain visually clear
-- no sheet-height or nested-sheet-scroll issue remains on the canonical 360x954 reference screen
+- no sheet-height or nested-sheet-scroll issue remains on the canonical `360 x 954` reference screen
 
 ## Regression QA — 04H attachment picker divider repair
 
@@ -108,6 +148,6 @@ Post-repair structure/binding QA and screenshot QA: **PASS**.
 
 ## Boundary
 
-Current option labels remain UI/sample taxonomy and are still subject to the existing final Production taxonomy sample-data QA.
+Final Group 04 UI/sample taxonomy QA is complete. The derived 211-row workbook/runtime DB is still a separate deferred Production-generation task, so exact runtime IDs and row-to-filter mapping must be generated from that artifact rather than reconstructed in Figma.
 
 No Cursor implementation handoff yet.
