@@ -4,7 +4,7 @@
 
 ## Current mode
 
-`PRODUCT/UX FIGMA · 01–04 LOCAL COMPONENT/TOKEN MIGRATION PASS · GROUP 04 CLOSED · ANALYSIS BODY-MAP TAXONOMY NEXT · NO CURSOR IMPLEMENTATION HANDOFF`
+`PRODUCT/UX FIGMA · GROUP 05 ACTIVE WORKOUT ACTIVE · 05A/05J LOCAL COMPONENT/TOKEN QA PASS · NO CURSOR IMPLEMENTATION HANDOFF`
 
 ## Resume rule
 
@@ -16,20 +16,80 @@
 
 ## Latest active checkpoint
 
-- `docs/ux-decisions/2026-09-10-figma-local-component-migration.md`
+- `docs/ux-decisions/2026-09-10-group05-figma-foundation.md`
 
-PO 요청에 따라 현재 작업된 Figma `01 → 02 → 03 → 04` 페이지를 순서대로 검사하고, screen tree의 external component / Variable / Style dependency를 current Fitness file local asset으로 이관했다.
+PO clarification에 따라 Group 05 Active Workout은 기존 옛 Group 05 카드 스타일을 기준으로 새로 그리지 않고, 현재 승인된 Routine 계열 중 **`03E2_Routine_Create_WithExercises`를 visual/interaction foundation으로 재사용**한다.
 
-Final combined dependency audit:
+Current Group 05 working pair:
 
-| Page | External component | External variable | External style |
+- `05A_Workout_Weight` — `148:1979`
+- `05J_Reorder` — `36:3609`
+
+이번 foundation sync에서:
+
+- 05A exercise list를 03E2 pattern 기준으로 교체
+- local `ExerciseCard / Mode=Workout` 재사용
+- 03E2의 attachment status-chip visual/token treatment 유지
+- 05A CTA를 local Fitness CTA component로 재바인딩
+- 05J `ReorderRow`와 `icon/drag-handle`을 local asset으로 이관
+- 05J CTA를 local Fitness CTA로 재바인딩
+- 두 screen tree의 external component / Variable / Style dependency를 모두 제거
+
+Final dependency audit:
+
+| Screen | External component | External variable | External style |
 | --- | ---: | ---: | ---: |
-| 01 로그인 · 첫 진입 | 0 | 0 | 0 |
-| 02 홈 | 0 | 0 | 0 |
-| 03 루틴 | 0 | 0 | 0 |
-| 04 운동 목록 · 상세 | 0 | 0 | 0 |
+| 05A_Workout_Weight | 0 | 0 | 0 |
+| 05J_Reorder | 0 | 0 | 0 |
 
-This audit applies to the canonical screen trees on pages 01–04. It does not assert that every unused asset or every other page in the entire Figma file has no external library reference.
+Visual read-back for both screens: PASS.
+
+---
+
+# ACTIVE TRACK — Group 05 운동 중
+
+Canonical Figma:
+
+- file: `W3lZurXCXbThP67rF2xk2b`
+- page: `05 운동 중` — `233:2076`
+- current main screen: `05A_Workout_Weight` — `148:1979`
+- current reorder screen: `05J_Reorder` — `36:3609`
+- shared UI page: `MVP_공용_UI` — `105:3113`
+- local component library: `635:788`
+
+### Locked foundation
+
+- 05 Active Workout main UI continues from `03E2_Routine_Create_WithExercises`, not from a parallel card system.
+- KG / REPS editable exercise-card structure is reused from the current local `ExerciseCard` family.
+- Active Workout uses local `Mode=Workout` variant.
+- attachment status chip remains visually aligned with Group 03 approved treatment.
+- existing local Variables/Styles/Components take priority over creating new assets.
+- no external library dependency may be reintroduced.
+- no screen-instance detach shortcut.
+
+### Workflow for Group 05
+
+Product/UX decision and Figma screen work proceed together:
+
+`one interaction/state review → PO decision where needed → immediate Figma reflection → focused QA → next interaction/state`
+
+Do not complete all planning first and postpone all Figma work to the end.
+
+## NEXT OPEN ITEM — exact resume point
+
+Continue from current `05A_Workout_Weight` foundation.
+
+Review the common Active Workout structure and missing MVP states one by one, while preserving all already-approved policies. Begin with the base workout interaction/state needed on 05A, then add only the derivative screens/states actually required.
+
+Related locked policy references include:
+
+- `docs/ux-decisions/2026-09-03-active-workout-routine-update.md`
+- `docs/ux-decisions/2026-09-03-rest-timer-behavior.md`
+- `docs/ux-decisions/2026-09-03-workout-end-flow.md`
+- `docs/ux-decisions/2026-09-03-cable-attachment-active-workout.md`
+- `docs/ux-decisions/2026-09-05-exercise-recording-types.md`
+- `docs/ux-decisions/2026-09-05-duration-exercise-recording.md`
+- `docs/ux-decisions/2026-09-03-assisted-machine-recording.md`
 
 ---
 
@@ -107,7 +167,7 @@ The local-component migration did not reopen or redesign Group 04. Post-migratio
 
 ---
 
-# ACTIVE TRACK — Analysis
+# PRESERVED DEFERRED TRACK — Analysis
 
 Approved Analysis hierarchy remains locked:
 
@@ -126,17 +186,15 @@ Analysis basics already locked:
 - do not multiply the body-map value by kg/reps/duration/assistance
 - do not label the heuristic as optimal/undertrained/overtrained/recovered
 
-Resume Analysis from:
+When Group 05/06 sequencing allows Analysis to resume, continue from:
 
 - `docs/ux-decisions/2026-09-05-analysis-tab-ia.md`
 - `docs/ux-decisions/2026-09-05-analysis-body-area-drilldown.md`
 - `docs/ux-decisions/2026-09-05-analysis-exercise-progress.md`
 
-## NEXT OPEN ITEM — exact resume point
+Preserved next Analysis item:
 
 `canonical muscle/body-part taxonomy → practical front/back body-map regions mapping`
-
-Proceed in Product/UX mode first. Confirm the canonical muscle taxonomy actually available in the Production exercise data, then define the practical body-map regions and mapping rules needed by Analysis.
 
 ---
 
