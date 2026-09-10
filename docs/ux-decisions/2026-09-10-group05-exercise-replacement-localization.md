@@ -4,7 +4,7 @@
 
 ## Scope
 
-Localize the copied `430_Exercise_Replace_Suggest` / `430a_Exercise_Replace_Selected` reference screens into the current Fitness design system and define the replacement recommendation refresh limit for Group 05 Active Workout.
+Localize the copied `430_Exercise_Replace_Suggest` / `430a_Exercise_Replace_Selected` reference screens into the current Fitness design system and define the replacement recommendation browsing policy for Group 05 Active Workout.
 
 ## Product flow represented
 
@@ -14,31 +14,30 @@ Entry point:
 
 Representative states:
 
-- `05G_Exercise_Replace_Suggest` — initial three recommendations, no selection
-- `05H_Exercise_Replace_Selected` — initial recommendation selected
-- `05G2_Exercise_Replace_SecondBatch` — second recommendation batch after one `다른 운동 보기`
-- `05H2_Exercise_Replace_SecondBatch_Selected` — second recommendation batch with one item selected
+- `05G_Exercise_Replace_Suggest` — first three recommendations, no selection
+- `05H_Exercise_Replace_Selected` — first three recommendations with one item selected
+- `05G2_Exercise_Replace_SecondBatch` — second three recommendations
+- `05H2_Exercise_Replace_SecondBatch_Selected` — second three recommendations with one item selected
 
-## Recommendation refresh policy — PO APPROVED
+## Recommendation browsing policy — PO APPROVED
 
-The replacement recommendation surface is intentionally finite.
+The replacement surface uses a fixed pool of up to six preselected replacement exercises. It does not open the broader exercise-search experience and it does not generate or reveal additional candidates beyond that fixed pool.
 
 Flow:
 
-`initial 3 recommendations → 다른 운동 보기 1회 → new 3 recommendations → 전체 운동에서 찾기`
+`first 3 recommendations ↔ 다른 운동 보기 ↔ second 3 recommendations`
 
 Rules:
 
-- show three similar recommendations initially
-- allow `다른 운동 보기` exactly once
-- the second batch must not repeat exercises already shown in the first batch
-- after the second batch is shown, the secondary action changes from `다른 운동 보기` to `전체 운동에서 찾기`
-- do not continue rotating recommendations indefinitely
-- if fewer than three unseen recommendations remain, show only the remaining candidates
-- if no unseen candidates remain, move directly to `전체 운동에서 찾기`
-- browsing or refreshing recommendations does not change the current workout record
+- prepare up to six replacement candidates for the current exercise
+- show three candidates at a time
+- the first and second groups must not duplicate each other
+- `다른 운동 보기` switches between the two groups only
+- after all six have been exposed, pressing `다른 운동 보기` continues to cycle within those same already-prepared candidates; no seventh or later recommendation is introduced
+- do not expose `전체 운동에서 찾기` from this flow
+- if fewer than six candidates are available, cycle only within the candidates that exist
+- browsing between candidate groups does not change the active workout record
 - the replacement is applied only when the user selects an exercise and confirms `선택 완료`
-- `전체 운동에서 찾기` is the escape path to the broader exercise list/search experience
 
 ## Selection behavior
 
@@ -60,13 +59,13 @@ Screens:
 - `05G2_Exercise_Replace_SecondBatch` — `731:3906`
 - `05H2_Exercise_Replace_SecondBatch_Selected` — `731:6943`
 
-Second-batch representative exercises are non-duplicates of the first batch:
+Second-group representative exercises are non-duplicates of the first group:
 
 - 덤벨 벤치프레스
 - 머신 체스트 프레스
 - 펙덱 플라이
 
-The second-batch secondary action is `전체 운동에서 찾기`.
+The secondary action remains `다른 운동 보기` on both recommendation groups. There is no `전체 운동에서 찾기` action in the canonical replacement flow.
 
 All replacement screens use the Group 05 360×780 frame.
 
@@ -86,11 +85,11 @@ Existing local assets reused:
 - `Tag`
 - existing local Variables / text styles
 
-No new token or component was created for the second-batch states.
+No new token or component was created for the second-group states.
 
-## Binding QA
+## Binding / focused QA
 
-Final focused audit:
+Existing local binding audit remains valid because this revision only changes the CTA text/property on the already-local second-group screens:
 
 - `RadioButton`: missing main 0 / remote main 0 / missing Variable 0 / remote Variable 0 / missing Style 0 / remote Style 0
 - `ExerciseReplaceItem`: missing main 0 / remote main 0 / missing Variable 0 / remote Variable 0 / missing Style 0 / remote Style 0
@@ -99,7 +98,12 @@ Final focused audit:
 - `05G2_Exercise_Replace_SecondBatch`: missing main 0 / remote main 0 / missing Variable 0 / remote Variable 0 / missing Style 0 / remote Style 0
 - `05H2_Exercise_Replace_SecondBatch_Selected`: missing main 0 / remote main 0 / missing Variable 0 / remote Variable 0 / missing Style 0 / remote Style 0
 
-Representative screenshot read-back: PASS for the second-batch unselected and selected states.
+Focused read-back after the policy correction:
+
+- `05G2` secondary action = `다른 운동 보기`
+- `05H2` secondary action = `다른 운동 보기`
+- `전체 운동에서 찾기` copy remaining in either second-group screen = 0
+- screenshot read-back: PASS for both second-group states
 
 The copied external `ExerciseItem`, `RadioButton`, `DualCTA`, Status Bar and remote token bindings are not present in the canonical replacement flow.
 
