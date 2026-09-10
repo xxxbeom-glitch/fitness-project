@@ -25,18 +25,29 @@ Canonical interaction/presentation:
 
 `최근 운동` is still historical recency and is not repurposed as the selected list.
 
-## Component reuse
+## Selected chip visual — PO LOCKED
 
-Do not invent a separate visual chip family for this state unless a later design-system decision requires it.
+The earlier filled-green `FilterChip/Active` treatment is **superseded** for selected exercises.
 
-The existing Tracker APP `FilterChip` component is reused for the current selected-exercise chip treatment:
+Canonical selected-exercise chip:
 
-- component set: `FilterChip`
-- state: `Active`
-- existing semantic bindings retained, including `brand/primary`, `bg/default`, `label/01`, `spacing/16`, `spacing/8`, and `radius/full`
-- current removable affordance is represented in the chip label as `운동명 ×`
+- dedicated reusable component: `SelectedExerciseChip`
+- transparent / no filled color
+- 1px line outline using the existing `border/default` semantic color
+- pill radius using existing `radius/full`
+- height: 32px
+- text: existing `label/01`, `text/primary`
+- trailing remove affordance: actual X/close icon in a 16px icon slot, using `text/secondary`
+- internal horizontal gap between label and close slot: 4px
+- left padding: 12px
+- right padding: 8px
+- vertical padding: 8px
 
-The previous comparison-only `+N` summary chip is removed from the canonical pattern. All selected items remain available by horizontal scrolling.
+The horizontal padding is intentionally asymmetric. The X icon sits inside a 16px slot and therefore already contains visual whitespace around the visible mark; reducing the right container padding from 12px to 8px makes the **visible** left/right whitespace look balanced.
+
+This selected chip is intentionally separate from the existing filter chip family because its structure includes a trailing remove icon and asymmetric padding that the current `FilterChip` API does not support cleanly.
+
+The previous comparison-only `+N` summary chip remains removed from the canonical pattern. All selected items remain available by horizontal scrolling.
 
 ## Canonical Figma
 
@@ -59,6 +70,11 @@ Approved V2 source/reference:
 Promoted selected section in canonical 04B:
 
 - `SelectedExerciseChips_HorizontalScroll` — `566:1340`
+- horizontal viewport — `566:1343`
+
+Reusable selected chip component:
+
+- `SelectedExerciseChip` — `569:1335`
 
 Current screenshot sample uses 10 selected exercises only to stress-test horizontal overflow. The visible sample names are **UI sample data, not a new Production taxonomy decision**. Final exercise-list/filter sample-data QA against the canonical Production taxonomy remains a separate next step.
 
@@ -66,7 +82,7 @@ Current screenshot sample uses 10 selected exercises only to stress-test horizon
 
 04B has a fixed/absolute bottom selection footer of 100px.
 
-The canonical scrollable `SearchContent` bottom padding is now 120px so the list can scroll its final content above the fixed footer instead of leaving the final exercise row hidden behind `N개 운동 추가`.
+The canonical scrollable `SearchContent` bottom padding is 120px so the list can scroll its final content above the fixed footer instead of leaving the final exercise row hidden behind `N개 운동 추가`.
 
 This is a Figma interaction/layout safety rule; runtime implementation must preserve equivalent safe bottom content inset.
 
@@ -80,19 +96,28 @@ This is a Figma interaction/layout safety rule; runtime implementation must pres
 - chip viewport uses horizontal Auto Layout
 - chip viewport is clipped and configured for horizontal overflow
 - current 10-chip stress sample exceeds viewport width, confirming real horizontal overflow
+- each chip is a reusable `SelectedExerciseChip` instance rather than an ad-hoc screen-only frame
+- component uses 12px left / 8px right / 8px vertical padding with a 4px label-to-icon gap
 - canonical vertical content remains scrollable
 - 120px bottom content padding clears the fixed 100px CTA footer
 
 ### QA-2 — Design system / Binding: PASS
 
-- all selected chips remain genuine Tracker APP `FilterChip` instances
-- Active variant/property integrity retained
-- existing typography/color/spacing/radius bindings retained
-- no detached duplicate chip component was introduced
+- selected chips use `SelectedExerciseChip` instances
+- label is exposed as a component text property
+- spacing uses existing `spacing/12`, `spacing/8`, `spacing/4`
+- outline uses existing `border/default`
+- radius uses existing `radius/full`
+- text uses existing `label/01`, `text/primary`
+- close icon uses existing `text/secondary` semantic color
+- no green fill remains on selected-exercise chips
+- no detached duplicate chip instances were introduced
 
 ### QA-3 — Screenshot / Product: PASS
 
 - `선택한 운동 (10개)` is visible directly below filters
+- selected chips read as neutral line-only objects rather than filter/brand-state pills
+- trailing X is visually lighter and the 12/8 asymmetric padding appears optically balanced
 - the next chip is partially visible at the right edge, naturally indicating horizontal continuation
 - recent/all exercise list hierarchy remains intact
 - fixed `10개 운동 추가` CTA remains visible
