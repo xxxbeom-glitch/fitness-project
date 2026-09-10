@@ -1,7 +1,7 @@
 # Exercise Library / Add Exercise — Hevy Alignment — 2026-09-09
 
-**Status:** PO APPROVED / CANONICAL 04A-04B
-**Scope:** Group 04 운동 목록/검색/필터/다중선택의 상호작용 기준
+**Status:** PO APPROVED / CANONICAL 04A-04F UPDATED
+**Scope:** Group 04 운동 목록/검색/필터/다중선택 및 연결 상세/커스텀 운동 상태의 상호작용 기준
 
 ## Decision
 
@@ -196,17 +196,88 @@ Promotion QA:
 - 04B selected state keeps the approved left green indicator + 8px content indent while dividers remain unchanged
 - screenshot QA completed for promoted 04A and 04B
 
-## 9. Next open item
+## 9. Group 04 progress — 2026-09-10
 
-04A/04B promotion is complete.
+### 04C no-result — UPDATED
+
+Canonical `04C_Search_Empty` was rebuilt onto the same current Add Exercise shell as 04A.
+
+- current node: `539:1050`
+- `360 × 954` vertical Auto Layout
+- same Nav Header / search / `장비 전체` / `부위 전체` filter structure
+- invalid search example: `레그프레쓰`
+- empty-state message retained
+- direct custom-exercise CTA retained
+- structure / binding / screenshot QA completed
+
+### 04D exercise detail — METADATA UPDATED
+
+Canonical `04D_운동상세` keeps the approved `운동 정보 | 최근 기록` 2-tab structure and now includes the missing structured metadata.
+
+- node: `40:2325`
+- equipment: `바벨`
+- primary target: `가슴`
+- secondary target: `삼두 · 전면 어깨`
+- exercise-method text retained
+- `핵심 체크포인트` section added
+- existing Tracker APP row/value components and semantic tokens reused
+- normalized to `360 × 954` vertical screen shell
+- structure / binding / screenshot QA completed
+
+### 04E / 04F custom exercise — METADATA UPDATED
+
+Custom exercise create/edit now exposes the structured fields needed by the approved MVP recording model.
+
+Canonical nodes:
+
+- `04E_Custom_Create` — `34:1672`
+- `04F_Custom_Edit` — `34:1692`
+
+Visible setting rows, in order:
+
+1. `장비`
+2. `주 타겟 근육`
+3. `보조 타겟 근육`
+4. `기록 방식`
+
+Create-state sample:
+
+- 장비: `선택`
+- 주 타겟 근육: `선택`
+- 보조 타겟 근육: `선택 안 함`
+- 기록 방식: `중량 + 횟수`
+
+Edit-state sample:
+
+- 운동명: `케이블 풀다운 (커스텀)`
+- 장비: `케이블`
+- 주 타겟 근육: `등`
+- 보조 타겟 근육: `이두`
+- 기록 방식: `중량 + 횟수`
+
+Additional cleanup:
+
+- 04F Nav Header title corrected to `운동 수정`
+- both E/F normalized to `360 × 954` vertical Auto Layout shells
+- existing `RowLabel`, `RowValue`, thumbnail, input, Nav Header, delete CTA patterns retained
+- spacing/surface/radius bindings preserved on added rows
+- structure / binding / screenshot QA completed
+
+Recording-type authority remains:
+
+- `docs/ux-decisions/2026-09-05-exercise-recording-types.md`
+- MVP active: `weight_reps`, `reps`, `duration`, `added_weight_reps`, `assisted_weight_reps`
+- user-facing `기록 방식` copy represents this product concept; detailed selector-state UI may be refined during implementation-facing interaction specification
+
+## 10. Next open item
+
+04A/04B promotion, 04C no-result, 04D metadata, and 04E/04F custom-exercise metadata are now represented in canonical Figma.
 
 Next:
 
-1. update canonical `04C_Search_Empty` to the same new header/search/filter system
-2. ensure no-result example uses an actually absent/invalid search term rather than a valid exercise name
-3. then continue 04D metadata QA
-4. continue 04E/04F custom-exercise metadata QA
-5. finish 04H attachment taxonomy/copy/direct-input decision
-6. run full Group 04 structure/binding/visual QA
+1. final exercise list/filter data QA against canonical exercise DB taxonomy
+2. finish `04H` attachment taxonomy / copy / direct-input decision and align its background list with canonical 04A
+3. ensure the 04B fixed `N개 운동 추가` CTA leaves adequate scroll clearance for the final list item
+4. run full Group 04 structure/binding/visual QA and decide whether Group 04 can close
 
 No Cursor implementation handoff yet.
