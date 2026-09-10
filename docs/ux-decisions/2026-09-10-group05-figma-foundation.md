@@ -79,6 +79,20 @@ Especially:
 - do not reintroduce external component-library dependencies
 - do not detach screen instances as a shortcut
 
+## Active review decisions
+
+### First-load weight guidance — DEFERRED
+
+PO removed the current first-load weight-guidance concept from the Group 05 MVP flow for now.
+
+Figma cleanup:
+
+- removed `05G_Workout_FirstLoad` — `148:3043`
+- removed dependent `05H_Workout_FirstFeel` — `148:3216`
+- removed the current `첫 중량 가이드` / first-set-feel flow from the active Group 05 page
+
+A replacement onboarding/guidance method may be designed later. Do not recreate this flow unless the PO explicitly reopens it.
+
 ## NEXT OPEN ITEM
 
 Continue Product/UX and Figma together from the current `05A_Workout_Weight` foundation.
