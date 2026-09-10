@@ -1,6 +1,6 @@
 # Exercise Library / Add Exercise — Hevy Alignment — 2026-09-09
 
-**Status:** PO DIRECTION LOCKED FOR CURRENT FIGMA PASS
+**Status:** PO APPROVED / CANONICAL 04A-04B
 **Scope:** Group 04 운동 목록/검색/필터/다중선택의 상호작용 기준
 
 ## Decision
@@ -156,21 +156,26 @@ Retain LIFTLY policy:
 - secondary muscles remain available for Exercise Detail, custom exercise metadata and later analysis/body-map logic
 - canonical exercise identity/recording type/attachment rules remain governed by the fitness-project DB decisions
 
-## 8. Figma state after this decision
+## 8. Canonical Figma state after promotion
 
 Canonical page:
 
 - `04 운동 목록 · 상세` — node `233:2075`
 
-Current Hevy-aligned proposal states:
+Promoted canonical states:
 
-- `04I_Search_List_Proposal` — node `207:1238`
-- `04I2_Filter_Equipment_Sheet_Proposal` — node `515:3327`
-- `04I3_Filter_BodyPart_Sheet_Proposal` — node `515:3514`
-- `04I4_Search_Selected_HevyStyle_Proposal` — node `515:1140`
+- `04A_Search` — node `207:1238`
+- `04B_Search_Selected` — node `515:1140`
+
+Canonical supporting filter states:
+
+- `04A_Filter_Equipment_Sheet` — node `515:3327`
+- `04A_Filter_BodyPart_Sheet` — node `515:3514`
 
 Superseded/removed:
 
+- old canonical `04A_Search` — node `34:1601`
+- old canonical `04B_Search_Selected` — node `34:1622`
 - `04I2_Filter_BodyPart_FullPage_Proposal`
 - `04I3_Filter_Equipment_FullPage_Proposal`
 - prior right-side `ExerciseSelectionControl` check/+ component
@@ -183,18 +188,25 @@ New/reused common patterns:
 - existing `OptionItem`
 - existing 04H bottom-sheet shell/overlay styling
 
-## 9. Promotion boundary
+Promotion QA:
 
-The Hevy alignment direction is approved for the exercise-list design pass, but the old canonical `04A / 04B` frames have **not yet been deleted/promoted**.
+- promoted 04A/04B remain `360 × 954` vertical Auto Layout screens
+- search/list structure remained intact after move/rename
+- old canonical A/B frames were removed
+- 04B selected state keeps the approved left green indicator + 8px content indent while dividers remain unchanged
+- screenshot QA completed for promoted 04A and 04B
 
-Next action:
+## 9. Next open item
 
-1. review the four 04I Hevy-aligned states as one flow
-2. if no visual/interaction issue remains, promote:
-   - `04I_Search_List_Proposal` -> canonical 04A
-   - `04I4_Search_Selected_HevyStyle_Proposal` -> canonical 04B
-3. keep equipment/body sheets as supporting states for canonical 04A/B
-4. then update 04C no-result to the same search/filter/header system
-5. continue D/E/F/H outstanding Group 04 QA
+04A/04B promotion is complete.
+
+Next:
+
+1. update canonical `04C_Search_Empty` to the same new header/search/filter system
+2. ensure no-result example uses an actually absent/invalid search term rather than a valid exercise name
+3. then continue 04D metadata QA
+4. continue 04E/04F custom-exercise metadata QA
+5. finish 04H attachment taxonomy/copy/direct-input decision
+6. run full Group 04 structure/binding/visual QA
 
 No Cursor implementation handoff yet.
