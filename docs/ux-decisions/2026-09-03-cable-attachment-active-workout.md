@@ -136,3 +136,90 @@ Active Workout에서 **카드 하나 = 오늘 실제로 수행할 하나의 운�
 - attachment별 PR / 분석 상세 계산 규칙
 
 위 항목은 Exercise DB / asset 작업 HOLD 해제 후 재검수한다.
+
+## 8. 2026-09-10 Group 04 picker refinement
+
+Group 04의 실제 운동 추가 UX를 마무리하면서 다음 **MVP UI/interaction policy**를 확정한다.
+
+### 8.1 Global attachment list를 그대로 노출하지 않는다
+
+케이블 손잡이 시장에는 스트레이트 바, 랫 바, V/triangle 계열, 로프, 싱글 핸들, 다양한 multi-angle/ergonomic grip 등 변형이 많고, 같은 계열 안에서도 폭과 손목/손바닥 각도가 여러 형태로 나뉜다.
+
+따라서 앱에서 모든 손잡이를 한 번에 보여주는 거대한 전역 목록을 만들지 않는다.
+
+- canonical attachment data는 내부적으로 확장 가능하게 유지
+- 사용자에게는 **현재 선택한 운동에서 허용/권장하는 attachment만 1단계 목록으로 노출**
+- 운동별 allowlist는 canonical exercise ID 기준으로 매핑
+- 구매 media의 파일명이 이 allowlist/taxonomy를 결정하지 않음
+- media는 해당 attachment를 실제로 식별할 수 있을 때만 context media로 연결
+
+### 8.2 브랜드명은 canonical identity로 고정하지 않는다
+
+`MAG / 맥그립`처럼 특정 브랜드에 종속된 명칭은 canonical attachment ID의 기준으로 고정하지 않는다.
+
+- 필요하면 검색 alias / 사용자 입력값 / 내부 synonym으로 보조 가능
+- canonical 이름은 가능한 한 실제 형태/폭/방향을 설명하는 generic 명칭을 우선
+- 브랜드 제품 자체를 정확히 기록하려는 사용자는 `직접 입력`을 사용할 수 있음
+
+이 원칙 때문에 Figma 샘플은 `뉴트럴 그립 · 클로즈 / 미디엄 / 와이드`처럼 generic label을 사용한다. 이 샘플 문구가 전체 DB taxonomy의 완전한 목록을 의미하지는 않는다.
+
+### 8.3 직접 입력 fallback
+
+각 attachment picker의 마지막에는 `직접 입력`을 제공한다.
+
+흐름:
+
+`손잡이 선택 → 직접 입력 → 손잡이 이름 입력 → 사용하기`
+
+MVP 규칙:
+
+- 직접 입력값은 사용자가 만들고 있는 해당 운동 카드/기록 context에 저장
+- 공용 canonical attachment taxonomy에 자동 승격하지 않음
+- 입력 문자열만으로 기존 canonical attachment와 자동 merge하지 않음
+- 입력 문자열만으로 특정 media를 자동 연결하지 않음
+- 사용자별 custom attachment 라이브러리/자동완성/관리 기능은 MVP 범위 밖이며 실제 반복 사용 데이터가 생긴 뒤 검토
+
+### 8.4 Selection behavior
+
+- picker를 처음 열면 미선택 상태
+- preset option을 탭하면 해당 attachment를 선택하고 기존 운동 추가 흐름으로 복귀
+- `직접 입력`을 탭하면 direct-input support state로 이동
+- 입력 후 `사용하기`를 누르면 custom attachment context로 복귀
+- 별도 `적용` 버튼을 추가하지 않는다
+
+### 8.5 Canonical Figma
+
+Page:
+
+- `04 운동 목록 · 상세` — node `233:2075`
+
+States:
+
+- `04H_Exercise_Attachment_Selection` — node `170:2174`
+- `04H_Custom_Attachment_Input` — support state added 2026-09-10
+
+04H 배경은 canonical `04A_Search`를 그대로 사용하도록 정리했다.
+
+현재 랫풀다운 UI 샘플:
+
+- 스트레이트 바
+- 와이드 랫 바
+- 뉴트럴 그립 · 클로즈
+- 뉴트럴 그립 · 미디엄
+- 뉴트럴 그립 · 와이드
+- V바
+- 직접 입력
+
+이 목록은 **랫풀다운 UI 샘플/allowlist 예시**이며 전역 exhaustive taxonomy가 아니다. 실제 Production exercise별 allowlist는 Exercise DB data QA에서 별도로 확정한다.
+
+## Remaining data boundary
+
+Group 04에서 attachment picker의 **UI/interaction contract는 닫을 수 있다.**
+
+다만 아래 데이터 작업은 계속 별도 OPEN으로 남긴다.
+
+- Production exercise별 attachment allowlist
+- canonical attachment ID/name 전체 목록
+- 기존 source `neutral / underhand / attachment` row 재정규화
+- attachment별 media mapping
+- attachment별 PR / 분석 상세 계산 규칙
