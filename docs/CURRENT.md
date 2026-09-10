@@ -16,6 +16,10 @@
 
 ## Latest active checkpoint
 
+- `docs/ux-decisions/2026-09-10-group05-recovery-presentation-correction.md`
+
+Supporting foundation checkpoint:
+
 - `docs/ux-decisions/2026-09-10-group05-figma-foundation.md`
 
 PO clarification에 따라 Group 05 Active Workout은 기존 옛 Group 05 카드 스타일을 기준으로 새로 그리지 않고, 현재 승인된 Routine 계열 중 **`03E2_Routine_Create_WithExercises`를 visual/interaction foundation으로 재사용**한다.
@@ -30,20 +34,39 @@ Current Group 05 foundation:
 Group 05 current binding state:
 
 - active workout `ExerciseCard` variants are local and stale visual/layout instance overrides were cleaned from visible Group 05 screens
-- `LeftAction=Back, RightAction=Timer` is now a true variant inside the local `Nav Header` component set
+- `LeftAction=Back, RightAction=Timer` is a true variant inside the local `Nav Header` component set
 - `icon/timer-refresh` is inside `LOCAL_COMPONENT_LIBRARY`
-- repeated attachment status UI is now local `AttachmentTag` component `693:6035`
-- recovery notice is now local `InlineBanner / Info` component `693:6039`
+- repeated attachment status UI is local `AttachmentTag` component `693:6035`
 - 05I uses local `BottomSheet / Menu` component `686:753`
 - 05J uses local `ReorderRow` / `icon/drag-handle`
 - visible Group 05 dialog states use local `DialogCard` / `DialogButtons`
 - current visible Group 05 screens: external component 0 / missing main 0 / external Variable 0 / missing Variable 0
-- visible raw `AttachmentTag` frame 0; 05P raw recovery `InlineBanner` frame 0
+- visible raw `AttachmentTag` frame 0
 - `ExerciseCard` / `DialogCard` stale visual-layout overrides 0
 
-Representative visual read-back after binding cleanup: `05A`, `05I`, `05K`, `05P` PASS.
+Representative visual read-back after binding cleanup: `05A`, `05I`, `05K` PASS.
 
-Important: this is a **design-system binding QA pass**, not Product/UX approval of every draft state. `05N_Workout_OtherRoutine` remains subject to product-flow review. Hidden `05F_Workout_RestTimer_TBD` remains deferred.
+### Active-session recovery presentation correction
+
+The session-reliability/recovery requirement remains locked, but the previous `05P_Workout_Recovery` in-app banner presentation was not the intended UX.
+
+Confirmed direction:
+
+- an in-progress workout remains active across interruption/restart
+- do **not** show a dedicated in-app `진행 중이던 운동을 복구했어요` screen/banner
+- surface the ongoing active session through the **system notification area**
+- returning to the app continues the same active workout session
+
+Figma reflection:
+
+- `05P_Workout_Recovery` (`148:3892`) removed from `05 운동 중`
+- no replacement in-app recovery banner created
+
+Canonical decision:
+
+- `docs/ux-decisions/2026-09-10-active-session-system-notification.md`
+
+Important: the page-wide binding QA pass does not imply Product/UX approval of every draft state. `05N_Workout_OtherRoutine` remains subject to product-flow review. Hidden `05F_Workout_RestTimer_TBD` remains deferred.
 
 ---
 
@@ -91,6 +114,7 @@ Related locked policy references include:
 - `docs/ux-decisions/2026-09-05-exercise-recording-types.md`
 - `docs/ux-decisions/2026-09-05-duration-exercise-recording.md`
 - `docs/ux-decisions/2026-09-03-assisted-machine-recording.md`
+- `docs/ux-decisions/2026-09-10-active-session-system-notification.md`
 
 ---
 
