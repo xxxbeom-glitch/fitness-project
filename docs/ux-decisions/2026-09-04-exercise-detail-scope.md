@@ -118,7 +118,7 @@ Applied to the `운동 정보` tab:
   - `주 타겟 근육` → `가슴`
   - `보조 타겟 근육` → `삼두 · 전면 어깨`
 - `운동 방법` remains a numbered text list
-- `핵심 체크포인트` remains a short bullet list
+- `핵심 체크포인트` also uses a short numbered text list to match the exercise-method format
 - existing `RowLabel` / `RowValue(Type=ValueOnly)` components remain reused for metadata
 
 ### 04D visual treatment update — PO APPROVED / 2026-09-10
@@ -132,7 +132,8 @@ Canonical treatment:
 - metadata keeps thin row dividers to preserve scanability
 - metadata row content aligns directly to the page content inset rather than an extra inner card inset
 - `운동 방법` has no inner background card or rounded container; heading + numbered list are shown directly on the page
-- `핵심 체크포인트` has no inner background card or rounded container; heading + bullet list are shown directly on the page
+- `핵심 체크포인트` has no inner background card or rounded container; heading + numbered list are shown directly on the page
+- both numbered lists use the same list spacing pattern (`spacing/12`) and responsive text behavior
 - section separation is handled by the existing typography hierarchy and tokenized vertical spacing, not additional boxes
 - media surface is intentionally retained because it is a distinct visual/content region rather than another text-information card
 
@@ -148,6 +149,7 @@ QA after flattening:
 - existing metadata components are not detached
 - metadata divider color binding is preserved
 - heading/body typography and section spacing bindings are preserved
+- both method/checkpoint text rows use horizontal FILL + height auto for long-copy wrapping
 - screenshot QA confirms the updated 04D fits the canonical `360 × 954` viewport without collision or clipped content
 
 Applied to the `최근 기록` tab:
