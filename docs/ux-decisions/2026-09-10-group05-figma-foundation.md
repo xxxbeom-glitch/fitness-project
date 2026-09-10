@@ -2,7 +2,7 @@
 
 **Date:** 2026-09-10  
 **Status:** ACTIVE / PRODUCT-UX + FIGMA  
-**Scope:** current Group 05 canonical working pair only (`05A_Workout_Weight`, `05J_Reorder`)
+**Scope:** Group 05 Active Workout canonical page and current shared local component bindings
 
 ## Product/visual basis
 
@@ -30,7 +30,7 @@ Applied:
 - reused the local `ExerciseCard` family from `MVP_공용_UI`
 - switched cloned cards to local `Mode=Workout`
 - preserved the 03E2 exercise-card visual hierarchy and editable KG / REPS structure
-- preserved the exact 03 attachment status-chip visual/token treatment on the Lat Pulldown sample
+- preserved the 03 attachment status-chip visual/token treatment on the Lat Pulldown sample
 - kept Group 05 workout actions (`운동 추가`, `운동 종료`)
 - rebound both CTAs to the current local `CTA Button` component family
 - updated sample routine/title/count only to stay coherent with the four-card 03E2 sample used as the current foundation
@@ -52,9 +52,9 @@ Migration result:
 
 The first wrapper-based localization attempt was rejected during dependency QA because it still contained a hidden external nested instance. It was replaced with a clean local master before this checkpoint was closed.
 
-## Dependency QA
+## Initial dependency QA
 
-Final screen-tree audit for the two current working screens:
+Foundation audit:
 
 | Screen | External component | External variable | External style |
 | --- | ---: | ---: | ---: |
@@ -63,8 +63,6 @@ Final screen-tree audit for the two current working screens:
 
 `05A` visual read-back: PASS.  
 `05J` visual read-back: PASS.
-
-This audit is intentionally limited to the two Group 05 screens currently being used as the working foundation. Other old/helper frames that may exist elsewhere on the Group 05 page are not made canonical by this checkpoint.
 
 ## Design-system rule for the rest of Group 05
 
@@ -120,6 +118,42 @@ Focused QA on `05I_Workout_Menu` after rebinding:
 - external component dependency: 0
 - external variable dependency: 0
 - visual read-back at 360×780: PASS
+
+## Group 05 page-wide component binding QA — 2026-09-10
+
+PO requested a full binding audit of the current `05 운동 중` page. The audit found no external dependency, but found several local design-system integrity defects: a standalone timer header component, stale visual/layout overrides on workout-card and dialog instances, raw attachment-chip frames, and a raw recovery banner.
+
+Corrections applied:
+
+- moved `LeftAction=Back, RightAction=Timer` (`668:4460`) into the existing local `Nav Header` component set (`360:2361`), preserving the same main-component ID used by current instances
+- moved `icon/timer-refresh` (`668:4459`) into `LOCAL_COMPONENT_LIBRARY`
+- rebuilt all visible Group 05 `ExerciseCard` instances from their existing local variant masters while preserving content/state overrides only
+- removed stale card-level visual/layout overrides, including old `320×502` instance sizing against the canonical `320×492` workout master
+- rebuilt visible `DialogCard` instances from their local masters while preserving copy/button state, removing stale visual overrides
+- no adequate local attachment-status component existed, so the approved current treatment was localized once as `AttachmentTag` (`693:6035`) and the four visible raw attachment frames were rebound to instances
+- no adequate local recovery-banner component existed, so the current approved treatment was localized once as `InlineBanner / Info` (`693:6039`) and `05P_Workout_Recovery` was rebound to it
+- hidden `05F_Workout_RestTimer_TBD` remains deferred and was not promoted by this QA
+
+Final visible-screen audit:
+
+- visible Group 05 screens checked: `05A`, `05B`, `05C`, `05E`, `05I`, `05J`, `05K`, `05L`, `05M`, `05N`, `05O`, `05P`
+- external component dependency: **0 on every visible screen**
+- missing main component: **0 on every visible screen**
+- external Variable dependency: **0 on every visible screen**
+- missing Variable: **0 on every visible screen**
+- stale visual/layout overrides on `ExerciseCard` / `DialogCard`: **0**
+- visible raw `AttachmentTag` frame: **0**
+- raw recovery `InlineBanner` frame in `05P`: **0**
+- timer header is now a true `Nav Header` variant: `LeftAction=Back / RightAction=Timer`
+
+Representative visual read-back after cleanup:
+
+- `05A_Workout_Weight`: PASS
+- `05I_Workout_Menu`: PASS
+- `05K_End_Incomplete`: PASS
+- `05P_Workout_Recovery`: PASS
+
+This QA verifies design-system binding/structure only. It does not promote undecided Product/UX states such as `05N` to approved product policy.
 
 ## NEXT OPEN ITEM
 
