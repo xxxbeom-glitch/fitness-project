@@ -4,7 +4,7 @@
 
 ## Current mode
 
-`PRODUCT/UX FIGMA · GROUP 05 ACTIVE WORKOUT ACTIVE · 05A/05J LOCAL COMPONENT/TOKEN QA PASS · NO CURSOR IMPLEMENTATION HANDOFF`
+`PRODUCT/UX FIGMA · GROUP 05 ACTIVE WORKOUT ACTIVE · PAGE-WIDE LOCAL COMPONENT/TOKEN BINDING QA PASS · NO CURSOR IMPLEMENTATION HANDOFF`
 
 ## Resume rule
 
@@ -20,29 +20,30 @@
 
 PO clarification에 따라 Group 05 Active Workout은 기존 옛 Group 05 카드 스타일을 기준으로 새로 그리지 않고, 현재 승인된 Routine 계열 중 **`03E2_Routine_Create_WithExercises`를 visual/interaction foundation으로 재사용**한다.
 
-Current Group 05 working pair:
+Current Group 05 foundation:
 
 - `05A_Workout_Weight` — `148:1979`
 - `05J_Reorder` — `36:3609`
+- shared UI page — `MVP_공용_UI` — `105:3113`
+- local component library — `635:788`
 
-이번 foundation sync에서:
+Group 05 current binding state:
 
-- 05A exercise list를 03E2 pattern 기준으로 교체
-- local `ExerciseCard / Mode=Workout` 재사용
-- 03E2의 attachment status-chip visual/token treatment 유지
-- 05A CTA를 local Fitness CTA component로 재바인딩
-- 05J `ReorderRow`와 `icon/drag-handle`을 local asset으로 이관
-- 05J CTA를 local Fitness CTA로 재바인딩
-- 두 screen tree의 external component / Variable / Style dependency를 모두 제거
+- active workout `ExerciseCard` variants are local and stale visual/layout instance overrides were cleaned from visible Group 05 screens
+- `LeftAction=Back, RightAction=Timer` is now a true variant inside the local `Nav Header` component set
+- `icon/timer-refresh` is inside `LOCAL_COMPONENT_LIBRARY`
+- repeated attachment status UI is now local `AttachmentTag` component `693:6035`
+- recovery notice is now local `InlineBanner / Info` component `693:6039`
+- 05I uses local `BottomSheet / Menu` component `686:753`
+- 05J uses local `ReorderRow` / `icon/drag-handle`
+- visible Group 05 dialog states use local `DialogCard` / `DialogButtons`
+- current visible Group 05 screens: external component 0 / missing main 0 / external Variable 0 / missing Variable 0
+- visible raw `AttachmentTag` frame 0; 05P raw recovery `InlineBanner` frame 0
+- `ExerciseCard` / `DialogCard` stale visual-layout overrides 0
 
-Final dependency audit:
+Representative visual read-back after binding cleanup: `05A`, `05I`, `05K`, `05P` PASS.
 
-| Screen | External component | External variable | External style |
-| --- | ---: | ---: | ---: |
-| 05A_Workout_Weight | 0 | 0 | 0 |
-| 05J_Reorder | 0 | 0 | 0 |
-
-Visual read-back for both screens: PASS.
+Important: this is a **design-system binding QA pass**, not Product/UX approval of every draft state. `05N_Workout_OtherRoutine` remains subject to product-flow review. Hidden `05F_Workout_RestTimer_TBD` remains deferred.
 
 ---
 
