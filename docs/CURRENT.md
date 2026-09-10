@@ -4,7 +4,7 @@
 
 ## Current mode
 
-`PRODUCT/UX FIGMA · GROUP 05 ACTIVE WORKOUT ACTIVE · PAGE-WIDE LOCAL COMPONENT/TOKEN BINDING QA PASS · NO CURSOR IMPLEMENTATION HANDOFF`
+`PRODUCT/UX FIGMA · GROUP 05 ACTIVE WORKOUT ACTIVE · LOCAL ACTION MENU PATTERN PASS · NO CURSOR IMPLEMENTATION HANDOFF`
 
 ## Resume rule
 
@@ -16,10 +16,11 @@
 
 ## Latest active checkpoint
 
+- `docs/ux-decisions/2026-09-10-action-menu-presentation.md`
+
+Supporting checkpoints:
+
 - `docs/ux-decisions/2026-09-10-group05-recovery-presentation-correction.md`
-
-Supporting foundation checkpoint:
-
 - `docs/ux-decisions/2026-09-10-group05-figma-foundation.md`
 
 PO clarification에 따라 Group 05 Active Workout은 기존 옛 Group 05 카드 스타일을 기준으로 새로 그리지 않고, 현재 승인된 Routine 계열 중 **`03E2_Routine_Create_WithExercises`를 visual/interaction foundation으로 재사용**한다.
@@ -27,6 +28,7 @@ PO clarification에 따라 Group 05 Active Workout은 기존 옛 Group 05 카드
 Current Group 05 foundation:
 
 - `05A_Workout_Weight` — `148:1979`
+- `05I_Workout_Menu` — `148:3392`
 - `05J_Reorder` — `36:3609`
 - shared UI page — `MVP_공용_UI` — `105:3113`
 - local component library — `635:788`
@@ -37,14 +39,37 @@ Group 05 current binding state:
 - `LeftAction=Back, RightAction=Timer` is a true variant inside the local `Nav Header` component set
 - `icon/timer-refresh` is inside `LOCAL_COMPONENT_LIBRARY`
 - repeated attachment status UI is local `AttachmentTag` component `693:6035`
-- 05I uses local `BottomSheet / Menu` component `686:753`
+- 05I now uses local icon-action `ActionSheet` / `ActionRows`
+- local action icons include `icon/replace`, `icon/trash`, `icon/copy`; existing local `icon/edit` / `icon/drag-handle` are reused
 - 05J uses local `ReorderRow` / `icon/drag-handle`
 - visible Group 05 dialog states use local `DialogCard` / `DialogButtons`
-- current visible Group 05 screens: external component 0 / missing main 0 / external Variable 0 / missing Variable 0
+- current visible Group 05 screens retain local component ownership and external Variable 0 / missing Variable 0
 - visible raw `AttachmentTag` frame 0
 - `ExerciseCard` / `DialogCard` stale visual-layout overrides 0
 
-Representative visual read-back after binding cleanup: `05A`, `05I`, `05K` PASS.
+Representative visual read-back after the latest action-menu change: `05I` PASS.
+
+### Action-menu presentation
+
+Confirmed direction:
+
+- 05I `...` menu: `대체 운동 / 순서 변경 / 삭제` icon action bottom sheet
+- `운동 정보` is not duplicated in 05I because tapping the exercise name is the information entry
+- routine-edit exercise card `...`: `순서 변경 / 대체 운동 / 삭제` icon action bottom sheet
+- 03A routine-list card `...`: bottom sheet is not used; use a compact floating icon panel `복제 / 수정 / 삭제`
+- custom-exercise `수정 / 삭제` icon action-sheet variant exists in the local library; Group 04 canonical screens were not reopened solely to add a menu state that does not currently exist
+
+Figma reflection:
+
+- local `ActionRows` component set — `707:1114`
+- local `ActionSheet` component set — `707:1197`
+- `03A_Routine_List_Menu` — `706:5023`
+- `03F_Routine_Exercise_Menu` — `706:5087`
+- imported temporary action-menu reference screens removed from Group 05 after localization
+
+Canonical decision/checkpoint:
+
+- `docs/ux-decisions/2026-09-10-action-menu-presentation.md`
 
 ### Active-session recovery presentation correction
 
@@ -66,7 +91,7 @@ Canonical decision:
 
 - `docs/ux-decisions/2026-09-10-active-session-system-notification.md`
 
-Important: the page-wide binding QA pass does not imply Product/UX approval of every draft state. `05N_Workout_OtherRoutine` remains subject to product-flow review. Hidden `05F_Workout_RestTimer_TBD` remains deferred.
+Important: the page-wide/local-binding QA pass does not imply Product/UX approval of every draft state. `05N_Workout_OtherRoutine` remains subject to product-flow review. Hidden `05F_Workout_RestTimer_TBD` remains deferred.
 
 ---
 
@@ -77,6 +102,7 @@ Canonical Figma:
 - file: `W3lZurXCXbThP67rF2xk2b`
 - page: `05 운동 중` — `233:2076`
 - current main screen: `05A_Workout_Weight` — `148:1979`
+- current menu screen: `05I_Workout_Menu` — `148:3392`
 - current reorder screen: `05J_Reorder` — `36:3609`
 - shared UI page: `MVP_공용_UI` — `105:3113`
 - local component library: `635:788`
@@ -101,9 +127,13 @@ Do not complete all planning first and postpone all Figma work to the end.
 
 ## NEXT OPEN ITEM — exact resume point
 
-Continue from current `05A_Workout_Weight` foundation.
+Return to the temporarily deferred product-flow review for:
 
-Review the common Active Workout structure and missing MVP states one by one, while preserving all already-approved policies. Begin with the base workout interaction/state needed on 05A, then add only the derivative screens/states actually required.
+- `05N_Workout_OtherRoutine` — `148:3561`
+
+Re-present the switch-to-another-routine behavior to the PO and decide it before changing 05N. Do not reopen the just-passed action-menu work.
+
+Hidden `05F_Workout_RestTimer_TBD` remains deferred.
 
 Related locked policy references include:
 
@@ -115,6 +145,7 @@ Related locked policy references include:
 - `docs/ux-decisions/2026-09-05-duration-exercise-recording.md`
 - `docs/ux-decisions/2026-09-03-assisted-machine-recording.md`
 - `docs/ux-decisions/2026-09-10-active-session-system-notification.md`
+- `docs/ux-decisions/2026-09-10-action-menu-presentation.md`
 
 ---
 
@@ -147,16 +178,19 @@ Local foundation additions made only where an approved existing role had no loca
 - Tag roles: `tag-bg/tricep`, `tag/tricep`, `tag-bg/shoulder`, `tag/shoulder` plus required local primitives
 - `neutral/50`
 - `border/thin = 0.5`
+- action-menu family: `ActionRows`, `ActionSheet`, `icon/replace`, `icon/trash`, `icon/copy`
 
 Important component cleanup:
 
 - existing local Nav Header nested icons are now local
 - existing Group 04 `ExerciseRowDetailAction` / `FilterSelectButton` nested chevron is now local
 - `ExerciseSearchRow_Selected` master `598:1392` is now placed on `MVP_공용_UI` while preserving the same master ID and existing instance links
+- 03A now has an explicit panel-style `...` representative state; this explicit PO change does not reopen unrelated Group 03 QA
 
 Checkpoint:
 
 - `docs/ux-decisions/2026-09-10-figma-local-component-migration.md`
+- `docs/ux-decisions/2026-09-10-action-menu-presentation.md`
 
 Do not reopen 01–04 visual design solely because component ownership changed.
 
@@ -189,6 +223,8 @@ Closure record:
 - `docs/ux-decisions/2026-09-10-group04-closure-qa.md`
 
 The local-component migration did not reopen or redesign Group 04. Post-migration structure/binding/visual regression QA remained PASS.
+
+The local `ActionSheet / CustomExercise` variant is available for a future actual custom-exercise `...` trigger, but no new Group 04 screen was added by the latest action-menu change.
 
 ---
 
