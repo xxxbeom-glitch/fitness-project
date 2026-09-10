@@ -35,17 +35,31 @@ Canonical selected-exercise chip:
 - transparent / no filled color
 - 1px line outline using the existing `border/default` semantic color
 - pill radius using existing `radius/full`
-- height: 32px
+- visual chip height: 32px
 - text: existing `label/01`, `text/primary`
-- trailing remove affordance: actual X/close icon in a 16px icon slot, using `text/secondary`
+- trailing remove affordance: visible X/close icon remains **16×16px**, using `text/secondary`
 - internal horizontal gap between label and close slot: 4px
 - left padding: 12px
 - right padding: 8px
 - vertical padding: 8px
 
-The horizontal padding is intentionally asymmetric. The X icon sits inside a 16px slot and therefore already contains visual whitespace around the visible mark; reducing the right container padding from 12px to 8px makes the **visible** left/right whitespace look balanced.
+The horizontal padding is intentionally asymmetric. The X icon sits inside a 16px visual slot and therefore already contains visual whitespace around the visible mark; reducing the right container padding from 12px to 8px makes the **visible** left/right whitespace look balanced.
 
-This selected chip is intentionally separate from the existing filter chip family because its structure includes a trailing remove icon and asymmetric padding that the current `FilterChip` API does not support cleanly.
+### Close touch target — PO LOCKED
+
+The visible X must not be enlarged just to make it easier to tap.
+
+- visible close glyph remains **16×16px**
+- add a separate invisible semantic layer named `CloseHitArea`
+- `CloseHitArea` size = **44×44px**
+- center the 44×44 target on the visible X
+- the 32px visual chip itself does not grow
+- selected-chip horizontal interaction viewport height = **44px**, with the 32px visual chips vertically centered, so the 44px target is not clipped
+- runtime implementation must bind this hit area to the same deselect/remove action as the selected exercise state
+
+This preserves the compact visual density while providing a practical mobile touch target.
+
+This selected chip is intentionally separate from the existing filter chip family because its structure includes a trailing remove icon, asymmetric padding and an enlarged semantic close target that the current `FilterChip` API does not support cleanly.
 
 The previous comparison-only `+N` summary chip remains removed from the canonical pattern. All selected items remain available by horizontal scrolling.
 
@@ -75,6 +89,8 @@ Promoted selected section in canonical 04B:
 Reusable selected chip component:
 
 - `SelectedExerciseChip` — `569:1335`
+- visible close icon — `569:1337`
+- invisible close touch target — `CloseHitArea` (`44×44`)
 
 Current screenshot sample uses 10 selected exercises only to stress-test horizontal overflow. The visible sample names are **UI sample data, not a new Production taxonomy decision**. Final exercise-list/filter sample-data QA against the canonical Production taxonomy remains a separate next step.
 
@@ -98,6 +114,9 @@ This is a Figma interaction/layout safety rule; runtime implementation must pres
 - current 10-chip stress sample exceeds viewport width, confirming real horizontal overflow
 - each chip is a reusable `SelectedExerciseChip` instance rather than an ad-hoc screen-only frame
 - component uses 12px left / 8px right / 8px vertical padding with a 4px label-to-icon gap
+- visible X remains 16×16px
+- `CloseHitArea` is 44×44px and absolutely centered on the visible X
+- canonical and approved-reference chip viewports are 44px high with 32px visual chips vertically centered
 - canonical vertical content remains scrollable
 - 120px bottom content padding clears the fixed 100px CTA footer
 
@@ -110,6 +129,7 @@ This is a Figma interaction/layout safety rule; runtime implementation must pres
 - radius uses existing `radius/full`
 - text uses existing `label/01`, `text/primary`
 - close icon uses existing `text/secondary` semantic color
+- touch-target enlargement is handled by a separate semantic frame, not by changing the icon size or visual chip styling
 - no green fill remains on selected-exercise chips
 - no detached duplicate chip instances were introduced
 
@@ -118,6 +138,8 @@ This is a Figma interaction/layout safety rule; runtime implementation must pres
 - `선택한 운동 (10개)` is visible directly below filters
 - selected chips read as neutral line-only objects rather than filter/brand-state pills
 - trailing X is visually lighter and the 12/8 asymmetric padding appears optically balanced
+- visible X size remains unchanged after touch-target enlargement
+- added 44px interaction height does not create a visual collision or break the list hierarchy
 - the next chip is partially visible at the right edge, naturally indicating horizontal continuation
 - recent/all exercise list hierarchy remains intact
 - fixed `10개 운동 추가` CTA remains visible
