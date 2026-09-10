@@ -57,6 +57,19 @@ Active Workout의 운동 목록은 **강제 수행 순서가 아니다.** 사용
 
 이 규칙은 별도의 신규 Figma 화면을 요구하지 않는 Active Workout 동작/상태 규칙이다.
 
+## Set classification — MVP / PO APPROVED
+
+MVP Active Workout에서는 Hevy식 세트 종류 구분을 사용하지 않는다.
+
+- `W` 워밍업 세트, `D` 드롭 세트, `F` 실패 세트 등 별도 세트 타입을 제공하지 않는다.
+- 현재 세션의 모든 세트는 동일한 **일반 세트(본세트)** 로 취급한다.
+- 세트 표시는 타입 문자가 아니라 **1, 2, 3 ... N** 순번만 사용한다.
+- 세트를 추가하면 다음 순번을 붙인다.
+- 세트를 삭제한 뒤에는 남은 세트가 화면 순서 기준으로 다시 **1 ... N** 연속 번호를 사용한다.
+- 워밍업/드롭/실패 등 세트 종류 기능은 MVP 이후 필요성이 확인될 때 별도 재검토한다.
+
+Figma canonical `ExerciseCard`의 Active Workout 계열 variant는 이 정책에 맞춰 `W / 1 / 2 / D / F` 표기를 `1 / 2 / 3 / 4 / 5`로 정규화했다.
+
 ## Structural changes that can update the routine
 
 다음은 운동 종료 시 루틴 반영 여부를 확인하는 구조 변경으로 본다.
