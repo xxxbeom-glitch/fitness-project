@@ -1,6 +1,6 @@
 # Exercise Library / Add Exercise — Hevy Alignment — 2026-09-09
 
-**Status:** PO APPROVED / CANONICAL 04A-04F UPDATED
+**Status:** PO APPROVED / CANONICAL GROUP 04 CORE ALIGNED / 04B SELECTED-SUMMARY COMPARISON OPEN
 **Scope:** Group 04 운동 목록/검색/필터/다중선택 및 연결 상세/커스텀 운동 상태의 상호작용 기준
 
 ## Decision
@@ -269,15 +269,103 @@ Recording-type authority remains:
 - MVP active: `weight_reps`, `reps`, `duration`, `added_weight_reps`, `assisted_weight_reps`
 - user-facing `기록 방식` copy represents this product concept; detailed selector-state UI may be refined during implementation-facing interaction specification
 
-## 10. Next open item
+### 04H attachment picker — UI/INTERACTION ALIGNED
 
-04A/04B promotion, 04C no-result, 04D metadata, and 04E/04F custom-exercise metadata are now represented in canonical Figma.
+Canonical node:
 
-Next:
+- `04H_Exercise_Attachment_Selection` — `170:2174`
+- supporting direct-input state — `04H_Custom_Attachment_Input` `552:3356`
 
-1. final exercise list/filter data QA against canonical exercise DB taxonomy
-2. finish `04H` attachment taxonomy / copy / direct-input decision and align its background list with canonical 04A
-3. ensure the 04B fixed `N개 운동 추가` CTA leaves adequate scroll clearance for the final list item
-4. run full Group 04 structure/binding/visual QA and decide whether Group 04 can close
+Aligned behavior:
+
+- background is the canonical 04A search screen
+- current exercise only exposes its allowed/recommended attachment choices
+- preset tap selects immediately and returns; no Apply button
+- final row = `직접 입력`
+- direct input uses existing `InputBox` + primary CTA `사용하기`
+- custom text remains exercise-record context only in MVP and is not auto-promoted into canonical taxonomy
+- production per-exercise allowlist/data normalization remains a separate DB task and does not block visual Group 04 closure unless it causes a screen contradiction
+
+### 04G recent history — VIEWPORT / SCROLL NORMALIZED
+
+Canonical node:
+
+- `04G_Exercise_History` — `34:1714`
+
+Final screen shell:
+
+- viewport normalized from `360 × 1102` to **`360 × 954`**
+- root = vertical Auto Layout
+- StatusArea / Nav Header / two-tab bar remain fixed-height top structure
+- `ExerciseHistoryContent` fills the remaining viewport and is the vertical scroll region
+- current content region = `360 × 782`
+- existing dated set-history content remains intact below the fold
+- structure QA / binding inspection / screenshot QA completed
+
+This closes the previous 04G viewport blocker.
+
+## 10. 04B selected-exercise overview — COMPARISON OPEN / NOT YET CANONICAL
+
+The PO raised a new usability question: when many exercises (example: 10) are selected, the left green indicators and bottom count CTA show state but do not let the user quickly review **which exercises** are selected.
+
+Do **not** repurpose `최근 운동` as the selected list. `최근 운동` is historical/recency navigation; selected exercises are temporary state for the current add flow.
+
+Reference patterns reviewed beyond Hevy:
+
+- MyFitnessPal: selection count only in bottom CTA
+- Shopify: explicit `View selected`
+- GitHub: separate `Selected` section
+- Beli: selected-item chips with remove affordance
+- Formula 1: selected items summarized in a dedicated top strip
+
+Three Figma comparison proposals were created below the canonical Group 04 screens. **Canonical `04B_Search_Selected` was not modified.**
+
+### 1안 — summary row
+
+- node: `560:1117`
+- name: `04B_V1_Selected_Summary_Row`
+- shows one compact row between filters and recent exercises
+- copy concept: `선택한 운동` + `10개 >`
+- reuses existing `RowLabel` and `RowValue(Type=ValueChevron)`
+- keeps the list visually closest to current Hevy-like density
+
+### 2안 — selected chips
+
+- node: `560:1293`
+- name: `04B_V2_Selected_Chips`
+- shows `선택한 운동 10개` plus horizontal selected chips
+- current sample: `벤치프레스 ×`, `랫풀다운 ×`, `덤벨 컬 ×`, `+7`
+- reuses existing `FilterChip` instances for visual comparison
+- exposes selected names most quickly but adds persistent visual density
+
+### 3안 — selected list section
+
+- node: `560:1471`
+- name: `04B_V3_Selected_Section`
+- shows a dedicated selected-exercise section above recent exercises
+- current sample expands 3 selected exercise rows and provides `7개 더 보기 >`
+- most explicit/reviewable, but consumes the most vertical space
+
+All three comparison screens:
+
+- are `360 × 954`
+- preserve canonical search + equipment/body filters
+- preserve selected-row green indicator behavior
+- preserve recent/all lists beneath the comparison UI
+- use bottom CTA sample `10개 운동 추가`
+- were structure-checked and screenshot-QA'd
+- remain **proposal-only until PO selects a direction**
+
+## 11. Resume / next open item
+
+On the next chat, do not redo Hevy/reference research unless the PO asks.
+
+Resume from this exact point:
+
+1. PO visually compares **1안 / 2안 / 3안** in Figma and chooses one, or chooses to keep canonical 04B unchanged
+2. only after the choice, promote/refine that selected-exercise overview behavior into canonical `04B_Search_Selected`
+3. verify/fix canonical 04B bottom CTA scroll-safety so the last exercise row is not obscured by `N개 운동 추가`
+4. run final exercise list/filter sample-data QA against canonical Production taxonomy
+5. run final Group 04 A~H structure/binding/screenshot QA and decide CLOSE vs remaining corrections
 
 No Cursor implementation handoff yet.
