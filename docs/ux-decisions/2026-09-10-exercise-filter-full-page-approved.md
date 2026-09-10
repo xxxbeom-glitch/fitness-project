@@ -63,16 +63,24 @@ Both pages:
 ### Structure QA — PASS
 
 - page shells remain 360x954 vertical Auto Layout
-- `FilterPageContent` fills the 836px area below status/header
+- `FilterPageContent` fills the area below status/header using Fill sizing on both axes
 - content is vertical-scroll capable for shorter/runtime viewports
 - option lists remain semantic vertical Auto Layout
 - no bottom-sheet overlay/shell remains
 
-### Component / binding QA — PASS
+### Component / binding QA — PASS for canonical filter screens
 
 - existing `Nav Header` instance retained
 - existing `OptionItem` instances retained with their component variants/properties
 - no detached or screen-only duplicate option rows introduced
+- `FilterPageContent` 20px padding is bound to Tracker APP `spacing/20`
+- the two currently selected `전체` labels are locally bound to Tracker APP `brand/primary`, matching the existing check-icon token binding
+
+Library note:
+
+- the imported Tracker APP `OptionItem` selected-state source still exposes its selected-label green as a raw fill in the library source
+- the canonical filter screens use a local instance override so their current artifact is token-bound without detaching the component
+- a future Tracker APP library maintenance pass may centralize that binding at the source component; this does not block Group 04 screen QA
 
 ### Screenshot QA — PASS
 
@@ -80,6 +88,23 @@ Both pages:
 - body-part page shows all 8 current options cleanly as a full-page list
 - selected `전체` state and check remain visually clear
 - no sheet-height or nested-sheet-scroll issue remains on the canonical 360x954 reference screen
+
+## Regression QA — 04H attachment picker divider repair
+
+During the post-change visual check, the Product Owner identified that the row dividers inside `04H_Exercise_Attachment_Selection` had disappeared.
+
+Canonical repair:
+
+- screen: `04H_Exercise_Attachment_Selection` — `170:2174`
+- list: `AttachmentOptions` — `170:2284`
+- keep the existing seven `OptionItem` instances and 52px row geometry
+- first six rows use a bottom divider; the final `직접 입력` row has no divider
+- divider color is bound to existing `border/default`
+- divider weight is bound to existing `border/thin` (`0.5px` in the current Tracker APP token set)
+- dividers are implemented as bottom strokes on the existing row instances, not detached rows or extra layout-height separators
+- sheet height and option-list height remain unchanged
+
+Post-repair structure/binding QA and screenshot QA: **PASS**.
 
 ## Boundary
 
