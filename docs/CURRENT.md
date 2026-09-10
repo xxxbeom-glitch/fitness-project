@@ -4,7 +4,7 @@
 
 ## Current mode
 
-`PRODUCT/UX FIGMA · GROUP 05 ACTIVE WORKOUT ACTIVE · REST TIMER LOCALIZATION QA PASS · NO CURSOR IMPLEMENTATION HANDOFF`
+`PRODUCT/UX FIGMA · GROUP 05 ACTIVE WORKOUT ACTIVE · EXERCISE REPLACEMENT LOCALIZATION QA PASS · NO CURSOR IMPLEMENTATION HANDOFF`
 
 ## Resume rule
 
@@ -16,10 +16,11 @@
 
 ## Latest active checkpoint
 
-- `docs/ux-decisions/2026-09-10-group05-rest-timer-localization.md`
+- `docs/ux-decisions/2026-09-10-group05-exercise-replacement-localization.md`
 
 Supporting checkpoints:
 
+- `docs/ux-decisions/2026-09-10-group05-rest-timer-localization.md`
 - `docs/ux-decisions/2026-09-10-routinelist-action-bottomsheet-correction.md`
 - `docs/ux-decisions/2026-09-10-action-menu-binding-qa.md`
 - `docs/ux-decisions/2026-09-10-action-menu-presentation.md`
@@ -32,6 +33,8 @@ Current Group 05 foundation:
 
 - `05A_Workout_Weight` — `148:1979`
 - `05F_Workout_RestTimer` — `721:3460`
+- `05G_Exercise_Replace_Suggest` — `713:14539`
+- `05H_Exercise_Replace_Selected` — `713:14526`
 - `05I_Workout_Menu` — `148:3392`
 - `05J_Reorder` — `36:3609`
 - shared UI page — `MVP_공용_UI` — `105:3113`
@@ -43,11 +46,15 @@ Group 05 current binding state:
 - `LeftAction=Back, RightAction=Timer` is a true variant inside the local `Nav Header` component set
 - `icon/timer-refresh` is inside `LOCAL_COMPONENT_LIBRARY`
 - repeated attachment status UI is local `AttachmentTag` component `693:6035`
-- `RestTimerPill` is now local component `721:3456` inside `LOCAL_COMPONENT_LIBRARY`
+- `RestTimerPill` is local component `721:3456` inside `LOCAL_COMPONENT_LIBRARY`
 - `05F_Workout_RestTimer` uses the local `RestTimerPill` and current local Active Workout component structure
 - `RestTimerPill` uses existing local `glass/surface-20`, `radius/full`, spacing, text, danger-state Variables and local `display/01`; no new token added
 - `RestTimerPill`: remote Variable 0 / missing Variable 0 / remote Style 0 / missing Style 0
 - `05F_Workout_RestTimer`: missing main 0 / remote main 0 / remote Variable 0 / missing Variable 0 / remote Style 0 / missing Style 0
+- replacement flow uses local `RadioButton` component set `723:918`
+- replacement flow uses local `ExerciseReplaceItem` component set `723:938`
+- `05G_Exercise_Replace_Suggest` and `05H_Exercise_Replace_Selected` use only local component mains, Variables and Styles
+- `RadioButton`, `ExerciseReplaceItem`, `05G`, `05H`: missing main 0 / remote main 0 / missing Variable 0 / remote Variable 0 / missing Style 0 / remote Style 0
 - 05I uses local icon-action `ActionSheet` / `ActionRows`
 - local action icons include `icon/replace`, `icon/trash`, `icon/copy`; existing local `icon/edit` / `icon/drag-handle` are reused
 - new action-menu family is rebound to existing local colors / spacing / radius / typography styles; no new token was added
@@ -60,7 +67,53 @@ Group 05 current binding state:
 - visible raw `AttachmentTag` frame 0
 - `ExerciseCard` / `DialogCard` stale visual-layout overrides 0
 
-Representative visual read-back after latest changes: `05F_Workout_RestTimer`, `05I`, `03A_Routine_List_Menu`, `03F_Routine_Exercise_Menu` PASS.
+Representative visual read-back after latest changes: `05F_Workout_RestTimer`, `05G_Exercise_Replace_Suggest`, `05H_Exercise_Replace_Selected`, `05I`, `03A_Routine_List_Menu`, `03F_Routine_Exercise_Menu` PASS.
+
+### Exercise replacement presentation + binding
+
+Current represented flow:
+
+`05I 대체 운동 → 05G 추천 미선택 → 05H 추천 선택 → 선택 완료`
+
+Confirmed presentation:
+
+- initial replacement screen recommends three similar exercises
+- replacement is single-select
+- before selection, `선택 완료` is disabled
+- after one exercise is selected, `선택 완료` is enabled
+- `다른 운동 보기` is the escape path to browse outside the recommended three
+- duplicated content heading was removed; local `Nav Header` owns `대체 운동 선택` and the body keeps only the helper copy
+- copied 360×800 reference screens were normalized to Group 05 360×780
+
+Figma reflection:
+
+- `05G_Exercise_Replace_Suggest` — `713:14539`
+- `05H_Exercise_Replace_Selected` — `713:14526`
+- local `RadioButton` component set — `723:918`
+  - `State=Unchecked`
+  - `State=Checked`
+- local `ExerciseReplaceItem` component set — `723:938`
+  - `Selected=False`
+  - `Selected=True`
+
+Existing local `Nav Header`, `CTA Button`, `Tag`, Variables and text styles are reused. No new token was created.
+
+Binding QA:
+
+- `RadioButton`: missing main 0 / remote main 0 / missing Variable 0 / remote Variable 0 / missing Style 0 / remote Style 0
+- `ExerciseReplaceItem`: missing main 0 / remote main 0 / missing Variable 0 / remote Variable 0 / missing Style 0 / remote Style 0
+- `05G`: missing main 0 / remote main 0 / missing Variable 0 / remote Variable 0 / missing Style 0 / remote Style 0
+- `05H`: missing main 0 / remote main 0 / missing Variable 0 / remote Variable 0 / missing Style 0 / remote Style 0
+- screenshot read-back after top-level layout and footer-label corrections: PASS
+
+Open replacement-flow policy:
+
+- exact behavior when the user attempts replacement **after one or more sets of the current exercise have already been completed** is not yet decided
+- completed workout records must not be silently discarded
+
+Canonical record:
+
+- `docs/ux-decisions/2026-09-10-group05-exercise-replacement-localization.md`
 
 ### Rest timer presentation + binding
 
@@ -150,7 +203,7 @@ Canonical decision:
 
 - `docs/ux-decisions/2026-09-10-active-session-system-notification.md`
 
-Important: `05N_Workout_OtherRoutine` remains subject to product-flow review. 05F is no longer deferred.
+Important: replacement behavior after completed sets and `05N_Workout_OtherRoutine` remain subject to product-flow review. 05F is no longer deferred.
 
 ---
 
@@ -162,6 +215,8 @@ Canonical Figma:
 - page: `05 운동 중` — `233:2076`
 - current main screen: `05A_Workout_Weight` — `148:1979`
 - current rest timer screen: `05F_Workout_RestTimer` — `721:3460`
+- replacement suggest screen: `05G_Exercise_Replace_Suggest` — `713:14539`
+- replacement selected screen: `05H_Exercise_Replace_Selected` — `713:14526`
 - current menu screen: `05I_Workout_Menu` — `148:3392`
 - current reorder screen: `05J_Reorder` — `36:3609`
 - shared UI page: `MVP_공용_UI` — `105:3113`
@@ -174,6 +229,7 @@ Canonical Figma:
 - Active Workout uses local `Mode=Workout` variant.
 - attachment status chip remains visually aligned with Group 03 approved treatment.
 - rest timer uses local `RestTimerPill` and is an overlay toast/pill, not an inline persistent banner.
+- replacement recommendations use local `ExerciseReplaceItem` + `RadioButton`; no copied external replacement components remain in canonical 05G/05H.
 - existing local Variables/Styles/Components take priority over creating new assets.
 - no external library dependency may be reintroduced.
 - no screen-instance detach shortcut.
@@ -188,19 +244,23 @@ Do not complete all planning first and postpone all Figma work to the end.
 
 ## NEXT OPEN ITEM — exact resume point
 
-Review only:
+Decide the replacement edge case first:
+
+- when a user has already completed one or more sets for the current exercise and then chooses `대체 운동`, define exactly how those completed records and the newly selected exercise coexist
+- do not silently discard completed set records
+- reflect only the resulting edge case if additional UI is actually needed
+
+After that, return to:
 
 - `05N_Workout_OtherRoutine` — `148:3561`
 
-Trigger context is now clarified:
+05N trigger context:
 
 - a routine/workout is already active
 - while it is active, the user goes to the Routine list and attempts to start a different routine
 - `05N` is the conflict-confirmation state shown at that point
 
-Next decision: define exactly what happens to the current active workout when the user confirms starting the different routine, then reflect only that flow in Figma and run focused QA.
-
-Do not reopen passed 05F/action-menu work without a concrete conflict.
+Do not reopen passed 05F/action-menu/replacement localization work without a concrete conflict.
 
 Related locked policy references include:
 
@@ -216,6 +276,7 @@ Related locked policy references include:
 - `docs/ux-decisions/2026-09-10-action-menu-binding-qa.md`
 - `docs/ux-decisions/2026-09-10-routinelist-action-bottomsheet-correction.md`
 - `docs/ux-decisions/2026-09-10-group05-rest-timer-localization.md`
+- `docs/ux-decisions/2026-09-10-group05-exercise-replacement-localization.md`
 
 ---
 
