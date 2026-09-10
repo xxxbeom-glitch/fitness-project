@@ -4,7 +4,7 @@
 
 ## Current mode
 
-`PRODUCT/UX FIGMA GROUP 04 FINAL QA ACTIVE · HEVY-ALIGNED 04A/04B CANONICAL · 04C NO-RESULT ALIGNED · 04D METADATA ALIGNED · 04E/04F CUSTOM METADATA ALIGNED · 04H ATTACHMENT PICKER + DIRECT INPUT ALIGNED · ATTACHMENT PRODUCTION ALLOWLIST DATA QA OPEN · 04G VIEWPORT/FINAL GROUP QA NEXT · ANALYSIS BODY-AREA GRANULARITY DEFERRED RESUME ITEM · EXERCISE DB P0 DEFAULT MEDIA SOURCE INPUT LOCKED 16/16 · 211 MERGE SAFE · MEDIA TRANSFORM SAMPLE DEFERRED PARALLEL · P1 15/17 SOURCE-COVERED · NO CURSOR IMPLEMENTATION HANDOFF`
+`PRODUCT/UX FIGMA GROUP 04 FINAL QA ACTIVE · 04A/04B HEVY-ALIGNED CANONICAL · 04C/04D/04E/04F/04G/04H SCREEN PASS ALIGNED · 04B SELECTED-EXERCISE OVERVIEW COMPARISON OPEN · 04B CTA SCROLL-SAFETY NEXT · ATTACHMENT PRODUCTION ALLOWLIST DATA QA DEFERRED · ANALYSIS BODY-AREA GRANULARITY DEFERRED RESUME ITEM · EXERCISE DB P0 16 DATA + DEFAULT MEDIA INPUT LOCKED · 211 DERIVED ARTIFACT NOT YET REGENERATED · NO CURSOR IMPLEMENTATION HANDOFF`
 
 ## Resume rule
 
@@ -18,15 +18,19 @@
 
 # CURRENT PRODUCT/UX TRACK — Figma Group 04 Exercise library/search QA
 
-The Product Owner moved the active design pass to Figma `04 운동 목록 · 상세` and explicitly directed the exercise-library/add-exercise interaction to follow **Hevy's proven list logic where practical**.
+The Product Owner directed the exercise-library / Add Exercise interaction to follow **Hevy's proven list logic where practical**, while retaining the LIFTLY Tracker APP design system and current product/data policies.
 
-Latest checkpoints / decisions:
+Latest active checkpoint:
 
 - `docs/ux-decisions/2026-09-09-exercise-library-hevy-alignment.md`
+
+Other relevant decisions:
+
 - `docs/ux-decisions/2026-09-08-exercise-library-figma-04-list-filter-checkpoint.md`
 - `docs/ux-decisions/2026-09-06-exercise-library-figma-04-checkpoint.md`
 - `docs/ux-decisions/2026-09-04-exercise-detail-scope.md`
 - `docs/ux-decisions/2026-09-03-cable-attachment-active-workout.md`
+- `docs/ux-decisions/2026-09-05-exercise-recording-types.md`
 
 Canonical Figma target:
 
@@ -40,26 +44,26 @@ Important correction:
 - current working page is node `233:2075`
 - do not mutate `Page 1` or infer another page when continuing Group 04
 
-## Group 04 canonical states
+## Canonical Group 04 states
 
-1. `04A_Search` — node `207:1238` — **ALIGNED / CANONICAL**
-2. `04B_Search_Selected` — node `515:1140` — **ALIGNED / CANONICAL**
-3. `04C_Search_Empty` — node `539:1050` — **ALIGNED**
-4. `04D_운동상세` — node `40:2325` — **METADATA ALIGNED**
-5. `04E_Custom_Create` — node `34:1672` — **CUSTOM METADATA ALIGNED**
-6. `04F_Custom_Edit` — node `34:1692` — **CUSTOM METADATA ALIGNED**
-7. `04G_Exercise_History` — node `34:1714` — **2-TAB POLICY ALIGNED / FINAL VIEWPORT QA OPEN**
-8. `04H_Exercise_Attachment_Selection` — node `170:2174` — **PICKER UI ALIGNED**
+1. `04A_Search` — `207:1238` — **ALIGNED / CANONICAL**
+2. `04B_Search_Selected` — `515:1140` — **ALIGNED / CANONICAL BASE; SELECTED-OVERVIEW ADDITION OPEN**
+3. `04C_Search_Empty` — `539:1050` — **ALIGNED**
+4. `04D_운동상세` — `40:2325` — **ALIGNED**
+5. `04E_Custom_Create` — `34:1672` — **ALIGNED**
+6. `04F_Custom_Edit` — `34:1692` — **ALIGNED**
+7. `04G_Exercise_History` — `34:1714` — **VIEWPORT / SCROLL ALIGNED**
+8. `04H_Exercise_Attachment_Selection` — `170:2174` — **PICKER UI / INTERACTION ALIGNED**
 
 Supporting states:
 
-- `04A_Filter_Equipment_Sheet` — node `515:3327`
-- `04A_Filter_BodyPart_Sheet` — node `515:3514`
-- `04H_Custom_Attachment_Input` — node `552:3356`
+- `04A_Filter_Equipment_Sheet` — `515:3327`
+- `04A_Filter_BodyPart_Sheet` — `515:3514`
+- `04H_Custom_Attachment_Input` — `552:3356`
 
-## 04A / 04B — Hevy-aligned Add Exercise
+## 04A / 04B — locked base behavior
 
-Base list:
+Base list order:
 
 1. search
 2. `장비 전체`
@@ -69,44 +73,44 @@ Base list:
 
 Rules:
 
-- `전체 운동` is 가나다순 in Korean UI
-- recent exercises remain duplicated in the full library list
+- `전체 운동` = current display-language ascending order; Korean UI = 가나다순
+- `최근 운동` remains a recency shortcut and does not remove duplicates from `전체 운동`
 - compact row = thumbnail + exercise name + `주동근 · 장비` + right-side detail affordance
 - row body tap = select / deselect
 - selected row = slim left `brand/primary` indicator
 - selected-row content indent = `8px`
 - divider geometry does not move
-- selected count > 0 = fixed bottom CTA `N개 운동 추가`
-- right-side affordance remains exercise detail/history entry, not selection control
 - selection state follows exercise identity across recent/all duplicate appearances
+- selected count > 0 = fixed bottom CTA `N개 운동 추가`
+- right-side affordance = exercise detail/history entry, not selection control
 
 Filters:
 
-- equipment/body filters use bottom sheets
+- `장비 전체` / `부위 전체` open bottom sheets
 - single-select per category
-- selected value returns into the trigger
-- no removable filter-chip row
+- current value returns into the trigger
+- no removable filter-chip row in the canonical filter pattern
 - existing `OptionItem`, glass sheet shell and overlay are reused
 
-## 04C — No-result state
+## 04C — no result
 
-Updated to the canonical 04A search/filter structure.
+Aligned to the same canonical 04A shell:
 
-- same Nav Header/search/equipment/body-filter system
-- invalid/absent example term instead of a valid exercise name
-- no-result message retained
+- same header/search/equipment/body filters
+- invalid/absent search term example
+- no-result message
 - direct custom-exercise entry retained
 
 ## 04D / 04G — Exercise Detail
 
-Approved structure remains two tabs:
+Approved IA remains two tabs:
 
 - `운동 정보`
 - `최근 기록`
 
-04D now contains:
+04D includes:
 
-- media area
+- media
 - equipment
 - primary muscle
 - secondary muscles
@@ -115,20 +119,27 @@ Approved structure remains two tabs:
 
 Current sample:
 
-- exercise: `벤치프레스`
-- equipment: `바벨`
-- primary: `가슴`
-- secondary: `삼두 · 전면 어깨`
+- 벤치프레스
+- 장비 `바벨`
+- 주 타겟 `가슴`
+- 보조 타겟 `삼두 · 전면 어깨`
 
-04G remains the same detail IA in the `최근 기록` state. Current frame is still `360 × 1102`, so final viewport/scroll normalization is explicitly OPEN before Group 04 closes.
+04G final viewport state:
+
+- legacy `360 × 1102` frame normalized to **`360 × 954`**
+- root = vertical Auto Layout
+- Status Area / Nav Header / 2-tab bar remain fixed-height top structure
+- `ExerciseHistoryContent` fills the remaining **782px** region and scrolls vertically
+- existing dated set-history content remains intact below the fold
+- structure / binding / screenshot QA completed
 
 Reference:
 
 - `docs/ux-decisions/2026-09-04-exercise-detail-scope.md`
 
-## 04E / 04F — Custom exercise metadata
+## 04E / 04F — custom exercise metadata
 
-Both create/edit screens now include:
+Both create/edit screens contain:
 
 - exercise name
 - equipment
@@ -136,7 +147,7 @@ Both create/edit screens now include:
 - secondary muscle
 - recording type
 
-Recording type follows the approved 5 ACTIVE + 3 RESERVED model.
+Approved recording model:
 
 MVP active:
 
@@ -152,38 +163,21 @@ Reserved:
 - `distance_duration`
 - `distance_weight`
 
-Current Figma sample label for `weight_reps` is `중량 + 횟수`.
+Current user-facing sample for `weight_reps` = `중량 + 횟수`.
 
-Reference:
+## 04H — attachment picker
 
-- `docs/ux-decisions/2026-09-05-exercise-recording-types.md`
+UI/interaction aligned:
 
-## 04H — Attachment picker UI/interaction ALIGNED
+- background = canonical 04A
+- current exercise only shows its allowed/recommended attachment choices
+- preset tap selects and returns; no Apply button
+- last row = `직접 입력`
+- custom input state = `04H_Custom_Attachment_Input`
+- direct input reuses existing InputBox + primary CTA `사용하기`
+- custom text is current exercise-record context only in MVP; it is not auto-promoted into shared canonical taxonomy
 
-The attachment picker continues the approved rule that supported cable/pulley exercises select a `손잡이` while adding the exercise.
-
-Group 04 UI contract is now:
-
-- 04H background uses an exact canonical `04A_Search` base-screen clone beneath overlay/sheet
-- picker shows only the current exercise's allowed/recommended attachment choices, not a giant global list
-- fixed choices reuse the existing `OptionItem` component
-- preset row tap selects the attachment and returns to the add flow; no extra Apply button
-- last row is `직접 입력`
-- `직접 입력` opens `04H_Custom_Attachment_Input`
-- custom state reuses existing `InputBox` + primary `CTA Button`
-- custom CTA copy = `사용하기`
-- custom input is stored on the current exercise-card/record context only in MVP
-- custom text is not auto-promoted into the shared canonical taxonomy, not auto-merged, and does not auto-bind media
-
-Brand/taxonomy strategy:
-
-- brand names such as `MAG / 맥그립` are not canonical attachment identity by default
-- generic physical descriptors are preferred for canonical data
-- brand terms may remain aliases/custom text when useful
-- full global exhaustive taxonomy is not required in the picker UI
-- Production mapping remains exercise-specific by canonical exercise ID
-
-Current `랫풀다운` Figma sample:
+Current 랫풀다운 sample:
 
 - 스트레이트 바
 - 와이드 랫 바
@@ -193,484 +187,197 @@ Current `랫풀다운` Figma sample:
 - V바
 - 직접 입력
 
-This sample is **not** the exhaustive Production attachment taxonomy.
+Important boundary:
 
-Data still OPEN outside the Group 04 UI contract:
+- this sample is not the exhaustive Production taxonomy
+- exact Production exercise-by-exercise attachment allowlists / canonical IDs / media mapping remain a DB/data task
+- this deferred data task does not block visual Group 04 closure unless a screen contradiction appears
 
-- Production exercise-by-exercise attachment allowlist
-- canonical attachment IDs/names full set
-- existing source `neutral / underhand / attachment` row re-normalization
-- attachment/media mapping
-- attachment-specific PR / analysis rules
+## 04B selected-exercise overview — CURRENT OPEN DECISION
 
-Reference:
+PO identified a usability issue for large multi-selection (example 10 exercises): selected rows and the bottom count CTA show selection state, but there is no single place to review **which exercises are selected**.
 
-- `docs/ux-decisions/2026-09-03-cable-attachment-active-workout.md`
+Do not repurpose `최근 운동` as the selected list. Recent = historical recency; selected = temporary current-flow state.
 
-## Figma construction rule — STANDING REQUIREMENT
+Competitor patterns reviewed beyond Hevy:
 
-All future Figma mutations in this project must follow the GitHub design-system and QA contract from the first pass, even when the PO does not restate it.
+- MyFitnessPal — count only
+- Shopify — `View selected`
+- GitHub — separate `Selected` section
+- Beli — removable selected chips
+- Formula 1 — dedicated selected-item strip
 
-Canonical rules:
+Three Figma comparison variants are currently placed below the canonical Group 04 screens. **Canonical 04B has not been replaced or modified by these proposals.**
+
+### 1안 — summary row
+
+- `04B_V1_Selected_Summary_Row` — node `560:1117`
+- compact `선택한 운동 / 10개 >` row between filters and recent exercises
+- existing RowLabel + RowValue(ValueChevron) reused
+- least visual density
+
+### 2안 — selected chips
+
+- `04B_V2_Selected_Chips` — node `560:1293`
+- `선택한 운동 10개`
+- sample chips: `벤치프레스 ×`, `랫풀다운 ×`, `덤벨 컬 ×`, `+7`
+- existing FilterChip instances reused for comparison
+- fastest direct recognition/removal, but denser
+
+### 3안 — selected list section
+
+- `04B_V3_Selected_Section` — node `560:1471`
+- dedicated selected-exercise list above recent exercises
+- sample shows 3 exercise rows + `7개 더 보기 >`
+- clearest review state, but uses the most vertical space
+
+All three:
+
+- `360 × 954`
+- preserve canonical search + equipment/body filters
+- preserve recent/all lists
+- preserve selected-row green indicator behavior
+- bottom CTA sample = `10개 운동 추가`
+- structure checked and screenshot-QA'd
+- **proposal only; PO has not selected a winner yet**
+
+## Figma construction rule — standing requirement
+
+All future Figma mutations must follow:
 
 - `docs/09_DESIGN_SYSTEM.md`
 - `docs/15_TONAL_DESIGN_SYSTEM_SPEC.md`
 - `docs/16_FIGMA_TONAL_BUILD_INSTRUCTIONS.md`
 - `docs/17_FIGMA_AGENT_EXECUTION_QA.md`
 
-Required execution order:
+Required order:
 
-1. read CURRENT + relevant product/UX decision
-2. read canonical design-system/QA rules
-3. inspect/reuse existing Figma components and patterns before creating new UI
-4. encode semantic hierarchy with Auto Layout
-5. define Fixed / Hug / Fill independently per axis
+1. read CURRENT + relevant decision
+2. read design-system / QA rules
+3. inspect and reuse existing components/patterns before creating new UI
+4. use semantic Auto Layout
+5. define Fixed/Hug/Fill independently by axis
 6. bind supported typography/color/spacing/radius/divider values to actual styles/variables
-7. avoid unnecessary absolute positioning, detached instances, and repeated raw-value drift
-8. run structure QA, binding QA, then screenshot/visual QA
+7. avoid unnecessary absolute positioning, detached duplicates and raw-value drift
+8. structure QA → binding QA → Figma screenshot QA
 
-04H QA completed on the current mutation:
+# NEXT OPEN ITEM — exact resume point
 
-- base screen = exact canonical 04A clone / 360 × 954 / vertical Auto Layout
-- overlay = 360 × 954
-- picker sheet = 360 × 520 / existing glass-surface and spacing bindings retained
-- attachment options = existing `OptionItem` instances / Fill + Hug list
-- direct-input sheet = 360 × 320 / existing glass-surface bindings retained
-- direct input = existing `InputBox`
-- direct-input CTA = existing primary `CTA Button`
-- screenshot QA completed for both 04H states
+Do **not** redo completed Hevy/reference research on resume unless PO explicitly asks.
 
-## Group 04 remaining QA
-
-Before Group 04 can close:
-
-1. **04G viewport/scroll normalization** — current canonical history frame is `360 × 1102`; normalize the viewport while preserving scrollable history content.
-2. **04B bottom CTA scroll-safety** — ensure the last exercise row cannot be obscured behind fixed `N개 운동 추가` CTA; encode/verify bottom content inset/spec behavior.
-3. **Exercise list/filter data QA** — filter option labels and row metadata must match canonical Production taxonomy; UI sample values must not silently become data truth.
-4. **Attachment data boundary check** — UI is aligned, but exact Production per-exercise allowlists remain a DB/data task and must not block visual Group 04 closure unless a screen contradiction appears.
-5. Run final Group 04 structure/binding/screenshot QA across A/B/C/D/E/F/G/H + supporting sheets/states and decide CLOSE vs remaining corrections.
-
-# NEXT OPEN ITEM — Group 04 final QA
-
-Immediate next:
-
-1. normalize `04G_Exercise_History` viewport/scroll structure
-2. verify/fix 04B bottom CTA scroll-safe content inset
-3. run final A~H structure/binding/visual QA
-4. if no screen-level blocker remains, close Group 04 and resume Analysis body-area granularity
+1. PO compares the three 04B selected-overview variants and chooses **1안 / 2안 / 3안 / keep current 04B**
+2. after the choice, promote/refine the chosen behavior into canonical `04B_Search_Selected`
+3. verify/fix canonical 04B bottom CTA scroll-safety so the final exercise row cannot be obscured by `N개 운동 추가`
+4. final exercise-list/filter sample-data QA against canonical Production taxonomy
+5. final Group 04 A~H structure/binding/screenshot QA
+6. if no screen-level blocker remains, CLOSE Group 04 and resume Analysis body-area granularity
 
 No Cursor implementation handoff yet.
 
 ---
 
-# DEFERRED PRODUCT/UX TRACK — Analysis Home content
+# DEFERRED PRODUCT/UX TRACK — Analysis
 
-The Analysis track remains approved and resumable after the current Figma Group 04 pass.
+Approved Analysis hierarchy remains locked:
 
-## Analysis tab hierarchy — PO APPROVED
+1. 분석 홈
+2. 부위별 분석
+3. 운동별 성장
+4. 운동 기록
+5. 운동 기록 상세
 
-Approved screen structure:
+Analysis Home approved basics:
 
-1. `분석 홈`
-2. `부위별 분석`
-3. `운동별 성장`
-4. `운동 기록`
-5. `운동 기록 상세`
+- default period = 최근 4주
+- choices = 4주 / 3개월 / 6개월 / 1년
+- headline metrics = 운동 횟수 / 완료 세트 / 운동 시간
+- 총 볼륨 is not a universal headline metric across recording types
 
-Hierarchy rule:
+Body-map calculation basis locked:
 
-- `분석 홈` is a summary/navigation surface
-- deep charts and full histories are not all placed on the first screen
-- body-area/distribution -> `부위별 분석`
-- exercise progress -> `운동별 성장`
-- history/more -> `운동 기록`
-- individual workout -> `운동 기록 상세`
+- completed/persisted primary-muscle set contribution = `1.0`
+- secondary-muscle contribution = `0.5`
+- incomplete/unpersisted = `0`
+- do not multiply by kg/reps/duration/assistance
+- this is a tracking heuristic, not physiological truth
+- do not label as optimal/undertrained/overtrained/recovered
 
-Approved Analysis-home content direction:
+Analysis visual/body-area details remain OPEN.
 
-- period selection
-- compact workout summary metrics
-- front/back body-area distribution visualization
-- workout frequency summary
-- recent exercise-progress summary
-- recent workout records
+Resume after Group 04:
 
-## Analysis Home period — PO APPROVED
-
-Default:
-
-- `최근 4주`
-
-Choices:
-
-- `4주`
-- `3개월`
-- `6개월`
-- `1년`
-
-`1주` and `전체` are not primary MVP Analysis-home choices.
-
-## Analysis Home top summary metrics — PO APPROVED
-
-Fixed headline metrics:
-
-1. `운동 횟수`
-2. `완료 세트`
-3. `운동 시간`
-
-Rules:
-
-- saved partial workouts with real persisted performed work count toward `운동 횟수`
-- discarded / empty sessions do not count
-- `완료 세트` uses final persisted completion state only
-- `운동 시간` sums approved saved-session elapsed workout time under the existing workout-time policy
-
-`총 볼륨` is not a universal headline metric because approved recording types do not share one valid kg-volume calculation. It may still appear in workout detail, exercise-specific progress, or a clearly scoped secondary module where valid.
-
-## Analysis body-map data basis — PRODUCT DECISION LOCKED
-
-The Product Owner delegated the underlying calculation choice.
-
-Base rule:
-
-- count only final completed/persisted sets
-- primary muscle contribution per completed set: `1.0`
-- secondary muscle contribution per completed set: `0.5`
-- incomplete/unpersisted set: `0`
-- multiple primary muscles each receive `1.0`
-- multiple secondary muscles each receive `0.5`
-
-This creates a per-muscle **muscle-set exposure score**. It is not the same thing as global completed-set count and must not be presented as a literal total-set number across muscles.
-
-Recording-type rule:
-
-- do not multiply the body-map score by kg, reps, duration, or assistance value
-- weighted, bodyweight, timed, and assisted completed sets can all contribute through their canonical primary/secondary muscle mapping
-- exercises without valid muscle mapping remain in history/global summaries but are excluded from the body-map calculation rather than guessed at runtime
-
-Retained derived values per muscle:
-
-1. selected-period weighted score
-2. weekly-average weighted score for comparable rate-based views
-3. distribution share of total muscle score for relative-distribution views
-
-Weekly-average uses only the actual account-history span available inside the selected period; dates before the account existed are not counted. Fewer than 7 eligible days is treated as insufficient/unstable for weekly-average display and will be handled in the later insufficient-data state pass.
-
-Interpretation boundary:
-
-- `1.0 / 0.5` is a practical fractional-set convention, not a claim that secondary muscles receive exactly 50% of physiological stimulus
-- do not label values as `optimal`, `undertrained`, `overtrained`, or `recovered`
-- do not infer fatigue/readiness from this score in MVP
-- recent resistance-training literature supports weekly set volume as a useful dosage variable and has explicitly evaluated fractional `0.5` counting for indirect sets; this is used as a tracking heuristic, not biological truth
+1. map canonical muscle/body-part taxonomy into practical front/back body-map regions
+2. avoid visual granularity finer than the DB supports consistently
+3. define combined-label mapping such as upper back / lats / broader core
+4. define workout-frequency calculation/presentation
+5. define recent-growth selection, recent-record density and empty states
 
 Reference:
 
 - `docs/ux-decisions/2026-09-05-analysis-tab-ia.md`
 
-## Analysis body-map visual treatment — OPEN / DESIGN-PHASE DECISION
-
-Current structural direction:
-
-- use front/back neutral-body visual assets as the body-map concept
-- body areas must visually reflect the underlying training data
-- the body map remains a data visualization layer, not a second exercise-demo asset system
-
-The Product Owner explicitly does **not** lock the visual encoding before actual UI composition.
-
-Deferred to the design pass:
-
-- overlay-layer vs fill/mask/other rendering technique
-- one-hue intensity vs another color/visual encoding
-- neutral/untrained treatment
-- exact brand color vs separate analytics accent color
-- exact opacity/lightness/saturation/gradient/border/texture behavior
-- final readable contrast at the real body-map size
-- final visual mapping from retained data values to appearance
-
-Competitor color systems are references only, not adopted product policy.
-
-Important OPEN product/data details:
-
-- body-area granularity / mapping to available front-back visual areas
-- workout-frequency definition
-- `최근 성장한 운동` selection rule
-- recent-record information density
-- empty / insufficient-data states
-- exact chart type and metric rules by exercise recording type
-
-References:
-
-- `docs/ux-decisions/2026-09-05-analysis-tab-ia.md`
-- `docs/ux-decisions/2026-09-04-workout-completion-metrics.md`
-- `docs/14_IA_STORYBOARD.md`
-
-# ANALYSIS RESUME ITEM — Body-area granularity
-
-When the Analysis track resumes:
-
-1. map current canonical muscle/body-part taxonomy into a practical front/back body-map region set
-2. avoid visual regions more granular than the actual exercise DB can support consistently
-3. define how combined DB labels such as upper back / lats or broader core categories map to body regions
-4. then define workout-frequency calculation/presentation
-5. then define `최근 성장한 운동`, recent-record density, and empty states
-
-No Cursor implementation handoff yet.
-
 ---
 
-# Latest checkpoint — Gym Animations normalization / Production promotion
-
-## 1. Purchased source / raw storage
+# Exercise DB / media checkpoint — preserved
 
 Purchased source:
 
-- Gym Animations — `Gym Workout Man Package`
+- Gym Animations — Gym Workout Man Package
 - full raw: **17,085 files / 98.69 GB**
+- Cloudflare R2 `gfit-source-original`: **17,085 objects / 105,972,019,458 bytes / VERIFIED**
+- raw source remains immutable provenance
 
-Cloudflare R2 raw bucket:
+Primary source analysis base:
 
-- `gfit-source-original`
-- verified objects: **17,085**
-- exact size: **105,972,019,458 Byte**
-- status: **DONE / VERIFIED**
+- `MP4/MALE/Library_database` — 2,109 MP4
+- Gym 2,081 is contained byte-identically in Library
+- Home 2,120 is a separate source pool
 
-Raw purchased filename/path/media remains **read-only provenance**.
+Normalization/visual QA already completed for Cable, Machine, Barbell, Dumbbell, Kettlebell, Smith, Landmine, P1 identity review and P0 Home fallback. Do not reopen completed broad source/video QA without a specific Production conflict.
 
-Male source relationship:
+Production baseline:
 
-- `MP4/MALE/Gym_Workout_`: **2,081 MP4**
-- `MP4/MALE/Library_database`: **2,109 MP4**
-- Gym 2,081 rows are byte-identical matches inside Library
-- Library has 28 additional rows
-- `MP4/MALE/Home_Workout_`: **2,120 MP4**
-- Home is a separate source pool; Library is not a package-wide superset of Home
+- existing app-facing canonical exercises = **195**
+- P0 additions = **16**
+- P0 canonical/data row QA = PASS / LOCKED
+- package source coverage = **16/16**
+- target after regeneration = **211**
+- **derived workbook/runtime DB has not yet been regenerated to 211 rows**
 
-Primary gym analysis base remains:
+P0 default media inputs:
 
-`MP4/MALE/Library_database`
+- Library = 13/16
+- Home fallback = 3/16
+- missing = 0
+- source input lock = 16/16
 
-References:
+Four legacy recording values to migrate on regeneration:
 
-- `docs/exercise-db/2026-09-04-gym-animations-source-analysis-checkpoint.md`
-- `docs/exercise-db/2026-09-05-library-2109-bulk-mapping-v0.2.md`
+- `elbow-side-plank`: `time` → `duration`
+- `hand-plank`: `time` → `duration`
+- `wall-sit`: `time` → `duration`
+- `kettlebell-farmers-carry`: `weight_distance_or_time` → `distance_weight`
 
-## 2. Targeted normalization / visual QA — COMPLETE
+P1 17:
 
-Completed:
+- source-covered = 15/17
+- true gaps = bilateral Dumbbell Deadlift, standard floor Sit Up
+- P1 remains non-blocking / post-MVP
 
-- Cable
-- Machine
-- Barbell
-- Dumbbell
-- Kettlebell
-- Smith
-- Landmine
-- P1 identity review 3
-- P0 Home fallback 3
+Deferred parallel item:
 
-Broad manual ZIP review is finished. New visual QA is exception-only when a specific Production identity conflict appears.
+1. representative media-transform sample
+2. background removal/transparency + codec/container + resolution/FPS/quality + size + derived R2 path validation
+3. regenerate derived Production artifact 195 + migrations + P0 16
+4. integrity QA = exact 211, uniqueness, recording vocabulary, P0 source links, raw unchanged
+5. only when implementation becomes the next dependency, create Issue/AC and hand off to Cursor
 
-Normalization boundary:
-
-1. same movement + render/POV/media difference -> same canonical + media variant
-2. Cable attachment-only difference -> same canonical + attachment context/media
-3. grip-only difference -> same parent family + grip context
-4. posture / laterality / load position / implement count / movement path that materially changes recording meaning -> execution/load context; history auto-merge prohibited
-5. vendor filename is evidence, not normalized truth; actual movement wins
-6. raw source remains immutable; all normalized values are derived
-
-Main references:
-
-- `docs/exercise-db/2026-09-04-cable-normalization-rule-v1.md`
-- `docs/exercise-db/2026-09-04-cable-visual-review-14.md`
-- `docs/exercise-db/2026-09-04-cable-duplicate-visual-qa-38.md`
-- `docs/exercise-db/2026-09-04-machine-visual-qa-33.md`
-- `docs/exercise-db/2026-09-05-barbell-visual-qa-18.md`
-- `docs/exercise-db/2026-09-05-dumbbell-visual-qa-20.md`
-- `docs/exercise-db/2026-09-05-kettlebell-visual-qa-12.md`
-- `docs/exercise-db/2026-09-05-smith-landmine-visual-qa-10.md`
-- `docs/exercise-db/2026-09-05-p1-identity-review-3-result.md`
-- `docs/exercise-db/2026-09-05-p0-home-fallback-visual-qa-3.md`
-
-## 3. Library_database 2,109 bulk mapping — COMPLETE
-
-Source-family total: **2,109**.
-
-Conservative source identity/history layer:
-
-- total buckets: **1,954**
-- active buckets: **1,912**
-- excluded buckets: **42**
-- unresolved buckets: **1**
-- mapped to existing Production canonical: **75 buckets**
-- new source-derived candidate buckets: **1,836**
-
-**Do not interpret 1,912 active buckets as app-facing exercises.**
-
-Current explicit Library identity unresolved:
-
-- `Kettlebell-Good-Morning_Hips_.mp4`
-  - visual movement is a hanging two-hand hip hinge, not a true Good Morning
-  - exact Deadlift vs RDL-like parent remains deferred until this source is actually needed for curated Production
-
-Reference:
-
-- `docs/exercise-db/2026-09-05-library-2109-bulk-mapping-v0.2.md`
-
-## 4. Production baseline / P0 / P1
-
-Existing Production DB v1:
-
-- purchased source rows: **206**
-- app-facing canonical exercises: **195**
-
-References:
-
-- `docs/exercise-db/exercise-db-v1-production.md`
-- `docs/exercise-db/exercise-db-gap-analysis-v1.md`
-
-### P0 16 — DATA ROW LOCK QA PASS
-
-Source coverage:
-
-- Library source: **13 / 16**
-- Home fallback source: **3 / 16**
-- unresolved: **0**
-- package-level source coverage: **16 / 16**
-
-P0 Production-promotion QA:
-
-- 16 canonical IDs unique vs current Production 195: **PASS**
-- accidental merge/history absorption: **PASS**
-- Korean/English display + aliases: **PASS / LOCKED**
-- equipment/body-part/movement taxonomy: **PASS / normalized to current Production style**
-- recording semantics: **PASS**
-- source provenance: **PASS**
-- final arithmetic target: **195 + 16 = 211**
-
-Important boundary:
-
-- P0 16 canonical/data rows are Production-locked
-- the derived workbook/runtime DB has **not yet been regenerated as 211 rows**
-
-Reference:
+Key references:
 
 - `docs/exercise-db/2026-09-05-p0-211-production-promotion-qa-result.md`
-
-### P0 16 default media source inputs — LOCKED 16/16
-
-- Library_database default inputs: **13 / 16**
-- Home_Workout_ fallback default inputs: **3 / 16**
-- missing: **0**
-
-Boundary:
-
-- raw source stays immutable
-- selected raw source is the transform input
-- background removal / transparent export / resize / compression happen later as derived-media processing
-- completed source/video QA is not reopened
-- GIF is not selected as the production format
-- final codec/container, transparency method, resolution/FPS/quality, and derived R2 serving path remain OPEN for sample validation
-
-Reference:
-
 - `docs/exercise-db/2026-09-05-p0-16-default-media-source-lock.md`
-
-### Recording model — PO APPROVED
-
-MVP ACTIVE:
-
-- `weight_reps`
-- `reps`
-- `duration`
-- `added_weight_reps`
-- `assisted_weight_reps`
-
-Schema RESERVED:
-
-- `weight_duration`
-- `distance_duration`
-- `distance_weight`
-
-P0 critical locks:
-
-- `plank` -> `duration`
-- `crunch` -> `reps`
-- `lying-leg-raise` -> `reps`
-- `machine-assisted-pull-up` -> `assisted_weight_reps`
-- `machine-assisted-dip` -> `assisted_weight_reps`
-- remaining weighted P0 rows -> `weight_reps`
-
-Four existing 195-row legacy values must migrate when the derived artifact is regenerated:
-
-- `elbow-side-plank`: `time` -> `duration`
-- `hand-plank`: `time` -> `duration`
-- `wall-sit`: `time` -> `duration`
-- `kettlebell-farmers-carry`: `weight_distance_or_time` -> `distance_weight`
-
-References:
-
+- `docs/exercise-db/2026-09-05-library-2109-bulk-mapping-v0.2.md`
 - `docs/ux-decisions/2026-09-05-exercise-recording-types.md`
-- `docs/ux-decisions/2026-09-05-duration-exercise-recording.md`
-
-### P1 17 — non-blocking
-
-- source-covered: **15 / 17**
-- true source gaps: **2**
-- unresolved: **0**
-
-True gaps:
-
-1. standard bilateral `Dumbbell Deadlift`
-2. standard floor bodyweight `Sit Up`
-
-P1 remains post-MVP / non-blocking.
-
----
-
-# DEFERRED PARALLEL ITEM — Media transform sample + derived 211 artifact
-
-The Product Owner explicitly deferred this work while the Product/UX design track is active.
-
-When resumed:
-
-1. define a small representative media-transform sample
-2. decide/test background removal/transparency, export boundary, app-serving codec/container, resolution/FPS/quality, file-size target, and derived R2 path/naming
-3. validate sample playback/quality/size before bulk conversion
-4. generate/update the derived Production exercise DB artifact with existing 195 + four recording migrations + locked P0 16 + P0 default media source linkage
-5. rerun integrity QA: exact count 211, uniqueness 211/211, recording vocabulary within approved 5+3, P0 source links present, raw source unchanged
-6. only when application implementation becomes the next dependency, create Issue/AC and hand off to Cursor
-
----
-
-# Approved Product/UX baseline — preserve, do not reopen
-
-Important references:
-
-- Home / Recommended Routine: `docs/ux-decisions/2026-09-03-recommended-routine-detail-flow.md`, `docs/ux-decisions/2026-09-04-recommended-routine-post-workout-save.md`
-- Exercise Detail: `docs/ux-decisions/2026-09-04-exercise-detail-scope.md`
-- Exercise library Hevy alignment: `docs/ux-decisions/2026-09-09-exercise-library-hevy-alignment.md`
-- Exercise library Figma Group 04 checkpoints: `docs/ux-decisions/2026-09-08-exercise-library-figma-04-list-filter-checkpoint.md`, `docs/ux-decisions/2026-09-06-exercise-library-figma-04-checkpoint.md`
-- Cable attachment: `docs/ux-decisions/2026-09-03-cable-attachment-active-workout.md`
-- Active Workout / routine update: `docs/ux-decisions/2026-09-03-active-workout-routine-update.md`
-- Rest Timer: `docs/ux-decisions/2026-09-03-rest-timer-behavior.md`
-- Timed exercise recording: `docs/ux-decisions/2026-09-05-duration-exercise-recording.md`
-- Exercise recording types: `docs/ux-decisions/2026-09-05-exercise-recording-types.md`
-- Assisted machine recording: `docs/ux-decisions/2026-09-03-assisted-machine-recording.md`
-- Workout Complete: `docs/ux-decisions/2026-09-03-post-workout-completion-carousel.md`, `docs/ux-decisions/2026-09-04-workout-completion-metrics.md`
-- Progression Hint: `docs/ux-decisions/2026-09-04-progression-hint-threshold.md`
-- Workout End / Discard: `docs/ux-decisions/2026-09-03-workout-end-flow.md`
-- Analysis tab IA: `docs/ux-decisions/2026-09-05-analysis-tab-ia.md`
-
-Parallel OPEN Product/UX items:
-
-- timed exercise Active Workout UI details
-- recommended-routine actual program contents — DB/substitution data dependency
-- Settings main scope
-- rest timer end signal detail
-- Analysis body-area granularity / frequency / recent-growth / empty-state detail
-
-Exercise search / library Group 04 is the current active design track. Analysis screen hierarchy remains locked and resumes afterward.
 
 ---
 
@@ -684,24 +391,10 @@ Current Group 04 page:
 
 `https://www.figma.com/design/W3lZurXCXbThP67rF2xk2b/LIFTLY_%EC%B5%9C%EC%A2%85?node-id=233-2075`
 
-Canonical Group 04 states:
-
-- `04A_Search` — node `207:1238`
-- `04B_Search_Selected` — node `515:1140`
-- `04C_Search_Empty` — node `539:1050`
-- `04D_운동상세` — node `40:2325`
-- `04E_Custom_Create` — node `34:1672`
-- `04F_Custom_Edit` — node `34:1692`
-- `04G_Exercise_History` — node `34:1714`
-- `04H_Exercise_Attachment_Selection` — node `170:2174`
-- `04A_Filter_Equipment_Sheet` — node `515:3327`
-- `04A_Filter_BodyPart_Sheet` — node `515:3514`
-- `04H_Custom_Attachment_Input` — node `552:3356`
-
 Canonical production wireframe:
 
 `https://liftly-wireframe.vercel.app`
 
-GitHub Decision/CURRENT overrides an older Figma/wireframe state when they conflict.
+GitHub Decision/CURRENT overrides older Figma/wireframe state when they conflict.
 
 **No Cursor implementation handoff.**
