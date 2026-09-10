@@ -106,6 +106,7 @@ Canonical Group 04 screen:
 
 - page: `04 운동 목록 · 상세` — `233:2075`
 - `04D_운동상세` — `40:2325`
+- `04G_Exercise_History` — `34:1714`
 
 Applied to the `운동 정보` tab:
 
@@ -122,7 +123,17 @@ Applied to the `운동 정보` tab:
 - spacing, surface, radius, and divider bindings were retained/reapplied using existing variables
 - structure QA, binding QA, and screenshot QA completed
 
-This completes the current 04D metadata/content pass. Exact coaching copy remains product content and may be refined later without changing the approved information architecture.
+Applied to the `최근 기록` tab:
+
+- legacy `360 × 1102` artboard normalized to the canonical `360 × 954` viewport
+- screen shell converted to vertical Auto Layout
+- Status Area, Nav Header, and 2-tab bar remain fixed-height / full-width
+- `ExerciseHistoryContent` uses the remaining `782px` viewport region and is vertically scrollable
+- existing date-grouped records and set values are preserved rather than shortened to fit the viewport
+- existing spacing/surface/divider variable bindings are retained
+- structure QA, binding QA, and screenshot QA completed
+
+This completes the current 04D/04G Exercise Detail screen pass. Exact coaching copy remains product content and may be refined later without changing the approved information architecture.
 
 ## Explicit non-goals
 
