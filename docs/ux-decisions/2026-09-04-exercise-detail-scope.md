@@ -113,15 +113,42 @@ Applied to the `운동 정보` tab:
 - screen shell normalized to `360 × 954` vertical Auto Layout
 - media remains first visual block
 - exercise name remains the Nav Header title (`벤치프레스` sample)
-- combined `주요 부위` chip block replaced with display-only metadata rows:
+- display-only metadata rows remain:
   - `장비` → `바벨`
   - `주 타겟 근육` → `가슴`
   - `보조 타겟 근육` → `삼두 · 전면 어깨`
-- existing `운동 방법` block retained
-- `핵심 체크포인트` block added using the same surface/typography language
-- existing `RowLabel` / `RowValue(Type=ValueOnly)` components reused for metadata
-- spacing, surface, radius, and divider bindings were retained/reapplied using existing variables
-- structure QA, binding QA, and screenshot QA completed
+- `운동 방법` remains a numbered text list
+- `핵심 체크포인트` remains a short bullet list
+- existing `RowLabel` / `RowValue(Type=ValueOnly)` components remain reused for metadata
+
+### 04D visual treatment update — PO APPROVED / 2026-09-10
+
+The information area is now **flat rather than card-stacked**.
+
+Canonical treatment:
+
+- media remains the only prominent rounded surface block in the information tab
+- metadata (`장비 / 주 타겟 근육 / 보조 타겟 근육`) has no background card or rounded container
+- metadata keeps thin row dividers to preserve scanability
+- metadata row content aligns directly to the page content inset rather than an extra inner card inset
+- `운동 방법` has no inner background card or rounded container; heading + numbered list are shown directly on the page
+- `핵심 체크포인트` has no inner background card or rounded container; heading + bullet list are shown directly on the page
+- section separation is handled by the existing typography hierarchy and tokenized vertical spacing, not additional boxes
+- media surface is intentionally retained because it is a distinct visual/content region rather than another text-information card
+
+Figma node mapping after flattening:
+
+- `ExerciseMetadata_Flat` — `543:1048`
+- `InstructionList_Flat` — `40:2364`
+- `CheckpointList_Flat` — `543:1072`
+
+QA after flattening:
+
+- structure remains semantic vertical Auto Layout
+- existing metadata components are not detached
+- metadata divider color binding is preserved
+- heading/body typography and section spacing bindings are preserved
+- screenshot QA confirms the updated 04D fits the canonical `360 × 954` viewport without collision or clipped content
 
 Applied to the `최근 기록` tab:
 
