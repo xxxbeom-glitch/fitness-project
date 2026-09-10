@@ -4,7 +4,7 @@
 
 ## Current mode
 
-`PRODUCT/UX FIGMA · GROUP 05 ACTIVE WORKOUT ACTIVE · LOCAL ACTION MENU PATTERN PASS · NO CURSOR IMPLEMENTATION HANDOFF`
+`PRODUCT/UX FIGMA · GROUP 05 ACTIVE WORKOUT ACTIVE · ACTION MENU BINDING QA PASS · NO CURSOR IMPLEMENTATION HANDOFF`
 
 ## Resume rule
 
@@ -16,10 +16,11 @@
 
 ## Latest active checkpoint
 
-- `docs/ux-decisions/2026-09-10-action-menu-presentation.md`
+- `docs/ux-decisions/2026-09-10-action-menu-binding-qa.md`
 
 Supporting checkpoints:
 
+- `docs/ux-decisions/2026-09-10-action-menu-presentation.md`
 - `docs/ux-decisions/2026-09-10-group05-recovery-presentation-correction.md`
 - `docs/ux-decisions/2026-09-10-group05-figma-foundation.md`
 
@@ -39,17 +40,19 @@ Group 05 current binding state:
 - `LeftAction=Back, RightAction=Timer` is a true variant inside the local `Nav Header` component set
 - `icon/timer-refresh` is inside `LOCAL_COMPONENT_LIBRARY`
 - repeated attachment status UI is local `AttachmentTag` component `693:6035`
-- 05I now uses local icon-action `ActionSheet` / `ActionRows`
+- 05I uses local icon-action `ActionSheet` / `ActionRows`
 - local action icons include `icon/replace`, `icon/trash`, `icon/copy`; existing local `icon/edit` / `icon/drag-handle` are reused
+- new action-menu family is fully rebound to existing local colors / spacing / radius / typography styles; no new token was added
+- `ActionRows`, `ActionSheet`, `05I`, `03A_Routine_List_Menu`, `03F_Routine_Exercise_Menu`: missing main 0 / remote main 0 / missing Variable 0 / remote Variable 0 / missing Style 0 / remote Style 0
+- `ActionRows` / `ActionSheet` each have exactly one same-role local master set on `MVP_공용_UI`
 - 05J uses local `ReorderRow` / `icon/drag-handle`
 - visible Group 05 dialog states use local `DialogCard` / `DialogButtons`
-- current visible Group 05 screens retain local component ownership and external Variable 0 / missing Variable 0
 - visible raw `AttachmentTag` frame 0
 - `ExerciseCard` / `DialogCard` stale visual-layout overrides 0
 
-Representative visual read-back after the latest action-menu change: `05I` PASS.
+Representative post-binding visual read-back: `05I`, `03A_Routine_List_Menu`, `03F_Routine_Exercise_Menu` PASS.
 
-### Action-menu presentation
+### Action-menu presentation + binding
 
 Confirmed direction:
 
@@ -67,9 +70,22 @@ Figma reflection:
 - `03F_Routine_Exercise_Menu` — `706:5087`
 - imported temporary action-menu reference screens removed from Group 05 after localization
 
-Canonical decision/checkpoint:
+Binding QA correction:
+
+- `ActionRows` surface / border → local `bg/default` / `border/default`
+- labels → local `label/02` + `text/primary`
+- dividers → local `bg/elevated`
+- `icon/replace`, `icon/trash`, `icon/copy` foregrounds → local `text/primary`
+- `ActionSheet` surface → local `glass/surface-20`
+- ActionSheet title → `heading/01` + `text/primary`
+- ActionSheet subtitle → `body/02` + `text/secondary`
+
+Canonical records:
 
 - `docs/ux-decisions/2026-09-10-action-menu-presentation.md`
+- `docs/ux-decisions/2026-09-10-action-menu-binding-qa.md`
+
+Do not reopen this action-menu binding range without a new conflicting change.
 
 ### Active-session recovery presentation correction
 
@@ -91,7 +107,7 @@ Canonical decision:
 
 - `docs/ux-decisions/2026-09-10-active-session-system-notification.md`
 
-Important: the page-wide/local-binding QA pass does not imply Product/UX approval of every draft state. `05N_Workout_OtherRoutine` remains subject to product-flow review. Hidden `05F_Workout_RestTimer_TBD` remains deferred.
+Important: the binding QA pass does not imply Product/UX approval of every draft state. `05N_Workout_OtherRoutine` remains subject to product-flow review. Hidden `05F_Workout_RestTimer_TBD` remains deferred.
 
 ---
 
@@ -146,6 +162,7 @@ Related locked policy references include:
 - `docs/ux-decisions/2026-09-03-assisted-machine-recording.md`
 - `docs/ux-decisions/2026-09-10-active-session-system-notification.md`
 - `docs/ux-decisions/2026-09-10-action-menu-presentation.md`
+- `docs/ux-decisions/2026-09-10-action-menu-binding-qa.md`
 
 ---
 
@@ -191,6 +208,7 @@ Checkpoint:
 
 - `docs/ux-decisions/2026-09-10-figma-local-component-migration.md`
 - `docs/ux-decisions/2026-09-10-action-menu-presentation.md`
+- `docs/ux-decisions/2026-09-10-action-menu-binding-qa.md`
 
 Do not reopen 01–04 visual design solely because component ownership changed.
 
