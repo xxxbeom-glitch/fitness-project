@@ -4,7 +4,7 @@
 
 ## Current mode
 
-`PRODUCT/UX FIGMA · GROUP 05 ACTIVE WORKOUT ACTIVE · OTHER ROUTINE SWITCH QA PASS · NO CURSOR IMPLEMENTATION HANDOFF`
+`PRODUCT/UX FIGMA · GROUP 05 ACTIVE WORKOUT ACTIVE · REPLACEMENT RECOMMENDATION LIMIT QA PASS · NO CURSOR IMPLEMENTATION HANDOFF`
 
 ## Resume rule
 
@@ -16,12 +16,12 @@
 
 ## Latest active checkpoint
 
-- `docs/ux-decisions/2026-09-10-group05-other-routine-switch.md`
+- `docs/ux-decisions/2026-09-10-group05-exercise-replacement-localization.md`
 
 Supporting checkpoints:
 
+- `docs/ux-decisions/2026-09-10-group05-other-routine-switch.md`
 - `docs/ux-decisions/2026-09-10-exercisecard-exerciseinfo-layout.md`
-- `docs/ux-decisions/2026-09-10-group05-exercise-replacement-localization.md`
 - `docs/ux-decisions/2026-09-10-group05-rest-timer-localization.md`
 - `docs/ux-decisions/2026-09-10-routinelist-action-bottomsheet-correction.md`
 - `docs/ux-decisions/2026-09-10-action-menu-binding-qa.md`
@@ -37,6 +37,8 @@ Current Group 05 foundation:
 - `05F_Workout_RestTimer` — `721:3460`
 - `05G_Exercise_Replace_Suggest` — `713:14539`
 - `05H_Exercise_Replace_Selected` — `713:14526`
+- `05G2_Exercise_Replace_SecondBatch` — `731:3906`
+- `05H2_Exercise_Replace_SecondBatch_Selected` — `731:6943`
 - `05I_Workout_Menu` — `148:3392`
 - `05J_Reorder` — `36:3609`
 - `05N_Workout_OtherRoutine_Incomplete` — `727:3622`
@@ -59,8 +61,8 @@ Group 05 current binding state:
 - `05F_Workout_RestTimer`: missing main 0 / remote main 0 / remote Variable 0 / missing Variable 0 / remote Style 0 / missing Style 0
 - replacement flow uses local `RadioButton` component set `723:918`
 - replacement flow uses local `ExerciseReplaceItem` component set `723:938`
-- `05G_Exercise_Replace_Suggest` and `05H_Exercise_Replace_Selected` use only local component mains, Variables and Styles
-- `RadioButton`, `ExerciseReplaceItem`, `05G`, `05H`: missing main 0 / remote main 0 / missing Variable 0 / remote Variable 0 / missing Style 0 / remote Style 0
+- first and second recommendation batches use only local component mains, Variables and Styles
+- `05G`, `05H`, `05G2`, `05H2`: missing main 0 / remote main 0 / missing Variable 0 / remote Variable 0 / missing Style 0 / remote Style 0
 - 05I uses local icon-action `ActionSheet` / `ActionRows`
 - local action icons include `icon/replace`, `icon/trash`, `icon/copy`; existing local `icon/edit` / `icon/drag-handle` are reused
 - new action-menu family is rebound to existing local colors / spacing / radius / typography styles; no new token was added
@@ -75,7 +77,45 @@ Group 05 current binding state:
 - visible raw `AttachmentTag` frame 0
 - `ExerciseCard` / `DialogCard` stale visual-layout overrides 0
 
-Representative visual read-back after latest changes: `05N_Workout_OtherRoutine_Incomplete`, `05N_Workout_OtherRoutine_Complete`, Active Workout `어시스트 풀업` card, `05F_Workout_RestTimer`, `05G_Exercise_Replace_Suggest`, `05H_Exercise_Replace_Selected`, `05I`, `03A_Routine_List_Menu`, `03F_Routine_Exercise_Menu` PASS.
+Representative visual read-back after latest changes: `05G2_Exercise_Replace_SecondBatch`, `05H2_Exercise_Replace_SecondBatch_Selected`, `05N_Workout_OtherRoutine_Incomplete`, `05N_Workout_OtherRoutine_Complete`, Active Workout `어시스트 풀업` card, `05F_Workout_RestTimer`, `05G_Exercise_Replace_Suggest`, `05H_Exercise_Replace_Selected`, `05I`, `03A_Routine_List_Menu`, `03F_Routine_Exercise_Menu` PASS.
+
+### Exercise replacement recommendation limit
+
+Confirmed flow:
+
+`05I 대체 운동 → initial 3 → 다른 운동 보기 1회 → new 3 → 전체 운동에서 찾기`
+
+Rules:
+
+- initial recommendation batch contains three similar exercises
+- `다른 운동 보기` is allowed exactly once
+- the second batch does not repeat exercises already shown in the first batch
+- after the second batch appears, the secondary action changes to `전체 운동에서 찾기`
+- recommendations do not rotate indefinitely
+- if fewer than three unseen recommendations remain, show only the remaining candidates
+- if no unseen candidate remains, move directly to `전체 운동에서 찾기`
+- refreshing/browsing recommendations does not modify the active workout
+- the actual replacement is applied only after selection + `선택 완료`
+
+Figma reflection:
+
+- first batch unselected: `05G_Exercise_Replace_Suggest` — `713:14539`
+- first batch selected: `05H_Exercise_Replace_Selected` — `713:14526`
+- second batch unselected: `05G2_Exercise_Replace_SecondBatch` — `731:3906`
+- second batch selected: `05H2_Exercise_Replace_SecondBatch_Selected` — `731:6943`
+- second-batch representative options: `덤벨 벤치프레스 / 머신 체스트 프레스 / 펙덱 플라이`
+- second-batch secondary action: `전체 운동에서 찾기`
+
+Focused QA:
+
+- `05G2`: missing main 0 / remote main 0 / missing Variable 0 / remote Variable 0 / missing Style 0 / remote Style 0
+- `05H2`: missing main 0 / remote main 0 / missing Variable 0 / remote Variable 0 / missing Style 0 / remote Style 0
+- screenshot read-back: PASS
+- no new token/component created; existing `ExerciseReplaceItem`, `RadioButton`, `CTA Button`, `Nav Header`, `Tag` reused
+
+Canonical record:
+
+- `docs/ux-decisions/2026-09-10-group05-exercise-replacement-localization.md`
 
 ### Other-routine switch flow
 
@@ -147,29 +187,27 @@ Canonical record:
 
 Current represented flow:
 
-`05I 대체 운동 → 05G 추천 미선택 → 05H 추천 선택 → 선택 완료`
+`05I 대체 운동 → 05G/05H first batch → 05G2/05H2 second batch → 전체 운동에서 찾기`
 
 Confirmed presentation:
 
-- initial replacement screen recommends three similar exercises
 - replacement is single-select
 - before selection, `선택 완료` is disabled
 - after one exercise is selected, `선택 완료` is enabled
-- `다른 운동 보기` is the escape path to browse outside the recommended three
+- initial `다른 운동 보기` yields one non-duplicate second batch
+- after that, use `전체 운동에서 찾기` instead of another recommendation refresh
 - duplicated content heading was removed; local `Nav Header` owns `대체 운동 선택` and the body keeps only the helper copy
-- copied 360×800 reference screens were normalized to Group 05 360×780
-- 05G/05H `ExerciseInfo` uses vertical Fill container with vertically centered contents per PO correction
+- all replacement screens use Group 05 360×780
+- replacement item `ExerciseInfo` uses vertical Fill container with vertically centered contents per PO correction
 
 Figma reflection:
 
 - `05G_Exercise_Replace_Suggest` — `713:14539`
 - `05H_Exercise_Replace_Selected` — `713:14526`
+- `05G2_Exercise_Replace_SecondBatch` — `731:3906`
+- `05H2_Exercise_Replace_SecondBatch_Selected` — `731:6943`
 - local `RadioButton` component set — `723:918`
-  - `State=Unchecked`
-  - `State=Checked`
 - local `ExerciseReplaceItem` component set — `723:938`
-  - `Selected=False`
-  - `Selected=True`
 
 Existing local `Nav Header`, `CTA Button`, `Tag`, Variables and text styles are reused. No new token was created.
 
@@ -177,9 +215,8 @@ Binding QA:
 
 - `RadioButton`: missing main 0 / remote main 0 / missing Variable 0 / remote Variable 0 / missing Style 0 / remote Style 0
 - `ExerciseReplaceItem`: missing main 0 / remote main 0 / missing Variable 0 / remote Variable 0 / missing Style 0 / remote Style 0
-- `05G`: missing main 0 / remote main 0 / missing Variable 0 / remote Variable 0 / missing Style 0 / remote Style 0
-- `05H`: missing main 0 / remote main 0 / missing Variable 0 / remote Variable 0 / missing Style 0 / remote Style 0
-- screenshot read-back after top-level layout and footer-label corrections: PASS
+- all four replacement representative screens: missing main 0 / remote main 0 / missing Variable 0 / remote Variable 0 / missing Style 0 / remote Style 0
+- screenshot read-back: PASS
 
 Open replacement-flow policy:
 
@@ -278,7 +315,7 @@ Canonical decision:
 
 - `docs/ux-decisions/2026-09-10-active-session-system-notification.md`
 
-Important: only the replacement behavior after completed sets remains subject to product-flow review. 05N is now approved and closed.
+Important: only the replacement behavior after completed sets remains subject to product-flow review. 05N and recommendation-refresh behavior are now approved and closed.
 
 ---
 
@@ -290,8 +327,10 @@ Canonical Figma:
 - page: `05 운동 중` — `233:2076`
 - current main screen: `05A_Workout_Weight` — `148:1979`
 - current rest timer screen: `05F_Workout_RestTimer` — `721:3460`
-- replacement suggest screen: `05G_Exercise_Replace_Suggest` — `713:14539`
-- replacement selected screen: `05H_Exercise_Replace_Selected` — `713:14526`
+- replacement first-batch suggest: `05G_Exercise_Replace_Suggest` — `713:14539`
+- replacement first-batch selected: `05H_Exercise_Replace_Selected` — `713:14526`
+- replacement second-batch suggest: `05G2_Exercise_Replace_SecondBatch` — `731:3906`
+- replacement second-batch selected: `05H2_Exercise_Replace_SecondBatch_Selected` — `731:6943`
 - current menu screen: `05I_Workout_Menu` — `148:3392`
 - current reorder screen: `05J_Reorder` — `36:3609`
 - other-routine incomplete state: `05N_Workout_OtherRoutine_Incomplete` — `727:3622`
@@ -307,7 +346,8 @@ Canonical Figma:
 - `ExerciseCard > CardHeader > ExerciseInfo` fills vertically and centers its content vertically.
 - attachment status chip remains visually aligned with Group 03 approved treatment.
 - rest timer uses local `RestTimerPill` and is an overlay toast/pill, not an inline persistent banner.
-- replacement recommendations use local `ExerciseReplaceItem` + `RadioButton`; no copied external replacement components remain in canonical 05G/05H.
+- replacement recommendations use local `ExerciseReplaceItem` + `RadioButton`; no copied external replacement components remain in canonical replacement screens.
+- replacement recommendation refresh is finite: initial 3 → one new non-duplicate batch of up to 3 → `전체 운동에서 찾기`.
 - starting another routine during an active workout uses state-specific 05N dialogs directly; no extra 05K/05L confirmation is stacked after a generic 05N.
 - existing local Variables/Styles/Components take priority over creating new assets.
 - no external library dependency may be reintroduced.
@@ -331,7 +371,7 @@ Decide the remaining replacement edge case:
 
 After this decision and focused Figma QA, Group 05 can be evaluated for closure.
 
-Do not reopen passed 05F/action-menu/replacement localization/ExerciseInfo layout/05N work without a concrete conflict.
+Do not reopen passed 05F/action-menu/replacement recommendation refresh/ExerciseInfo layout/05N work without a concrete conflict.
 
 Related locked policy references include:
 
