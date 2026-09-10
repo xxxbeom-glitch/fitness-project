@@ -4,7 +4,7 @@
 
 ## Current mode
 
-`PRODUCT/UX FIGMA · GROUP 04 SCREEN-LEVEL DESIGN CLOSED · FINAL CLOSURE QA NEXT · NO CURSOR IMPLEMENTATION HANDOFF`
+`PRODUCT/UX FIGMA · GROUP 04 CLOSED · ANALYSIS BODY-MAP TAXONOMY NEXT · NO CURSOR IMPLEMENTATION HANDOFF`
 
 ## Resume rule
 
@@ -16,13 +16,13 @@
 
 ## Latest active checkpoint
 
-- `docs/ux-decisions/2026-09-10-group04-session-handoff.md`
+- `docs/ux-decisions/2026-09-10-group04-closure-qa.md`
 
-이 문서가 현재 Group 04의 최신 화면 상태, 최근 Figma 수정, 재검토 금지 범위, 정확한 다음 작업을 정리한다.
+Group 04 최종 샘플 데이터 QA와 최근 shared-change 회귀 QA까지 완료되어 **CLOSED** 상태다. Group 04 화면을 다시 시각 재설계하지 않는다. 새 충돌/regression/PO 재검토 요청이 있을 때만 해당 범위를 다시 연다.
 
 ---
 
-# ACTIVE TRACK — Group 04 closure QA
+# CLOSED TRACK — Group 04 운동 목록 · 상세
 
 Canonical Figma:
 
@@ -44,45 +44,38 @@ Canonical Group 04 states:
 - `04A_Filter_BodyPart_Page` — `515:3514`
 - `04H_Custom_Attachment_Input` — `552:3356`
 
-Recent final screen-level changes are locked unless closure QA finds a regression:
+Closure QA result:
 
-- 04B V2 selected-exercise horizontal chips remain canonical.
-- `SelectedExerciseChip` master `569:1335` was moved to `MVP_공용_UI`; 04B instances remain linked.
-- 04A equipment/body filter rows use dividers and 0 left/right row padding so content aligns to the page/list line.
-- 04C empty state now follows the approved 03B pattern: centered title + description + compact Primary CTA; no fixed full-width footer CTA.
-- shared Nav Header action slots remain `44×44`; left icon aligns left within the left slot, right icon aligns right within the right slot, visible icon stays `24×24`.
-- 04D is flat information treatment; both `운동 방법` and `핵심 체크포인트` use numbered lists and responsive long-copy layout.
-- 04E/04F forms and 04G history have short-device scroll safety fixes.
-- 04H attachment picker visual work is aligned; exact Production attachment allowlists/media mapping remain deferred data work.
+- final exercise-list/filter sample-data QA: **PASS after fixes**
+- final scoped A~H integration QA: **PASS**
+- canonical root reference viewport: `360 × 954`
+- body-part filter aligned to approved large body-part taxonomy
+- list sample naming / detailed primary-muscle / equipment examples aligned to current Production baseline + P0 scope
+- `SelectedExerciseChip` master remains on `MVP_공용_UI`; all current 04B instances remain linked
+- Nav Header shared change regression: PASS
+- Empty State regression: PASS
+- filter row/divider/component reuse regression: PASS
+- 04H attachment UI remains visually aligned
 
-Relevant decisions/checkpoints:
+Closure record:
 
-- `docs/ux-decisions/2026-09-10-group04-session-handoff.md`
+- `docs/ux-decisions/2026-09-10-group04-closure-qa.md`
+
+Relevant locked decisions remain:
+
 - `docs/ux-decisions/2026-09-10-exercise-filter-full-page-approved.md`
 - `docs/ux-decisions/2026-09-10-exercise-library-04b-selected-chips-approved.md`
 - `docs/ux-decisions/2026-09-10-exercise-library-04a-design-system-hardening.md`
 - `docs/ux-decisions/2026-09-10-exercise-library-04b-design-system-qa.md`
 - `docs/ux-decisions/2026-09-10-exercise-detail-04d-scroll-copy-qa.md`
 - `docs/ux-decisions/2026-09-10-nav-header-action-edge-alignment.md`
-- `docs/ux-decisions/2026-09-09-exercise-library-hevy-alignment.md`
 - `docs/ux-decisions/2026-09-04-exercise-detail-scope.md`
 - `docs/ux-decisions/2026-09-03-cable-attachment-active-workout.md`
 - `docs/ux-decisions/2026-09-05-exercise-recording-types.md`
 
-## NEXT OPEN ITEM — exact resume point
-
-Do not start another visual redesign pass.
-
-1. **Final exercise-list/filter sample-data QA** against canonical Production taxonomy.
-2. **Final scoped Group 04 A~H integration QA** for regressions from the latest shared changes only: Nav Header, Empty State, filter rows, SelectedExerciseChip relocation.
-3. If no blocker remains, mark **Group 04 CLOSED**.
-4. Resume **Analysis body-area granularity / body-map mapping**.
-
-No Cursor implementation handoff yet.
-
 ---
 
-# NEXT TRACK AFTER GROUP 04 — Analysis
+# ACTIVE TRACK — Analysis
 
 Approved Analysis hierarchy remains locked:
 
@@ -107,9 +100,11 @@ Resume Analysis from:
 - `docs/ux-decisions/2026-09-05-analysis-body-area-drilldown.md`
 - `docs/ux-decisions/2026-09-05-analysis-exercise-progress.md`
 
-Exact first Analysis task after Group 04 closure:
+## NEXT OPEN ITEM — exact resume point
 
 `canonical muscle/body-part taxonomy → practical front/back body-map regions mapping`
+
+Proceed in Product/UX mode first. Confirm the canonical muscle taxonomy actually available in the Production exercise data, then define the practical body-map regions and the mapping rules needed by Analysis. Do not start another Group 04 design pass.
 
 ---
 
@@ -137,4 +132,4 @@ References:
 
 **NO CURSOR IMPLEMENTATION HANDOFF.**
 
-Product Owner가 개발 전환을 명시하기 전까지 Figma/Product 단계에서 계속 진행한다.
+Product Owner가 개발 전환을 명시하기 전까지 Product/UX/Figma 단계에서 계속 진행한다.
