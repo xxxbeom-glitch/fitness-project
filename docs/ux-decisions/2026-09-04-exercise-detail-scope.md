@@ -160,6 +160,8 @@ Applied to the `최근 기록` tab:
 - `ExerciseHistoryContent` uses the remaining `782px` viewport region and is vertically scrollable
 - existing date-grouped records and set values are preserved rather than shortened to fit the viewport
 - existing spacing/surface/divider variable bindings are retained
+- root-level accidental `minHeight=780` constraint was removed so shorter devices can shrink the screen shell normally
+- temporary `360 × 620` QA confirmed the history content shrinks to the remaining `448px` and remains vertically scrollable without layout collision
 - structure QA, binding QA, and screenshot QA completed
 
 This completes the current 04D/04G Exercise Detail screen pass. Exact coaching copy remains product content and may be refined later without changing the approved information architecture.
