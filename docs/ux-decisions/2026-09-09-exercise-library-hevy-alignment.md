@@ -40,7 +40,23 @@ Current list row keeps:
 
 The previous `ㄱ/ㄴ/ㄷ...` section headers are no longer the primary list hierarchy.
 
-`전체 운동` ordering can still use the current display-language sort order internally; explicit initial-consonant section headers are not required in the primary MVP list.
+### 전체 운동 ordering — PO LOCKED
+
+`전체 운동`은 현재 표시 언어 기준 오름차순으로 정렬한다.
+
+- 한국어 UI: 가나다순
+- 영문 UI가 도입되면: A–Z 등 해당 표시 언어 정렬 기준 적용
+- 별도의 초성 섹션 헤더는 MVP 기본 구조에 두지 않는다.
+- `최근 운동`은 빠른 재선택을 위한 shortcut section이며, `전체 운동`에서 해당 운동을 제외하지 않는다. 즉 최근 운동에 노출된 운동도 전체 라이브러리에는 다시 포함된다.
+
+Current Korean Figma sample `전체 운동` order:
+
+1. 덤벨 컬
+2. 랫풀다운
+3. 레그 익스텐션
+4. 벤치프레스
+5. 사이드 레터럴 레이즈
+6. 케이블 크런치
 
 ## 2. Recent exercises
 
@@ -51,6 +67,7 @@ Product intent:
 - frequently repeated workouts should be reachable before users search the full DB
 - exact maximum count can be tuned later; do not treat the current static sample count as a hard data-schema rule
 - when there is no usable exercise history, the `최근 운동` section can be omitted
+- recent ordering should follow recency, not 가나다 ordering
 
 ## 3. Multi-selection
 
@@ -70,6 +87,13 @@ Hevy-aligned interaction:
 Current Figma selected-state sample uses `3개 운동 추가`.
 
 Selection survives normal search/filter navigation until the user explicitly deselects, completes add, or exits/cancels the add flow.
+
+### Selected-row visual alignment — PO LOCKED
+
+- list divider start and exercise thumbnail start use the same left edge
+- do not reintroduce the previous internal left padding before the thumbnail
+- the green selection indicator stays **inside the row/list bounds** and is absolutely overlaid so it does not push the thumbnail or change row geometry
+- selected state is tied to exercise identity, so the same selected exercise shown in both `최근 운동` and `전체 운동` reflects the same selected state
 
 ## 4. Right-side row action
 
@@ -96,6 +120,16 @@ Follow Hevy's faster interaction:
 - no separate selected-filter chip row is required
 
 The Tracker APP bottom-sheet visual language and existing `OptionItem` component are reused.
+
+### Bottom-sheet visual treatment — PO CORRECTED
+
+Filter sheets reuse the already-defined 04H bottom-sheet shell rather than a flat opaque sheet:
+
+- outer sheet: existing `glass-surface-20` / glass treatment
+- top corners: existing 04H radius treatment
+- overlay: existing dimmed background pattern
+- inner option-list container: `bg/default` with its existing rounded container treatment
+- `OptionItem` selected/unselected states remain reused
 
 Current proposal options are UI samples and must continue to align with canonical exercise DB taxonomy before implementation.
 
@@ -145,7 +179,7 @@ New/reused common patterns:
 - `ExerciseRowDetailAction`
 - existing `CTA Button`
 - existing `OptionItem`
-- existing 04H bottom-sheet shell/overlay styling as the structural basis; filter sheets use opaque `bg/default` rather than the 04H glass effect for clearer list selection
+- existing 04H bottom-sheet shell/overlay styling
 
 ## 9. Promotion boundary
 
