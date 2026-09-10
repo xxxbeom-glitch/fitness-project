@@ -4,7 +4,7 @@
 
 ## Current mode
 
-`PRODUCT/UX FIGMA GROUP 04 FINAL QA ACTIVE · 04A/04B HEVY-ALIGNED CANONICAL · 04C/04D/04E/04F/04G/04H SCREEN PASS ALIGNED · 04B SELECTED-EXERCISE OVERVIEW COMPARISON OPEN · 04B CTA SCROLL-SAFETY NEXT · ATTACHMENT PRODUCTION ALLOWLIST DATA QA DEFERRED · ANALYSIS BODY-AREA GRANULARITY DEFERRED RESUME ITEM · EXERCISE DB P0 16 DATA + DEFAULT MEDIA INPUT LOCKED · 211 DERIVED ARTIFACT NOT YET REGENERATED · NO CURSOR IMPLEMENTATION HANDOFF`
+`PRODUCT/UX FIGMA GROUP 04 FINAL QA ACTIVE · 04A/04B HEVY-ALIGNED CANONICAL · 04B V2 SELECTED-CHIPS CANONICAL · 04B CTA SCROLL-SAFETY PASS · 04C/04D/04E/04F/04G/04H SCREEN PASS ALIGNED · GROUP 04 SAMPLE-DATA QA NEXT · ATTACHMENT PRODUCTION ALLOWLIST DATA QA DEFERRED · ANALYSIS BODY-AREA GRANULARITY DEFERRED RESUME ITEM · EXERCISE DB P0 16 DATA + DEFAULT MEDIA INPUT LOCKED · 211 DERIVED ARTIFACT NOT YET REGENERATED · NO CURSOR IMPLEMENTATION HANDOFF`
 
 ## Resume rule
 
@@ -18,14 +18,15 @@
 
 # CURRENT PRODUCT/UX TRACK — Figma Group 04 Exercise library/search QA
 
-The Product Owner directed the exercise-library / Add Exercise interaction to follow **Hevy's proven list logic where practical**, while retaining the LIFTLY Tracker APP design system and current product/data policies.
+운동 목록 / Add Exercise interaction은 가능한 범위에서 Hevy의 검증된 상호작용 구조를 우선 참고하되, LIFTLY Tracker APP 디자인 시스템과 현재 제품/데이터 정책을 유지한다.
 
 Latest active checkpoint:
 
-- `docs/ux-decisions/2026-09-09-exercise-library-hevy-alignment.md`
+- `docs/ux-decisions/2026-09-10-exercise-library-04b-selected-chips-approved.md`
 
 Other relevant decisions:
 
+- `docs/ux-decisions/2026-09-09-exercise-library-hevy-alignment.md`
 - `docs/ux-decisions/2026-09-08-exercise-library-figma-04-list-filter-checkpoint.md`
 - `docs/ux-decisions/2026-09-06-exercise-library-figma-04-checkpoint.md`
 - `docs/ux-decisions/2026-09-04-exercise-detail-scope.md`
@@ -47,7 +48,7 @@ Important correction:
 ## Canonical Group 04 states
 
 1. `04A_Search` — `207:1238` — **ALIGNED / CANONICAL**
-2. `04B_Search_Selected` — `515:1140` — **ALIGNED / CANONICAL BASE; SELECTED-OVERVIEW ADDITION OPEN**
+2. `04B_Search_Selected` — `515:1140` — **ALIGNED / CANONICAL · V2 SELECTED-CHIPS PROMOTED**
 3. `04C_Search_Empty` — `539:1050` — **ALIGNED**
 4. `04D_운동상세` — `40:2325` — **ALIGNED**
 5. `04E_Custom_Create` — `34:1672` — **ALIGNED**
@@ -68,8 +69,9 @@ Base list order:
 1. search
 2. `장비 전체`
 3. `부위 전체`
-4. `최근 운동`
-5. `전체 운동`
+4. selected-exercise strip when selection count > 0
+5. `최근 운동`
+6. `전체 운동`
 
 Rules:
 
@@ -92,12 +94,47 @@ Filters:
 - no removable filter-chip row in the canonical filter pattern
 - existing `OptionItem`, glass sheet shell and overlay are reused
 
+## 04B selected-exercise overview — PO APPROVED / CANONICAL
+
+PO selected **V2 selected chips**.
+
+Canonical behavior:
+
+- heading = `선택한 운동 (N개)`
+- one horizontal free-scroll chip row; no snap-card carousel
+- each selected exercise remains individually visible by horizontal scrolling
+- each chip uses `운동명 ×` and removes/deselects that exercise from the shared selection state
+- selected strip disappears when selected count becomes 0
+- previous comparison-only `+N` summary chip is not used
+- `최근 운동` remains historical recency and is not reused as selected-state UI
+
+Component reuse:
+
+- existing Tracker APP `FilterChip`
+- state = `Active`
+- existing semantic typography/color/spacing/radius bindings retained
+- no detached/ad-hoc selected-chip family introduced
+
+Canonical Figma implementation:
+
+- `04B_Search_Selected` — `515:1140`
+- promoted selected section — `SelectedExerciseChips_HorizontalScroll` `566:1340`
+- approved proposal reference — `04B_V2_Selected_Chips_APPROVED` `560:1293`
+- current 10-item sample exists only to stress-test overflow; sample names are not a Production taxonomy decision
+
+### 04B scroll safety — PASS
+
+- selection footer remains fixed/absolute, height `100px`
+- scrollable `SearchContent` bottom padding = `120px`
+- final list content can therefore scroll above `N개 운동 추가` instead of remaining hidden behind it
+- structure QA / binding QA / screenshot QA completed
+
 ## 04C — no result
 
 Aligned to the same canonical 04A shell:
 
 - same header/search/equipment/body filters
-- invalid/absent search term example
+- invalid/absent search example
 - no-result message
 - direct custom-exercise entry retained
 
@@ -108,14 +145,7 @@ Approved IA remains two tabs:
 - `운동 정보`
 - `최근 기록`
 
-04D includes:
-
-- media
-- equipment
-- primary muscle
-- secondary muscles
-- text exercise method
-- key checkpoints/cautions
+04D includes media, equipment, primary muscle, secondary muscles, text method and checkpoints/cautions.
 
 Current sample:
 
@@ -126,16 +156,12 @@ Current sample:
 
 04G final viewport state:
 
-- legacy `360 × 1102` frame normalized to **`360 × 954`**
-- root = vertical Auto Layout
-- Status Area / Nav Header / 2-tab bar remain fixed-height top structure
-- `ExerciseHistoryContent` fills the remaining **782px** region and scrolls vertically
-- existing dated set-history content remains intact below the fold
+- `360 × 954`
+- root vertical Auto Layout
+- fixed-height Status Area / Nav Header / 2-tab bar
+- `ExerciseHistoryContent` fills remaining `782px` and scrolls vertically
+- dated set-history content remains intact below fold
 - structure / binding / screenshot QA completed
-
-Reference:
-
-- `docs/ux-decisions/2026-09-04-exercise-detail-scope.md`
 
 ## 04E / 04F — custom exercise metadata
 
@@ -174,10 +200,10 @@ UI/interaction aligned:
 - preset tap selects and returns; no Apply button
 - last row = `직접 입력`
 - custom input state = `04H_Custom_Attachment_Input`
-- direct input reuses existing InputBox + primary CTA `사용하기`
+- direct input reuses existing `InputBox` + primary CTA `사용하기`
 - custom text is current exercise-record context only in MVP; it is not auto-promoted into shared canonical taxonomy
 
-Current 랫풀다운 sample:
+Current 랫풀다운 UI sample:
 
 - 스트레이트 바
 - 와이드 랫 바
@@ -189,57 +215,9 @@ Current 랫풀다운 sample:
 
 Important boundary:
 
-- this sample is not the exhaustive Production taxonomy
+- sample is not the exhaustive Production taxonomy
 - exact Production exercise-by-exercise attachment allowlists / canonical IDs / media mapping remain a DB/data task
 - this deferred data task does not block visual Group 04 closure unless a screen contradiction appears
-
-## 04B selected-exercise overview — CURRENT OPEN DECISION
-
-PO identified a usability issue for large multi-selection (example 10 exercises): selected rows and the bottom count CTA show selection state, but there is no single place to review **which exercises are selected**.
-
-Do not repurpose `최근 운동` as the selected list. Recent = historical recency; selected = temporary current-flow state.
-
-Competitor patterns reviewed beyond Hevy:
-
-- MyFitnessPal — count only
-- Shopify — `View selected`
-- GitHub — separate `Selected` section
-- Beli — removable selected chips
-- Formula 1 — dedicated selected-item strip
-
-Three Figma comparison variants are currently placed below the canonical Group 04 screens. **Canonical 04B has not been replaced or modified by these proposals.**
-
-### 1안 — summary row
-
-- `04B_V1_Selected_Summary_Row` — node `560:1117`
-- compact `선택한 운동 / 10개 >` row between filters and recent exercises
-- existing RowLabel + RowValue(ValueChevron) reused
-- least visual density
-
-### 2안 — selected chips
-
-- `04B_V2_Selected_Chips` — node `560:1293`
-- `선택한 운동 10개`
-- sample chips: `벤치프레스 ×`, `랫풀다운 ×`, `덤벨 컬 ×`, `+7`
-- existing FilterChip instances reused for comparison
-- fastest direct recognition/removal, but denser
-
-### 3안 — selected list section
-
-- `04B_V3_Selected_Section` — node `560:1471`
-- dedicated selected-exercise list above recent exercises
-- sample shows 3 exercise rows + `7개 더 보기 >`
-- clearest review state, but uses the most vertical space
-
-All three:
-
-- `360 × 954`
-- preserve canonical search + equipment/body filters
-- preserve recent/all lists
-- preserve selected-row green indicator behavior
-- bottom CTA sample = `10개 운동 추가`
-- structure checked and screenshot-QA'd
-- **proposal only; PO has not selected a winner yet**
 
 ## Figma construction rule — standing requirement
 
@@ -254,23 +232,20 @@ Required order:
 
 1. read CURRENT + relevant decision
 2. read design-system / QA rules
-3. inspect and reuse existing components/patterns before creating new UI
+3. inspect/reuse existing components before creating new UI
 4. use semantic Auto Layout
 5. define Fixed/Hug/Fill independently by axis
-6. bind supported typography/color/spacing/radius/divider values to actual styles/variables
+6. bind supported typography/color/spacing/radius/divider values
 7. avoid unnecessary absolute positioning, detached duplicates and raw-value drift
 8. structure QA → binding QA → Figma screenshot QA
 
 # NEXT OPEN ITEM — exact resume point
 
-Do **not** redo completed Hevy/reference research on resume unless PO explicitly asks.
+Do **not** redo completed Hevy/reference research or the 04B 1/2/3 comparison.
 
-1. PO compares the three 04B selected-overview variants and chooses **1안 / 2안 / 3안 / keep current 04B**
-2. after the choice, promote/refine the chosen behavior into canonical `04B_Search_Selected`
-3. verify/fix canonical 04B bottom CTA scroll-safety so the final exercise row cannot be obscured by `N개 운동 추가`
-4. final exercise-list/filter sample-data QA against canonical Production taxonomy
-5. final Group 04 A~H structure/binding/screenshot QA
-6. if no screen-level blocker remains, CLOSE Group 04 and resume Analysis body-area granularity
+1. final exercise-list/filter sample-data QA against canonical Production taxonomy
+2. final Group 04 A~H structure/binding/screenshot QA
+3. if no screen-level blocker remains, CLOSE Group 04 and resume Analysis body-area granularity
 
 No Cursor implementation handoff yet.
 
