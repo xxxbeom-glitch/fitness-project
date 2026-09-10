@@ -100,6 +100,30 @@ Canonical Figma:
 
 최종 visual spacing / typography / animation frame size는 Figma design sync 단계에서 조정한다.
 
+## Figma implementation status — 2026-09-10
+
+Canonical Group 04 screen:
+
+- page: `04 운동 목록 · 상세` — `233:2075`
+- `04D_운동상세` — `40:2325`
+
+Applied to the `운동 정보` tab:
+
+- screen shell normalized to `360 × 954` vertical Auto Layout
+- media remains first visual block
+- exercise name remains the Nav Header title (`벤치프레스` sample)
+- combined `주요 부위` chip block replaced with display-only metadata rows:
+  - `장비` → `바벨`
+  - `주 타겟 근육` → `가슴`
+  - `보조 타겟 근육` → `삼두 · 전면 어깨`
+- existing `운동 방법` block retained
+- `핵심 체크포인트` block added using the same surface/typography language
+- existing `RowLabel` / `RowValue(Type=ValueOnly)` components reused for metadata
+- spacing, surface, radius, and divider bindings were retained/reapplied using existing variables
+- structure QA, binding QA, and screenshot QA completed
+
+This completes the current 04D metadata/content pass. Exact coaching copy remains product content and may be refined later without changing the approved information architecture.
+
 ## Explicit non-goals
 
 - Leaderboard
