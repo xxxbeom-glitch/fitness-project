@@ -4,7 +4,7 @@
 
 ## Current mode
 
-`PRODUCT/UX FIGMA GROUP 04 FINAL QA ACTIVE · 04A/04B HEVY-ALIGNED CANONICAL · 04A EQUIPMENT/BODY FILTERS FULL-PAGE CANONICAL · 04B V2 SELECTED-CHIPS CANONICAL · SELECTED-CHIP 44PX REMOVE HIT TARGET PASS · 04B CTA SCROLL-SAFETY PASS · 04C/04D/04E/04F/04G/04H SCREEN PASS ALIGNED · GROUP 04 SAMPLE-DATA QA NEXT · ATTACHMENT PRODUCTION ALLOWLIST DATA QA DEFERRED · ANALYSIS BODY-AREA GRANULARITY DEFERRED RESUME ITEM · EXERCISE DB P0 16 DATA + DEFAULT MEDIA INPUT LOCKED · 211 DERIVED ARTIFACT NOT YET REGENERATED · NO CURSOR IMPLEMENTATION HANDOFF`
+`PRODUCT/UX FIGMA GROUP 04 FINAL QA ACTIVE · 04A/04B HEVY-ALIGNED CANONICAL · 04A EQUIPMENT/BODY FILTERS FULL-PAGE CANONICAL · 04B V2 SELECTED-CHIPS CANONICAL · SELECTED-CHIP 44PX REMOVE HIT TARGET PASS · 04B CTA SCROLL-SAFETY PASS · 04D FLAT INFO TREATMENT PASS · 04C/04D/04E/04F/04G/04H SCREEN PASS ALIGNED · GROUP 04 SAMPLE-DATA QA NEXT · ATTACHMENT PRODUCTION ALLOWLIST DATA QA DEFERRED · ANALYSIS BODY-AREA GRANULARITY DEFERRED RESUME ITEM · EXERCISE DB P0 16 DATA + DEFAULT MEDIA INPUT LOCKED · 211 DERIVED ARTIFACT NOT YET REGENERATED · NO CURSOR IMPLEMENTATION HANDOFF`
 
 ## Resume rule
 
@@ -51,7 +51,7 @@ Important correction:
 1. `04A_Search` — `207:1238` — **ALIGNED / CANONICAL**
 2. `04B_Search_Selected` — `515:1140` — **ALIGNED / CANONICAL · V2 SELECTED-CHIPS PROMOTED**
 3. `04C_Search_Empty` — `539:1050` — **ALIGNED**
-4. `04D_운동상세` — `40:2325` — **ALIGNED**
+4. `04D_운동상세` — `40:2325` — **ALIGNED / FLAT INFO TREATMENT PASS**
 5. `04E_Custom_Create` — `34:1672` — **ALIGNED**
 6. `04F_Custom_Edit` — `34:1692` — **ALIGNED**
 7. `04G_Exercise_History` — `34:1714` — **VIEWPORT / SCROLL ALIGNED**
@@ -180,6 +180,17 @@ Current sample:
 - 장비 `바벨`
 - 주 타겟 `가슴`
 - 보조 타겟 `삼두 · 전면 어깨`
+
+04D current visual treatment:
+
+- media remains the only prominent rounded surface block
+- metadata (`장비 / 주 타겟 근육 / 보조 타겟 근육`) is flat with no background card or radius
+- metadata row dividers remain for scanability
+- metadata content aligns directly to the page content inset
+- `운동 방법` = heading + numbered list directly on the page, no inner card
+- `핵심 체크포인트` = heading + bullet list directly on the page, no inner card
+- section hierarchy is carried by typography + 24px parent spacing rather than stacked boxes
+- structure / binding / screenshot QA completed after flattening
 
 04G final viewport state:
 
