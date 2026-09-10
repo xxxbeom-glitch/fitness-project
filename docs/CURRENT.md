@@ -4,7 +4,7 @@
 
 ## Current mode
 
-`PRODUCT/UX FIGMA · GROUP 05 ACTIVE WORKOUT ACTIVE · EXERCISE CARD INFO ALIGNMENT QA PASS · NO CURSOR IMPLEMENTATION HANDOFF`
+`PRODUCT/UX FIGMA · GROUP 05 ACTIVE WORKOUT ACTIVE · OTHER ROUTINE SWITCH QA PASS · NO CURSOR IMPLEMENTATION HANDOFF`
 
 ## Resume rule
 
@@ -16,10 +16,11 @@
 
 ## Latest active checkpoint
 
-- `docs/ux-decisions/2026-09-10-exercisecard-exerciseinfo-layout.md`
+- `docs/ux-decisions/2026-09-10-group05-other-routine-switch.md`
 
 Supporting checkpoints:
 
+- `docs/ux-decisions/2026-09-10-exercisecard-exerciseinfo-layout.md`
 - `docs/ux-decisions/2026-09-10-group05-exercise-replacement-localization.md`
 - `docs/ux-decisions/2026-09-10-group05-rest-timer-localization.md`
 - `docs/ux-decisions/2026-09-10-routinelist-action-bottomsheet-correction.md`
@@ -38,13 +39,15 @@ Current Group 05 foundation:
 - `05H_Exercise_Replace_Selected` — `713:14526`
 - `05I_Workout_Menu` — `148:3392`
 - `05J_Reorder` — `36:3609`
+- `05N_Workout_OtherRoutine_Incomplete` — `727:3622`
+- `05N_Workout_OtherRoutine_Complete` — `727:3842`
 - shared UI page — `MVP_공용_UI` — `105:3113`
 - local component library — `635:788`
 
 Group 05 current binding state:
 
 - active workout `ExerciseCard` variants are local and stale visual/layout instance overrides were cleaned from visible Group 05 screens
-- local `ExerciseCard` component set `637:3561` now uses `ExerciseInfo` with vertical Fill container (`layoutAlign=STRETCH`) + vertically centered content (`primaryAxisAlignItems=CENTER`) across all seven variants
+- local `ExerciseCard` component set `637:3561` uses `ExerciseInfo` with vertical Fill container (`layoutAlign=STRETCH`) + vertically centered content (`primaryAxisAlignItems=CENTER`) across all seven variants
 - `ExerciseCard` focused QA after the alignment correction: missing main 0 / remote main 0 / missing Variable 0 / remote Variable 0 / missing Style 0 / remote Style 0
 - `LeftAction=Back, RightAction=Timer` is a true variant inside the local `Nav Header` component set
 - `icon/timer-refresh` is inside `LOCAL_COMPONENT_LIBRARY`
@@ -67,10 +70,54 @@ Group 05 current binding state:
 - `ActionRows`, `ActionSheet`, `05I`, `03A_Routine_List_Menu`, `03F_Routine_Exercise_Menu`: missing main 0 / remote main 0
 - 05J uses local `ReorderRow` / `icon/drag-handle`
 - visible Group 05 dialog states use local `DialogCard` / `DialogButtons`
+- 05N other-routine conflict uses two state-specific canonical screens reusing existing local `DialogCard` / `DialogButtons`
+- `05N_Workout_OtherRoutine_Incomplete`, `05N_Workout_OtherRoutine_Complete`: missing main 0 / remote main 0 / missing Variable 0 / remote Variable 0 / missing Style 0 / remote Style 0
 - visible raw `AttachmentTag` frame 0
 - `ExerciseCard` / `DialogCard` stale visual-layout overrides 0
 
-Representative visual read-back after latest changes: Active Workout `어시스트 풀업` card, `05F_Workout_RestTimer`, `05G_Exercise_Replace_Suggest`, `05H_Exercise_Replace_Selected`, `05I`, `03A_Routine_List_Menu`, `03F_Routine_Exercise_Menu` PASS.
+Representative visual read-back after latest changes: `05N_Workout_OtherRoutine_Incomplete`, `05N_Workout_OtherRoutine_Complete`, Active Workout `어시스트 풀업` card, `05F_Workout_RestTimer`, `05G_Exercise_Replace_Suggest`, `05H_Exercise_Replace_Selected`, `05I`, `03A_Routine_List_Menu`, `03F_Routine_Exercise_Menu` PASS.
+
+### Other-routine switch flow
+
+Trigger:
+
+- a workout is already active
+- user goes to the Routine list and attempts to start a different routine
+
+Confirmed behavior:
+
+- do not show the old generic 05N and then show 05K/05L again; avoid double confirmation
+- inspect the current workout state and show the matching 05N dialog directly
+- both states reuse the existing local workout-end `DialogCard` + `DialogButtons` system
+
+Incomplete state:
+
+- `05N_Workout_OtherRoutine_Incomplete` — `727:3622`
+- title: `현재 운동을 종료할까요?`
+- description: `아직 완료하지 않은 운동이 있습니다.\n완료한 세트까지만 기록하고 새 루틴을 시작합니다.`
+- actions: `계속 운동 / 종료 후 시작`
+- `종료 후 시작` preserves only actually completed sets, ends the current session, then starts the selected new routine
+
+Complete state:
+
+- `05N_Workout_OtherRoutine_Complete` — `727:3842`
+- title: `현재 운동을 종료할까요?`
+- description: `모든 세트를 완료했습니다.\n현재 운동을 저장하고 새 루틴을 시작합니다.`
+- actions: `계속 운동 / 종료 후 시작`
+- `종료 후 시작` saves the current workout, ends the current session, then starts the selected new routine
+
+If the current session contains routine-structure changes, the already approved `05O_Workout_UpdateRoutine` confirmation remains in the end flow before the new routine starts.
+
+Focused QA:
+
+- both canonical 05N states: missing main 0 / remote main 0 / missing Variable 0 / remote Variable 0 / missing Style 0 / remote Style 0
+- screenshot read-back: PASS
+- no new dialog component/token added
+- superseded single `05N_Workout_OtherRoutine` (`148:3561`) removed
+
+Canonical record:
+
+- `docs/ux-decisions/2026-09-10-group05-other-routine-switch.md`
 
 ### ExerciseCard ExerciseInfo alignment
 
@@ -231,7 +278,7 @@ Canonical decision:
 
 - `docs/ux-decisions/2026-09-10-active-session-system-notification.md`
 
-Important: replacement behavior after completed sets and `05N_Workout_OtherRoutine` remain subject to product-flow review. 05F is no longer deferred.
+Important: only the replacement behavior after completed sets remains subject to product-flow review. 05N is now approved and closed.
 
 ---
 
@@ -247,6 +294,8 @@ Canonical Figma:
 - replacement selected screen: `05H_Exercise_Replace_Selected` — `713:14526`
 - current menu screen: `05I_Workout_Menu` — `148:3392`
 - current reorder screen: `05J_Reorder` — `36:3609`
+- other-routine incomplete state: `05N_Workout_OtherRoutine_Incomplete` — `727:3622`
+- other-routine complete state: `05N_Workout_OtherRoutine_Complete` — `727:3842`
 - shared UI page: `MVP_공용_UI` — `105:3113`
 - local component library: `635:788`
 
@@ -259,6 +308,7 @@ Canonical Figma:
 - attachment status chip remains visually aligned with Group 03 approved treatment.
 - rest timer uses local `RestTimerPill` and is an overlay toast/pill, not an inline persistent banner.
 - replacement recommendations use local `ExerciseReplaceItem` + `RadioButton`; no copied external replacement components remain in canonical 05G/05H.
+- starting another routine during an active workout uses state-specific 05N dialogs directly; no extra 05K/05L confirmation is stacked after a generic 05N.
 - existing local Variables/Styles/Components take priority over creating new assets.
 - no external library dependency may be reintroduced.
 - no screen-instance detach shortcut.
@@ -273,23 +323,15 @@ Do not complete all planning first and postpone all Figma work to the end.
 
 ## NEXT OPEN ITEM — exact resume point
 
-Decide the replacement edge case first:
+Decide the remaining replacement edge case:
 
 - when a user has already completed one or more sets for the current exercise and then chooses `대체 운동`, define exactly how those completed records and the newly selected exercise coexist
 - do not silently discard completed set records
 - reflect only the resulting edge case if additional UI is actually needed
 
-After that, return to:
+After this decision and focused Figma QA, Group 05 can be evaluated for closure.
 
-- `05N_Workout_OtherRoutine` — `148:3561`
-
-05N trigger context:
-
-- a routine/workout is already active
-- while it is active, the user goes to the Routine list and attempts to start a different routine
-- `05N` is the conflict-confirmation state shown at that point
-
-Do not reopen passed 05F/action-menu/replacement localization/ExerciseInfo layout work without a concrete conflict.
+Do not reopen passed 05F/action-menu/replacement localization/ExerciseInfo layout/05N work without a concrete conflict.
 
 Related locked policy references include:
 
@@ -307,6 +349,7 @@ Related locked policy references include:
 - `docs/ux-decisions/2026-09-10-group05-rest-timer-localization.md`
 - `docs/ux-decisions/2026-09-10-group05-exercise-replacement-localization.md`
 - `docs/ux-decisions/2026-09-10-exercisecard-exerciseinfo-layout.md`
+- `docs/ux-decisions/2026-09-10-group05-other-routine-switch.md`
 
 ---
 
