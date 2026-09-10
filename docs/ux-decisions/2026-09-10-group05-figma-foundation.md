@@ -93,6 +93,26 @@ Figma cleanup:
 
 A replacement onboarding/guidance method may be designed later. Do not recreate this flow unless the PO explicitly reopens it.
 
+### 05I bottom sheet design-system correction
+
+`05I_Workout_Menu` bottom sheet was corrected against the existing Fitness sheet treatment instead of keeping raw frame styling.
+
+Applied:
+
+- sheet top corners → local `radius/3xl`
+- sheet bottom corners → local `radius/none`
+- handle radius → local `radius/xxs`
+- sheet spacing/fill remain bound to current local Fitness Variables
+- option rows keep the current local `OptionItem` component
+- raw 1 px auto-layout gap was removed and replaced with explicit dividers bound to local `bg/elevated`
+- 360×780 overlay/sheet presentation is retained
+
+Focused QA on `05I_Workout_Menu`:
+
+- external component dependency: 0
+- external variable dependency: 0
+- visual read-back: PASS
+
 ## NEXT OPEN ITEM
 
 Continue Product/UX and Figma together from the current `05A_Workout_Weight` foundation.
