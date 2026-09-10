@@ -4,7 +4,7 @@
 
 ## Current mode
 
-`PRODUCT/UX FIGMA · GROUP 04 CLOSED · ANALYSIS BODY-MAP TAXONOMY NEXT · NO CURSOR IMPLEMENTATION HANDOFF`
+`PRODUCT/UX FIGMA · 01–04 LOCAL COMPONENT/TOKEN MIGRATION PASS · GROUP 04 CLOSED · ANALYSIS BODY-MAP TAXONOMY NEXT · NO CURSOR IMPLEMENTATION HANDOFF`
 
 ## Resume rule
 
@@ -16,21 +16,76 @@
 
 ## Latest active checkpoint
 
-- `docs/ux-decisions/2026-09-10-group04-closure-qa.md`
+- `docs/ux-decisions/2026-09-10-figma-local-component-migration.md`
 
-Group 04 최종 샘플 데이터 QA와 최근 shared-change 회귀 QA까지 완료되어 **CLOSED** 상태다. Group 04 화면을 다시 시각 재설계하지 않는다. 새 충돌/regression/PO 재검토 요청이 있을 때만 해당 범위를 다시 연다.
+PO 요청에 따라 현재 작업된 Figma `01 → 02 → 03 → 04` 페이지를 순서대로 검사하고, screen tree의 external component / Variable / Style dependency를 current Fitness file local asset으로 이관했다.
+
+Final combined dependency audit:
+
+| Page | External component | External variable | External style |
+| --- | ---: | ---: | ---: |
+| 01 로그인 · 첫 진입 | 0 | 0 | 0 |
+| 02 홈 | 0 | 0 | 0 |
+| 03 루틴 | 0 | 0 | 0 |
+| 04 운동 목록 · 상세 | 0 | 0 | 0 |
+
+This audit applies to the canonical screen trees on pages 01–04. It does not assert that every unused asset or every other page in the entire Figma file has no external library reference.
+
+---
+
+# CLOSED TRACK — 01–04 local component / token migration
+
+Canonical Figma:
+
+- file: `W3lZurXCXbThP67rF2xk2b`
+- `01 로그인 · 첫 진입` — `233:2072`
+- `02 홈` — `233:2073`
+- `03 루틴` — `233:2074`
+- `04 운동 목록 · 상세` — `233:2075`
+- shared UI page: `MVP_공용_UI` — `105:3113`
+- migration management frame: `LOCAL_COMPONENT_LIBRARY` — `635:788`
+
+Migration rules/results:
+
+- existing valid local components were retained
+- external component families were localized only when no local equivalent existed
+- previously localized component families were reused on later pages instead of duplicated
+- screen instances were component-swapped; no detach-based screen duplication was used
+- nested external component dependencies were also replaced
+- external Variable/Style bindings and screen overrides were rebound to current local foundations
+- existing Variant / Component Property / Auto Layout / instance override behavior was preserved
+- representative post-migration visual/artifact read-back: PASS
+
+Local foundation additions made only where an approved existing role had no local equivalent:
+
+- dialog typography roles: `dialog/title`, `dialog/secondary`, `dialog/primary`
+- Tag roles: `tag-bg/tricep`, `tag/tricep`, `tag-bg/shoulder`, `tag/shoulder` plus required local primitives
+- `neutral/50`
+- `border/thin = 0.5`
+
+Important component cleanup:
+
+- existing local Nav Header nested icons are now local
+- existing Group 04 `ExerciseRowDetailAction` / `FilterSelectButton` nested chevron is now local
+- `ExerciseSearchRow_Selected` master `598:1392` is now placed on `MVP_공용_UI` while preserving the same master ID and existing instance links
+
+Checkpoint:
+
+- `docs/ux-decisions/2026-09-10-figma-local-component-migration.md`
+
+Do not reopen 01–04 visual design solely because component ownership changed.
 
 ---
 
 # CLOSED TRACK — Group 04 운동 목록 · 상세
 
-Canonical Figma:
+Group 04 screen-level Product/UX remains CLOSED.
 
-- file: `W3lZurXCXbThP67rF2xk2b`
-- page: `04 운동 목록 · 상세` — `233:2075`
-- shared UI page: `MVP_공용_UI` — `105:3113`
+Canonical page:
 
-Canonical Group 04 states:
+- `04 운동 목록 · 상세` — `233:2075`
+
+Canonical states include:
 
 - `04A_Search` — `207:1238`
 - `04B_Search_Selected` — `515:1140`
@@ -44,34 +99,11 @@ Canonical Group 04 states:
 - `04A_Filter_BodyPart_Page` — `515:3514`
 - `04H_Custom_Attachment_Input` — `552:3356`
 
-Closure QA result:
-
-- final exercise-list/filter sample-data QA: **PASS after fixes**
-- final scoped A~H integration QA: **PASS**
-- canonical root reference viewport: `360 × 954`
-- body-part filter aligned to approved large body-part taxonomy
-- list sample naming / detailed primary-muscle / equipment examples aligned to current Production baseline + P0 scope
-- `SelectedExerciseChip` master remains on `MVP_공용_UI`; all current 04B instances remain linked
-- Nav Header shared change regression: PASS
-- Empty State regression: PASS
-- filter row/divider/component reuse regression: PASS
-- 04H attachment UI remains visually aligned
-
 Closure record:
 
 - `docs/ux-decisions/2026-09-10-group04-closure-qa.md`
 
-Relevant locked decisions remain:
-
-- `docs/ux-decisions/2026-09-10-exercise-filter-full-page-approved.md`
-- `docs/ux-decisions/2026-09-10-exercise-library-04b-selected-chips-approved.md`
-- `docs/ux-decisions/2026-09-10-exercise-library-04a-design-system-hardening.md`
-- `docs/ux-decisions/2026-09-10-exercise-library-04b-design-system-qa.md`
-- `docs/ux-decisions/2026-09-10-exercise-detail-04d-scroll-copy-qa.md`
-- `docs/ux-decisions/2026-09-10-nav-header-action-edge-alignment.md`
-- `docs/ux-decisions/2026-09-04-exercise-detail-scope.md`
-- `docs/ux-decisions/2026-09-03-cable-attachment-active-workout.md`
-- `docs/ux-decisions/2026-09-05-exercise-recording-types.md`
+The local-component migration did not reopen or redesign Group 04. Post-migration structure/binding/visual regression QA remained PASS.
 
 ---
 
@@ -104,7 +136,7 @@ Resume Analysis from:
 
 `canonical muscle/body-part taxonomy → practical front/back body-map regions mapping`
 
-Proceed in Product/UX mode first. Confirm the canonical muscle taxonomy actually available in the Production exercise data, then define the practical body-map regions and the mapping rules needed by Analysis. Do not start another Group 04 design pass.
+Proceed in Product/UX mode first. Confirm the canonical muscle taxonomy actually available in the Production exercise data, then define the practical body-map regions and mapping rules needed by Analysis.
 
 ---
 
