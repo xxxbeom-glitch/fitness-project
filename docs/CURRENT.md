@@ -4,7 +4,7 @@
 
 ## Current mode
 
-`PRODUCT/UX FIGMA · GROUP 05 ACTIVE WORKOUT ACTIVE · ACTION MENU BINDING QA PASS · NO CURSOR IMPLEMENTATION HANDOFF`
+`PRODUCT/UX FIGMA · GROUP 05 ACTIVE WORKOUT ACTIVE · REST TIMER LOCALIZATION QA PASS · NO CURSOR IMPLEMENTATION HANDOFF`
 
 ## Resume rule
 
@@ -16,10 +16,11 @@
 
 ## Latest active checkpoint
 
-- `docs/ux-decisions/2026-09-10-routinelist-action-bottomsheet-correction.md`
+- `docs/ux-decisions/2026-09-10-group05-rest-timer-localization.md`
 
 Supporting checkpoints:
 
+- `docs/ux-decisions/2026-09-10-routinelist-action-bottomsheet-correction.md`
 - `docs/ux-decisions/2026-09-10-action-menu-binding-qa.md`
 - `docs/ux-decisions/2026-09-10-action-menu-presentation.md`
 - `docs/ux-decisions/2026-09-10-group05-recovery-presentation-correction.md`
@@ -30,6 +31,7 @@ PO clarification에 따라 Group 05 Active Workout은 기존 옛 Group 05 카드
 Current Group 05 foundation:
 
 - `05A_Workout_Weight` — `148:1979`
+- `05F_Workout_RestTimer` — `721:3460`
 - `05I_Workout_Menu` — `148:3392`
 - `05J_Reorder` — `36:3609`
 - shared UI page — `MVP_공용_UI` — `105:3113`
@@ -41,19 +43,51 @@ Group 05 current binding state:
 - `LeftAction=Back, RightAction=Timer` is a true variant inside the local `Nav Header` component set
 - `icon/timer-refresh` is inside `LOCAL_COMPONENT_LIBRARY`
 - repeated attachment status UI is local `AttachmentTag` component `693:6035`
+- `RestTimerPill` is now local component `721:3456` inside `LOCAL_COMPONENT_LIBRARY`
+- `05F_Workout_RestTimer` uses the local `RestTimerPill` and current local Active Workout component structure
+- `RestTimerPill` uses existing local `glass/surface-20`, `radius/full`, spacing, text, danger-state Variables and local `display/01`; no new token added
+- `RestTimerPill`: remote Variable 0 / missing Variable 0 / remote Style 0 / missing Style 0
+- `05F_Workout_RestTimer`: missing main 0 / remote main 0 / remote Variable 0 / missing Variable 0 / remote Style 0 / missing Style 0
 - 05I uses local icon-action `ActionSheet` / `ActionRows`
 - local action icons include `icon/replace`, `icon/trash`, `icon/copy`; existing local `icon/edit` / `icon/drag-handle` are reused
 - new action-menu family is rebound to existing local colors / spacing / radius / typography styles; no new token was added
 - all bottom-sheet `ActionSheet` variants match canonical `BottomSheet / Menu` surface semantics: `glass/surface-20` + existing GLASS effect
 - `ActionRows` inside bottom sheets use `bg/default` + local border treatment
-- 03A now also uses the shared bottom-sheet presentation through `ActionSheet / Mode=RoutineList`; the temporary floating-panel treatment is superseded
+- 03A also uses the shared bottom-sheet presentation through `ActionSheet / Mode=RoutineList`; the temporary floating-panel treatment is superseded
 - `ActionRows`, `ActionSheet`, `05I`, `03A_Routine_List_Menu`, `03F_Routine_Exercise_Menu`: missing main 0 / remote main 0
 - 05J uses local `ReorderRow` / `icon/drag-handle`
 - visible Group 05 dialog states use local `DialogCard` / `DialogButtons`
 - visible raw `AttachmentTag` frame 0
 - `ExerciseCard` / `DialogCard` stale visual-layout overrides 0
 
-Representative post-binding visual read-back after latest 03A correction: `05I`, `03A_Routine_List_Menu`, `03F_Routine_Exercise_Menu` PASS.
+Representative visual read-back after latest changes: `05F_Workout_RestTimer`, `05I`, `03A_Routine_List_Menu`, `03F_Routine_Exercise_Menu` PASS.
+
+### Rest timer presentation + binding
+
+Confirmed direction:
+
+- set completion automatically starts the rest timer
+- rest timer appears as a compact toast / pill dropping down from the top
+- countdown remains visible in the pill by default
+- only `X` is exposed as the visible control in the toast
+- `X` closes the visible toast UI; it does not open a complex timer-control flow
+- when countdown reaches the end, the pill moves upward and disappears
+- timer never blocks continuing the workout
+- exact vibration / sound / background-notification behavior remains deferred
+
+Figma reflection:
+
+- local `RestTimerPill` — `721:3456`
+- `05F_Workout_RestTimer` — `721:3460`
+- old hidden `05F_Workout_RestTimer_TBD` removed
+- temporary copied `410_Rest_Timer` frame removed from Group 05 after localization
+
+The copied `410_Rest_Timer` source contained no actual Figma prototype reactions. Motion is locked as a product interaction rule; `05F` is the static representative state.
+
+Canonical records:
+
+- `docs/ux-decisions/2026-09-03-rest-timer-behavior.md`
+- `docs/ux-decisions/2026-09-10-group05-rest-timer-localization.md`
 
 ### Action-menu presentation + binding
 
@@ -116,7 +150,7 @@ Canonical decision:
 
 - `docs/ux-decisions/2026-09-10-active-session-system-notification.md`
 
-Important: the binding QA pass does not imply Product/UX approval of every draft state. `05N_Workout_OtherRoutine` remains subject to product-flow review. Hidden `05F_Workout_RestTimer_TBD` remains deferred.
+Important: `05N_Workout_OtherRoutine` remains subject to product-flow review. 05F is no longer deferred.
 
 ---
 
@@ -127,6 +161,7 @@ Canonical Figma:
 - file: `W3lZurXCXbThP67rF2xk2b`
 - page: `05 운동 중` — `233:2076`
 - current main screen: `05A_Workout_Weight` — `148:1979`
+- current rest timer screen: `05F_Workout_RestTimer` — `721:3460`
 - current menu screen: `05I_Workout_Menu` — `148:3392`
 - current reorder screen: `05J_Reorder` — `36:3609`
 - shared UI page: `MVP_공용_UI` — `105:3113`
@@ -138,6 +173,7 @@ Canonical Figma:
 - KG / REPS editable exercise-card structure is reused from the current local `ExerciseCard` family.
 - Active Workout uses local `Mode=Workout` variant.
 - attachment status chip remains visually aligned with Group 03 approved treatment.
+- rest timer uses local `RestTimerPill` and is an overlay toast/pill, not an inline persistent banner.
 - existing local Variables/Styles/Components take priority over creating new assets.
 - no external library dependency may be reintroduced.
 - no screen-instance detach shortcut.
@@ -152,13 +188,19 @@ Do not complete all planning first and postpone all Figma work to the end.
 
 ## NEXT OPEN ITEM — exact resume point
 
-Return to the temporarily deferred product-flow review for:
+Review only:
 
 - `05N_Workout_OtherRoutine` — `148:3561`
 
-Re-present the switch-to-another-routine behavior to the PO and decide it before changing 05N. Do not reopen the just-passed action-menu work without a concrete conflict.
+Trigger context is now clarified:
 
-Hidden `05F_Workout_RestTimer_TBD` remains deferred.
+- a routine/workout is already active
+- while it is active, the user goes to the Routine list and attempts to start a different routine
+- `05N` is the conflict-confirmation state shown at that point
+
+Next decision: define exactly what happens to the current active workout when the user confirms starting the different routine, then reflect only that flow in Figma and run focused QA.
+
+Do not reopen passed 05F/action-menu work without a concrete conflict.
 
 Related locked policy references include:
 
@@ -173,6 +215,7 @@ Related locked policy references include:
 - `docs/ux-decisions/2026-09-10-action-menu-presentation.md`
 - `docs/ux-decisions/2026-09-10-action-menu-binding-qa.md`
 - `docs/ux-decisions/2026-09-10-routinelist-action-bottomsheet-correction.md`
+- `docs/ux-decisions/2026-09-10-group05-rest-timer-localization.md`
 
 ---
 
