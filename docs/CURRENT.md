@@ -4,7 +4,7 @@
 
 ## Current mode
 
-`PRODUCT/UX FIGMA GROUP 04 EXERCISE LIBRARY QA ACTIVE · HEVY-ALIGNED 04A/04B CANONICAL PROMOTED · EQUIPMENT/BODY FILTER SHEETS CANONICAL SUPPORT STATES · PRIMARY MUSCLE/EQUIPMENT COMPACT METADATA KEPT · FIGMA STRUCTURE/BINDING QA RULE ACTIVE · 04C NO-RESULT UPDATE NEXT · EXERCISE DETAIL 2-TAB FIGMA ALIGNED · 04H ATTACHMENT TAXONOMY OPEN · GROUP 04 DATA/METADATA QA OPEN · ANALYSIS BODY-AREA GRANULARITY DEFERRED RESUME ITEM · EXERCISE DB P0 DEFAULT MEDIA SOURCE INPUT LOCKED 16/16 · 211 MERGE SAFE · MEDIA TRANSFORM SAMPLE DEFERRED PARALLEL · P1 15/17 SOURCE-COVERED · NO CURSOR IMPLEMENTATION HANDOFF`
+`PRODUCT/UX FIGMA GROUP 04 FINAL QA ACTIVE · HEVY-ALIGNED 04A/04B CANONICAL · 04C NO-RESULT ALIGNED · 04D METADATA ALIGNED · 04E/04F CUSTOM METADATA ALIGNED · 04H ATTACHMENT PICKER + DIRECT INPUT ALIGNED · ATTACHMENT PRODUCTION ALLOWLIST DATA QA OPEN · 04G VIEWPORT/FINAL GROUP QA NEXT · ANALYSIS BODY-AREA GRANULARITY DEFERRED RESUME ITEM · EXERCISE DB P0 DEFAULT MEDIA SOURCE INPUT LOCKED 16/16 · 211 MERGE SAFE · MEDIA TRANSFORM SAMPLE DEFERRED PARALLEL · P1 15/17 SOURCE-COVERED · NO CURSOR IMPLEMENTATION HANDOFF`
 
 ## Resume rule
 
@@ -25,6 +25,8 @@ Latest checkpoints / decisions:
 - `docs/ux-decisions/2026-09-09-exercise-library-hevy-alignment.md`
 - `docs/ux-decisions/2026-09-08-exercise-library-figma-04-list-filter-checkpoint.md`
 - `docs/ux-decisions/2026-09-06-exercise-library-figma-04-checkpoint.md`
+- `docs/ux-decisions/2026-09-04-exercise-detail-scope.md`
+- `docs/ux-decisions/2026-09-03-cable-attachment-active-workout.md`
 
 Canonical Figma target:
 
@@ -38,73 +40,26 @@ Important correction:
 - current working page is node `233:2075`
 - do not mutate `Page 1` or infer another page when continuing Group 04
 
-## Group 04 current structure
+## Group 04 canonical states
 
-Current canonical states remain A~H. The former 04I exercise-list proposals were PO-approved and promoted into canonical 04A/04B.
+1. `04A_Search` — node `207:1238` — **ALIGNED / CANONICAL**
+2. `04B_Search_Selected` — node `515:1140` — **ALIGNED / CANONICAL**
+3. `04C_Search_Empty` — node `539:1050` — **ALIGNED**
+4. `04D_운동상세` — node `40:2325` — **METADATA ALIGNED**
+5. `04E_Custom_Create` — node `34:1672` — **CUSTOM METADATA ALIGNED**
+6. `04F_Custom_Edit` — node `34:1692` — **CUSTOM METADATA ALIGNED**
+7. `04G_Exercise_History` — node `34:1714` — **2-TAB POLICY ALIGNED / FINAL VIEWPORT QA OPEN**
+8. `04H_Exercise_Attachment_Selection` — node `170:2174` — **PICKER UI ALIGNED**
 
-1. `04A` 운동 검색 / 추가 — Hevy-aligned canonical
-2. `04B` 운동 여러 개 선택 중 — Hevy-aligned canonical
-3. `04C` 검색 결과 없음 — old structure, update next
-4. `04D` 운동 상세 / 운동 정보
-5. `04E` 직접 운동 만들기
-6. `04F` 직접 만든 운동 수정
-7. `04G` 운동 상세 / 최근 기록
-8. `04H` 운동 선택 → 손잡이 바텀시트
-
-Canonical supporting filter states:
+Supporting states:
 
 - `04A_Filter_Equipment_Sheet` — node `515:3327`
 - `04A_Filter_BodyPart_Sheet` — node `515:3514`
+- `04H_Custom_Attachment_Input` — node `552:3356`
 
-### Exercise Detail D/G — ALIGNED
+## 04A / 04B — Hevy-aligned Add Exercise
 
-The approved 2-tab structure is represented correctly in Figma:
-
-- `04D` = `운동 정보`
-- `04G` = `최근 기록`
-- same screen, different tab state
-- same sample exercise name (`벤치프레스`)
-- duplicate `내 최근 기록 / 기록 전체 보기` block removed from 04D
-
-Reference:
-
-- `docs/ux-decisions/2026-09-04-exercise-detail-scope.md`
-
-### Attachment H/I duplicate — CLEANED
-
-The previous duplicate attachment-bottom-sheet states were consolidated.
-
-- old 04H removed
-- old 04I promoted to canonical `04H`
-- card node: `170:2169`
-- screen name: `04H_Exercise_Attachment_Selection`
-
-The attachment UX still follows the existing rule that supported exercises choose a `손잡이` in the add flow.
-
-Current refinement boundary:
-
-- real gym attachment possibilities should drive the product taxonomy, not purchased asset filenames
-- purchased media should be matched only as far as the source actually supports
-- exact per-exercise attachment lists, MAG subtype hierarchy, direct-input behavior, and final 04H copy remain OPEN
-
-Reference:
-
-- `docs/ux-decisions/2026-09-03-cable-attachment-active-workout.md`
-
-### Add Exercise / exercise list — HEVY-ALIGNED CANONICAL 04A/04B
-
-Hevy is the primary interaction reference for this list flow, while LIFTLY keeps its own Tracker APP design system and product data model.
-
-Canonical Figma states on page `233:2075`:
-
-- `04A_Search` — node `207:1238`
-- `04B_Search_Selected` — node `515:1140`
-- `04A_Filter_Equipment_Sheet` — node `515:3327`
-- `04A_Filter_BodyPart_Sheet` — node `515:3514`
-
-The previous canonical 04A/04B frames (`34:1601`, `34:1622`) were removed after PO approval.
-
-Current base-list structure:
+Base list:
 
 1. search
 2. `장비 전체`
@@ -112,84 +67,147 @@ Current base-list structure:
 4. `최근 운동`
 5. `전체 운동`
 
-`전체 운동` is 가나다순 in Korean UI. The earlier explicit `ㄱ/ㄴ/ㄷ...` section-header proposal is superseded as the primary MVP list hierarchy.
+Rules:
 
-Compact row contract remains LIFTLY-specific:
+- `전체 운동` is 가나다순 in Korean UI
+- recent exercises remain duplicated in the full library list
+- compact row = thumbnail + exercise name + `주동근 · 장비` + right-side detail affordance
+- row body tap = select / deselect
+- selected row = slim left `brand/primary` indicator
+- selected-row content indent = `8px`
+- divider geometry does not move
+- selected count > 0 = fixed bottom CTA `N개 운동 추가`
+- right-side affordance remains exercise detail/history entry, not selection control
+- selection state follows exercise identity across recent/all duplicate appearances
 
-- exercise thumbnail
-- exercise name
-- `주동근 · 장비`
-- right-side detail affordance
+Filters:
 
-Primary/secondary muscle rule:
-
-- compact list exposes primary muscle only
-- secondary-muscle data remains stored
-- secondary muscles remain available in Exercise Detail/custom metadata/later analysis logic
-
-### Multi-selection — HEVY-ALIGNED
-
-The previous right-side `+ -> check` selection control is superseded.
-
-Current interaction rule:
-
-- row body tap -> select / deselect exercise
-- selected row -> slim left-side `brand/primary` indicator
-- right-side detail affordance remains available and is not the selection control
-- selected count > 0 -> fixed bottom CTA `N개 운동 추가`
-- current Figma example -> `3개 운동 추가`
-- selection should survive normal search/filter navigation until deselect, add completion, or exit/cancel
-
-Selected-row alignment:
-
-- divider geometry remains unchanged
-- selected indicator starts at the divider/list left baseline
-- selected-row thumbnail/text content is indented `8px`
-- unselected row content stays on the normal list baseline
-- the same selected exercise shown in both `최근 운동` and `전체 운동` reflects the same selected state
-
-Current reusable pieces:
-
-- `ExerciseRowSelectionIndicator` — Default / Selected
-- `ExerciseRowDetailAction`
-- existing `CTA Button`
-
-### Filters — HEVY-ALIGNED BOTTOM SHEETS
-
-The previous full-page body/equipment filter proposals are superseded and removed.
-
-Current interaction:
-
-- `장비 전체` -> equipment bottom sheet
-- `부위 전체` -> body-part bottom sheet
+- equipment/body filters use bottom sheets
 - single-select per category
-- selected value returns into the filter control
-- no extra removable selected-filter chip row
+- selected value returns into the trigger
+- no removable filter-chip row
+- existing `OptionItem`, glass sheet shell and overlay are reused
 
-Current Figma sheets reuse:
+## 04C — No-result state
 
-- existing 04H bottom-sheet structural pattern
-- existing Tracker APP `OptionItem` selected/unselected component
-- existing glass-surface/overlay treatment with inner `bg/default` option container
+Updated to the canonical 04A search/filter structure.
 
-Removed/superseded:
+- same Nav Header/search/equipment/body-filter system
+- invalid/absent example term instead of a valid exercise name
+- no-result message retained
+- direct custom-exercise entry retained
 
-- `04I2_Filter_BodyPart_FullPage_Proposal`
-- `04I3_Filter_Equipment_FullPage_Proposal`
-- old `ExerciseSelectionControl` check/+ component
+## 04D / 04G — Exercise Detail
 
-Filter option labels remain UI examples until final alignment with canonical exercise DB taxonomy.
+Approved structure remains two tabs:
 
-### Direct custom exercise entry
+- `운동 정보`
+- `최근 기록`
 
-Hevy exposes Create from Add Exercise. LIFTLY mirrors that intent with the existing Nav Header component:
+04D now contains:
 
-- `RightAction=Plus`
-- top-right `+` -> 직접 운동 만들기
+- media area
+- equipment
+- primary muscle
+- secondary muscles
+- text exercise method
+- key checkpoints/cautions
 
-This supplements the no-result create entry rather than replacing it.
+Current sample:
 
-### Figma construction rule — STANDING REQUIREMENT
+- exercise: `벤치프레스`
+- equipment: `바벨`
+- primary: `가슴`
+- secondary: `삼두 · 전면 어깨`
+
+04G remains the same detail IA in the `최근 기록` state. Current frame is still `360 × 1102`, so final viewport/scroll normalization is explicitly OPEN before Group 04 closes.
+
+Reference:
+
+- `docs/ux-decisions/2026-09-04-exercise-detail-scope.md`
+
+## 04E / 04F — Custom exercise metadata
+
+Both create/edit screens now include:
+
+- exercise name
+- equipment
+- primary muscle
+- secondary muscle
+- recording type
+
+Recording type follows the approved 5 ACTIVE + 3 RESERVED model.
+
+MVP active:
+
+- `weight_reps`
+- `reps`
+- `duration`
+- `added_weight_reps`
+- `assisted_weight_reps`
+
+Reserved:
+
+- `weight_duration`
+- `distance_duration`
+- `distance_weight`
+
+Current Figma sample label for `weight_reps` is `중량 + 횟수`.
+
+Reference:
+
+- `docs/ux-decisions/2026-09-05-exercise-recording-types.md`
+
+## 04H — Attachment picker UI/interaction ALIGNED
+
+The attachment picker continues the approved rule that supported cable/pulley exercises select a `손잡이` while adding the exercise.
+
+Group 04 UI contract is now:
+
+- 04H background uses an exact canonical `04A_Search` base-screen clone beneath overlay/sheet
+- picker shows only the current exercise's allowed/recommended attachment choices, not a giant global list
+- fixed choices reuse the existing `OptionItem` component
+- preset row tap selects the attachment and returns to the add flow; no extra Apply button
+- last row is `직접 입력`
+- `직접 입력` opens `04H_Custom_Attachment_Input`
+- custom state reuses existing `InputBox` + primary `CTA Button`
+- custom CTA copy = `사용하기`
+- custom input is stored on the current exercise-card/record context only in MVP
+- custom text is not auto-promoted into the shared canonical taxonomy, not auto-merged, and does not auto-bind media
+
+Brand/taxonomy strategy:
+
+- brand names such as `MAG / 맥그립` are not canonical attachment identity by default
+- generic physical descriptors are preferred for canonical data
+- brand terms may remain aliases/custom text when useful
+- full global exhaustive taxonomy is not required in the picker UI
+- Production mapping remains exercise-specific by canonical exercise ID
+
+Current `랫풀다운` Figma sample:
+
+- 스트레이트 바
+- 와이드 랫 바
+- 뉴트럴 그립 · 클로즈
+- 뉴트럴 그립 · 미디엄
+- 뉴트럴 그립 · 와이드
+- V바
+- 직접 입력
+
+This sample is **not** the exhaustive Production attachment taxonomy.
+
+Data still OPEN outside the Group 04 UI contract:
+
+- Production exercise-by-exercise attachment allowlist
+- canonical attachment IDs/names full set
+- existing source `neutral / underhand / attachment` row re-normalization
+- attachment/media mapping
+- attachment-specific PR / analysis rules
+
+Reference:
+
+- `docs/ux-decisions/2026-09-03-cable-attachment-active-workout.md`
+
+## Figma construction rule — STANDING REQUIREMENT
 
 All future Figma mutations in this project must follow the GitHub design-system and QA contract from the first pass, even when the PO does not restate it.
 
@@ -211,49 +229,35 @@ Required execution order:
 7. avoid unnecessary absolute positioning, detached instances, and repeated raw-value drift
 8. run structure QA, binding QA, then screenshot/visual QA
 
-Current canonical 04A/04B are normalized to:
+04H QA completed on the current mutation:
 
-- screen shell: Vertical Auto Layout / fixed `360 × 954`
-- StatusArea: Fill / Fixed
-- Nav Header: Fill / Fixed
-- SearchContent: Fill / Fill
-- search tool group: Vertical / Fill / Hug
-- list: Vertical / Fill / Hug
-- row: Horizontal Auto Layout with selection-indicator overlay, Fill main content, fixed detail action
-- selected indicator uses `brand/primary`
-- dividers remain full-width and unchanged in selected state
-- bottom-sheet filters reuse design-system components/tokens
+- base screen = exact canonical 04A clone / 360 × 954 / vertical Auto Layout
+- overlay = 360 × 954
+- picker sheet = 360 × 520 / existing glass-surface and spacing bindings retained
+- attachment options = existing `OptionItem` instances / Fill + Hug list
+- direct-input sheet = 360 × 320 / existing glass-surface bindings retained
+- direct input = existing `InputBox`
+- direct-input CTA = existing primary `CTA Button`
+- screenshot QA completed for both 04H states
 
-Promotion QA completed:
+## Group 04 remaining QA
 
-- old canonical 04A/04B removed
-- new canonical A/B moved into the original A/B positions
-- structure QA PASS for the promotion operation
-- selected indicator descendant remains bound to `brand/primary`
-- CTA keeps existing radius/fill bindings
-- screenshot QA completed on canonical 04A and 04B after promotion
+Before Group 04 can close:
 
-## Group 04 QA open items
+1. **04G viewport/scroll normalization** — current canonical history frame is `360 × 1102`; normalize the viewport while preserving scrollable history content.
+2. **04B bottom CTA scroll-safety** — ensure the last exercise row cannot be obscured behind fixed `N개 운동 추가` CTA; encode/verify bottom content inset/spec behavior.
+3. **Exercise list/filter data QA** — filter option labels and row metadata must match canonical Production taxonomy; UI sample values must not silently become data truth.
+4. **Attachment data boundary check** — UI is aligned, but exact Production per-exercise allowlists remain a DB/data task and must not block visual Group 04 closure unless a screen contradiction appears.
+5. Run final Group 04 structure/binding/screenshot QA across A/B/C/D/E/F/G/H + supporting sheets/states and decide CLOSE vs remaining corrections.
 
-Still open before closing Group 04:
-
-1. update canonical 04C no-result to the same header/search/filter system
-2. final exercise list/filter data QA against canonical exercise DB taxonomy
-3. `04D` metadata QA: equipment, primary/secondary muscle separation, checkpoint/caution
-4. `04E/04F` custom-exercise metadata QA: equipment and recording type
-5. `04H` final attachment taxonomy/copy/direct-input decision and align its background list with canonical 04A
-6. ensure the 04B fixed CTA does not obscure the last scrollable exercise content in implementation/spec behavior
-7. run full Group 04 structure/binding/visual QA and decide whether Group 04 can close
-
-# NEXT OPEN ITEM — Update canonical 04C no-result state
+# NEXT OPEN ITEM — Group 04 final QA
 
 Immediate next:
 
-1. replace 04C's old horizontal body-part chip system with canonical 04A header/search + `장비 전체` / `부위 전체` filter controls
-2. use a genuinely absent/invalid search-term example rather than valid `레그프레스`
-3. retain the no-result message and direct custom-exercise entry
-4. run structure/binding/screenshot QA on 04C
-5. then continue 04D metadata QA
+1. normalize `04G_Exercise_History` viewport/scroll structure
+2. verify/fix 04B bottom CTA scroll-safe content inset
+3. run final A~H structure/binding/visual QA
+4. if no screen-level blocker remains, close Group 04 and resume Analysis body-area granularity
 
 No Cursor implementation handoff yet.
 
@@ -680,14 +684,19 @@ Current Group 04 page:
 
 `https://www.figma.com/design/W3lZurXCXbThP67rF2xk2b/LIFTLY_%EC%B5%9C%EC%A2%85?node-id=233-2075`
 
-Canonical Hevy-aligned Add Exercise states:
+Canonical Group 04 states:
 
 - `04A_Search` — node `207:1238`
 - `04B_Search_Selected` — node `515:1140`
+- `04C_Search_Empty` — node `539:1050`
+- `04D_운동상세` — node `40:2325`
+- `04E_Custom_Create` — node `34:1672`
+- `04F_Custom_Edit` — node `34:1692`
+- `04G_Exercise_History` — node `34:1714`
+- `04H_Exercise_Attachment_Selection` — node `170:2174`
 - `04A_Filter_Equipment_Sheet` — node `515:3327`
 - `04A_Filter_BodyPart_Sheet` — node `515:3514`
-- old canonical A/B removed
-- next open screen: `04C_Search_Empty`
+- `04H_Custom_Attachment_Input` — node `552:3356`
 
 Canonical production wireframe:
 
