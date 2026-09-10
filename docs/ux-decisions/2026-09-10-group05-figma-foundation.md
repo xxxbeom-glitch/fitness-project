@@ -95,23 +95,31 @@ A replacement onboarding/guidance method may be designed later. Do not recreate 
 
 ### 05I bottom sheet design-system correction
 
-`05I_Workout_Menu` bottom sheet was corrected against the existing Fitness sheet treatment instead of keeping raw frame styling.
+A second audit found one remaining design-system defect: the visible `05I_Workout_Menu` sheet shell was still a raw `FRAME`, so its visuals/tokens were aligned but the sheet itself was not actually bound to the local component library.
+
+No adequate local BottomSheet component existed in `LOCAL_COMPONENT_LIBRARY`, so the approved Fitness sheet treatment was localized once and rebound without detaching screen instances.
 
 Applied:
 
+- created local `BottomSheet / Menu` component — `686:753`
+- rebound `05I_Workout_Menu` sheet to local instance — `686:754`
 - sheet top corners → local `radius/3xl`
 - sheet bottom corners → local `radius/none`
 - handle radius → local `radius/xxs`
 - sheet spacing/fill remain bound to current local Fitness Variables
-- option rows keep the current local `OptionItem` component
-- raw 1 px auto-layout gap was removed and replaced with explicit dividers bound to local `bg/elevated`
+- title keeps current Fitness heading typography/style binding
+- option rows use current local `OptionItem / Selected=False` component
+- explicit dividers are bound to local `bg/elevated`
+- overlay remains bound to local overlay color token
 - 360×780 overlay/sheet presentation is retained
 
-Focused QA on `05I_Workout_Menu`:
+Focused QA on `05I_Workout_Menu` after rebinding:
 
+- sheet shell main component: local `BottomSheet / Menu` (`686:753`)
+- nested OptionItem components: local
 - external component dependency: 0
 - external variable dependency: 0
-- visual read-back: PASS
+- visual read-back at 360×780: PASS
 
 ## NEXT OPEN ITEM
 
