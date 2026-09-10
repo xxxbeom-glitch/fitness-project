@@ -16,10 +16,11 @@
 
 ## Latest active checkpoint
 
-- `docs/ux-decisions/2026-09-10-action-menu-binding-qa.md`
+- `docs/ux-decisions/2026-09-10-routinelist-action-bottomsheet-correction.md`
 
 Supporting checkpoints:
 
+- `docs/ux-decisions/2026-09-10-action-menu-binding-qa.md`
 - `docs/ux-decisions/2026-09-10-action-menu-presentation.md`
 - `docs/ux-decisions/2026-09-10-group05-recovery-presentation-correction.md`
 - `docs/ux-decisions/2026-09-10-group05-figma-foundation.md`
@@ -43,17 +44,16 @@ Group 05 current binding state:
 - 05I uses local icon-action `ActionSheet` / `ActionRows`
 - local action icons include `icon/replace`, `icon/trash`, `icon/copy`; existing local `icon/edit` / `icon/drag-handle` are reused
 - new action-menu family is rebound to existing local colors / spacing / radius / typography styles; no new token was added
-- bottom-sheet `ActionSheet` variants now match canonical `BottomSheet / Menu` surface semantics: `glass/surface-20` + existing GLASS effect
-- 03A floating routine action panel now matches canonical `Overflow Menu / Type=Routine` surface semantics: `bg/elevated` + `border/subtle` + existing drop shadow
-- bottom-sheet action rows remain `bg/default`; 03A floating-panel dividers use `border/subtle`
+- all bottom-sheet `ActionSheet` variants match canonical `BottomSheet / Menu` surface semantics: `glass/surface-20` + existing GLASS effect
+- `ActionRows` inside bottom sheets use `bg/default` + local border treatment
+- 03A now also uses the shared bottom-sheet presentation through `ActionSheet / Mode=RoutineList`; the temporary floating-panel treatment is superseded
 - `ActionRows`, `ActionSheet`, `05I`, `03A_Routine_List_Menu`, `03F_Routine_Exercise_Menu`: missing main 0 / remote main 0
-- `ActionRows` / `ActionSheet` each have exactly one same-role local master set on `MVP_공용_UI`
 - 05J uses local `ReorderRow` / `icon/drag-handle`
 - visible Group 05 dialog states use local `DialogCard` / `DialogButtons`
 - visible raw `AttachmentTag` frame 0
 - `ExerciseCard` / `DialogCard` stale visual-layout overrides 0
 
-Representative post-binding visual read-back after second-pass surface correction: `05I`, `03A_Routine_List_Menu`, `03F_Routine_Exercise_Menu` PASS.
+Representative post-binding visual read-back after latest 03A correction: `05I`, `03A_Routine_List_Menu`, `03F_Routine_Exercise_Menu` PASS.
 
 ### Action-menu presentation + binding
 
@@ -62,25 +62,22 @@ Confirmed direction:
 - 05I `...` menu: `대체 운동 / 순서 변경 / 삭제` icon action bottom sheet
 - `운동 정보` is not duplicated in 05I because tapping the exercise name is the information entry
 - routine-edit exercise card `...`: `순서 변경 / 대체 운동 / 삭제` icon action bottom sheet
-- 03A routine-list card `...`: bottom sheet is not used; use a compact floating icon panel `복제 / 수정 / 삭제`
+- 03A routine-list card `...`: `복제 / 수정 / 삭제` icon action bottom sheet
 - custom-exercise `수정 / 삭제` icon action-sheet variant exists in the local library; Group 04 canonical screens were not reopened solely to add a menu state that does not currently exist
 
 Figma reflection:
 
 - local `ActionRows` component set — `707:1114`
 - local `ActionSheet` component set — `707:1197`
+- `ActionSheet / Mode=RoutineList` — `714:664`
 - `03A_Routine_List_Menu` — `706:5023`
 - `03F_Routine_Exercise_Menu` — `706:5087`
 - imported temporary action-menu reference screens removed from Group 05 after localization
 
-Binding QA final correction:
+Binding QA current state:
 
 - bottom-sheet `ActionRows` surface → local `bg/default`
 - bottom-sheet action-row border → existing local border treatment
-- 03A `Mode=RoutineList` floating panel surface → `bg/elevated`
-- 03A floating panel border → `border/subtle`
-- 03A floating panel shadow → canonical `Overflow Menu / Type=Routine` drop shadow
-- 03A floating-panel internal dividers → `border/subtle`
 - bottom-sheet action-row dividers → local `bg/elevated`
 - labels → local `label/02` + `text/primary`
 - `icon/replace`, `icon/trash`, `icon/copy` foregrounds → local `text/primary`
@@ -88,13 +85,16 @@ Binding QA final correction:
 - `ActionSheet` effect → canonical `BottomSheet / Menu` GLASS effect
 - ActionSheet title → `heading/01` + `text/primary`
 - ActionSheet subtitle → `body/02` + `text/secondary`
+- 03A dim layer → local `bg/overlay`
+- no new token added
 
 Canonical records:
 
 - `docs/ux-decisions/2026-09-10-action-menu-presentation.md`
 - `docs/ux-decisions/2026-09-10-action-menu-binding-qa.md`
+- `docs/ux-decisions/2026-09-10-routinelist-action-bottomsheet-correction.md`
 
-The first binding-pass interpretation was superseded by the second-pass surface-semantic correction above.
+The earlier 03A floating-panel interpretation is superseded by the latest PO correction above. Other action-menu QA remains valid.
 
 ### Active-session recovery presentation correction
 
@@ -172,6 +172,7 @@ Related locked policy references include:
 - `docs/ux-decisions/2026-09-10-active-session-system-notification.md`
 - `docs/ux-decisions/2026-09-10-action-menu-presentation.md`
 - `docs/ux-decisions/2026-09-10-action-menu-binding-qa.md`
+- `docs/ux-decisions/2026-09-10-routinelist-action-bottomsheet-correction.md`
 
 ---
 
@@ -211,13 +212,14 @@ Important component cleanup:
 - existing local Nav Header nested icons are now local
 - existing Group 04 `ExerciseRowDetailAction` / `FilterSelectButton` nested chevron is now local
 - `ExerciseSearchRow_Selected` master `598:1392` is now placed on `MVP_공용_UI` while preserving the same master ID and existing instance links
-- 03A now has an explicit panel-style `...` representative state; this explicit PO change does not reopen unrelated Group 03 QA
+- 03A has an explicit bottom-sheet `...` representative state using shared `ActionSheet / Mode=RoutineList`; this explicit PO change does not reopen unrelated Group 03 QA
 
 Checkpoint:
 
 - `docs/ux-decisions/2026-09-10-figma-local-component-migration.md`
 - `docs/ux-decisions/2026-09-10-action-menu-presentation.md`
 - `docs/ux-decisions/2026-09-10-action-menu-binding-qa.md`
+- `docs/ux-decisions/2026-09-10-routinelist-action-bottomsheet-correction.md`
 
 Do not reopen 01–04 visual design solely because component ownership changed.
 
