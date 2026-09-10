@@ -33,15 +33,22 @@ A representative Figma state is maintained for the existing routine-edit flow; t
 
 ### Routine list / 03A
 
-`03A_Routine_List` card `...` does **not** use a bottom sheet.
+`03A_Routine_List` card `...` uses the shared icon action bottom-sheet family.
 
-It uses a compact floating panel anchored in the routine-list context, with icon actions:
+Actions:
 
 - `복제`
 - `수정`
 - `삭제`
 
-No full-screen dimmed bottom-sheet transition is used for this routine-list menu.
+Presentation:
+
+- title: `루틴 관리`
+- full-screen dim overlay
+- shared bottom-sheet surface / handle / close CTA
+- CTA: `닫기`
+
+The previously approved compact floating-panel treatment for 03A was explicitly superseded by the PO on 2026-09-10.
 
 ### Custom exercise
 
@@ -67,6 +74,7 @@ Local component library additions/reuse:
   - WorkoutExercise
   - RoutineExercise
   - CustomExercise
+  - RoutineList — `714:664`
 - local icons:
   - `icon/replace` — `706:954`
   - `icon/trash` — `706:959`
@@ -75,8 +83,8 @@ Local component library additions/reuse:
 
 Figma states reflected:
 
-- `05I_Workout_Menu` — `148:3392` — replaced previous vertical text-list menu with the local icon ActionSheet.
-- `03A_Routine_List_Menu` — `706:5023` — new panel-style representative state, not a bottom sheet.
+- `05I_Workout_Menu` — `148:3392` — local icon ActionSheet.
+- `03A_Routine_List_Menu` — `706:5023` — local `ActionSheet / Mode=RoutineList` with dim overlay.
 - `03F_Routine_Exercise_Menu` — `706:5087` — representative routine exercise-card action-sheet state.
 
 Temporary imported reference screens used to derive this pattern were removed from Group 05 after localization.
@@ -85,14 +93,18 @@ Temporary imported reference screens used to derive this pattern were removed fr
 
 Only changed assets/states were checked.
 
-- `ActionRows`: local main components only, external Variable 0, missing Variable 0
-- `ActionSheet`: local main components only, external Variable 0, missing Variable 0
+- `ActionRows`: local main components only
+- `ActionSheet`: local main components only
 - `05I`: visual read-back PASS
-- `03A_Routine_List_Menu`: visual read-back PASS
+- `03A_Routine_List_Menu`: visual read-back PASS after bottom-sheet conversion
 - `03F_Routine_Exercise_Menu`: visual read-back PASS
 - imported reference screens remaining on Group 05: 0
 
 Existing unrelated QA-PASS screens were not reopened.
+
+Latest 03A correction checkpoint:
+
+- `docs/ux-decisions/2026-09-10-routinelist-action-bottomsheet-correction.md`
 
 ## Open item preserved
 
