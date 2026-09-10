@@ -1,27 +1,29 @@
 # Group 05 Exercise Replacement Localization — 2026-09-10
 
-**Status:** FIGMA REFLECTED / FOCUSED QA PASS
+**Status:** PO APPROVED / FIGMA REFLECTED / FOCUSED QA PASS
 
 ## Scope
 
-Localize the copied `430_Exercise_Replace_Suggest` / `430a_Exercise_Replace_Selected` reference screens into the current Fitness design system and define the replacement recommendation browsing policy for Group 05 Active Workout.
+Group 05 Active Workout의 대체운동 UI를 현재 Fitness design system으로 정리하고, 추천 후보 탐색 및 완료 세트가 있는 상태에서의 교체 정책을 확정한다.
 
-## Product flow represented
+## Product flow — PO APPROVED
 
-Entry point:
+Entry:
 
 `05I_Workout_Menu → 대체 운동`
 
-Representative states:
+Canonical states:
 
-- `05G_Exercise_Replace_Suggest` — first three recommendations, no selection
-- `05H_Exercise_Replace_Selected` — first three recommendations with one item selected
-- `05G2_Exercise_Replace_SecondBatch` — second three recommendations
-- `05H2_Exercise_Replace_SecondBatch_Selected` — second three recommendations with one item selected
+- `05G_Exercise_Replace_Suggest` — 첫 3개 추천, 미선택
+- `05H_Exercise_Replace_Selected` — 추천 중 1개 선택, `선택 완료` 활성
+- `05G2_Exercise_Replace_SecondBatch` — `다른 운동 보기`로 전환한 나머지 최대 3개 추천
+- `05P_Exercise_Replace_DeleteConfirm` — 현재 운동에 완료 세트가 있을 때 교체 전 파괴적 확인
+
+중복 상태였던 `05H2_Exercise_Replace_SecondBatch_Selected`는 삭제했다. 선택 상태의 의미는 `05H_Exercise_Replace_Selected` 하나로 충분히 대표한다.
 
 ## Recommendation browsing policy — PO APPROVED
 
-The replacement surface uses a fixed pool of up to six preselected replacement exercises. It does not open the broader exercise-search experience and it does not generate or reveal additional candidates beyond that fixed pool.
+대체운동 후보는 운동별로 최대 6개를 미리 확보하고, 새로운 후보를 무한 생성하지 않는다.
 
 Flow:
 
@@ -29,22 +31,39 @@ Flow:
 
 Rules:
 
-- prepare up to six replacement candidates for the current exercise
-- show three candidates at a time
-- the first and second groups must not duplicate each other
-- `다른 운동 보기` switches between the two groups only
-- after all six have been exposed, pressing `다른 운동 보기` continues to cycle within those same already-prepared candidates; no seventh or later recommendation is introduced
-- do not expose `전체 운동에서 찾기` from this flow
-- if fewer than six candidates are available, cycle only within the candidates that exist
-- browsing between candidate groups does not change the active workout record
-- the replacement is applied only when the user selects an exercise and confirms `선택 완료`
+- 현재 운동에 대해 최대 6개의 대체 후보를 준비한다.
+- 한 화면에는 최대 3개를 표시한다.
+- 첫 그룹과 두 번째 그룹은 서로 중복되지 않는다.
+- `다른 운동 보기`는 확보된 후보 그룹 사이만 전환한다.
+- 6개를 모두 확인한 뒤에도 `다른 운동 보기`는 같은 확보 후보 안에서 순환한다.
+- 7번째 이후 새로운 추천 운동은 노출하지 않는다.
+- `전체 운동에서 찾기` 진입은 제공하지 않는다.
+- 후보가 6개보다 적으면 실제 확보된 후보만 순환한다.
+- 후보를 보는 행위 자체는 현재 운동 기록을 변경하지 않는다.
+- 실제 교체는 운동 선택 후 `선택 완료`에서만 적용한다.
 
 ## Selection behavior
 
-- replacement is single-select with radio control
-- before selection, `선택 완료` is disabled
-- after one item is selected, `선택 완료` becomes enabled
-- the previous duplicated body heading was removed; the local Nav Header owns the page title and the content keeps only the helper copy
+- single-select radio 방식
+- 미선택 상태에서는 `선택 완료` 비활성
+- 1개 선택 시 `선택 완료` 활성
+- Nav Header가 `대체 운동 선택` 제목을 소유하고 본문에는 helper copy만 둔다.
+
+## Completed-set replacement policy — PO APPROVED
+
+현재 운동을 이미 수행한 뒤 대체하는 경우의 파괴적 동작을 명시적으로 확인한다.
+
+Rules:
+
+- 완료 세트가 0개이면 별도 경고 없이 선택한 대체운동으로 교체한다.
+- 완료 세트가 1개 이상이면 `05P_Exercise_Replace_DeleteConfirm`을 표시한다.
+- 제목: `완료한 세트 기록을 삭제할까요?`
+- 설명: `대체 운동으로 변경하면 이 운동에서 완료한 세트 기록이 삭제됩니다.`
+- actions: `취소 / 삭제하고 변경`
+- `취소`는 선택 상태로 돌아가고 기록을 변경하지 않는다.
+- `삭제하고 변경`은 **현재 세션의 해당 운동에서 완료한 세트 기록만 삭제**하고 선택한 대체운동으로 교체한다.
+- 과거 날짜에 저장된 운동 기록에는 영향을 주지 않는다.
+- 이 삭제는 silent discard가 아니라 사용자 확인을 거친 명시적 파괴 동작이다.
 
 ## Figma reflection
 
@@ -52,68 +71,50 @@ Canonical file: `W3lZurXCXbThP67rF2xk2b`
 
 Group 05 page: `05 운동 중` — `233:2076`
 
-Screens:
+Canonical replacement screens:
 
 - `05G_Exercise_Replace_Suggest` — `713:14539`
 - `05H_Exercise_Replace_Selected` — `713:14526`
 - `05G2_Exercise_Replace_SecondBatch` — `731:3906`
-- `05H2_Exercise_Replace_SecondBatch_Selected` — `731:6943`
+- `05P_Exercise_Replace_DeleteConfirm` — `734:3883`
 
-Second-group representative exercises are non-duplicates of the first group:
+Removed as redundant:
 
-- 덤벨 벤치프레스
-- 머신 체스트 프레스
-- 펙덱 플라이
+- `05H2_Exercise_Replace_SecondBatch_Selected` — deleted from canonical page
 
-The secondary action remains `다른 운동 보기` on both recommendation groups. There is no `전체 운동에서 찾기` action in the canonical replacement flow.
+`05P` reuses the existing local `DialogCard` + `DialogButtons` system. No new dialog component or token was created.
 
-All replacement screens use the Group 05 360×780 frame.
-
-Local library assets:
+Local replacement assets reused:
 
 - `RadioButton` component set — `723:918`
-  - `State=Unchecked`
-  - `State=Checked`
 - `ExerciseReplaceItem` component set — `723:938`
-  - `Selected=False`
-  - `Selected=True`
+- existing local `Nav Header`
+- existing local `CTA Button`
+- existing local `Tag`
+- existing local Variables / Styles
 
-Existing local assets reused:
+## Focused QA
 
-- `Nav Header`
-- `CTA Button`
-- `Tag`
-- existing local Variables / text styles
+Cleanup read-back:
 
-No new token or component was created for the second-group states.
+- replacement-related top-level canonical screens remaining = 4
+- `05H2_Exercise_Replace_SecondBatch_Selected` remaining = 0
+- draft / copied 430 replacement screen remaining = 0
+- `05P` placed directly after `05G2` in the replacement screen row
 
-## Binding / focused QA
+Previously passed local binding QA remains valid for `05G`, `05H`, `05G2`.
 
-Existing local binding audit remains valid because this revision only changes the CTA text/property on the already-local second-group screens:
+`05P` focused audit:
 
-- `RadioButton`: missing main 0 / remote main 0 / missing Variable 0 / remote Variable 0 / missing Style 0 / remote Style 0
-- `ExerciseReplaceItem`: missing main 0 / remote main 0 / missing Variable 0 / remote Variable 0 / missing Style 0 / remote Style 0
-- `05G_Exercise_Replace_Suggest`: missing main 0 / remote main 0 / missing Variable 0 / remote Variable 0 / missing Style 0 / remote Style 0
-- `05H_Exercise_Replace_Selected`: missing main 0 / remote main 0 / missing Variable 0 / remote Variable 0 / missing Style 0 / remote Style 0
-- `05G2_Exercise_Replace_SecondBatch`: missing main 0 / remote main 0 / missing Variable 0 / remote Variable 0 / missing Style 0 / remote Style 0
-- `05H2_Exercise_Replace_SecondBatch_Selected`: missing main 0 / remote main 0 / missing Variable 0 / remote Variable 0 / missing Style 0 / remote Style 0
+- missing main = 0
+- remote main = 0
+- missing Variable = 0
+- remote Variable = 0
+- missing Style = 0
+- remote Style = 0
+- screenshot read-back after final copy update = PASS
 
-Focused read-back after the policy correction:
-
-- `05G2` secondary action = `다른 운동 보기`
-- `05H2` secondary action = `다른 운동 보기`
-- `전체 운동에서 찾기` copy remaining in either second-group screen = 0
-- screenshot read-back: PASS for both second-group states
-
-The copied external `ExerciseItem`, `RadioButton`, `DualCTA`, Status Bar and remote token bindings are not present in the canonical replacement flow.
-
-## Remaining open product decision
-
-This checkpoint does **not** decide what happens when the user attempts to replace an exercise after already completing one or more sets of that exercise.
-
-Completed workout records must not be silently discarded. The exact coexistence behavior for completed sets and the newly selected replacement exercise remains the final Group 05 replacement-flow decision.
-
-`05N` other-routine switching is already approved and closed separately.
+No new token/component was created by this cleanup.
 
 ## Development boundary
 
