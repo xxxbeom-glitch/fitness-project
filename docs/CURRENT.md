@@ -4,7 +4,7 @@
 
 ## Current mode
 
-`PRODUCT/UX FIGMA · GROUP 05 ACTIVE WORKOUT ACTIVE · REPLACEMENT RECOMMENDATION LIMIT QA PASS · NO CURSOR IMPLEMENTATION HANDOFF`
+`PRODUCT/UX FIGMA · GROUP 05 ACTIVE WORKOUT ACTIVE · REPLACEMENT FLOW FINALIZED + CLEANED · NEXT: GROUP 05 CLOSURE REVIEW · NO CURSOR IMPLEMENTATION HANDOFF`
 
 ## Resume rule
 
@@ -29,294 +29,6 @@ Supporting checkpoints:
 - `docs/ux-decisions/2026-09-10-group05-recovery-presentation-correction.md`
 - `docs/ux-decisions/2026-09-10-group05-figma-foundation.md`
 
-PO clarification에 따라 Group 05 Active Workout은 기존 옛 Group 05 카드 스타일을 기준으로 새로 그리지 않고, 현재 승인된 Routine 계열 중 **`03E2_Routine_Create_WithExercises`를 visual/interaction foundation으로 재사용**한다.
-
-Current Group 05 foundation:
-
-- `05A_Workout_Weight` — `148:1979`
-- `05F_Workout_RestTimer` — `721:3460`
-- `05G_Exercise_Replace_Suggest` — `713:14539`
-- `05H_Exercise_Replace_Selected` — `713:14526`
-- `05G2_Exercise_Replace_SecondBatch` — `731:3906`
-- `05H2_Exercise_Replace_SecondBatch_Selected` — `731:6943`
-- `05I_Workout_Menu` — `148:3392`
-- `05J_Reorder` — `36:3609`
-- `05N_Workout_OtherRoutine_Incomplete` — `727:3622`
-- `05N_Workout_OtherRoutine_Complete` — `727:3842`
-- shared UI page — `MVP_공용_UI` — `105:3113`
-- local component library — `635:788`
-
-Group 05 current binding state:
-
-- active workout `ExerciseCard` variants are local and stale visual/layout instance overrides were cleaned from visible Group 05 screens
-- local `ExerciseCard` component set `637:3561` uses `ExerciseInfo` with vertical Fill container (`layoutAlign=STRETCH`) + vertically centered content (`primaryAxisAlignItems=CENTER`) across all seven variants
-- `ExerciseCard` focused QA after the alignment correction: missing main 0 / remote main 0 / missing Variable 0 / remote Variable 0 / missing Style 0 / remote Style 0
-- `LeftAction=Back, RightAction=Timer` is a true variant inside the local `Nav Header` component set
-- `icon/timer-refresh` is inside `LOCAL_COMPONENT_LIBRARY`
-- repeated attachment status UI is local `AttachmentTag` component `693:6035`
-- `RestTimerPill` is local component `721:3456` inside `LOCAL_COMPONENT_LIBRARY`
-- `05F_Workout_RestTimer` uses the local `RestTimerPill` and current local Active Workout component structure
-- `RestTimerPill` uses existing local `glass/surface-20`, `radius/full`, spacing, text, danger-state Variables and local `display/01`; no new token added
-- `RestTimerPill`: remote Variable 0 / missing Variable 0 / remote Style 0 / missing Style 0
-- `05F_Workout_RestTimer`: missing main 0 / remote main 0 / remote Variable 0 / missing Variable 0 / remote Style 0 / missing Style 0
-- replacement flow uses local `RadioButton` component set `723:918`
-- replacement flow uses local `ExerciseReplaceItem` component set `723:938`
-- first and second recommendation batches use only local component mains, Variables and Styles
-- `05G`, `05H`, `05G2`, `05H2`: missing main 0 / remote main 0 / missing Variable 0 / remote Variable 0 / missing Style 0 / remote Style 0
-- 05I uses local icon-action `ActionSheet` / `ActionRows`
-- local action icons include `icon/replace`, `icon/trash`, `icon/copy`; existing local `icon/edit` / `icon/drag-handle` are reused
-- new action-menu family is rebound to existing local colors / spacing / radius / typography styles; no new token was added
-- all bottom-sheet `ActionSheet` variants match canonical `BottomSheet / Menu` surface semantics: `glass/surface-20` + existing GLASS effect
-- `ActionRows` inside bottom sheets use `bg/default` + local border treatment
-- 03A also uses the shared bottom-sheet presentation through `ActionSheet / Mode=RoutineList`; the temporary floating-panel treatment is superseded
-- `ActionRows`, `ActionSheet`, `05I`, `03A_Routine_List_Menu`, `03F_Routine_Exercise_Menu`: missing main 0 / remote main 0
-- 05J uses local `ReorderRow` / `icon/drag-handle`
-- visible Group 05 dialog states use local `DialogCard` / `DialogButtons`
-- 05N other-routine conflict uses two state-specific canonical screens reusing existing local `DialogCard` / `DialogButtons`
-- `05N_Workout_OtherRoutine_Incomplete`, `05N_Workout_OtherRoutine_Complete`: missing main 0 / remote main 0 / missing Variable 0 / remote Variable 0 / missing Style 0 / remote Style 0
-- visible raw `AttachmentTag` frame 0
-- `ExerciseCard` / `DialogCard` stale visual-layout overrides 0
-
-Representative visual read-back after latest changes: `05G2_Exercise_Replace_SecondBatch`, `05H2_Exercise_Replace_SecondBatch_Selected`, `05N_Workout_OtherRoutine_Incomplete`, `05N_Workout_OtherRoutine_Complete`, Active Workout `어시스트 풀업` card, `05F_Workout_RestTimer`, `05G_Exercise_Replace_Suggest`, `05H_Exercise_Replace_Selected`, `05I`, `03A_Routine_List_Menu`, `03F_Routine_Exercise_Menu` PASS.
-
-### Exercise replacement recommendation limit
-
-Confirmed flow:
-
-`05I 대체 운동 → initial 3 → 다른 운동 보기 1회 → new 3 → 전체 운동에서 찾기`
-
-Rules:
-
-- initial recommendation batch contains three similar exercises
-- `다른 운동 보기` is allowed exactly once
-- the second batch does not repeat exercises already shown in the first batch
-- after the second batch appears, the secondary action changes to `전체 운동에서 찾기`
-- recommendations do not rotate indefinitely
-- if fewer than three unseen recommendations remain, show only the remaining candidates
-- if no unseen candidate remains, move directly to `전체 운동에서 찾기`
-- refreshing/browsing recommendations does not modify the active workout
-- the actual replacement is applied only after selection + `선택 완료`
-
-Figma reflection:
-
-- first batch unselected: `05G_Exercise_Replace_Suggest` — `713:14539`
-- first batch selected: `05H_Exercise_Replace_Selected` — `713:14526`
-- second batch unselected: `05G2_Exercise_Replace_SecondBatch` — `731:3906`
-- second batch selected: `05H2_Exercise_Replace_SecondBatch_Selected` — `731:6943`
-- second-batch representative options: `덤벨 벤치프레스 / 머신 체스트 프레스 / 펙덱 플라이`
-- second-batch secondary action: `전체 운동에서 찾기`
-
-Focused QA:
-
-- `05G2`: missing main 0 / remote main 0 / missing Variable 0 / remote Variable 0 / missing Style 0 / remote Style 0
-- `05H2`: missing main 0 / remote main 0 / missing Variable 0 / remote Variable 0 / missing Style 0 / remote Style 0
-- screenshot read-back: PASS
-- no new token/component created; existing `ExerciseReplaceItem`, `RadioButton`, `CTA Button`, `Nav Header`, `Tag` reused
-
-Canonical record:
-
-- `docs/ux-decisions/2026-09-10-group05-exercise-replacement-localization.md`
-
-### Other-routine switch flow
-
-Trigger:
-
-- a workout is already active
-- user goes to the Routine list and attempts to start a different routine
-
-Confirmed behavior:
-
-- do not show the old generic 05N and then show 05K/05L again; avoid double confirmation
-- inspect the current workout state and show the matching 05N dialog directly
-- both states reuse the existing local workout-end `DialogCard` + `DialogButtons` system
-
-Incomplete state:
-
-- `05N_Workout_OtherRoutine_Incomplete` — `727:3622`
-- title: `현재 운동을 종료할까요?`
-- description: `아직 완료하지 않은 운동이 있습니다.\n완료한 세트까지만 기록하고 새 루틴을 시작합니다.`
-- actions: `계속 운동 / 종료 후 시작`
-- `종료 후 시작` preserves only actually completed sets, ends the current session, then starts the selected new routine
-
-Complete state:
-
-- `05N_Workout_OtherRoutine_Complete` — `727:3842`
-- title: `현재 운동을 종료할까요?`
-- description: `모든 세트를 완료했습니다.\n현재 운동을 저장하고 새 루틴을 시작합니다.`
-- actions: `계속 운동 / 종료 후 시작`
-- `종료 후 시작` saves the current workout, ends the current session, then starts the selected new routine
-
-If the current session contains routine-structure changes, the already approved `05O_Workout_UpdateRoutine` confirmation remains in the end flow before the new routine starts.
-
-Focused QA:
-
-- both canonical 05N states: missing main 0 / remote main 0 / missing Variable 0 / remote Variable 0 / missing Style 0 / remote Style 0
-- screenshot read-back: PASS
-- no new dialog component/token added
-- superseded single `05N_Workout_OtherRoutine` (`148:3561`) removed
-
-Canonical record:
-
-- `docs/ux-decisions/2026-09-10-group05-other-routine-switch.md`
-
-### ExerciseCard ExerciseInfo alignment
-
-Confirmed layout:
-
-- `ExerciseInfo` fills the `CardHeader` vertically
-- the tag + exercise-name group is vertically centered inside `ExerciseInfo`
-- horizontal/text alignment remains left-aligned
-- this is the same layout principle the PO directly applied to 05G/05H `ExerciseInfo`
-
-Figma reflection:
-
-- local `ExerciseCard` component set — `637:3561`
-- all seven `ExerciseInfo` frames: `layoutAlign=STRETCH`, `primaryAxisAlignItems=CENTER`
-
-Focused QA:
-
-- representative Active Workout assisted card (`어시스트 풀업`) visual read-back: PASS
-- `ExerciseCard`: missing main 0 / remote main 0 / missing Variable 0 / remote Variable 0 / missing Style 0 / remote Style 0
-- no new token or component added
-
-Canonical record:
-
-- `docs/ux-decisions/2026-09-10-exercisecard-exerciseinfo-layout.md`
-
-### Exercise replacement presentation + binding
-
-Current represented flow:
-
-`05I 대체 운동 → 05G/05H first batch → 05G2/05H2 second batch → 전체 운동에서 찾기`
-
-Confirmed presentation:
-
-- replacement is single-select
-- before selection, `선택 완료` is disabled
-- after one exercise is selected, `선택 완료` is enabled
-- initial `다른 운동 보기` yields one non-duplicate second batch
-- after that, use `전체 운동에서 찾기` instead of another recommendation refresh
-- duplicated content heading was removed; local `Nav Header` owns `대체 운동 선택` and the body keeps only the helper copy
-- all replacement screens use Group 05 360×780
-- replacement item `ExerciseInfo` uses vertical Fill container with vertically centered contents per PO correction
-
-Figma reflection:
-
-- `05G_Exercise_Replace_Suggest` — `713:14539`
-- `05H_Exercise_Replace_Selected` — `713:14526`
-- `05G2_Exercise_Replace_SecondBatch` — `731:3906`
-- `05H2_Exercise_Replace_SecondBatch_Selected` — `731:6943`
-- local `RadioButton` component set — `723:918`
-- local `ExerciseReplaceItem` component set — `723:938`
-
-Existing local `Nav Header`, `CTA Button`, `Tag`, Variables and text styles are reused. No new token was created.
-
-Binding QA:
-
-- `RadioButton`: missing main 0 / remote main 0 / missing Variable 0 / remote Variable 0 / missing Style 0 / remote Style 0
-- `ExerciseReplaceItem`: missing main 0 / remote main 0 / missing Variable 0 / remote Variable 0 / missing Style 0 / remote Style 0
-- all four replacement representative screens: missing main 0 / remote main 0 / missing Variable 0 / remote Variable 0 / missing Style 0 / remote Style 0
-- screenshot read-back: PASS
-
-Open replacement-flow policy:
-
-- exact behavior when the user attempts replacement **after one or more sets of the current exercise have already been completed** is not yet decided
-- completed workout records must not be silently discarded
-
-Canonical record:
-
-- `docs/ux-decisions/2026-09-10-group05-exercise-replacement-localization.md`
-
-### Rest timer presentation + binding
-
-Confirmed direction:
-
-- set completion automatically starts the rest timer
-- rest timer appears as a compact toast / pill dropping down from the top
-- countdown remains visible in the pill by default
-- only `X` is exposed as the visible control in the toast
-- `X` closes the visible toast UI; it does not open a complex timer-control flow
-- when countdown reaches the end, the pill moves upward and disappears
-- timer never blocks continuing the workout
-- exact vibration / sound / background-notification behavior remains deferred
-
-Figma reflection:
-
-- local `RestTimerPill` — `721:3456`
-- `05F_Workout_RestTimer` — `721:3460`
-- old hidden `05F_Workout_RestTimer_TBD` removed
-- temporary copied `410_Rest_Timer` frame removed from Group 05 after localization
-
-The copied `410_Rest_Timer` source contained no actual Figma prototype reactions. Motion is locked as a product interaction rule; `05F` is the static representative state.
-
-Canonical records:
-
-- `docs/ux-decisions/2026-09-03-rest-timer-behavior.md`
-- `docs/ux-decisions/2026-09-10-group05-rest-timer-localization.md`
-
-### Action-menu presentation + binding
-
-Confirmed direction:
-
-- 05I `...` menu: `대체 운동 / 순서 변경 / 삭제` icon action bottom sheet
-- `운동 정보` is not duplicated in 05I because tapping the exercise name is the information entry
-- routine-edit exercise card `...`: `순서 변경 / 대체 운동 / 삭제` icon action bottom sheet
-- 03A routine-list card `...`: `복제 / 수정 / 삭제` icon action bottom sheet
-- custom-exercise `수정 / 삭제` icon action-sheet variant exists in the local library; Group 04 canonical screens were not reopened solely to add a menu state that does not currently exist
-
-Figma reflection:
-
-- local `ActionRows` component set — `707:1114`
-- local `ActionSheet` component set — `707:1197`
-- `ActionSheet / Mode=RoutineList` — `714:664`
-- `03A_Routine_List_Menu` — `706:5023`
-- `03F_Routine_Exercise_Menu` — `706:5087`
-- imported temporary action-menu reference screens removed from Group 05 after localization
-
-Binding QA current state:
-
-- bottom-sheet `ActionRows` surface → local `bg/default`
-- bottom-sheet action-row border → existing local border treatment
-- bottom-sheet action-row dividers → local `bg/elevated`
-- labels → local `label/02` + `text/primary`
-- `icon/replace`, `icon/trash`, `icon/copy` foregrounds → local `text/primary`
-- `ActionSheet` surface → local `glass/surface-20`
-- `ActionSheet` effect → canonical `BottomSheet / Menu` GLASS effect
-- ActionSheet title → `heading/01` + `text/primary`
-- ActionSheet subtitle → `body/02` + `text/secondary`
-- 03A dim layer → local `bg/overlay`
-- no new token added
-
-Canonical records:
-
-- `docs/ux-decisions/2026-09-10-action-menu-presentation.md`
-- `docs/ux-decisions/2026-09-10-action-menu-binding-qa.md`
-- `docs/ux-decisions/2026-09-10-routinelist-action-bottomsheet-correction.md`
-
-The earlier 03A floating-panel interpretation is superseded by the latest PO correction above. Other action-menu QA remains valid.
-
-### Active-session recovery presentation correction
-
-The session-reliability/recovery requirement remains locked, but the previous `05P_Workout_Recovery` in-app banner presentation was not the intended UX.
-
-Confirmed direction:
-
-- an in-progress workout remains active across interruption/restart
-- do **not** show a dedicated in-app `진행 중이던 운동을 복구했어요` screen/banner
-- surface the ongoing active session through the **system notification area**
-- returning to the app continues the same active workout session
-
-Figma reflection:
-
-- `05P_Workout_Recovery` (`148:3892`) removed from `05 운동 중`
-- no replacement in-app recovery banner created
-
-Canonical decision:
-
-- `docs/ux-decisions/2026-09-10-active-session-system-notification.md`
-
-Important: only the replacement behavior after completed sets remains subject to product-flow review. 05N and recommendation-refresh behavior are now approved and closed.
-
 ---
 
 # ACTIVE TRACK — Group 05 운동 중
@@ -325,55 +37,134 @@ Canonical Figma:
 
 - file: `W3lZurXCXbThP67rF2xk2b`
 - page: `05 운동 중` — `233:2076`
-- current main screen: `05A_Workout_Weight` — `148:1979`
-- current rest timer screen: `05F_Workout_RestTimer` — `721:3460`
-- replacement first-batch suggest: `05G_Exercise_Replace_Suggest` — `713:14539`
-- replacement first-batch selected: `05H_Exercise_Replace_Selected` — `713:14526`
-- replacement second-batch suggest: `05G2_Exercise_Replace_SecondBatch` — `731:3906`
-- replacement second-batch selected: `05H2_Exercise_Replace_SecondBatch_Selected` — `731:6943`
-- current menu screen: `05I_Workout_Menu` — `148:3392`
-- current reorder screen: `05J_Reorder` — `36:3609`
-- other-routine incomplete state: `05N_Workout_OtherRoutine_Incomplete` — `727:3622`
-- other-routine complete state: `05N_Workout_OtherRoutine_Complete` — `727:3842`
-- shared UI page: `MVP_공용_UI` — `105:3113`
+- main: `05A_Workout_Weight` — `148:1979`
+- rest timer: `05F_Workout_RestTimer` — `721:3460`
+- replacement first group / unselected: `05G_Exercise_Replace_Suggest` — `713:14539`
+- replacement selected representative: `05H_Exercise_Replace_Selected` — `713:14526`
+- replacement second group: `05G2_Exercise_Replace_SecondBatch` — `731:3906`
+- replacement completed-set delete confirm: `05P_Exercise_Replace_DeleteConfirm` — `734:3883`
+- action menu: `05I_Workout_Menu` — `148:3392`
+- reorder: `05J_Reorder` — `36:3609`
+- end incomplete: `05K_End_Incomplete` — `36:3620`
+- end complete: `05L_End_Complete` — `36:3623`
+- discard: `05M_Discard` — `36:3626`
+- other-routine incomplete: `05N_Workout_OtherRoutine_Incomplete` — `727:3622`
+- other-routine complete: `05N_Workout_OtherRoutine_Complete` — `727:3842`
+- routine update: `05O_Workout_UpdateRoutine` — `148:3730`
+- shared UI: `MVP_공용_UI` — `105:3113`
 - local component library: `635:788`
 
-### Locked foundation
+## Group 05 locked foundation
 
-- 05 Active Workout main UI continues from `03E2_Routine_Create_WithExercises`, not from a parallel card system.
-- KG / REPS editable exercise-card structure is reused from the current local `ExerciseCard` family.
-- Active Workout uses local `Mode=Workout` variant.
-- `ExerciseCard > CardHeader > ExerciseInfo` fills vertically and centers its content vertically.
-- attachment status chip remains visually aligned with Group 03 approved treatment.
-- rest timer uses local `RestTimerPill` and is an overlay toast/pill, not an inline persistent banner.
-- replacement recommendations use local `ExerciseReplaceItem` + `RadioButton`; no copied external replacement components remain in canonical replacement screens.
-- replacement recommendation refresh is finite: initial 3 → one new non-duplicate batch of up to 3 → `전체 운동에서 찾기`.
-- starting another routine during an active workout uses state-specific 05N dialogs directly; no extra 05K/05L confirmation is stacked after a generic 05N.
-- existing local Variables/Styles/Components take priority over creating new assets.
-- no external library dependency may be reintroduced.
+- Active Workout UI continues from approved `03E2_Routine_Create_WithExercises`; do not create a parallel card system.
+- local `ExerciseCard` component set `637:3561` is canonical.
+- `ExerciseCard > CardHeader > ExerciseInfo` uses vertical Fill + vertically centered content across all variants.
+- existing Variables / Styles → Components → Patterns → Examples are reused before adding assets.
 - no screen-instance detach shortcut.
+- no external library dependency may be reintroduced.
 
-### Workflow for Group 05
+## Rest timer — CLOSED / QA PASS
 
-Product/UX decision and Figma screen work proceed together:
+- completed set automatically starts rest timer.
+- `RestTimerPill` local component `721:3456` is used as a top overlay toast/pill.
+- timer does not block continuing the workout.
+- X dismisses visible pill only.
+- completion moves pill upward/disappears.
+- `05F_Workout_RestTimer` local binding QA: missing/remote component, Variable, Style = 0.
 
-`one interaction/state review → PO decision where needed → immediate Figma reflection → focused QA → next interaction/state`
+## Action menu — CLOSED / QA PASS
 
-Do not complete all planning first and postpone all Figma work to the end.
+- Active Workout `...`: `대체 운동 / 순서 변경 / 삭제`.
+- routine-edit exercise `...`: `순서 변경 / 대체 운동 / 삭제`.
+- routine-list `...`: `복제 / 수정 / 삭제`.
+- local `ActionRows` / `ActionSheet` family reused; missing/remote main = 0.
+
+## Exercise replacement — PO APPROVED / FIGMA REFLECTED / QA PASS
+
+Canonical visible replacement states are intentionally reduced to **4**:
+
+1. `05G_Exercise_Replace_Suggest` — first 3, unselected
+2. `05H_Exercise_Replace_Selected` — selected-state representative
+3. `05G2_Exercise_Replace_SecondBatch` — remaining up to 3
+4. `05P_Exercise_Replace_DeleteConfirm` — completed-set destructive confirmation
+
+Removed as redundant:
+
+- `05H2_Exercise_Replace_SecondBatch_Selected` — deleted; selection meaning is already represented by `05H`.
+
+Recommendation policy:
+
+`first 3 ↔ 다른 운동 보기 ↔ second 3`
+
+- prepare up to 6 replacement candidates per exercise.
+- show up to 3 at a time.
+- the two groups do not duplicate each other.
+- `다른 운동 보기` cycles only inside those preselected candidates.
+- never introduce a 7th+ candidate.
+- do not expose `전체 운동에서 찾기`.
+- replacement is applied only after selection + `선택 완료`.
+
+Completed-set replacement policy:
+
+- completed set = 0 → replace directly without destructive dialog.
+- completed set ≥ 1 → show `05P_Exercise_Replace_DeleteConfirm`.
+- title: `완료한 세트 기록을 삭제할까요?`
+- description: `대체 운동으로 변경하면 이 운동에서 완료한 세트 기록이 삭제됩니다.`
+- actions: `취소 / 삭제하고 변경`.
+- confirm deletes completed-set records for **that exercise in the current session only**, then replaces it.
+- past saved workout history is not affected.
+- this is an explicit confirmed destructive action, never a silent discard.
+
+Focused cleanup QA:
+
+- replacement-related top-level screen count = 4.
+- redundant second-batch selected screen = 0.
+- copied 430 / DRAFT replacement screen = 0.
+- `05P`: missing main 0 / remote main 0 / missing Variable 0 / remote Variable 0 / missing Style 0 / remote Style 0.
+- final copy screenshot read-back = PASS.
+- no new token/component added.
+
+Canonical record:
+
+- `docs/ux-decisions/2026-09-10-group05-exercise-replacement-localization.md`
+
+## Other-routine switch — CLOSED / QA PASS
+
+Trigger: active workout exists and user attempts to start another routine.
+
+- do not stack generic 05N then 05K/05L.
+- inspect current workout state and directly show matching 05N dialog.
+- incomplete → `05N_Workout_OtherRoutine_Incomplete`.
+- complete → `05N_Workout_OtherRoutine_Complete`.
+- both reuse local `DialogCard / DialogButtons`.
+- missing/remote component, Variable, Style = 0.
+
+Canonical record:
+
+- `docs/ux-decisions/2026-09-10-group05-other-routine-switch.md`
+
+## Active-session recovery — CLOSED
+
+- in-progress session survives interruption/restart.
+- no dedicated in-app recovery banner.
+- ongoing active session is surfaced through system notification area.
+- returning to app resumes same active workout.
+
+Canonical record:
+
+- `docs/ux-decisions/2026-09-10-active-session-system-notification.md`
 
 ## NEXT OPEN ITEM — exact resume point
 
-Decide the remaining replacement edge case:
+**Group 05 closure review.**
 
-- when a user has already completed one or more sets for the current exercise and then chooses `대체 운동`, define exactly how those completed records and the newly selected exercise coexist
-- do not silently discard completed set records
-- reflect only the resulting edge case if additional UI is actually needed
+Only check whether any unresolved Product/UX interaction remains in Group 05 after the replacement edge-case decision.
 
-After this decision and focused Figma QA, Group 05 can be evaluated for closure.
+- do not reopen passed 05F / action menu / replacement / ExerciseInfo / 05N work without a concrete conflict.
+- if no unresolved interaction remains, record Group 05 closure and move to the next Product/UX track.
+- do not start Cursor/development handoff unless Product Owner explicitly switches to development.
 
-Do not reopen passed 05F/action-menu/replacement recommendation refresh/ExerciseInfo layout/05N work without a concrete conflict.
-
-Related locked policy references include:
+Related policy references:
 
 - `docs/ux-decisions/2026-09-03-active-workout-routine-update.md`
 - `docs/ux-decisions/2026-09-03-rest-timer-behavior.md`
@@ -395,52 +186,27 @@ Related locked policy references include:
 
 # CLOSED TRACK — 01–04 local component / token migration
 
-Canonical Figma:
+Canonical Figma pages:
 
-- file: `W3lZurXCXbThP67rF2xk2b`
 - `01 로그인 · 첫 진입` — `233:2072`
 - `02 홈` — `233:2073`
 - `03 루틴` — `233:2074`
 - `04 운동 목록 · 상세` — `233:2075`
-- shared UI page: `MVP_공용_UI` — `105:3113`
-- migration management frame: `LOCAL_COMPONENT_LIBRARY` — `635:788`
+- shared UI — `MVP_공용_UI` — `105:3113`
+- local component library — `635:788`
 
-Migration rules/results:
+Rules/results:
 
-- existing valid local components were retained
-- external component families were localized only when no local equivalent existed
-- previously localized component families were reused on later pages instead of duplicated
-- screen instances were component-swapped; no detach-based screen duplication was used
-- nested external component dependencies were also replaced
-- external Variable/Style bindings and screen overrides were rebound to current local foundations
-- existing Variant / Component Property / Auto Layout / instance override behavior was preserved
-- representative post-migration visual/artifact read-back: PASS
-
-Local foundation additions made only where an approved existing role had no local equivalent:
-
-- dialog typography roles: `dialog/title`, `dialog/secondary`, `dialog/primary`
-- Tag roles: `tag-bg/tricep`, `tag/tricep`, `tag-bg/shoulder`, `tag/shoulder` plus required local primitives
-- `neutral/50`
-- `border/thin = 0.5`
-- action-menu family: `ActionRows`, `ActionSheet`, `icon/replace`, `icon/trash`, `icon/copy`
-
-Important component cleanup:
-
-- existing local Nav Header nested icons are now local
-- existing Group 04 `ExerciseRowDetailAction` / `FilterSelectButton` nested chevron is now local
-- `ExerciseSearchRow_Selected` master `598:1392` is now placed on `MVP_공용_UI` while preserving the same master ID and existing instance links
-- 03A has an explicit bottom-sheet `...` representative state using shared `ActionSheet / Mode=RoutineList`; this explicit PO change does not reopen unrelated Group 03 QA
-- local `ExerciseCard` now uses vertically filling and vertically centered `ExerciseInfo` consistently across all variants
+- approved existing local components retained.
+- external families localized only where no local equivalent existed.
+- no detach-based screen duplication.
+- nested external dependencies replaced.
+- Variable/Style bindings rebound to local foundations.
+- post-migration representative visual/artifact QA PASS.
 
 Checkpoint:
 
 - `docs/ux-decisions/2026-09-10-figma-local-component-migration.md`
-- `docs/ux-decisions/2026-09-10-action-menu-presentation.md`
-- `docs/ux-decisions/2026-09-10-action-menu-binding-qa.md`
-- `docs/ux-decisions/2026-09-10-routinelist-action-bottomsheet-correction.md`
-- `docs/ux-decisions/2026-09-10-exercisecard-exerciseinfo-layout.md`
-
-Do not reopen 01–04 visual design solely because component ownership changed.
 
 ---
 
@@ -448,37 +214,17 @@ Do not reopen 01–04 visual design solely because component ownership changed.
 
 Group 04 screen-level Product/UX remains CLOSED.
 
-Canonical page:
-
-- `04 운동 목록 · 상세` — `233:2075`
-
-Canonical states include:
-
-- `04A_Search` — `207:1238`
-- `04B_Search_Selected` — `515:1140`
-- `04C_Search_Empty` — `539:1050`
-- `04D_운동상세` — `40:2325`
-- `04E_Custom_Create` — `34:1672`
-- `04F_Custom_Edit` — `34:1692`
-- `04G_Exercise_History` — `34:1714`
-- `04H_Exercise_Attachment_Selection` — `170:2174`
-- `04A_Filter_Equipment_Page` — `515:3327`
-- `04A_Filter_BodyPart_Page` — `515:3514`
-- `04H_Custom_Attachment_Input` — `552:3356`
-
 Closure record:
 
 - `docs/ux-decisions/2026-09-10-group04-closure-qa.md`
 
-The local-component migration did not reopen or redesign Group 04. Post-migration structure/binding/visual regression QA remained PASS.
-
-The local `ActionSheet / CustomExercise` variant is available for a future actual custom-exercise `...` trigger, but no new Group 04 screen was added by the latest action-menu change.
+Do not reopen solely because component ownership changed.
 
 ---
 
 # PRESERVED DEFERRED TRACK — Analysis
 
-Approved Analysis hierarchy remains locked:
+Approved hierarchy remains locked:
 
 1. 분석 홈
 2. 부위별 분석
@@ -486,16 +232,15 @@ Approved Analysis hierarchy remains locked:
 4. 운동 기록
 5. 운동 기록 상세
 
-Analysis basics already locked:
+Locked basics:
 
 - default period = 최근 4주
 - choices = 4주 / 3개월 / 6개월 / 1년
 - headline metrics = 운동 횟수 / 완료 세트 / 운동 시간
-- body-map contribution heuristic: primary completed set `1.0`, secondary `0.5`, incomplete `0`
-- do not multiply the body-map value by kg/reps/duration/assistance
-- do not label the heuristic as optimal/undertrained/overtrained/recovered
+- body-map contribution: primary completed set `1.0`, secondary `0.5`, incomplete `0`
+- no kg/reps/duration/assistance multiplier for body-map contribution.
 
-When Group 05/06 sequencing allows Analysis to resume, continue from:
+Resume references:
 
 - `docs/ux-decisions/2026-09-05-analysis-tab-ia.md`
 - `docs/ux-decisions/2026-09-05-analysis-body-area-drilldown.md`
@@ -509,14 +254,12 @@ Preserved next Analysis item:
 
 # PRESERVED DEFERRED DATA TRACK — Exercise DB / media
 
-Do not reopen completed broad source/video QA without a concrete Production conflict.
-
 - existing canonical exercises = **195**
 - P0 additions = **16**
 - target derived Production artifact = **211**
 - P0 canonical/data row QA = PASS / LOCKED
 - P0 default media source lock = PASS
-- derived 211-row workbook/runtime DB = **not yet regenerated**
+- derived 211-row workbook/runtime DB = not yet regenerated
 - exact Production attachment allowlists / canonical IDs / media mapping = deferred
 
 References:
