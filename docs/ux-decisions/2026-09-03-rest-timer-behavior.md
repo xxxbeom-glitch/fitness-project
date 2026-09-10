@@ -1,8 +1,9 @@
 # Rest timer behavior
 
-**Status:** PO APPROVED
+**Status:** PO APPROVED · FIGMA REFLECTED
 
-**Date:** 2026-09-03
+**Date:** 2026-09-03  
+**Updated:** 2026-09-10
 
 ## Decision
 
@@ -11,34 +12,63 @@ Active Workout의 휴식 타이머는 사용자가 별도로 관리해야 하는
 ### Trigger
 
 - 사용자가 세트 완료 체크를 하면 해당 운동의 휴식 타이머가 자동으로 시작된다.
-- Figma의 `410_Rest_Timer`처럼 상단에서 내려오는 짧은 toast / pill 형태를 사용한다.
+- 상단에서 내려오는 짧은 toast / pill 형태를 사용한다.
 
 ### Running behavior
 
 - 예: 기본 휴식 시간이 1분이면 1분 카운트다운이 진행된다.
-- 시작 직후 타이머 UI는 잠깐 노출되고 다시 사라질 수 있다.
-- UI가 사라져도 타이머 자체는 계속 진행된다.
+- 타이머가 시작되면 toast / pill이 화면 상단에서 아래로 내려와 노출된다.
+- 카운트다운이 끝나면 toast / pill은 다시 위로 사라진다.
 - 사용자는 휴식 시간을 꼭 기다릴 필요가 없다.
 - 사용자가 바로 다음 세트나 다른 운동을 진행해도 타이머는 운동 흐름을 막거나 순서를 강제하지 않는다.
-- 타이머 toast가 보이는 동안 사용자가 쉬고 싶지 않다면 `X`로 닫을 수 있다.
-- `X`는 타이머를 조작하기 위한 복잡한 흐름이 아니라 단순히 현재 노출된 UI를 치우는 행동으로 사용한다.
+- 노출 중 사용자가 UI를 치우고 싶으면 `X`로 닫을 수 있다.
+- `X`는 노출된 UI만 닫는 행동이며 복잡한 타이머 조작 흐름을 열지 않는다.
+
+이전의 `시작 직후 잠깐 노출 후 임의로 사라질 수 있음` 표현은 최신 PO 결정에 의해 superseded 된다. 기본 presentation은 **카운트다운 동안 노출 → 종료 시 위로 사라짐**이다.
 
 ### Controls
 
 - MVP에서는 `+15초`, `-15초` 같은 시간 증감 버튼을 제공하지 않는다.
-- 기본 조작은 최대한 단순하게 유지한다.
+- 별도 일시정지/재설정 버튼을 toast 안에 추가하지 않는다.
 - 핵심은 `자동 시작 → 필요하면 X로 닫기 → 운동은 자유롭게 계속`이다.
 
 ### End of rest
 
-- 설정된 휴식 시간이 끝나면 종료 피드백을 줄 수 있다.
-- 정확한 종료 피드백 방식(진동 / 소리 / 다시 나타나는 toast / background notification)은 구현 및 디자인 단계에서 확정한다.
+- 설정된 휴식 시간이 끝나면 toast / pill은 위로 사라진다.
+- 종료 시 별도 진동 / 소리 / background notification 여부는 구현 및 디자인 단계에서 별도 확정한다.
 - 종료 피드백은 다음 세트 진행을 막지 않는다.
 
-## Visual authority
+## Figma visual authority
 
-- Figma node `410_Rest_Timer` (`1:1003`)의 상단 toast / pill 구조를 visual reference로 사용한다.
-- 기존 `product/wireframe/rest-timer-review.html`의 persistent top-bar 형태와 `+15초 / -15초` 조작안은 최신 PO 결정에 의해 superseded 된다.
+Canonical Figma file: `W3lZurXCXbThP67rF2xk2b`
+
+- local `RestTimerPill` component — `721:3456`
+- `05F_Workout_RestTimer` — `721:3460`
+- local component library — `635:788`
+
+The temporary copied `410_Rest_Timer` frame on the Group 05 page was used only as the visual reference and removed after localization.
+
+`RestTimerPill` uses existing local design-system foundations:
+
+- `glass/surface-20`
+- `radius/full`
+- `spacing/12`, `spacing/20`, `spacing/2`
+- `text/primary`
+- `state-bg/danger`, `state/danger`
+- `display/01`
+
+No new token was added.
+
+The source reference did not contain actual Figma prototype reactions. The drop-down / count-down / upward-dismiss motion is therefore a product interaction rule, while `05F` is the canonical static representative state.
+
+## Focused binding QA — 2026-09-10
+
+- `RestTimerPill`: remote Variable 0 / missing Variable 0
+- `RestTimerPill`: remote Style 0 / missing Style 0
+- `05F_Workout_RestTimer`: missing main 0 / remote main 0
+- `05F_Workout_RestTimer`: remote Variable 0 / missing Variable 0
+- `05F_Workout_RestTimer`: remote Style 0 / missing Style 0
+- representative screenshot read-back: PASS
 
 ## Deferred
 
