@@ -90,9 +90,11 @@ Selection survives normal search/filter navigation until the user explicitly des
 
 ### Selected-row visual alignment — PO LOCKED
 
-- list divider start and exercise thumbnail start use the same left edge
-- do not reintroduce the previous internal left padding before the thumbnail
-- the green selection indicator stays **inside the row/list bounds** and is absolutely overlaid so it does not push the thumbnail or change row geometry
+- list divider geometry stays unchanged and remains the baseline left edge
+- unselected rows keep the exercise thumbnail/content starting at that baseline left edge
+- selected rows place the green selection indicator at that same baseline left edge
+- selected-row thumbnail/text content is then indented to the right so the indicator occupies its own visual slot rather than overlaying the thumbnail
+- current Figma selected-row indent is `8px`; divider position/width does not change
 - selected state is tied to exercise identity, so the same selected exercise shown in both `최근 운동` and `전체 운동` reflects the same selected state
 
 ## 4. Right-side row action
