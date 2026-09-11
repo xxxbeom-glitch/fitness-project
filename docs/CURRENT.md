@@ -1,10 +1,10 @@
 # CURRENT — Fitness Project
 
-**Updated:** 2026-09-10
+**Updated:** 2026-09-11
 
 ## Current mode
 
-`PRODUCT/UX FIGMA · GROUP 06 WORKOUT COMPLETION ACTIVE · LOCAL DESIGN-SYSTEM MIGRATION QA PASS · NEXT: 06 COMPLETION CONTENT/STATE REVIEW · NO CURSOR IMPLEMENTATION HANDOFF`
+`PRODUCT/UX FIGMA · GROUP 06 WORKOUT COMPLETION ACTIVE · COMPLETION LAYOUT EXPLORATION SAVED · NEXT: SIMPLIFIED 06 COMPLETION SHELL REVIEW · NO CURSOR IMPLEMENTATION HANDOFF`
 
 ## Resume rule
 
@@ -16,10 +16,11 @@
 
 ## Latest active checkpoint
 
-- `docs/ux-decisions/2026-09-10-group06-figma-foundation.md`
+- `docs/ux-decisions/2026-09-11-group06-completion-layout-exploration.md`
 
 Supporting checkpoints:
 
+- `docs/ux-decisions/2026-09-10-group06-figma-foundation.md`
 - `docs/ux-decisions/2026-09-10-group05-closure-qa.md`
 - `docs/ux-decisions/2026-09-10-figma-local-component-migration.md`
 - `docs/09_DESIGN_SYSTEM.md`
@@ -34,7 +35,7 @@ Canonical Figma:
 
 - file: `W3lZurXCXbThP67rF2xk2b`
 - page: `06 운동 완료` — `233:2077`
-- main completion screen: `06A_Completion_Carousel` — `163:2031`
+- current canonical main: `06A_Completion_Carousel` — `163:2031`
 - carousel content reference: `REORG_06_CAROUSEL_CONTENT` — `163:2073`
 - conditional-state reference: `REORG_06_CONDITIONAL_STATES` — `163:2142`
 - shared UI: `MVP_공용_UI` — `105:3113`
@@ -56,40 +57,71 @@ Current 06 foundation has been migrated to the local Fitness design system befor
 - no parallel token/component system was created.
 - main 360×780 screen, carousel reference, and conditional-dialog visual read-back = PASS.
 
-Canonical record:
+Canonical foundation record:
 
 - `docs/ux-decisions/2026-09-10-group06-figma-foundation.md`
 
-## Current Figma starting content — NOT YET PRODUCT-LOCKED
+## Current layout exploration — NOT PRODUCT-LOCKED
 
-The current completion screen is one main screen with a large carousel card plus common actions.
+The original carousel remains canonical only as the existing starting artifact. New completion concepts are comparison drafts and must not replace it until Product Owner approval.
 
-Current carousel reference contains:
-1. 오늘 기록 요약
-2. 오늘의 발전 / 최고 기록
-3. 최근 5회 흐름 / 다음 운동 힌트
-4. 오늘 운동 부위
-5. 실제 수행 운동
+### Fuller dashboard draft
+- `06A_Completion_Dashboard_Full_Draft` — `775:593`
+- includes today summary, achievement/next hint, performed exercise list, and bottom actions
+- visual/layout cleanup completed with the existing Fitness design system
+- preserved as the fuller comparison case
 
-Current conditional reference contains:
-- 추천 루틴 저장 여부
-- 원래 추천 구성 vs 오늘 구성 저장 선택
-- 부분 기록 저장 완료
+### Chart-oriented drafts
+- exercise recent-5 trend — `06A_Chart_A_ExerciseTrend_Draft` `783:653`
+- same-routine total-volume trend — `06A_Chart_B_RoutineVolume_Draft` `783:729`
+- previous-best vs today comparison — `06A_Chart_C_PRCompare_Draft` `783:801`
 
-These are current design starting points, not automatically approved product policy. Review only the item currently being discussed and do not promote old hidden 06 screens back into the flow.
+All three chart drafts passed focused screenshot/binding QA with missing/remote component, Variable and Style = 0. No chart direction is approved; richer charts may fit `기록 상세` or deferred `분석` better than immediate completion.
+
+### Simplified completion drafts — current comparison set
+- A Balanced — `06A_Simple_A_Balanced_Draft` `788:671`
+- B Minimal — `06A_Simple_B_Minimal_Draft` `788:726`
+- C Result Board — `06A_Simple_C_ResultBoard_Draft` `788:781`
+
+All three are 360×780 and reuse local `CompletionStatusIcon` and `DualCTA`. Focused screenshot/binding QA PASS; missing/remote component, Variable and Style = 0.
+
+## Current Product/UX question
+
+Product Owner raised that a separate `기록 상세 보기` path already exists. Current working direction is therefore to test whether the completion page should stay concise rather than duplicate detailed records.
+
+Working direction, **not yet locked**:
+- completion/save confirmation
+- concise today summary
+- at most one meaningful highlight such as best record
+- `기록 상세 보기 / 홈으로 돌아가기`
+
+Candidates to move out of the completion page unless later justified:
+- full performed-exercise list
+- multiple charts
+- multiple analysis cards
+- dense comparison/next-step copy
+
+Reference research and exact Figma draft inventory are recorded in:
+
+- `docs/ux-decisions/2026-09-11-group06-completion-layout-exploration.md`
 
 ## NEXT OPEN ITEM — exact resume point
 
-**Review the main 06 workout-completion screen hierarchy/content first.**
+**Start from the three simplified completion drafts, not from the old carousel review from scratch.**
 
-Start from `06A_Completion_Carousel` and decide whether the common completion shell is correct:
-- success header / completion message
-- large completion carousel region
-- carousel pagination
-- image save/share action
-- `기록 상세 보기 / 홈으로 돌아가기`
+Compare first:
+- A Balanced — `788:671`
+- B Minimal — `788:726`
+- C Result Board — `788:781`
 
-After the common shell is approved, review the five carousel contents and conditional states one at a time only as needed.
+Decide:
+1. whether completion remains summary-only because `기록 상세 보기` exists
+2. which A/B/C direction, or a small hybrid, becomes the common completion shell
+3. whether the shell needs one stronger visual signature beyond normal stacked cards — e.g. dominant result number, distinct completion hero, or one compact highlight
+
+Do not promote any draft to canonical until Product Owner approves the direction.
+
+After the common completion shell is approved, review Group 06 conditional states only as needed.
 
 Do not reopen Group 05 without a concrete conflict or Product Owner request.
 Do not start Cursor/development handoff unless Product Owner explicitly switches to development.
