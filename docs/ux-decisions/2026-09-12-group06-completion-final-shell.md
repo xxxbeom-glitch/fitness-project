@@ -38,17 +38,49 @@ Product Owner가 `06 운동 완료` 페이지에 직접 만든 `최종화면` �
 - 비교 가능한 신기록이 없으면 `Card_PersonalRecord` 전체를 숨긴다.
 - `신기록 없음`, 아쉬움/실패성 문구, 빈 placeholder는 표시하지 않는다.
 - 해당 운동의 첫 수행은 비교 기준이 없으므로 신기록으로 계산하지 않는다.
-- 신기록이 1개이면 현재 구조대로 `오늘의 신기록` + 해당 기록 1개를 표시한다.
-- 신기록이 2개 이상이어도 카드는 1개만 유지한다.
-- 2개 이상일 때 label은 `오늘의 신기록 N개`로 표시하고, 본문은 대표 기록 1개 + `· 외 N-1개`로 축약한다.
-- 전체 신기록 목록은 `기록 상세 보기`에서 확인한다.
-- 서로 다른 recording type/운동의 향상 폭을 임의 점수화해 대표 기록을 뽑지 않는다. MVP 대표 기록은 운동 수행 순서에서 가장 먼저 발생한 PR 1개를 사용한다.
+- 신기록이 1개든 여러 개든 완료 화면에는 **대표 신기록 1개만** 표시한다.
+- 완료 화면에는 신기록 총 개수나 `외 N개`를 표시하지 않는다.
+- 전체 신기록은 `기록 상세 보기`에서 확인한다.
+
+### Representative PR selection — MVP LOCK
+
+여러 신기록 중 대표 1개를 고를 때 서로 다른 운동/recording type의 향상 폭을 점수화하거나 비교하지 않는다.
+
+**1단계 — 대표 운동 선택**
+- 현재 운동 세션의 표시 순서 기준으로, 유효한 PR이 발생한 첫 번째 운동을 대표 운동으로 선택한다.
+- 사용자가 실제 수행을 순서 밖에서 했더라도 대표 선택은 세션의 현재 운동 표시 순서를 따른다.
+- 이유: recording type 간 `얼마나 더 대단한 PR인가`를 억지로 환산하지 않고, 항상 동일하고 설명 가능한 결과를 만들기 위해서다.
+
+**2단계 — 같은 운동에서 여러 PR이 발생했을 때 대표 기록 선택**
+
+`weight_reps`
+1. 이전 기록보다 높은 **최고 중량 PR**이 있으면 그것을 우선한다.
+2. 최고 중량 PR이 없고 동일 중량에서 **반복수 PR**이 있으면 그 기록을 사용한다.
+3. 반복수 PR이 여러 개면 더 높은 중량의 기록을 우선하고, 같은 중량이면 더 많은 반복수를 우선한다.
+4. e1RM/추정 1RM이나 별도 점수는 MVP 대표 PR 선택에 사용하지 않는다.
+
+`reps`
+- 이전 최고 기록보다 많은 **최대 반복수**를 대표 PR로 사용한다.
+
+`duration`
+- 이전 최고 기록보다 긴 **최대 수행 시간**을 대표 PR로 사용한다.
+
+`assisted_weight_reps`
+1. 이전 기록보다 낮은 **최소 보조중량 PR**이 있으면 그것을 우선한다. 보조중량은 낮을수록 더 어려운 수행으로 본다.
+2. 최소 보조중량 PR이 없고 동일 보조중량에서 반복수 PR이 있으면 그 기록을 사용한다.
+3. 반복수 PR이 여러 개면 더 낮은 보조중량의 기록을 우선하고, 같은 보조중량이면 더 많은 반복수를 우선한다.
+
+**공통 tie / validity rule**
+- 이전 최고와 같은 값은 PR이 아니다.
+- 완료 처리된 세트만 PR 판정 대상으로 사용한다.
+- 같은 조건의 PR 후보가 완전히 동률이면 세션 표시 순서상 먼저 나온 세트를 사용한다.
+- reserved recording type은 MVP 완료 화면 대표 PR 정책 범위 밖이다.
 
 Figma comparison cases:
 - `REORG_06_PR_CASES` — `819:696`
 - 신기록 없음 `06A_PR_0_None` — `819:702`
 - 신기록 1개 `06A_PR_1_Single` — `819:733`
-- 신기록 2개 이상 `06A_PR_Multi` — `819:762`
+- 신기록 2개 이상이지만 대표 1개만 노출 `06A_PR_Multi_RepresentativeOnly` — `819:762`
 
 The canonical main remains `최종화면`; the three frames above are conditional comparison/state references, not separate navigation screens.
 
@@ -115,6 +147,7 @@ Focused QA on `최종화면` and PR conditional cases:
 - personal-record value resolves to local `heading/02`
 - metric/personal-record labels resolve to local `label/02` and `text/secondary`
 - PR cases are clones of the locked common shell; canonical main was not replaced
+- multi-PR case now visually matches the representative-only policy; no count / `외 N개` copy remains
 - 3-case comparison screenshot read-back = PASS
 - no new external component dependency introduced
 
