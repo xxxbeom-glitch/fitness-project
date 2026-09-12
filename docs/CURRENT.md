@@ -4,7 +4,7 @@
 
 ## Current mode
 
-`PRODUCT/UX FIGMA · GROUP 06 COMPLETION / PR / TOTAL VOLUME STATES LOCKED · NEXT: CONDITIONAL COMPLETION STATES REVIEW · NO CURSOR IMPLEMENTATION HANDOFF`
+`PRODUCT/UX FIGMA · GROUP 06 COMPLETION / PR / TOTAL VOLUME / PARTIAL-SAVE HANDLING LOCKED · NEXT: RECOMMENDED-ROUTINE CONDITIONALS REVIEW · NO CURSOR IMPLEMENTATION HANDOFF`
 
 ## Resume rule
 
@@ -114,6 +114,21 @@ Figma case:
 - `06A_Volume_NA` — `823:720`
 - screenshot/read-back = PASS
 
+## Partial-save handling — PO APPROVED / FIGMA PASS
+
+- 미완료 운동/세트가 있는 상태에서 종료할 때 `완료한 세트까지만 기록`된다는 확인은 Group 05의 운동 종료 다이얼로그에서 처리
+- 사용자가 `종료하고 저장`을 확정하면 Group 06은 실제 저장된 결과만 일반 완료 화면에 표시
+- Group 06의 별도 `부분 기록 저장 완료` 카드/summary는 중복이므로 사용하지 않음
+- 부분 저장 세션의 핵심 지표는 실제 persist된 완료 기록 기준으로 계산
+- Group 05 종료 정책은 재오픈하지 않음
+
+Figma cleanup:
+- `REORG_06_CONDITIONAL_STATES` — `163:2142`
+- 이전 `부분 기록 저장 완료` label/card 제거
+- section width 정리 및 description을 추천 루틴 저장 판단 기준으로 수정
+- 남은 상태는 `추천 루틴 저장 여부`, `저장할 구성 선택` 두 개
+- focused screenshot read-back = PASS
+
 ## Final-shell design-system refinement — QA PASS
 
 `최종화면` was refined in place with the existing local Fitness system.
@@ -137,19 +152,17 @@ Canonical record:
 
 ## NEXT OPEN ITEM — exact resume point
 
-**Review the broader Group 06 conditional completion states against the locked common shell.**
+**Review the remaining recommended-routine completion conditionals against the locked common shell.**
 
 Start from:
 
 - `REORG_06_CONDITIONAL_STATES` — `163:2142`
 
-Priority states already present:
+Remaining states:
 - 추천 루틴 저장 여부
 - 저장할 구성 선택
-- 부분 기록 저장 완료
 
-Only revise these where the locked final shell creates a concrete conflict or outdated presentation.
-
+Do not re-add a Group 06 partial-save completion card; partial-save confirmation belongs to Group 05.
 Do not reopen the old carousel or completion-layout exploration without a concrete conflict or Product Owner request.
 Do not reopen Group 05 without a concrete conflict or Product Owner request.
 Do not start Cursor/development handoff unless Product Owner explicitly switches to development.
