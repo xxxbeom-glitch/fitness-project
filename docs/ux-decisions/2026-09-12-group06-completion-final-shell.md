@@ -61,6 +61,8 @@ Product Owner가 `06 운동 완료` 페이지에 직접 만든 `최종화면` �
 
 `reps`
 - 이전 최고 기록보다 많은 **최대 반복수**를 대표 PR로 사용한다.
+- 완료 화면 표기는 `운동명 + N회` 형식을 사용한다. 예: `푸시업 15회`.
+- `0kg × N회`처럼 중량 형식으로 강제 변환하지 않는다.
 
 `duration`
 - 이전 최고 기록보다 긴 **최대 수행 시간**을 대표 PR로 사용한다.
@@ -83,6 +85,30 @@ Figma comparison cases:
 - 신기록 2개 이상이지만 대표 1개만 노출 `06A_PR_Multi_RepresentativeOnly` — `819:762`
 
 The canonical main remains `최종화면`; the three frames above are conditional comparison/state references, not separate navigation screens.
+
+## Total-volume non-applicable policy — PO APPROVED
+
+`총 볼륨`은 모든 recording type을 하나의 kg 값으로 억지 환산하지 않는다.
+
+- `weight_reps` 완료 세트만 `중량 × 반복수`로 계산하여 세션 총 볼륨에 합산한다.
+- `reps`는 총 볼륨에서 제외한다.
+- `duration`은 총 볼륨에서 제외한다.
+- `assisted_weight_reps`는 총 볼륨에서 제외한다. 보조중량은 사용자가 들어 올린 외부 중량이 아니라 체중을 상쇄하는 값이므로 kg 볼륨에 합산하지 않는다.
+- 여러 recording type이 섞인 세션은 계산 가능한 `weight_reps` 완료 세트만 합산한다.
+- 계산 가능한 `weight_reps` 완료 세트가 하나도 없으면 `총 볼륨` 카드는 유지하고 값은 `—`로 표시한다.
+- 이 경우 `0kg`로 표시하지 않는다. `0kg`는 실제 계산 결과가 0인 것처럼 오해될 수 있기 때문이다.
+- `reps`, `duration`, assistance를 kg로 환산하는 대체 공식을 MVP에서 만들지 않는다.
+- 2×2 핵심 지표 구조는 유지하며 다른 임시 지표로 교체하지 않는다.
+
+Examples:
+- 벤치프레스 + 크런치 + 플랭크 → 벤치프레스 `weight_reps` 볼륨만 합산
+- 크런치 + 플랭크만 수행 → `총 볼륨 —`
+- 어시스트 풀업만 수행 → `총 볼륨 —`
+
+Figma reference:
+- `06A_Volume_NA` — `823:720`
+- `총 볼륨` value = `—`
+- locked common shell / local component-token structure preserved
 
 ## Canonical Figma
 
@@ -137,7 +163,7 @@ No new text style, spacing token, radius token, or completion component family w
 
 ## Component / binding QA
 
-Focused QA on `최종화면` and PR conditional cases:
+Focused QA on `최종화면`, PR conditional cases, and total-volume N/A case:
 
 - local `CompletionStatusIcon` instance → main `742:901`, remote = false
 - local `DualCTA` instance → main `638:3344`, remote = false
@@ -147,24 +173,28 @@ Focused QA on `최종화면` and PR conditional cases:
 - personal-record value resolves to local `heading/02`
 - metric/personal-record labels resolve to local `label/02` and `text/secondary`
 - PR cases are clones of the locked common shell; canonical main was not replaced
-- multi-PR case now visually matches the representative-only policy; no count / `외 N개` copy remains
-- 3-case comparison screenshot read-back = PASS
+- multi-PR case visually matches the representative-only policy; no count / `외 N개` copy remains
+- `06A_Volume_NA` keeps the locked 2×2 metric structure and shows only `총 볼륨 —`
+- focused screenshot/read-back = PASS
 - no new external component dependency introduced
 
 Result: **PASS**
 
 ## NEXT OPEN ITEM
 
-The common completion shell and PR conditional behavior are locked.
+The common completion shell, PR conditional behavior, and total-volume N/A behavior are locked.
 
 Next Group 06 Product/UX item:
 
-**Decide how `총 볼륨` behaves when the completed session contains no volume-applicable work.**
+**Review the existing broader conditional completion states only as needed against the locked common shell.**
 
-After that, review the existing broader conditional completion states only as needed against the locked common shell.
-
-Reference:
+Start from:
 - `REORG_06_CONDITIONAL_STATES` — `163:2142`
+
+Priority states already present there:
+- 추천 루틴 저장 여부
+- 저장할 구성 선택
+- 부분 기록 저장 완료
 
 Do not reopen the old carousel, chart drafts, or A/B/C shell comparison without a concrete conflict or Product Owner request.
 
