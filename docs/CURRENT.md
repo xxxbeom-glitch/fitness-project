@@ -4,7 +4,7 @@
 
 ## Current mode
 
-`PRODUCT/UX FIGMA · GROUP 06 FINAL PAGE CLEANUP PASS · NEXT: RECOMMENDED-ROUTINE CONDITIONAL FLOW REVIEW · NO CURSOR IMPLEMENTATION HANDOFF`
+`PRODUCT/UX FIGMA · GROUP 07 ANALYSIS / WORKOUT HISTORY EXPLORATION · PO REVIEW · NO CURSOR IMPLEMENTATION HANDOFF`
 
 ## Resume rule
 
@@ -16,175 +16,132 @@
 
 ## Latest active checkpoint
 
-- `docs/ux-decisions/2026-09-12-group06-page-cleanup.md`
+- `docs/ux-decisions/2026-09-12-group07-analysis-exploration.md`
 
-Direct policy checkpoint:
-- `docs/ux-decisions/2026-09-12-group06-completion-final-shell.md`
+Direct locked Analysis references:
+- `docs/ux-decisions/2026-09-05-analysis-tab-ia.md`
+- `docs/ux-decisions/2026-09-05-analysis-body-area-drilldown.md`
+- `docs/ux-decisions/2026-09-05-analysis-exercise-progress.md`
 
-Supporting checkpoints:
-- `docs/ux-decisions/2026-09-11-group06-completion-layout-exploration.md`
-- `docs/ux-decisions/2026-09-10-group06-figma-foundation.md`
-- `docs/ux-decisions/2026-09-10-group05-closure-qa.md`
-- `docs/ux-decisions/2026-09-10-figma-local-component-migration.md`
+Supporting design references:
 - `docs/09_DESIGN_SYSTEM.md`
 - `docs/15_TONAL_DESIGN_SYSTEM_SPEC.md`
 - `docs/17_FIGMA_AGENT_EXECUTION_QA.md`
 
 ---
 
-# ACTIVE TRACK — Group 06 운동 완료
+# ACTIVE TRACK — Group 07 분석 · 운동 기록
 
-Canonical Figma:
+Canonical Figma file:
+- `W3lZurXCXbThP67rF2xk2b`
 
-- file: `W3lZurXCXbThP67rF2xk2b`
-- page: `06 운동 완료` — `233:2077`
-- default completion: `06A_Completion_Default` — `793:15748`
-- no-PR case: `06B_Completion_NoPR` — `819:702`
-- no-PR wrapper: `FINAL_06_PR_NONE_CASE` — `819:696`
-- volume-N/A case: `06C_Completion_VolumeNA` — `823:720`
-- volume-N/A wrapper: `FINAL_06_VOLUME_NA_CASE` — `823:716`
-- recommended-routine conditional dialogs: `FINAL_06_RECOMMENDED_ROUTINE_DIALOGS` — `163:2142`
-- shared UI: `MVP_공용_UI` — `105:3113`
-- local component library: `LOCAL_COMPONENT_LIBRARY` — `635:788`
-- completion status component: `CompletionStatusIcon` — `742:901`
-- bottom actions: local `DualCTA` — `638:3344`
+Page:
+- `07 분석 · 운동 기록` — `233:2078`
 
-## Group 06 Figma page cleanup — PO APPROVED / PASS
+Current review-draft frames:
+- `07A_분석홈_Exploration` — `836:1112`
+- `07B_부위별분석_Exploration` — `836:1265`
+- `07C_운동별성장_Exploration` — `836:1383`
+- `07D_운동기록_Exploration` — `836:1490`
+- `07E_운동기록상세_Exploration` — `836:1593`
 
-`06 운동 완료` 페이지는 최종 구현에 필요한 artifact만 남긴다.
+The previous Group 07 draft frames were removed from Figma by Product Owner request before rebuilding this exploration.
 
-현재 top-level 유지 범위:
-1. page title / description / divider
-2. `06A_Completion_Default`
-3. `FINAL_06_PR_NONE_CASE`
-4. `FINAL_06_VOLUME_NA_CASE`
-5. `FINAL_06_RECOMMENDED_ROUTINE_DIALOGS`
+## Locked IA / product basics
 
-총 56개의 오래된 artifact를 삭제했다.
+Approved hierarchy remains:
+1. 분석 홈
+2. 부위별 분석
+3. 운동별 성장
+4. 운동 기록
+5. 운동 기록 상세
 
-삭제 범위:
-- 이전 carousel main / carousel content reference
-- 06A–06J 구형 variants
-- partial-save 별도 완료 화면
-- body-map / bento / tonal exploration
-- dashboard / chart / simple A-B-C drafts
-- 임시 조각 및 Hevy/image reference screenshots
+Analysis-home period:
+- default = 최근 4주
+- options = 4주 / 3개월 / 6개월 / 1년
 
-대표 삭제 노드 `06A_Completion_Carousel` (`163:2031`)과 `REORG_06_CAROUSEL_CONTENT` (`163:2073`)은 더 이상 Figma page에 존재하지 않는다. 과거 결정 이력은 GitHub checkpoint로만 보존한다.
+Analysis-home fixed headline metrics:
+- 운동 횟수
+- 완료 세트
+- 운동 시간
 
-Cleanup checkpoint:
-- `docs/ux-decisions/2026-09-12-group06-page-cleanup.md`
+Body-map data basis:
+- final completed/persisted primary-muscle set = `1.0`
+- final completed/persisted secondary-muscle set = `0.5`
+- incomplete/unpersisted set = `0`
+- no kg/reps/duration/assistance multiplier
 
-## Common completion shell — PO APPROVED / QA PASS
+07B locked drilldown direction:
+- body-area tap expands inline
+- show contributing exercises from the selected period
+- aggregate by canonical exercise identity
+- show session count + completed-set count
+- do not expose internal weighted score as literal set count
 
-Locked content hierarchy:
+07C locked first-pass hierarchy:
+- exercise identity
+- period selector
+- recent record-change summary
+- record-trend visualization
+- recent records
+- PR context where valid
 
-1. completion status + `운동 완료`
-2. yearly workout count subtitle
-3. four concise today metrics
-   - 총 볼륨
-   - 총 운동 시간
-   - 총 운동 수
-   - 총 진행 세트
-4. conditional `오늘의 신기록`
-5. `기록 상세 보기 / 홈으로 돌아가기`
+Still OPEN:
+- exact recording-type-specific progress metric
+- exact graph metric / chart styling
+- exact representative-set rule
+- exact PR formula beyond already approved completion-screen representative PR policy
+- final body-map visual treatment / thresholds
+- empty / insufficient-data states
 
-Do not re-add full performed-exercise list, carousel, multiple charts, multiple analysis cards, or dense comparison/next-step copy without a new PO decision.
+## Current exploration principle
 
-## PR behavior — PO APPROVED / FIGMA PASS
+The five current frames are **PO feedback artifacts, not approved final UI**.
 
-- 비교 가능한 PR이 없으면 신기록 카드 전체 숨김
-- 첫 수행은 PR 아님
-- 신기록이 1개든 여러 개든 완료 화면에는 대표 PR 1개만 표시
-- 신기록 총 개수 / `외 N개` 표기 없음
-- 여러 PR 중 대표 운동 = 현재 세션 표시 순서상 유효 PR이 발생한 첫 운동
-- recording type별 대표 기준:
-  - `weight_reps`: 최고 중량 PR 우선 → 없으면 동일 중량 반복수 PR
-  - `reps`: 최대 반복수, `푸시업 15회`처럼 중량 없이 표기
-  - `duration`: 최대 수행 시간
-  - `assisted_weight_reps`: 최소 보조중량 PR 우선 → 없으면 동일 보조중량 반복수 PR
-- e1RM/추정 1RM은 MVP 대표 선택에 사용하지 않음
-- 완료 처리된 세트만 PR 판정
+They are organized around user questions:
+- 요즘 운동을 꾸준히 하고 있나?
+- 어디를 많이 / 적게 했나?
+- 실제 기록이 좋아지고 있나?
+- 지난 운동에서 무엇을 했나?
 
-Figma 정리 후 별도 PR 화면은 no-PR case만 유지한다. PR-present는 canonical default가 대표하고, multi-PR도 visual이 동일하므로 중복 frame을 삭제했다.
-
-## Total-volume behavior — PO APPROVED / FIGMA PASS
-
-- `weight_reps` 완료 세트만 `중량 × 반복수`로 총 볼륨 합산
-- `reps`, `duration`, `assisted_weight_reps` 제외
-- 계산 가능한 완료 세트가 없으면 `총 볼륨 —`
-- `0kg`로 표시하지 않음
-- 다른 단위를 kg로 환산하지 않음
-- 2×2 핵심 지표 구조 유지
-
-Figma:
-- `06C_Completion_VolumeNA` — `823:720`
-
-## Partial-save handling — PO APPROVED / FIGMA PASS
-
-- 미완료 세션 종료 확인은 Group 05에서 처리
-- `종료하고 저장` 후 Group 06은 실제 저장된 결과만 일반 완료 화면에 표시
-- Group 06의 별도 `부분 기록 저장 완료` 카드/화면은 사용하지 않음
-- partial-save 완료 artifact는 Figma cleanup에서 삭제됨
-
-## Recommended-routine dialogs — terminology updated / FIGMA PASS
-
-사용자-facing copy에서는 `구성` 대신 `루틴`을 사용한다. 내부 정책에서만 필요할 때 `구조 변경` 등의 용어를 사용한다.
-
-첫 번째 다이얼로그 — 추천 루틴 저장 여부:
-- `이 루틴을 내 루틴으로 저장할까요?`
-- `앞으로 다시 사용할 때만 저장하세요.`
-- `저장하지 않기` / `내 루틴으로 저장`
-
-두 번째 다이얼로그 — 저장할 루틴 선택:
-- 표시 조건: 추천 루틴 저장을 선택했고 오늘 운동에서 운동/세트 구조를 수정한 경우
-- `어떤 루틴으로 저장할까요?`
-- `오늘 운동에서 추천 루틴의 운동이나 세트를 수정했어요.`
-- `추천 루틴 그대로` / `오늘 수정한 루틴`
-- 중량·횟수 변경, 실제 수행 순서 차이, 일부 운동 미수행은 두 번째 다이얼로그 조건이 아님
-
-Figma:
-- `FINAL_06_RECOMMENDED_ROUTINE_DIALOGS` — `163:2142`
-- local `DialogCard` instances 유지, text override만 변경
-- screenshot/read-back = PASS
-
-## Final-shell design system — QA PASS
-
-- 360×780
-- local Fitness spacing / surface / radius / text styles 유지
-- metric values → `display/01` 20/28
-- metric labels → `label/02` + `text/secondary`
-- PR value → `heading/02` 14/20
-- local `CompletionStatusIcon` / `DualCTA` 유지
-- notation: `13세트`, `벤치프레스 10kg × 12회`
-
----
+Do not treat sample values, sample chart choices, or current visual density as locked policy until Product Owner reviews them.
 
 ## NEXT OPEN ITEM — exact resume point
 
-**Review the two remaining recommended-routine completion conditionals as a flow against the locked final shell.**
+**Review `07A_분석홈_Exploration` first and decide what to keep / remove / change.**
 
-Figma:
-- `FINAL_06_RECOMMENDED_ROUTINE_DIALOGS` — `163:2142`
+Then continue sequentially through 07B → 07C → 07D → 07E.
 
-Remaining states:
-- 추천 루틴 저장 여부
-- 저장할 루틴 선택
-
-Do not re-add removed carousel/chart/body-map/partial-save completion artifacts without a concrete new PO decision.
-Do not reopen Group 05 without a concrete conflict or Product Owner request.
 Do not start Cursor/development handoff unless Product Owner explicitly switches to development.
+
+---
+
+# CLOSED TRACK — Group 06 운동 완료
+
+Group 06 is CLOSED after Product Owner review and final Figma cleanup.
+
+Canonical references:
+- `docs/ux-decisions/2026-09-12-group06-completion-final-shell.md`
+- `docs/ux-decisions/2026-09-12-group06-page-cleanup.md`
+
+Locked outcomes include:
+- common completion shell
+- conditional PR display and representative selection
+- `총 볼륨 —` non-applicable behavior
+- partial-save handling delegated to Group 05 end-workout confirmation
+- recommended-routine save / save-which-routine dialogs
+- final Group 06 Figma cleanup
+
+Do not reopen without a concrete conflict, regression, new evidence, or Product Owner request.
 
 ---
 
 # CLOSED TRACK — Group 05 운동 중
 
-Group 05 is CLOSED by PO decision.
-
 Closure record:
 - `docs/ux-decisions/2026-09-10-group05-closure-qa.md`
 
-Existing approved Group 05 decisions remain locked: active logging, rest timer, action menu, reorder, replacement, other-routine switching, session recovery, add/replace initialization, Korean workout-table labels, MVP sequential regular-set numbering, and end-workout confirmation.
+Existing approved Group 05 decisions remain locked.
 
 ---
 
@@ -203,32 +160,6 @@ Checkpoint:
 
 Group 04 closure:
 - `docs/ux-decisions/2026-09-10-group04-closure-qa.md`
-
----
-
-# PRESERVED DEFERRED TRACK — Analysis
-
-Approved hierarchy remains locked:
-1. 분석 홈
-2. 부위별 분석
-3. 운동별 성장
-4. 운동 기록
-5. 운동 기록 상세
-
-Locked basics:
-- default period = 최근 4주
-- choices = 4주 / 3개월 / 6개월 / 1년
-- headline metrics = 운동 횟수 / 완료 세트 / 운동 시간
-- body-map contribution: primary completed set `1.0`, secondary `0.5`, incomplete `0`
-- no kg/reps/duration/assistance multiplier for body-map contribution
-
-Resume references:
-- `docs/ux-decisions/2026-09-05-analysis-tab-ia.md`
-- `docs/ux-decisions/2026-09-05-analysis-body-area-drilldown.md`
-- `docs/ux-decisions/2026-09-05-analysis-exercise-progress.md`
-
-Preserved next Analysis item:
-`canonical muscle/body-part taxonomy → practical front/back body-map regions mapping`
 
 ---
 
