@@ -19,7 +19,7 @@ Product Owner가 `06 운동 완료` 페이지에 직접 만든 `최종화면` �
    - 총 운동 시간
    - 총 운동 수
    - 총 진행 세트
-4. 오늘의 신기록 1개
+4. 조건부 `오늘의 신기록` highlight
 5. `기록 상세 보기 / 홈으로 돌아가기`
 
 완료 화면에는 다음을 다시 넣지 않는다 unless later Product Owner decision explicitly changes the shell:
@@ -30,6 +30,27 @@ Product Owner가 `06 운동 완료` 페이지에 직접 만든 `최종화면` �
 - dense next-step/comparison copy
 
 상세 기록·차트·분석은 `기록 상세 보기` 및 별도 분석 흐름에서 다룬다.
+
+## Personal-record conditional policy — PO APPROVED
+
+`오늘의 신기록`은 항상 노출하는 고정 카드가 아니라 실제 비교 가능한 PR이 발생했을 때만 노출하는 조건부 highlight다.
+
+- 비교 가능한 신기록이 없으면 `Card_PersonalRecord` 전체를 숨긴다.
+- `신기록 없음`, 아쉬움/실패성 문구, 빈 placeholder는 표시하지 않는다.
+- 해당 운동의 첫 수행은 비교 기준이 없으므로 신기록으로 계산하지 않는다.
+- 신기록이 1개이면 현재 구조대로 `오늘의 신기록` + 해당 기록 1개를 표시한다.
+- 신기록이 2개 이상이어도 카드는 1개만 유지한다.
+- 2개 이상일 때 label은 `오늘의 신기록 N개`로 표시하고, 본문은 대표 기록 1개 + `· 외 N-1개`로 축약한다.
+- 전체 신기록 목록은 `기록 상세 보기`에서 확인한다.
+- 서로 다른 recording type/운동의 향상 폭을 임의 점수화해 대표 기록을 뽑지 않는다. MVP 대표 기록은 운동 수행 순서에서 가장 먼저 발생한 PR 1개를 사용한다.
+
+Figma comparison cases:
+- `REORG_06_PR_CASES` — `819:696`
+- 신기록 없음 `06A_PR_0_None` — `819:702`
+- 신기록 1개 `06A_PR_1_Single` — `819:733`
+- 신기록 2개 이상 `06A_PR_Multi` — `819:762`
+
+The canonical main remains `최종화면`; the three frames above are conditional comparison/state references, not separate navigation screens.
 
 ## Canonical Figma
 
@@ -71,7 +92,7 @@ Reused existing local Fitness text styles:
 - completion title → `display/01` — SUIT Bold 20/28
 - completion subtitle → `body/02` — SUIT Medium 13/18
 - metric labels → `label/02` — SUIT Medium 12/16 + `text/secondary`
-- metric values → `display/02` — SUIT Bold 24/32 + `text/primary`
+- metric values → `display/01` — SUIT Bold 20/28 + `text/primary`
 - personal-record label → `label/02` + `text/secondary`
 - personal-record value → `heading/02` — SUIT Bold 14/20 + `text/primary`
 - bottom CTA typography remains the existing local `button/cta`
@@ -84,27 +105,30 @@ No new text style, spacing token, radius token, or completion component family w
 
 ## Component / binding QA
 
-Focused QA on `최종화면`:
+Focused QA on `최종화면` and PR conditional cases:
 
 - local `CompletionStatusIcon` instance → main `742:901`, remote = false
 - local `DualCTA` instance → main `638:3344`, remote = false
 - root/content/summary/grid/card spacing uses existing Fitness Variables
 - surfaces/radius/colors continue using existing Fitness Variables
-- metric values resolve to local `display/02`
+- metric values resolve to local `display/01`
 - personal-record value resolves to local `heading/02`
 - metric/personal-record labels resolve to local `label/02` and `text/secondary`
-- screenshot read-back at 360×780 = PASS
+- PR cases are clones of the locked common shell; canonical main was not replaced
+- 3-case comparison screenshot read-back = PASS
 - no new external component dependency introduced
 
 Result: **PASS**
 
 ## NEXT OPEN ITEM
 
-The common completion shell is now locked.
+The common completion shell and PR conditional behavior are locked.
 
-Next Group 06 work:
+Next Group 06 Product/UX item:
 
-**Review the existing conditional completion states only as needed against this locked common shell.**
+**Decide how `총 볼륨` behaves when the completed session contains no volume-applicable work.**
+
+After that, review the existing broader conditional completion states only as needed against the locked common shell.
 
 Reference:
 - `REORG_06_CONDITIONAL_STATES` — `163:2142`
