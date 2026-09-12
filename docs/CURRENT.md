@@ -1,10 +1,10 @@
 # CURRENT — Fitness Project
 
-**Updated:** 2026-09-11
+**Updated:** 2026-09-12
 
 ## Current mode
 
-`PRODUCT/UX FIGMA · GROUP 06 WORKOUT COMPLETION ACTIVE · COMPLETION LAYOUT EXPLORATION SAVED · NEXT: SIMPLIFIED 06 COMPLETION SHELL REVIEW · NO CURSOR IMPLEMENTATION HANDOFF`
+`PRODUCT/UX FIGMA · GROUP 06 COMPLETION COMMON SHELL LOCKED · NEXT: CONDITIONAL STATES REVIEW AS NEEDED · NO CURSOR IMPLEMENTATION HANDOFF`
 
 ## Resume rule
 
@@ -16,10 +16,11 @@
 
 ## Latest active checkpoint
 
-- `docs/ux-decisions/2026-09-11-group06-completion-layout-exploration.md`
+- `docs/ux-decisions/2026-09-12-group06-completion-final-shell.md`
 
 Supporting checkpoints:
 
+- `docs/ux-decisions/2026-09-11-group06-completion-layout-exploration.md`
 - `docs/ux-decisions/2026-09-10-group06-figma-foundation.md`
 - `docs/ux-decisions/2026-09-10-group05-closure-qa.md`
 - `docs/ux-decisions/2026-09-10-figma-local-component-migration.md`
@@ -35,94 +36,71 @@ Canonical Figma:
 
 - file: `W3lZurXCXbThP67rF2xk2b`
 - page: `06 운동 완료` — `233:2077`
-- current canonical main: `06A_Completion_Carousel` — `163:2031`
-- carousel content reference: `REORG_06_CAROUSEL_CONTENT` — `163:2073`
+- canonical completion main: `최종화면` — `793:15748`
 - conditional-state reference: `REORG_06_CONDITIONAL_STATES` — `163:2142`
 - shared UI: `MVP_공용_UI` — `105:3113`
 - local component library: `LOCAL_COMPONENT_LIBRARY` — `635:788`
 - completion status component: `CompletionStatusIcon` — `742:901`
+- bottom actions: local `DualCTA` — `638:3344`
 
-Older hidden 06A–06J frames remain reference/archive material and are not canonical.
+Previous `06A_Completion_Carousel` (`163:2031`), fuller dashboard, chart variants and A/B/C simplified drafts are reference/archive only and are no longer canonical shell candidates.
 
-## Group 06 local design-system foundation — QA PASS
+## Common completion shell — PO APPROVED / QA PASS
 
-Current 06 foundation has been migrated to the local Fitness design system before Product/UX refinement.
+Product Owner approved the directly drawn `최종화면` as the common completion shell.
 
-- completion success icon → local `CompletionStatusIcon` (`742:901`), reusing local `icon/check`.
-- share CTA → local `CTA Button`.
-- bottom dual actions → local `DualCTA` / local CTA buttons.
-- conditional dialogs → local `DialogCard / DialogButtons`.
-- current 06 Variables/Styles are local; missing/remote dependency = 0 on the canonical main, carousel reference, and conditional-state reference.
-- summary-card spacing/radius and related list/body gaps were rebound to existing local Fitness Variables.
-- no parallel token/component system was created.
-- main 360×780 screen, carousel reference, and conditional-dialog visual read-back = PASS.
+Locked content hierarchy:
 
-Canonical foundation record:
+1. completion status + `운동 완료`
+2. yearly workout count subtitle
+3. four concise today metrics
+   - 총 볼륨
+   - 총 운동 시간
+   - 총 운동 수
+   - 총 진행 세트
+4. one `오늘의 신기록` highlight
+5. `기록 상세 보기 / 홈으로 돌아가기`
 
-- `docs/ux-decisions/2026-09-10-group06-figma-foundation.md`
+Do not add the following back to the common completion shell without a new Product Owner decision:
 
-## Current layout exploration — NOT PRODUCT-LOCKED
-
-The original carousel remains canonical only as the existing starting artifact. New completion concepts are comparison drafts and must not replace it until Product Owner approval.
-
-### Fuller dashboard draft
-- `06A_Completion_Dashboard_Full_Draft` — `775:593`
-- includes today summary, achievement/next hint, performed exercise list, and bottom actions
-- visual/layout cleanup completed with the existing Fitness design system
-- preserved as the fuller comparison case
-
-### Chart-oriented drafts
-- exercise recent-5 trend — `06A_Chart_A_ExerciseTrend_Draft` `783:653`
-- same-routine total-volume trend — `06A_Chart_B_RoutineVolume_Draft` `783:729`
-- previous-best vs today comparison — `06A_Chart_C_PRCompare_Draft` `783:801`
-
-All three chart drafts passed focused screenshot/binding QA with missing/remote component, Variable and Style = 0. No chart direction is approved; richer charts may fit `기록 상세` or deferred `분석` better than immediate completion.
-
-### Simplified completion drafts — current comparison set
-- A Balanced — `06A_Simple_A_Balanced_Draft` `788:671`
-- B Minimal — `06A_Simple_B_Minimal_Draft` `788:726`
-- C Result Board — `06A_Simple_C_ResultBoard_Draft` `788:781`
-
-All three are 360×780 and reuse local `CompletionStatusIcon` and `DualCTA`. Focused screenshot/binding QA PASS; missing/remote component, Variable and Style = 0.
-
-## Current Product/UX question
-
-Product Owner raised that a separate `기록 상세 보기` path already exists. Current working direction is therefore to test whether the completion page should stay concise rather than duplicate detailed records.
-
-Working direction, **not yet locked**:
-- completion/save confirmation
-- concise today summary
-- at most one meaningful highlight such as best record
-- `기록 상세 보기 / 홈으로 돌아가기`
-
-Candidates to move out of the completion page unless later justified:
 - full performed-exercise list
+- carousel
 - multiple charts
 - multiple analysis cards
 - dense comparison/next-step copy
 
-Reference research and exact Figma draft inventory are recorded in:
+Detailed records and richer analysis belong behind `기록 상세 보기` or the separate Analysis track.
 
-- `docs/ux-decisions/2026-09-11-group06-completion-layout-exploration.md`
+## Final-shell design-system refinement — QA PASS
+
+`최종화면` was refined in place with the existing local Fitness system.
+
+- root converted to vertical Auto Layout; frame remains 360×780
+- safe/status area 62 + content 620 + footer 98
+- content inset/top/gaps rebound to existing `spacing/20`, `spacing/24`, `spacing/32`, `spacing/12`, `spacing/6`, `spacing/16`
+- metric cards continue existing local surface/radius/color bindings
+- metric values → local `display/02` 24/32
+- metric labels → local `label/02` + `text/secondary`
+- personal-record value → local `heading/02` 14/20
+- local `CompletionStatusIcon` and `DualCTA` preserved as instances; remote = false
+- no new component/token/style family created
+- obsolete hidden scratch card/redundant wrapper removed from the final frame
+- notation normalized to `13세트`, `벤치프레스 10kg × 12회`
+- focused structure/binding read-back + 360×780 screenshot = PASS
+
+Canonical record:
+
+- `docs/ux-decisions/2026-09-12-group06-completion-final-shell.md`
 
 ## NEXT OPEN ITEM — exact resume point
 
-**Start from the three simplified completion drafts, not from the old carousel review from scratch.**
+**Review Group 06 conditional completion states only as needed against the locked common shell.**
 
-Compare first:
-- A Balanced — `788:671`
-- B Minimal — `788:726`
-- C Result Board — `788:781`
+Start from:
 
-Decide:
-1. whether completion remains summary-only because `기록 상세 보기` exists
-2. which A/B/C direction, or a small hybrid, becomes the common completion shell
-3. whether the shell needs one stronger visual signature beyond normal stacked cards — e.g. dominant result number, distinct completion hero, or one compact highlight
+- `REORG_06_CONDITIONAL_STATES` — `163:2142`
 
-Do not promote any draft to canonical until Product Owner approves the direction.
-
-After the common completion shell is approved, review Group 06 conditional states only as needed.
-
+Do not reopen the old carousel or completion-layout exploration without a concrete conflict or Product Owner request.
 Do not reopen Group 05 without a concrete conflict or Product Owner request.
 Do not start Cursor/development handoff unless Product Owner explicitly switches to development.
 
@@ -138,7 +116,7 @@ Closure record:
 
 Existing approved/QA-passed Group 05 decisions remain locked. This includes active logging, rest timer, action menu, reorder, replacement, other-routine switching, session recovery, add/replace initialization, Korean workout-table labels, and MVP sequential regular-set numbering.
 
-Do not reopen solely because Group 06 work begins.
+Do not reopen solely because Group 06 work continues.
 
 ---
 
@@ -155,12 +133,12 @@ Canonical Figma pages:
 
 Rules/results:
 
-- approved existing local components retained.
-- external families localized only where no local equivalent existed.
-- no detach-based screen duplication.
-- nested external dependencies replaced.
-- Variable/Style bindings rebound to local foundations.
-- post-migration representative visual/artifact QA PASS.
+- approved existing local components retained
+- external families localized only where no local equivalent existed
+- no detach-based screen duplication
+- nested external dependencies replaced
+- Variable/Style bindings rebound to local foundations
+- post-migration representative visual/artifact QA PASS
 
 Checkpoint:
 
@@ -196,7 +174,7 @@ Locked basics:
 - choices = 4주 / 3개월 / 6개월 / 1년
 - headline metrics = 운동 횟수 / 완료 세트 / 운동 시간
 - body-map contribution: primary completed set `1.0`, secondary `0.5`, incomplete `0`
-- no kg/reps/duration/assistance multiplier for body-map contribution.
+- no kg/reps/duration/assistance multiplier for body-map contribution
 
 Resume references:
 
