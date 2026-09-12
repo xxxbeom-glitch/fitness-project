@@ -4,7 +4,7 @@
 
 ## Current mode
 
-`PRODUCT/UX FIGMA · GROUP 06 COMPLETION + PR CONDITIONAL STATES LOCKED · NEXT: TOTAL VOLUME NON-APPLICABLE POLICY · NO CURSOR IMPLEMENTATION HANDOFF`
+`PRODUCT/UX FIGMA · GROUP 06 COMPLETION / PR / TOTAL VOLUME STATES LOCKED · NEXT: CONDITIONAL COMPLETION STATES REVIEW · NO CURSOR IMPLEMENTATION HANDOFF`
 
 ## Resume rule
 
@@ -38,6 +38,7 @@ Canonical Figma:
 - page: `06 운동 완료` — `233:2077`
 - canonical completion main: `최종화면` — `793:15748`
 - PR conditional reference: `REORG_06_PR_CASES` — `819:696`
+- total-volume N/A reference: `06A_Volume_NA` — `823:720`
 - conditional-state reference: `REORG_06_CONDITIONAL_STATES` — `163:2142`
 - shared UI: `MVP_공용_UI` — `105:3113`
 - local component library: `LOCAL_COMPONENT_LIBRARY` — `635:788`
@@ -84,7 +85,7 @@ Detailed records and richer analysis belong behind `기록 상세 보기` or the
 - 서로 다른 recording type의 향상 폭을 임의 점수화하지 않음
 - 같은 운동 내 대표 PR은 recording type별 기준을 사용:
   - `weight_reps`: 최고 중량 PR 우선 → 없으면 동일 중량 반복수 PR
-  - `reps`: 최대 반복수
+  - `reps`: 최대 반복수, 표기는 `푸시업 15회`처럼 중량 없이 표시
   - `duration`: 최대 수행 시간
   - `assisted_weight_reps`: 최소 보조중량 PR 우선 → 없으면 동일 보조중량 반복수 PR
 - e1RM/추정 1RM은 MVP 대표 PR 선택에 사용하지 않음
@@ -96,6 +97,22 @@ Figma cases:
 - multi PR, representative only `06A_PR_Multi_RepresentativeOnly` — `819:762`
 
 All three preserve the locked 360×780 common shell and local component/token bindings. 3-case screenshot read-back = PASS.
+
+## Total-volume behavior — PO APPROVED / FIGMA PASS
+
+- `weight_reps` 완료 세트만 `중량 × 반복수`로 총 볼륨에 합산
+- `reps` 제외
+- `duration` 제외
+- `assisted_weight_reps` 제외
+- 여러 recording type이 섞이면 계산 가능한 `weight_reps`만 합산
+- 계산 가능한 완료 세트가 하나도 없으면 `총 볼륨` 카드는 유지하고 값은 `—`
+- `0kg`로 표시하지 않음
+- reps/duration/assistance를 kg로 환산하지 않음
+- 다른 임시 지표로 카드 자체를 교체하지 않음; 2×2 핵심 지표 구조 유지
+
+Figma case:
+- `06A_Volume_NA` — `823:720`
+- screenshot/read-back = PASS
 
 ## Final-shell design-system refinement — QA PASS
 
@@ -120,16 +137,18 @@ Canonical record:
 
 ## NEXT OPEN ITEM — exact resume point
 
-**Decide `총 볼륨` behavior for sessions with no volume-applicable completed work.**
+**Review the broader Group 06 conditional completion states against the locked common shell.**
 
-Need to decide whether the metric card:
-- stays with a non-value state such as `—`, or
-- is conditionally omitted/replaced without inventing a cross-recording-type aggregate.
+Start from:
 
-This must respect the approved recording-type semantics; reps/duration/assistance must not be falsely converted into kg volume.
-
-After that, review broader Group 06 conditional completion states only as needed against the locked common shell:
 - `REORG_06_CONDITIONAL_STATES` — `163:2142`
+
+Priority states already present:
+- 추천 루틴 저장 여부
+- 저장할 구성 선택
+- 부분 기록 저장 완료
+
+Only revise these where the locked final shell creates a concrete conflict or outdated presentation.
 
 Do not reopen the old carousel or completion-layout exploration without a concrete conflict or Product Owner request.
 Do not reopen Group 05 without a concrete conflict or Product Owner request.
