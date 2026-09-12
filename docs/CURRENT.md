@@ -77,16 +77,23 @@ Detailed records and richer analysis belong behind `기록 상세 보기` or the
 - 비교 가능한 신기록이 없으면 `오늘의 신기록` 카드를 전체 숨김
 - `신기록 없음` 또는 실패성/빈 상태 문구를 표시하지 않음
 - 해당 운동의 첫 수행은 비교 기준이 없으므로 PR로 계산하지 않음
-- 신기록 1개 → `오늘의 신기록` + 기록 1개
-- 신기록 2개 이상 → 카드 1개 유지, `오늘의 신기록 N개` + 대표 기록 1개 + `· 외 N-1개`
+- 신기록이 1개든 여러 개든 완료 화면에는 대표 신기록 1개만 표시
+- 신기록 개수와 `외 N개` 표기는 사용하지 않음
 - 전체 PR은 `기록 상세 보기`에서 확인
-- MVP 대표 기록 = 운동 수행 순서에서 가장 먼저 발생한 PR
+- 대표 운동 = 현재 세션 운동 표시 순서상 유효 PR이 발생한 첫 운동
 - 서로 다른 recording type의 향상 폭을 임의 점수화하지 않음
+- 같은 운동 내 대표 PR은 recording type별 기준을 사용:
+  - `weight_reps`: 최고 중량 PR 우선 → 없으면 동일 중량 반복수 PR
+  - `reps`: 최대 반복수
+  - `duration`: 최대 수행 시간
+  - `assisted_weight_reps`: 최소 보조중량 PR 우선 → 없으면 동일 보조중량 반복수 PR
+- e1RM/추정 1RM은 MVP 대표 PR 선택에 사용하지 않음
+- 완료 처리된 세트만 PR 판정
 
 Figma cases:
 - no PR `06A_PR_0_None` — `819:702`
 - single PR `06A_PR_1_Single` — `819:733`
-- multi PR `06A_PR_Multi` — `819:762`
+- multi PR, representative only `06A_PR_Multi_RepresentativeOnly` — `819:762`
 
 All three preserve the locked 360×780 common shell and local component/token bindings. 3-case screenshot read-back = PASS.
 
