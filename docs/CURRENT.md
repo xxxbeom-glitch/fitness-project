@@ -4,7 +4,7 @@
 
 ## Current mode
 
-`PRODUCT/UX FIGMA · GROUP 06 FINAL PAGE CLEANUP PASS · NEXT: RECOMMENDED-ROUTINE CONDITIONALS REVIEW · NO CURSOR IMPLEMENTATION HANDOFF`
+`PRODUCT/UX FIGMA · GROUP 06 FINAL PAGE CLEANUP PASS · NEXT: RECOMMENDED-ROUTINE CONDITIONAL FLOW REVIEW · NO CURSOR IMPLEMENTATION HANDOFF`
 
 ## Resume rule
 
@@ -127,6 +127,27 @@ Figma:
 - Group 06의 별도 `부분 기록 저장 완료` 카드/화면은 사용하지 않음
 - partial-save 완료 artifact는 Figma cleanup에서 삭제됨
 
+## Recommended-routine dialogs — terminology updated / FIGMA PASS
+
+사용자-facing copy에서는 `구성` 대신 `루틴`을 사용한다. 내부 정책에서만 필요할 때 `구조 변경` 등의 용어를 사용한다.
+
+첫 번째 다이얼로그 — 추천 루틴 저장 여부:
+- `이 루틴을 내 루틴으로 저장할까요?`
+- `앞으로 다시 사용할 때만 저장하세요.`
+- `저장하지 않기` / `내 루틴으로 저장`
+
+두 번째 다이얼로그 — 저장할 루틴 선택:
+- 표시 조건: 추천 루틴 저장을 선택했고 오늘 운동에서 운동/세트 구조를 수정한 경우
+- `어떤 루틴으로 저장할까요?`
+- `오늘 운동에서 추천 루틴의 운동이나 세트를 수정했어요.`
+- `추천 루틴 그대로` / `오늘 수정한 루틴`
+- 중량·횟수 변경, 실제 수행 순서 차이, 일부 운동 미수행은 두 번째 다이얼로그 조건이 아님
+
+Figma:
+- `FINAL_06_RECOMMENDED_ROUTINE_DIALOGS` — `163:2142`
+- local `DialogCard` instances 유지, text override만 변경
+- screenshot/read-back = PASS
+
 ## Final-shell design system — QA PASS
 
 - 360×780
@@ -141,14 +162,14 @@ Figma:
 
 ## NEXT OPEN ITEM — exact resume point
 
-**Review the two remaining recommended-routine completion conditionals against the locked final shell.**
+**Review the two remaining recommended-routine completion conditionals as a flow against the locked final shell.**
 
 Figma:
 - `FINAL_06_RECOMMENDED_ROUTINE_DIALOGS` — `163:2142`
 
 Remaining states:
 - 추천 루틴 저장 여부
-- 저장할 구성 선택
+- 저장할 루틴 선택
 
 Do not re-add removed carousel/chart/body-map/partial-save completion artifacts without a concrete new PO decision.
 Do not reopen Group 05 without a concrete conflict or Product Owner request.
