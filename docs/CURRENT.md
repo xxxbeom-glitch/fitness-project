@@ -4,7 +4,7 @@
 
 ## Current mode
 
-`PRODUCT/UX FIGMA · GROUP 07 ANALYSIS / WORKOUT HISTORY REFINED EXPLORATION · PO REVIEW · NO CURSOR IMPLEMENTATION HANDOFF`
+`PRODUCT/UX FIGMA · GROUP 07 ANALYSIS / WORKOUT HISTORY REFINED EXPLORATION · 07A LOCAL COMPONENT BINDING PASS · PO REVIEW · NO CURSOR IMPLEMENTATION HANDOFF`
 
 ## Resume rule
 
@@ -16,9 +16,10 @@
 
 ## Latest active checkpoint
 
-- `docs/ux-decisions/2026-09-12-group07-analysis-design-system-reference-qa.md`
+- `docs/ux-decisions/2026-09-12-group07a-local-component-binding-qa.md`
 
-Exploration origin:
+Supporting Group 07 checkpoints:
+- `docs/ux-decisions/2026-09-12-group07-analysis-design-system-reference-qa.md`
 - `docs/ux-decisions/2026-09-12-group07-analysis-exploration.md`
 
 Direct locked Analysis references:
@@ -49,6 +50,8 @@ Current review-draft frames:
 - `07E_운동기록상세_Exploration` — `836:1593`
 
 The previous Group 07 draft frames were removed from Figma by Product Owner request before rebuilding this exploration.
+
+The temporary bottom app bars were also removed from the current 07A–07E review frames by Product Owner request; Group 07 review currently focuses on page content itself.
 
 ## Locked IA / product basics
 
@@ -97,9 +100,43 @@ Still OPEN:
 - final body-map visual treatment / thresholds
 - empty / insufficient-data states
 
+## 07A local component / binding — PASS
+
+Checkpoint:
+- `docs/ux-decisions/2026-09-12-group07a-local-component-binding-qa.md`
+
+07A now follows the same current-file dependency structure used for prior finalized Figma work:
+
+`screen → current Fitness local component → current Fitness local Variable / Style`
+
+Existing local instances retained:
+- `Nav Header`
+- `fixed-tab-bar`
+- `WorkoutRow`
+- `chevron-right`
+
+Missing repeated patterns promoted to local masters on `MVP_공용_UI`:
+- `MetricCard` — `854:1167`
+- `AnalysisSectionHeader` — `854:1190`
+  - `Action=None` — `854:1185`
+  - `Action=Trailing` — `854:1189`
+- `AnalysisProgressRow` — `854:6951`
+
+Post-migration actual-tree audit for 07A:
+- external component instance = `0`
+- external Variable = `0`
+- external Style = `0`
+- raw solid color drift = `0`
+- raw non-zero spacing/padding drift = `0`
+- raw non-zero radius drift = `0`
+
+Visual regression from text width during component conversion was fixed at the component-master level and screenshot read-back passed.
+
+This is a mechanical design-system/component PASS, not final PO approval of 07A content.
+
 ## Design-system + Mobbin refinement — focused QA PASS
 
-Latest refinement checkpoint:
+Reference checkpoint:
 - `docs/ux-decisions/2026-09-12-group07-analysis-design-system-reference-qa.md`
 
 Applied to current Figma exploration:
@@ -109,18 +146,12 @@ Applied to current Figma exploration:
 - 07A / 07B body-map sample -> existing layered assets with varied opacity to demonstrate period emphasis
 - 07C chart -> explicit example metric label + corrected editable trend path
 - 07D partial status -> `부분 기록`
-- all review frames -> BottomAppBar/content overlap removed
 - screen-owned matching spacing / padding / radius values rebound to current local Fitness Variables
-- all screen-owned text remains on current local SUIT text styles
+- screen-owned text remains on current local SUIT text styles
 
-Focused QA:
-- QA-1 Structure / Auto Layout = PASS
-- QA-2 Group 07 screen-owned Design-system / Binding = PASS
-- QA-3 Visual / reference / product = PASS as exploration, not final UI approval
-
-Known shared-system debt, not introduced by Group 07:
-- BottomAppBar still uses the existing shared imported component source already used by `MVP_공용_UI`; localizing that family is a separate shared-component migration task.
-- existing local `SectionHeader` has legacy Inter treatment; Group 07 did not swap to it because doing so would regress current SUIT-based typography and would require impact QA on existing users.
+Known shared-system note:
+- existing older generic `SectionHeader` family has legacy Inter treatment and lacks the trailing-action structure required by 07A.
+- it was not mutated because it has existing 04 consumers; 07A instead uses the new local `AnalysisSectionHeader` family to avoid regression to approved prior screens.
 
 ## Current exploration principle
 
@@ -136,9 +167,9 @@ Do not treat sample values, sample chart choices, body-map opacity levels, or cu
 
 ## NEXT OPEN ITEM — exact resume point
 
-**Review the refined `07A_분석홈_Exploration` first and decide what to keep / remove / change.**
+**Continue Product Owner review of `07A_분석홈_Exploration` content and behavior.**
 
-Then continue sequentially through 07B → 07C → 07D → 07E.
+After 07A is settled, continue sequentially through 07B → 07C → 07D → 07E and apply the same local-component/binding standard as each screen is finalized.
 
 Do not start Cursor/development handoff unless Product Owner explicitly switches to development.
 
