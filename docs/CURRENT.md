@@ -4,7 +4,7 @@
 
 ## Current mode
 
-`PRODUCT/UX FIGMA · GROUP 07 ANALYSIS / WORKOUT HISTORY EXPLORATION · PO REVIEW · NO CURSOR IMPLEMENTATION HANDOFF`
+`PRODUCT/UX FIGMA · GROUP 07 ANALYSIS / WORKOUT HISTORY REFINED EXPLORATION · PO REVIEW · NO CURSOR IMPLEMENTATION HANDOFF`
 
 ## Resume rule
 
@@ -16,6 +16,9 @@
 
 ## Latest active checkpoint
 
+- `docs/ux-decisions/2026-09-12-group07-analysis-design-system-reference-qa.md`
+
+Exploration origin:
 - `docs/ux-decisions/2026-09-12-group07-analysis-exploration.md`
 
 Direct locked Analysis references:
@@ -94,6 +97,31 @@ Still OPEN:
 - final body-map visual treatment / thresholds
 - empty / insufficient-data states
 
+## Design-system + Mobbin refinement — focused QA PASS
+
+Latest refinement checkpoint:
+- `docs/ux-decisions/2026-09-12-group07-analysis-design-system-reference-qa.md`
+
+Applied to current Figma exploration:
+- 07A / 07B / 07C period selector -> existing local `fixed-tab-bar` four-tab pattern
+- 07A workout consistency -> `주 평균 3회` metric-first treatment
+- 07A recent progress -> concrete change values instead of generic `상승`
+- 07A / 07B body-map sample -> existing layered assets with varied opacity to demonstrate period emphasis
+- 07C chart -> explicit example metric label + corrected editable trend path
+- 07D partial status -> `부분 기록`
+- all review frames -> BottomAppBar/content overlap removed
+- screen-owned matching spacing / padding / radius values rebound to current local Fitness Variables
+- all screen-owned text remains on current local SUIT text styles
+
+Focused QA:
+- QA-1 Structure / Auto Layout = PASS
+- QA-2 Group 07 screen-owned Design-system / Binding = PASS
+- QA-3 Visual / reference / product = PASS as exploration, not final UI approval
+
+Known shared-system debt, not introduced by Group 07:
+- BottomAppBar still uses the existing shared imported component source already used by `MVP_공용_UI`; localizing that family is a separate shared-component migration task.
+- existing local `SectionHeader` has legacy Inter treatment; Group 07 did not swap to it because doing so would regress current SUIT-based typography and would require impact QA on existing users.
+
 ## Current exploration principle
 
 The five current frames are **PO feedback artifacts, not approved final UI**.
@@ -104,11 +132,11 @@ They are organized around user questions:
 - 실제 기록이 좋아지고 있나?
 - 지난 운동에서 무엇을 했나?
 
-Do not treat sample values, sample chart choices, or current visual density as locked policy until Product Owner reviews them.
+Do not treat sample values, sample chart choices, body-map opacity levels, or current visual density as locked policy until Product Owner reviews them.
 
 ## NEXT OPEN ITEM — exact resume point
 
-**Review `07A_분석홈_Exploration` first and decide what to keep / remove / change.**
+**Review the refined `07A_분석홈_Exploration` first and decide what to keep / remove / change.**
 
 Then continue sequentially through 07B → 07C → 07D → 07E.
 
