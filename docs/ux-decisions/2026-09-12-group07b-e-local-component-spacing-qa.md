@@ -96,6 +96,28 @@ Visual regressions fixed during QA:
 - 07C history date / summary wrapping after component conversion
 - 07D partial-status trailing area width / clipping risk
 
+## 2026-09-13 Product Owner review update — recent record change / exercise history
+
+The following product-review decisions supersede the earlier draft presentation where applicable:
+
+### 07A 최근 기록 변화
+- section-level `전체 보기` action is removed.
+- each row is intentionally summary-only: **exercise name + change delta + chevron**.
+- the previous inline `previous value → current value` detail is removed from the Analysis Home row.
+- the full row is the navigation target; chevron is only the affordance.
+- row navigation target = `07C 운동별 성장`, opened for the selected exercise.
+
+Figma implementation:
+- shared local `AnalysisProgressRow` — `854:6951` simplified to a one-line 48px row.
+- existing local SUIT text styles, semantic colors, spacing/radius bindings and `chevron-right` remain reused.
+- `RecentProgressSection` headers in the current 07A review variants now use `AnalysisSectionHeader / Action=None`.
+- latest 07A exploration screenshot read-back after the change = PASS.
+
+### 07C / 04G exercise history responsibility
+- `04G_Exercise_History` remains the canonical detailed history UI for a selected exercise: date-by-date, set-level recorded values.
+- 07C should focus on analysis (record change, trend, valid summary/PR context) rather than duplicating the full exercise-history UI.
+- if full history is needed from 07C, route to/reuse `04G_Exercise_History` instead of maintaining a second detailed history pattern.
+
 ## Boundary
 
 This is a **mechanical design-system consistency PASS**, not Product Owner approval of the final Group 07 information design.
