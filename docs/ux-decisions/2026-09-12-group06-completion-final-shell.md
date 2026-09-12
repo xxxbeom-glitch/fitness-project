@@ -121,22 +121,47 @@ Figma reference:
 - 이 결정은 Group 05 종료 정책을 재오픈하지 않는다.
 
 Figma:
-- `REORG_06_CONDITIONAL_STATES` — `163:2142`
+- `FINAL_06_RECOMMENDED_ROUTINE_DIALOGS` — `163:2142`
 - 이전 `부분 기록 저장 완료` label/card 제거
-- 남은 conditional reference는 `추천 루틴 저장 여부`, `저장할 구성 선택` 두 케이스만 유지
+- 남은 conditional reference는 `추천 루틴 저장 여부`, `저장할 루틴 선택` 두 케이스만 유지
 - section description을 추천 루틴 저장 판단에 맞게 정리
 - focused screenshot read-back = PASS
+
+## Recommended-routine save dialog terminology — PO APPROVED
+
+내부 정책 문서에서는 루틴의 운동/세트 변경을 설명하기 위해 `구조 변경`, `구성 변경` 용어를 사용할 수 있지만, 사용자-facing 다이얼로그에서는 갑자기 `구성`이라는 추상 표현을 쓰지 않고 `루틴`으로 통일한다.
+
+첫 번째 다이얼로그 `추천 루틴 저장 여부`는 기존 의미를 유지한다.
+
+- title: `이 루틴을 내 루틴으로 저장할까요?`
+- description: `앞으로 다시 사용할 때만 저장하세요.`
+- actions: `저장하지 않기` / `내 루틴으로 저장`
+
+두 번째 다이얼로그는 사용자가 추천 루틴 저장을 선택했고, 오늘 운동에서 운동 추가/삭제·교체 또는 세트 추가/삭제 등 저장 대상 루틴의 구조를 수정한 경우에만 표시한다.
+
+- state label: `저장할 루틴 선택`
+- title: `어떤 루틴으로 저장할까요?`
+- description: `오늘 운동에서 추천 루틴의 운동이나 세트를 수정했어요.`
+- secondary action: `추천 루틴 그대로`
+- primary action: `오늘 수정한 루틴`
+
+중량·횟수 변경, 실제 수행 순서 차이, 일부 운동 미수행은 이 두 번째 다이얼로그의 조건이 아니다.
+
+Figma:
+- `FINAL_06_RECOMMENDED_ROUTINE_DIALOGS` — `163:2142`
+- local `DialogCard` instances preserved; text overrides only
+- screenshot/read-back = PASS
 
 ## Canonical Figma
 
 - file: `W3lZurXCXbThP67rF2xk2b`
 - page: `06 운동 완료` — `233:2077`
-- canonical completion main: `최종화면` — `793:15748`
+- canonical completion main: `06A_Completion_Default` — `793:15748`
 - local component library: `LOCAL_COMPONENT_LIBRARY` — `635:788`
 - completion status component: `CompletionStatusIcon` — `742:901`
 - bottom action component: `DualCTA` — `638:3344`
 
-Previous `06A_Completion_Carousel` (`163:2031`) and exploration drafts remain reference/archive only.
+Previous `06A_Completion_Carousel` (`163:2031`) and exploration drafts were removed from the Figma page during final cleanup; their decision history remains in GitHub only.
 
 ## Design-system refinement applied
 
@@ -180,7 +205,7 @@ No new text style, spacing token, radius token, or completion component family w
 
 ## Component / binding QA
 
-Focused QA on `최종화면`, PR conditional cases, total-volume N/A case, and conditional-state cleanup:
+Focused QA on final completion artifacts:
 
 - local `CompletionStatusIcon` instance → main `742:901`, remote = false
 - local `DualCTA` instance → main `638:3344`, remote = false
@@ -189,10 +214,10 @@ Focused QA on `최종화면`, PR conditional cases, total-volume N/A case, and c
 - metric values resolve to local `display/01`
 - personal-record value resolves to local `heading/02`
 - metric/personal-record labels resolve to local `label/02` and `text/secondary`
-- PR cases are clones of the locked common shell; canonical main was not replaced
-- multi-PR case visually matches the representative-only policy; no count / `외 N개` copy remains
-- `06A_Volume_NA` keeps the locked 2×2 metric structure and shows only `총 볼륨 —`
-- `REORG_06_CONDITIONAL_STATES` no longer contains the redundant partial-save completion summary
+- no-PR case keeps the common shell and removes only PR card
+- `06C_Completion_VolumeNA` keeps the locked 2×2 metric structure and shows only `총 볼륨 —`
+- `FINAL_06_RECOMMENDED_ROUTINE_DIALOGS` no longer contains the redundant partial-save completion summary
+- recommended-routine second dialog uses `루틴` terminology rather than `구성`
 - focused screenshot/read-back = PASS
 - no new external component dependency introduced
 
@@ -200,20 +225,20 @@ Result: **PASS**
 
 ## NEXT OPEN ITEM
 
-The common completion shell, PR behavior, total-volume N/A behavior, and partial-save handling are locked.
+The common completion shell, PR behavior, total-volume N/A behavior, partial-save handling, and recommended-routine dialog terminology are locked.
 
 Next Group 06 Product/UX item:
 
-**Review the remaining recommended-routine completion conditionals against the locked common shell.**
+**Review the remaining recommended-routine completion conditional flow against the locked common shell.**
 
 Start from:
-- `REORG_06_CONDITIONAL_STATES` — `163:2142`
+- `FINAL_06_RECOMMENDED_ROUTINE_DIALOGS` — `163:2142`
 
 Remaining states:
 - 추천 루틴 저장 여부
-- 저장할 구성 선택
+- 저장할 루틴 선택
 
 Do not re-add a Group 06 partial-save completion card; partial-save confirmation belongs to the Group 05 end-workout flow.
-Do not reopen the old carousel, chart drafts, or A/B/C shell comparison without a concrete conflict or Product Owner request.
+Do not reopen removed carousel, chart, body-map, or draft artifacts without a concrete conflict or Product Owner request.
 
 **NO CURSOR IMPLEMENTATION HANDOFF.**
