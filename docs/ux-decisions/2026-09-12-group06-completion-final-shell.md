@@ -110,6 +110,23 @@ Figma reference:
 - `총 볼륨` value = `—`
 - locked common shell / local component-token structure preserved
 
+## Partial-save completion state removal — PO APPROVED
+
+`부분 기록 저장 완료`를 Group 06의 별도 완료 상태로 다시 안내하지 않는다.
+
+- 미완료 세트/운동이 있는 상태의 종료 여부와 `완료한 세트까지만 기록`된다는 안내는 Group 05 운동 중 종료 다이얼로그에서 이미 확인한다.
+- 사용자가 Group 05에서 `종료하고 저장`을 확정하면 Group 06은 저장된 실제 결과만 일반 완료 화면에 표시한다.
+- Group 06에서 별도의 `부분 기록 저장 완료` 카드/summary를 추가하지 않는다.
+- 부분 저장된 세션의 총 운동 시간, 총 운동 수, 총 진행 세트, 총 볼륨은 실제 persist된 완료 기록 기준으로 계산한다.
+- 이 결정은 Group 05 종료 정책을 재오픈하지 않는다.
+
+Figma:
+- `REORG_06_CONDITIONAL_STATES` — `163:2142`
+- 이전 `부분 기록 저장 완료` label/card 제거
+- 남은 conditional reference는 `추천 루틴 저장 여부`, `저장할 구성 선택` 두 케이스만 유지
+- section description을 추천 루틴 저장 판단에 맞게 정리
+- focused screenshot read-back = PASS
+
 ## Canonical Figma
 
 - file: `W3lZurXCXbThP67rF2xk2b`
@@ -163,7 +180,7 @@ No new text style, spacing token, radius token, or completion component family w
 
 ## Component / binding QA
 
-Focused QA on `최종화면`, PR conditional cases, and total-volume N/A case:
+Focused QA on `최종화면`, PR conditional cases, total-volume N/A case, and conditional-state cleanup:
 
 - local `CompletionStatusIcon` instance → main `742:901`, remote = false
 - local `DualCTA` instance → main `638:3344`, remote = false
@@ -175,6 +192,7 @@ Focused QA on `최종화면`, PR conditional cases, and total-volume N/A case:
 - PR cases are clones of the locked common shell; canonical main was not replaced
 - multi-PR case visually matches the representative-only policy; no count / `외 N개` copy remains
 - `06A_Volume_NA` keeps the locked 2×2 metric structure and shows only `총 볼륨 —`
+- `REORG_06_CONDITIONAL_STATES` no longer contains the redundant partial-save completion summary
 - focused screenshot/read-back = PASS
 - no new external component dependency introduced
 
@@ -182,20 +200,20 @@ Result: **PASS**
 
 ## NEXT OPEN ITEM
 
-The common completion shell, PR conditional behavior, and total-volume N/A behavior are locked.
+The common completion shell, PR behavior, total-volume N/A behavior, and partial-save handling are locked.
 
 Next Group 06 Product/UX item:
 
-**Review the existing broader conditional completion states only as needed against the locked common shell.**
+**Review the remaining recommended-routine completion conditionals against the locked common shell.**
 
 Start from:
 - `REORG_06_CONDITIONAL_STATES` — `163:2142`
 
-Priority states already present there:
+Remaining states:
 - 추천 루틴 저장 여부
 - 저장할 구성 선택
-- 부분 기록 저장 완료
 
+Do not re-add a Group 06 partial-save completion card; partial-save confirmation belongs to the Group 05 end-workout flow.
 Do not reopen the old carousel, chart drafts, or A/B/C shell comparison without a concrete conflict or Product Owner request.
 
 **NO CURSOR IMPLEMENTATION HANDOFF.**
