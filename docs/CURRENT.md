@@ -4,7 +4,7 @@
 
 ## Current mode
 
-`PRODUCT/UX FIGMA · GROUP 07 ANALYSIS / WORKOUT HISTORY REFINED EXPLORATION · 07A LOCAL COMPONENT BINDING PASS · PO REVIEW · NO CURSOR IMPLEMENTATION HANDOFF`
+`PRODUCT/UX FIGMA · GROUP 07 ANALYSIS / WORKOUT HISTORY EXPLORATION · 07A–07E LOCAL COMPONENT / SPACING PASS · PO REVIEW · NO CURSOR IMPLEMENTATION HANDOFF`
 
 ## Resume rule
 
@@ -16,9 +16,10 @@
 
 ## Latest active checkpoint
 
-- `docs/ux-decisions/2026-09-12-group07a-local-component-binding-qa.md`
+- `docs/ux-decisions/2026-09-12-group07b-e-local-component-spacing-qa.md`
 
 Supporting Group 07 checkpoints:
+- `docs/ux-decisions/2026-09-12-group07a-local-component-binding-qa.md`
 - `docs/ux-decisions/2026-09-12-group07-analysis-design-system-reference-qa.md`
 - `docs/ux-decisions/2026-09-12-group07-analysis-exploration.md`
 
@@ -100,58 +101,97 @@ Still OPEN:
 - final body-map visual treatment / thresholds
 - empty / insufficient-data states
 
-## 07A local component / binding — PASS
+## 07A–07E current local component / spacing standard — PASS
 
-Checkpoint:
+Checkpoints:
 - `docs/ux-decisions/2026-09-12-group07a-local-component-binding-qa.md`
+- `docs/ux-decisions/2026-09-12-group07b-e-local-component-spacing-qa.md`
 
-07A now follows the same current-file dependency structure used for prior finalized Figma work:
+Current Group 07 dependency rule now matches the current-file structure used by finalized prior Figma work:
 
 `screen → current Fitness local component → current Fitness local Variable / Style`
 
-Existing local instances retained:
+Existing local components reused across Group 07 include:
 - `Nav Header`
 - `fixed-tab-bar`
 - `WorkoutRow`
 - `chevron-right`
+- `MetricCard`
+- `AnalysisSectionHeader`
+- `AnalysisProgressRow`
 
-Missing repeated patterns promoted to local masters on `MVP_공용_UI`:
+Group 07 local masters added during the current migration:
 - `MetricCard` — `854:1167`
 - `AnalysisSectionHeader` — `854:1190`
   - `Action=None` — `854:1185`
   - `Action=Trailing` — `854:1189`
 - `AnalysisProgressRow` — `854:6951`
+- `AnalysisHistoryRow` — `858:6949`
+- `AnalysisWorkoutHistoryRow` — `858:7037`
+- `WorkoutDetailExerciseCard` — `858:7169`
+  - `Type=WeightReps`
+  - `Type=Reps`
 
-Post-migration actual-tree audit for 07A:
-- external component instance = `0`
-- external Variable = `0`
-- external Style = `0`
-- raw solid color drift = `0`
+Current spacing rhythm aligned to prior 01–06 screens:
+- major screen-section separation = `spacing/32`
+- section heading to owned content = `spacing/12`
+- overview/sub-group separation where needed = `spacing/24`
+- repeated card/row internal padding generally follows the existing `12 / 16` family
+- current SUIT local text styles remain the typography basis
+
+07B changes:
+- section header uses `AnalysisSectionHeader`
+- period/body/helper grouped into real Auto Layout overview hierarchy
+- distribution section grouped with `32 / 12` rhythm
+- expanded contributor card padding normalized to `16`
+
+07C changes:
+- all section headers use `AnalysisSectionHeader`
+- PR metric cards use `MetricCard`
+- recent exercise-history rows use `AnalysisHistoryRow`
+- overview/change/trend/history sections use real Auto Layout grouping
+- component-conversion text wrapping regression fixed at master level
+
+07D changes:
+- month section headers use `AnalysisSectionHeader`
+- all workout-history rows use `AnalysisWorkoutHistoryRow`
+- `부분 기록` is a status override in the same component
+- trailing status/chevron uses Hug sizing
+- month sections use `32 / 12` rhythm
+
+07E changes:
+- 4 session-summary metrics use `MetricCard`
+- section header uses `AnalysisSectionHeader`
+- performed-exercise cards use `WorkoutDetailExerciseCard`
+- exercise-card variants currently represented: `WeightReps`, `Reps`
+- overview/exercise sections use `32 / 24 / 12 / 16` hierarchy as appropriate
+
+Actual-tree audit after the migration:
+- remote / external component instance = `0`
+- unstyled screen text = `0`
 - raw non-zero spacing/padding drift = `0`
 - raw non-zero radius drift = `0`
+- new Group 07 component masters also pass the same binding check
+- screenshots for 07B / 07C / 07D / 07E read back without current layout clipping/wrapping regression
 
-Visual regression from text width during component conversion was fixed at the component-master level and screenshot read-back passed.
-
-This is a mechanical design-system/component PASS, not final PO approval of 07A content.
+This is a **mechanical design-system consistency PASS**, not final Product Owner approval of Group 07 content or visual density.
 
 ## Design-system + Mobbin refinement — focused QA PASS
 
 Reference checkpoint:
 - `docs/ux-decisions/2026-09-12-group07-analysis-design-system-reference-qa.md`
 
-Applied to current Figma exploration:
-- 07A / 07B / 07C period selector -> existing local `fixed-tab-bar` four-tab pattern
-- 07A workout consistency -> `주 평균 3회` metric-first treatment
-- 07A recent progress -> concrete change values instead of generic `상승`
-- 07A / 07B body-map sample -> existing layered assets with varied opacity to demonstrate period emphasis
-- 07C chart -> explicit example metric label + corrected editable trend path
-- 07D partial status -> `부분 기록`
-- screen-owned matching spacing / padding / radius values rebound to current local Fitness Variables
-- screen-owned text remains on current local SUIT text styles
+Current exploration keeps the previously reviewed direction:
+- summary-first analysis home rather than a dense dashboard
+- flat period tabs
+- metric conclusion before chart detail
+- body-map period emphasis
+- explicit chart metric labeling
+- detailed workout history as drilldown
 
 Known shared-system note:
-- existing older generic `SectionHeader` family has legacy Inter treatment and lacks the trailing-action structure required by 07A.
-- it was not mutated because it has existing 04 consumers; 07A instead uses the new local `AnalysisSectionHeader` family to avoid regression to approved prior screens.
+- existing older generic `SectionHeader` family has legacy Inter treatment and existing 04 consumers.
+- Group 07 uses the current SUIT-based `AnalysisSectionHeader` family instead of mutating the older shared family and risking regression to approved screens.
 
 ## Current exploration principle
 
@@ -169,7 +209,7 @@ Do not treat sample values, sample chart choices, body-map opacity levels, or cu
 
 **Continue Product Owner review of `07A_분석홈_Exploration` content and behavior.**
 
-After 07A is settled, continue sequentially through 07B → 07C → 07D → 07E and apply the same local-component/binding standard as each screen is finalized.
+The same current component/binding/spacing standard is already applied mechanically to 07B → 07C → 07D → 07E, so future review can focus on keep/remove/change decisions rather than repeating migration QA.
 
 Do not start Cursor/development handoff unless Product Owner explicitly switches to development.
 
