@@ -4,7 +4,7 @@
 
 ## Current mode
 
-`PRODUCT/UX FIGMA · GROUP 07 ANALYSIS · 07A CONTENT + SHARED 04D/07A TREND-CHART GEOMETRY LOCKED · 07B POLICY DECISION NEXT · PO REVIEW · NO CURSOR IMPLEMENTATION HANDOFF`
+`PRODUCT/UX FIGMA · GROUP 07 ANALYSIS · 07A CONTENT + SHARED 04D/07A TREND-CHART GEOMETRY + TOTAL-WEIGHT COMPACT AXIS FORMAT LOCKED · 07B POLICY DECISION NEXT · PO REVIEW · NO CURSOR IMPLEMENTATION HANDOFF`
 
 ## Resume rule
 
@@ -14,9 +14,10 @@
 
 ## Latest active checkpoint
 
-- `docs/ux-decisions/2026-09-13-shared-trend-chart-card-geometry.md`
+- `docs/ux-decisions/2026-09-13-analysis-total-weight-compact-unit-format.md`
 
 Supporting checkpoints:
+- `docs/ux-decisions/2026-09-13-shared-trend-chart-card-geometry.md`
 - `docs/ux-decisions/2026-09-13-analysis-trend-chart-contract.md`
 - `docs/ux-decisions/2026-09-13-04d-growth-relative-week-xaxis.md`
 - `docs/ux-decisions/2026-09-13-chart-xaxis-autolayout-buckets-exploration.md`
@@ -106,6 +107,7 @@ Exercise detail/history/growth are being consolidated under the Group 04 exercis
 Canonical decisions:
 - `docs/ux-decisions/2026-09-13-analysis-trend-chart-contract.md`
 - `docs/ux-decisions/2026-09-13-shared-trend-chart-card-geometry.md`
+- `docs/ux-decisions/2026-09-13-analysis-total-weight-compact-unit-format.md`
 
 ### Metric control
 
@@ -154,10 +156,17 @@ Approved current direction:
 Current live 4-week total-weight chart:
 - `AnalysisTrendLineChart_총중량_4주` — `1025:1589`
 
-Current total-weight sample Y-axis:
+Current total-weight Y-axis formatter:
 - one `kg` unit label — `1039:1042`
-- compact labels example `0 / 5천 / 1만 / 1.5만`
-- exact value belongs in tooltip, e.g. `12,460kg`
+- below `1,000` -> raw number
+- `1K` to below `1M` -> `K`
+- `1M` to below `1B` -> `M`
+- `1B+` -> `B` fallback
+- at most one decimal when needed; remove trailing `.0`
+- current Figma sample `0 / 5K / 10K / 15K`
+- exact value belongs in tooltip with thousands separators, e.g. `153,420kg`
+
+The previous Korean magnitude examples such as `5천 / 1만 / 1.5만` are superseded for this Y-axis.
 
 Sets:
 - integer Y-axis ticks
@@ -210,7 +219,9 @@ The shared shell does not merge scale semantics:
 - 07A remains zero-based aggregate trend
 - 04D Growth remains local/adaptive for exercise progression
 
-Focused current 07A screenshot/read-back after shared geometry approval = PASS.
+The K/M/B formatter is 07A total-weight-specific; current 04D direct weight labels remain unchanged.
+
+Focused current 07A screenshot/read-back after compact-unit update = PASS.
 
 Historical bar-chart assets may still remain in the Figma file as reference, but are no longer the current 07A visual path:
 - old `AnalysisTrendChart` set — `967:1215`
@@ -346,7 +357,7 @@ Prior mechanical design-system QA remains PASS; do not repeat without a concrete
 
 Continue Product Owner review from current Group 07 artifacts.
 
-07A trend metrics and the shared 04D/07A chart-card geometry are locked enough to stop reopening mechanically unless a new regression or explicit product-policy change appears.
+07A trend metrics, compact total-weight formatting, and the shared 04D/07A chart-card geometry are locked enough to stop reopening mechanically unless a new regression or explicit product-policy change appears.
 
 Next:
 1. explicitly decide whether current 07B selected-body-detail exploration `887:1028` supersedes the locked inline-expansion policy in `2026-09-05-analysis-body-area-drilldown.md`
