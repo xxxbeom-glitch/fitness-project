@@ -25,16 +25,18 @@ Delta parentheses are removed in this summary-row presentation.
 
 ## Delta label treatment
 
-The delta is not rendered as another same-sized inline metric. It uses the existing Fitness tag visual language so the current record remains the primary value and the change reads as a secondary status label.
+The delta is not rendered as another same-sized inline metric. It uses the existing Fitness primary-green tag visual language so the current record remains the primary value and the change reads as a secondary status label.
 
-- label height: `20px`
-- text: existing `tag/01` (`SUIT SemiBold 11 / 14`)
+- label height: `18px`
+- text: `SUIT SemiBold 10 / 12`
 - horizontal padding: `6px`
 - vertical padding: `3px`
 - radius: `6px`
 - current-record ↔ delta-label gap: `6px`
 - text color: existing primary-green tag token
 - background: existing dark primary-green tag background token
+
+The existing Fitness text system bottoms out at `caption/01` 11px for shared semantic typography. The 10px delta text is intentionally kept as a component-local exception rather than introducing a new global text style for one compact status label.
 
 The existing semantic body-part `Tag` component is not reused directly because its 26px height and body-part variants are a different role. Only its visual language/tokens are reused inside `AnalysisProgressRow`.
 
@@ -78,7 +80,8 @@ The migration is inherited by all 12 `AnalysisProgressRow` instances on the Anal
 - current 07A values preserved: PASS
 - current 07A list-card/divider geometry preserved: PASS
 - right-side value block removed; chevron remains trailing: PASS
-- delta uses compact 20px label treatment rather than same-sized green text: PASS
+- delta uses compact `18px` label treatment rather than same-sized green text: PASS
+- delta text is `10px / 12px` and remains legible at current scale: PASS
 - title remains single-line with ending truncation: PASS
 - current 07A screenshot after label refinement: PASS
 
