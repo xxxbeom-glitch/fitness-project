@@ -189,12 +189,16 @@ Current row presentation:
 - workout duration is not displayed in this summary row
 - samples: `상체 A` / `9월 12일`, `하체 B` / `9월 10일`
 
-Figma:
-- local `AnalysisRecentWorkoutRow` — `937:7292`
-- current instances — `937:7298`, `937:7304`
-- derived from existing shared `WorkoutRow`; 02 Home usages remain unchanged
-- horizontal padding = `spacing/20`
-- focused screenshot/read-back = PASS
+Current presentation now matches the `최근 기록 변화` list-card pattern:
+- one shared `RecentWorkoutCard` — `887:1000`
+- two transparent `AnalysisRecentWorkoutRow` instances — `937:7298`, `937:7304`
+- one shared `Divider / Role=Content` between rows
+- divider aligns to the 20px internal content line
+- row horizontal padding = `spacing/20`
+- outer card owns the surface and radius; rows do not render separate rounded-card surfaces
+
+The local row is derived from the existing shared `WorkoutRow`; 02 Home usages remain unchanged.
+Focused screenshot/read-back = PASS.
 
 ### Removed block
 - `요즘 운동 흐름` / workout-frequency block remains removed from current 07A by PO request.
