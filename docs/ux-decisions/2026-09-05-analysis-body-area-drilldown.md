@@ -2,7 +2,7 @@
 
 **Date:** 2026-09-05  
 **Revised:** 2026-09-13  
-**Status:** PO APPROVED / SEPARATE DETAIL SCREEN + RECORDING-TYPE AGGREGATE METRICS LOCKED / FIGMA APPLIED / NO CURSOR HANDOFF
+**Status:** PO APPROVED / SEPARATE DETAIL SCREEN + RECORDING-TYPE AGGREGATE METRICS + EMPTY STATE LOCKED / FIGMA APPLIED / NO CURSOR HANDOFF
 
 ## Decision
 
@@ -16,6 +16,9 @@ The previous inline-expansion behavior is superseded.
 
 Current canonical Figma candidate adopted by this decision:
 - `07B_등상세_운동별총중량_Exploration` — `887:1028`
+
+Empty-state review frame:
+- `07B_등상세_기록없음_Exploration` — `1057:593`
 
 ## 07B hierarchy
 
@@ -104,6 +107,23 @@ Sorting remains:
 
 Therefore a high displayed total volume/repetition/time does not automatically rank above an exercise with a larger primary/secondary body-area contribution score.
 
+## Empty / no-contributor state — PO APPROVED
+
+If the selected body area has no contributing exercise records in the currently selected Analysis period:
+
+- keep the 07B screen, back navigation, period selector, and selected body-area body map visible
+- keep the `진행한 운동` section header visible
+- replace contributor rows with the message `이 기간에는 {부위} 운동 기록이 없어요`
+- example for back: `이 기간에는 등 운동 기록이 없어요`
+- do not render placeholder exercises, `0kg`, `0회`, or `0초` rows
+- the user can immediately switch `4주 / 3개월 / 1년`; if records exist in the newly selected period, the normal contributor list returns
+
+This is a period-specific empty state, not an error state.
+
+Figma empty-state review frame:
+- `07B_등상세_기록없음_Exploration` — `1057:593`
+- visual QA: PASS
+
 ## Relationship to the body-area percentage
 
 The body-area percentage continues to use the locked body-map calculation:
@@ -130,7 +150,6 @@ The earlier open question about forcing a universal `kg` trailing metric is also
 
 ## Still open
 
-- final empty/no-contributor state
 - whether long contributor lists need a limit / more affordance at MVP scale
 
 ## Development boundary
