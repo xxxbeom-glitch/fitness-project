@@ -14,9 +14,10 @@
 
 ## Latest active checkpoint
 
-- `docs/ux-decisions/2026-09-13-group07d-session-detail-body-distribution-refinement.md`
+- `docs/ux-decisions/2026-09-13-group07d-flat-performed-exercise-table.md`
 
 Supporting checkpoints:
+- `docs/ux-decisions/2026-09-13-group07d-session-detail-body-distribution-refinement.md`
 - `docs/ux-decisions/2026-09-13-group07-page-cleanup-renumber.md`
 - `docs/ux-decisions/2026-09-05-analysis-body-area-drilldown.md`
 - `docs/ux-decisions/2026-09-13-analysis-total-weight-compact-unit-format.md`
@@ -175,22 +176,52 @@ Reuses the approved 07A body-distribution composition:
 - current review percentages `36 / 28 / 16 / 12 / 8` are layout-only sample values, not production fixtures
 - same completed/persisted primary `1.0` / secondary `0.5` exposure basis applies; do not invent kg/reps/time conversion for the body map
 
-### Performed exercises
+### Performed exercises — PO DIRECTION APPLIED / QA PASS
 
-Existing shared/componentized `ExerciseCard` instances remain:
-- `weight_reps`
-- `reps`
+`수행 운동`은 운동별 카드로 나누지 않는다.
 
-Only actually completed/persisted work should be shown as performed work.
+04D `ExerciseMetadata_Flat`과 같은 flat key/value table 패턴을 사용한다.
+
+Shared component:
+- `FlatKeyValueRow` — `1085:1092`
+- 기존 `RowLabel` / `RowValue` typography와 color 재사용
+- 기존 content divider 재사용
+
+04D도 동일한 공용 row component를 사용하도록 정리됨:
+- `ExerciseMetadata_Flat` — `543:1048`
+- `MetadataRow_장비` — `1085:1097`
+- `MetadataRow_주 타겟 근육` — `1085:1102`
+- `MetadataRow_보조 타겟 근육` — `1085:1107`
+
+07D current sample rows:
+- `PerformedExercise_벤치프레스` — `1085:1252`
+- `PerformedExercise_랫풀다운` — `1085:1258`
+- `PerformedExercise_푸시업` — `1085:1264`
+
+Display rule:
+- left = exercise name
+- right = compact persisted-set summary
+- identical load/reps combination is grouped by set count
+- different combinations use line breaks
+- examples: `80kg × 10회 × 2세트`, `75kg × 10회 × 1세트`
+- reps-only example: `15회 × 2세트`
+- do not invent recording-type units
+- this is presentation compression only; original persisted set rows remain unchanged
+
+The previously added `ExerciseCard > Mode=WorkoutSummary` variant is superseded and removed.
+
+Only actually completed/persisted work is shown as performed work.
 
 ## Current screen geometry
 
 - 360px screen
+- current 07D frame `360 × 1260`
 - 20px content inset
 - `spacing/32` between page sections
 - body section internal header→card gap `spacing/12`
-- reused approved card/token bindings; no duplicate token/component created in this pass
-- focused full-screen screenshot QA = PASS
+- performed-exercise rows are flat, without card surfaces
+- 04D flat metadata screenshot regression check = PASS
+- focused 07D full-screen screenshot QA = PASS
 
 ## NEXT OPEN ITEM — exact resume point
 
@@ -222,6 +253,10 @@ Shared SectionHeader component set:
 - `Trailing=None` — `942:7315`
 - `Trailing=Meta` — `942:7317`
 - `Trailing=Action` — `942:7320`
+
+Shared flat key/value row:
+- `FlatKeyValueRow` — `1085:1092`
+- canonical consumers: 04D `ExerciseMetadata_Flat`, 07D `수행 운동`
 
 ---
 
