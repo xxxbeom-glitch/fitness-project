@@ -176,13 +176,14 @@ Reuses the approved 07A body-distribution composition:
 - current review percentages `36 / 28 / 16 / 12 / 8` are layout-only sample values, not production fixtures
 - same completed/persisted primary `1.0` / secondary `0.5` exposure basis applies; do not invent kg/reps/time conversion for the body map
 
-### Performed exercises — C MICRO TABLE SELECTED / FIGMA APPLIED / QA PASS
-
-`수행 운동`은 운동별 카드로 나누지 않는다.
+### Performed exercises — C MICRO TABLE + SINGLE CARD APPLIED / QA PASS
 
 PO가 Mobbin 참고 후 비교안 중 `C · MICRO TABLE`을 선택했다.
 
 Current structure:
+- `수행 운동` SectionHeader는 카드 밖에 유지
+- table 전체를 하나의 `WorkoutSummaryCard` 안에 담음
+- 운동별로 개별 card를 만들지 않음
 - columns: `운동 / 수행 / 세트`
 - 같은 중량/횟수 조합은 세트 수로 묶는다
 - 서로 다른 조합은 동일 운동 그룹에서 별도 행으로 나열한다
@@ -191,9 +192,12 @@ Current structure:
 - 원본 set data는 그대로 유지한다
 - recording type에 없는 단위는 만들지 않는다
 
-Current canonical table:
-- `WorkoutSummaryTable` — `1097:7116`
-- `320 × 247`
+Current canonical performed-exercise area:
+- `WorkoutSummaryCard` — `858:7171`, `320 × 279`
+- card: existing Fitness surface token + border token + `12px` radius
+- dense table inner padding: `16px`
+- `WorkoutSummaryTable` — `1097:7116`, `288 × 247`
+- columns: `100 / 120 / 44px`, gap `12px`
 
 Examples:
 - 벤치프레스 | `80kg × 10회` | `2세트`
@@ -218,7 +222,8 @@ Component-system cleanup for the new C table is deferred until the PO finishes v
 - 20px content inset
 - `spacing/32` between page sections
 - body section internal header→card gap `spacing/12`
-- performed-exercise area uses micro-table columns, no card surfaces
+- performed-exercise section internal header→card gap `spacing/12`
+- performed-exercise area uses one enclosing card surface, not per-exercise cards
 - focused 07D full-screen screenshot QA = PASS
 
 ## NEXT OPEN ITEM — exact resume point
@@ -226,7 +231,7 @@ Component-system cleanup for the new C table is deferred until the PO finishes v
 Continue 07D visual/product review one decision at a time.
 
 Immediate next step:
-- PO feedback on the selected C micro-table appearance; do not finalize a new table component family until this visual is accepted.
+- PO feedback on the selected C micro-table + single-card appearance; do not finalize a new table component family until this visual is accepted.
 
 After visual acceptance, continue remaining product rules:
 - how `총 볼륨` appears when the saved session contains no eligible `weight_reps` volume (`—` is already supported by completion policy)
