@@ -1,6 +1,7 @@
 # Analysis Tab IA
 
 **Date:** 2026-09-05  
+**Revised:** 2026-09-13 — Analysis Home period options simplified after PO review.  
 **Status:** PO APPROVED / IA LOCKED / HOME PERIOD + TOP METRICS LOCKED / BODY-MAP DATA BASIS LOCKED / VISUAL TREATMENT DEFERRED / BODY-AREA GRANULARITY NEXT
 
 ## Decision
@@ -53,12 +54,14 @@ Selectable periods:
 
 - `4주`
 - `3개월`
-- `6개월`
 - `1년`
 
 Rules:
 
 - `4주` is the default because it is long enough to reflect a repeated training pattern while remaining recent enough for actionable review.
+- `3개월` represents the medium-term trend and `1년` represents the long-term trend.
+- the previously approved `6개월` option was removed from the primary MVP selector on 2026-09-13 because it overlaps the roles already covered by `3개월` and `1년` while adding another persistent tab to the 360px Analysis UI.
+- `6개월` may be reconsidered later through an expanded/custom period control if actual usage shows a distinct need; it is not a primary Analysis-home period now.
 - `1주` is not a primary Analysis-home period because it is too sensitive to one missed or shifted session and duplicates short-term status better handled by Home/recent history.
 - `전체` is not a primary MVP period because long account history can flatten recent changes and make the first Analysis screen less actionable.
 - the selected period applies to Analysis-home aggregate sections unless a later section-specific decision explicitly states otherwise.
@@ -179,7 +182,7 @@ If an exercise has no usable primary/secondary muscle mapping:
 For each muscle, Analysis should be able to derive and retain three related values from the same underlying score:
 
 1. **period score** — total weighted muscle-set points in the selected period
-2. **weekly-average score** — period score normalized by the eligible date span, used when a comparable rate across `4주 / 3개월 / 6개월 / 1년` is needed
+2. **weekly-average score** — period score normalized by the eligible date span, used when a comparable rate across `4주 / 3개월 / 1년` is needed
 3. **distribution share** — that muscle's period score divided by the sum of all muscle scores, used when a relative distribution view is useful
 
 Weekly-average normalization uses the actual available account-history span inside the selected period rather than counting dates before the account existed. If fewer than 7 eligible days exist, the weekly-average value is treated as insufficient/unstable and the raw period score remains available; exact empty/insufficient-data presentation is decided in the later state pass.
