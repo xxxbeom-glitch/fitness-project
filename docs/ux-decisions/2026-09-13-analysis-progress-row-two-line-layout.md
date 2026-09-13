@@ -7,25 +7,32 @@
 
 The `최근 기록 변화` rows in 07A use the same information hierarchy as exercise-list rows so long exercise names have sufficient horizontal room.
 
-Each `AnalysisProgressRow` now presents:
+Each `AnalysisProgressRow` presents:
 
 - 44px exercise thumbnail
 - first line: exercise name
 - second line: current representative record + compact delta label
 - trailing chevron only
 
-The record and delta are no longer placed in a separate right-side value block.
+The record and delta are not placed in a separate right-side value block.
 
-Examples:
-- `벤치프레스` / `80kg` + `+2.5kg` label
-- `랫풀다운` / `62.5kg` + `+2.5kg` label
-- `플랭크` / `75초` + `+15초` label
+## Information hierarchy
 
-Delta parentheses are removed in this summary-row presentation.
+The row uses three visual levels:
+
+1. exercise name = primary content
+   - `heading/02` — SUIT Bold 14 / 20
+   - `text/primary`
+2. current representative record = secondary content
+   - `body/02` — SUIT Medium 13 / 18
+   - `text/secondary`
+3. change delta = tertiary status accent
+   - compact green label
+   - SUIT SemiBold 10 / 12
+
+This prevents the current record from competing visually with the exercise name while still keeping the delta scannable.
 
 ## Delta label treatment
-
-The delta is not rendered as another same-sized inline metric. It uses the existing Fitness primary-green tag visual language so the current record remains the primary value and the change reads as a secondary status label.
 
 - label height: `18px`
 - text: `SUIT SemiBold 10 / 12`
@@ -36,18 +43,25 @@ The delta is not rendered as another same-sized inline metric. It uses the exist
 - text color: existing primary-green tag token
 - background: existing dark primary-green tag background token
 
-The existing Fitness text system bottoms out at `caption/01` 11px for shared semantic typography. The 10px delta text is intentionally kept as a component-local exception rather than introducing a new global text style for one compact status label.
+The 10px delta text is a component-local exception; no new global text style is introduced for this one compact status label.
 
 The existing semantic body-part `Tag` component is not reused directly because its 26px height and body-part variants are a different role. Only its visual language/tokens are reused inside `AnalysisProgressRow`.
 
 ## Long-name behavior
 
-- exercise-name area receives 196px inside the canonical 320px row
-- exercise name is single-line
-- overflow uses ending truncation / ellipsis
+- exercise-name area: fixed `196px`
+- title height: `20px`
+- single-line only
+- overflow: ending truncation / ellipsis (`…`)
 - record + delta label remain on the second line
 
-This avoids forcing long exercise names to compete with a persistent right-side metric block.
+Current 07A review samples now use actual names from the exercise data instead of only short placeholder names:
+
+- `덤벨 크로스바디 루마니안 데드리프트` / `80kg` + `+2.5kg`
+- `원암 뉴트럴 그립 케이블 로우` / `62.5kg` + `+2.5kg`
+- `핸드 플랭크` / `75초` + `+15초`
+
+The first two deliberately exercise the long-name truncation case.
 
 ## Figma
 
@@ -72,17 +86,18 @@ Current 07A instances:
 - `887:996`
 - `887:997`
 
-The migration is inherited by all 12 `AnalysisProgressRow` instances on the Analysis page so older exploration/reference frames do not retain a competing row layout.
+The structural migration remains inherited by all 12 `AnalysisProgressRow` instances on the Analysis page.
 
 ## QA
 
 - all 12 instances remain `320 × 76`: PASS
-- current 07A values preserved: PASS
 - current 07A list-card/divider geometry preserved: PASS
-- right-side value block removed; chevron remains trailing: PASS
-- delta uses compact `18px` label treatment rather than same-sized green text: PASS
-- delta text is `10px / 12px` and remains legible at current scale: PASS
-- title remains single-line with ending truncation: PASS
-- current 07A screenshot after label refinement: PASS
+- exercise name remains the dominant text level: PASS
+- current record reduced to `13 / 18`, `text/secondary`: PASS
+- delta uses compact `18px` primary-green label: PASS
+- delta text is `10 / 12`: PASS
+- title width remains `196px` with ending truncation enabled: PASS
+- current 07A uses real DB long-name samples: PASS
+- no row expansion or collision from long titles: PASS
 
 **NO CURSOR IMPLEMENTATION HANDOFF.**
