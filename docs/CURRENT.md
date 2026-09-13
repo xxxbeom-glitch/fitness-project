@@ -14,9 +14,10 @@
 
 ## Latest active checkpoint
 
-- `docs/ux-decisions/2026-09-13-analysis-trend-chart-contract.md`
+- `docs/ux-decisions/2026-09-13-analysis-progress-row-two-line-layout.md`
 
 Supporting checkpoints:
+- `docs/ux-decisions/2026-09-13-analysis-trend-chart-contract.md`
 - `docs/ux-decisions/2026-09-13-analysis-period-selector-simplification.md`
 - `docs/ux-decisions/2026-09-13-group07a-refined-analysis-home-handoff.md`
 - `docs/ux-decisions/2026-09-13-shared-recent-workout-list.md`
@@ -112,6 +113,7 @@ Full detail:
 - `docs/ux-decisions/2026-09-13-group07a-refined-analysis-home-handoff.md`
 - period revision: `docs/ux-decisions/2026-09-13-analysis-period-selector-simplification.md`
 - adaptive chart contract: `docs/ux-decisions/2026-09-13-analysis-trend-chart-contract.md`
+- recent-progress row refinement: `docs/ux-decisions/2026-09-13-analysis-progress-row-two-line-layout.md`
 
 ### Period selector
 - approved options: `4주 / 3개월 / 1년`; default `4주`.
@@ -198,27 +200,34 @@ Current sample percentages are review-only placeholders:
 All seven are visible, so the current section has no `전체 보기` action.
 
 ### 최근 기록 변화
-Current row presentation supersedes the earlier name+delta-only draft note.
-
-Each row shows:
+Current row presentation uses the exercise-list-like two-line hierarchy:
 - 44px exercise thumbnail
-- exercise name
-- current representative record
-- delta in parentheses
-- chevron
+- first line = exercise name, `heading/02` 14 / 20, `text/primary`
+- second line = current representative record + compact delta label
+- current record = `body/02` 13 / 18, `text/secondary`
+- delta = primary-green compact label, height 18, SUIT SemiBold 10 / 12
+- trailing chevron only
 
-Samples:
-- 벤치프레스 `80kg (+2.5kg)`
-- 랫풀다운 `62.5kg (+2.5kg)`
-- 플랭크 `75초 (+15초)`
+Long-name behavior:
+- title area fixed at `196px`
+- single line
+- ending ellipsis enabled
+- row does not grow vertically
 
-Rows are inside one shared outer card with content dividers, not separate cards.
+Current 07A review samples use real exercise-data names:
+- `덤벨 크로스바디 루마니안 데드리프트` / `80kg` + `+2.5kg`
+- `원암 뉴트럴 그립 케이블 로우` / `62.5kg` + `+2.5kg`
+- `핸드 플랭크` / `75초` + `+15초`
+
+Rows remain inside one shared outer card with content dividers, not separate cards.
 
 Current spacing:
 - `AnalysisProgressRow` horizontal padding = `spacing/20`
 - content dividers align to the same 20px internal line
 
 Row tap -> selected exercise in 07C.
+
+Focused read-back after hierarchy + long-name refinement = PASS.
 
 ### 최근 운동
 Current row presentation:
