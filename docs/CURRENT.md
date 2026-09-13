@@ -4,7 +4,7 @@
 
 ## Current mode
 
-`PRODUCT/UX FIGMA · GROUP 07 ANALYSIS · 07A CONTENT + TREND LINE-CHART CONTRACT LOCKED · 07B POLICY DECISION NEXT · PO REVIEW · NO CURSOR IMPLEMENTATION HANDOFF`
+`PRODUCT/UX FIGMA · GROUP 07 ANALYSIS · 07A CONTENT + SHARED 04D/07A TREND-CHART GEOMETRY LOCKED · 07B POLICY DECISION NEXT · PO REVIEW · NO CURSOR IMPLEMENTATION HANDOFF`
 
 ## Resume rule
 
@@ -14,9 +14,11 @@
 
 ## Latest active checkpoint
 
-- `docs/ux-decisions/2026-09-13-analysis-trend-chart-contract.md`
+- `docs/ux-decisions/2026-09-13-shared-trend-chart-card-geometry.md`
 
 Supporting checkpoints:
+- `docs/ux-decisions/2026-09-13-analysis-trend-chart-contract.md`
+- `docs/ux-decisions/2026-09-13-04d-growth-relative-week-xaxis.md`
 - `docs/ux-decisions/2026-09-13-chart-xaxis-autolayout-buckets-exploration.md`
 - `docs/ux-decisions/2026-09-13-analysis-progress-row-two-line-layout.md`
 - `docs/ux-decisions/2026-09-13-analysis-period-selector-simplification.md`
@@ -40,6 +42,11 @@ Locked Analysis references:
 - page `07 분석 · 운동 기록` — `233:2078`
 - current 07A `07A_분석홈_부위Row딥링크_Exploration` — `887:936`
 - current 07B selected-body exploration candidate `07B_등상세_운동별총중량_Exploration` — `887:1028`
+
+Related approved 04D growth surface sharing the current chart geometry:
+- page `04 운동 목록 · 상세` — `233:2075`
+- screen `04D_Exercise_Detail_Growth` — `1000:1519`
+- chart `ExerciseGrowthTrendLineChart_중량_4주` — `1001:630`
 
 Base/reference Group 07 frames remain:
 - 07A `836:1112`
@@ -96,8 +103,9 @@ Exercise detail/history/growth are being consolidated under the Group 04 exercis
 
 ## 1. 운동 추이 — PO APPROVED / FIGMA APPLIED / QA PASS
 
-Canonical decision:
+Canonical decisions:
 - `docs/ux-decisions/2026-09-13-analysis-trend-chart-contract.md`
+- `docs/ux-decisions/2026-09-13-shared-trend-chart-card-geometry.md`
 
 ### Metric control
 
@@ -176,18 +184,33 @@ Time:
 - X labels sparse, max 4
 - current month may be partial; no projection
 
-### Current X-axis Figma geometry
+### Current shared chart geometry
+
+07A uses the same approved chart-card shell geometry as 04D Exercise Growth:
+- card `320 × 176`
+- chart-specific outer safe area `16px`
+- Y-axis label column `28px`
+- Y-axis -> plot gap `8px`
+- plot `x=52`, `y=40`, `252 × 88`
+- X-axis row `x=52`, `y=132`, `252 × 28`
+- bottom safe area `16px`
+- `kg` unit `x=16`, `y=16`, `28 × 12`, SUIT Medium `10 / 12`, `text/tertiary`
 
 Current 4-week implementation uses synchronized equal Auto Layout buckets:
 - `PlotBuckets_Auto` — `1036:7401`
 - `XAxisBuckets_Auto` — `1036:7406`
-- 244px plot width / 4 equal 61px buckets
+- 252px plot width / 4 equal 63px buckets
 - point and label centered in the corresponding bucket
+- centers relative to chart: `83.5 / 146.5 / 209.5 / 272.5`
 - trend vector remains an overlay connecting those point centers
 
 This removes manual per-label X-coordinate tuning and keeps first/last labels inside the card.
 
-Focused current 07A screenshot/read-back after `총 중량 / 세트 / 시간` update = PASS.
+The shared shell does not merge scale semantics:
+- 07A remains zero-based aggregate trend
+- 04D Growth remains local/adaptive for exercise progression
+
+Focused current 07A screenshot/read-back after shared geometry approval = PASS.
 
 Historical bar-chart assets may still remain in the Figma file as reference, but are no longer the current 07A visual path:
 - old `AnalysisTrendChart` set — `967:1215`
@@ -259,6 +282,34 @@ Same visual pattern remains shared with Home.
 - `spacing/16` remains valid for compact internals / dense selectors / chart internals
 - deliberate full-bleed Analysis period tabs may break the 20px page line
 
+### Trend chart card geometry — PO APPROVED
+
+Canonical contract:
+- `docs/ux-decisions/2026-09-13-shared-trend-chart-card-geometry.md`
+
+Shared by current 07A and 04D Growth chart shells:
+- card `320 × 176`
+- chart-specific outer safe area `16px`; this is intentionally separate from the normal 20px content-card rule
+- Y-axis column `28px`
+- Y-axis -> plot gap `8px`
+- plot `x=52`, `y=40`, `252 × 88`
+- X-axis row `x=52`, `y=132`, `252 × 28`
+- bottom safe area `16px`
+- 4-week equal buckets = `63px × 4`
+- optional unit label sits in the Y-axis column at `x=16`, `y=16`, `28 × 12`
+- weight-unit typography = SUIT Medium `10 / 12`, `text/tertiary`, right aligned
+
+Current consumers:
+- 07A `AnalysisTrendLineChart_총중량_4주` — `1025:1589`
+- 04D `ExerciseGrowthTrendLineChart_중량_4주` — `1001:630`
+
+Reuse is geometry-only where semantics differ:
+- 07A aggregate Y-axis stays zero-based
+- 04D exercise-growth Y-axis stays local/adaptive
+- do not force one scale/data contract only to make the visuals reusable
+
+Focused read-back + full-screen screenshot QA on both consumers = PASS.
+
 ### Divider
 - `Content` -> `border/default`
 - `ActionSheet` -> `bg/elevated`
@@ -295,7 +346,7 @@ Prior mechanical design-system QA remains PASS; do not repeat without a concrete
 
 Continue Product Owner review from current Group 07 artifacts.
 
-07A trend metrics and current line-chart contract are now locked enough to stop reopening mechanically unless a new regression or explicit product-policy change appears.
+07A trend metrics and the shared 04D/07A chart-card geometry are locked enough to stop reopening mechanically unless a new regression or explicit product-policy change appears.
 
 Next:
 1. explicitly decide whether current 07B selected-body-detail exploration `887:1028` supersedes the locked inline-expansion policy in `2026-09-05-analysis-body-area-drilldown.md`
