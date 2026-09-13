@@ -1,10 +1,10 @@
 # CURRENT — Fitness Project
 
-**Updated:** 2026-09-13
+**Updated:** 2026-09-14
 
 ## Current mode
 
-`PRODUCT/UX FIGMA · GROUP 07 ANALYSIS · 07A LOCKED · 07B LOCKED EXCEPT LONG-LIST POLICY · 07C OVERVIEW REMOVED · 07D VISUAL DIRECTION ACCEPTED · 07D PRODUCT RULE REVIEW IN PROGRESS · NO CURSOR IMPLEMENTATION HANDOFF`
+`PRODUCT/UX FIGMA · GROUP 07 ANALYSIS LOCKED · 07A LOCKED · 07B LOCKED · 07C OVERVIEW REMOVED · 07D PRODUCT RULES LOCKED · FIGMA TARGETED QA PASS · NO CURSOR IMPLEMENTATION HANDOFF`
 
 ## Resume rule
 
@@ -14,38 +14,20 @@
 
 ## Latest active checkpoint
 
-- `docs/ux-decisions/2026-09-13-group07-session-detail-current-checkpoint.md`
+- `docs/ux-decisions/2026-09-14-group07-final-policy-lock.md`
 
-Latest cleanup checkpoint:
+Supporting current checkpoints:
 - `docs/ux-decisions/2026-09-13-group07d-figma-cleanup-shared-components.md`
-
-Supporting checkpoints:
-- `docs/ux-decisions/2026-09-13-group07d-session-summary-unified-card.md`
-- `docs/ux-decisions/2026-09-13-group07d-personal-record-trophy-treatment.md`
-- `docs/ux-decisions/2026-09-13-group07d-flat-performed-exercise-table.md`
-- `docs/ux-decisions/2026-09-13-group07d-session-detail-body-distribution-refinement.md`
-- `docs/ux-decisions/2026-09-13-group07-page-cleanup-renumber.md`
+- `docs/ux-decisions/2026-09-13-group07-session-detail-current-checkpoint.md`
 - `docs/ux-decisions/2026-09-05-analysis-body-area-drilldown.md`
-- `docs/ux-decisions/2026-09-13-analysis-total-weight-compact-unit-format.md`
-- `docs/ux-decisions/2026-09-13-shared-trend-chart-card-geometry.md`
-- `docs/ux-decisions/2026-09-13-analysis-trend-chart-contract.md`
-- `docs/ux-decisions/2026-09-13-analysis-progress-row-two-line-layout.md`
-- `docs/ux-decisions/2026-09-13-analysis-period-selector-simplification.md`
-- `docs/ux-decisions/2026-09-13-group07a-refined-analysis-home-handoff.md`
-- `docs/ux-decisions/2026-09-13-shared-recent-workout-list.md`
-- `docs/ux-decisions/2026-09-13-shared-section-header-consolidation.md`
-- `docs/ux-decisions/2026-09-04-workout-completion-metrics.md`
 - `docs/ux-decisions/2026-09-12-group06-completion-final-shell.md`
+- `docs/ux-decisions/2026-09-04-workout-completion-metrics.md`
 
-Historical baseline only:
-- `docs/ux-decisions/2026-09-05-analysis-tab-ia.md`
-
-Later checkpoints and this CURRENT supersede the old five-screen Group 07 numbering in that baseline document.
-The older intermediate four-screen sequence in `2026-09-13-group07-page-cleanup-renumber.md` is also superseded where it still listed a separate 07C workout-record overview.
+The 2026-09-14 final policy-lock checkpoint supersedes older Group 07 documents only where they still describe the four previously-open items as unresolved.
 
 ---
 
-# ACTIVE TRACK — Group 07 분석 · 운동 기록
+# GROUP 07 — LOCKED
 
 ## Canonical Figma
 
@@ -54,222 +36,70 @@ The older intermediate four-screen sequence in `2026-09-13-group07-page-cleanup-
 - `07A_분석홈` — `887:936`
 - `07B_부위상세` — `887:1028`
 - `07B_부위상세_Empty` — `1057:593`
-- current `07D_운동기록상세_Exploration` — `836:1593`
+- `07D_운동기록상세_Exploration` — `836:1593`
 - shared UI master page `MVP_공용_UI` — `105:3113`
 
-`07B_부위상세_Empty` is a state variant of 07B, not a separate IA screen.
-
-The separate `07C_운동기록_Exploration` top-level screen was removed by PO direction on 2026-09-13.
-Do not recreate it or auto-renumber 07D to 07C without explicit PO direction.
-
-Related Group 04 exercise-detail family:
-- page `04 운동 목록 · 상세` — `233:2075`
-- `04D_운동상세_운동정보` — `40:2325`
-- `04D_운동상세_최근기록` — `34:1714`
-- `04D_운동상세_성장` — `1000:1519`
-
-Exercise-specific history/growth is handled by Group 04 `최근 기록 / 성장`; do not recreate a duplicate Group 07 exercise-growth/history screen.
-
----
-
-# CURRENT GROUP 07 IA
-
+Current Group 07 IA:
 1. `07A 분석 홈`
 2. `07B 부위 상세`
-3. `07D 운동 기록 상세` — one saved workout-session detail
+3. `07D 운동 기록 상세`
 
-There is currently no separate 07C overview screen.
+There is no separate 07C overview screen. Do not recreate it or auto-renumber 07D without explicit PO direction.
 
-## Navigation intent
+Exercise-specific history/growth remains in Group 04 `최근 기록 / 성장`.
 
-- 07A body-area row → 07B selected-body detail
-- 07A/07B exercise row → Group 04 exercise detail, entering `최근 기록` where appropriate; `성장` is available as the adjacent tab
-- Group 06 completion `기록 상세 보기` → 07D workout-session detail
-- 07D may also be reused later when opening a saved past workout session from another valid entry point
+## 07A
 
----
+`LOCKED` — do not reopen without a new policy change or regression.
 
-# 07A — LOCKED
+## 07B
 
-Do not reopen without a new product-policy change or regression.
+`LOCKED`.
 
-Approved section order:
-1. Analysis period selector `4주 / 3개월 / 1년`
-2. 운동 추이
-3. 운동 부위 분포
-4. 최근 기록 변화
-5. 최근 운동
+Final long-list policy:
+- `진행한 운동` contributor list shows all rows
+- no first-N truncation
+- no `더보기` / `전체 보기`
+- unified card grows with content; page scroll handles long content
 
-Key locked rules:
-- trend metrics `총 중량 / 세트 / 시간`, default `총 중량`
-- aggregate trend Y-axis is zero-based
-- total-weight compact formatter uses K/M/B with one `kg` unit label
-- body distribution uses seven groups: 가슴 / 등 / 어깨 / 하체 / 이두 / 삼두 / 코어
-- body-map exposure basis: completed/persisted primary `1.0`, secondary `0.5`; no load/reps/duration/assistance multiplier
-- recent-progress exercise row routes to Group 04 detail
+Canonical list layer:
+- `SelectedAreaExerciseList_AllRows` — `887:1065`
 
-Canonical body-distribution source pattern:
-- `BodyDistributionSection` — `887:946`
-- `BodyDistributionCard` — `887:948`
+## 07D
 
----
+`PRODUCT RULES LOCKED / FIGMA APPLIED / TARGETED QA PASS`.
 
-# 07B — LOCKED EXCEPT LONG-LIST POLICY
+Final rules:
+- if no eligible completed `weight_reps` volume exists, keep the `총 볼륨` cell and show `—`
+- 07D shows all valid PRs from the saved session in the single trophy card; Group 06 completion still shows one representative PR only
+- header uses existing shared `Nav Header` with `RightAction=Trash`
+- saved-session deletion requires confirmation before removing persisted data
+- confirmed deletion removes the whole session and its contribution to derived Analysis/history/PR data
+- performed exercises remain the accepted single-card C micro-table treatment
 
-Canonical decision:
-- `docs/ux-decisions/2026-09-05-analysis-body-area-drilldown.md`
+Current shared masters:
+- `07D/PersonalRecordTrophyCard` — `1113:733`
+- `07D/SessionSummaryCard` — `1124:736`
 
-Locked:
-- separate selected-body detail screen
-- page-level period selector `4주 / 3개월 / 1년`
-- `진행한 운동` SectionHeader outside the card
-- body map + contributor exercise list inside one unified card
-- contributor trailing aggregate is recording-type-safe
-- empty state remains in the same card structure
-- exercise row routes to Group 04 exercise detail
+Current live instances:
+- PR card — `1113:739`
+- summary card — `1124:754`
+- delete nav — `836:1595`, `RightAction=Trash`
 
-Still open but deferred while 07D is active:
-- long contributor-list MVP policy (`all rows` vs `first N + more`)
+Temporary A/B/C comparison artifacts are removed.
 
----
+## QA evidence
 
-# 07D — WORKOUT SESSION DETAIL · VISUAL DIRECTION ACCEPTED
+Latest focused 07D screenshot/read-back after the final policy changes = PASS.
 
-## Role
+Verified:
+- Trash action is visible in the shared nav header
+- 3-row PR sample expands without clipping
+- Overview auto-layout reflows correctly
+- session summary, body distribution and C micro-table remain intact
+- 07B list remains vertical hug Auto Layout with no more affordance
 
-`07D 운동 기록 상세` is the detail of one saved workout session.
-
-Primary current entry:
-- Group 06 completion → `기록 상세 보기` → 07D
-
-It shows the actual persisted session result, not one exercise's cross-session history.
-
-## Current hierarchy
-
-1. navigation header
-2. session title + date
-3. conditional personal-record trophy card
-4. session summary metrics
-5. `운동 부위 분포`
-6. `수행 운동`
-
-Overview:
-- `OverviewSection` — `858:7170`
-- vertical auto layout
-- `24px` gap
-- child order: `SessionIntro → PersonalRecordTrophyCard → SessionSummary`
-
-## Approved shared-UI masters
-
-The two approved 07D-scoped component masters are stored on `MVP_공용_UI` rather than the Group 07 working canvas:
-
-- `07D/PersonalRecordTrophyCard` — `1113:733`, `320 × 126`
-- `07D/SessionSummaryCard` — `1124:736`, `320 × 159`
-
-Live 07D instances remain connected:
-- `PersonalRecordTrophyCard` — `1113:739` → master `1113:733`
-- `SessionSummaryCard` — `1124:754` → master `1124:736`
-
-The existing shared/global `CompletionPersonalRecordCard` remains unchanged for Group 06.
-The summary master continues to reuse shared `CompletionMetricCard` instances internally.
-
-## Session summary — LOCKED VISUAL DIRECTION / QA PASS
-
-Metrics:
-- 총 볼륨
-- 운동 시간
-- 운동 수
-- 완료 세트
-
-Rules:
-- one enclosing card
-- 2 × 2 metric grid
-- subtle horizontal/vertical dividers
-- outer padding `16px`
-- row height `56px`
-- equal metric-cell widths
-- same Fitness surface/border/radius treatment
-- personal-record trophy card appears before summary when a PR exists
-
-## Personal record — LOCKED VISUAL DIRECTION / QA PASS
-
-Rules:
-- trophy `64 × 64`
-- trophy renders in FRONT of CardSurface
-- CardSurface uses `border/default`, `1px`, `INSIDE`
-- component uses stable auto-layout geometry with internal absolute trophy overlay
-- Group 06 shared PR component is not replaced globally
-
-## Session body distribution — QA PASS
-
-- `SessionBodyDistributionSection` — `1075:794`
-- reuses approved 07A body-map/card composition
-- only body areas represented by the selected saved session are listed
-- current review values `36 / 28 / 16 / 12 / 8` are sample layout data only
-- same completed/persisted primary `1.0` / secondary `0.5` exposure basis applies
-
-## Performed exercises — C MICRO TABLE ACCEPTED / QA PASS
-
-Current live structure:
-- `수행 운동` SectionHeader outside the card
-- one enclosing `WorkoutSummaryCard` — `858:7171`
-- `WorkoutSummaryTable` — `1097:7116`
-- columns `운동 / 수행 / 세트`
-- same weight/reps combinations grouped by set count
-- different combinations remain separate rows inside the same exercise group
-- native recording-type values only; no invented unit conversion
-
-Temporary A/B/C comparison artifacts are removed from the Group 07 page.
-Former comparison section:
-- `07D_수행운동_미니멀_비교안` — removed node `1092:840`
-- contained `A_TonalVertical / B_Condensed / C_MicroTable`
-
-The selected live C treatment remains intact.
-Shared-component cleanup for the table pattern is non-blocking and deferred until the remaining 07D product rules are settled.
-
-## Current screen geometry
-
-Actual Figma evidence:
-- root `07D_운동기록상세_Exploration` = `360 × 1437`
-- content frame begins at y=`138`, height `1210`, ending at y=`1348`
-- page content inset `20px`
-- `spacing/32` between page sections
-- Overview internal gap `24px`
-- body section header→card gap `spacing/12`
-- performed-exercise header→card gap `spacing/12`
-
-Latest full-screen screenshot/read-back after comparison cleanup and master relocation = PASS.
-
-## NEXT OPEN ITEM — exact resume point
-
-07D visual comparison/review is complete. Continue remaining product rules one decision at a time:
-
-1. how `총 볼륨` appears when the saved session contains no eligible `weight_reps` volume — Group 06 already supports `—`, so review 07D for the same meaning/treatment rather than inventing another metric
-2. multiple-PR detail scope
-3. any additional session metadata/actions genuinely required for MVP
-
-Do not reopen 07A/07B mechanically while doing this.
-
----
-
-# SHARED DESIGN-SYSTEM RULES RELEVANT HERE
-
-- 360px page content inset = `spacing/20`
-- standard page-section separation = `spacing/32`
-- SectionHeader content gap = `spacing/12`
-- standard card horizontal padding = `spacing/20`
-- compact/dense card internals may use `spacing/16`
-- reuse Variables/Styles → Components → Patterns before creating new assets
-
-Shared SectionHeader component set:
-- `942:7323`
-- `Trailing=None` — `942:7315`
-- `Trailing=Meta` — `942:7317`
-- `Trailing=Action` — `942:7320`
-
-04D flat key/value row family remains valid for metadata:
-- `FlatKeyValueRow` component set — `1090:1104`
-- `Lines=1` — `1085:1092`
+No broader repeat QA is required unless a new change/regression is introduced.
 
 ---
 
@@ -290,6 +120,14 @@ Exercise DB/media — PRESERVED DEFERRED:
 - P0 data row/default-media QA locked
 - final derived 211 runtime/workbook regeneration and final attachment mapping deferred
 
+# NEXT OPEN ITEM
+
+Group 07 has no remaining known Product/UX decision from its previous open-item list.
+
+Do not reopen Group 07 mechanically. Keep the current Product/UX/Figma stage and wait for the Product Owner to activate the next product group or explicitly request further Group 07 refinement.
+
+A future generalized shared component for the 07D micro-table is optional/non-blocking design-system cleanup, not a Group 07 product blocker.
+
 # Development boundary
 
-Product Owner가 개발 전환을 명시하기 전까지 Product/UX/Figma 단계에서 계속 진행한다.
+Product Owner가 개발 전환을 명시하기 전까지 개발/Cursor handoff를 하지 않는다.
