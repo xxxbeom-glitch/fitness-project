@@ -107,7 +107,8 @@ Dropdown options:
 
 Current geometry:
 - card `320 × 208`
-- chart `288 × 132`
+- horizontal card padding `spacing/20`
+- chart `280 × 132`
 
 Current sample:
 - aggregate `12회`
@@ -140,6 +141,10 @@ Current 07A integrated card shows body map + all 7 groups:
 
 `팔` is not used as a merged replacement for 이두/삼두.
 
+Current spacing:
+- `BodyDistributionCard` horizontal padding = `spacing/20`
+- body-map preview and ranked-list content align to the same 20px internal card line
+
 Current sample percentages are review-only placeholders:
 - 하체 31%
 - 등 28%
@@ -168,12 +173,38 @@ Samples:
 
 Rows are inside one shared outer card with content dividers, not separate cards.
 
+Current spacing:
+- `AnalysisProgressRow` horizontal padding = `spacing/20`
+- content dividers align to the same 20px internal line
+
 Row tap -> selected exercise in 07C.
 
 ### Removed block
 - `요즘 운동 흐름` / workout-frequency block remains removed from current 07A by PO request.
 
 ## Shared design-system changes from this review
+
+### Fitness horizontal spacing calibration — PO APPROVED 2026-09-13
+
+Canonical design-system spec:
+- `docs/15_TONAL_DESIGN_SYSTEM_SPEC.md`
+
+Current rule:
+- 360px Fitness page content inset = `spacing/20`
+- standard 320px page-level card horizontal padding = `spacing/20`
+- equivalent adjacent standard cards should not alternate between 16 and 20 without a component-role reason
+- `spacing/16` remains valid for intentionally compact internals, small metric tiles, dense selector rows, chart internals, and similar compact roles
+- vertical padding remains component-role specific
+- deliberate full-bleed patterns such as the Analysis period tab rail may break the 20px line
+
+Applied to current 07A:
+- `ActivityTrendCard`
+- `BodyDistributionCard`
+- `AnalysisProgressRow`
+- recent-progress divider inset
+- `WorkoutRow` already used 20px and remains unchanged
+
+Focused screenshot/read-back after the change: PASS; no clipping/collision observed.
 
 ### Analysis exercise identity
 Lightweight analysis identity pattern:
