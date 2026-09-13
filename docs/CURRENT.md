@@ -4,7 +4,7 @@
 
 ## Current mode
 
-`PRODUCT/UX FIGMA · GROUP 07 ANALYSIS · 07A CONTENT + SHARED 04D/07A TREND-CHART GEOMETRY + TOTAL-WEIGHT COMPACT AXIS FORMAT LOCKED · 07B POLICY DECISION NEXT · PO REVIEW · NO CURSOR IMPLEMENTATION HANDOFF`
+`PRODUCT/UX FIGMA · GROUP 07 ANALYSIS · 07A LOCKED · 07B SEPARATE DETAIL + RECORDING-TYPE AGGREGATE METRICS LOCKED · 07B EMPTY/LONG-LIST POLICY NEXT · PO REVIEW · NO CURSOR IMPLEMENTATION HANDOFF`
 
 ## Resume rule
 
@@ -14,9 +14,10 @@
 
 ## Latest active checkpoint
 
-- `docs/ux-decisions/2026-09-13-analysis-total-weight-compact-unit-format.md`
+- `docs/ux-decisions/2026-09-05-analysis-body-area-drilldown.md`
 
 Supporting checkpoints:
+- `docs/ux-decisions/2026-09-13-analysis-total-weight-compact-unit-format.md`
 - `docs/ux-decisions/2026-09-13-shared-trend-chart-card-geometry.md`
 - `docs/ux-decisions/2026-09-13-analysis-trend-chart-contract.md`
 - `docs/ux-decisions/2026-09-13-04d-growth-relative-week-xaxis.md`
@@ -42,7 +43,7 @@ Locked Analysis references:
 - file `W3lZurXCXbThP67rF2xk2b`
 - page `07 분석 · 운동 기록` — `233:2078`
 - current 07A `07A_분석홈_부위Row딥링크_Exploration` — `887:936`
-- current 07B selected-body exploration candidate `07B_등상세_운동별총중량_Exploration` — `887:1028`
+- current 07B `07B_등상세_운동별총중량_Exploration` — `887:1028`
 
 Related approved 04D growth surface sharing the current chart geometry:
 - page `04 운동 목록 · 상세` — `233:2075`
@@ -279,6 +280,46 @@ Same visual pattern remains shared with Home.
 
 ---
 
+# 07B CURRENT APPROVED STATE
+
+Canonical decision:
+- `docs/ux-decisions/2026-09-05-analysis-body-area-drilldown.md`
+
+### Navigation / hierarchy
+
+PO approved:
+- 07A body-area row -> separate 07B body-area detail screen
+- current canonical 07B screen `07B_등상세_운동별총중량_Exploration` — `887:1028`
+- the prior inline-expansion behavior is superseded
+- 07B does not repeat the broad 7-area list; the selected area is already known from 07A
+- 07B exercise row -> canonical Group 04 exercise-detail flow
+
+### Contributor metric
+
+The trailing metric on each `진행한 운동` row is the selected-period aggregate of that exercise's meaningful native performance quantity.
+
+- `weight_reps` -> total volume `Σ(중량 × 완료 반복수)`
+- `added_weight_reps` -> total added-load volume `Σ(추가 중량 × 완료 반복수)`
+- `reps` -> total completed reps `Σ 반복수`
+- `duration` -> total completed duration `Σ 수행시간`
+- `assisted_weight_reps` -> total completed reps; assistance kg is not converted into ordinary volume
+- future types -> use a clear additive native quantity only; do not invent a cross-unit conversion
+
+Example:
+- plank `30초 × 12 completed sets = 360초 -> 6분`
+
+The displayed aggregate does not determine list ranking.
+Sorting remains body-area contribution score descending, then recency as tie-breaker.
+
+### Body-area percentage relationship
+
+The body-area percentage remains independent from the row aggregate:
+- primary muscle completed set = `1.0`
+- secondary muscle completed set = `0.5`
+- distribution percentage = area weighted score / total mapped weighted score in the selected period
+
+---
+
 # SHARED DESIGN-SYSTEM RULES RELEVANT TO CURRENT SCOPE
 
 ### SectionHeader
@@ -334,35 +375,17 @@ Relevant contributor row master:
 
 ---
 
-# 07B POLICY CONFLICT — NEXT DECISION
-
-Locked source remains:
-- `docs/ux-decisions/2026-09-05-analysis-body-area-drilldown.md`
-
-Locked behavior says 07B keeps the broad body-area list and expands contributing exercises inline.
-
-Current Figma candidate `887:1028` instead explores a selected-body detail page such as `등 분석`, without repeating the broad area list, with `진행한 운동` rows.
-
-This candidate is still not policy-locked and must not silently supersede the prior decision.
-
-Also open:
-- current trailing total `kg` sample is not universal for reps/duration/assisted/other recording types
-- define a recording-type-safe contributor-row metric if selected-body-detail is approved
-
-Prior mechanical design-system QA remains PASS; do not repeat without a concrete regression risk.
-
----
-
 # NEXT OPEN ITEM — exact resume point
 
-Continue Product Owner review from current Group 07 artifacts.
+Continue Product Owner review from the current 07B detail.
 
-07A trend metrics, compact total-weight formatting, and the shared 04D/07A chart-card geometry are locked enough to stop reopening mechanically unless a new regression or explicit product-policy change appears.
+07A is locked enough to stop reopening mechanically unless a new regression or explicit product-policy change appears.
+07B separate-detail navigation and recording-type-safe aggregate metrics are now locked.
 
-Next:
-1. explicitly decide whether current 07B selected-body-detail exploration `887:1028` supersedes the locked inline-expansion policy in `2026-09-05-analysis-body-area-drilldown.md`
-2. if selected-body-detail is approved, define a recording-type-safe trailing metric for contributing-exercise rows instead of universal `kg`
-3. apply only the resulting 07B changes in Figma and QA that changed scope
+Next, decide one item at a time:
+1. 07B empty/no-contributor state
+2. after that, whether long `진행한 운동` lists need an MVP row limit / `더 보기`
+3. then move to remaining Group 07 screen closure decisions (`07D / 07E`, with old 07C duplication removed in favor of Group 04 detail flow)
 
 **NO CURSOR IMPLEMENTATION HANDOFF.**
 
