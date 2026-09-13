@@ -46,6 +46,9 @@ Current 07A trend nodes:
 - `MetricChart_4Weeks` — `922:1523`
 - metric dropdown instance — `925:600`
 
+Current 07A recent-workout row master:
+- `AnalysisRecentWorkoutRow` — `937:7292`
+
 Base/reference Group 07 frames remain:
 - 07A `836:1112`
 - 07B `836:1265`
@@ -179,6 +182,20 @@ Current spacing:
 
 Row tap -> selected exercise in 07C.
 
+### 최근 운동
+Current row presentation:
+- left = routine/workout name only
+- trailing immediately before chevron = performed date only
+- workout duration is not displayed in this summary row
+- samples: `상체 A` / `9월 12일`, `하체 B` / `9월 10일`
+
+Figma:
+- local `AnalysisRecentWorkoutRow` — `937:7292`
+- current instances — `937:7298`, `937:7304`
+- derived from existing shared `WorkoutRow`; 02 Home usages remain unchanged
+- horizontal padding = `spacing/20`
+- focused screenshot/read-back = PASS
+
 ### Removed block
 - `요즘 운동 흐름` / workout-frequency block remains removed from current 07A by PO request.
 
@@ -202,7 +219,7 @@ Applied to current 07A:
 - `BodyDistributionCard`
 - `AnalysisProgressRow`
 - recent-progress divider inset
-- `WorkoutRow` already used 20px and remains unchanged
+- `AnalysisRecentWorkoutRow`
 
 Focused screenshot/read-back after the change: PASS; no clipping/collision observed.
 
