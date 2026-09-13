@@ -159,6 +159,8 @@ Figma:
 - canonical completion main: `06A_Completion_Default` — `793:15748`
 - local component library: `LOCAL_COMPONENT_LIBRARY` — `635:788`
 - completion status component: `CompletionStatusIcon` — `742:901`
+- completion metric component: `CompletionMetricCard` — `936:914`
+- conditional PR component: `CompletionPersonalRecordCard` — `936:918`
 - bottom action component: `DualCTA` — `638:3344`
 
 Previous `06A_Completion_Carousel` (`163:2031`) and exploration drafts were removed from the Figma page during final cleanup; their decision history remains in GitHub only.
@@ -180,7 +182,8 @@ The Product Owner's rough final frame was refined in place without changing its 
 - summary → personal-record separation = `spacing/32`
 - metric grid row/column gap = `spacing/12`
 - metric/personal-record card internal gap = `spacing/6`
-- metric/personal-record card padding = vertical `spacing/12`, horizontal `spacing/16`
+- `CompletionMetricCard` padding = vertical `spacing/12`, horizontal `spacing/16`
+- `CompletionPersonalRecordCard` padding = vertical `spacing/12`, horizontal `spacing/20`
 - card radius/fill continue using existing local Fitness bindings
 
 Obsolete hidden scratch card and redundant completion wrappers inside `최종화면` were removed.
@@ -201,13 +204,67 @@ Small notation cleanup only:
 - `13개` → `13세트`
 - `벤치프레스 10KG X 12회` → `벤치프레스 10kg × 12회`
 
-No new text style, spacing token, radius token, or completion component family was created.
+No new text style, spacing token, or radius token was created. The repeated completion cards were promoted into two local reusable components using the existing Fitness variables/styles.
+
+## 2026-09-13 componentization correction — QA PASS
+
+A later structural QA found that the four repeated completion metric tiles and the conditional personal-record card were still raw frames even though their visual styling had already been approved.
+
+This was corrected without changing the locked completion behavior or content hierarchy.
+
+### New local reusable components
+
+- `CompletionMetricCard` — `936:914`
+  - `154×74`
+  - compact tile role
+  - horizontal `spacing/16`
+  - vertical `spacing/12`
+  - internal gap `spacing/6`
+  - existing `radius/md`, `bg/surface`, text styles and semantic text-color bindings preserved
+  - label/value remain per-instance text overrides
+
+- `CompletionPersonalRecordCard` — `936:918`
+  - `320×66`
+  - standard page-level card role
+  - horizontal `spacing/20`
+  - vertical `spacing/12`
+  - internal gap `spacing/6`
+  - existing `radius/md`, `bg/surface`, text styles and semantic text-color bindings preserved
+  - label/record remain per-instance text overrides
+
+### Migration scope
+
+All matching Group 06 raw frames were replaced with linked local instances:
+- metric-card instances: 12
+- personal-record-card instances: 2
+- total replacements: 14
+- targeted raw metric / PR frames remaining on the Group 06 page: 0
+
+Affected references include:
+- `06A_Completion_Default` — `793:15748`
+- `FINAL_06_PR_NONE_CASE` — `819:696`
+- `FINAL_06_VOLUME_NA_CASE` — `823:716`
+
+`FINAL_06_PR_NONE_CASE` continues to omit the PR card entirely, as required by the locked conditional policy.
+
+### Post-migration QA
+
+- all metric instances link to local `CompletionMetricCard` (`936:914`)
+- all visible PR-card instances link to local `CompletionPersonalRecordCard` (`936:918`)
+- canonical `06A_Completion_Default` screenshot = PASS
+- volume-not-applicable reference retains `총 볼륨 —` and screenshot = PASS
+- no clipping/collision or content-order regression found
+- no new variable, color, text style, radius token, or external component dependency introduced
+
+This is a design-system structural correction only and does not reopen Group 06 Product/UX decisions.
 
 ## Component / binding QA
 
 Focused QA on final completion artifacts:
 
 - local `CompletionStatusIcon` instance → main `742:901`, remote = false
+- local `CompletionMetricCard` → main `936:914`
+- local `CompletionPersonalRecordCard` → main `936:918`
 - local `DualCTA` instance → main `638:3344`, remote = false
 - root/content/summary/grid/card spacing uses existing Fitness Variables
 - surfaces/radius/colors continue using existing Fitness Variables
