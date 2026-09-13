@@ -1,13 +1,16 @@
 # Group 07 — Figma Page Cleanup / Renumber
 
 **Date:** 2026-09-13  
-**Status:** PO APPROVED / FIGMA APPLIED / QA PASS / NO CURSOR HANDOFF
+**Status:** PARTIALLY SUPERSEDED BY LATER PO DECISION / CURRENT IA SYNCED / NO CURSOR HANDOFF
 
-## Decision
+> Later PO direction in the same review session removed the separate `07C_운동기록_Exploration` overview.  
+> The current canonical state is captured in `2026-09-13-group07-session-detail-current-checkpoint.md` and `docs/CURRENT.md`.
 
-Group 07 Figma page is cleaned to keep only the current Analysis path and the remaining workout-history screens.
+## Original cleanup decision
 
-Canonical Group 07 screen sequence is now:
+This checkpoint originally cleaned the Group 07 Figma page and moved the remaining workout-history screens up one letter after the old separate exercise-growth screen was retired.
+
+At that intermediate point the sequence was:
 
 1. `07A_분석홈` — `887:936`
 2. `07B_부위상세` — `887:1028`
@@ -15,11 +18,27 @@ Canonical Group 07 screen sequence is now:
 3. `07C_운동기록_Exploration` — `836:1490`
 4. `07D_운동기록상세_Exploration` — `836:1593`
 
-`07B_부위상세_Empty` is not a separate IA destination. It is the no-record state of 07B.
+That intermediate sequence is **no longer canonical** because the PO later removed the separate 07C workout-record overview.
 
-## Removed from the Figma page
+## Current correction
 
-The following obsolete/reference frames were deleted:
+Current canonical Group 07 IA is:
+
+1. `07A_분석홈` — `887:936`
+2. `07B_부위상세` — `887:1028`
+   - state variant: `07B_부위상세_Empty` — `1057:593`
+3. `07D_운동기록상세_Exploration` — `836:1593`
+
+Rules:
+- `07B_부위상세_Empty` is a state variant, not a separate IA destination.
+- `07C_운동기록_Exploration` was deleted by later PO direction and must not be recreated unless the PO explicitly changes direction.
+- `07D_운동기록상세_Exploration` keeps the `07D` name for now; do not auto-renumber it to `07C` without explicit PO direction.
+- exercise-specific history/growth remains in the Group 04 exercise-detail family (`최근 기록 / 성장`).
+- Group 06 completion `기록 상세 보기` routes to 07D, which represents one saved workout session.
+
+## Removed obsolete/reference frames
+
+The initial cleanup removed:
 
 - old `07A_분석홈_Exploration` — `836:1112`
 - old `07B_부위별분석_Exploration` — `836:1265`
@@ -28,43 +47,28 @@ The following obsolete/reference frames were deleted:
 - `07A_부위분포_OptionB_통합카드` — `876:992`
 - obsolete flow-label text — `887:1117`
 
-## Renumber rule
+Later in the same review session, the separate `07C_운동기록_Exploration` was also removed.
 
-The former separate Group 07 `운동별 성장` screen is no longer part of the canonical Analysis IA because exercise history/growth is handled by the approved Group 04 exercise-detail tab family.
+## Why 07C overview was removed
 
-Therefore the remaining workout-history screens move up one letter:
+The PO reviewed the role of the two remaining record screens and confirmed:
+- exercise-level recent history and growth already belong to Group 04
+- the meaningful remaining Group 07 record surface is the saved workout-session detail
+- the 07C overview therefore duplicated navigation/record concepts without a clear MVP role
 
-- former 07D `운동 기록` -> current `07C_운동기록_Exploration`
-- former 07E `운동 기록 상세` -> current `07D_운동기록상세_Exploration`
+The workout-session detail itself remains necessary because it is the destination for Group 06 completion `기록 상세 보기` and shows the persisted result of one completed/saved session.
 
-This is a naming/IA cleanup only. The 07C/07D visual/content designs remain pending review and are not newly approved by this checkpoint.
+## QA / Source of Truth
 
-## Figma page organization
+Current source of truth:
+- `docs/CURRENT.md`
+- `docs/ux-decisions/2026-09-13-group07-session-detail-current-checkpoint.md`
 
-Page: `07 분석 · 운동 기록` — `233:2078`
+The old four-screen sequence in this file is preserved only as historical context for the cleanup sequence and must not override the later correction above.
 
-Current frames are arranged left-to-right in one review row:
+## Current next work
 
-- 07A at `x=100`
-- 07B at `x=530`
-- 07B Empty at `x=960`
-- 07C at `x=1390`
-- 07D at `x=1820`
-
-Page title copy was also simplified from exploration wording to `07 · 분석 / 운동 기록`.
-
-## QA
-
-- Figma top-level metadata read-back confirms only the current 07A/07B + 07B Empty + pending 07C/07D frames remain.
-- 07A screenshot after cleanup renders normally.
-- No visual content inside the approved 07A/07B screens was intentionally changed by this cleanup.
-
-## Next open item
-
-Continue one decision at a time from 07B:
-
-1. decide long `진행한 운동` list behavior / row limit / `더 보기`
-2. then review and finalize `07C_운동기록`
-3. then review and finalize `07D_운동기록상세`
+- continue 07D session-detail review one decision at a time
+- keep 07B long contributor-list policy deferred while 07D is under active PO review
 
 **NO CURSOR IMPLEMENTATION HANDOFF.**
