@@ -4,7 +4,7 @@
 
 ## Current mode
 
-`PRODUCT/UX FIGMA · GROUP 07 ANALYSIS · 07A LOCKED · 07B SEPARATE DETAIL + RECORDING-TYPE AGGREGATE METRICS + EMPTY STATE LOCKED · 07B LONG-LIST POLICY NEXT · PO REVIEW · NO CURSOR IMPLEMENTATION HANDOFF`
+`PRODUCT/UX FIGMA · GROUP 07 ANALYSIS · 07A LOCKED · 07B LOCKED EXCEPT LONG-LIST POLICY · GROUP07 PAGE CLEANUP/RENUMBER DONE · 07C/07D REVIEW NEXT · PO REVIEW · NO CURSOR IMPLEMENTATION HANDOFF`
 
 ## Resume rule
 
@@ -14,9 +14,10 @@
 
 ## Latest active checkpoint
 
-- `docs/ux-decisions/2026-09-05-analysis-body-area-drilldown.md`
+- `docs/ux-decisions/2026-09-13-group07-page-cleanup-renumber.md`
 
 Supporting checkpoints:
+- `docs/ux-decisions/2026-09-05-analysis-body-area-drilldown.md`
 - `docs/ux-decisions/2026-09-13-analysis-total-weight-compact-unit-format.md`
 - `docs/ux-decisions/2026-09-13-shared-trend-chart-card-geometry.md`
 - `docs/ux-decisions/2026-09-13-analysis-trend-chart-contract.md`
@@ -29,10 +30,10 @@ Supporting checkpoints:
 - `docs/ux-decisions/2026-09-13-shared-section-header-consolidation.md`
 - `docs/ux-decisions/2026-09-12-group07b-e-local-component-spacing-qa.md`
 
-Locked Analysis references:
+Historical/baseline Analysis reference:
 - `docs/ux-decisions/2026-09-05-analysis-tab-ia.md`
-- `docs/ux-decisions/2026-09-05-analysis-body-area-drilldown.md`
-- `docs/ux-decisions/2026-09-05-analysis-exercise-progress.md`
+
+The latest cleanup checkpoint and this CURRENT supersede the old five-screen Group 07 numbering in that baseline document.
 
 ---
 
@@ -42,34 +43,46 @@ Locked Analysis references:
 
 - file `W3lZurXCXbThP67rF2xk2b`
 - page `07 분석 · 운동 기록` — `233:2078`
-- current 07A `07A_분석홈_부위Row딥링크_Exploration` — `887:936`
-- current 07B `07B_등상세_운동별총중량_Exploration` — `887:1028`
-- 07B empty-state review `07B_등상세_기록없음_Exploration` — `1057:593`
+- `07A_분석홈` — `887:936`
+- `07B_부위상세` — `887:1028`
+- `07B_부위상세_Empty` — `1057:593`
+- pending `07C_운동기록_Exploration` — `836:1490`
+- pending `07D_운동기록상세_Exploration` — `836:1593`
 
-Related approved 04D growth surface sharing the current chart geometry:
+`07B_부위상세_Empty` is a state variant of 07B, not a separate IA screen.
+
+Related approved Group 04 exercise-growth surface:
 - page `04 운동 목록 · 상세` — `233:2075`
-- screen `04D_Exercise_Detail_Growth` — `1000:1519`
+- screen `04D_운동상세_성장` — `1000:1519`
 - chart `ExerciseGrowthTrendLineChart_중량_4주` — `1001:630`
 
-Base/reference Group 07 frames remain:
-- 07A `836:1112`
-- 07B `836:1265`
-- 07C `836:1383`
-- 07D `836:1490`
-- 07E `836:1593`
+### Group 07 page cleanup — QA PASS
 
-Temporary Group 07 bottom app bars remain removed during content review.
+Deleted obsolete/reference top-level frames:
+- old 07A base — `836:1112`
+- old 07B base — `836:1265`
+- old separate 07C exercise-growth screen — `836:1383`
+- old 07A option A — `876:938`
+- old 07A option B — `876:992`
+- obsolete flow label — `887:1117`
+
+The former 07D/07E workout-history screens were renumbered after removal of the separate exercise-growth screen:
+- former 07D -> current `07C_운동기록_Exploration` — `836:1490`
+- former 07E -> current `07D_운동기록상세_Exploration` — `836:1593`
+
+Figma top-level metadata read-back confirms the cleaned set. No approved 07A/07B content was intentionally changed by the cleanup.
 
 ---
 
 ## Locked product basics
 
-Approved Analysis IA remains:
-1. 분석 홈
-2. 부위별 분석
-3. 운동별 성장
-4. 운동 기록
-5. 운동 기록 상세
+Current Group 07 IA:
+1. `07A 분석 홈`
+2. `07B 부위별 분석`
+3. `07C 운동 기록`
+4. `07D 운동 기록 상세`
+
+Exercise-specific history/growth is **not** a separate Group 07 screen anymore. It is handled by the canonical Group 04 exercise-detail tab family (`최근 기록 / 성장`).
 
 ### Analysis period
 
@@ -83,7 +96,7 @@ Canonical page-level selector remains the full-width Analysis tab pattern:
 - `Active=4주` — `961:1347`
 - `Active=3개월` — `961:1354`
 - `Active=1년` — `961:1361`
-- current 07A live instance — `887:941`, `360 × 54`
+- current 07A live instance — `1027:593`, `360 × 54`
 
 Do not replace this page-level period selector with the compact chart metric segmented control.
 
@@ -97,8 +110,7 @@ Remains:
 
 ### Selected-exercise detailed history
 
-The old separate 07C/full-history duplication direction is no longer preferred.
-Exercise detail/history/growth are being consolidated under the Group 04 exercise-detail tab family; do not create a new duplicate detailed-history surface without explicit PO direction.
+Exercise detail/history/growth is consolidated under the Group 04 exercise-detail tab family. Do not create a duplicate Group 07 exercise-growth screen without explicit PO direction.
 
 ---
 
@@ -168,8 +180,6 @@ Current total-weight Y-axis formatter:
 - current Figma sample `0 / 5K / 10K / 15K`
 - exact value belongs in tooltip with thousands separators, e.g. `153,420kg`
 
-The previous Korean magnitude examples such as `5천 / 1만 / 1.5만` are superseded for this Y-axis.
-
 Sets:
 - integer Y-axis ticks
 
@@ -215,19 +225,11 @@ Current 4-week implementation uses synchronized equal Auto Layout buckets:
 - centers relative to chart: `83.5 / 146.5 / 209.5 / 272.5`
 - trend vector remains an overlay connecting those point centers
 
-This removes manual per-label X-coordinate tuning and keeps first/last labels inside the card.
-
 The shared shell does not merge scale semantics:
 - 07A remains zero-based aggregate trend
 - 04D Growth remains local/adaptive for exercise progression
 
 The K/M/B formatter is 07A total-weight-specific; current 04D direct weight labels remain unchanged.
-
-Focused current 07A screenshot/read-back after compact-unit update = PASS.
-
-Historical bar-chart assets may still remain in the Figma file as reference, but are no longer the current 07A visual path:
-- old `AnalysisTrendChart` set — `967:1215`
-- old live instance — `967:1216`
 
 ## 2. 운동 부위 분포
 
@@ -258,9 +260,7 @@ Current row pattern:
 - long name = fixed one line + ending ellipsis
 - rows live in one shared outer card with content dividers
 
-Current examples are review-only.
-
-Row tap routes into the selected exercise-detail flow rather than requiring a duplicate full-detail Analysis screen.
+Row tap routes into the selected Group 04 exercise-detail flow.
 
 ## 4. 최근 운동
 
@@ -290,10 +290,19 @@ Canonical decision:
 
 PO approved:
 - 07A body-area row -> separate 07B body-area detail screen
-- current canonical 07B screen `07B_등상세_운동별총중량_Exploration` — `887:1028`
+- canonical 07B screen `07B_부위상세` — `887:1028`
 - the prior inline-expansion behavior is superseded
 - 07B does not repeat the broad 7-area list; the selected area is already known from 07A
 - 07B exercise row -> canonical Group 04 exercise-detail flow
+
+### Visual composition
+
+PO approved / Figma applied:
+- `진행한 운동` SectionHeader sits outside, directly above the card
+- body map + contributor exercise list remain together inside one unified card
+- do not split body map and list into separate cards
+- standard card horizontal padding `spacing/20`, vertical padding `spacing/16`
+- body map and contributor list share the 280px inner content line
 
 ### Contributor metric
 
@@ -316,13 +325,13 @@ Sorting remains body-area contribution score descending, then recency as tie-bre
 
 PO approved:
 - if the selected period has no contributor records for the selected body area, keep the 07B screen shell, period selector, body map, and `진행한 운동` header
-- replace rows with `이 기간에는 {부위} 운동 기록이 없어요`
+- replace the contributor list area inside the same unified card with `이 기간에는 {부위} 운동 기록이 없어요`
 - do not show fake rows or `0kg / 0회 / 0초`
 - period switching remains available; when the new period has records, normal rows return
 - this is an empty state, not an error
 
 Figma:
-- `07B_등상세_기록없음_Exploration` — `1057:593`
+- `07B_부위상세_Empty` — `1057:593`
 - copy: `이 기간에는 등 운동 기록이 없어요`
 - screenshot QA: PASS
 
@@ -375,8 +384,6 @@ Reuse is geometry-only where semantics differ:
 - 04D exercise-growth Y-axis stays local/adaptive
 - do not force one scale/data contract only to make the visuals reusable
 
-Focused read-back + full-screen screenshot QA on both consumers = PASS.
-
 ### Divider
 - `Content` -> `border/default`
 - `ActionSheet` -> `bg/elevated`
@@ -395,11 +402,13 @@ Relevant contributor row master:
 Continue Product Owner review from the current 07B detail.
 
 07A is locked enough to stop reopening mechanically unless a new regression or explicit product-policy change appears.
-07B separate-detail navigation, recording-type-safe aggregate metrics, and empty state are now locked.
+07B separate-detail navigation, recording-type-safe aggregate metrics, unified-card composition, and empty state are locked.
 
 Next, decide one item at a time:
 1. whether long `진행한 운동` lists need an MVP row limit / `더 보기`
-2. then move to remaining Group 07 screen closure decisions (`07D / 07E`, with old 07C duplication removed in favor of Group 04 detail flow)
+2. review/finalize `07C_운동기록_Exploration`
+3. review/finalize `07D_운동기록상세_Exploration`
+4. close Group 07 after final Figma QA
 
 **NO CURSOR IMPLEMENTATION HANDOFF.**
 
