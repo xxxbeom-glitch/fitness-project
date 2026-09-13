@@ -14,10 +14,10 @@
 
 ## Latest active checkpoint
 
-- `docs/ux-decisions/2026-09-13-group07d-personal-record-trophy-treatment.md`
+- `docs/ux-decisions/2026-09-13-group07d-session-summary-unified-card.md`
 
 Supporting checkpoints:
-- `docs/ux-decisions/2026-09-13-group07d-session-summary-unified-card.md`
+- `docs/ux-decisions/2026-09-13-group07d-personal-record-trophy-treatment.md`
 - `docs/ux-decisions/2026-09-13-group07d-flat-performed-exercise-table.md`
 - `docs/ux-decisions/2026-09-13-group07d-session-detail-body-distribution-refinement.md`
 - `docs/ux-decisions/2026-09-13-group07-page-cleanup-renumber.md`
@@ -146,7 +146,7 @@ It shows the actual persisted session result, not one exercise's cross-session h
 5. `운동 부위 분포`
 6. `수행 운동`
 
-## Session summary — SINGLE CARD / QA PASS
+## Session summary — 07D-LOCAL COMPONENT / BALANCED AUTO-LAYOUT / QA PASS
 
 Current four review metrics:
 - 총 볼륨
@@ -160,38 +160,57 @@ PO direction:
 - 2 × 2 glanceable hierarchy is preserved
 - cells use only subtle horizontal/vertical dividers
 - outer card reuses Fitness surface/border tokens and `12px` radius
-- dense inner padding `16px`
+- the unified summary is now a dedicated 07D-local component
+- nested metric content continues to reuse shared `CompletionMetricCard` instances; do not modify that shared component globally
 
 Current Figma:
-- `SessionSummary` — `1075:776`, `320 × 159`
-- `SessionSummaryCard` — `1103:751`, `320 × 159`
+- `SessionSummary` wrapper — `1075:776`, `320 × 159`
+- master `07D/SessionSummaryCard` — `1124:736`, `320 × 159`
+- live instance `SessionSummaryCard` — `1124:754`, `320 × 159`
 
-## Personal record — 07D-LOCAL TROPHY COMPONENT / AUTO-LAYOUT QA PASS
+Balanced geometry:
+- outer padding `16px`
+- inner width `288px`
+- row height `56px`
+- equal flexible metric cells `143.5px / 143.5px`
+- vertical divider `1 × 40px`, centered with `8px` visual inset top/bottom
+- horizontal divider `288 × 1px`
+- vertical root itemSpacing `7px`
+- rhythm `16 / 56 / 7 / 1 / 7 / 56 / 16`
 
-`오늘의 신기록` is now a dedicated 07D-local component rather than a modified shared `CompletionPersonalRecordCard` instance.
+Superseded:
+- raw live frame `SessionSummaryCard` — `1103:751`
+- asymmetric 135px / 136px metric widths and 57px rows
+
+Focused component screenshot = PASS.
+Focused full 07D screenshot = PASS.
+
+## Personal record — 07D-LOCAL TROPHY COMPONENT / FRONT-LAYER OVERLAP / QA PASS
+
+`오늘의 신기록` is a dedicated 07D-local component rather than a modified shared `CompletionPersonalRecordCard` instance.
 
 Current Figma:
 - master `07D/PersonalRecordTrophyCard` — `1113:733`, `320 × 126`
 - live instance `PersonalRecordTrophyCard` — `1113:739`, `320 × 126`
-- trophy `64 × 64`
-- `TrophyZone` `320 × 64`
-- vertical auto-layout root
-- root itemSpacing `-32px`
-- `CardSurface` hug-content height `94px`
+- `TrophySpace` — `320 × 64`
+- `CardSurface` — `320 × 94`, positioned by root auto layout at y=`32`
+- trophy `64 × 64`, absolute overlay at x=`128`, y=`0`
+- root vertical auto-layout gap `-32px`
+- component/root clipsContent = false
 - card surface top padding `40px`, horizontal padding `20px`, bottom padding `12px`
 - text gap `6px`
-- component/root clipsContent = false
 
 Visual rule:
-- trophy is centered above the record copy
-- negative auto-layout gap produces the overlap
-- card top boundary crosses the trophy around its lower cup/neck transition
-- text padding accounts for the trophy, so no manual text offsets are required
+- TrophySpace keeps stable auto-layout geometry.
+- actual trophy is an absolute overlay after CardSurface in layer order so the trophy renders in FRONT of the card.
+- card top boundary passes behind the trophy around its lower cup/neck area.
+- text placement remains auto-layout driven; no manual text offset is required.
 
 Superseded 07D construction:
 - `PersonalRecordTrophyWrapper` `1108:733`
 - 07D reuse of shared `CompletionPersonalRecordCard` instance `1075:791`
 - 36px manually positioned trophy treatment
+- trophy-behind-card layer order
 
 Important:
 - the existing shared/global `CompletionPersonalRecordCard` remains unchanged for its existing Group 06 use case
@@ -253,7 +272,7 @@ Superseded for 07D:
 Continue 07D visual/product review one decision at a time.
 
 Immediate next step:
-- PO visual feedback on the new `07D/PersonalRecordTrophyCard` together with the current unified summary/performed-exercise treatments.
+- PO visual feedback on the new `07D/SessionSummaryCard` and current `07D/PersonalRecordTrophyCard` together with the selected C performed-exercise treatment.
 
 After visual acceptance, continue remaining product rules:
 - how `총 볼륨` appears when the saved session contains no eligible `weight_reps` volume (`—` is already supported by completion policy)
