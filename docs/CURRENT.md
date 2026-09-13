@@ -4,7 +4,7 @@
 
 ## Current mode
 
-`PRODUCT/UX FIGMA · GROUP 07 ANALYSIS · 07A REFINED REVIEW · CHART SCALE/BUCKET RULES OPEN · PO REVIEW · NO CURSOR IMPLEMENTATION HANDOFF`
+`PRODUCT/UX FIGMA · GROUP 07 ANALYSIS · 07A CONTENT + ADAPTIVE CHART CONTRACT LOCKED · 07B POLICY DECISION NEXT · PO REVIEW · NO CURSOR IMPLEMENTATION HANDOFF`
 
 ## Resume rule
 
@@ -14,9 +14,10 @@
 
 ## Latest active checkpoint
 
-- `docs/ux-decisions/2026-09-13-analysis-period-selector-simplification.md`
+- `docs/ux-decisions/2026-09-13-analysis-trend-chart-contract.md`
 
 Supporting checkpoints:
+- `docs/ux-decisions/2026-09-13-analysis-period-selector-simplification.md`
 - `docs/ux-decisions/2026-09-13-group07a-refined-analysis-home-handoff.md`
 - `docs/ux-decisions/2026-09-13-shared-recent-workout-list.md`
 - `docs/ux-decisions/2026-09-13-shared-section-header-consolidation.md`
@@ -46,8 +47,14 @@ Current 07B selected-body exploration candidate:
 
 Current 07A trend nodes:
 - `ActivityTrendCard` — `922:1519`
-- `MetricChart_4Weeks` — `922:1523`
+- live `AnalysisTrendChart` instance — `967:1216`
 - metric dropdown instance — `925:600`
+
+Shared adaptive chart:
+- `AnalysisTrendChart` — `967:1215`
+- `Period=4주` — `967:1123`
+- `Period=3개월` — `967:1140`
+- `Period=1년` — `967:1157`
 
 Shared Analysis period selector:
 - `AnalysisPeriodTabs` — `961:1368`
@@ -103,23 +110,25 @@ Selected-exercise detailed history:
 
 Full detail:
 - `docs/ux-decisions/2026-09-13-group07a-refined-analysis-home-handoff.md`
-- period revision superseding the older 4-range note: `docs/ux-decisions/2026-09-13-analysis-period-selector-simplification.md`
+- period revision: `docs/ux-decisions/2026-09-13-analysis-period-selector-simplification.md`
+- adaptive chart contract: `docs/ux-decisions/2026-09-13-analysis-trend-chart-contract.md`
 
 ### Period selector
-- approved options are now `4주 / 3개월 / 1년`; default `4주`.
+- approved options: `4주 / 3개월 / 1년`; default `4주`.
 - current Figma tab rail/underline is 360px full width.
 - inner content cards keep normal margins.
 - shared `AnalysisPeriodTabs` component set `961:1368` owns the 3 active variants.
 - all 7 Analysis-page instances that used the old 4-tab range control were migrated to the new shared selector while preserving their existing widths.
 - current refined 07A screenshot/read-back after migration = PASS; no clipping/collision observed.
 
-### Headline trend card
-The three approved metrics are presented through one shared chart card in the current review draft.
+### Headline trend card — PO APPROVED / ADAPTIVE CONTRACT LOCKED
+
+The three approved metrics are presented through one shared chart card.
 
 Structure:
 - left: selected aggregate value only, e.g. `12회`
 - right: compact dropdown using existing `FilterSelectButton`, e.g. `운동 횟수 ▾`
-- below: fixed-size chart
+- below: fixed-size adaptive bar chart
 
 Dropdown options:
 - 운동 횟수
@@ -130,25 +139,36 @@ Current geometry:
 - card `320 × 208`
 - horizontal card padding `spacing/20`
 - chart `280 × 132`
+- Y-axis = 4 fixed visual levels including zero
 
-Current sample:
-- aggregate `12회`
-- buckets `2 / 3 / 4 / 3`
-- Y-axis `0 / 2 / 4 / 6`
+Adaptive bucket contract:
+- `4주` = rolling 28 days / 4 consecutive 7-day buckets / 4 X labels
+- `3개월` = rolling 91 days / 13 consecutive 7-day buckets / max 4 X labels
+- `1년` = 12 calendar-month buckets ending in current month / max 4 X labels / current month may be partial
 
-Current review direction:
-- Y-axis uses 4 fixed visual levels.
-- chart frame, Y-label count/positions, grid positions and X-axis area must remain stable across metric/period changes.
-- metric/period changes may change values, units, bucket data and bar heights, not the physical chart region.
+Adaptive scale contract:
+- physical chart/grid positions remain fixed
+- Y scale starts at zero
+- choose a tight rounded step from the peak bucket value; Y max = `step × 3`
+- workout-count/set ticks remain integers
+- workout-time axis uses compact hour values; tooltip/aggregate uses localized full duration
 
-Still OPEN:
-- Y-axis max and rounding rules
-- headroom rule
-- bucket rules for `4주 / 3개월 / 1년`
-- X-axis label density
-- bar width/gap adaptation
-- tooltip/tap behavior
-- zero/insufficient-data behavior
+Interaction/state contract:
+- tap bucket -> anchored tooltip; tap another -> move/update; tap outside -> dismiss
+- no drag scrub required for MVP
+- real zero and unavailable/pre-account data are different states
+- all-zero eligible period keeps the card and shows `이 기간에는 운동 기록이 없어요`
+- partial current month is included without projection and is identified as `진행 중` in tooltip
+
+Shared chart component set:
+- `AnalysisTrendChart` — `967:1215`
+- 4-week variant `967:1123`
+- 3-month variant `967:1140`
+- 1-year variant `967:1157`
+- current 07A live chart instance `967:1216`, `Period=4주`
+
+Figma sample chart values are review-only placeholders, not locked product fixtures.
+Focused 07A + 3-period component-set visual QA = PASS.
 
 ### 운동 부위 분포
 Current 07A integrated card shows body map + all 7 groups:
@@ -215,8 +235,7 @@ Current presentation matches the `최근 기록 변화` list-card pattern:
 - row horizontal padding = `spacing/20`
 - outer card owns the surface and radius; rows do not render separate rounded-card surfaces
 
-The same `RecentWorkoutRow` and list-card visual pattern is now reused in `02A_Home_NoRoutine`:
-- 02A card frame `34:1217`
+The same `RecentWorkoutRow` and list-card visual pattern is reused in `02A_Home_NoRoutine`:
 - 02A has 3 rows and 2 dividers
 - 07A has 2 rows and 1 divider
 - 02A and 07A both use `SectionHeader / Trailing=Action` with `최근 운동 / 전체 기록`
@@ -227,6 +246,22 @@ Focused screenshot/read-back on 02A and 07A = PASS.
 - `요즘 운동 흐름` / workout-frequency block remains removed from current 07A by PO request.
 
 ## Shared design-system changes from this review
+
+### AnalysisTrendChart — PO APPROVED / QA PASS 2026-09-13
+
+Canonical checkpoint:
+- `docs/ux-decisions/2026-09-13-analysis-trend-chart-contract.md`
+
+Shared component set:
+- `AnalysisTrendChart` — `967:1215`
+
+Variants:
+- `Period=4주` — `967:1123`
+- `Period=3개월` — `967:1140`
+- `Period=1년` — `967:1157`
+
+The previous raw 4-week chart in current 07A was replaced with shared instance `967:1216`.
+Focused screenshot QA on current 07A and all three variants = PASS.
 
 ### AnalysisPeriodTabs — PO APPROVED / QA PASS 2026-09-13
 
@@ -273,7 +308,6 @@ Shared composition:
 - title left, performed date trailing before chevron
 - no workout duration in the summary row
 
-02A previously used three separate rounded `WorkoutRow` cards; those were replaced by the shared list-card treatment while preserving the existing three sample workouts/dates.
 Focused screenshot/read-back: PASS.
 
 ### Shared SectionHeader consolidation — QA PASS 2026-09-13
@@ -281,7 +315,7 @@ Focused screenshot/read-back: PASS.
 Canonical checkpoint:
 - `docs/ux-decisions/2026-09-13-shared-section-header-consolidation.md`
 
-The repeated 24px section-header pattern is now one shared Figma component set:
+The repeated 24px section-header pattern is one shared Figma component set:
 - `SectionHeader` — `942:7323`
 - `Trailing=None` — `942:7315`
 - `Trailing=Meta` — `942:7317`
@@ -292,14 +326,7 @@ Usage rule:
 - `Meta` = informational trailing value/counter
 - `Action` = tappable/navigation trailing text
 
-Migration:
-- 02 Home canonical raw 24px headers: `12` -> shared instances; raw count now `0`
-- 07 Analysis previous `AnalysisSectionHeader` instances: `20` -> shared instances
-- migrated shared-instance total across 02/07 = `32`
-- old Analysis-only header component has no live instances and is removed from the active structure
-- previous 40px shared `SectionHeader` used by Group 04 is renamed `ListSectionLabel` — `638:3359` and remains a separate role
-
-Focused screenshots of `02A_Home_NoRoutine` and current 07A: PASS. Long-title text was corrected to content-width auto resize after migration QA.
+Previous 40px Group 04 component remains separate as `ListSectionLabel` — `638:3359`.
 
 ### Fitness horizontal spacing calibration — PO APPROVED 2026-09-13
 
@@ -313,15 +340,6 @@ Current rule:
 - `spacing/16` remains valid for intentionally compact internals, small metric tiles, dense selector rows, chart internals, and similar compact roles
 - vertical padding remains component-role specific
 - deliberate full-bleed patterns such as the Analysis period tab rail may break the 20px line
-
-Applied to current 07A:
-- `ActivityTrendCard`
-- `BodyDistributionCard`
-- `AnalysisProgressRow`
-- recent-progress divider inset
-- `RecentWorkoutRow`
-
-Focused screenshot/read-back after the change: PASS; no clipping/collision observed.
 
 ### Analysis exercise identity
 Lightweight analysis identity pattern:
@@ -339,9 +357,7 @@ Shared divider roles:
 - `ActionSheet` -> `bg/elevated`
 - Horizontal / Vertical orientations
 
-Applied to relevant existing 02/03 Action Sheet and 04/07 content-list cases. Focused visual QA showed no intended regression.
-
-## 07B policy conflict — DECISION NEEDED BEFORE LOCK
+## 07B policy conflict — NEXT DECISION
 
 Locked source remains:
 - `docs/ux-decisions/2026-09-05-analysis-body-area-drilldown.md`
@@ -372,19 +388,14 @@ Current Group 07 frames remain PO review artifacts; sample values, chart samples
 
 # NEXT OPEN ITEM — exact resume point
 
-Continue Product Owner review from `07A_분석홈_부위Row딥링크_Exploration` `887:936`.
+Continue Product Owner review from current Group 07 artifacts.
 
-First define the adaptive chart contract while keeping the current fixed visual frame:
-1. Y-axis max / rounding per metric
-2. period bucket rules for `4주 / 3개월 / 1년`
-3. X-axis label density
-4. bar width / gap behavior
-5. tap / tooltip behavior
-6. zero / insufficient-data behavior
+07A content composition and adaptive chart contract are now locked enough to stop reopening mechanically unless a new regression or product-policy change appears.
 
-Then apply/QA only those chart changes in the current 07A frame.
-
-After the chart rule is stable, explicitly decide whether current 07B selected-body-detail exploration `887:1028` supersedes the locked inline-expansion policy before updating the canonical 07B Decision.
+Next:
+1. explicitly decide whether current 07B selected-body-detail exploration `887:1028` supersedes the locked inline-expansion policy in `2026-09-05-analysis-body-area-drilldown.md`
+2. if selected-body-detail is approved, define a recording-type-safe trailing metric for contributing-exercise rows instead of universal `kg`
+3. apply only the resulting 07B changes in Figma and QA that changed scope
 
 **NO CURSOR IMPLEMENTATION HANDOFF.**
 
