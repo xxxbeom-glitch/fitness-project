@@ -373,14 +373,17 @@ The selected-body exercise-row metric needs a recording-type-safe rule before lo
 
 - the earlier `요즘 운동 흐름` / workout-frequency block was removed from the current 07A review draft by Product Owner request.
 - lower Analysis content was pulled upward after that removal.
-- `최근 운동` row presentation was refined by Product Owner request:
+- `최근 운동` presentation was refined by Product Owner request:
   - left = routine/workout name only
   - trailing, immediately before chevron = performed date only
   - workout duration is removed from this row
   - current samples: `상체 A` / `9월 12일`, `하체 B` / `9월 10일`
   - active 07A instances use local `AnalysisRecentWorkoutRow` (`937:7292`), derived from the existing shared `WorkoutRow` so the 02 Home usages remain unchanged
   - current instance ids: `937:7298`, `937:7304`
-  - horizontal padding remains `spacing/20`, chevron and typography reuse existing local assets/styles
+  - rows are no longer separate rounded cards; they are transparent list rows inside one shared `RecentWorkoutCard` (`887:1000`)
+  - the shared outer card uses the same surface/radius treatment as `최근 기록 변화`
+  - a shared `Divider / Role=Content` instance is used between rows, inset to the same `spacing/20` content line
+  - horizontal row padding remains `spacing/20`, chevron and typography reuse existing local assets/styles
   - focused screenshot/read-back = PASS
 - Group 07 bottom app bar remains intentionally absent during current content review.
 - sample values / sample chart bars / sample percentages are not product data and must not be treated as locked fixtures.
