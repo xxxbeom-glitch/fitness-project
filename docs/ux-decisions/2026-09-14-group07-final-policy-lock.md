@@ -14,6 +14,7 @@ Canonical Figma:
 - `07B_부위상세` — `887:1028`
 - `07B_부위상세_Empty` — `1057:593`
 - `07D_운동기록상세_Exploration` — `836:1593`
+- `07D_운동기록상세_DeleteConfirm` — `1136:4054`
 - shared UI page `MVP_공용_UI` — `105:3113`
 
 ---
@@ -90,6 +91,11 @@ Confirmation copy:
 - description: `삭제한 운동 기록은 되돌릴 수 없어요.`
 - actions: `취소` / `삭제`
 
+Figma confirmation state:
+- `07D_운동기록상세_DeleteConfirm` — `1136:4054`
+- reuses the existing destructive `ModalOverlay` / shared `DialogCard` pattern from Group 05
+- no new dialog component or delete icon was created
+
 Semantics after confirmed deletion:
 - delete the whole saved workout session, not only the visible 07D presentation
 - the deleted session must no longer contribute to Analysis totals, body distribution, recent workout lists, exercise history, or PR comparison/history derived from persisted workout data
@@ -130,10 +136,13 @@ PASS:
 - 07D PR master/instance expands to show multiple PRs without clipping
 - Overview auto-layout reflows from `383` to `423px` for the 3-row PR sample
 - downstream body-distribution and performed-exercise sections move down correctly
+- delete-confirm state reuses the shared destructive dialog pattern and renders `취소 / 삭제` correctly
 - no visual regression in session summary, body distribution or C micro-table
 - 07B contributor list remains vertical hug Auto Layout and has no `more` affordance
 
-Current 07D screenshot/read-back after the changes = PASS.
+Current 07D base screenshot/read-back = PASS.  
+Current 07D delete-confirm screenshot/read-back = PASS.  
+Current 07B screenshot/read-back = PASS.
 
 ## Group 07 status
 
