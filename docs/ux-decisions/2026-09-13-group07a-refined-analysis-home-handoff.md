@@ -30,8 +30,9 @@ Current 07A trend-card nodes:
 - `MetricChart_4Weeks` — `922:1523`
 - metric dropdown instance — `925:600`
 
-Relevant local analysis row master:
+Relevant local analysis row masters:
 - `AnalysisExerciseVolumeRow` — `891:3581`
+- `AnalysisRecentWorkoutRow` — `937:7292`
 
 Earlier base exploration frames remain reference artifacts unless explicitly removed:
 - `07A_분석홈_Exploration` — `836:1112`
@@ -313,7 +314,7 @@ Applied in current 07A:
 - `BodyDistributionCard` horizontal padding -> `spacing/20`
 - `AnalysisProgressRow` horizontal padding -> `spacing/20`
 - recent-progress dividers -> `spacing/20` inset
-- existing `WorkoutRow` already used `spacing/20` and remains unchanged
+- `AnalysisRecentWorkoutRow` horizontal padding -> `spacing/20`
 
 Focused Figma screenshot/read-back after the change showed no clipping/collision and a more consistent horizontal alignment.
 
@@ -372,6 +373,15 @@ The selected-body exercise-row metric needs a recording-type-safe rule before lo
 
 - the earlier `요즘 운동 흐름` / workout-frequency block was removed from the current 07A review draft by Product Owner request.
 - lower Analysis content was pulled upward after that removal.
+- `최근 운동` row presentation was refined by Product Owner request:
+  - left = routine/workout name only
+  - trailing, immediately before chevron = performed date only
+  - workout duration is removed from this row
+  - current samples: `상체 A` / `9월 12일`, `하체 B` / `9월 10일`
+  - active 07A instances use local `AnalysisRecentWorkoutRow` (`937:7292`), derived from the existing shared `WorkoutRow` so the 02 Home usages remain unchanged
+  - current instance ids: `937:7298`, `937:7304`
+  - horizontal padding remains `spacing/20`, chevron and typography reuse existing local assets/styles
+  - focused screenshot/read-back = PASS
 - Group 07 bottom app bar remains intentionally absent during current content review.
 - sample values / sample chart bars / sample percentages are not product data and must not be treated as locked fixtures.
 
