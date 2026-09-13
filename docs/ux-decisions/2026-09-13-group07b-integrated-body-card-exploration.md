@@ -56,20 +56,20 @@ Current 07B instances:
 - row height: `76px`
 - thumbnail: `44px`
 - exercise title: first line, single-line ending ellipsis
-- secondary line: contribution context from the locked 07B first-pass rule
-  - session count containing completed work
-  - completed-set count
+- secondary line: total training volume for the selected period when the exercise has a load-based recording type
 - delta badge is hidden in 07B because this row is not a recent-change summary
 - trailing chevron remains visible because the row is navigable
 - the integrated outer card already owns the 20px horizontal inset, so the 07B row instance uses `0` left/right row padding while keeping the shared component binding
 - content dividers remain between rows
 
 Current review samples:
-- `원암 뉴트럴 그립 케이블 로우` — `4회 · 12세트`
-- `시티드 케이블 로우` — `3회 · 9세트`
-- `플레이트 로드 T바 로우 머신` — `2회 · 6세트`
+- `원암 뉴트럴 그립 케이블 로우` — `3,030kg`
+- `시티드 케이블 로우` — `2,430kg`
+- `플레이트 로드 T바 로우 머신` — `1,860kg`
 
-This removes the previous universal trailing `kg` placeholder and restores the recording-type-safe contributor information already defined in the approved 07B first-pass policy.
+PO revised the visible contributor metric on 2026-09-13: for the current weight-based 07B rows, show total volume rather than `횟수 · 세트`.
+
+This does not yet define the fallback metric for non-load recording types such as pure reps or duration; that remains a recording-type policy question and does not block the current weight-based exploration.
 
 ## Navigation — PO APPROVED 2026-09-13
 
@@ -90,16 +90,17 @@ Read-back / visual checks:
 - shared SectionHeader instance retained: PASS
 - 07B rows are live `AnalysisProgressRow` component instances: PASS
 - title truncation retained: PASS
-- contribution metrics shown as secondary information: PASS
+- total-volume secondary values restored for current weight-based rows: PASS
 - delta badge hidden for 07B contribution context: PASS
 - navigation affordance chevrons visible: PASS
 - body-map enlarged consistently with 07A: PASS
 - period selector remains 360px full-bleed above content: PASS
-- full-screen screenshot after component migration: PASS
+- full-screen screenshot after total-volume restoration: PASS
 
-## Open product decision
+## Open product decisions
 
 Still open and intentionally unchanged by this exploration:
 1. whether this selected-body detail page supersedes the previously locked 07B inline-expansion behavior
+2. what secondary metric replaces total volume for non-load recording types if such exercises appear in the contributor list
 
 **NO CURSOR IMPLEMENTATION HANDOFF.**
