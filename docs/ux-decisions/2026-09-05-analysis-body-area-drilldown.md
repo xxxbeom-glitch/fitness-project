@@ -9,12 +9,12 @@
 
 Instead, the selected body-area row expands **inline** and shows which exercises in the currently selected Analysis period contributed to that body area's distribution.
 
-Example:
+Example for load-based exercises:
 
 - `등 28%`
-  - `랫 풀다운 · 4회 · 12세트`
-  - `시티드 로우 · 3회 · 9세트`
-  - `바벨 로우 · 2회 · 6세트`
+  - `랫 풀다운 · 3,030kg`
+  - `시티드 로우 · 2,430kg`
+  - `바벨 로우 · 1,860kg`
 
 This answers the user's likely follow-up question: `왜 이 부위가 이 비율로 나왔지? 내가 어떤 운동을 했지?`
 
@@ -36,11 +36,15 @@ For a selected body area:
 - use only final completed/persisted sets from saved workout sessions in the selected period
 - exercises excluded from body-map calculation because of missing muscle mapping are also excluded from this drilldown rather than guessed
 - aggregate repeated occurrences by canonical exercise identity
-- row content: exercise name + number of saved workout sessions containing completed work for that exercise + completed-set count
+- row content for load-based exercises: exercise name + total training volume for the selected period
 - sort by contribution to the selected body-area score, descending; use recency as a tie-breaker
 - do not expose the internal weighted score (`1.0 / 0.5`) as a literal set count
 - if useful in visual design, primary/secondary relationship may be indicated with a lightweight label, but exact badge/copy treatment remains OPEN
 - long lists should remain compact; initial UI may show a limited number of rows with a `더 보기` affordance rather than expanding indefinitely
+
+The previous `운동 횟수 · 완료 세트` secondary presentation was revised by PO on 2026-09-13. Current load-based contributor rows show **total volume** instead.
+
+For non-load recording types such as pure reps or duration, the equivalent secondary metric remains OPEN and should be resolved by recording type rather than forcing a meaningless `kg` value.
 
 ## Relationship to the body-area percentage
 
@@ -50,7 +54,7 @@ The body-area percentage continues to use the already-locked body-map calculatio
 - secondary muscle contribution per completed set: `0.5`
 - distribution percentage = selected area's weighted score / total mapped weighted score in the selected period
 
-The expanded exercise list explains the source exercises behind that distribution. It does not redefine the percentage as raw exercise count or raw completed-set share.
+The expanded exercise list explains the source exercises behind that distribution. The displayed total volume is a user-facing exercise summary and does not redefine the body-area percentage formula.
 
 ## Deferred
 
@@ -60,6 +64,7 @@ The following are not required to finish the first-pass 07B structure:
 - exact body-map rendering, colors, opacity, masks, or asset treatment
 - exact maximum number of inline exercise rows before `더 보기`
 - exact primary/secondary badge treatment
+- recording-type-specific fallback metric for non-load exercises
 - whether a later advanced version exposes finer muscle analysis as another level
 
 ## Next
