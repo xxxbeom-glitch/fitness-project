@@ -14,9 +14,10 @@
 
 ## Latest active checkpoint
 
-- `docs/ux-decisions/2026-09-13-group07d-session-summary-unified-card.md`
+- `docs/ux-decisions/2026-09-13-group07d-personal-record-trophy-treatment.md`
 
 Supporting checkpoints:
+- `docs/ux-decisions/2026-09-13-group07d-session-summary-unified-card.md`
 - `docs/ux-decisions/2026-09-13-group07d-flat-performed-exercise-table.md`
 - `docs/ux-decisions/2026-09-13-group07d-session-detail-body-distribution-refinement.md`
 - `docs/ux-decisions/2026-09-13-group07-page-cleanup-renumber.md`
@@ -172,11 +173,28 @@ Current Figma:
 
 Focused screenshot after application = PASS.
 
-### Personal record
+### Personal record — TROPHY OVERLAP APPLIED / QA PASS
 
-Reuses:
-- `CompletionPersonalRecordCard` — `936:918`
-- current 07D instance — `1075:791`
+Reuses current `CompletionPersonalRecordCard` content, with a trophy image added as a visual achievement marker.
+
+PO direction:
+- trophy image `36 × 36px`
+- centered above `오늘의 신기록`
+- intentionally breaks the normal grid and protrudes above the card
+- card top boundary crosses the trophy around its neck area
+- card top padding is increased so the trophy does not collide with label/record text
+
+Current Figma:
+- wrapper `PersonalRecordTrophyWrapper` — `1108:733`, `320 × 82`
+- `CompletionPersonalRecordCard` instance — `1075:791`, `320 × 82`
+- trophy layer `trophy_PR_36` — `1105:7639`, `36 × 36`
+- trophy position relative to wrapper/card: `x=142`, `y=-23`
+- card top padding: `28px`
+- `오늘의 신기록` label y = `28`
+- record y = `50`
+- wrapper clipsContent = false
+
+Focused full-screen screenshot after application = PASS.
 
 ### Session body distribution
 
@@ -226,17 +244,18 @@ Superseded for 07D:
 
 04D `ExerciseMetadata_Flat` remains unchanged and still uses its existing flat key/value row pattern. Do not change 04D to the micro-table style.
 
-Component-system cleanup for the new C table is deferred until the PO finishes visual feedback. After final visual approval, componentize the stable header/data-line pattern and remove unused 07D-only variants.
+Component-system cleanup for the new C table is deferred until the PO finishes visual feedback. After final visual approval, componentize the stable table/header/data-line pattern and remove unused 07D-only variants.
 
 ## Current screen geometry
 
 - 360px screen
-- current 07D frame `360 × 1288`
+- current 07D frame `360 × 1304`
 - 20px content inset
 - `spacing/32` between page sections
 - body section internal header→card gap `spacing/12`
 - performed-exercise section internal header→card gap `spacing/12`
 - session summary and performed-exercise areas both use one enclosing card surface rather than multiple small cards
+- trophy intentionally protrudes into the 24px space above the personal-record card
 - focused 07D full-screen screenshot QA = PASS
 
 ## NEXT OPEN ITEM — exact resume point
@@ -244,7 +263,7 @@ Component-system cleanup for the new C table is deferred until the PO finishes v
 Continue 07D visual/product review one decision at a time.
 
 Immediate next step:
-- PO visual feedback on the unified session-summary card + selected C performed-exercise card; do not finalize a new table component family until these visuals are accepted.
+- PO visual feedback on the personal-record trophy overlap together with the unified session-summary card and selected C performed-exercise card; do not finalize a new table/component family until these visuals are accepted.
 
 After visual acceptance, continue remaining product rules:
 - how `총 볼륨` appears when the saved session contains no eligible `weight_reps` volume (`—` is already supported by completion policy)
