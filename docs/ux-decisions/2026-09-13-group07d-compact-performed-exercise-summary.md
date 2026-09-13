@@ -7,18 +7,19 @@
 
 `07D 운동 기록 상세`의 `수행 운동`은 세트를 1, 2, 3번 행으로 모두 펼쳐 보여주지 않는다.
 
-각 수행 운동을 한 장의 compact card로 보여주고, 동일한 완료 기록 조합은 세트 수로 묶어 요약한다.
+각 수행 운동을 한 장의 compact card로 보여주고, 카드 안에서는 **운동명을 왼쪽 열**, **요약된 수행값을 오른쪽 열**에 배치한다.
+
+동일한 완료 기록 조합은 세트 수로 묶어 요약한다.
 
 예:
-- 벤치프레스
-  - `80kg × 10회 × 2세트`
-  - `75kg × 10회 × 1세트`
-- 푸시업
-  - `15회 × 2세트`
-  - `12회 × 1세트`
+- `벤치프레스` | `80kg × 10회 × 2세트`
+- 빈 다음 줄 | `75kg × 10회 × 1세트`
+
+reps-only 예:
+- `푸시업` | `15회 × 2세트`
+- 빈 다음 줄 | `12회 × 1세트`
 
 이 요약은 표시 방식만 압축하는 것이며 저장된 원본 세트 데이터는 변경하지 않는다.
-
 recording type에 없는 단위를 새로 만들지 않는다. reps-only, duration, assisted 등은 각 타입의 native 기록값을 기준으로 요약한다.
 
 ## Figma
@@ -32,9 +33,18 @@ recording type에 없는 단위를 새로 만들지 않는다. reps-only, durati
   - 랫풀다운 — `1079:750`
   - 푸시업 — `1079:753`
 
-`Mode=WorkoutSummary` reuses the existing ExerciseCard surface/border/radius and existing `heading/01`, `body/01` styles. No new token family was created.
+`Mode=WorkoutSummary`:
+- 320px card
+- horizontal two-column layout
+- 20px card padding
+- 12px column gap
+- exercise-name column 96px
+- summary column 172px
+- existing `heading/01`, `body/01` typography reused
+- existing ExerciseCard surface / border / radius reused
+- no new token family created
 
-Current 07D screen height after replacing per-set tables: `360 × 1410`.
+Current 07D screen after compact two-column summary: `360 × 1314`.
 Full-screen screenshot QA = PASS.
 
 ## Development boundary
