@@ -1,235 +1,228 @@
-# Analysis Trend Chart Adaptive Scale / Bucket Contract
+# Analysis Trend Chart Contract
 
 **Date:** 2026-09-13  
 **Status:** PO APPROVED / FIGMA APPLIED / QA PASS / NO CURSOR HANDOFF
 
 ## Scope
 
-This decision locks the adaptive behavior of the 07A Analysis headline trend chart for the approved primary periods:
+This decision is the canonical contract for the `07A` Analysis home trend section.
 
-- `4주`
-- `3개월`
-- `1년`
+It supersedes the earlier `운동 횟수 / 완료 세트 / 운동 시간` + dropdown + bar-chart presentation in the previous version of this document, and absorbs the accepted direction from `2026-09-13-group07a-line-chart-segmented-exploration.md`.
 
-It supersedes the previously-open chart scale/bucket questions in `2026-09-13-group07a-refined-analysis-home-handoff.md` and `2026-09-13-analysis-period-selector-simplification.md`.
-
-The chart remains a summary visualization for the three already-approved headline metrics:
-
-- `운동 횟수`
-- `완료 세트`
-- `운동 시간`
+The page-level Analysis period selector itself does **not** change:
+- `4주 / 3개월 / 1년`
+- default `4주`
+- existing full-width `AnalysisPeriodTabs` remains canonical.
 
 ---
 
-## 1. Fixed visual frame
+## 1. Approved trend metrics
 
-The physical chart geometry does not change when metric or period changes.
+The 07A `운동 추이` metric choices are:
 
-Current Figma contract:
-- trend card: `320 × 208`
-- card horizontal padding: `spacing/20`
-- chart: `280 × 132`
-- Y-axis/grid: 4 fixed visual levels including `0`
-- grid positions remain fixed
-- X-axis region remains fixed
+- `총 중량`
+- `세트`
+- `시간`
 
-Metric/period changes may change:
-- Y-axis numbers
-- bar values/heights
-- number of bars
-- bar width/gap
-- X-axis labels
-- tooltip copy
+Default metric:
+- `총 중량`
 
-They must not resize the chart card or move surrounding 07A sections.
+The previous `운동 횟수` metric is removed from this chart.
+
+### 총 중량
+
+Meaning:
+- sum the training volume of completed/persisted sets that have a valid load value
+- per eligible set, volume contribution = `기록 중량 × 완료 반복수`
+- sum those eligible set contributions inside each chart bucket
+
+Do not invent/convert load for recording types that do not have a meaningful weight value.
+- duration-only / reps-only and other weightless records are excluded from `총 중량`
+- exact recording-type handling remains based on the canonical recording-type contract
+
+Display:
+- internal/exact value remains kg-based
+- Y-axis uses compact Korean numeric notation when values become long
+- show the unit `kg` once for the axis, not on every tick
+- review example: `0 / 5천 / 1만 / 1.5만` + one `kg` unit label
+- tooltip uses the exact value, e.g. `12,460kg`
+
+### 세트
+
+Meaning:
+- total count of completed/persisted sets inside each bucket
+
+Display:
+- Y-axis ticks are integers
+- tooltip uses localized count, e.g. `48세트`
+
+### 시간
+
+Meaning:
+- total completed workout-session duration inside each bucket
+
+Display:
+- aggregate internally in minutes/time duration
+- Y-axis uses compact hour-oriented labels when appropriate, e.g. `0 / 2시간 / 4시간 / 6시간`
+- tooltip uses localized full duration, e.g. `4시간 35분`
 
 ---
 
-## 2. Period buckets
+## 2. Metric control
+
+The old metric dropdown is removed from the current 07A presentation.
+
+Use the shared compact segmented-control visual:
+- `총 중량 | 세트 | 시간`
+- default `총 중량`
+- the metric control affects only the `운동 추이` chart
+- it is semantically separate from the page-level Analysis period selector
+
+Current Figma shared metric control:
+- component set `MetricSegmentedControl` — `1025:1092`
+- `Active=총 중량` — `1025:1093`
+- `Active=세트` — `1025:1100`
+- `Active=시간` — `1025:1107`
+- live 07A instance — `1025:1582`
+
+---
+
+## 3. Chart presentation
+
+Current approved presentation:
+- line chart
+- horizontal grid only
+- no area fill
+- line connects actual bucket values directly; no decorative curve interpolation required
+- Y-axis starts at `0` for all three 07A aggregate metrics
+- current/latest point may be visually emphasized
+
+The old shared bar-chart component `AnalysisTrendChart` (`967:1215`) and old live instance (`967:1216`) are historical/reference artifacts and are no longer the current 07A visual path.
+
+Current live 4-week chart:
+- `AnalysisTrendLineChart_총중량_4주` — `1025:1589`
+
+Figma sample values are review-only placeholders, not product fixtures.
+
+---
+
+## 4. Period bucket contract
 
 ### `4주`
-- rolling `28` days ending on today in the user's local date
-- split into `4` consecutive `7-day` buckets
+- rolling `28` days ending today in the user's local date
+- `4` consecutive `7-day` buckets
 - latest bucket includes today
-- bar count: `4`
-- all 4 X-axis labels are shown
-- X-axis label uses bucket start date in short `M/D` form
-
-Example only:
-- `8/17`
-- `8/24`
-- `8/31`
-- `9/7`
+- `4` plotted points
+- X labels use relative-week copy:
+  - `3주 전`
+  - `2주 전`
+  - `지난주`
+  - `이번주`
+- tooltip provides the exact bucket date range
 
 ### `3개월`
-- rolling `91` days ending on today in the user's local date
-- split into `13` consecutive `7-day` buckets
-- latest bucket includes today
-- bar count: `13`
-- X-axis labels are sparse, maximum `4`
-- anchor labels are shown at bucket positions `1 / 5 / 9 / 13`
-- X-axis label uses bucket start date in short `M/D` form
-
-This keeps weekly trend resolution rather than collapsing the medium-term range into only three monthly bars.
+- rolling `91` days ending today
+- `13` consecutive `7-day` buckets
+- all 13 values remain represented
+- X-axis labels remain sparse, maximum `4`
+- use the established anchor positions `1 / 5 / 9 / 13`
+- tooltip provides the exact bucket date range
 
 ### `1년`
 - `12` calendar-month buckets ending in the current calendar month
-- bar count: `12`
-- current month is allowed to be partial
-- X-axis labels are sparse, maximum `4`
-- use approximately quarter-spaced month anchors; current Figma example uses positions `1 / 4 / 8 / 12`
-- X-axis label uses localized month text such as `10월 / 1월 / 5월 / 9월`
-- when the current month is selected/tapped, tooltip copy identifies it as an in-progress partial month
-
-The 1-year chart intentionally uses month buckets rather than 52 weekly bars because the fixed 280px chart would otherwise become visually dense without adding useful summary-level readability.
+- all 12 values remain represented
+- X-axis labels remain sparse, maximum `4`
+- use approximately quarter-spaced month anchors
+- current month may be partial
+- do not project a full-month estimate
+- tooltip identifies the current partial month as `진행 중`
 
 ---
 
-## 3. Y-axis adaptive scale
+## 5. Y-axis scale contract
 
-### Fixed structure
-- exactly `4` Y-axis labels/levels including `0`
-- physical label/grid positions do not move
+Physical grid positions remain fixed while tick values adapt to the selected metric and period.
+
+General:
 - scale starts at `0`
-- negative values do not apply to these three metrics
-
-### Scale selection
-For the active metric and period:
-
-1. calculate the maximum plotted bucket value (`peak`)
-2. calculate the raw tick step as `peak / 3`
-3. choose the smallest practical rounded step that is greater than or equal to the raw step
-4. Y-axis maximum = `step × 3`
-5. labels = `0 / step / step×2 / step×3`
-
-The rounded step should stay visually tight to the data. Do not force a large extra headroom multiplier if it would create a mostly empty chart. The chart already has internal top spacing; the selected rounded step naturally provides headroom in most cases.
-
-### Count-based metrics
-For `운동 횟수` and `완료 세트`:
-- Y-axis tick labels must remain integers
-- practical step family: integer values derived from `1 / 2 / 2.5 / 3 / 5 × 10^n`, skipping candidates that would create fractional count ticks
-
-Typical results:
-- peak `3` -> `0 / 1 / 2 / 3`
-- peak `4` -> `0 / 2 / 4 / 6`
-- peak `17` -> `0 / 10 / 20 / 30`
-- peak `61` -> `0 / 25 / 50 / 75`
-
-### Workout-time metric
-Internally aggregate duration in minutes, but the chart Y-axis is expressed in hours for compactness.
-
-Preferred tick-step family:
-- `0.5h`
-- `1h`
-- `2h`
-- `3h`
-- `5h`
-- `10h`
-- continue with similarly readable larger steps if required
-
-Y-axis text can omit the unit because the selected metric and aggregate value establish context. Use at most one decimal place (`0.5`, `1`, `1.5`, etc.).
-
-Tooltip/aggregate copy uses localized full duration formatting instead, e.g. `2시간 15분`.
-
----
-
-## 4. Bar geometry
-
-The plot width stays fixed.
-
-Review baseline:
-- `4주`: bar width about `28px`
-- `3개월`: bar width about `12px`
-- `1년`: bar width about `14px`
-
-Bars are distributed evenly across the available plot width.
-
-Rules:
-- do not horizontally scroll this MVP chart
-- do not shrink all period states to one universal bar width
-- positive non-zero values may use a minimum visible bar height of approximately `2px`; tooltip always shows the exact value
-- zero-value eligible buckets render no positive bar
-
----
-
-## 5. X-axis labels
-
-X-axis label count is independent from bar count.
-
-- `4주`: 4 bars / 4 labels
-- `3개월`: 13 bars / max 4 labels
-- `1년`: 12 bars / max 4 labels
-
-Dense periods keep unlabeled bars selectable through their bucket hit area.
-
-Labels must not overlap or force the chart wider.
-
----
-
-## 6. Tap / tooltip behavior
-
-MVP interaction:
-- tap one bucket -> show one anchored tooltip
-- tap another bucket -> move/update the tooltip
-- tap outside the chart/tooltip -> dismiss
-- no drag-scrub interaction is required for MVP
-- tooltip must stay inside the chart/card bounds by clamping its horizontal position
-- showing a tooltip must not change card height
-
-Tooltip content:
-
-### `4주` / `3개월`
-- bucket date range
-- selected metric value
-
-Example:
-- `8/24–8/30`
-- `운동 횟수 3회`
-
-### `1년`
-- month
-- selected metric value
-- current partial month may append `진행 중`
+- no negative values apply
+- keep a small fixed number of readable grid levels
+- choose compact rounded steps that keep the plotted data legible without excessive empty headroom
 
 Metric formatting:
-- workout count: `3회`
-- completed sets: `18세트`
-- workout time: `2시간 15분`
+- `총 중량`: compact kg notation on ticks; `kg` shown once; exact kg in tooltip
+- `세트`: integer ticks
+- `시간`: compact hours on ticks; full localized duration in tooltip
 
-The tappable bucket region may be wider than the visible bar so dense 3-month bars remain usable.
-
----
-
-## 7. Zero / unavailable / insufficient data
-
-`0` and `데이터 없음` are different states.
-
-### Eligible bucket with no workout
-- bucket value = `0`
-- it is a real zero and participates in the selected period
-- no positive bar is rendered
-
-### Bucket before usable account/history start
-- do not convert it to `0`
-- exclude it from Y-axis peak calculation
-- represent it as unavailable rather than implying the user trained zero times
-- a subtle disabled baseline marker/dash may be used to distinguish it from a real zero
-- if tapped, tooltip may say `데이터 없음`
-
-### Entire selected period has no eligible workout records
-- aggregate value displays the metric's zero form (`0회`, `0세트`, `0분`)
-- keep the `280 × 132` chart region in place
-- replace bars with the centered message `이 기간에는 운동 기록이 없어요`
-- do not collapse/remove the card
-
-### Partial current month in `1년`
-- include saved work through today
-- do not project a full-month estimate
-- tooltip identifies the current month as `진행 중`
+The chart must not grow horizontally because a total-weight value becomes long.
 
 ---
 
-## 8. Figma implementation
+## 6. X-axis layout contract
+
+For the current 4-week Figma implementation, point and label horizontal geometry uses synchronized equal Auto Layout buckets instead of per-label manual X tuning.
+
+Current implementation:
+- `PlotBuckets_Auto` — `1036:7401`
+- `XAxisBuckets_Auto` — `1036:7406`
+- plot width `244px`
+- four equal `61px` buckets
+- each point is centered in its plot bucket
+- each X label is centered in the corresponding X-axis bucket
+- trend vector is an overlay connecting the bucket-centered points
+
+Purpose:
+- prevent first/last labels from overflowing
+- keep point/label centers synchronized
+- avoid repeated manual X-coordinate tuning
+
+This geometry is a Figma implementation detail; the product contract is equal bucket alignment without label overflow.
+
+---
+
+## 7. Tap / tooltip behavior
+
+MVP interaction remains:
+- tap a plotted bucket/point -> show one anchored tooltip
+- tap another -> move/update tooltip
+- tap outside -> dismiss
+- no drag scrub required for MVP
+- tooltip stays inside chart/card bounds
+- tooltip does not change card height
+
+Tooltip includes:
+- exact date range or month
+- selected metric exact value
+
+Examples:
+- `9/7–9/13 · 12,460kg`
+- `9/7–9/13 · 48세트`
+- `9/7–9/13 · 4시간 35분`
+
+---
+
+## 8. Zero / unavailable states
+
+`0` and `데이터 없음` remain different states.
+
+Eligible bucket with no applicable value:
+- real zero participates in the selected period
+
+Unavailable/pre-history bucket:
+- do not silently convert to zero
+- exclude unavailable data from scale decisions where appropriate
+- may display a disabled/no-data state
+
+Entire selected period with no eligible workout records:
+- keep the chart region in place
+- show `이 기간에는 운동 기록이 없어요`
+- do not collapse/remove the section
+
+For `총 중량`, a workout may exist while contributing `0` to total weight because all completed records in that bucket are weightless recording types. This must not be presented as missing workout history.
+
+---
+
+## 9. Figma implementation / QA
 
 Canonical file:
 - `W3lZurXCXbThP67rF2xk2b`
@@ -240,50 +233,30 @@ Page:
 Current 07A:
 - `07A_분석홈_부위Row딥링크_Exploration` — `887:936`
 
-Shared period selector remains:
+Page-level period selector retained:
 - `AnalysisPeriodTabs` — `961:1368`
-- current 07A instance `887:941`
-- visible options verified: `4주 / 3개월 / 1년`
+- live 07A instance — `887:941`
 
-New shared chart component set:
-- `AnalysisTrendChart` — `967:1215`
+Current trend implementation:
+- `MetricSegmentedControl` — `1025:1092`
+- live metric instance — `1025:1582`
+- live total-weight 4-week line chart — `1025:1589`
+- plot Auto Layout buckets — `1036:7401`
+- X-axis Auto Layout buckets — `1036:7406`
+- single Y-axis unit label `kg` — `1039:1042`
 
-Variants:
-- `Period=4주` — `967:1123`
-- `Period=3개월` — `967:1140`
-- `Period=1년` — `967:1157`
-
-Current 07A live chart:
-- instance `967:1216`
-- `Period=4주`
-- replaces the previous raw `MetricChart_4Weeks` frame
-
-The three variants visually encode the approved bucket density and X-axis label density while preserving the same `280 × 132` chart frame.
-
-Figma sample values are review-only placeholders and are not product fixtures.
+Focused read-back after metric update:
+- segmented variants `총 중량 / 세트 / 시간`: PASS
+- default active variant `총 중량`: PASS
+- total-weight compact Y labels `1.5만 / 1만 / 5천 / 0` + single `kg`: PASS
+- original full-width Analysis period tabs preserved: PASS
+- X-axis bucket alignment preserved: PASS
+- 360px full-screen screenshot: PASS; no clipping/collision observed
 
 ---
 
-## 9. QA
+## 10. Development boundary
 
-Focused visual QA after componentization:
-- current 07A period tabs still show `4주 / 3개월 / 1년`: PASS
-- active 4-week chart visual hierarchy preserved: PASS
-- card size/layout and lower sections unchanged: PASS
-- 3-month 13-bar variant fits without clipping: PASS
-- 1-year 12-bar variant fits without clipping: PASS
-- sparse 4-label X-axis treatment remains readable: PASS
+No Cursor/development handoff is authorized by this decision.
 
-No development/Cursor handoff is authorized by this decision.
-
----
-
-## Next product item
-
-07A content composition and adaptive chart contract are now stable enough to stop reopening this chart mechanically unless a new regression or policy change appears.
-
-Next open Product/UX decision:
-- resolve whether the current 07B selected-body-detail exploration supersedes the previously locked 07B inline-expansion policy
-- if the selected-body-detail direction is approved, define a recording-type-safe trailing metric for its contributing-exercise rows
-
-**NO CURSOR IMPLEMENTATION HANDOFF.**
+Next Product/UX item remains the open 07B body-area drilldown policy decision.
