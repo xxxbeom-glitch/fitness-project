@@ -17,6 +17,7 @@
 - `docs/ux-decisions/2026-09-13-group07a-refined-analysis-home-handoff.md`
 
 Supporting checkpoints:
+- `docs/ux-decisions/2026-09-13-shared-section-header-consolidation.md`
 - `docs/ux-decisions/2026-09-12-group07b-e-local-component-spacing-qa.md`
 - `docs/ux-decisions/2026-09-12-group07a-local-component-binding-qa.md`
 - `docs/ux-decisions/2026-09-12-group07-analysis-design-system-reference-qa.md`
@@ -204,6 +205,31 @@ Focused screenshot/read-back = PASS.
 - `요즘 운동 흐름` / workout-frequency block remains removed from current 07A by PO request.
 
 ## Shared design-system changes from this review
+
+### Shared SectionHeader consolidation — QA PASS 2026-09-13
+
+Canonical checkpoint:
+- `docs/ux-decisions/2026-09-13-shared-section-header-consolidation.md`
+
+The repeated 24px section-header pattern is now one shared Figma component set:
+- `SectionHeader` — `942:7323`
+- `Trailing=None` — `942:7315`
+- `Trailing=Meta` — `942:7317`
+- `Trailing=Action` — `942:7320`
+
+Usage rule:
+- `None` = title only
+- `Meta` = informational trailing value/counter
+- `Action` = tappable/navigation trailing text
+
+Migration:
+- 02 Home canonical raw 24px headers: `12` -> shared instances; raw count now `0`
+- 07 Analysis previous `AnalysisSectionHeader` instances: `20` -> shared instances
+- migrated shared-instance total across 02/07 = `32`
+- old Analysis-only header component has no live instances and is removed from the active structure
+- previous 40px shared `SectionHeader` used by Group 04 is renamed `ListSectionLabel` — `638:3359` and remains a separate role
+
+Focused screenshots of `02A_Home_NoRoutine` and current 07A: PASS. Long-title text was corrected to content-width auto resize after migration QA.
 
 ### Fitness horizontal spacing calibration — PO APPROVED 2026-09-13
 
