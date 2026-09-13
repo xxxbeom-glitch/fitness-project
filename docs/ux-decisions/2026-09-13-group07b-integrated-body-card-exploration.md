@@ -1,7 +1,7 @@
 # Group 07B — Integrated Body Detail Card Exploration
 
 **Date:** 2026-09-13  
-**Status:** FIGMA EXPLORATION APPLIED / VISUAL QA PASS / PO REVIEW OPEN / NO CURSOR HANDOFF
+**Status:** FIGMA EXPLORATION APPLIED / VISUAL QA PASS / CONTRIBUTOR ROW NAVIGATION PO APPROVED / NO CURSOR HANDOFF
 
 ## Scope
 
@@ -10,13 +10,13 @@ Current 07B exploration:
 
 This exploration tests a tighter visual continuation from the current 07A body-distribution card by placing the selected-body map and contributing-exercise rows inside one shared outer card.
 
-This does **not** yet resolve the open product-policy conflict about selected-body detail vs. the previously locked inline-expansion behavior, and it does not approve universal trailing `kg` values for all recording types.
+This does **not** yet resolve the open product-policy conflict about selected-body detail vs. the previously locked inline-expansion behavior.
 
 ## Figma changes
 
 ### Integrated card
-- former `BodyMapGroup` renamed/reworked as `SelectedBodyDetailCard` — `887:1034`
-- current size after helper-copy removal: `320 × 450`
+- `SelectedBodyDetailCard` — `887:1034`
+- current size: `320 × 526`
 - vertical Auto Layout
 - horizontal padding: `spacing/20`
 - vertical padding: `spacing/16`
@@ -25,55 +25,81 @@ This does **not** yet resolve the open product-policy conflict about selected-bo
 
 ### Body map
 - `BodyMapPreview` — `887:1035`
-- reduced from `320 × 270` to `280 × 184`
-- inner surface/border removed because the integrated parent card now owns the shell
+- current size: `280 × 212`
+- front/back body-map figure width increased from `72px` to `84px`
+- enlarged body-map scale is synchronized with current 07A
+- inner surface/border removed because the integrated parent card owns the shell
 - selected-body opacity/highlight behavior preserved
-- front/back body placement aligned to the same compact geometry used by 07A body-map presentation
 
 ### Helper copy
-- PO removed the copy `선택한 기간 동안 완료한 세트를 기준으로 등 부위에 기여한 운동을 보여줘요.` as redundant.
+- PO removed `선택한 기간 동안 완료한 세트를 기준으로 등 부위에 기여한 운동을 보여줘요.` as redundant.
 - no helper/description text remains between the body map and `진행한 운동`.
-- the card now transitions directly from body map to the exercise-contribution section using the existing `spacing/16` internal gap.
 
 ### Contributing exercise block
-- former external selected-area section moved inside `SelectedBodyDetailCard`
-- renamed `ExerciseContributionSection` — `887:1063`
+- `ExerciseContributionSection` — `887:1063`
 - `SectionHeader / Trailing=None` retained for `진행한 운동`
 - section internal gap: `spacing/12`
 
-### Exercise list
-- nested `ListCard` shell removed; the integrated outer card now owns surface/radius
-- list width: `280px`
-- three `AnalysisExerciseVolumeRow` instances retained
-- row height: `60px`
-- vertical padding: `spacing/8`
-- horizontal padding becomes `0` because the outer card already provides the `spacing/20` inset
-- row content geometry therefore remains equivalent to the previous 320px list with 20px row padding
-- content dividers retained between rows at `280px`
-- long exercise names remain single-line with ending ellipsis
+### Exercise list — shared row binding
+The previous `AnalysisExerciseVolumeRow` presentation was replaced with the same shared `AnalysisProgressRow` component used by 07A `최근 기록 변화`.
 
-Current review sample names:
-- `원암 뉴트럴 그립 케이블 로우`
-- `시티드 케이블 로우`
-- `플레이트 로드 T바 로우 머신`
+Shared master:
+- `AnalysisProgressRow` — `854:6951`
+
+Current 07B instances:
+- `ContributionProgressRow_1` — `993:7391`
+- `ContributionProgressRow_2` — `993:7401`
+- `ContributionProgressRow_3` — `993:7411`
+
+07B-specific usage:
+- row width: `280px`
+- row height: `76px`
+- thumbnail: `44px`
+- exercise title: first line, single-line ending ellipsis
+- secondary line: contribution context from the locked 07B first-pass rule
+  - session count containing completed work
+  - completed-set count
+- delta badge is hidden in 07B because this row is not a recent-change summary
+- trailing chevron remains visible because the row is navigable
+- the integrated outer card already owns the 20px horizontal inset, so the 07B row instance uses `0` left/right row padding while keeping the shared component binding
+- content dividers remain between rows
+
+Current review samples:
+- `원암 뉴트럴 그립 케이블 로우` — `4회 · 12세트`
+- `시티드 케이블 로우` — `3회 · 9세트`
+- `플레이트 로드 T바 로우 머신` — `2회 · 6세트`
+
+This removes the previous universal trailing `kg` placeholder and restores the recording-type-safe contributor information already defined in the approved 07B first-pass policy.
+
+## Navigation — PO APPROVED 2026-09-13
+
+- tap any `진행한 운동` row -> open `07C 운동별 성장`
+- the tapped exercise is preselected in 07C
+- 07B contributor rows do **not** jump directly to `04G_Exercise_History`
+- `04G_Exercise_History` remains the deeper date-by-date / set-level history destination from the selected-exercise analysis flow
+
+Canonical 07C navigation spec:
+- `docs/ux-decisions/2026-09-05-analysis-exercise-progress.md`
 
 ## QA
 
-Read-back checks:
+Read-back / visual checks:
 - outer card semantic Variable bindings: PASS
 - 20px horizontal / 16px vertical card spacing bindings: PASS
-- helper copy removed and Auto Layout collapsed correctly: PASS
+- helper copy removed: PASS
 - shared SectionHeader instance retained: PASS
-- shared AnalysisExerciseVolumeRow instances retained: PASS
-- nested list surface removed: PASS
-- long-name truncation remains active: PASS
+- 07B rows are live `AnalysisProgressRow` component instances: PASS
+- title truncation retained: PASS
+- contribution metrics shown as secondary information: PASS
+- delta badge hidden for 07B contribution context: PASS
+- navigation affordance chevrons visible: PASS
+- body-map enlarged consistently with 07A: PASS
 - period selector remains 360px full-bleed above content: PASS
-- full-screen screenshot after helper-copy removal: PASS
+- full-screen screenshot after component migration: PASS
 
-## Open product decisions
+## Open product decision
 
 Still open and intentionally unchanged by this exploration:
 1. whether this selected-body detail page supersedes the previously locked 07B inline-expansion behavior
-2. a recording-type-safe trailing metric for contributing-exercise rows; current `kg` values are still review placeholders and are not universal
 
 **NO CURSOR IMPLEMENTATION HANDOFF.**
