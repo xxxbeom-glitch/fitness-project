@@ -1,7 +1,11 @@
 # Group 07D — Workout Session Detail Body Distribution Refinement
 
 **Date:** 2026-09-13  
-**Status:** PO DIRECTION APPLIED IN FIGMA / VISUAL QA PASS / DETAIL POLICY STILL IN REVIEW / NO CURSOR HANDOFF
+**Status:** BODY-DISTRIBUTION DECISION CURRENT / OTHER 07D SUBSECTIONS SUPERSEDED BY LATER CHECKPOINTS / NO CURSOR HANDOFF
+
+> Scope note: this document remains canonical only for the 07D `운동 부위 분포` decision.  
+> Later checkpoints supersede the older session-summary, personal-record, performed-exercise, screen-order, and current-geometry details that existed when this body-distribution pass was first made.  
+> Current 07D state: `2026-09-13-group07-session-detail-current-checkpoint.md` and `docs/CURRENT.md`.
 
 ## Context
 
@@ -11,7 +15,7 @@ This screen is distinct from Group 04 exercise detail:
 - Group 04 `최근 기록 / 성장` = one canonical exercise across sessions
 - Group 07D = one saved workout session and all work actually persisted in that session
 
-The separate `07C_운동기록_Exploration` overview screen was removed from Figma by PO direction. The current Group 07 session-detail work continues directly on 07D.
+The separate `07C_운동기록_Exploration` overview screen was removed from Figma by later PO direction. The current Group 07 session-detail work continues directly on 07D.
 
 ## PO direction applied
 
@@ -43,13 +47,11 @@ Canonical Figma file:
 - page `07 분석 · 운동 기록` — `233:2078`
 - current session detail `07D_운동기록상세_Exploration` — `836:1593`
 
-### Body distribution
-
 07A source pattern:
 - `BodyDistributionSection` — `887:946`
 - `BodyDistributionCard` — `887:948`
 
-07D clone:
+07D current body-distribution section:
 - `SessionBodyDistributionSection` — `1075:794`
 - section `320 × 448`
 - unified card `320 × 412`
@@ -59,54 +61,33 @@ Canonical Figma file:
 - page section gap = `spacing/32`
 - card internal spacing/padding/radius/color bindings are inherited from the approved 07A pattern
 
-### Session summary
+## Calculation rule
 
-Legacy 07D summary cards were replaced by the current shared completion component:
-- `CompletionMetricCard` master — `936:914`
-- four instances: 총 볼륨 / 운동 시간 / 운동 수 / 완료 세트
-- two-column gap = `spacing/12`
+Use the same completed/persisted muscle-exposure basis already locked for Analysis:
+- primary muscle contribution `1.0`
+- secondary muscle contribution `0.5`
+- no load/reps/duration/assistance multiplier
+- no invented conversion between recording types
 
-The sample values remain unchanged for review.
-
-### Personal record
-
-The former raw `PRHighlight` frame was replaced with:
-- `CompletionPersonalRecordCard` master — `936:918`
-- current 07D instance — `1075:791`
-
-Current sample copy remains:
-- `오늘의 신기록`
-- `벤치프레스 80kg × 10회`
-
-### Performed exercises
-
-Existing 07D exercise-detail cards remain component instances and were preserved:
-- WeightReps `ExerciseCard`
-- Reps `ExerciseCard`
-- shared `SectionHeader`
-
-No new duplicate component/token was created for this pass.
+Only areas with contribution in the selected saved session appear in the session-specific list.
 
 ## QA
 
-Focused full-screen screenshot after the refinement = PASS.
+The body-distribution insertion and current upper-body review sample were visually QA'd as PASS.
 
-Verified visually:
-- session title/date hierarchy preserved
-- shared summary metric components align to current spacing
-- PR component aligns to the same card system
-- `운동 부위 분포` is inserted between overview and `수행 운동`
+Verified:
+- same approved 07A front/back body-map composition is reused
 - only session-relevant area rows are shown
 - unrelated lower-body/core highlights are removed from the current upper-body sample body map
-- performed-exercise cards remain unchanged and readable
-- 20px page content inset and existing Fitness dark-surface card treatment are preserved
+- 20px page content inset and Fitness dark-surface card treatment are preserved
 
-## Still open
+## Later 07D checkpoints
 
-07D is not fully closed yet. Continue one decision at a time for remaining product/detail rules, including:
-- non-applicable total-volume presentation in session detail
-- PR detail scope when multiple PRs exist
-- any additional session metadata/actions that are genuinely required for MVP
+Do not use the older state from this pass to infer the current summary/PR/performed-exercise UI. Use:
+- `2026-09-13-group07d-session-summary-unified-card.md`
+- `2026-09-13-group07d-personal-record-trophy-treatment.md`
+- `2026-09-13-group07d-flat-performed-exercise-table.md`
+- `2026-09-13-group07-session-detail-current-checkpoint.md`
 
 ## Development boundary
 
