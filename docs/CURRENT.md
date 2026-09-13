@@ -141,10 +141,16 @@ It shows the actual persisted session result, not one exercise's cross-session h
 
 1. navigation header
 2. session title + date
-3. session summary metrics
-4. conditional personal-record trophy card
+3. conditional personal-record trophy card
+4. session summary metrics
 5. `운동 부위 분포`
 6. `수행 운동`
+
+Overview layout:
+- `OverviewSection` — `858:7170`
+- vertical auto layout
+- `24px` gap
+- child order: `SessionIntro → PersonalRecordTrophyCard → SessionSummary`
 
 ## Session summary — 07D-LOCAL COMPONENT / BALANCED AUTO-LAYOUT / QA PASS
 
@@ -162,6 +168,7 @@ PO direction:
 - outer card reuses Fitness surface/border tokens and `12px` radius
 - the unified summary is now a dedicated 07D-local component
 - nested metric content continues to reuse shared `CompletionMetricCard` instances; do not modify that shared component globally
+- when a personal record exists, the personal-record trophy card appears before this summary card
 
 Current Figma:
 - `SessionSummary` wrapper — `1075:776`, `320 × 159`
@@ -181,9 +188,10 @@ Balanced geometry:
 Superseded:
 - raw live frame `SessionSummaryCard` — `1103:751`
 - asymmetric 135px / 136px metric widths and 57px rows
+- previous overview order `SessionIntro → SessionSummary → PersonalRecordTrophyCard`
 
 Focused component screenshot = PASS.
-Focused full 07D screenshot = PASS.
+Focused full 07D screenshot after order swap = PASS.
 
 ## Personal record — 07D-LOCAL TROPHY COMPONENT / FRONT-LAYER OVERLAP / QA PASS
 
@@ -205,6 +213,7 @@ Visual rule:
 - actual trophy is an absolute overlay after CardSurface in layer order so the trophy renders in FRONT of the card.
 - card top boundary passes behind the trophy around its lower cup/neck area.
 - text placement remains auto-layout driven; no manual text offset is required.
+- in 07D overview this trophy card appears directly after SessionIntro and before SessionSummary when a PR exists.
 
 Superseded 07D construction:
 - `PersonalRecordTrophyWrapper` `1108:733`
@@ -262,6 +271,7 @@ Superseded for 07D:
 - current 07D frame `360 × 1348`
 - 20px content inset
 - `spacing/32` between page sections
+- Overview internal gap `24px`
 - body section header→card gap `spacing/12`
 - performed-exercise header→card gap `spacing/12`
 - summary and performed-exercise areas use one enclosing card surface each
@@ -272,7 +282,7 @@ Superseded for 07D:
 Continue 07D visual/product review one decision at a time.
 
 Immediate next step:
-- PO visual feedback on the new `07D/SessionSummaryCard` and current `07D/PersonalRecordTrophyCard` together with the selected C performed-exercise treatment.
+- PO visual feedback on the reordered `PersonalRecordTrophyCard → SessionSummary` overview together with the selected C performed-exercise treatment.
 
 After visual acceptance, continue remaining product rules:
 - how `총 볼륨` appears when the saved session contains no eligible `weight_reps` volume (`—` is already supported by completion policy)
