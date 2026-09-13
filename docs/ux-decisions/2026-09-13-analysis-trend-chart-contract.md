@@ -9,6 +9,9 @@ This decision is the canonical contract for the `07A` Analysis home trend sectio
 
 It supersedes the earlier `운동 횟수 / 완료 세트 / 운동 시간` + dropdown + bar-chart presentation in the previous version of this document, and absorbs the accepted direction from `2026-09-13-group07a-line-chart-segmented-exploration.md`.
 
+Shared chart-card geometry is governed by:
+- `docs/ux-decisions/2026-09-13-shared-trend-chart-card-geometry.md`
+
 The page-level Analysis period selector itself does **not** change:
 - `4주 / 3개월 / 1년`
 - default `4주`
@@ -158,25 +161,42 @@ The chart must not grow horizontally because a total-weight value becomes long.
 
 ---
 
-## 6. X-axis layout contract
+## 6. Shared chart-card / X-axis layout contract
 
-For the current 4-week Figma implementation, point and label horizontal geometry uses synchronized equal Auto Layout buckets instead of per-label manual X tuning.
+The current 07A line chart uses the same approved chart-card geometry as the 04D Exercise Growth chart.
 
-Current implementation:
+Canonical shared geometry:
+- `docs/ux-decisions/2026-09-13-shared-trend-chart-card-geometry.md`
+
+Current 07A implementation:
+- card `320 × 176`
+- left/right outer safe area `16px`
+- Y-axis label column `28px`
+- Y-axis -> plot gap `8px`
+- plot frame `x=52`, `y=40`, `252 × 88`
+- X-axis row `x=52`, `y=132`, `252 × 28`
+- bottom safe area `16px`
+- single `kg` unit label at `x=16`, `y=16`, `28 × 12`
+
+For the current 4-week implementation, point and label horizontal geometry uses synchronized equal Auto Layout buckets instead of per-label manual X tuning.
+
+Current nodes:
 - `PlotBuckets_Auto` — `1036:7401`
 - `XAxisBuckets_Auto` — `1036:7406`
-- plot width `244px`
-- four equal `61px` buckets
+- plot width `252px`
+- four equal `63px` buckets
 - each point is centered in its plot bucket
 - each X label is centered in the corresponding X-axis bucket
+- bucket centers relative to the chart: `83.5 / 146.5 / 209.5 / 272.5`
 - trend vector is an overlay connecting the bucket-centered points
 
 Purpose:
+- preserve one consistent chart shell with 04D
 - prevent first/last labels from overflowing
 - keep point/label centers synchronized
 - avoid repeated manual X-coordinate tuning
 
-This geometry is a Figma implementation detail; the product contract is equal bucket alignment without label overflow.
+The shared geometry does not merge data semantics: 07A stays zero-based while 04D Growth stays locally adaptive.
 
 ---
 
@@ -245,10 +265,14 @@ Current trend implementation:
 - X-axis Auto Layout buckets — `1036:7406`
 - single Y-axis unit label `kg` — `1039:1042`
 
-Focused read-back after metric update:
+Focused read-back after shared-geometry approval:
 - segmented variants `총 중량 / 세트 / 시간`: PASS
 - default active variant `총 중량`: PASS
 - total-weight compact Y labels `1.5만 / 1만 / 5천 / 0` + single `kg`: PASS
+- chart `320 × 176`: PASS
+- plot `52,40 / 252 × 88`: PASS
+- X-axis `52,132 / 252 × 28`: PASS
+- unit `16,16 / 28 × 12`: PASS
 - original full-width Analysis period tabs preserved: PASS
 - X-axis bucket alignment preserved: PASS
 - 360px full-screen screenshot: PASS; no clipping/collision observed
