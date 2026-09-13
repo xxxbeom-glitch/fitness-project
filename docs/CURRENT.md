@@ -14,9 +14,10 @@
 
 ## Latest active checkpoint
 
-- `docs/ux-decisions/2026-09-13-group07a-refined-analysis-home-handoff.md`
+- `docs/ux-decisions/2026-09-13-analysis-period-selector-simplification.md`
 
 Supporting checkpoints:
+- `docs/ux-decisions/2026-09-13-group07a-refined-analysis-home-handoff.md`
 - `docs/ux-decisions/2026-09-13-shared-recent-workout-list.md`
 - `docs/ux-decisions/2026-09-13-shared-section-header-consolidation.md`
 - `docs/ux-decisions/2026-09-12-group07b-e-local-component-spacing-qa.md`
@@ -48,6 +49,13 @@ Current 07A trend nodes:
 - `MetricChart_4Weeks` — `922:1523`
 - metric dropdown instance — `925:600`
 
+Shared Analysis period selector:
+- `AnalysisPeriodTabs` — `961:1368`
+- `Active=4주` — `961:1347`
+- `Active=3개월` — `961:1354`
+- `Active=1년` — `961:1361`
+- current refined 07A instance — `887:941`, `360 × 54`, default `4주`
+
 Shared recent-workout row master:
 - `RecentWorkoutRow` — `937:7292`
 - reused by 02A Home and current 07A Analysis
@@ -70,9 +78,11 @@ Approved IA remains:
 4. 운동 기록
 5. 운동 기록 상세
 
-Analysis period:
+Analysis period — PO revised 2026-09-13:
 - default `4주`
-- options `4주 / 3개월 / 6개월 / 1년`
+- options `4주 / 3개월 / 1년`
+- previous `6개월` primary tab is removed because its MVP role overlaps the medium/long-term roles already covered by `3개월` and `1년`
+- it may return later through an expanded/custom period control if usage proves a distinct need
 
 Headline metrics remain:
 - 운동 횟수
@@ -93,10 +103,15 @@ Selected-exercise detailed history:
 
 Full detail:
 - `docs/ux-decisions/2026-09-13-group07a-refined-analysis-home-handoff.md`
+- period revision superseding the older 4-range note: `docs/ux-decisions/2026-09-13-analysis-period-selector-simplification.md`
 
 ### Period selector
+- approved options are now `4주 / 3개월 / 1년`; default `4주`.
 - current Figma tab rail/underline is 360px full width.
 - inner content cards keep normal margins.
+- shared `AnalysisPeriodTabs` component set `961:1368` owns the 3 active variants.
+- all 7 Analysis-page instances that used the old 4-tab range control were migrated to the new shared selector while preserving their existing widths.
+- current refined 07A screenshot/read-back after migration = PASS; no clipping/collision observed.
 
 ### Headline trend card
 The three approved metrics are presented through one shared chart card in the current review draft.
@@ -129,7 +144,7 @@ Current review direction:
 Still OPEN:
 - Y-axis max and rounding rules
 - headroom rule
-- bucket rules for 4주/3개월/6개월/1년
+- bucket rules for `4주 / 3개월 / 1년`
 - X-axis label density
 - bar width/gap adaptation
 - tooltip/tap behavior
@@ -212,6 +227,30 @@ Focused screenshot/read-back on 02A and 07A = PASS.
 - `요즘 운동 흐름` / workout-frequency block remains removed from current 07A by PO request.
 
 ## Shared design-system changes from this review
+
+### AnalysisPeriodTabs — PO APPROVED / QA PASS 2026-09-13
+
+Canonical checkpoint:
+- `docs/ux-decisions/2026-09-13-analysis-period-selector-simplification.md`
+
+Shared component set:
+- `AnalysisPeriodTabs` — `961:1368`
+
+Variants:
+- `Active=4주` — `961:1347`
+- `Active=3개월` — `961:1354`
+- `Active=1년` — `961:1361`
+
+Usage:
+- primary Analysis range selector only
+- equal-width Fill tabs
+- default `4주`
+- current refined 07A remains 360px full-bleed
+
+Migration:
+- old 4-tab Analysis period instances migrated: `7`
+- current 07A and older Analysis exploration/reference screens now show one consistent 3-range contract
+- screenshot/read-back on current 07A: PASS
 
 ### Shared recent-workout list pattern — QA PASS 2026-09-13
 
@@ -337,7 +376,7 @@ Continue Product Owner review from `07A_분석홈_부위Row딥링크_Exploration
 
 First define the adaptive chart contract while keeping the current fixed visual frame:
 1. Y-axis max / rounding per metric
-2. period bucket rules for `4주 / 3개월 / 6개월 / 1년`
+2. period bucket rules for `4주 / 3개월 / 1년`
 3. X-axis label density
 4. bar width / gap behavior
 5. tap / tooltip behavior
