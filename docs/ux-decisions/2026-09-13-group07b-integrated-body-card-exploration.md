@@ -8,7 +8,7 @@
 Current 07B exploration:
 - `07B_등상세_운동별총중량_Exploration` — `887:1028`
 
-This exploration tests a tighter visual continuation from the current 07A body-distribution card by placing the selected-body map, helper copy, and contributing-exercise rows inside one shared outer card.
+This exploration tests a tighter visual continuation from the current 07A body-distribution card by placing the selected-body map and contributing-exercise rows inside one shared outer card.
 
 This does **not** yet resolve the open product-policy conflict about selected-body detail vs. the previously locked inline-expansion behavior, and it does not approve universal trailing `kg` values for all recording types.
 
@@ -16,7 +16,7 @@ This does **not** yet resolve the open product-policy conflict about selected-bo
 
 ### Integrated card
 - former `BodyMapGroup` renamed/reworked as `SelectedBodyDetailCard` — `887:1034`
-- size: `320 × 502`
+- current size after helper-copy removal: `320 × 450`
 - vertical Auto Layout
 - horizontal padding: `spacing/20`
 - vertical padding: `spacing/16`
@@ -31,8 +31,9 @@ This does **not** yet resolve the open product-policy conflict about selected-bo
 - front/back body placement aligned to the same compact geometry used by 07A body-map presentation
 
 ### Helper copy
-- remains directly below the body map
-- width aligned to the card internal content line: `280px`
+- PO removed the copy `선택한 기간 동안 완료한 세트를 기준으로 등 부위에 기여한 운동을 보여줘요.` as redundant.
+- no helper/description text remains between the body map and `진행한 운동`.
+- the card now transitions directly from body map to the exercise-contribution section using the existing `spacing/16` internal gap.
 
 ### Contributing exercise block
 - former external selected-area section moved inside `SelectedBodyDetailCard`
@@ -61,12 +62,13 @@ Current review sample names:
 Read-back checks:
 - outer card semantic Variable bindings: PASS
 - 20px horizontal / 16px vertical card spacing bindings: PASS
+- helper copy removed and Auto Layout collapsed correctly: PASS
 - shared SectionHeader instance retained: PASS
 - shared AnalysisExerciseVolumeRow instances retained: PASS
 - nested list surface removed: PASS
 - long-name truncation remains active: PASS
 - period selector remains 360px full-bleed above content: PASS
-- full-screen screenshot after integration: PASS
+- full-screen screenshot after helper-copy removal: PASS
 
 ## Open product decisions
 
