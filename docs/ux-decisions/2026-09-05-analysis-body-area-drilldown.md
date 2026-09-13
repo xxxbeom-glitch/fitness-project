@@ -2,7 +2,7 @@
 
 **Date:** 2026-09-05  
 **Revised:** 2026-09-13  
-**Status:** PO APPROVED / SEPARATE DETAIL SCREEN + RECORDING-TYPE AGGREGATE METRICS + EMPTY STATE LOCKED / FIGMA APPLIED / NO CURSOR HANDOFF
+**Status:** PO APPROVED / SEPARATE DETAIL SCREEN + RECORDING-TYPE AGGREGATE METRICS + EMPTY STATE + SECTION/CARD COMPOSITION LOCKED / FIGMA APPLIED / QA PASS / NO CURSOR HANDOFF
 
 ## Decision
 
@@ -25,9 +25,40 @@ Empty-state review frame:
 1. screen title / back navigation
 2. Analysis period selector (`4주 / 3개월 / 1년`)
 3. selected body-area body map
-4. `진행한 운동` list for the selected body area
+4. `진행한 운동` section
+5. contributor exercise list for the selected body area
 
 07B does not repeat the full broad body-area list from 07A. The selected area is already known from the tapped 07A row.
+
+## Visual composition — PO APPROVED / FIGMA APPLIED
+
+The selected-body visual and contributor list are separate sections rather than one combined card.
+
+Approved composition:
+
+1. body-map card
+2. `spacing/32`
+3. shared `SectionHeader` with title `진행한 운동`
+4. `spacing/12`
+5. exercise-list `ListCard`
+
+Rules:
+- `진행한 운동` is a section header and sits **outside** both cards
+- body-map card contains only the selected-area front/back body visualization
+- exercise rows live in a separate grouped `ListCard`
+- use the shared `ListCard` surface shell rather than creating another card component
+- contributor rows keep `20px` horizontal inset inside the list-card composition
+- populated and empty states use the same section/card structure so period switching does not change the hierarchy
+
+Current Figma structure:
+- populated 07B — `887:1028`
+- body-map card — `887:1034`
+- contributor section — `887:1063`
+- contributor list-card wrapper — `1061:594`
+- empty 07B — `1057:593`
+- empty contributor list-card wrapper — `1061:597`
+
+Focused Figma read-back and screenshots for both populated and empty states = PASS.
 
 ## Contributor exercise-list rule
 
