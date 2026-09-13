@@ -17,6 +17,7 @@
 - `docs/ux-decisions/2026-09-13-group07a-refined-analysis-home-handoff.md`
 
 Supporting checkpoints:
+- `docs/ux-decisions/2026-09-13-shared-recent-workout-list.md`
 - `docs/ux-decisions/2026-09-13-shared-section-header-consolidation.md`
 - `docs/ux-decisions/2026-09-12-group07b-e-local-component-spacing-qa.md`
 - `docs/ux-decisions/2026-09-12-group07a-local-component-binding-qa.md`
@@ -47,8 +48,9 @@ Current 07A trend nodes:
 - `MetricChart_4Weeks` — `922:1523`
 - metric dropdown instance — `925:600`
 
-Current 07A recent-workout row master:
-- `AnalysisRecentWorkoutRow` — `937:7292`
+Shared recent-workout row master:
+- `RecentWorkoutRow` — `937:7292`
+- reused by 02A Home and current 07A Analysis
 
 Base/reference Group 07 frames remain:
 - 07A `836:1112`
@@ -188,23 +190,52 @@ Current row presentation:
 - left = routine/workout name only
 - trailing immediately before chevron = performed date only
 - workout duration is not displayed in this summary row
-- samples: `상체 A` / `9월 12일`, `하체 B` / `9월 10일`
+- 07A samples: `상체 A` / `9월 12일`, `하체 B` / `9월 10일`
 
-Current presentation now matches the `최근 기록 변화` list-card pattern:
-- one shared `RecentWorkoutCard` — `887:1000`
-- two transparent `AnalysisRecentWorkoutRow` instances — `937:7298`, `937:7304`
-- one shared `Divider / Role=Content` between rows
+Current presentation matches the `최근 기록 변화` list-card pattern:
+- one shared outer `RecentWorkoutCard`
+- transparent `RecentWorkoutRow` instances — shared master `937:7292`
+- shared `Divider / Role=Content` between rows
 - divider aligns to the 20px internal content line
 - row horizontal padding = `spacing/20`
 - outer card owns the surface and radius; rows do not render separate rounded-card surfaces
 
-The local row is derived from the existing shared `WorkoutRow`; 02 Home usages remain unchanged.
-Focused screenshot/read-back = PASS.
+The same `RecentWorkoutRow` and list-card visual pattern is now reused in `02A_Home_NoRoutine`:
+- 02A card frame `34:1217`
+- 02A has 3 rows and 2 dividers
+- 07A has 2 rows and 1 divider
+- 02A and 07A both use `SectionHeader / Trailing=Action` with `최근 운동 / 전체 기록`
+
+Focused screenshot/read-back on 02A and 07A = PASS.
 
 ### Removed block
 - `요즘 운동 흐름` / workout-frequency block remains removed from current 07A by PO request.
 
 ## Shared design-system changes from this review
+
+### Shared recent-workout list pattern — QA PASS 2026-09-13
+
+Canonical checkpoint:
+- `docs/ux-decisions/2026-09-13-shared-recent-workout-list.md`
+
+Shared master:
+- `RecentWorkoutRow` — `937:7292`
+
+Current live instances: `5`
+- 02A Home: 3
+- current 07A Analysis: 2
+
+Shared composition:
+- `SectionHeader / Trailing=Action`
+- one outer surface/radius card
+- transparent 60px rows
+- `Divider / Role=Content` between rows
+- row horizontal padding = `spacing/20`
+- title left, performed date trailing before chevron
+- no workout duration in the summary row
+
+02A previously used three separate rounded `WorkoutRow` cards; those were replaced by the shared list-card treatment while preserving the existing three sample workouts/dates.
+Focused screenshot/read-back: PASS.
 
 ### Shared SectionHeader consolidation — QA PASS 2026-09-13
 
@@ -249,7 +280,7 @@ Applied to current 07A:
 - `BodyDistributionCard`
 - `AnalysisProgressRow`
 - recent-progress divider inset
-- `AnalysisRecentWorkoutRow`
+- `RecentWorkoutRow`
 
 Focused screenshot/read-back after the change: PASS; no clipping/collision observed.
 
