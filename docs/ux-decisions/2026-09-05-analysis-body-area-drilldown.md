@@ -2,7 +2,7 @@
 
 **Date:** 2026-09-05  
 **Revised:** 2026-09-13  
-**Status:** PO APPROVED / SEPARATE DETAIL SCREEN LOCKED / FIGMA APPLIED / NO CURSOR HANDOFF
+**Status:** PO APPROVED / SEPARATE DETAIL SCREEN + RECORDING-TYPE AGGREGATE METRICS LOCKED / FIGMA APPLIED / NO CURSOR HANDOFF
 
 ## Decision
 
@@ -37,9 +37,72 @@ For the selected body area:
 - sort by contribution to the selected body-area score, descending; use recency as a tie-breaker
 - do not expose the internal weighted score (`1.0 / 0.5`) as a literal set count
 
-For load-based exercises, the current user-facing secondary metric is selected-period total training volume.
+## Selected-period aggregate metric — PO APPROVED
 
-The recording-type-safe secondary metric for pure reps, duration, assisted-weight and other non-standard load records remains OPEN and must be resolved before 07B is fully closed.
+The trailing value on each `진행한 운동` row is the **sum of that exercise's meaningful native performance quantity inside the selected Analysis period**.
+
+The row does not force every exercise into kilograms.
+
+### `weight_reps`
+
+Display selected-period total training volume:
+
+`Σ(기록 중량 × 완료 반복수)`
+
+Example:
+- `랫풀다운 · 12,450kg`
+
+### `added_weight_reps`
+
+Display selected-period total added-load volume:
+
+`Σ(추가 중량 × 완료 반복수)`
+
+Do not add hidden bodyweight or another multiplier.
+
+### `reps`
+
+Display selected-period total completed repetitions:
+
+`Σ 완료 반복수`
+
+Example:
+- `푸시업 · 148회`
+
+### `duration`
+
+Display selected-period total completed exercise duration:
+
+`Σ 완료 세트 수행시간`
+
+Example:
+- 플랭크를 30초씩 12세트 완료 -> `360초` -> UI `6분`
+- mixed duration example -> `6분 30초`
+
+### `assisted_weight_reps`
+
+Display selected-period total completed repetitions:
+
+`Σ 완료 반복수`
+
+The assistance kg is not multiplied into ordinary training volume and is not converted into an invented effective load for MVP.
+
+### Future / other recording types
+
+Use an additive native quantity only when the recording type defines one clearly.
+Do not invent a cross-unit conversion merely to make all contributor rows share one unit.
+
+## Metric scope and sorting are separate
+
+The user-facing trailing aggregate explains how much of that exercise was performed during the selected period.
+
+It does **not** redefine contributor-list sorting.
+
+Sorting remains:
+1. selected body-area contribution score descending
+2. recency as tie-breaker
+
+Therefore a high displayed total volume/repetition/time does not automatically rank above an exercise with a larger primary/secondary body-area contribution score.
 
 ## Relationship to the body-area percentage
 
@@ -49,7 +112,7 @@ The body-area percentage continues to use the locked body-map calculation:
 - secondary muscle contribution per completed set: `0.5`
 - distribution percentage = selected area's weighted score / total mapped weighted score in the selected period
 
-The `진행한 운동` metric is explanatory detail and does not redefine the body-area percentage formula.
+The `진행한 운동` aggregate metric is explanatory detail and does not redefine the body-area percentage formula.
 
 ## Navigation
 
@@ -63,9 +126,10 @@ The earlier first-pass policy that kept the broad body-area list in 07B and expa
 
 Do not reintroduce inline expansion unless the Product Owner explicitly reopens the decision.
 
+The earlier open question about forcing a universal `kg` trailing metric is also closed by the recording-type aggregate policy above.
+
 ## Still open
 
-- recording-type-safe secondary metric for non-load contributor exercises
 - final empty/no-contributor state
 - whether long contributor lists need a limit / more affordance at MVP scale
 
@@ -75,3 +139,4 @@ No Cursor/development handoff is authorized by this decision.
 
 Reference:
 - `docs/ux-decisions/2026-09-05-analysis-tab-ia.md`
+- `docs/ux-decisions/2026-09-04-workout-completion-metrics.md`
