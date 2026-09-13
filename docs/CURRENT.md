@@ -4,7 +4,7 @@
 
 ## Current mode
 
-`PRODUCT/UX FIGMA · GROUP 07 ANALYSIS · 07A LOCKED · 07B LOCKED EXCEPT LONG-LIST POLICY · 07C OVERVIEW REMOVED · 07D SESSION DETAIL REFINEMENT IN PROGRESS · PO REVIEW · NO CURSOR IMPLEMENTATION HANDOFF`
+`PRODUCT/UX FIGMA · GROUP 07 ANALYSIS · 07A LOCKED · 07B LOCKED EXCEPT LONG-LIST POLICY · 07C OVERVIEW REMOVED · 07D VISUAL DIRECTION ACCEPTED · 07D PRODUCT RULE REVIEW IN PROGRESS · NO CURSOR IMPLEMENTATION HANDOFF`
 
 ## Resume rule
 
@@ -15,6 +15,9 @@
 ## Latest active checkpoint
 
 - `docs/ux-decisions/2026-09-13-group07-session-detail-current-checkpoint.md`
+
+Latest cleanup checkpoint:
+- `docs/ux-decisions/2026-09-13-group07d-figma-cleanup-shared-components.md`
 
 Supporting checkpoints:
 - `docs/ux-decisions/2026-09-13-group07d-session-summary-unified-card.md`
@@ -52,6 +55,7 @@ The older intermediate four-screen sequence in `2026-09-13-group07-page-cleanup-
 - `07B_부위상세` — `887:1028`
 - `07B_부위상세_Empty` — `1057:593`
 - current `07D_운동기록상세_Exploration` — `836:1593`
+- shared UI master page `MVP_공용_UI` — `105:3113`
 
 `07B_부위상세_Empty` is a state variant of 07B, not a separate IA screen.
 
@@ -124,12 +128,12 @@ Locked:
 - empty state remains in the same card structure
 - exercise row routes to Group 04 exercise detail
 
-Still open but currently deferred while PO reviews 07D:
+Still open but deferred while 07D is active:
 - long contributor-list MVP policy (`all rows` vs `first N + more`)
 
 ---
 
-# 07D — WORKOUT SESSION DETAIL · CURRENT REVIEW
+# 07D — WORKOUT SESSION DETAIL · VISUAL DIRECTION ACCEPTED
 
 ## Role
 
@@ -140,7 +144,7 @@ Primary current entry:
 
 It shows the actual persisted session result, not one exercise's cross-session history.
 
-## Current Figma hierarchy
+## Current hierarchy
 
 1. navigation header
 2. session title + date
@@ -149,155 +153,100 @@ It shows the actual persisted session result, not one exercise's cross-session h
 5. `운동 부위 분포`
 6. `수행 운동`
 
-Overview layout:
+Overview:
 - `OverviewSection` — `858:7170`
 - vertical auto layout
 - `24px` gap
 - child order: `SessionIntro → PersonalRecordTrophyCard → SessionSummary`
 
-## Session summary — 07D-LOCAL COMPONENT / BALANCED AUTO-LAYOUT / QA PASS
+## Approved shared-UI masters
 
-Current four review metrics:
+The two approved 07D-scoped component masters are stored on `MVP_공용_UI` rather than the Group 07 working canvas:
+
+- `07D/PersonalRecordTrophyCard` — `1113:733`, `320 × 126`
+- `07D/SessionSummaryCard` — `1124:736`, `320 × 159`
+
+Live 07D instances remain connected:
+- `PersonalRecordTrophyCard` — `1113:739` → master `1113:733`
+- `SessionSummaryCard` — `1124:754` → master `1124:736`
+
+The existing shared/global `CompletionPersonalRecordCard` remains unchanged for Group 06.
+The summary master continues to reuse shared `CompletionMetricCard` instances internally.
+
+## Session summary — LOCKED VISUAL DIRECTION / QA PASS
+
+Metrics:
 - 총 볼륨
 - 운동 시간
 - 운동 수
 - 완료 세트
 
-PO direction:
-- four separate metric cards are removed
-- summary metrics are grouped into one enclosing card
-- 2 × 2 glanceable hierarchy is preserved
-- cells use only subtle horizontal/vertical dividers
-- outer card reuses Fitness surface/border tokens and `12px` radius
-- the unified summary is a dedicated 07D-local component
-- nested metric content continues to reuse shared `CompletionMetricCard` instances; do not modify that shared component globally
-- when a personal record exists, the personal-record trophy card appears before this summary card
-
-Current Figma:
-- `SessionSummary` wrapper — `1075:776`, `320 × 159`
-- master `07D/SessionSummaryCard` — `1124:736`, `320 × 159`
-- live instance `SessionSummaryCard` — `1124:754`, `320 × 159`
-
-Balanced geometry:
+Rules:
+- one enclosing card
+- 2 × 2 metric grid
+- subtle horizontal/vertical dividers
 - outer padding `16px`
-- inner width `288px`
 - row height `56px`
-- equal flexible metric cells `143.5px / 143.5px`
-- vertical divider `1 × 40px`, centered with `8px` visual inset top/bottom
-- horizontal divider `288 × 1px`
-- vertical root itemSpacing `7px`
-- rhythm `16 / 56 / 7 / 1 / 7 / 56 / 16`
+- equal metric-cell widths
+- same Fitness surface/border/radius treatment
+- personal-record trophy card appears before summary when a PR exists
 
-Superseded:
-- raw live frame `SessionSummaryCard` — `1103:751`
-- asymmetric 135px / 136px metric widths and 57px rows
-- previous overview order `SessionIntro → SessionSummary → PersonalRecordTrophyCard`
+## Personal record — LOCKED VISUAL DIRECTION / QA PASS
 
-Focused component screenshot = PASS.
-Focused full 07D screenshot after order swap = PASS.
+Rules:
+- trophy `64 × 64`
+- trophy renders in FRONT of CardSurface
+- CardSurface uses `border/default`, `1px`, `INSIDE`
+- component uses stable auto-layout geometry with internal absolute trophy overlay
+- Group 06 shared PR component is not replaced globally
 
-## Personal record — 07D-LOCAL TROPHY COMPONENT / FRONT-LAYER + BORDER QA PASS
+## Session body distribution — QA PASS
 
-`오늘의 신기록` is a dedicated 07D-local component rather than a modified shared `CompletionPersonalRecordCard` instance.
-
-Current Figma:
-- master `07D/PersonalRecordTrophyCard` — `1113:733`, `320 × 126`
-- live instance `PersonalRecordTrophyCard` — `1113:739`, `320 × 126`
-- `TrophySpace` — `320 × 64`
-- `CardSurface` — `1113:736`, `320 × 94`, positioned by root auto layout at y=`32`
-- trophy `64 × 64`, absolute overlay at x=`128`, y=`0`
-- root vertical auto-layout gap `-32px`
-- component/root clipsContent = false
-- card surface top padding `40px`, horizontal padding `20px`, bottom padding `12px`
-- text gap `6px`
-
-Visual/card rule:
-- TrophySpace keeps stable auto-layout geometry.
-- actual trophy is an internal absolute overlay after CardSurface in layer order so the trophy renders in FRONT of the card.
-- card top boundary passes behind the trophy around its lower cup/neck area.
-- CardSurface uses the same Fitness card border treatment as the session-summary card:
-  - `border/default` — `VariableID:278:922`
-  - `1px`
-  - `INSIDE`
-- surface/radius remain consistent with the other 07D cards.
-- text placement remains auto-layout driven; no manual text offset is required.
-- in 07D overview this trophy card appears directly after SessionIntro and before SessionSummary when a PR exists.
-
-Superseded 07D construction:
-- `PersonalRecordTrophyWrapper` `1108:733`
-- 07D reuse of shared `CompletionPersonalRecordCard` instance `1075:791`
-- 36px manually positioned trophy treatment
-- trophy-behind-card layer order
-- borderless PR card surface
-
-Important:
-- the existing shared/global `CompletionPersonalRecordCard` remains unchanged for its existing Group 06 use case
-- do not replace it globally with the 07D trophy component
-
-Focused component screenshot = PASS.
-Focused full 07D screenshot = PASS.
-
-## Session body distribution
-
-Reuses the approved 07A body-distribution composition:
-- current 07D `SessionBodyDistributionSection` — `1075:794`
-- same body-map/card treatment
+- `SessionBodyDistributionSection` — `1075:794`
+- reuses approved 07A body-map/card composition
 - only body areas represented by the selected saved session are listed
-- current upper-body review sample: 가슴 / 등 / 삼두 / 어깨 / 이두
-- unrelated lower-body/core highlights are removed from the current sample body map
-- current review percentages `36 / 28 / 16 / 12 / 8` are layout-only sample values, not production fixtures
+- current review values `36 / 28 / 16 / 12 / 8` are sample layout data only
 - same completed/persisted primary `1.0` / secondary `0.5` exposure basis applies
 
-## Performed exercises — C MICRO TABLE + SINGLE CARD / QA PASS
+## Performed exercises — C MICRO TABLE ACCEPTED / QA PASS
 
-Selected layout: `C · MICRO TABLE`.
-
-Current structure:
+Current live structure:
 - `수행 운동` SectionHeader outside the card
-- one enclosing `WorkoutSummaryCard`
+- one enclosing `WorkoutSummaryCard` — `858:7171`
+- `WorkoutSummaryTable` — `1097:7116`
 - columns `운동 / 수행 / 세트`
-- same weight/reps combinations are grouped by set count
+- same weight/reps combinations grouped by set count
 - different combinations remain separate rows inside the same exercise group
-- first row shows exercise name, following rows leave it blank
-- exercise groups use content dividers
 - native recording-type values only; no invented unit conversion
 
-Current Figma:
-- `WorkoutSummaryCard` — `858:7171`, `320 × 279`
-- `WorkoutSummaryTable` — `1097:7116`, `288 × 247`
-- inner padding `16px`
-- columns `100 / 120 / 44px`, gap `12px`
+Temporary A/B/C comparison artifacts are removed from the Group 07 page.
+Former comparison section:
+- `07D_수행운동_미니멀_비교안` — removed node `1092:840`
+- contained `A_TonalVertical / B_Condensed / C_MicroTable`
 
-Superseded for 07D:
-- `FlatKeyValueRow Lines=2`
-- `ExerciseCard > Mode=WorkoutSummary`
-
-04D `ExerciseMetadata_Flat` remains unchanged.
-The micro-table is visually selected, but final shared-component cleanup remains deferred until the PO finishes 07D visual review.
+The selected live C treatment remains intact.
+Shared-component cleanup for the table pattern is non-blocking and deferred until the remaining 07D product rules are settled.
 
 ## Current screen geometry
 
-- 360px screen
-- current 07D frame `360 × 1348`
-- 20px content inset
+Actual Figma evidence:
+- root `07D_운동기록상세_Exploration` = `360 × 1437`
+- content frame begins at y=`138`, height `1210`, ending at y=`1348`
+- page content inset `20px`
 - `spacing/32` between page sections
 - Overview internal gap `24px`
 - body section header→card gap `spacing/12`
 - performed-exercise header→card gap `spacing/12`
-- summary and performed-exercise areas use one enclosing card surface each
-- personal-record trophy is accounted for inside its dedicated auto-layout component
+
+Latest full-screen screenshot/read-back after comparison cleanup and master relocation = PASS.
 
 ## NEXT OPEN ITEM — exact resume point
 
-Continue 07D visual/product review one decision at a time.
+07D visual comparison/review is complete. Continue remaining product rules one decision at a time:
 
-Immediate next step:
-- PO visual feedback on the current `PersonalRecordTrophyCard → SessionSummary` overview and the selected C performed-exercise treatment.
-
-After visual acceptance, continue remaining product rules:
-- how `총 볼륨` appears when the saved session contains no eligible `weight_reps` volume (`—` is already supported by completion policy)
-- multiple-PR detail scope
-- any additional session metadata/actions genuinely required for MVP
+1. how `총 볼륨` appears when the saved session contains no eligible `weight_reps` volume — Group 06 already supports `—`, so review 07D for the same meaning/treatment rather than inventing another metric
+2. multiple-PR detail scope
+3. any additional session metadata/actions genuinely required for MVP
 
 Do not reopen 07A/07B mechanically while doing this.
 
