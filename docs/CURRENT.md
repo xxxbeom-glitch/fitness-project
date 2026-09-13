@@ -142,13 +142,11 @@ It shows the actual persisted session result, not one exercise's cross-session h
 1. navigation header
 2. session title + date
 3. session summary metrics
-4. conditional personal-record card
+4. conditional personal-record trophy card
 5. `운동 부위 분포`
 6. `수행 운동`
 
-## Design-system refinement applied — QA PASS
-
-### Session summary — SINGLE CARD APPLIED / QA PASS
+## Session summary — SINGLE CARD / QA PASS
 
 Current four review metrics:
 - 총 볼륨
@@ -158,45 +156,51 @@ Current four review metrics:
 
 PO direction:
 - four separate metric cards are removed
-- summary metrics are grouped into one enclosing card, matching the same single-card treatment used for `수행 운동`
-- 2 × 2 glanceable metric hierarchy is preserved
-- internal metric cells have no individual surface/stroke/radius
-- cells are separated only by subtle horizontal/vertical content dividers
-- existing `CompletionMetricCard` label/value typography is preserved
+- summary metrics are grouped into one enclosing card
+- 2 × 2 glanceable hierarchy is preserved
+- cells use only subtle horizontal/vertical dividers
 - outer card reuses Fitness surface/border tokens and `12px` radius
 - dense inner padding `16px`
 
 Current Figma:
 - `SessionSummary` — `1075:776`, `320 × 159`
 - `SessionSummaryCard` — `1103:751`, `320 × 159`
-- existing `CompletionMetricCard` instances remain as content instances with their individual shell overridden
 
-Focused screenshot after application = PASS.
+## Personal record — 07D-LOCAL TROPHY COMPONENT / AUTO-LAYOUT QA PASS
 
-### Personal record — TROPHY OVERLAP APPLIED / QA PASS
-
-Reuses current `CompletionPersonalRecordCard` content, with a trophy image added as a visual achievement marker.
-
-PO direction:
-- trophy image `36 × 36px`
-- centered above `오늘의 신기록`
-- intentionally breaks the normal grid and protrudes above the card
-- card top boundary crosses the trophy around its neck area
-- card top padding is increased so the trophy does not collide with label/record text
+`오늘의 신기록` is now a dedicated 07D-local component rather than a modified shared `CompletionPersonalRecordCard` instance.
 
 Current Figma:
-- wrapper `PersonalRecordTrophyWrapper` — `1108:733`, `320 × 82`
-- `CompletionPersonalRecordCard` instance — `1075:791`, `320 × 82`
-- trophy layer `trophy_PR_36` — `1105:7639`, `36 × 36`
-- trophy position relative to wrapper/card: `x=142`, `y=-23`
-- card top padding: `28px`
-- `오늘의 신기록` label y = `28`
-- record y = `50`
-- wrapper clipsContent = false
+- master `07D/PersonalRecordTrophyCard` — `1113:733`, `320 × 126`
+- live instance `PersonalRecordTrophyCard` — `1113:739`, `320 × 126`
+- trophy `64 × 64`
+- `TrophyZone` `320 × 64`
+- vertical auto-layout root
+- root itemSpacing `-32px`
+- `CardSurface` hug-content height `94px`
+- card surface top padding `40px`, horizontal padding `20px`, bottom padding `12px`
+- text gap `6px`
+- component/root clipsContent = false
 
-Focused full-screen screenshot after application = PASS.
+Visual rule:
+- trophy is centered above the record copy
+- negative auto-layout gap produces the overlap
+- card top boundary crosses the trophy around its lower cup/neck transition
+- text padding accounts for the trophy, so no manual text offsets are required
 
-### Session body distribution
+Superseded 07D construction:
+- `PersonalRecordTrophyWrapper` `1108:733`
+- 07D reuse of shared `CompletionPersonalRecordCard` instance `1075:791`
+- 36px manually positioned trophy treatment
+
+Important:
+- the existing shared/global `CompletionPersonalRecordCard` remains unchanged for its existing Group 06 use case
+- do not replace it globally with the 07D trophy component
+
+Focused component screenshot = PASS.
+Focused full 07D screenshot = PASS.
+
+## Session body distribution
 
 Reuses the approved 07A body-distribution composition:
 - current 07D `SessionBodyDistributionSection` — `1075:794`
@@ -205,65 +209,51 @@ Reuses the approved 07A body-distribution composition:
 - current upper-body review sample: 가슴 / 등 / 삼두 / 어깨 / 이두
 - unrelated lower-body/core highlights are removed from the current sample body map
 - current review percentages `36 / 28 / 16 / 12 / 8` are layout-only sample values, not production fixtures
-- same completed/persisted primary `1.0` / secondary `0.5` exposure basis applies; do not invent kg/reps/time conversion for the body map
+- same completed/persisted primary `1.0` / secondary `0.5` exposure basis applies
 
-### Performed exercises — C MICRO TABLE + SINGLE CARD APPLIED / QA PASS
+## Performed exercises — C MICRO TABLE + SINGLE CARD / QA PASS
 
-PO가 Mobbin 참고 후 비교안 중 `C · MICRO TABLE`을 선택했다.
+Selected layout: `C · MICRO TABLE`.
 
 Current structure:
-- `수행 운동` SectionHeader는 카드 밖에 유지
-- table 전체를 하나의 `WorkoutSummaryCard` 안에 담음
-- 운동별로 개별 card를 만들지 않음
-- columns: `운동 / 수행 / 세트`
-- 같은 중량/횟수 조합은 세트 수로 묶는다
-- 서로 다른 조합은 동일 운동 그룹에서 별도 행으로 나열한다
-- 첫 조합 행에만 운동명을 표시하고 다음 조합 행의 운동명 셀은 비운다
-- 운동 그룹 사이에는 content divider를 사용한다
-- 원본 set data는 그대로 유지한다
-- recording type에 없는 단위는 만들지 않는다
+- `수행 운동` SectionHeader outside the card
+- one enclosing `WorkoutSummaryCard`
+- columns `운동 / 수행 / 세트`
+- same weight/reps combinations are grouped by set count
+- different combinations remain separate rows inside the same exercise group
+- first row shows exercise name, following rows leave it blank
+- exercise groups use content dividers
+- native recording-type values only; no invented unit conversion
 
-Current canonical performed-exercise area:
+Current Figma:
 - `WorkoutSummaryCard` — `858:7171`, `320 × 279`
-- card: existing Fitness surface token + border token + `12px` radius
-- dense table inner padding: `16px`
 - `WorkoutSummaryTable` — `1097:7116`, `288 × 247`
-- columns: `100 / 120 / 44px`, gap `12px`
-
-Examples:
-- 벤치프레스 | `80kg × 10회` | `2세트`
--             | `75kg × 10회` | `1세트`
-- 랫풀다운   | `62.5kg × 10회` | `1세트`
--             | `60kg × 10회` | `2세트`
-- 푸시업     | `15회` | `2세트`
--             | `12회` | `1세트`
+- inner padding `16px`
+- columns `100 / 120 / 44px`, gap `12px`
 
 Superseded for 07D:
-- `FlatKeyValueRow Lines=2` two-column presentation
-- earlier `ExerciseCard > Mode=WorkoutSummary`
+- `FlatKeyValueRow Lines=2`
+- `ExerciseCard > Mode=WorkoutSummary`
 
-04D `ExerciseMetadata_Flat` remains unchanged and still uses its existing flat key/value row pattern. Do not change 04D to the micro-table style.
-
-Component-system cleanup for the new C table is deferred until the PO finishes visual feedback. After final visual approval, componentize the stable table/header/data-line pattern and remove unused 07D-only variants.
+04D `ExerciseMetadata_Flat` remains unchanged.
 
 ## Current screen geometry
 
 - 360px screen
-- current 07D frame `360 × 1304`
+- current 07D frame `360 × 1348`
 - 20px content inset
 - `spacing/32` between page sections
-- body section internal header→card gap `spacing/12`
-- performed-exercise section internal header→card gap `spacing/12`
-- session summary and performed-exercise areas both use one enclosing card surface rather than multiple small cards
-- trophy intentionally protrudes into the 24px space above the personal-record card
-- focused 07D full-screen screenshot QA = PASS
+- body section header→card gap `spacing/12`
+- performed-exercise header→card gap `spacing/12`
+- summary and performed-exercise areas use one enclosing card surface each
+- personal-record trophy is accounted for inside its dedicated auto-layout component
 
 ## NEXT OPEN ITEM — exact resume point
 
 Continue 07D visual/product review one decision at a time.
 
 Immediate next step:
-- PO visual feedback on the personal-record trophy overlap together with the unified session-summary card and selected C performed-exercise card; do not finalize a new table/component family until these visuals are accepted.
+- PO visual feedback on the new `07D/PersonalRecordTrophyCard` together with the current unified summary/performed-exercise treatments.
 
 After visual acceptance, continue remaining product rules:
 - how `총 볼륨` appears when the saved session contains no eligible `weight_reps` volume (`—` is already supported by completion policy)
@@ -292,8 +282,6 @@ Shared SectionHeader component set:
 04D flat key/value row family remains valid for metadata:
 - `FlatKeyValueRow` component set — `1090:1104`
 - `Lines=1` — `1085:1092`
-
-Do not treat the old `Lines=2` 07D presentation as canonical.
 
 ---
 
