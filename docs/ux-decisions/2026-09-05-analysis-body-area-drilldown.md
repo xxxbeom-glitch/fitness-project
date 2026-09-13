@@ -14,11 +14,11 @@ Example:
 
 The previous inline-expansion behavior is superseded.
 
-Current canonical Figma candidate adopted by this decision:
-- `07B_등상세_운동별총중량_Exploration` — `887:1028`
+Current canonical Figma screen:
+- `07B_부위상세` — `887:1028`
 
 Empty-state review frame:
-- `07B_등상세_기록없음_Exploration` — `1057:593`
+- `07B_부위상세_Empty` — `1057:593`
 
 ## 07B hierarchy
 
@@ -166,7 +166,7 @@ If the selected body area has no contributing exercise records in the currently 
 This is a period-specific empty state, not an error state.
 
 Figma empty-state review frame:
-- `07B_등상세_기록없음_Exploration` — `1057:593`
+- `07B_부위상세_Empty` — `1057:593`
 - visual QA: PASS
 
 ## Relationship to the body-area percentage
@@ -182,7 +182,8 @@ The `진행한 운동` aggregate metric is explanatory detail and does not redef
 ## Navigation
 
 - 07A body-area row -> corresponding 07B body-area detail
-- 07B exercise row -> canonical Group 04 exercise-detail flow rather than a duplicate 07C detail surface
+- 07B exercise row -> canonical Group 04 exercise-detail flow
+- no separate Group 07 exercise-growth detail screen is created
 - back -> 07A Analysis home
 
 ## Superseded behavior
@@ -204,5 +205,6 @@ The intermediate design that split the body-map and contributor list into separa
 No Cursor/development handoff is authorized by this decision.
 
 Reference:
+- `docs/ux-decisions/2026-09-13-group07-page-cleanup-renumber.md`
 - `docs/ux-decisions/2026-09-05-analysis-tab-ia.md`
 - `docs/ux-decisions/2026-09-04-workout-completion-metrics.md`
