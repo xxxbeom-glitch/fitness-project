@@ -1,20 +1,40 @@
-# Group 07D — Personal-record trophy overlap treatment
+# Group 07D — Personal-record trophy card
 
 **Date:** 2026-09-13  
-**Status:** PO DIRECTION APPLIED IN FIGMA / VISUAL QA PASS / NO CURSOR HANDOFF
+**Status:** PO DIRECTION APPLIED IN FIGMA / 07D-LOCAL COMPONENT CREATED / AUTO-LAYOUT QA PASS / NO CURSOR HANDOFF
 
 ## Decision
 
-`07D 운동 기록 상세`의 `오늘의 신기록`은 텍스트만 있는 카드보다 보상/성취감을 강화하기 위해 trophy image를 사용한다.
+`07D 운동 기록 상세`의 `오늘의 신기록` 영역은 기존 `CompletionPersonalRecordCard`를 변형해서 쓰지 않고, **07D 전용 local component**로 분리한다.
 
-Visual treatment:
-- 기존 `CompletionPersonalRecordCard` content를 유지한다.
-- trophy image는 `36 × 36px`로 사용한다.
-- trophy는 카드 상단 중앙에 배치한다.
-- normal content grid에 넣지 않고 overlap/tal-grid 방식으로 배치한다.
-- card top boundary가 trophy의 neck 부근을 통과하도록 trophy를 위로 돌출시킨다.
-- trophy 아래에 `오늘의 신기록` label, 그 아래에 실제 PR record를 배치한다.
-- trophy와 text가 충돌하지 않도록 card top padding을 늘린다.
+Component intent:
+- 이 컴포넌트는 현재 07D 운동 기록 상세의 PR 표현만을 위한 local asset이다.
+- Group 06의 기존 `CompletionPersonalRecordCard`를 수정하거나 회귀시키지 않는다.
+- trophy image + card surface + PR text를 하나의 컴포넌트가 소유한다.
+- trophy까지 auto-layout 흐름 안에 포함해 수동 absolute-position wrapper 의존성을 제거한다.
+
+## Visual treatment
+
+- trophy image: `64 × 64px`
+- card 중앙 상단에 trophy를 배치
+- trophy와 card surface를 vertical auto-layout으로 구성
+- root auto-layout의 negative gap을 사용해 card top boundary가 trophy의 neck 부근을 통과하게 한다
+- trophy 아래 text는 card padding으로 안정적인 여백을 확보한다
+- label: `오늘의 신기록`
+- record sample: `벤치프레스 80kg × 10회`
+
+Current geometry:
+- component width `320px`
+- `TrophyZone`: `320 × 64`
+- trophy: `64 × 64`
+- root itemSpacing: `-32px`
+- `CardSurface`: width `320`, hug-content height `94px`
+- card surface y relative to component = `32px`
+- card surface padding = top `40`, right `20`, bottom `12`, left `20`
+- text gap = `6px`
+- final component height = `126px`
+
+This keeps the visual overlap while making the layout stable under auto-layout instead of relying on a manually positioned trophy layer outside the card.
 
 ## Figma
 
@@ -23,32 +43,33 @@ Canonical file/page:
 - page `07 분석 · 운동 기록` — `233:2078`
 - screen `07D_운동기록상세_Exploration` — `836:1593`
 
-Current nodes:
-- wrapper `PersonalRecordTrophyWrapper` — `1108:733`, `320 × 82`
-- `CompletionPersonalRecordCard` instance — `1075:791`, `320 × 82`
-- trophy image layer `trophy_PR_36` — `1105:7639`, `36 × 36`
+07D-local component:
+- master `07D/PersonalRecordTrophyCard` — `1113:733`, `320 × 126`
+- live instance `PersonalRecordTrophyCard` — `1113:739`, `320 × 126`
+- trophy child — `64 × 64`
+- component uses vertical auto-layout and `clipsContent=false`
+- master and live instance heights normalized to the same `126px`
 
-Geometry:
-- trophy x = `142`, centered on 320px card
-- trophy y = `-23` relative to wrapper/card top
-- card top padding = `28px`
-- `오늘의 신기록` label y = `28`
-- record y = `50`
-- wrapper clipsContent = false
+Superseded 07D construction:
+- manual `PersonalRecordTrophyWrapper` `1108:733`
+- reused `CompletionPersonalRecordCard` instance `1075:791` inside that wrapper
+- `36 × 36` trophy treatment
 
-This keeps the trophy visually detached from the normal grid while the card boundary overlaps the trophy around the neck area.
+The global/shared `CompletionPersonalRecordCard` remains available for its existing use cases and is not redefined by this 07D-local component.
 
 ## QA
 
-Focused full-screen screenshot after application = PASS.
+Focused component screenshot = PASS.
+Focused full 07D screenshot = PASS.
 
 Verified:
-- trophy is 36px and centered
-- trophy protrudes above the card
-- card top boundary crosses the trophy around the intended neck area
-- label/record do not collide with the trophy
-- surrounding session summary/body distribution/performed-exercise sections are unchanged except downstream vertical shift
-- current 07D frame height = `1304px`
+- trophy is included in component structure
+- trophy size is `64px`
+- card boundary visually overlaps the trophy around its lower cup/neck transition
+- label/record do not collide with trophy
+- master uses hug-content auto-layout for the card surface and root
+- live instance is normalized to the master size
+- session summary/body distribution/performed-exercise sections remain intact
 
 ## Development boundary
 
