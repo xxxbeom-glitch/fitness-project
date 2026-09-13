@@ -182,28 +182,29 @@ Reuses the approved 07A body-distribution composition:
 
 04D `ExerciseMetadata_Flat`과 같은 flat key/value table 패턴을 사용한다.
 
-Shared component:
-- `FlatKeyValueRow` — `1085:1092`
+Shared component family:
+- `FlatKeyValueRow` component set — `1090:1104`
+- `Lines=1` — `1085:1092`, 04D metadata용
+- `Lines=2` — `1090:1094`, 07D 복수 수행값용
 - 기존 `RowLabel` / `RowValue` typography와 color 재사용
 - 기존 content divider 재사용
 
-04D도 동일한 공용 row component를 사용하도록 정리됨:
+04D는 `Lines=1`을 사용해 기존 표현을 유지한다:
 - `ExerciseMetadata_Flat` — `543:1048`
-- `MetadataRow_장비` — `1085:1097`
-- `MetadataRow_주 타겟 근육` — `1085:1102`
-- `MetadataRow_보조 타겟 근육` — `1085:1107`
+- visual regression screenshot PASS
 
 07D current sample rows:
-- `PerformedExercise_벤치프레스` — `1085:1252`
-- `PerformedExercise_랫풀다운` — `1085:1258`
-- `PerformedExercise_푸시업` — `1085:1264`
+- `PerformedExercise_벤치프레스` — `1090:1251`
+- `PerformedExercise_랫풀다운` — `1090:1259`
+- `PerformedExercise_푸시업` — `1090:1267`
 
 Display rule:
 - left = exercise name
 - right = compact persisted-set summary
 - identical load/reps combination is grouped by set count
-- different combinations use line breaks
-- examples: `80kg × 10회 × 2세트`, `75kg × 10회 × 1세트`
+- 서로 다른 조합은 한 텍스트의 줄바꿈이 아니라 각각 독립 `ValueLine` layer로 표시
+- `Lines=2`의 우측 `ValueStack`은 `ValueLine1 / ValueLine2` 두 instance, 각 20px 높이, gap `8px`
+- current two-line row height = `80px`
 - reps-only example: `15회 × 2세트`
 - do not invent recording-type units
 - this is presentation compression only; original persisted set rows remain unchanged
@@ -215,7 +216,7 @@ Only actually completed/persisted work is shown as performed work.
 ## Current screen geometry
 
 - 360px screen
-- current 07D frame `360 × 1260`
+- current 07D frame `360 × 1284`
 - 20px content inset
 - `spacing/32` between page sections
 - body section internal header→card gap `spacing/12`
@@ -255,7 +256,9 @@ Shared SectionHeader component set:
 - `Trailing=Action` — `942:7320`
 
 Shared flat key/value row:
-- `FlatKeyValueRow` — `1085:1092`
+- `FlatKeyValueRow` component set — `1090:1104`
+- `Lines=1` — `1085:1092`
+- `Lines=2` — `1090:1094`
 - canonical consumers: 04D `ExerciseMetadata_Flat`, 07D `수행 운동`
 
 ---
