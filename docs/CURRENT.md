@@ -176,63 +176,60 @@ Reuses the approved 07A body-distribution composition:
 - current review percentages `36 / 28 / 16 / 12 / 8` are layout-only sample values, not production fixtures
 - same completed/persisted primary `1.0` / secondary `0.5` exposure basis applies; do not invent kg/reps/time conversion for the body map
 
-### Performed exercises — PO DIRECTION APPLIED / QA PASS
+### Performed exercises — C MICRO TABLE SELECTED / FIGMA APPLIED / QA PASS
 
 `수행 운동`은 운동별 카드로 나누지 않는다.
 
-04D `ExerciseMetadata_Flat`과 같은 flat key/value table 패턴을 사용한다.
+PO가 Mobbin 참고 후 비교안 중 `C · MICRO TABLE`을 선택했다.
 
-Shared component family:
-- `FlatKeyValueRow` component set — `1090:1104`
-- `Lines=1` — `1085:1092`, 04D metadata용
-- `Lines=2` — `1090:1094`, 07D 복수 수행값용
-- 기존 `RowLabel` / `RowValue` typography와 color 재사용
-- 기존 content divider 재사용
+Current structure:
+- columns: `운동 / 수행 / 세트`
+- 같은 중량/횟수 조합은 세트 수로 묶는다
+- 서로 다른 조합은 동일 운동 그룹에서 별도 행으로 나열한다
+- 첫 조합 행에만 운동명을 표시하고 다음 조합 행의 운동명 셀은 비운다
+- 운동 그룹 사이에는 content divider를 사용한다
+- 원본 set data는 그대로 유지한다
+- recording type에 없는 단위는 만들지 않는다
 
-04D는 `Lines=1`을 사용해 기존 표현을 유지한다:
-- `ExerciseMetadata_Flat` — `543:1048`
-- visual regression screenshot PASS
+Current canonical table:
+- `WorkoutSummaryTable` — `1097:7116`
+- `320 × 247`
 
-07D current sample rows:
-- `PerformedExercise_벤치프레스` — `1090:1251`
-- `PerformedExercise_랫풀다운` — `1090:1259`
-- `PerformedExercise_푸시업` — `1090:1267`
+Examples:
+- 벤치프레스 | `80kg × 10회` | `2세트`
+-             | `75kg × 10회` | `1세트`
+- 랫풀다운   | `62.5kg × 10회` | `1세트`
+-             | `60kg × 10회` | `2세트`
+- 푸시업     | `15회` | `2세트`
+-             | `12회` | `1세트`
 
-Display rule:
-- left = exercise name
-- right = compact persisted-set summary
-- identical load/reps combination is grouped by set count
-- 서로 다른 조합은 한 텍스트의 줄바꿈이 아니라 각각 독립 `ValueLine` layer로 표시
-- `Lines=2`의 우측 `ValueStack`은 `ValueLine1 / ValueLine2` 두 instance, 각 20px 높이, gap `8px`
-- current two-line row height = `80px`
-- reps-only example: `15회 × 2세트`
-- do not invent recording-type units
-- this is presentation compression only; original persisted set rows remain unchanged
+Superseded for 07D:
+- `FlatKeyValueRow Lines=2` two-column presentation
+- earlier `ExerciseCard > Mode=WorkoutSummary`
 
-The previously added `ExerciseCard > Mode=WorkoutSummary` variant is superseded and removed.
+04D `ExerciseMetadata_Flat` remains unchanged and still uses its existing flat key/value row pattern. Do not change 04D to the micro-table style.
 
-Only actually completed/persisted work is shown as performed work.
+Component-system cleanup for the new C table is deferred until the PO finishes visual feedback. After final visual approval, componentize the stable header/data-line pattern and remove unused 07D-only variants.
 
 ## Current screen geometry
 
 - 360px screen
-- current 07D frame `360 × 1284`
+- current 07D frame `360 × 1289`
 - 20px content inset
 - `spacing/32` between page sections
 - body section internal header→card gap `spacing/12`
-- performed-exercise rows are flat, without card surfaces
-- 04D flat metadata screenshot regression check = PASS
+- performed-exercise area uses micro-table columns, no card surfaces
 - focused 07D full-screen screenshot QA = PASS
 
 ## NEXT OPEN ITEM — exact resume point
 
-Continue 07D product review one decision at a time.
+Continue 07D visual/product review one decision at a time.
 
-First recommended decision:
-- how `총 볼륨` should appear in 07D when the saved session contains no eligible `weight_reps` volume
-- existing completion policy already supports `—` rather than presenting fake `0kg`; confirm whether 07D follows the same rule
+Immediate next step:
+- PO feedback on the selected C micro-table appearance; do not finalize a new table component family until this visual is accepted.
 
-Then review:
+After visual acceptance, continue remaining product rules:
+- how `총 볼륨` appears when the saved session contains no eligible `weight_reps` volume (`—` is already supported by completion policy)
 - multiple-PR detail scope
 - any additional session metadata/actions genuinely required for MVP
 
@@ -255,11 +252,11 @@ Shared SectionHeader component set:
 - `Trailing=Meta` — `942:7317`
 - `Trailing=Action` — `942:7320`
 
-Shared flat key/value row:
+04D flat key/value row family remains valid for metadata:
 - `FlatKeyValueRow` component set — `1090:1104`
 - `Lines=1` — `1085:1092`
-- `Lines=2` — `1090:1094`
-- canonical consumers: 04D `ExerciseMetadata_Flat`, 07D `수행 운동`
+
+Do not treat the old `Lines=2` 07D presentation as canonical.
 
 ---
 
