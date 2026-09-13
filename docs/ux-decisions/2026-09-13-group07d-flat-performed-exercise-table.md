@@ -55,7 +55,7 @@ Canonical file/page:
 Current canonical performed-exercise area:
 - `WorkoutSummaryCard` — `858:7171`, `320 × 279`
 - `WorkoutSummaryTable` — `1097:7116`, `288 × 247`
-- current 07D frame `360 × 1289`
+- current 07D frame after later overview refinements: `360 × 1348`
 
 The earlier `FlatKeyValueRow Lines=2` presentation for 07D is superseded by this micro-table layout.
 `FlatKeyValueRow Lines=1` remains valid for 04D `ExerciseMetadata_Flat`; do not regress 04D while refining 07D.
@@ -66,9 +66,13 @@ The selected C layout + single-card treatment is currently applied as the approv
 
 Do **not** finalize a new shared micro-table component family until the PO finishes visual feedback on this selected layout. After final visual approval, componentize the stable table/header/data-line pattern and remove superseded unused 07D-only component variants.
 
+Current overall 07D state, including later PR/summary component changes and section order, is captured in:
+- `2026-09-13-group07-session-detail-current-checkpoint.md`
+
 ## QA
 
 Focused 07D full-screen screenshot after applying the card treatment = PASS.
+Later full-screen QA after PR/summary refinements confirms this performed-exercise area remains visually intact.
 
 Verified:
 - one enclosing card only; no per-exercise cards
@@ -77,7 +81,7 @@ Verified:
 - set count is separated from performance value
 - multi-combination exercise data remains readable
 - card uses existing Fitness surface/border/radius treatment
-- existing body-distribution and overview sections are unchanged
+- later overview/body-distribution changes did not alter this table
 
 ## Development boundary
 
