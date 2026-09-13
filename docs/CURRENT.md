@@ -14,9 +14,10 @@
 
 ## Latest active checkpoint
 
-- `docs/ux-decisions/2026-09-13-group07d-flat-performed-exercise-table.md`
+- `docs/ux-decisions/2026-09-13-group07d-session-summary-unified-card.md`
 
 Supporting checkpoints:
+- `docs/ux-decisions/2026-09-13-group07d-flat-performed-exercise-table.md`
 - `docs/ux-decisions/2026-09-13-group07d-session-detail-body-distribution-refinement.md`
 - `docs/ux-decisions/2026-09-13-group07-page-cleanup-renumber.md`
 - `docs/ux-decisions/2026-09-05-analysis-body-area-drilldown.md`
@@ -146,10 +147,7 @@ It shows the actual persisted session result, not one exercise's cross-session h
 
 ## Design-system refinement applied — QA PASS
 
-### Session summary
-
-Reuses current shared component:
-- `CompletionMetricCard` — `936:914`
+### Session summary — SINGLE CARD APPLIED / QA PASS
 
 Current four review metrics:
 - 총 볼륨
@@ -157,7 +155,22 @@ Current four review metrics:
 - 운동 수
 - 완료 세트
 
-Two-column gap uses `spacing/12`.
+PO direction:
+- four separate metric cards are removed
+- summary metrics are grouped into one enclosing card, matching the same single-card treatment used for `수행 운동`
+- 2 × 2 glanceable metric hierarchy is preserved
+- internal metric cells have no individual surface/stroke/radius
+- cells are separated only by subtle horizontal/vertical content dividers
+- existing `CompletionMetricCard` label/value typography is preserved
+- outer card reuses Fitness surface/border tokens and `12px` radius
+- dense inner padding `16px`
+
+Current Figma:
+- `SessionSummary` — `1075:776`, `320 × 159`
+- `SessionSummaryCard` — `1103:751`, `320 × 159`
+- existing `CompletionMetricCard` instances remain as content instances with their individual shell overridden
+
+Focused screenshot after application = PASS.
 
 ### Personal record
 
@@ -218,12 +231,12 @@ Component-system cleanup for the new C table is deferred until the PO finishes v
 ## Current screen geometry
 
 - 360px screen
-- current 07D frame `360 × 1289`
+- current 07D frame `360 × 1288`
 - 20px content inset
 - `spacing/32` between page sections
 - body section internal header→card gap `spacing/12`
 - performed-exercise section internal header→card gap `spacing/12`
-- performed-exercise area uses one enclosing card surface, not per-exercise cards
+- session summary and performed-exercise areas both use one enclosing card surface rather than multiple small cards
 - focused 07D full-screen screenshot QA = PASS
 
 ## NEXT OPEN ITEM — exact resume point
@@ -231,7 +244,7 @@ Component-system cleanup for the new C table is deferred until the PO finishes v
 Continue 07D visual/product review one decision at a time.
 
 Immediate next step:
-- PO feedback on the selected C micro-table + single-card appearance; do not finalize a new table component family until this visual is accepted.
+- PO visual feedback on the unified session-summary card + selected C performed-exercise card; do not finalize a new table component family until these visuals are accepted.
 
 After visual acceptance, continue remaining product rules:
 - how `총 볼륨` appears when the saved session contains no eligible `weight_reps` volume (`—` is already supported by completion policy)
