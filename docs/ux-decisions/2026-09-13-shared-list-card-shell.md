@@ -30,13 +30,34 @@ A grouped list is composed as:
 
 The feature composition frame itself does not own a duplicate fill or radius.
 
+For Home recent-workout compositions, the feature wrapper is named `RecentWorkoutList` rather than `RecentWorkoutCard` so the raw composition frame is not confused with the shared `ListCard` component.
+
 ## Current migrated usages
 
-### 02A Home — recent workout
-- composition frame: `34:1217`
-- `ListCard` instance: `952:7340`
-- rows: 3 × shared `RecentWorkoutRow`
-- dividers: 2 × `Divider / Role=Content`
+### 02 Home — recent workout
+The canonical primary Home states now share the same structure:
+- `02A_Home_NoRoutine` — `34:1194`
+  - composition frame `RecentWorkoutList` — `34:1217`
+  - `ListCard` — `952:7340`
+- `02B_Home_RoutineSelected` — `34:1228`
+  - composition frame `RecentWorkoutList` — `947:7128`
+  - `ListCard` — `947:7129`
+- `02D_Home_Active` — `34:1310`
+  - composition frame `RecentWorkoutList` — `947:7157`
+  - `ListCard` — `947:7158`
+
+Each current Home recent-workout composition uses:
+- 3 × shared `RecentWorkoutRow` (`937:7292` master)
+- 2 × shared `Divider / Role=Content`
+- `SectionHeader / Trailing=Action` with `최근 운동 / 전체 기록`
+- `spacing/20` row horizontal padding
+
+The three primary Home states also consistently reuse:
+- `HomePrimaryActionCard` state variant
+- shared `HeatmapCard`
+- shared `SectionHeader`
+
+`02C_Home_RoutinePicker` is not included in this cleanup because it is the picker/transitional state rather than one of the three canonical primary Home states requested for this pass.
 
 ### 07A Analysis — recent record change
 - composition frame: `887:994`
@@ -52,11 +73,12 @@ The feature composition frame itself does not own a duplicate fill or radius.
 
 ## QA
 
-- 02A Home full-screen screenshot after migration: PASS
-- current 07A full-screen screenshot after migration: PASS
-- no clipping, spacing, divider, or radius regression observed
-- read-back confirms all three migrated grouped cards use `ListCard` master `952:611`
-- outer feature composition frames no longer own duplicate fills/radii
+- 02A / 02B / 02D structural read-back: PASS
+- each has exactly 1 `ListCard`, 3 `RecentWorkoutRow`, 2 content dividers, 1 Action SectionHeader, 1 HomePrimaryActionCard and 1 HeatmapCard
+- obsolete `RecentWorkoutCard` wrapper name count across 02A / 02B / 02D = `0`
+- 02B and 02D focused full-screen screenshots: PASS
+- no clipping, spacing, divider, radius, or component regression observed
+- current 07A full-screen screenshot after ListCard migration: PASS
 
 ## Scope boundary
 
