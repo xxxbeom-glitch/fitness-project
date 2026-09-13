@@ -71,18 +71,57 @@ The three primary Home states also consistently reuse:
 - rows: 2 × shared `RecentWorkoutRow`
 - divider: 1 × `Divider / Role=Content`
 
+## 02A / 02B / 02D Auto Layout normalization — 2026-09-13
+
+The three canonical primary Home states now use the same Auto Layout hierarchy.
+
+### Home scroll container
+`HomeScrollContent`:
+- Vertical Auto Layout
+- fixed viewport sizing retained
+- horizontal padding `spacing/20`
+- vertical padding `spacing/32`
+- section gap `spacing/32`
+- spacing values are bound to existing Fitness variables
+
+### Section composition
+The following section wrappers are Vertical Auto Layout with `spacing/12` gap and Fill-width children:
+- `PrimaryAction_*`
+- `MonthlyHeatmap`
+- `RecentWorkout`
+
+Section wrappers use content-driven vertical sizing; state-specific height difference exists only where content differs, e.g. `ActiveWorkout` action card is taller than `NoRoutine` / `RoutineSelected`.
+
+### Recent workout list composition
+`RecentWorkoutList` is now a true Vertical Auto Layout composition:
+- gap `0`
+- width fills the 320px Home content column
+- height is defined by rows + dividers (`60 + 1 + 60 + 1 + 60 = 182`)
+- `ListCard` is an absolute-positioned background shell and therefore does not affect Auto Layout sizing
+- `RecentWorkoutRow` instances participate in normal Auto Layout flow
+- divider wrappers participate in normal Auto Layout flow
+- divider wrappers use `spacing/20` left/right inset and shared `Divider / Role=Content`
+
+This keeps the reusable `ListCard` responsible only for surface/radius while the list composition remains responsive to row count/content without row-count variants.
+
 ## QA
 
 - 02A / 02B / 02D structural read-back: PASS
 - each has exactly 1 `ListCard`, 3 `RecentWorkoutRow`, 2 content dividers, 1 Action SectionHeader, 1 HomePrimaryActionCard and 1 HeatmapCard
 - obsolete `RecentWorkoutCard` wrapper name count across 02A / 02B / 02D = `0`
-- 02B and 02D focused full-screen screenshots: PASS
+- Auto Layout read-back:
+  - Home section gap = `32`
+  - Home padding = `32 / 20 / 32 / 20`
+  - section internal gap = `12`
+  - RecentWorkoutList gap = `0`, height = `182`
+  - ListCard shell = absolute-positioned background
+- focused full-screen screenshots of 02A / 02B / 02D after Auto Layout normalization: PASS
 - no clipping, spacing, divider, radius, or component regression observed
 - current 07A full-screen screenshot after ListCard migration: PASS
 
 ## Scope boundary
 
-This change standardizes the grouped-list shell only. It does not force unrelated single-content cards, metric cards, action cards, or chart cards into `ListCard`.
+This change standardizes the grouped-list shell and the requested 02A / 02B / 02D Home Auto Layout hierarchy only. It does not force unrelated single-content cards, metric cards, action cards, or chart cards into `ListCard`.
 
 Current Analysis NEXT OPEN ITEM remains the adaptive chart scale/bucket contract.
 
