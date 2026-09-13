@@ -1,7 +1,7 @@
 # 15 TONAL DESIGN SYSTEM SPEC
 
-**Status:** PRE-FIGMA CANONICAL PROVISIONAL — PHASE A
-**Updated:** 2026-08-28
+**Status:** PRE-FIGMA CANONICAL PROVISIONAL — PHASE A · FITNESS HORIZONTAL SPACING CALIBRATED 2026-09-13
+**Updated:** 2026-09-13
 
 ## Purpose and authority
 
@@ -22,6 +22,7 @@ Important:
 - values are intentionally centralized so Figma visual QA can tune them globally
 - Fitness product behavior remains governed by current GitHub Product/Policy/Decision docs
 - Tonal trademarks, proprietary icons, logos, copy, and production media are not Fitness assets
+- where later Fitness Figma QA has calibrated a Phase-A estimate, the explicit current Fitness calibration in this file supersedes the older reconstruction estimate for Fitness production/review screens
 
 ---
 
@@ -33,15 +34,25 @@ Important:
 - production components must remain responsive and must not hard-code all internals to 390
 
 ### Horizontal alignment
-**Canonical provisional tokens**
-- `Space/PageX = 24`
-- `Space/ComponentX = 16`
+
+Historical Phase-A Tonal reconstruction estimate:
+- page inset approximately `24`
+- compact/internal component inset approximately `16`
+
+**Current Fitness calibration — PO approved 2026-09-13**
+- current 360px Fitness screen content inset = existing `spacing/20`
+- standard full-width / page-level card horizontal padding = existing `spacing/20`
+- compact internal modules, small metric tiles, dense selector rows, chart internals and similar compact roles may use existing `spacing/16`
+- vertical padding remains component-role specific; this calibration primarily locks the horizontal visual rhythm
 
 Rules:
-- normal titles, cards, rows, charts, and content sections align to the same 24 pt page line
+- ordinary Fitness titles, cards, rows and content sections align to the same 20px page line unless a deliberate full-bleed pattern applies
+- within standard 320px page-level cards, primary content should normally align to the 20px internal line
+- do not alternate `16` and `20` between visually equivalent adjacent cards solely because they were created at different times
+- use `16` only when the component role is intentionally compact and that compactness is consistent across the same family
 - onboarding question composition may center within the available page width
-- full-bleed media/hero patterns may intentionally break the 24 pt line
-- do not invent a global mobile column grid beyond patterns supported by screenshot evidence
+- full-bleed media/hero patterns and explicitly approved full-width tab rails may intentionally break the 20px line
+- do not invent a global mobile column grid beyond patterns supported by actual Fitness composition
 
 ### Spacing scale
 Use the 4 pt family:
@@ -51,8 +62,9 @@ Use the 4 pt family:
 Usage guidance:
 - `4–8`: micro label/control/metadata spacing
 - `12`: compact internal gap
-- `16`: default row/card internal spacing
-- `20–24`: standard padding and section alignment
+- `16`: compact component/card internals where density is part of the role
+- `20`: default Fitness page inset and standard page-level card horizontal padding
+- `20–24`: standard vertical padding / section alignment where the component requires more breathing room
 - `32–40`: major section separation
 - `48–80`: intentionally sparse onboarding/hero composition
 
@@ -634,7 +646,9 @@ Typical order:
 
 Layout:
 - white canvas
-- ~24 page inset
+- current Fitness page inset `20`
+- standard enclosing page-level card horizontal inset `20` when the chart is card-contained
+- compact chart-internal spacing may use `16` where needed for axes/labels
 - chart width `FILL`
 - chart height `FIXED` by chart variant
 - sparse axes/grid
