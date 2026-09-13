@@ -5,7 +5,13 @@
 
 ## Decision
 
-`07C 운동별 성장` is the detail screen reached from an exercise row in `07A 분석 홈 > 최근 기록 변화`.
+`07C 운동별 성장` is the selected-exercise analysis detail screen.
+
+It can be reached from:
+- an exercise row in `07A 분석 홈 > 최근 기록 변화`
+- a contributing-exercise row in 07B body-area analysis / drilldown
+
+In both cases, 07C opens with the tapped exercise preselected.
 
 First-pass screen structure:
 
@@ -44,7 +50,10 @@ Both remain on the same 07C screen.
 ## Navigation
 
 - tap an exercise row in `07A 분석 홈 > 최근 기록 변화` -> open 07C with that exercise preselected
-- back -> return to Analysis Home
+- tap a contributing-exercise row in 07B -> open 07C with that exercise preselected
+- 07B contributing rows therefore do **not** jump directly to `04G_Exercise_History`
+- 07C remains the analysis layer; date-by-date / set-level history can continue deeper to the canonical `04G_Exercise_History`
+- back -> return to the originating Analysis screen
 
 ## Still OPEN
 
