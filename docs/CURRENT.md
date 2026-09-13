@@ -4,7 +4,7 @@
 
 ## Current mode
 
-`PRODUCT/UX FIGMA · GROUP 07 ANALYSIS · 07A LOCKED · 07B SEPARATE DETAIL + RECORDING-TYPE AGGREGATE METRICS LOCKED · 07B EMPTY/LONG-LIST POLICY NEXT · PO REVIEW · NO CURSOR IMPLEMENTATION HANDOFF`
+`PRODUCT/UX FIGMA · GROUP 07 ANALYSIS · 07A LOCKED · 07B SEPARATE DETAIL + RECORDING-TYPE AGGREGATE METRICS + EMPTY STATE LOCKED · 07B LONG-LIST POLICY NEXT · PO REVIEW · NO CURSOR IMPLEMENTATION HANDOFF`
 
 ## Resume rule
 
@@ -44,6 +44,7 @@ Locked Analysis references:
 - page `07 분석 · 운동 기록` — `233:2078`
 - current 07A `07A_분석홈_부위Row딥링크_Exploration` — `887:936`
 - current 07B `07B_등상세_운동별총중량_Exploration` — `887:1028`
+- 07B empty-state review `07B_등상세_기록없음_Exploration` — `1057:593`
 
 Related approved 04D growth surface sharing the current chart geometry:
 - page `04 운동 목록 · 상세` — `233:2075`
@@ -311,6 +312,20 @@ Example:
 The displayed aggregate does not determine list ranking.
 Sorting remains body-area contribution score descending, then recency as tie-breaker.
 
+### Empty / no-contributor state
+
+PO approved:
+- if the selected period has no contributor records for the selected body area, keep the 07B screen shell, period selector, body map, and `진행한 운동` header
+- replace rows with `이 기간에는 {부위} 운동 기록이 없어요`
+- do not show fake rows or `0kg / 0회 / 0초`
+- period switching remains available; when the new period has records, normal rows return
+- this is an empty state, not an error
+
+Figma:
+- `07B_등상세_기록없음_Exploration` — `1057:593`
+- copy: `이 기간에는 등 운동 기록이 없어요`
+- screenshot QA: PASS
+
 ### Body-area percentage relationship
 
 The body-area percentage remains independent from the row aggregate:
@@ -380,12 +395,11 @@ Relevant contributor row master:
 Continue Product Owner review from the current 07B detail.
 
 07A is locked enough to stop reopening mechanically unless a new regression or explicit product-policy change appears.
-07B separate-detail navigation and recording-type-safe aggregate metrics are now locked.
+07B separate-detail navigation, recording-type-safe aggregate metrics, and empty state are now locked.
 
 Next, decide one item at a time:
-1. 07B empty/no-contributor state
-2. after that, whether long `진행한 운동` lists need an MVP row limit / `더 보기`
-3. then move to remaining Group 07 screen closure decisions (`07D / 07E`, with old 07C duplication removed in favor of Group 04 detail flow)
+1. whether long `진행한 운동` lists need an MVP row limit / `더 보기`
+2. then move to remaining Group 07 screen closure decisions (`07D / 07E`, with old 07C duplication removed in favor of Group 04 detail flow)
 
 **NO CURSOR IMPLEMENTATION HANDOFF.**
 
