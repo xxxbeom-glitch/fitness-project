@@ -91,7 +91,8 @@ The original `FilterSelectButton` master remains the existing shared source; the
 
 Current Figma:
 - card = `320 × 208`
-- chart area = `288 × 132`
+- standard horizontal card padding = `spacing/20`
+- chart area = `280 × 132`
 - chart-area size must remain stable when metric or period changes
 
 Current `운동 횟수` sample:
@@ -166,6 +167,10 @@ Section title:
 
 No section-level `전체 보기` action is currently used because all body-area groups are visible in the card.
 
+Current card spacing:
+- `BodyDistributionCard` uses `spacing/20` horizontal padding.
+- body-map preview and ranked-list content align to the same 20px internal card line.
+
 ## Current body-area taxonomy shown in 07A
 
 The Product Owner corrected the list to the current **7 primary body-area groups**:
@@ -232,8 +237,9 @@ The rows are no longer three independent rounded cards.
 Current presentation:
 - one shared outer card
 - three internal rows
-- 16px outer/row-side rhythm where applicable
-- content dividers between rows
+- row horizontal padding = `spacing/20`
+- content dividers align to the same 20px internal card line
+- compact identity/delta gaps remain on the existing smaller spacing tokens where appropriate
 
 Navigation responsibility remains:
 - row tap -> selected exercise in `07C 운동별 성장`
@@ -287,7 +293,33 @@ Focused screenshot/read-back QA during the edit showed no intended visual regres
 
 ---
 
-# 7. 07B selected-body detail — CURRENT EXPLORATION CANDIDATE, NOT LOCKED
+# 7. Fitness horizontal spacing calibration — PO APPROVED 2026-09-13
+
+Cross-screen Figma QA against existing Routine / Active Workout / Completion / Analysis artifacts showed that current Fitness has converged on a stronger 20px horizontal rhythm than the older Phase-A reconstruction note implied.
+
+Current rule:
+- 360px Fitness page content inset = `spacing/20`
+- standard 320px page-level card horizontal padding = `spacing/20`
+- visually equivalent adjacent standard cards should not alternate between 16 and 20 without a component-role reason
+- `spacing/16` remains valid for compact internals, small metric tiles, dense selector rows, chart internals and other intentionally compact roles
+- vertical padding remains component-role specific
+- deliberate full-bleed patterns such as the approved Analysis period tab rail may break the 20px line
+
+Canonical design-system spec updated:
+- `docs/15_TONAL_DESIGN_SYSTEM_SPEC.md`
+
+Applied in current 07A:
+- `ActivityTrendCard` horizontal padding -> `spacing/20`
+- `BodyDistributionCard` horizontal padding -> `spacing/20`
+- `AnalysisProgressRow` horizontal padding -> `spacing/20`
+- recent-progress dividers -> `spacing/20` inset
+- existing `WorkoutRow` already used `spacing/20` and remains unchanged
+
+Focused Figma screenshot/read-back after the change showed no clipping/collision and a more consistent horizontal alignment.
+
+---
+
+# 8. 07B selected-body detail — CURRENT EXPLORATION CANDIDATE, NOT LOCKED
 
 The current Figma exploration diverged from the older approved 07B inline-expansion policy.
 
@@ -336,7 +368,7 @@ The selected-body exercise-row metric needs a recording-type-safe rule before lo
 
 ---
 
-# 8. Other 07A review changes retained
+# 9. Other 07A review changes retained
 
 - the earlier `요즘 운동 흐름` / workout-frequency block was removed from the current 07A review draft by Product Owner request.
 - lower Analysis content was pulled upward after that removal.
