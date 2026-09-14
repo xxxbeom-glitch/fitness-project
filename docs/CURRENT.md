@@ -19,11 +19,12 @@
 Supporting current checkpoints:
 - `docs/ux-decisions/2026-09-13-group07d-figma-cleanup-shared-components.md`
 - `docs/ux-decisions/2026-09-13-group07-session-detail-current-checkpoint.md`
-- `docs/ux-decisions/2026-09-05-analysis-body-area-drilldown.md`
+- `docs/ux-decisions/2026-09-05-analysis-body-area-drilldown.md` — revised 2026-09-14
 - `docs/ux-decisions/2026-09-12-group06-completion-final-shell.md`
 - `docs/ux-decisions/2026-09-04-workout-completion-metrics.md`
 
 The 2026-09-14 final policy-lock checkpoint supersedes older Group 07 documents where they still describe previously-open items as unresolved.
+The revised 07B body-area drilldown document is canonical for the current populated/empty-state visual behavior.
 
 ---
 
@@ -55,10 +56,21 @@ There is no separate 07C overview screen. Do not recreate it or auto-renumber 07
 
 `LOCKED`.
 
+Populated state:
+- selected body-area body map + contributor list remain in one unified card
 - contributor list shows all rows
 - no first-N truncation or more affordance
 - card grows with content and page scroll handles long content
 - canonical list layer `SelectedAreaExerciseList_AllRows` — `887:1065`
+
+Empty state:
+- selected-period zero-record state does **not** show the body map
+- screen title, period selector and `진행한 운동` SectionHeader remain visible
+- compact card shows only `이 기간에는 {부위} 운동 기록이 없어요`
+- `07B_부위상세_Empty` — `1057:593`
+- compact card — `1057:598`, `320 × 152`
+- empty content — `SelectedBodyDetailEmptyState` — `1057:628`, `280 × 120`
+- former empty-state body map `1057:599` is removed
 
 ## 07D
 
@@ -87,12 +99,14 @@ Temporary A/B/C comparison artifacts are removed.
 Targeted Figma QA = PASS.
 
 Verified:
-- header action visible
+- 07B populated state remains unchanged
+- 07B empty-state body map removed
+- compact empty card centers the period-specific no-record message without clipping
+- header action visible in 07D
 - multi-row PR sample expands without clipping
 - Overview auto-layout reflows correctly
 - confirmation state reuses the shared dialog pattern
 - session summary, body distribution and C micro-table remain intact
-- 07B list remains vertical hug Auto Layout with no more affordance
 
 No broader repeat QA is required unless a new change/regression is introduced.
 
