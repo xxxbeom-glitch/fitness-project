@@ -61,6 +61,15 @@ Canonical Figma:
 
 법적 보존 의무가 생기는 데이터가 있다면 일반 앱 데이터와 분리하고 개인정보처리방침에서 별도로 다룬다.
 
+## Figma cleanup
+
+다음 이전 exploration 화면은 현재 흐름과 중복되어 삭제했다.
+
+- `08B_프로필_계정_Exploration_V2` — old node `1180:713`
+- `08B2_프로필_계정탈퇴확인_Exploration_V1` — old node `1192:775`
+
+현재 canonical 08B profile/account 및 account-exit 화면만 유지한다.
+
 ## QA
 
 Targeted Figma QA = PASS.
@@ -70,6 +79,7 @@ Targeted Figma QA = PASS.
 - bottom CTA 확인
 - final confirm이 프로필이 아니라 전용 탈퇴 화면 위에 표시되는 것 확인
 - 08B 기본 프로필에는 regression 없음
+- 삭제 요청한 두 superseded exploration frame이 더 이상 존재하지 않음 확인
 
 ## NEXT OPEN ITEM
 
