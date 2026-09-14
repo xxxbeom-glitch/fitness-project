@@ -4,7 +4,7 @@
 
 ## Current mode
 
-`PRODUCT/UX FIGMA · GROUP 08 SETTINGS/ACCOUNT EXPLORATION ACTIVE · GROUP 07 ANALYSIS LOCKED · GROUP 06 COMPLETION APPROVED · NO CURSOR IMPLEMENTATION HANDOFF`
+`PRODUCT/UX FIGMA · GROUP 08 SETTINGS/ACCOUNT EXPLORATION ACTIVE · UNIT SETTINGS APPROVED · GROUP 07 ANALYSIS LOCKED · GROUP 06 COMPLETION APPROVED · NO CURSOR IMPLEMENTATION HANDOFF`
 
 ## Resume rule
 
@@ -14,6 +14,9 @@
 
 ## Latest active checkpoint
 
+- `docs/ux-decisions/2026-09-14-group08-unit-settings-policy.md`
+
+Supporting Group 08 checkpoint:
 - `docs/ux-decisions/2026-09-14-group08-settings-account-exploration-v1.md`
 
 Supporting locked / prior checkpoints:
@@ -36,18 +39,29 @@ Canonical Figma:
 
 Current exploration screens:
 - `08A_설정홈_Exploration_V1` — `1158:649`
+- `08C_단위설정_Sheet_Exploration_V1` — `1175:709`
 - `08G_운동설정_Exploration_V1` — `1158:7365`
 - `08H_알림설정_Exploration_V1` — `1158:7457`
 - `08G1_기본휴식시간_Sheet_Exploration_V1` — `1163:676`
 - `08G2_타이머종료음_Exploration_V1` — `1163:7296`
 
-Current PO directions already recorded:
+Current PO-approved / recorded directions:
 - `구독 관리`, `언어`, `테마` = TBD
-- `운동 리마인더` is removed from notification exploration
+- `운동 리마인더` removed
 - default rest time uses a bottom-sheet drum-roll picker
 - rest-time range = `없음` through `5분`, step = `5초`
 - timer end sound currently has 3 choices; tapping selects and immediately previews the sound
 - current sound labels `기본 / 차임 / 벨` are temporary until real sound assets are selected
+
+### Unit settings — APPROVED
+
+- supported weight units = `kg / lb`
+- global unit preference applies to current input, previous-value references, past workout records, completion/session detail, analysis, and PR weight displays
+- changing units converts presentation/input display only; historical source records are not destructively rewritten
+- per-exercise unit override is excluded from MVP
+- Settings home shows the current unit value on the `단위 설정` row
+- unit selector remains a bottom sheet with `kg (킬로그램)` and `lb (파운드)`
+- Figma targeted QA = PASS
 
 Shared UI added during this track:
 - reference frame `631_Reminder_Time_Sheet` — `1165:7945`
@@ -62,9 +76,7 @@ Wheel picker current structure:
 - text values exposed for instance override
 - existing Fitness tokens reused; no new token added
 
-Targeted screenshot QA after insertion = PASS.
-
-Group 08 is NOT locked yet. The current menu structure and remaining detailed behaviors are still under PO review.
+Group 08 is NOT locked yet. Approved areas should not be reopened without a new reason.
 
 ---
 
@@ -178,9 +190,9 @@ No broader repeat QA is required unless a new change/regression is introduced.
 
 # NEXT OPEN ITEM
 
-Continue Group 08 Settings / Account from `2026-09-14-group08-settings-account-exploration-v1.md`.
+Continue Group 08 with `프로필 설정` review.
 
-Review the current Settings / Account exploration with the Product Owner one area at a time. Do not treat the full 08A menu or all detail behaviors as locked yet.
+After profile, review account / login-provider / logout behavior, then FAQ/contact and legal presentation. Do not reopen approved unit/workout settings without a new issue.
 
 Do not reopen Group 06 or Group 07 mechanically.
 
