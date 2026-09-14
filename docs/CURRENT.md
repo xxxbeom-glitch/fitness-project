@@ -21,19 +21,11 @@ Directly relevant Group 03 decisions / checkpoints:
 - `docs/ux-decisions/2026-09-08-routine-figma-03-checkpoint.md`
 - `docs/ux-decisions/2026-09-10-action-menu-presentation.md`
 - `docs/ux-decisions/2026-09-10-routinelist-action-bottomsheet-correction.md`
-- `docs/ux-decisions/2026-09-14-recommended-routine-acceptance-current.md` — current recommendation acceptance flow; supersedes old DEC-014 flow semantics
-- `docs/ux-decisions/2026-09-03-recommended-routine-detail-flow.md`
-- `docs/ux-decisions/2026-09-04-recommended-routine-post-workout-save.md`
-
-Prior approved / locked checkpoints should not be reopened without a new issue:
-- `docs/ux-decisions/2026-09-14-group01-cross-group-qa.md`
-- `docs/ux-decisions/2026-09-14-group06-completion-shared-summary-sync.md`
-- `docs/ux-decisions/2026-09-14-group07-final-policy-lock.md`
-- Group 08 settings/account checkpoints from 2026-09-14 remain recorded in `docs/ux-decisions/`.
+- `docs/ux-decisions/2026-09-14-recommended-routine-acceptance-current.md`
 
 ---
 
-# GROUP 03 — ROUTINE QA PASS + POST-QA REFINEMENT RECORDED
+# GROUP 03 — ROUTINE QA PASS + POST-QA REFINEMENT
 
 Canonical Figma:
 - file `W3lZurXCXbThP67rF2xk2b`
@@ -52,58 +44,32 @@ Current valid representative action-menu states:
 - `03A_Routine_List_Menu` — `706:5023`
 - `03F_Routine_Exercise_Menu` — `706:5087`
 
-Cross-group planning / Figma / design-system QA result:
-- planning/product match = PASS
-- Figma screen inventory = PASS
-- structure / Auto Layout = PASS after targeted cleanup
-- component / variable binding = PASS after targeted fixes
-- screenshot / product correctness = PASS
-- stale `03G_Routine_Readonly` = absent
+Current confirmed refinements:
+- Production-style long exercise names reflected in Group 03 samples
+- `운동 구성` heading removed from create-with-exercises and edit screens
+- routine create/edit supports user-entered `SET / KG / REPS`
+- active workout uses the same entry model; performed values become workout-record data
+- `순서 변경` reuses `05J_Reorder` and returns to the originating Group 03 create/edit screen
+- `대체 운동` reuses `05G_Exercise_Replace_Suggest` and returns with the selected exercise substituted in the same position
+- replacement does not copy values from the old exercise
+- replacement loads the selected exercise's own latest personal recorded values using that exercise's recording type
+- if the replacement exercise has no personal history, start with one empty set row
 
-Targeted fixes applied during the QA pass:
-- repeated raw 03A routine cards promoted to shared local `RoutineListCard` — main `1362:905`
-- Group 03 raw attachment-status chips replaced by canonical local `AttachmentTag` — main `693:6035`
-- 03A / 03F ActionSheet QA states normalized to full viewport + overlay + canonical sheet without duplicated underlying product UI
-
-Post-QA PO refinements now reflected:
-- routine detail/create/edit exercise samples use current Production-style long names for layout stress QA
-- redundant `운동 구성` heading removed from `03E2_Routine_Create_WithExercises` and `03F_Routine_Edit`
-- routine create/edit may input and modify `SET / KG / REPS`
-- user-entered KG is allowed in the routine; the app must not infer working weight from demographic data
-- active workout uses the same entry model and may modify the same values during the session
-- actual performed values remain workout-record data
-
-Recommendation acceptance semantics:
-- current flow = `추천 결과/상세 → 운동 시작 → Active Workout → 운동 완료 → 내 루틴 저장 여부 선택`
-- do not use the old `이 루틴 사용하기 → save → Home` DEC-014 behavior as the current implementation contract
-
-Non-blocking deferred content:
-- sample set-table values such as `W / 1 / 2 / D / F`, `80 KG`, `35 REPS` are visual samples only and are not approved default prescription data
+Recommendation acceptance remains:
+`추천 결과/상세 → 운동 시작 → Active Workout → 운동 완료 → 내 루틴 저장 여부 선택`
 
 ---
 
 # GROUP 02 — HOME REFINEMENT DEFERRED
 
-Product Owner explicitly deferred the current Group 02 Home refinement on 2026-09-14.
-
-The existing Group 02 checkpoint remains valid and unfinished:
-- `docs/ux-decisions/2026-09-14-group02-home-refinement-checkpoint.md`
-
-Do not continue the 02A artwork/re-entry/three-state lock work unless the Product Owner returns to Group 02.
+Product Owner explicitly deferred Group 02 Home refinement. Do not resume it unless PO requests it.
 
 ---
 
 # NEXT OPEN ITEM
 
-Continue Group 03 product follow-up only when the Product Owner requests it.
+Remaining Group 03 product follow-up:
+1. unsaved-change/back, create-save, edit-save, routine delete confirmation/destination
+2. source/calculation rule for routine `예상 시간`
 
-Current open items:
-1. define `순서 변경` / `대체 운동` downstream behavior and replacement-value carryover/reset rules
-2. define unsaved-change/back, create-save, edit-save, delete-confirmation/destination behavior
-3. define the source/calculation rule for routine `예상 시간`
-
-Do not automatically return to deferred Group 02 and do not begin Cursor implementation handoff.
-
-# Development boundary
-
-Product Owner가 개발 전환을 명시하기 전까지 개발/Cursor handoff를 하지 않는다.
+Do not begin Cursor implementation handoff until Product Owner explicitly requests development transition.
