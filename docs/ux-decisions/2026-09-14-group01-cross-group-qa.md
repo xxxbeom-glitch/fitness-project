@@ -83,17 +83,19 @@ The page title/subtitle/divider remain page-level annotation elements and are no
 
 ## Confirmed mismatches found and corrected
 
-### 1. 01C purpose copy mismatch — FIXED
+### 1. 01C unnecessary purpose helper copy — REMOVED
 
-Before QA, the helper copy said:
-- `운동 기록과 분석에 필요한 최소 정보만 받아요.`
+The helper copy went through two versions during QA:
+- old: `운동 기록과 분석에 필요한 최소 정보만 받아요.`
+- interim: `이용자 분포를 확인하기 위한 기본 정보만 받아요.`
 
-That implied sex / DOB were needed for workout-record analysis, which did not match the approved purpose boundary.
+The old copy incorrectly implied that sex / DOB were necessary for workout-record analysis. The interim copy was factually closer to the approved demographic-analysis purpose, but the Product Owner judged that this explanation adds little value in the form UI.
 
-Current copy:
-- `이용자 분포를 확인하기 위한 기본 정보만 받아요.`
+Current Figma therefore removes the helper copy from both:
+- `01C_Basic_Info`
+- `01C1_Basic_Info_Error`
 
-This now matches the recorded demographic-analysis purpose.
+The demographic collection purpose remains a product/privacy policy concern and is not repeated as decorative helper copy on the screen.
 
 ### 2. DOB invalid state missing from Figma — FIXED
 
@@ -170,6 +172,25 @@ The obsolete isolated-dialog-only reference frame was removed. The temporary dup
 
 This now follows the global rule in `docs/17_FIGMA_AGENT_EXECUTION_QA.md`: modal/dialog QA references use the full viewport and canonical scrim/component, but do not duplicate the underlying product UI unless explicitly requested.
 
+### 8. Inline validation hint icon was ad-hoc — FIXED
+
+The Product Owner supplied the `hint-icon` asset directly in `01C1_Basic_Info_Error`.
+
+The raw icon was promoted to the shared local component library as:
+- `icon/hint` — `1302:594`
+- size = `14 × 14`
+
+The birth-date error row now uses an actual component instance:
+- `HintIcon` — `1302:597`
+- parent = `FieldMessage_Error`
+
+For the current approved use case this icon is part of an error-validation message, so both vector strokes are bound to the existing semantic variable:
+- `state/danger` — `VariableID:278:931`
+
+This keeps the icon and `BirthError` copy on the same semantic error color. No raw error color and no duplicate icon component were introduced.
+
+A separate neutral/information color variant is not created until a real non-error hint use case requires it.
+
 ## Component / dependency QA
 
 Actual post-fix dialog-state audit:
@@ -185,6 +206,7 @@ Current Group 01 instances resolve to local Fitness components, including:
 - `DialogCard`
 - `DialogButtons`
 - `icon/arrow-left`
+- `icon/hint`
 - `ModeTile`
 
 The older September 7 login-dialog checkpoint records pre-migration component keys. The September 10 local-component migration superseded component ownership; current local component linkage is therefore the expected state rather than a mismatch.
@@ -195,9 +217,15 @@ No avoidable detached/duplicate replacements of the current canonical CTA / Inpu
 
 Screenshot/read-back verified after the corrections:
 - `01A_Login` — no visual regression
-- `01C_Basic_Info` — default sex none selected, DOB `19880101`, CTA Disabled, corrected purpose copy
-- `01C1_Basic_Info_Error` — selected sex state, invalid DOB, inline danger error, CTA Disabled
+- `01C_Basic_Info` — default sex none selected, DOB `19880101`, CTA Disabled, no redundant helper copy
+- `01C1_Basic_Info_Error` — selected sex state, invalid DOB, `icon/hint` + inline danger error, CTA Disabled
 - `01A1_Login_Error_Overlay_Cases` — three `360 × 780` dark empty viewport states with full-screen scrim and centered DialogCard
+
+Validation icon read-back:
+- `HintIcon` is an instance of `icon/hint`
+- icon size = `14 × 14`
+- both icon vector strokes bind to `state/danger`
+- error text also binds to `state/danger`
 
 Dialog overlay read-back:
 - all three viewport sizes = `360 × 780`
@@ -218,6 +246,7 @@ This QA does not introduce or decide:
 - a standalone login-error route
 - use of sex/DOB for starting-weight recommendation
 - new first-run recommendation inputs
+- a neutral/info `icon/hint` variant without an approved real use case
 
 The first-run journey still continues after this group into the already-governed recommendation / self-build paths.
 
