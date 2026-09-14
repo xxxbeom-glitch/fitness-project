@@ -1,7 +1,7 @@
 # Group 04 Recording Type — History / Growth Policy
 
 **Date:** 2026-09-15  
-**Status:** PO APPROVED / PRODUCT POLICY LOCKED / FIGMA REFLECTION NEXT / NO CURSOR HANDOFF
+**Status:** PO APPROVED / PRODUCT POLICY LOCKED / FIGMA REFLECTED / FOCUSED QA PASS / NO CURSOR HANDOFF
 
 ## Scope
 
@@ -101,7 +101,7 @@ MVP에서는 별도의 `개인 최고 기록` 판정을 제공하지 않는다.
 
 개인 최고 기록이 유효한 recording type은 기록 1회만 있어도 해당 실제 기록을 기준으로 표시할 수 있다.
 
-## Group 05 dependency QA
+## Group 05 dependency QA — PASS
 
 Group 05 canonical page에는 이미 다음 대표 상태가 존재한다.
 
@@ -110,28 +110,77 @@ Group 05 canonical page에는 이미 다음 대표 상태가 존재한다.
 - `05C_Workout_Duration`
 - `05E_Workout_Assisted`
 
-다만 Product policy 기준으로 `duration`은 **시간만 기록**해야 한다.
+`05C_Workout_Duration`을 focused-check한 결과, 플랭크 카드의 실제 입력 열은 `세트 / 시간 / 완료`이며 불필요한 `중량` 입력이 없다.
 
-따라서 04 Figma reflection 전에 `05C_Workout_Duration`의 현재 실제 세트 입력 필드에 불필요한 `중량` 입력이 남아 있는지 focused QA한다.
+따라서 기존 `duration = 시간만` 정책과 일치하며 Group 05 수정은 하지 않았다. Group 05 closure는 그대로 유지한다.
 
-- 남아 있지 않으면 기존 Group 05 closure를 유지한다.
-- 남아 있으면 새 기획을 만들지 않고 기존 recording-type 정책에 맞게 최소 수정한다.
+## Figma reflection — COMPLETE
 
-이 focused check는 Group 05 전체 재QA를 의미하지 않는다.
+Canonical file:
+- `W3lZurXCXbThP67rF2xk2b`
 
-## Figma next reflection
+Group 04 page:
+- `04 운동 목록 · 상세` — `233:2075`
 
-Group 04에서 현재 벤치프레스 `weight_reps` 대표 화면은 유지한다.
+기존 벤치프레스 `weight_reps` 대표 화면은 유지한다.
 
-추가로 검증할 대표 상태:
+추가 representative states:
 
-1. `reps` 최근 기록 + 성장
-2. `duration` 최근 기록 + 성장
-3. `assisted_weight_reps` 최근 기록 + 성장
-4. 기록 없음 Empty
-5. 성장 데이터 부족
+- `04D_Exercise_Detail_History_Reps` — `1391:1619`
+- `04D_Exercise_Detail_Growth_Reps` — `1391:1707`
+- `04D_Exercise_Detail_History_Duration` — `1391:1779`
+- `04D_Exercise_Detail_Growth_Duration` — `1391:1867`
+- `04D_Exercise_Detail_History_Assisted` — `1391:1939`
+- `04D_Exercise_Detail_Growth_Assisted` — `1391:2027`
+- `04D_Exercise_Detail_History_Empty` — `1391:2099`
+- `04D_Exercise_Detail_Growth_Empty` — `1391:2190`
+- `04D_Exercise_Detail_Growth_Insufficient` — `1391:2265`
 
-기존 Fitness Variables / Components / Patterns를 우선 재사용하고 같은 역할의 새 component를 중복 생성하지 않는다.
+Reflected behavior:
+
+- `reps` History는 `세트 / 횟수`만 표시하고 Growth는 `반복 변화`, 개인 최고 `최대 반복`을 사용한다.
+- `duration` History는 `세트 / 시간`만 표시하고 Growth는 `시간 변화`, 개인 최고 `최장 시간`을 사용한다.
+- `assisted_weight_reps` History는 `세트 / 보조중량 / 횟수`를 표시하고 Growth는 낮아지는 보조중량 추이를 그대로 보여준다. MVP 개인 최고 기록 섹션은 노출하지 않는다.
+- 기록 0회용 History / Growth Empty state를 추가했다.
+- 기록 1회 등 비교 가능한 복수 기록이 없는 경우 Growth chart는 `기록이 더 필요해요` 상태로 대체하고, 유효한 타입의 개인 최고 기록은 실제 1회 기록 기준으로 유지한다.
+- 기존 `weight_reps` History 열 명칭은 Group 05에서 확정한 한국어 용어와 맞춰 `세트 / 중량 / 횟수`로 정리했다.
+
+Design-system rule:
+
+- 기존 Group 04 History / Growth 구조를 clone/reuse했다.
+- 기존 `04C_Search_Empty`의 Empty text pattern을 재사용했다.
+- 새 component master / token / style을 만들지 않았다.
+- 기존 shared component instance는 detach하지 않았다.
+
+## Focused QA — PASS
+
+- 신규 representative state 9개 모두 `360 × 954`
+- 신규 state의 shared component instance missing-main = `0`
+- `05C_Workout_Duration`에 불필요한 중량 입력 없음
+- screenshot read-back PASS:
+  - reps History
+  - duration History
+  - reps Growth
+  - duration Growth
+  - assisted Growth
+  - History Empty
+  - Growth insufficient-data
+- assisted Growth는 `35 → 35 → 30 → 25kg` 예시처럼 보조중량이 낮아지는 방향을 시각적으로 표현하며 point/path alignment 재검수 PASS
+
+## NEXT OPEN ITEM
+
+Recording-type-specific History / Growth 보완은 닫는다.
+
+다음 Group 04 Product/UX QA는 `04E_Custom_Create` / `04F_Custom_Edit`의 선택형 필드 interaction을 검토한다.
+
+대상:
+
+- 장비
+- 주 타겟 근육
+- 보조 타겟 근육
+- 기록 방식
+
+기존 component / pattern을 우선 재사용하고, 실제 선택 흐름이 없는 상태를 그대로 구현 handoff하지 않는다.
 
 ## Development boundary
 
