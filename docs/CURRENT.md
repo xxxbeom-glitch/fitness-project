@@ -1,10 +1,10 @@
 # CURRENT — Fitness Project
 
-**Updated:** 2026-09-14
+**Updated:** 2026-09-15
 
 ## Current mode
 
-`PRODUCT/UX FIGMA · GROUP 04 EXERCISE LIBRARY/DETAIL CURRENT QA PASS · GROUP 03 ROUTINE CLOSED · GROUP 02 HOME DEFERRED BY PO · NO CURSOR IMPLEMENTATION HANDOFF`
+`PRODUCT/UX FIGMA · GROUP 04 EXERCISE DETAIL PRODUCT QA ACTIVE · GROUP 03 ROUTINE CLOSED · GROUP 02 HOME DEFERRED BY PO · NO CURSOR IMPLEMENTATION HANDOFF`
 
 ## Resume rule
 
@@ -14,9 +14,10 @@
 
 ## Latest active checkpoint
 
-- `docs/ux-decisions/2026-09-14-group04-cross-group-regression-qa.md`
+- `docs/ux-decisions/2026-09-15-group04-recording-type-history-growth-policy.md`
 
 Directly relevant Group 04 decisions / checkpoints:
+- `docs/ux-decisions/2026-09-14-group04-cross-group-regression-qa.md`
 - `docs/ux-decisions/2026-09-10-group04-closure-qa.md`
 - `docs/ux-decisions/2026-09-10-group04-session-handoff.md`
 - `docs/ux-decisions/2026-09-13-exercise-detail-tab-state-normalization.md`
@@ -24,10 +25,14 @@ Directly relevant Group 04 decisions / checkpoints:
 - `docs/ux-decisions/2026-09-13-04d-growth-relative-week-xaxis.md`
 - `docs/ux-decisions/2026-09-13-04g-growth-weight-change-title.md`
 - `docs/ux-decisions/2026-09-13-04g-growth-personal-best-table-sync.md`
+- `docs/ux-decisions/2026-09-05-exercise-recording-types.md`
+- `docs/ux-decisions/2026-09-05-duration-exercise-recording.md`
+- `docs/ux-decisions/2026-09-03-assisted-machine-recording.md`
+- `docs/ux-decisions/2026-09-10-group05-closure-qa.md`
 
 ---
 
-# GROUP 04 — EXERCISE LIBRARY / DETAIL CURRENT QA PASS
+# GROUP 04 — EXERCISE LIBRARY / DETAIL PRODUCT QA ACTIVE
 
 Canonical Figma:
 - file `W3lZurXCXbThP67rF2xk2b`
@@ -47,7 +52,7 @@ Current canonical states:
 - `04A_Filter_Equipment_Page` — `515:3327`
 - `04A_Filter_BodyPart_Page` — `515:3514`
 
-Current QA result:
+Current structural / regression QA result:
 - all canonical top-level states `360 × 954`
 - no stale top-level `04G_Exercise_History` state
 - Exercise Detail states normalized under `04D`
@@ -57,19 +62,37 @@ Current QA result:
 - 04D three tab states use the correct shared 3-tab variants
 - 04D Info / History / Growth content top padding remains 20px bound to `spacing/20`
 - search/list, empty, detail, growth, edit, filter, attachment representative screenshot QA PASS
-- 04D Growth current bench-press sample remains valid: `중량 변화`, `4주 / 3개월 / 1년`, relative-week labels, flat Personal Best table
+- 04D current bench-press sample remains valid as the `weight_reps` representative state
 
-Non-blocking deferred rule:
-- recording-type-specific Growth metric selection/naming remains later product work; current weight-based bench-press sample is valid
+Important correction:
+- the 2026-09-14 pass was a **Figma structure / binding / regression QA PASS**, not final Group 04 Product/UX closure.
+- Group 04 Product QA remains active until recording-type-specific states and remaining product gaps are resolved.
 
-Preserved deferred data/runtime work:
+## Locked 2026-09-15 recording-type policy
+
+Group 04 does not create a separate recording model. It displays/analyzes the actual values saved by Group 05 Active Workout.
+
+MVP 4 active types:
+
+- `weight_reps` → 최근 기록 `중량 + 횟수`, 성장 `중량 변화`, 개인 최고 `최고 중량 / 최대 반복`
+- `reps` → 최근 기록 `횟수`, 성장 `반복 변화`, 개인 최고 `최대 반복`
+- `duration` → 최근 기록 `시간`, 성장 `시간 변화`, 개인 최고 `최장 시간`
+- `assisted_weight_reps` → 최근 기록 `보조중량 + 횟수`, 성장 `보조중량 변화`, MVP 개인 최고 기록 판정 없음
+
+Assisted는 일반 weight PR / 1RM / 일반 weight-volume 계산을 적용하지 않는다.
+
+Data sufficiency:
+- 완료 기록 0회 → Empty
+- 1회 → 실제 기록은 표시 가능
+- 선택 기간 내 비교 가능한 복수 기록이 없으면 → 성장 추이 데이터 부족 상태
+
+## Preserved deferred data/runtime work
+
 - regenerated 211-row Production workbook/runtime DB
 - exact Production attachment allowlists/canonical IDs/media mapping
 - Cursor implementation
 
-No Figma correction was required in the 2026-09-14 current QA pass.
-
-Remaining Group 04-specific component-master promotion into `Common_Component` has **not** been performed by this QA; do it only if PO explicitly requests that cleanup.
+Remaining Group 04-specific component-master promotion into `Common_Component` has not been performed; do it only if PO explicitly requests that cleanup.
 
 ---
 
@@ -102,9 +125,13 @@ Product Owner explicitly deferred Group 02 Home refinement. Do not resume it unl
 
 # NEXT OPEN ITEM
 
-Group 04 current Figma QA is PASS.
+Continue Group 04 Product/UX QA from the locked recording-type policy.
 
-Wait for Product Owner instruction for the next action. Do not automatically reopen passed Group 04 design work, do not automatically return to deferred Group 02, and do not begin Cursor implementation handoff.
+1. Focused-check `05C_Workout_Duration` only: confirm the actual set-input UI does not require an unnecessary `중량` field. If it does, minimally correct it to the already-approved `duration = 시간만` semantics; do not reopen Group 05 generally.
+2. Reflect and QA Group 04 representative states for `reps`, `duration`, `assisted_weight_reps`, plus `기록 없음` and `성장 데이터 부족`.
+3. Then continue remaining Group 04 Product/UX gaps such as custom exercise create/edit selection interactions. Do not mark Group 04 fully CLOSED before those are resolved.
+
+Do not automatically return to deferred Group 02 and do not begin Cursor implementation handoff.
 
 # Development boundary
 
