@@ -61,20 +61,64 @@ Current rule:
 
 This clarification means `KG` is not removed from routine create/edit. The earlier concern that routine creation must be limited to set count + rep target is rejected.
 
+## Routine exercise-menu downstream behavior — PO confirmed
+
+No new Group 03-specific flow screens are required for `순서 변경` or `대체 운동`.
+
+### 순서 변경
+
+Reuse the already-designed shared flow:
+- `05J_Reorder`
+
+Behavior:
+- enter the existing reorder flow from the Group 03 routine exercise action menu
+- reorder the current routine exercises there
+- on completion, return to the originating Group 03 create/edit screen
+
+No separate Group 03 reorder UI is created.
+
+### 대체 운동
+
+Reuse the already-designed shared flow:
+- `05G_Exercise_Replace_Suggest`
+
+Behavior:
+- enter the existing replacement flow from the Group 03 routine exercise action menu
+- select the replacement exercise
+- return to the originating Group 03 create/edit screen with that exercise substituted in the same position
+
+No separate Group 03 replacement browser is created.
+
+### Replacement exercise value-loading rule
+
+The values from the exercise being replaced are **not** carried into the new exercise.
+
+Instead, the replacement exercise loads that exercise's own user-specific most recent performance data.
+
+Rules:
+- if the user has previous recorded performance for the selected replacement exercise, load the most recent saved set structure and values for that exercise using its own recording type
+- for a standard `SET / KG / REPS` exercise, the latest saved rows and their values are restored as the starting values
+- if the selected replacement exercise has no previous personal record, start with exactly one empty set row and let the user enter the values
+- recording-type-specific exercises follow the same principle: use that exercise's own recording schema and most recent personal record, not the values from the exercise being replaced
+- the replaced exercise's load/reps/set values are never copied merely because it occupied the same routine position
+
+Example:
+- replacing `스미스 머신 벤치프레스` with `덤벨 벤치프레스` does not transfer the Smith-machine values
+- if the user previously performed `덤벨 벤치프레스`, load the user's most recent dumbbell-bench values
+- if the user has never performed it, show one blank row
+
+This behavior keeps exercise-specific personal history as the source of remembered values.
+
 ## Still-open Group 03 product follow-up
 
 Not decided by this checkpoint:
 
-1. exact downstream behavior for routine exercise-menu actions:
-   - `순서 변경`
-   - `대체 운동`
-   - replacement-value carryover/reset rules
-2. create/edit exit and persistence semantics:
+1. create/edit exit and persistence semantics:
    - unsaved-change back behavior
    - destination after create save
    - destination after edit save
    - routine delete confirmation and destination
-3. source/calculation rule for displayed routine `예상 시간`
+2. source/calculation rule for displayed routine `예상 시간`
 
 These should be resolved before implementation handoff if they are not already governed by a later explicit decision.
 
