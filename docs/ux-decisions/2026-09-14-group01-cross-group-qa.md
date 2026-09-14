@@ -60,7 +60,7 @@ Confirmed absent from the current canonical page:
 - separate `01B` Terms screen
 - standalone `01D` Login Error screen
 
-The login-error dialog cases remain reference states over the login screen rather than a separate route.
+The login-error dialogs remain states of the login flow rather than a separate route.
 
 ## Figma audit
 
@@ -155,20 +155,20 @@ Also renamed generic local layout layers such as action/spacer/dialog-text conta
 
 ### 7. Login error dialogs were shown as isolated cards — FIXED
 
-The previous reference placed the three login-error `DialogCard` instances by themselves on the canvas. That was useful for copy inspection but did not represent the actual product state.
+The previous reference placed the three login-error `DialogCard` instances by themselves on the canvas. That was useful for copy inspection but did not represent a screen-level modal state.
 
-Rebuilt all three cases as real full-screen reference states:
+Rebuilt all three cases as full-screen QA/reference states:
 - viewport = `360 × 780`
-- base screen = `01A_Login`
+- background = empty black/dark viewport; the underlying `01A_Login` UI is intentionally **not duplicated**
 - full-screen scrim = `ModalOverlay`, `360 × 780`
 - scrim color uses the existing local `bg/overlay` variable
 - `DialogCard` remains the existing local component instance
 - each DialogCard is centered in the viewport at visual center `x=180 / y=390`
 - general / network / authentication-service error copy and actions remain unchanged
 
-The obsolete isolated-dialog-only reference frame was removed after the approved dialog instances were cloned into the full-screen states.
+The obsolete isolated-dialog-only reference frame was removed. The temporary duplicated login-screen background layers used in the first full-screen pass were also removed after the Product Owner clarified the canonical QA presentation rule.
 
-This follows the established Fitness modal pattern already used by workout-end/account/support dialogs rather than introducing a new modal treatment.
+This now follows the global rule in `docs/17_FIGMA_AGENT_EXECUTION_QA.md`: modal/dialog QA references use the full viewport and canonical scrim/component, but do not duplicate the underlying product UI unless explicitly requested.
 
 ## Component / dependency QA
 
@@ -197,10 +197,11 @@ Screenshot/read-back verified after the corrections:
 - `01A_Login` — no visual regression
 - `01C_Basic_Info` — default sex none selected, DOB `19880101`, CTA Disabled, corrected purpose copy
 - `01C1_Basic_Info_Error` — selected sex state, invalid DOB, inline danger error, CTA Disabled
-- `01A1_Login_Error_Overlay_Cases` — three `360 × 780` login states with full-screen scrim and centered DialogCard
+- `01A1_Login_Error_Overlay_Cases` — three `360 × 780` dark empty viewport states with full-screen scrim and centered DialogCard
 
 Dialog overlay read-back:
 - all three viewport sizes = `360 × 780`
+- each screen contains only its `ModalOverlay` at top level; no duplicated login UI remains behind it
 - all three overlays = `360 × 780`
 - all three overlay fills bound to local `bg/overlay`
 - all three dialogs = `294 × 166`
