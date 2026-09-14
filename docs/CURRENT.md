@@ -14,17 +14,16 @@
 
 ## Latest active checkpoint
 
-- `docs/ux-decisions/2026-09-14-group07-final-policy-lock.md`
+- `docs/ux-decisions/2026-09-14-group07b-empty-plain-text.md`
 
 Supporting current checkpoints:
+- `docs/ux-decisions/2026-09-14-group07-final-policy-lock.md`
 - `docs/ux-decisions/2026-09-13-group07d-figma-cleanup-shared-components.md`
 - `docs/ux-decisions/2026-09-13-group07-session-detail-current-checkpoint.md`
-- `docs/ux-decisions/2026-09-05-analysis-body-area-drilldown.md` — revised 2026-09-14
+- `docs/ux-decisions/2026-09-05-analysis-body-area-drilldown.md`
 - `docs/ux-decisions/2026-09-12-group06-completion-final-shell.md`
-- `docs/ux-decisions/2026-09-04-workout-completion-metrics.md`
 
-The 2026-09-14 final policy-lock checkpoint supersedes older Group 07 documents where they still describe previously-open items as unresolved.
-The revised 07B body-area drilldown document is canonical for the current populated/empty-state visual behavior.
+The latest 07B checkpoint supersedes older wording that retained an empty card in the zero-record state.
 
 ---
 
@@ -39,14 +38,13 @@ The revised 07B body-area drilldown document is canonical for the current popula
 - `07B_부위상세_Empty` — `1057:593`
 - `07D_운동기록상세_Exploration` — `836:1593`
 - `07D_운동기록상세_DeleteConfirm` — `1136:4054`
-- shared UI page `MVP_공용_UI` — `105:3113`
 
 Current Group 07 IA:
 1. `07A 분석 홈`
 2. `07B 부위 상세`
 3. `07D 운동 기록 상세`
 
-There is no separate 07C overview screen. Do not recreate it or auto-renumber 07D without explicit PO direction.
+There is no separate 07C overview screen.
 
 ## 07A
 
@@ -64,13 +62,13 @@ Populated state:
 - canonical list layer `SelectedAreaExerciseList_AllRows` — `887:1065`
 
 Empty state:
-- selected-period zero-record state does **not** show the body map
-- screen title, period selector and `진행한 운동` SectionHeader remain visible
-- compact card shows only `이 기간에는 {부위} 운동 기록이 없어요`
-- `07B_부위상세_Empty` — `1057:593`
-- compact card — `1057:598`, `320 × 152`
-- empty content — `SelectedBodyDetailEmptyState` — `1057:628`, `280 × 120`
-- former empty-state body map `1057:599` is removed
+- body map is not shown
+- card/border/surface is not shown
+- screen title, period selector and `진행한 운동` SectionHeader remain
+- only centered supporting text `이 기간에는 {부위} 운동 기록이 없어요` is shown
+- no CTA or placeholder/zero-value rows
+- message node `EmptyMessage_기간내기록없음` — `1057:7468`
+- header-to-message gap = `32px`
 
 ## 07D
 
@@ -78,35 +76,23 @@ Empty state:
 
 - no eligible completed `weight_reps` volume → keep `총 볼륨` cell and show `—`
 - session detail shows all valid PRs in the single trophy card
-- header uses existing shared `Nav Header` with `RightAction=Trash`
-- destructive session-discard action uses a confirmation state before persistence changes
+- header uses shared `Nav Header` with `RightAction=Trash`
+- destructive session deletion requires confirmation
 - performed exercises remain the accepted single-card C micro-table treatment
 
 Shared masters:
 - `07D/PersonalRecordTrophyCard` — `1113:733`
 - `07D/SessionSummaryCard` — `1124:736`
 
-Live/state nodes:
-- PR card — `1113:739`
-- summary card — `1124:754`
-- header action — `836:1595`
-- confirmation state — `1136:4054`
-
-Temporary A/B/C comparison artifacts are removed.
-
 ## QA evidence
 
-Targeted Figma QA = PASS.
+Latest targeted Figma QA = PASS.
 
 Verified:
-- 07B populated state remains unchanged
-- 07B empty-state body map removed
-- compact empty card centers the period-specific no-record message without clipping
-- header action visible in 07D
-- multi-row PR sample expands without clipping
-- Overview auto-layout reflows correctly
-- confirmation state reuses the shared dialog pattern
-- session summary, body distribution and C micro-table remain intact
+- 07B populated state unchanged
+- 07B empty-state body map and card removed
+- no-record message is centered directly below the section header without clipping
+- previously approved 07D structure remains intact
 
 No broader repeat QA is required unless a new change/regression is introduced.
 
@@ -116,9 +102,7 @@ No broader repeat QA is required unless a new change/regression is introduced.
 
 Group 07 has no remaining known Product/UX decision from its previous open-item list.
 
-Do not reopen Group 07 mechanically. Keep the current Product/UX/Figma stage and wait for the Product Owner to activate the next product group or explicitly request further Group 07 refinement.
-
-A future generalized shared component for the 07D micro-table is optional/non-blocking design-system cleanup, not a Group 07 product blocker.
+Do not reopen Group 07 mechanically. Wait for the Product Owner to activate the next product group or explicitly request further Group 07 refinement.
 
 # Development boundary
 
