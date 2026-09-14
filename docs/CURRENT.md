@@ -4,7 +4,7 @@
 
 ## Current mode
 
-`PRODUCT/UX FIGMA · GROUP 02 HOME REFINEMENT ACTIVE · HOME 3-STATE MODEL · NO CURSOR IMPLEMENTATION HANDOFF`
+`PRODUCT/UX FIGMA · GROUP 03 ROUTINE CROSS-GROUP QA PASS · GROUP 02 HOME DEFERRED BY PO · NO CURSOR IMPLEMENTATION HANDOFF`
 
 ## Resume rule
 
@@ -14,120 +14,83 @@
 
 ## Latest active checkpoint
 
-- `docs/ux-decisions/2026-09-14-group02-home-refinement-checkpoint.md`
+- `docs/ux-decisions/2026-09-14-group03-routine-cross-group-qa.md`
 
-Directly relevant decisions / checkpoints:
-- `docs/ux-decisions/2026-09-06-home-routine-selection.md`
-- `docs/08_DECISIONS.md` — recommendation/self-build equality, curated recommendation policy, recommendation inputs
-- `docs/ux-decisions/2026-09-08-routine-figma-03-checkpoint.md` — Group 03 route/destination context
+Directly relevant Group 03 decisions / checkpoints:
+- `docs/ux-decisions/2026-09-08-routine-figma-03-checkpoint.md`
+- `docs/ux-decisions/2026-09-10-action-menu-presentation.md`
+- `docs/ux-decisions/2026-09-10-routinelist-action-bottomsheet-correction.md`
+- `docs/ux-decisions/2026-09-14-recommended-routine-acceptance-current.md` — current recommendation acceptance flow; supersedes old DEC-014 flow semantics
+- `docs/ux-decisions/2026-09-03-recommended-routine-detail-flow.md`
+- `docs/ux-decisions/2026-09-04-recommended-routine-post-workout-save.md`
 
 Prior approved / locked checkpoints should not be reopened without a new issue:
 - `docs/ux-decisions/2026-09-14-group01-cross-group-qa.md`
-- `docs/ux-decisions/2026-09-08-routine-figma-03-checkpoint.md`
 - `docs/ux-decisions/2026-09-14-group06-completion-shared-summary-sync.md`
 - `docs/ux-decisions/2026-09-14-group07-final-policy-lock.md`
-- Group 08 settings/account checkpoints from 2026-09-14 remain recorded in `docs/ux-decisions/`; Group 08 is not the current focus.
+- Group 08 settings/account checkpoints from 2026-09-14 remain recorded in `docs/ux-decisions/`.
 
 ---
 
-# GROUP 02 — HOME REFINEMENT ACTIVE
+# GROUP 03 — ROUTINE QA PASS / LOCKED
 
 Canonical Figma:
 - file `W3lZurXCXbThP67rF2xk2b`
-- page `02 홈` — `233:2073`
+- page `03 루틴` — `233:2074`
 
-Current Home state screens:
-- `02A_Home_NoRoutine` — `1346:686`
-- `02B_Home_RoutineSelected` — `1329:593`
-- `02D_Home_Active` — `1346:710`
+Current valid primary screens:
+- `03A_Routine_List` — `34:1401`
+- `03B_Routine_Empty` — `34:1438`
+- `03C_추천루틴상세` — `40:2272`
+- `03D_Routine_Detail` — `34:1447`
+- `03E_Routine_Create` — `34:1457`
+- `03E2_Routine_Create_WithExercises` — `352:896`
+- `03F_Routine_Edit` — `34:1477`
 
-The old Home dashboard direction and old `02C_Home_RoutinePicker` are not current.
+Current valid representative action-menu states added by later PO-approved decisions:
+- `03A_Routine_List_Menu` — `706:5023`
+- `03F_Routine_Exercise_Menu` — `706:5087`
 
-## 02A — No Routine
+Cross-group planning / Figma / design-system QA result:
+- planning/product match = PASS
+- Figma screen inventory = PASS
+- structure / Auto Layout = PASS after targeted cleanup
+- component / variable binding = PASS after targeted fixes
+- screenshot / product correctness = PASS
+- stale `03G_Routine_Readonly` = absent
 
-Current direction:
-- heading: `어떻게 운동을 시작할까요?`
-- two equal-priority large cards:
-  - `추천 루틴 받기`
-  - `내 루틴 만들기`
-- both choices use the same visual volume / hierarchy
-- neither path is presented as a stronger Primary CTA
-- large-card information hierarchy references Peloton Strength+ structurally, while LIFTLY Design System remains canonical
-- current artwork direction explores glossy 3D clip-art consistent with the existing PR/trophy illustration language
-  - recommendation concept: compass / guide
-  - self-build concept: checklist + add
-  - colors may differ while material / lighting language stays consistent
-- final artwork asset/crop/size application is not locked yet
-- recent workout remains secondary below the start choices
+Targeted fixes applied during the 2026-09-14 QA pass:
+- repeated raw 03A routine cards promoted to shared local `RoutineListCard` — main `1362:905`
+- Group 03 raw attachment-status chips replaced by canonical local `AttachmentTag` — main `693:6035`
+- 03A / 03F ActionSheet QA states normalized to full viewport + overlay + canonical sheet without duplicated underlying product UI
 
-Recommendation routing:
-- do not route `추천 루틴 받기` directly to `03C_추천루틴상세`
-- confirmed recommendation matching inputs remain goal / weekly availability / preferred workout duration
-- Home re-entry behavior for those inputs is still TBD: reuse prior answers vs ask again
+Recommendation acceptance semantics:
+- current flow = `추천 결과/상세 → 운동 시작 → Active Workout → 운동 완료 → 내 루틴 저장 여부 선택`
+- do not use the old `이 루틴 사용하기 → save → Home` DEC-014 behavior as the current implementation contract
 
-## 02B — Routine Selected
+Non-blocking deferred content:
+- sample set-table values such as `W / 1 / 2 / D / F`, `80 KG`, `35 REPS` are visual samples only and are not approved default prescription data
 
-Current direction:
-- heading: `운동을 시작해볼까요?`
-- compact body-area tags above routine name
-- routine name
-- metadata below identity group, e.g. `5개 운동 · 19세트 · 약 50분`
-- Primary `운동 시작`
-- `다른 루틴` → `03A_Routine_List`
-- recent workout remains a small secondary section
-- recent-workout row left side shows routine name only; duration removed
+Do not reopen Group 03 without a new product change, conflict, regression, implementation/runtime finding, or explicit Product Owner request.
 
-The current `02B` is the design basis. Do not restore the old dashboard-heavy Home layout.
+---
 
-## 02D — Active Workout
+# GROUP 02 — HOME REFINEMENT DEFERRED
 
-Current direction:
-- clearly expose an active session
-- provide one-step return to the current workout
-- active-session persistence/recovery follows the existing workout reliability decision
+Product Owner explicitly deferred the current Group 02 Home refinement on 2026-09-14.
 
-## Home state policy
+The existing Group 02 checkpoint remains valid and unfinished:
+- `docs/ux-decisions/2026-09-14-group02-home-refinement-checkpoint.md`
 
-MVP Home remains exactly three states:
-1. no saved routine
-2. saved / selected routine
-3. active workout
-
-Do not add:
-- Home-local Routine Picker Bottom Sheet
-- weekday-based `오늘 운동`
-- automatic `다음 운동` selection without an explicit product rule
-- routine-less empty workout start
-
-## Design-system rule
-
-Current Home refinements reuse the existing Fitness Design System when the role matches:
-- semantic background / surface / border / text variables
-- spacing and radius variables
-- typography styles
-- AppLogo
-- CTA Button
-- Tag / compact Tag
-- SectionHeader
-- ListCard
-- RecentWorkoutRow
-- canonical chevron assets
-
-Do not create duplicate foundation tokens or duplicate shared components for the Home-specific layout.
+Do not continue the 02A artwork/re-entry/three-state lock work unless the Product Owner returns to Group 02.
 
 ---
 
 # NEXT OPEN ITEM
 
-Continue from the current `02A_Home_NoRoutine` large-card refinement.
+Group 03 QA stop condition is satisfied and the reviewed scope is locked.
 
-1. finalize whether the large-card artwork is retained and apply final artwork asset / crop / size if approved
-2. decide Home recommendation re-entry behavior: reuse prior 3 matching answers vs ask again
-3. run targeted screenshot + component/binding QA across `02A / 02B / 02D`
-4. lock Group 02 only after PO accepts the full three-state Home set
-
-Do not return to old Home variants or old `02C` picker.
-Do not begin Cursor implementation handoff.
+Wait for the Product Owner to select the next Figma QA group / product item. Do not automatically return to deferred Group 02 and do not begin Cursor implementation handoff.
 
 # Development boundary
 
