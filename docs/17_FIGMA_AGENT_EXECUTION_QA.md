@@ -479,6 +479,22 @@ Compare the artifact 1:1 with Step 1 and identify:
 
 Product/flow correctness must be resolved before spending time on deep binding QA.
 
+##### Dialog / modal full-screen state rule — REQUIRED
+
+When a product state is represented by a dialog or modal, the canonical **screen/state artifact used for QA must show it in the actual viewport context**. An isolated `DialogCard` floating by itself on the Figma canvas is not sufficient for screen-level PASS.
+
+For the current Fitness `360 × 780` mobile reference:
+- keep the actual base screen visible underneath the modal state
+- the overlay/scrim must cover the complete `360 × 780` viewport
+- use the canonical overlay variable such as current local `bg/overlay` when that role already exists
+- keep the dialog/modal surface as an instance of the canonical component; do not rebuild it locally for the screen
+- a centered dialog must be centered within the viewport unless a current product decision explicitly requires another placement
+- error, confirmation, destructive-confirmation, success and failure dialog states all follow this full-screen representation rule
+- bottom sheets also require their full-screen base + overlay context, but they follow the approved bottom-sheet placement rather than this centered-dialog placement rule
+- an isolated modal/dialog shown in the component library is valid for **component QA only**; it does not replace the full-screen product-state artifact
+
+Screen-level screenshot QA for a modal/dialog must therefore inspect the whole viewport, including base screen, scrim coverage and modal placement.
+
 #### Step 3 — Design-system / component / binding audit
 Run this only on the screen set that remains valid after Step 2.
 
@@ -514,6 +530,7 @@ Rules:
 After each correction batch:
 - read back node/component/variant/binding structure
 - inspect the final screenshot at a useful resolution
+- for dialog/modal/bottom-sheet states, inspect the **full viewport state**, not only the floating surface
 - recheck only the planning behavior and shared assets touched by the change
 
 Use these verdicts:
