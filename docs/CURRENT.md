@@ -4,7 +4,7 @@
 
 ## Current mode
 
-`PRODUCT/UX FIGMA · GROUP 08 SETTINGS/ACCOUNT EXPLORATION ACTIVE · 08B PROFILE/ACCOUNT LOCKED WITH ACCOUNT-EXIT PRIVACY POLICY · UNIT + WORKOUT SETTINGS APPROVED · GROUP 07 ANALYSIS LOCKED · GROUP 06 COMPLETION APPROVED · NO CURSOR IMPLEMENTATION HANDOFF`
+`PRODUCT/UX FIGMA · GROUP 08 SETTINGS/ACCOUNT EXPLORATION ACTIVE · FAQ APPROVED · 08B PROFILE/ACCOUNT LOCKED WITH ACCOUNT-EXIT PRIVACY POLICY · UNIT + WORKOUT SETTINGS APPROVED · GROUP 07 ANALYSIS LOCKED · GROUP 06 COMPLETION APPROVED · NO CURSOR IMPLEMENTATION HANDOFF`
 
 ## Resume rule
 
@@ -14,10 +14,11 @@
 
 ## Latest active checkpoint
 
-- `docs/ux-decisions/2026-09-14-group08b-account-exit-privacy-policy.md`
+- `docs/ux-decisions/2026-09-14-group08-faq-accordion-pass.md`
 
 Supporting Group 08 checkpoints:
-- `docs/ux-decisions/2026-09-14-group08b-account-exit-flow.md` — superseded for deletion/privacy copy by latest checkpoint
+- `docs/ux-decisions/2026-09-14-group08b-account-exit-privacy-policy.md`
+- `docs/ux-decisions/2026-09-14-group08b-account-exit-flow.md` — superseded for deletion/privacy copy by later checkpoint
 - `docs/ux-decisions/2026-09-14-group08b-profile-account-lock.md` — base 08B profile/account lock; account-exit subflow superseded by later checkpoints
 - `docs/ux-decisions/2026-09-14-group08-profile-account-current.md` — superseded
 - `docs/ux-decisions/2026-09-14-group08-profile-settings-pass.md` — superseded for the current profile/account flow
@@ -54,6 +55,8 @@ Current exploration screens:
 - `08H_알림설정_Exploration_V1` — `1158:7457`
 - `08G1_기본휴식시간_Sheet_Exploration_V1` — `1163:676`
 - `08G2_타이머종료음_Exploration_V1` — `1163:7296`
+- `08I_FAQ_Exploration_V1` — `1232:812`
+- `08I1_FAQ_Expanded_Exploration_V1` — `1232:924`
 
 Current PO-approved / recorded directions:
 - `구독 관리`, `언어`, `테마` = TBD
@@ -132,6 +135,20 @@ Targeted Figma QA for base profile, account-management sheet, dedicated account-
 - unit selector remains a bottom sheet with `kg (킬로그램)` and `lb (파운드)`
 - Figma targeted QA = PASS
 
+## FAQ — APPROVED
+
+- FAQ default screen = `08I_FAQ_Exploration_V1` — `1232:812`
+- expanded example = `08I1_FAQ_Expanded_Exploration_V1` — `1232:924`
+- FAQ uses shared `AccordionItem` rather than local one-off rows
+- question/answer presentation uses accordion `Collapsed / Expanded` states
+- final current spacing:
+  - question row `56px`
+  - expanded answer top spacing `4px`
+  - chevron visual `16×16`
+- `문의하기` row chevron is normalized to the same canonical `chevron-right` component and 16px visual size used by the accordion
+- FAQ default and expanded screenshots = PASS
+- current FAQ frame height respects the global minimum `360×780`
+
 ## Shared UI changed during Group 08
 
 ### Wheel picker
@@ -150,6 +167,18 @@ Targeted Figma QA for base profile, account-management sheet, dedicated account-
 - standard fields remain `LeadingIcon=None`
 - profile nickname uses `Filled + Social`
 - current social example uses a 16px Google icon followed by editable nickname text
+
+### AccordionItem
+- canonical shared `AccordionItem` — `1238:1139`
+- variants:
+  - `State=Collapsed`
+  - `State=Expanded`
+- exposed properties:
+  - `Question`
+  - `Answer`
+  - `ShowDivider`
+- existing Fitness tokens/styles and canonical `chevron-right` — `636:893` reused
+- no new foundation token added
 
 Group 08 is NOT locked yet. Approved/locked areas should not be reopened without a new reason.
 
@@ -191,15 +220,14 @@ Do not mechanically repeat Group 06/07 QA.
 # NEXT OPEN ITEM
 
 Continue Group 08 with support / legal presentation:
-1. `자주 묻는 질문`
-2. `문의하기`
-3. terms / privacy / legal presentation
+1. `문의하기`
+2. terms / privacy / legal presentation
 
 The legal/privacy presentation must reuse the approved account-exit privacy-destruction policy. The legal/store follow-up must also cover the external account-deletion request entry required for store compliance.
 
 After those are resolved, reassess remaining Group 08 TBD items (`구독 관리`, `언어`, `테마`) only if needed for Group 08 closeout.
 
-Do not reopen locked 08B profile/account base, approved unit, or workout settings without a new issue.
+Do not reopen locked 08B profile/account base, approved unit, workout settings, or FAQ without a new issue.
 
 # Development boundary
 
