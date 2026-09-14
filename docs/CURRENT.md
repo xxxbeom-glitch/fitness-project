@@ -4,7 +4,7 @@
 
 ## Current mode
 
-`PRODUCT/UX FIGMA · GROUP 08 SETTINGS/ACCOUNT EXPLORATION ACTIVE · FAQ APPROVED · 08B PROFILE/ACCOUNT LOCKED WITH ACCOUNT-EXIT PRIVACY POLICY · UNIT + WORKOUT SETTINGS APPROVED · GROUP 07 ANALYSIS LOCKED · GROUP 06 COMPLETION APPROVED · NO CURSOR IMPLEMENTATION HANDOFF`
+`PRODUCT/UX FIGMA · GROUP 08 SETTINGS/ACCOUNT EXPLORATION ACTIVE · SUPPORT INQUIRY APPROVED · FAQ APPROVED · 08B PROFILE/ACCOUNT LOCKED WITH ACCOUNT-EXIT PRIVACY POLICY · UNIT + WORKOUT SETTINGS APPROVED · GROUP 07 ANALYSIS LOCKED · GROUP 06 COMPLETION APPROVED · NO CURSOR IMPLEMENTATION HANDOFF`
 
 ## Resume rule
 
@@ -14,9 +14,10 @@
 
 ## Latest active checkpoint
 
-- `docs/ux-decisions/2026-09-14-group08-faq-accordion-pass.md`
+- `docs/ux-decisions/2026-09-14-group08-support-inquiry-pass.md`
 
 Supporting Group 08 checkpoints:
+- `docs/ux-decisions/2026-09-14-group08-faq-accordion-pass.md`
 - `docs/ux-decisions/2026-09-14-group08b-account-exit-privacy-policy.md`
 - `docs/ux-decisions/2026-09-14-group08b-account-exit-flow.md` — superseded for deletion/privacy copy by later checkpoint
 - `docs/ux-decisions/2026-09-14-group08b-profile-account-lock.md` — base 08B profile/account lock; account-exit subflow superseded by later checkpoints
@@ -57,6 +58,10 @@ Current exploration screens:
 - `08G2_타이머종료음_Exploration_V1` — `1163:7296`
 - `08I_FAQ_Exploration_V1` — `1232:812`
 - `08I1_FAQ_Expanded_Exploration_V1` — `1232:924`
+- `08J_문의하기_Exploration_V1` — `1257:927`
+- `08J1_문의카테고리_Sheet_Exploration_V1` — `1260:946`
+- `08J2_문의접수완료_Exploration_V1` — `1261:977`
+- `08J3_문의전송실패_Exploration_V1` — `1261:1044`
 
 Current PO-approved / recorded directions:
 - `구독 관리`, `언어`, `테마` = TBD
@@ -149,6 +154,25 @@ Targeted Figma QA for base profile, account-management sheet, dedicated account-
 - FAQ default and expanded screenshots = PASS
 - current FAQ frame height respects the global minimum `360×780`
 
+## Support inquiry — APPROVED
+
+- default screen = `08J_문의하기_Exploration_V1` — `1257:927`
+- category selector = `08J1_문의카테고리_Sheet_Exploration_V1` — `1260:946`
+- success state = `08J2_문의접수완료_Exploration_V1` — `1261:977`
+- failure state = `08J3_문의전송실패_Exploration_V1` — `1261:1044`
+- required fields = 문의 카테고리, 회신 이메일, 문의 내용
+- image attachments are optional, maximum 3
+- current category labels are first-pass copy and can be revised later without reopening the approved screen structure
+- CTA = `보내기`
+- empty/incomplete required fields keep submit unavailable
+- all Fitness customer-support / inquiry operations route to `lumianthecompany@gmail.com`
+- planned development reuses the validated OnTalk pattern: `app inquiry → Supabase record → DB trigger / Edge Function → Resend → ops inbox`
+- operations destination email must remain server-side configuration rather than a client-embedded secret
+- reply email is used as the response target for CS replies
+- exact inquiry-record / attachment retention and deletion policy must be reflected in the privacy policy before production
+- this approval is product/UX policy only; no Cursor implementation handoff has been requested
+- inquiry default/category/success/failure Figma screenshots and shared-component linkage = PASS
+
 ## Shared UI changed during Group 08
 
 ### Wheel picker
@@ -178,6 +202,24 @@ Targeted Figma QA for base profile, account-management sheet, dedicated account-
   - `Answer`
   - `ShowDivider`
 - existing Fitness tokens/styles and canonical `chevron-right` — `636:893` reused
+- no new foundation token added
+
+### TextArea
+- canonical shared `TextArea` — `1255:1137`
+- variants:
+  - `State=Default`
+  - `State=Filled`
+  - `State=Focused`
+- existing Fitness surface, border, radius, typography, placeholder/text, and focus tokens reused
+- no new foundation token added
+
+### AttachmentSlot
+- canonical shared `AttachmentSlot` — `1255:1161`
+- variants:
+  - `State=Empty`
+  - `State=Filled`
+- existing `icon/plus`, `icon/image`, `icon/close-circle` reused
+- current inquiry UI shows three 72px slots
 - no new foundation token added
 
 Group 08 is NOT locked yet. Approved/locked areas should not be reopened without a new reason.
@@ -219,15 +261,17 @@ Do not mechanically repeat Group 06/07 QA.
 
 # NEXT OPEN ITEM
 
-Continue Group 08 with support / legal presentation:
-1. `문의하기`
-2. terms / privacy / legal presentation
+Continue Group 08 with terms / privacy / legal presentation.
 
-The legal/privacy presentation must reuse the approved account-exit privacy-destruction policy. The legal/store follow-up must also cover the external account-deletion request entry required for store compliance.
+The legal/privacy presentation must:
+1. reuse the approved account-exit privacy-destruction policy
+2. define inquiry-record / attachment handling and retention/deletion disclosure
+3. include the external account-deletion request entry required for store compliance
+4. keep the unified support contact at `lumianthecompany@gmail.com`
 
-After those are resolved, reassess remaining Group 08 TBD items (`구독 관리`, `언어`, `테마`) only if needed for Group 08 closeout.
+After legal/privacy presentation is resolved, reassess remaining Group 08 TBD items (`구독 관리`, `언어`, `테마`) only if needed for Group 08 closeout.
 
-Do not reopen locked 08B profile/account base, approved unit, workout settings, or FAQ without a new issue.
+Do not reopen locked 08B profile/account base, approved unit, workout settings, FAQ, or support inquiry without a new issue.
 
 # Development boundary
 
