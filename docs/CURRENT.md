@@ -4,7 +4,7 @@
 
 ## Current mode
 
-`PRODUCT/UX FIGMA · GROUP 07 ANALYSIS LOCKED · 07A LOCKED · 07B LOCKED · 07C OVERVIEW REMOVED · 07D PRODUCT RULES LOCKED · FIGMA TARGETED QA PASS · NO CURSOR IMPLEMENTATION HANDOFF`
+`PRODUCT/UX FIGMA · GROUP 06 COMPLETION SHARED SUMMARY APPROVED · GROUP 07 ANALYSIS LOCKED · 07A LOCKED · 07B LOCKED · 07C OVERVIEW REMOVED · 07D PRODUCT RULES LOCKED · FIGMA TARGETED QA PASS · NO CURSOR IMPLEMENTATION HANDOFF`
 
 ## Resume rule
 
@@ -14,16 +14,43 @@
 
 ## Latest active checkpoint
 
-- `docs/ux-decisions/2026-09-14-group07b-empty-plain-text.md`
+- `docs/ux-decisions/2026-09-14-group06-completion-shared-summary-sync.md`
 
 Supporting current checkpoints:
+- `docs/ux-decisions/2026-09-14-group07b-empty-plain-text.md`
 - `docs/ux-decisions/2026-09-14-group07-final-policy-lock.md`
 - `docs/ux-decisions/2026-09-13-group07d-figma-cleanup-shared-components.md`
 - `docs/ux-decisions/2026-09-13-group07-session-detail-current-checkpoint.md`
 - `docs/ux-decisions/2026-09-05-analysis-body-area-drilldown.md`
 - `docs/ux-decisions/2026-09-12-group06-completion-final-shell.md`
 
-The latest 07B checkpoint supersedes older wording that retained an empty card or `진행한 운동` SectionHeader in the zero-record state.
+The latest Group 06 checkpoint supersedes the older completion-screen presentation that used four separate metric tiles and a flat representative-PR card.
+
+---
+
+# GROUP 06 — COMPLETION UI APPROVED
+
+Canonical Figma page:
+- `06 운동 완료` — `233:2077`
+
+Canonical/state screens:
+- `06A_Completion_Default` — `793:15748`
+- `06B_Completion_NoPR` — `819:702`
+- `06C_Completion_VolumeNA` — `823:720`
+
+Current shared completion structure:
+- completion status/header
+- conditional shared `07D/PersonalRecordTrophyCard`
+- shared `07D/SessionSummaryCard`
+- bottom `기록 상세 보기 / 홈으로 돌아가기`
+
+Rules:
+- completion screen now shows all valid PR rows in the single shared trophy card
+- no valid PR → hide PR card entirely
+- no eligible completed `weight_reps` volume → keep `총 볼륨` and show `—`
+- No-PR and Volume-N/A reference wrappers now contain only the actual `360×780` app screen; explanatory canvas labels were removed
+
+Latest targeted screenshot QA for 06A/06B/06C = PASS.
 
 ---
 
@@ -87,11 +114,19 @@ Shared masters:
 - `07D/PersonalRecordTrophyCard` — `1113:733`
 - `07D/SessionSummaryCard` — `1124:736`
 
+Shared PR-card current spacing:
+- each PR is an independent text layer inside vertical Auto Layout
+- PR row gap = `4px`
+- label-to-list gap = `12px`
+- bottom padding = `16px`
+
 ## QA evidence
 
 Latest targeted Figma QA = PASS.
 
 Verified:
+- Group 06 default / No-PR / Volume-N/A completion states use the shared Group 07D summary components correctly
+- Group 06 conditional-state frames no longer include explanatory canvas text inside the app-frame wrapper
 - 07B populated state unchanged
 - 07B empty-state body map, card and section title removed
 - zero-record message is centered in the available screen area below the period tabs without clipping
@@ -105,7 +140,7 @@ No broader repeat QA is required unless a new change/regression is introduced.
 
 Group 07 has no remaining known Product/UX decision from its previous open-item list.
 
-Do not reopen Group 07 mechanically. Wait for the Product Owner to activate the next product group or explicitly request further Group 07 refinement.
+Do not reopen Group 06 or Group 07 mechanically. Wait for the Product Owner to activate the next product group or explicitly request further refinement.
 
 # Development boundary
 
