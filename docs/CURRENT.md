@@ -4,7 +4,7 @@
 
 ## Current mode
 
-`PRODUCT/UX FIGMA · GROUP 06 COMPLETION SHARED SUMMARY APPROVED · GROUP 07 ANALYSIS LOCKED · 07A LOCKED · 07B LOCKED · 07C OVERVIEW REMOVED · 07D PRODUCT RULES LOCKED · FIGMA TARGETED QA PASS · NO CURSOR IMPLEMENTATION HANDOFF`
+`PRODUCT/UX FIGMA · GROUP 08 SETTINGS/ACCOUNT EXPLORATION ACTIVE · GROUP 07 ANALYSIS LOCKED · GROUP 06 COMPLETION APPROVED · NO CURSOR IMPLEMENTATION HANDOFF`
 
 ## Resume rule
 
@@ -14,9 +14,10 @@
 
 ## Latest active checkpoint
 
-- `docs/ux-decisions/2026-09-14-group06-completion-shared-summary-sync.md`
+- `docs/ux-decisions/2026-09-14-group08-settings-account-exploration-v1.md`
 
-Supporting current checkpoints:
+Supporting locked / prior checkpoints:
+- `docs/ux-decisions/2026-09-14-group06-completion-shared-summary-sync.md`
 - `docs/ux-decisions/2026-09-14-group07b-empty-plain-text.md`
 - `docs/ux-decisions/2026-09-14-group07-final-policy-lock.md`
 - `docs/ux-decisions/2026-09-13-group07d-figma-cleanup-shared-components.md`
@@ -24,7 +25,46 @@ Supporting current checkpoints:
 - `docs/ux-decisions/2026-09-05-analysis-body-area-drilldown.md`
 - `docs/ux-decisions/2026-09-12-group06-completion-final-shell.md`
 
-The latest Group 06 checkpoint supersedes the older completion-screen presentation that used four separate metric tiles and a flat representative-PR card.
+---
+
+# GROUP 08 — SETTINGS / ACCOUNT EXPLORATION ACTIVE
+
+Canonical Figma:
+- file `W3lZurXCXbThP67rF2xk2b`
+- page `08 설정 · 계정` — `233:2079`
+- exploration section `08_SETTINGS_V1_EXPLORATION` — `1158:645`
+
+Current exploration screens:
+- `08A_설정홈_Exploration_V1` — `1158:649`
+- `08G_운동설정_Exploration_V1` — `1158:7365`
+- `08H_알림설정_Exploration_V1` — `1158:7457`
+- `08G1_기본휴식시간_Sheet_Exploration_V1` — `1163:676`
+- `08G2_타이머종료음_Exploration_V1` — `1163:7296`
+
+Current PO directions already recorded:
+- `구독 관리`, `언어`, `테마` = TBD
+- `운동 리마인더` is removed from notification exploration
+- default rest time uses a bottom-sheet drum-roll picker
+- rest-time range = `없음` through `5분`, step = `5초`
+- timer end sound currently has 3 choices; tapping selects and immediately previews the sound
+- current sound labels `기본 / 차임 / 벨` are temporary until real sound assets are selected
+
+Shared UI added during this track:
+- reference frame `631_Reminder_Time_Sheet` — `1165:7945`
+- shared component `WheelPicker/SingleColumn` — `1169:1105`
+- rest-time instance `WheelPicker_RestTime` — `1170:697`
+
+Wheel picker current structure:
+- 1 column / 5 visible rows
+- 40px row height
+- selected row centered between top/bottom divider lines
+- selected value stronger than surrounding values
+- text values exposed for instance override
+- existing Fitness tokens reused; no new token added
+
+Targeted screenshot QA after insertion = PASS.
+
+Group 08 is NOT locked yet. The current menu structure and remaining detailed behaviors are still under PO review.
 
 ---
 
@@ -138,9 +178,11 @@ No broader repeat QA is required unless a new change/regression is introduced.
 
 # NEXT OPEN ITEM
 
-Group 07 has no remaining known Product/UX decision from its previous open-item list.
+Continue Group 08 Settings / Account from `2026-09-14-group08-settings-account-exploration-v1.md`.
 
-Do not reopen Group 06 or Group 07 mechanically. Wait for the Product Owner to activate the next product group or explicitly request further refinement.
+Review the current Settings / Account exploration with the Product Owner one area at a time. Do not treat the full 08A menu or all detail behaviors as locked yet.
+
+Do not reopen Group 06 or Group 07 mechanically.
 
 # Development boundary
 
