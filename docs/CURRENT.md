@@ -4,7 +4,7 @@
 
 ## Current mode
 
-`PRODUCT/UX FIGMA · GROUP 04 EXERCISE DETAIL PRODUCT QA ACTIVE · GROUP 03 ROUTINE CLOSED · GROUP 02 HOME DEFERRED BY PO · NO CURSOR IMPLEMENTATION HANDOFF`
+`PRODUCT/UX FIGMA · GROUP 04 EXERCISE DETAIL PRODUCT QA ACTIVE · RECORDING-TYPE HISTORY/GROWTH PASS · GROUP 03 ROUTINE CLOSED · GROUP 02 HOME DEFERRED BY PO · NO CURSOR IMPLEMENTATION HANDOFF`
 
 ## Resume rule
 
@@ -38,7 +38,7 @@ Canonical Figma:
 - file `W3lZurXCXbThP67rF2xk2b`
 - page `04 운동 목록 · 상세` — `233:2075`
 
-Current canonical states:
+Base canonical states:
 - `04A_Search` — `207:1238`
 - `04B_Search_Selected` — `515:1140`
 - `04C_Search_Empty` — `539:1050`
@@ -52,25 +52,35 @@ Current canonical states:
 - `04A_Filter_Equipment_Page` — `515:3327`
 - `04A_Filter_BodyPart_Page` — `515:3514`
 
+Recording-type representative states added and QA-passed:
+- `04D_Exercise_Detail_History_Reps` — `1391:1619`
+- `04D_Exercise_Detail_Growth_Reps` — `1391:1707`
+- `04D_Exercise_Detail_History_Duration` — `1391:1779`
+- `04D_Exercise_Detail_Growth_Duration` — `1391:1867`
+- `04D_Exercise_Detail_History_Assisted` — `1391:1939`
+- `04D_Exercise_Detail_Growth_Assisted` — `1391:2027`
+- `04D_Exercise_Detail_History_Empty` — `1391:2099`
+- `04D_Exercise_Detail_Growth_Empty` — `1391:2190`
+- `04D_Exercise_Detail_Growth_Insufficient` — `1391:2265`
+
 Current structural / regression QA result:
-- all canonical top-level states `360 × 954`
+- base canonical top-level states `360 × 954`
 - no stale top-level `04G_Exercise_History` state
 - Exercise Detail states normalized under `04D`
 - no component/component-set master left on the Group 04 product page
-- 337 instances inspected; no missing main-component link found
+- prior 337-instance structural audit found no missing main-component link
 - recent `Common_Component` master relocation did not break Group 04 instances
-- 04D three tab states use the correct shared 3-tab variants
+- 04D three base tab states use the correct shared 3-tab variants
 - 04D Info / History / Growth content top padding remains 20px bound to `spacing/20`
 - search/list, empty, detail, growth, edit, filter, attachment representative screenshot QA PASS
-- 04D current bench-press sample remains valid as the `weight_reps` representative state
 
-Important correction:
+Important correction retained:
 - the 2026-09-14 pass was a **Figma structure / binding / regression QA PASS**, not final Group 04 Product/UX closure.
-- Group 04 Product QA remains active until recording-type-specific states and remaining product gaps are resolved.
+- Group 04 Product QA remains active until remaining product gaps are resolved.
 
-## Locked 2026-09-15 recording-type policy
+## Recording-type History / Growth — CLOSED
 
-Group 04 does not create a separate recording model. It displays/analyzes the actual values saved by Group 05 Active Workout.
+Group 04 displays/analyzes the actual values saved by Group 05 Active Workout.
 
 MVP 4 active types:
 
@@ -82,9 +92,23 @@ MVP 4 active types:
 Assisted는 일반 weight PR / 1RM / 일반 weight-volume 계산을 적용하지 않는다.
 
 Data sufficiency:
-- 완료 기록 0회 → Empty
+- 완료 기록 0회 → History / Growth Empty
 - 1회 → 실제 기록은 표시 가능
-- 선택 기간 내 비교 가능한 복수 기록이 없으면 → 성장 추이 데이터 부족 상태
+- 선택 기간 내 비교 가능한 복수 기록이 없으면 → Growth 데이터 부족 상태
+- 개인 최고 기록이 유효한 타입은 1회 기록만 있어도 실제 기록 기준으로 표시 가능
+
+Focused dependency QA:
+- `05C_Workout_Duration` 플랭크 입력은 `세트 / 시간 / 완료`만 사용하며 불필요한 `중량` 입력이 없음
+- Group 05 수정 없이 기존 closure 유지
+
+Figma reflection QA:
+- 신규 representative state 9개 모두 `360 × 954`
+- 신규 state shared component instance missing-main = `0`
+- no new component master / token / style
+- no shared instance detach
+- reps / duration / assisted / empty / insufficient-data screenshot read-back PASS
+- assisted Growth descending line/point alignment PASS
+- 기존 `weight_reps` History 열 명칭은 `세트 / 중량 / 횟수`로 정리
 
 ## Preserved deferred data/runtime work
 
@@ -125,11 +149,18 @@ Product Owner explicitly deferred Group 02 Home refinement. Do not resume it unl
 
 # NEXT OPEN ITEM
 
-Continue Group 04 Product/UX QA from the locked recording-type policy.
+Continue Group 04 Product/UX QA with `04E_Custom_Create` / `04F_Custom_Edit` selection interactions.
 
-1. Focused-check `05C_Workout_Duration` only: confirm the actual set-input UI does not require an unnecessary `중량` field. If it does, minimally correct it to the already-approved `duration = 시간만` semantics; do not reopen Group 05 generally.
-2. Reflect and QA Group 04 representative states for `reps`, `duration`, `assisted_weight_reps`, plus `기록 없음` and `성장 데이터 부족`.
-3. Then continue remaining Group 04 Product/UX gaps such as custom exercise create/edit selection interactions. Do not mark Group 04 fully CLOSED before those are resolved.
+Review and lock the actual selection flow for:
+
+1. 장비
+2. 주 타겟 근육
+3. 보조 타겟 근육
+4. 기록 방식
+
+Existing Fitness components/patterns must be reused first. Do not invent a parallel selector pattern when an approved one already exists.
+
+After those interactions are reflected and QA-passed, continue any remaining Group 04 product gaps before marking Group 04 fully CLOSED.
 
 Do not automatically return to deferred Group 02 and do not begin Cursor implementation handoff.
 
