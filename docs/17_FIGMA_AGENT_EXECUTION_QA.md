@@ -1,7 +1,7 @@
 # 17 FIGMA AGENT EXECUTION & QA
 
 **Status:** ACTIVE — PHASE-A RECONSTRUCTION
-**Updated:** 2026-08-28
+**Updated:** 2026-09-14
 
 ## Purpose
 
@@ -436,3 +436,124 @@ The agent must correct failures before generating a large downstream batch; othe
 During Tonal reconstruction, fidelity and internal consistency take priority over originality.
 
 Once the reconstructed system passes the three QA gates across representative screen families, Phase B may intentionally customize the system for Fitness.
+
+---
+
+## 15. Cross-group planning-to-Figma verification rule
+
+Use this rule when the Product Owner explicitly starts a QA pass to verify completed or current Figma groups against the original product planning and the Fitness design system.
+
+This is a **verification pass**, not a redesign pass and not an automatic scope-finalization pass.
+
+### 15.1 Verification order — REQUIRED
+
+Do not start with component binding. Verify in this order so downstream QA is not wasted on a screen that is already wrong at the product/flow level.
+
+#### Step 1 — Planning / policy source audit
+Read only the current valid sources that directly govern the target group:
+- latest explicit Product Owner decisions
+- relevant Decision / UX checkpoint
+- Product Policy where applicable
+- IA / storyboard / screen spec where applicable
+
+Create a working screen/state matrix that distinguishes:
+- required screen/state
+- required behavior / entry / exit / action
+- explicitly removed or forbidden screen/state
+- deferred or unresolved policy
+- already locked / QA-PASS scope that should not be reopened without a real conflict
+
+Do not treat an old Figma draft as product truth when it conflicts with the current Decision/Policy chain.
+
+#### Step 2 — Actual Figma screen / flow audit
+Inspect the target Figma page and inventory the actual frames/states that exist now.
+
+Compare the artifact 1:1 with Step 1 and identify:
+- missing required screens/states
+- stale or superseded screens still left on the page
+- extra screens that are not supported by current planning
+- incorrect copy or user-facing meaning
+- incorrect action / entry / exit / state transition
+- missing error / empty / confirmation state when the planning requires it
+- naming/order problems that make the canonical screen set ambiguous
+
+Product/flow correctness must be resolved before spending time on deep binding QA.
+
+#### Step 3 — Design-system / component / binding audit
+Run this only on the screen set that remains valid after Step 2.
+
+Verify actual Figma structure, not visual similarity alone.
+
+Check in reuse priority order:
+`Variables / Styles → Components → Patterns → Examples → new asset`
+
+For each applicable screen and shared asset verify:
+- semantic color/style/spacing/radius/type bindings are actually connected where supported
+- repeated UI is an instance of the canonical component
+- the correct component variant/property state is used
+- an existing component/pattern was not bypassed by a local one-off recreation
+- no avoidable detached instance exists
+- no repeated raw value silently bypasses an existing token
+- icon assets use the canonical icon/component when one already exists
+- Auto Layout and `FIXED / HUG / FILL` behavior follow the system contract
+- screen-specific local structures exist only where there is no appropriate shared asset
+
+Whenever practical, audit **shared asset families across the group first**, then screen-specific exceptions. This catches cases where one screen uses the canonical component while another visually identical screen uses a duplicate.
+
+#### Step 4 — Minimal correction
+Fix only verified problems.
+
+Rules:
+- if the root cause is a shared token/component/pattern, fix the shared asset and inspect its affected instances
+- if the problem is truly local, keep the fix local
+- do not create a new token/component/pattern until the existing system has been checked and found insufficient
+- do not redesign already-correct approved screens while fixing a binding issue
+- do not use a local visual patch to hide a shared-system defect
+
+#### Step 5 — Read-back + screenshot QA
+After each correction batch:
+- read back node/component/variant/binding structure
+- inspect the final screenshot at a useful resolution
+- recheck only the planning behavior and shared assets touched by the change
+
+Use these verdicts:
+- `PASS`
+- `FIX`
+- `DECISION NEEDED`
+- `NOT VERIFIED`
+
+`NOT VERIFIED` is not PASS.
+
+#### Step 6 — Cleanup / canonicalization
+Only after the valid screen set is clear:
+- remove confirmed superseded/rejected/duplicate frames
+- remove stale comparison labels or temporary QA notes that are no longer needed
+- normalize top-level screen names to the project naming convention
+- preserve the current canonical screens and their node identity where possible
+
+Do not delete a current screen merely because a **future feature-inclusion decision is deferred**. Separate:
+1. whether the current screen/design is the accepted QA artifact, from
+2. whether every optional feature shown on or reachable from it is finally included in MVP/release scope.
+
+### 15.2 Group QA output
+
+For each reviewed group, report only the useful verification result:
+- planning/product match
+- current Figma screen inventory result
+- design-system/component/binding result
+- fixes actually applied
+- unresolved/deferred decisions
+- final verdict
+
+Do not call a group complete based only on visual screenshot similarity.
+
+### 15.3 Stop condition
+
+Stop the group verification when:
+- current valid planning and Figma agree for the reviewed scope
+- no verified duplicate/stale artifact remains in the reviewed scope
+- critical shared bindings/components used by the group are verified or explicitly marked `NOT VERIFIED`
+- correction-triggered regressions are checked
+- remaining items are genuinely deferred product decisions rather than hidden QA failures
+
+Do not expand into development/Cursor handoff unless the Product Owner explicitly changes the project phase.
