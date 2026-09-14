@@ -4,7 +4,7 @@
 
 ## Current mode
 
-`PRODUCT/UX FIGMA · GROUP 08 SETTINGS/ACCOUNT EXPLORATION ACTIVE · PROFILE/ACCOUNT + UNIT + WORKOUT SETTINGS APPROVED · GROUP 07 ANALYSIS LOCKED · GROUP 06 COMPLETION APPROVED · NO CURSOR IMPLEMENTATION HANDOFF`
+`PRODUCT/UX FIGMA · GROUP 08 SETTINGS/ACCOUNT EXPLORATION ACTIVE · 08B PROFILE/ACCOUNT LOCKED · UNIT + WORKOUT SETTINGS APPROVED · GROUP 07 ANALYSIS LOCKED · GROUP 06 COMPLETION APPROVED · NO CURSOR IMPLEMENTATION HANDOFF`
 
 ## Resume rule
 
@@ -14,9 +14,10 @@
 
 ## Latest active checkpoint
 
-- `docs/ux-decisions/2026-09-14-group08-profile-account-current.md`
+- `docs/ux-decisions/2026-09-14-group08b-profile-account-lock.md`
 
 Supporting Group 08 checkpoints:
+- `docs/ux-decisions/2026-09-14-group08-profile-account-current.md` — superseded by the Group 08B lock checkpoint
 - `docs/ux-decisions/2026-09-14-group08-profile-settings-pass.md` — superseded for the current profile/account flow
 - `docs/ux-decisions/2026-09-14-group08-unit-settings-policy.md`
 - `docs/ux-decisions/2026-09-14-group08-settings-account-exploration-v1.md`
@@ -41,7 +42,7 @@ Canonical Figma:
 
 Current exploration screens:
 - `08A_설정홈_Exploration_V1` — `1158:649`
-- current profile base `08B_추천안_닉네임+로그인수단_Exploration_V2` — `1204:770`
+- locked profile base `08B_추천안_닉네임+로그인수단_Exploration_V2` — `1204:770`
 - `08B1_ProfilePhoto_Sheet_Exploration_V1` — `1181:724`
 - `08B1_더보기_계정탈퇴_Sheet_Exploration_V1` — `1207:799`
 - `08B2_계정탈퇴확인_Exploration_V2` — `1207:859`
@@ -59,7 +60,7 @@ Current PO-approved / recorded directions:
 - timer end sound currently has 3 choices; tapping selects and immediately previews the sound
 - current sound labels `기본 / 차임 / 벨` are temporary until real sound assets are selected
 
-## Profile + account — APPROVED CURRENT DIRECTION
+## 08B Profile + account — LOCKED
 
 ### Profile
 - profile photo can be changed from profile settings
@@ -90,6 +91,11 @@ Current PO-approved / recorded directions:
 - never shrink below 780px because content is short
 - content may extend the frame beyond 780px when needed
 - `저장` CTA belongs after page content and is not a sticky/fixed overlay
+
+### Figma cleanup
+- rejected `08B_OptionA_분리형` and `08B_OptionB_통합형` comparison frames were removed
+- Option A / Option B comparison labels were removed
+- only the locked current 08B direction remains active
 
 Targeted Figma QA for base profile, profile-photo sheet, deletion sheet, and deletion-confirm state = PASS.
 
@@ -122,7 +128,7 @@ Targeted Figma QA for base profile, profile-photo sheet, deletion sheet, and del
 - profile nickname uses `Filled + Social`
 - current social example uses a 16px Google icon followed by editable nickname text
 
-Group 08 is NOT locked yet. Approved areas should not be reopened without a new reason.
+Group 08 is NOT locked yet. Approved/locked areas should not be reopened without a new reason.
 
 ---
 
@@ -168,7 +174,7 @@ Continue Group 08 with support / legal presentation:
 
 After those are resolved, reassess remaining Group 08 TBD items (`구독 관리`, `언어`, `테마`) only if needed for Group 08 closeout.
 
-Do not reopen approved profile/account, unit, or workout settings without a new issue.
+Do not reopen locked 08B profile/account, approved unit, or workout settings without a new issue.
 
 # Development boundary
 
