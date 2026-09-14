@@ -4,7 +4,7 @@
 
 ## Current mode
 
-`PRODUCT/UX FIGMA · GROUP 08 SETTINGS/ACCOUNT EXPLORATION ACTIVE · 08B PROFILE/ACCOUNT LOCKED · UNIT + WORKOUT SETTINGS APPROVED · GROUP 07 ANALYSIS LOCKED · GROUP 06 COMPLETION APPROVED · NO CURSOR IMPLEMENTATION HANDOFF`
+`PRODUCT/UX FIGMA · GROUP 08 SETTINGS/ACCOUNT EXPLORATION ACTIVE · 08B PROFILE/ACCOUNT LOCKED WITH ACCOUNT-EXIT FLOW UPDATE · UNIT + WORKOUT SETTINGS APPROVED · GROUP 07 ANALYSIS LOCKED · GROUP 06 COMPLETION APPROVED · NO CURSOR IMPLEMENTATION HANDOFF`
 
 ## Resume rule
 
@@ -14,10 +14,11 @@
 
 ## Latest active checkpoint
 
-- `docs/ux-decisions/2026-09-14-group08b-profile-account-lock.md`
+- `docs/ux-decisions/2026-09-14-group08b-account-exit-flow.md`
 
 Supporting Group 08 checkpoints:
-- `docs/ux-decisions/2026-09-14-group08-profile-account-current.md` — superseded by the Group 08B lock checkpoint
+- `docs/ux-decisions/2026-09-14-group08b-profile-account-lock.md` — base 08B profile/account lock; account-exit subflow superseded by latest checkpoint
+- `docs/ux-decisions/2026-09-14-group08-profile-account-current.md` — superseded
 - `docs/ux-decisions/2026-09-14-group08-profile-settings-pass.md` — superseded for the current profile/account flow
 - `docs/ux-decisions/2026-09-14-group08-unit-settings-policy.md`
 - `docs/ux-decisions/2026-09-14-group08-settings-account-exploration-v1.md`
@@ -45,7 +46,8 @@ Current exploration screens:
 - locked profile base `08B_추천안_닉네임+로그인수단_Exploration_V2` — `1204:770`
 - `08B1_ProfilePhoto_Sheet_Exploration_V1` — `1181:724`
 - `08B1_더보기_계정탈퇴_Sheet_Exploration_V1` — `1207:799`
-- `08B2_계정탈퇴확인_Exploration_V2` — `1207:859`
+- `08B2_계정탈퇴_Exploration_V1` — `1222:846`
+- `08B3_계정탈퇴확인_Exploration_V1` — `1222:7487`
 - `08C_단위설정_Sheet_Exploration_V1` — `1175:709`
 - `08G_운동설정_Exploration_V1` — `1158:7365`
 - `08H_알림설정_Exploration_V1` — `1158:7457`
@@ -60,7 +62,7 @@ Current PO-approved / recorded directions:
 - timer end sound currently has 3 choices; tapping selects and immediately previews the sound
 - current sound labels `기본 / 차임 / 벨` are temporary until real sound assets are selected
 
-## 08B Profile + account — LOCKED
+## 08B Profile + account — BASE LOCKED / ACCOUNT-EXIT FLOW UPDATED
 
 ### Profile
 - profile photo can be changed from profile settings
@@ -80,24 +82,33 @@ Current PO-approved / recorded directions:
 
 ### Account actions
 - visible body action = `로그아웃`
-- logout does not require a confirmation dialog in the current direction
-- account deletion entry is moved to the profile header `⋮` action
-- `⋮` → account-management bottom sheet → destructive `계정 탈퇴` → final confirmation dialog
-- deletion confirmation communicates destructive account-data deletion and no recovery
+- logout does not require a confirmation dialog
+- account deletion entry remains in the profile header `⋮`
+- current flow = `⋮ → 계정 관리 바텀시트 → 계정 탈퇴 → 전용 계정 탈퇴 화면 → 계정 탈퇴하기 → 최종 확인 다이얼로그`
+- the bottom sheet is an entry point only and does not perform deletion directly
+- dedicated deletion screen explains deletion scope, irreversible loss, and rejoin behavior
+- deletion scope shown = 운동 기록 / 루틴 / 직접 만든 운동 / 프로필 및 신체 정보 / 앱 설정 및 계정 데이터
+- same Google/Kakao provider can be used for a new signup later, but deleted historical app data is not restored
+- final dialog actions = `취소 / 탈퇴하기`; final action is destructive red
+- actual account-exit processing starts only after final confirmation
+- no 7-day / 30-day grace period in current MVP direction
+- external Google/Kakao accounts themselves are not removed; the Fitness app account/data relationship is the target
+- after successful completion, end the current session and return to login entry
+- obsolete profile-background confirm state `1207:859` was removed
 
 ### Screen sizing / CTA
 - current Fitness screen width = `360px`
 - minimum screen/frame height = `780px`
 - never shrink below 780px because content is short
 - content may extend the frame beyond 780px when needed
-- `저장` CTA belongs after page content and is not a sticky/fixed overlay
+- page CTA belongs after page content and is not a sticky/fixed overlay
 
 ### Figma cleanup
 - rejected `08B_OptionA_분리형` and `08B_OptionB_통합형` comparison frames were removed
 - Option A / Option B comparison labels were removed
-- only the locked current 08B direction remains active
+- only the locked current 08B profile direction remains active
 
-Targeted Figma QA for base profile, profile-photo sheet, deletion sheet, and deletion-confirm state = PASS.
+Targeted Figma QA for base profile, account-management sheet, dedicated account-exit screen, final confirm, and profile-photo sheet = PASS.
 
 ## Unit settings — APPROVED
 
@@ -172,9 +183,11 @@ Continue Group 08 with support / legal presentation:
 2. `문의하기`
 3. terms / privacy / legal presentation
 
+The legal/store follow-up must also cover the external account-deletion request entry required for store compliance.
+
 After those are resolved, reassess remaining Group 08 TBD items (`구독 관리`, `언어`, `테마`) only if needed for Group 08 closeout.
 
-Do not reopen locked 08B profile/account, approved unit, or workout settings without a new issue.
+Do not reopen locked 08B profile/account base, approved unit, or workout settings without a new issue.
 
 # Development boundary
 
