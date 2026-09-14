@@ -1,100 +1,97 @@
 # Group 08 — Language / Theme selector sheets
 
 **Date:** 2026-09-14  
-**Status:** PRODUCT/UX APPROVED · FIGMA APPLIED · TARGETED QA PASS · NO CURSOR HANDOFF
+**Status:** FIGMA QA REFERENCE · PRODUCT POLICY DEFERRED · NOT LOCKED · NO CURSOR HANDOFF
 
-## Scope
+## Context correction
 
-Settings home `언어` and `테마` rows remain visible and use the same right-value + chevron presentation already used by `단위 설정`.
+The current project phase is not a final settings-policy decision pass.
 
-Current Settings-home values:
+The Product Owner is currently performing a cross-group QA pass that compares the produced Figma artifacts against the existing product planning / decision history.
+
+Therefore:
+- `언어`, `테마`, `구독 관리` final MVP policy / visibility decisions are deferred until later.
+- the language/theme selector screens created in this session are QA/reference artifacts only.
+- their existence must not be interpreted as MVP scope lock, launch-default lock, or implementation authorization.
+- Group 08 remains unlocked.
+
+## Current Figma artifact
+
+Settings home currently displays right-side values using the existing `단위 설정` value + chevron pattern:
 - `알림` → `켬`
 - `언어` → `한국어`
 - `테마` → `다크모드`
 
-Product Owner direction:
-- `언어` is selectable through a bottom sheet.
-- `테마` is selectable through a bottom sheet.
-- the selector presentation should reuse the existing Fitness bottom-sheet / option pattern rather than introduce a parallel settings UI.
+Canonical Figma:
+- file `W3lZurXCXbThP67rF2xk2b`
+- page `08 설정 · 계정` — `233:2079`
+- exploration section `08_SETTINGS_V1_EXPLORATION` — `1158:645`
+- settings home `08A_설정홈_Exploration_V1` — `1158:649`
+- language sheet `08D_언어설정_Sheet_Exploration_V1` — `1275:1029`
+- theme sheet `08E_테마설정_Sheet_Exploration_V1` — `1276:1041`
 
-## Canonical Figma
+These frames are retained so the planned interaction shape can be inspected during QA.
 
-File:
-- `W3lZurXCXbThP67rF2xk2b`
+## Language selector — current QA artifact
 
-Page:
-- `08 설정 · 계정` — `233:2079`
-
-Exploration section:
-- `08_SETTINGS_V1_EXPLORATION` — `1158:645`
-
-Settings home:
-- `08A_설정홈_Exploration_V1` — `1158:649`
-- `알림` right value = `켬`
-- `언어` right value = `한국어`
-- `테마` right value = `다크모드`
-
-New selector states:
-- `08D_언어설정_Sheet_Exploration_V1` — `1275:1029`
-- `08E_테마설정_Sheet_Exploration_V1` — `1276:1041`
-
-## Language selector
-
-Presentation:
+Current presentation:
 - bottom sheet
 - title = `언어 설정`
 - description = `앱에서 사용할 언어를 선택해 주세요.`
-- current selected value = `한국어`
-- current options shown in Figma = `한국어 / English`
+- displayed selected value = `한국어`
+- displayed options = `한국어 / English`
 - action = `저장`
 
 The screen reuses the same `OptionItem` selected/unselected variants used by the approved unit-setting bottom sheet.
 
-## Theme selector
+This is not a final statement that both languages ship in MVP.
 
-Presentation:
+## Theme selector — current QA artifact
+
+Current presentation:
 - bottom sheet
 - title = `테마 설정`
 - description = `앱 화면의 테마를 선택해 주세요.`
-- current selected value = `다크모드`
-- current options shown in Figma = `라이트모드 / 다크모드`
+- displayed selected value = `다크모드`
+- displayed options = `라이트모드 / 다크모드`
 - action = `저장`
 
 The screen reuses the same `OptionItem` selected/unselected variants used by the approved unit-setting bottom sheet.
 
-## Design-system constraint
+This is not a final statement that Light mode ships in MVP.
+
+## Design-system observation
 
 The current local Figma `Colors` variable collection has only one mode: `Dark`.
 
-Therefore:
-- the selector UI and current `다크모드` state are valid now;
-- the selector does **not** mean a complete Light color system has already been designed or QA-passed;
-- actual Light-mode visual implementation requires a separate shared design-system expansion / impact review before implementation or release.
+This is an observed implementation/design-system constraint only. Since theme scope is deferred, no Light-mode expansion decision is made in this checkpoint.
 
 Do not create a second ad-hoc light palette per screen.
 
-## Figma QA
+## Targeted artifact QA
 
-Targeted read-back / screenshot QA:
-- Settings-home right-value presentation remains consistent with the existing `단위 설정` pattern.
+Read-back / screenshot QA verified only that the created Figma artifacts are structurally consistent with the existing Fitness system:
+- Settings-home right-value presentation matches the existing `단위 설정` pattern.
 - language sheet = `360×780`, existing bottom-sheet structure reused.
 - language selected option = `한국어` with existing selected `OptionItem` variant.
 - theme sheet = `360×780`, existing bottom-sheet structure reused.
 - theme selected option = `다크모드` with existing selected `OptionItem` variant.
-- option typography/color/component bindings preserved after reordering theme options.
-- no new foundation token or new selector component introduced.
+- no new foundation token or parallel selector component introduced.
 
-Result: `PASS` for the current Product/UX + Figma scope.
+Result: `PASS` for artifact construction only.
 
-## Remaining Group 08 closeout
+It is **not** a Product/UX lock or MVP-scope approval.
 
-Still open:
-- decide `구독 관리` MVP visibility / behavior.
-- determine whether the Light-mode design-system expansion is part of MVP implementation scope or a later follow-up; this does not require reopening the selector-sheet UX.
-- complete only necessary Settings-home cleanup and Group 08 lock after remaining launch-level blocker review.
+## Current QA direction
 
-Release-only follow-ups from the prior checkpoint remain unchanged.
+Continue comparing each Group's actual Figma artifact against the existing planning / decision source of truth.
+
+During this QA pass:
+- flag mismatches that materially diverge from approved planning;
+- separate true blockers from later product decisions;
+- do not force unresolved `언어 / 테마 / 구독 관리` policy decisions just to close Group 08;
+- do not reopen already approved/PASS areas unless the cross-check finds a real conflict or regression.
 
 ## Development boundary
 
-Product Owner has not authorized development/Cursor handoff. Stay in Product/UX + Figma until explicitly switched.
+Product Owner has not authorized development/Cursor handoff. Stay in Product/UX + Figma QA until explicitly switched.
