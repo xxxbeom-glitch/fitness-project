@@ -4,7 +4,7 @@
 
 ## Current mode
 
-`PRODUCT/UX FIGMA · GROUP 08 SETTINGS/ACCOUNT EXPLORATION ACTIVE · 08B PROFILE/ACCOUNT LOCKED WITH ACCOUNT-EXIT FLOW UPDATE · UNIT + WORKOUT SETTINGS APPROVED · GROUP 07 ANALYSIS LOCKED · GROUP 06 COMPLETION APPROVED · NO CURSOR IMPLEMENTATION HANDOFF`
+`PRODUCT/UX FIGMA · GROUP 08 SETTINGS/ACCOUNT EXPLORATION ACTIVE · 08B PROFILE/ACCOUNT LOCKED WITH ACCOUNT-EXIT PRIVACY POLICY · UNIT + WORKOUT SETTINGS APPROVED · GROUP 07 ANALYSIS LOCKED · GROUP 06 COMPLETION APPROVED · NO CURSOR IMPLEMENTATION HANDOFF`
 
 ## Resume rule
 
@@ -14,10 +14,11 @@
 
 ## Latest active checkpoint
 
-- `docs/ux-decisions/2026-09-14-group08b-account-exit-flow.md`
+- `docs/ux-decisions/2026-09-14-group08b-account-exit-privacy-policy.md`
 
 Supporting Group 08 checkpoints:
-- `docs/ux-decisions/2026-09-14-group08b-profile-account-lock.md` — base 08B profile/account lock; account-exit subflow superseded by latest checkpoint
+- `docs/ux-decisions/2026-09-14-group08b-account-exit-flow.md` — superseded for deletion/privacy copy by latest checkpoint
+- `docs/ux-decisions/2026-09-14-group08b-profile-account-lock.md` — base 08B profile/account lock; account-exit subflow superseded by later checkpoints
 - `docs/ux-decisions/2026-09-14-group08-profile-account-current.md` — superseded
 - `docs/ux-decisions/2026-09-14-group08-profile-settings-pass.md` — superseded for the current profile/account flow
 - `docs/ux-decisions/2026-09-14-group08-unit-settings-policy.md`
@@ -62,7 +63,7 @@ Current PO-approved / recorded directions:
 - timer end sound currently has 3 choices; tapping selects and immediately previews the sound
 - current sound labels `기본 / 차임 / 벨` are temporary until real sound assets are selected
 
-## 08B Profile + account — BASE LOCKED / ACCOUNT-EXIT FLOW UPDATED
+## 08B Profile + account — BASE LOCKED / ACCOUNT-EXIT PRIVACY POLICY UPDATED
 
 ### Profile
 - profile photo can be changed from profile settings
@@ -86,15 +87,25 @@ Current PO-approved / recorded directions:
 - account deletion entry remains in the profile header `⋮`
 - current flow = `⋮ → 계정 관리 바텀시트 → 계정 탈퇴 → 전용 계정 탈퇴 화면 → 계정 탈퇴하기 → 최종 확인 다이얼로그`
 - the bottom sheet is an entry point only and does not perform deletion directly
-- dedicated deletion screen explains deletion scope, irreversible loss, and rejoin behavior
-- deletion scope shown = 운동 기록 / 루틴 / 직접 만든 운동 / 프로필 및 신체 정보 / 앱 설정 및 계정 데이터
+- dedicated deletion screen explains deletion scope, privacy destruction, irreversible loss, and rejoin behavior
+- deletion scope shown as one comma-separated sentence = `운동 기록, 루틴, 직접 만든 운동, 프로필 및 신체 정보, 앱 설정 및 계정 데이터`
 - same Google/Kakao provider can be used for a new signup later, but deleted historical app data is not restored
 - final dialog actions = `취소 / 탈퇴하기`; final action is destructive red
+- final dialog copy explicitly includes 개인정보
 - actual account-exit processing starts only after final confirmation
 - no 7-day / 30-day grace period in current MVP direction
 - external Google/Kakao accounts themselves are not removed; the Fitness app account/data relationship is the target
 - after successful completion, end the current session and return to login entry
-- obsolete profile-background confirm state `1207:859` was removed
+- obsolete profile/account exploration frames explicitly removed by PO remain deleted
+
+### Personal-information destruction policy
+- account deletion is also a privacy-destruction event, not only account UI removal
+- app-held nickname, profile image, gender, birthdate, body information, and app-held social-login linkage information are included when actually stored
+- deletion must make the personal information non-restorable / non-reproducible
+- if another law requires retention, only the required minimum data is kept separately from ordinary user data for the required period, then destroyed
+- Google/Kakao provider accounts themselves are not deleted
+- privacy policy must state processing/retention period, destruction procedure/method, and any legal-retention basis/items
+- this policy was checked against Korean Personal Information Protection Act Articles 21 and 30 on 2026-09-14
 
 ### Screen sizing / CTA
 - current Fitness screen width = `360px`
@@ -106,9 +117,10 @@ Current PO-approved / recorded directions:
 ### Figma cleanup
 - rejected `08B_OptionA_분리형` and `08B_OptionB_통합형` comparison frames were removed
 - Option A / Option B comparison labels were removed
-- only the locked current 08B profile direction remains active
+- superseded frames `08B_프로필_계정_Exploration_V2` and `08B2_프로필_계정탈퇴확인_Exploration_V1` were removed
+- only the locked current 08B profile direction and current account-exit states remain active
 
-Targeted Figma QA for base profile, account-management sheet, dedicated account-exit screen, final confirm, and profile-photo sheet = PASS.
+Targeted Figma QA for base profile, account-management sheet, dedicated account-exit screen, final confirm, profile-photo sheet, comma-separated deletion scope, and privacy-destruction notice = PASS.
 
 ## Unit settings — APPROVED
 
@@ -183,7 +195,7 @@ Continue Group 08 with support / legal presentation:
 2. `문의하기`
 3. terms / privacy / legal presentation
 
-The legal/store follow-up must also cover the external account-deletion request entry required for store compliance.
+The legal/privacy presentation must reuse the approved account-exit privacy-destruction policy. The legal/store follow-up must also cover the external account-deletion request entry required for store compliance.
 
 After those are resolved, reassess remaining Group 08 TBD items (`구독 관리`, `언어`, `테마`) only if needed for Group 08 closeout.
 
