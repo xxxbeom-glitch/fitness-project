@@ -4,7 +4,7 @@
 
 ## Current mode
 
-`PRODUCT/UX FIGMA · GROUP 03 ROUTINE CROSS-GROUP QA PASS · GROUP 02 HOME DEFERRED BY PO · NO CURSOR IMPLEMENTATION HANDOFF`
+`PRODUCT/UX FIGMA · GROUP 03 ROUTINE POST-QA REFINEMENT · GROUP 02 HOME DEFERRED BY PO · NO CURSOR IMPLEMENTATION HANDOFF`
 
 ## Resume rule
 
@@ -14,9 +14,10 @@
 
 ## Latest active checkpoint
 
-- `docs/ux-decisions/2026-09-14-group03-routine-cross-group-qa.md`
+- `docs/ux-decisions/2026-09-14-group03-post-qa-refinement-checkpoint.md`
 
 Directly relevant Group 03 decisions / checkpoints:
+- `docs/ux-decisions/2026-09-14-group03-routine-cross-group-qa.md`
 - `docs/ux-decisions/2026-09-08-routine-figma-03-checkpoint.md`
 - `docs/ux-decisions/2026-09-10-action-menu-presentation.md`
 - `docs/ux-decisions/2026-09-10-routinelist-action-bottomsheet-correction.md`
@@ -32,7 +33,7 @@ Prior approved / locked checkpoints should not be reopened without a new issue:
 
 ---
 
-# GROUP 03 — ROUTINE QA PASS / LOCKED
+# GROUP 03 — ROUTINE QA PASS + POST-QA REFINEMENT RECORDED
 
 Canonical Figma:
 - file `W3lZurXCXbThP67rF2xk2b`
@@ -47,7 +48,7 @@ Current valid primary screens:
 - `03E2_Routine_Create_WithExercises` — `352:896`
 - `03F_Routine_Edit` — `34:1477`
 
-Current valid representative action-menu states added by later PO-approved decisions:
+Current valid representative action-menu states:
 - `03A_Routine_List_Menu` — `706:5023`
 - `03F_Routine_Exercise_Menu` — `706:5087`
 
@@ -59,10 +60,18 @@ Cross-group planning / Figma / design-system QA result:
 - screenshot / product correctness = PASS
 - stale `03G_Routine_Readonly` = absent
 
-Targeted fixes applied during the 2026-09-14 QA pass:
+Targeted fixes applied during the QA pass:
 - repeated raw 03A routine cards promoted to shared local `RoutineListCard` — main `1362:905`
 - Group 03 raw attachment-status chips replaced by canonical local `AttachmentTag` — main `693:6035`
 - 03A / 03F ActionSheet QA states normalized to full viewport + overlay + canonical sheet without duplicated underlying product UI
+
+Post-QA PO refinements now reflected:
+- routine detail/create/edit exercise samples use current Production-style long names for layout stress QA
+- redundant `운동 구성` heading removed from `03E2_Routine_Create_WithExercises` and `03F_Routine_Edit`
+- routine create/edit may input and modify `SET / KG / REPS`
+- user-entered KG is allowed in the routine; the app must not infer working weight from demographic data
+- active workout uses the same entry model and may modify the same values during the session
+- actual performed values remain workout-record data
 
 Recommendation acceptance semantics:
 - current flow = `추천 결과/상세 → 운동 시작 → Active Workout → 운동 완료 → 내 루틴 저장 여부 선택`
@@ -70,8 +79,6 @@ Recommendation acceptance semantics:
 
 Non-blocking deferred content:
 - sample set-table values such as `W / 1 / 2 / D / F`, `80 KG`, `35 REPS` are visual samples only and are not approved default prescription data
-
-Do not reopen Group 03 without a new product change, conflict, regression, implementation/runtime finding, or explicit Product Owner request.
 
 ---
 
@@ -88,9 +95,14 @@ Do not continue the 02A artwork/re-entry/three-state lock work unless the Produc
 
 # NEXT OPEN ITEM
 
-Group 03 QA stop condition is satisfied and the reviewed scope is locked.
+Continue Group 03 product follow-up only when the Product Owner requests it.
 
-Wait for the Product Owner to select the next Figma QA group / product item. Do not automatically return to deferred Group 02 and do not begin Cursor implementation handoff.
+Current open items:
+1. define `순서 변경` / `대체 운동` downstream behavior and replacement-value carryover/reset rules
+2. define unsaved-change/back, create-save, edit-save, delete-confirmation/destination behavior
+3. define the source/calculation rule for routine `예상 시간`
+
+Do not automatically return to deferred Group 02 and do not begin Cursor implementation handoff.
 
 # Development boundary
 
