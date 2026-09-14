@@ -4,7 +4,7 @@
 
 ## Current mode
 
-`PRODUCT/UX FIGMA · GROUP 08 SETTINGS/ACCOUNT EXPLORATION ACTIVE · PROFILE + UNIT SETTINGS APPROVED · GROUP 07 ANALYSIS LOCKED · GROUP 06 COMPLETION APPROVED · NO CURSOR IMPLEMENTATION HANDOFF`
+`PRODUCT/UX FIGMA · GROUP 08 SETTINGS/ACCOUNT EXPLORATION ACTIVE · PROFILE/ACCOUNT + UNIT + WORKOUT SETTINGS APPROVED · GROUP 07 ANALYSIS LOCKED · GROUP 06 COMPLETION APPROVED · NO CURSOR IMPLEMENTATION HANDOFF`
 
 ## Resume rule
 
@@ -14,9 +14,10 @@
 
 ## Latest active checkpoint
 
-- `docs/ux-decisions/2026-09-14-group08-profile-settings-pass.md`
+- `docs/ux-decisions/2026-09-14-group08-profile-account-current.md`
 
 Supporting Group 08 checkpoints:
+- `docs/ux-decisions/2026-09-14-group08-profile-settings-pass.md` — superseded for the current profile/account flow
 - `docs/ux-decisions/2026-09-14-group08-unit-settings-policy.md`
 - `docs/ux-decisions/2026-09-14-group08-settings-account-exploration-v1.md`
 
@@ -40,8 +41,10 @@ Canonical Figma:
 
 Current exploration screens:
 - `08A_설정홈_Exploration_V1` — `1158:649`
-- `08B_프로필설정_Exploration_V1` — `1180:713`
+- current profile base `08B_추천안_닉네임+로그인수단_Exploration_V2` — `1204:770`
 - `08B1_ProfilePhoto_Sheet_Exploration_V1` — `1181:724`
+- `08B1_더보기_계정탈퇴_Sheet_Exploration_V1` — `1207:799`
+- `08B2_계정탈퇴확인_Exploration_V2` — `1207:859`
 - `08C_단위설정_Sheet_Exploration_V1` — `1175:709`
 - `08G_운동설정_Exploration_V1` — `1158:7365`
 - `08H_알림설정_Exploration_V1` — `1158:7457`
@@ -56,21 +59,41 @@ Current PO-approved / recorded directions:
 - timer end sound currently has 3 choices; tapping selects and immediately previews the sound
 - current sound labels `기본 / 차임 / 벨` are temporary until real sound assets are selected
 
-### Profile settings — APPROVED
+## Profile + account — APPROVED CURRENT DIRECTION
 
+### Profile
 - profile photo can be changed from profile settings
-- photo action sheet currently offers `사진 선택 / 기본 이미지로 변경 / 취소`
+- photo action sheet offers `사진 선택 / 기본 이미지로 변경 / 취소`
 - nickname is editable
-- gender must reuse the `01C_기본정보` two-button pattern: `남성 / 여성`
-- no separate gender sheet
-- birthdate must reuse the `01C_기본정보` direct `YYYYMMDD` input pattern
-- no birthdate wheel/date-picker sheet
-- example birthdate = `19880101`
-- `저장` is disabled until there is a valid change
-- invalid or incomplete input must not enable save
-- targeted Figma QA = PASS
+- no large `프로필 정보` section heading
+- gender and birthdate are not editable profile-setting fields in the current MVP flow
+- gender / birthdate remain onboarding-collected data; no post-signup edit behavior is currently defined
 
-### Unit settings — APPROVED
+### Logged-in provider
+- no separate `로그인 수단` section
+- current provider is represented inside the nickname InputBox as a leading provider icon
+- visual pattern = `[provider icon] 닉네임`
+- current Figma example = Google
+- Kakao uses the same field pattern with the Kakao provider icon
+- multiple-provider linking / account-link management is excluded from current MVP
+
+### Account actions
+- visible body action = `로그아웃`
+- logout does not require a confirmation dialog in the current direction
+- account deletion entry is moved to the profile header `⋮` action
+- `⋮` → account-management bottom sheet → destructive `계정 탈퇴` → final confirmation dialog
+- deletion confirmation communicates destructive account-data deletion and no recovery
+
+### Screen sizing / CTA
+- current Fitness screen width = `360px`
+- minimum screen/frame height = `780px`
+- never shrink below 780px because content is short
+- content may extend the frame beyond 780px when needed
+- `저장` CTA belongs after page content and is not a sticky/fixed overlay
+
+Targeted Figma QA for base profile, profile-photo sheet, deletion sheet, and deletion-confirm state = PASS.
+
+## Unit settings — APPROVED
 
 - supported weight units = `kg / lb`
 - global unit preference applies to current input, previous-value references, past workout records, completion/session detail, analysis, and PR weight displays
@@ -80,17 +103,24 @@ Current PO-approved / recorded directions:
 - unit selector remains a bottom sheet with `kg (킬로그램)` and `lb (파운드)`
 - Figma targeted QA = PASS
 
-Shared UI added during this track:
+## Shared UI changed during Group 08
+
+### Wheel picker
 - shared component `WheelPicker/SingleColumn` — `1169:1105`
 - rest-time instance `WheelPicker_RestTime` — `1170:697`
-
-Wheel picker current structure:
-- 1 column / 5 visible rows
-- 40px row height
-- selected row centered between top/bottom divider lines
-- selected value stronger than surrounding values
-- text values exposed for instance override
+- 1 column / 5 visible rows / 40px row height
+- selected row centered between divider lines
 - existing Fitness tokens reused; no new token added
+
+### InputBox
+- canonical shared `InputBox` — `635:807`
+- variant axes:
+  - `State=Default / Filled / Focused`
+  - `LeadingIcon=None / Social`
+- 6 total variants
+- standard fields remain `LeadingIcon=None`
+- profile nickname uses `Filled + Social`
+- current social example uses a 16px Google icon followed by editable nickname text
 
 Group 08 is NOT locked yet. Approved areas should not be reopened without a new reason.
 
@@ -106,26 +136,15 @@ Canonical/state screens:
 - `06B_Completion_NoPR` — `819:702`
 - `06C_Completion_VolumeNA` — `823:720`
 
-Current shared completion structure:
-- completion status/header
-- conditional shared `07D/PersonalRecordTrophyCard`
-- shared `07D/SessionSummaryCard`
-- bottom `기록 상세 보기 / 홈으로 돌아가기`
+Current shared completion structure and conditional behavior remain APPROVED. Latest targeted screenshot QA = PASS.
 
-Rules:
-- completion screen now shows all valid PR rows in the single shared trophy card
-- no valid PR → hide PR card entirely
-- no eligible completed `weight_reps` volume → keep `총 볼륨` and show `—`
-- No-PR and Volume-N/A reference wrappers now contain only the actual `360×780` app screen; explanatory canvas labels were removed
-
-Latest targeted screenshot QA for 06A/06B/06C = PASS.
+Do not reopen without a new change, conflict, regression risk, or explicit review request.
 
 ---
 
 # GROUP 07 — LOCKED
 
-## Canonical Figma
-
+Canonical Figma:
 - file `W3lZurXCXbThP67rF2xk2b`
 - page `07 분석 · 운동 기록` — `233:2078`
 - `07A_분석홈` — `887:936`
@@ -134,89 +153,22 @@ Latest targeted screenshot QA for 06A/06B/06C = PASS.
 - `07D_운동기록상세_Exploration` — `836:1593`
 - `07D_운동기록상세_DeleteConfirm` — `1136:4054`
 
-Current Group 07 IA:
-1. `07A 분석 홈`
-2. `07B 부위 상세`
-3. `07D 운동 기록 상세`
+07A / 07B / 07D are locked. Latest targeted Figma QA = PASS.
 
-There is no separate 07C overview screen.
-
-## 07A
-
-`LOCKED`.
-
-## 07B
-
-`LOCKED`.
-
-Populated state:
-- selected body-area body map + contributor list remain in one unified card
-- `진행한 운동` SectionHeader remains in the populated state
-- contributor list shows all rows
-- no first-N truncation or more affordance
-- card grows with content and page scroll handles long content
-- canonical list layer `SelectedAreaExerciseList_AllRows` — `887:1065`
-
-Empty state:
-- body map is not shown
-- `진행한 운동` SectionHeader is not shown
-- card/border/surface is not shown
-- screen title and period selector remain
-- only `이 기간에는 {부위} 운동 기록이 없어요` is shown
-- message is horizontally/vertically centered in the remaining screen area below the period tabs
-- no CTA or placeholder/zero-value rows
-- centered content area `Content` — `1057:596`, x=`20`, y=`192`, `320 × 698`
-- message node `EmptyMessage_기간내기록없음` — `1057:7468`
-
-## 07D
-
-`PRODUCT RULES LOCKED / FIGMA APPLIED / TARGETED QA PASS`.
-
-- no eligible completed `weight_reps` volume → keep `총 볼륨` cell and show `—`
-- session detail shows all valid PRs in the single trophy card
-- header uses shared `Nav Header` with `RightAction=Trash`
-- destructive session deletion requires confirmation
-- performed exercises remain the accepted single-card C micro-table treatment
-
-Shared masters:
-- `07D/PersonalRecordTrophyCard` — `1113:733`
-- `07D/SessionSummaryCard` — `1124:736`
-
-Shared PR-card current spacing:
-- each PR is an independent text layer inside vertical Auto Layout
-- PR row gap = `4px`
-- label-to-list gap = `12px`
-- bottom padding = `16px`
-
-## QA evidence
-
-Latest targeted Figma QA = PASS.
-
-Verified:
-- Group 06 default / No-PR / Volume-N/A completion states use the shared Group 07D summary components correctly
-- Group 06 conditional-state frames no longer include explanatory canvas text inside the app-frame wrapper
-- 07B populated state unchanged
-- 07B empty-state body map, card and section title removed
-- zero-record message is centered in the available screen area below the period tabs without clipping
-- previously approved 07D structure remains intact
-
-No broader repeat QA is required unless a new change/regression is introduced.
+Do not mechanically repeat Group 06/07 QA.
 
 ---
 
 # NEXT OPEN ITEM
 
-Continue Group 08 with `계정 관리`.
+Continue Group 08 with support / legal presentation:
+1. `자주 묻는 질문`
+2. `문의하기`
+3. terms / privacy / legal presentation
 
-Review:
-- logged-in provider presentation
-- whether multiple providers can be linked
-- logout placement / confirmation behavior
-- destructive account deletion entry and confirmation consistency with the already-recorded deletion policy
+After those are resolved, reassess remaining Group 08 TBD items (`구독 관리`, `언어`, `테마`) only if needed for Group 08 closeout.
 
-After account management, review FAQ/contact and legal presentation. Do not reopen approved profile/unit/workout settings without a new issue.
-
-Do not reopen Group 06 or Group 07 mechanically.
+Do not reopen approved profile/account, unit, or workout settings without a new issue.
 
 # Development boundary
 
