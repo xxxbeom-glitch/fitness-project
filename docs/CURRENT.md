@@ -23,7 +23,7 @@ Supporting current checkpoints:
 - `docs/ux-decisions/2026-09-05-analysis-body-area-drilldown.md`
 - `docs/ux-decisions/2026-09-12-group06-completion-final-shell.md`
 
-The latest 07B checkpoint supersedes older wording that retained an empty card in the zero-record state.
+The latest 07B checkpoint supersedes older wording that retained an empty card or `진행한 운동` SectionHeader in the zero-record state.
 
 ---
 
@@ -56,6 +56,7 @@ There is no separate 07C overview screen.
 
 Populated state:
 - selected body-area body map + contributor list remain in one unified card
+- `진행한 운동` SectionHeader remains in the populated state
 - contributor list shows all rows
 - no first-N truncation or more affordance
 - card grows with content and page scroll handles long content
@@ -63,12 +64,14 @@ Populated state:
 
 Empty state:
 - body map is not shown
+- `진행한 운동` SectionHeader is not shown
 - card/border/surface is not shown
-- screen title, period selector and `진행한 운동` SectionHeader remain
-- only centered supporting text `이 기간에는 {부위} 운동 기록이 없어요` is shown
+- screen title and period selector remain
+- only `이 기간에는 {부위} 운동 기록이 없어요` is shown
+- message is horizontally/vertically centered in the remaining screen area below the period tabs
 - no CTA or placeholder/zero-value rows
+- centered content area `Content` — `1057:596`, x=`20`, y=`192`, `320 × 698`
 - message node `EmptyMessage_기간내기록없음` — `1057:7468`
-- header-to-message gap = `32px`
 
 ## 07D
 
@@ -90,8 +93,8 @@ Latest targeted Figma QA = PASS.
 
 Verified:
 - 07B populated state unchanged
-- 07B empty-state body map and card removed
-- no-record message is centered directly below the section header without clipping
+- 07B empty-state body map, card and section title removed
+- zero-record message is centered in the available screen area below the period tabs without clipping
 - previously approved 07D structure remains intact
 
 No broader repeat QA is required unless a new change/regression is introduced.
