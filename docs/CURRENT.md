@@ -4,7 +4,7 @@
 
 ## Current mode
 
-`PRODUCT/UX FIGMA · GROUP 03 ROUTINE PRODUCT FOLLOW-UP CLOSED · GROUP 02 HOME DEFERRED BY PO · NO CURSOR IMPLEMENTATION HANDOFF`
+`PRODUCT/UX FIGMA · GROUP 04 EXERCISE LIBRARY/DETAIL CURRENT QA PASS · GROUP 03 ROUTINE CLOSED · GROUP 02 HOME DEFERRED BY PO · NO CURSOR IMPLEMENTATION HANDOFF`
 
 ## Resume rule
 
@@ -14,63 +14,83 @@
 
 ## Latest active checkpoint
 
-- `docs/ux-decisions/2026-09-14-group03-post-qa-refinement-checkpoint.md`
+- `docs/ux-decisions/2026-09-14-group04-cross-group-regression-qa.md`
 
-Directly relevant Group 03 decisions / checkpoints:
-- `docs/ux-decisions/2026-09-14-group03-routine-cross-group-qa.md`
-- `docs/ux-decisions/2026-09-08-routine-figma-03-checkpoint.md`
-- `docs/ux-decisions/2026-09-10-action-menu-presentation.md`
-- `docs/ux-decisions/2026-09-10-routinelist-action-bottomsheet-correction.md`
-- `docs/ux-decisions/2026-09-14-recommended-routine-acceptance-current.md`
+Directly relevant Group 04 decisions / checkpoints:
+- `docs/ux-decisions/2026-09-10-group04-closure-qa.md`
+- `docs/ux-decisions/2026-09-10-group04-session-handoff.md`
+- `docs/ux-decisions/2026-09-13-exercise-detail-tab-state-normalization.md`
+- `docs/ux-decisions/2026-09-13-04d-content-top-spacing-normalization.md`
+- `docs/ux-decisions/2026-09-13-04d-growth-relative-week-xaxis.md`
+- `docs/ux-decisions/2026-09-13-04g-growth-weight-change-title.md`
+- `docs/ux-decisions/2026-09-13-04g-growth-personal-best-table-sync.md`
 
 ---
 
-# GROUP 03 — ROUTINE QA PASS + POST-QA PRODUCT RULES CLOSED
+# GROUP 04 — EXERCISE LIBRARY / DETAIL CURRENT QA PASS
+
+Canonical Figma:
+- file `W3lZurXCXbThP67rF2xk2b`
+- page `04 운동 목록 · 상세` — `233:2075`
+
+Current canonical states:
+- `04A_Search` — `207:1238`
+- `04B_Search_Selected` — `515:1140`
+- `04C_Search_Empty` — `539:1050`
+- `04D_Exercise_Detail_Info` — `40:2325`
+- `04D_Exercise_Detail_History` — `34:1714`
+- `04D_Exercise_Detail_Growth` — `1000:1519`
+- `04E_Custom_Create` — `34:1672`
+- `04F_Custom_Edit` — `34:1692`
+- `04H_Exercise_Attachment_Selection` — `170:2174`
+- `04H_Custom_Attachment_Input` — `552:3356`
+- `04A_Filter_Equipment_Page` — `515:3327`
+- `04A_Filter_BodyPart_Page` — `515:3514`
+
+Current QA result:
+- all canonical top-level states `360 × 954`
+- no stale top-level `04G_Exercise_History` state
+- Exercise Detail states normalized under `04D`
+- no component/component-set master left on the Group 04 product page
+- 337 instances inspected; no missing main-component link found
+- recent `Common_Component` master relocation did not break Group 04 instances
+- 04D three tab states use the correct shared 3-tab variants
+- 04D Info / History / Growth content top padding remains 20px bound to `spacing/20`
+- search/list, empty, detail, growth, edit, filter, attachment representative screenshot QA PASS
+- 04D Growth current bench-press sample remains valid: `중량 변화`, `4주 / 3개월 / 1년`, relative-week labels, flat Personal Best table
+
+Non-blocking deferred rule:
+- recording-type-specific Growth metric selection/naming remains later product work; current weight-based bench-press sample is valid
+
+Preserved deferred data/runtime work:
+- regenerated 211-row Production workbook/runtime DB
+- exact Production attachment allowlists/canonical IDs/media mapping
+- Cursor implementation
+
+No Figma correction was required in the 2026-09-14 current QA pass.
+
+Remaining Group 04-specific component-master promotion into `Common_Component` has **not** been performed by this QA; do it only if PO explicitly requests that cleanup.
+
+---
+
+# GROUP 03 — ROUTINE CLOSED
 
 Canonical Figma:
 - file `W3lZurXCXbThP67rF2xk2b`
 - page `03 루틴` — `233:2074`
 
-Current valid primary screens:
-- `03A_Routine_List` — `34:1401`
-- `03B_Routine_Empty` — `34:1438`
-- `03C_추천루틴상세` — `40:2272`
-- `03D_Routine_Detail` — `34:1447`
-- `03E_Routine_Create` — `34:1457`
-- `03E2_Routine_Create_WithExercises` — `352:896`
-- `03F_Routine_Edit` — `34:1477`
+Group 03 Product/UX rules and representative Figma states are closed at the current approved checkpoint.
 
-Current valid representative action-menu states:
-- `03A_Routine_List_Menu` — `706:5023`
-- `03F_Routine_Exercise_Menu` — `706:5087`
-
-Current confirmed refinements / behavior:
-- Production-style long exercise names reflected in Group 03 samples
-- `운동 구성` heading removed from create-with-exercises and edit screens
+Confirmed behavior includes:
 - routine create/edit supports user-entered `SET / KG / REPS`
-- active workout uses the same entry model; performed values become workout-record data
-- `순서 변경` reuses `05J_Reorder`
-- `대체 운동` reuses `05G_Exercise_Replace_Suggest`
-- replacement loads the selected exercise's own latest personal record; no history = one empty set row
-- changed create/edit screen + Back → unsaved-change confirmation: `변경사항을 저장하지 않고 나갈까요?` / `나가기` / `계속 편집`
-- new routine save → that routine's `03D_Routine_Detail`
-- existing routine edit save → updated `03D_Routine_Detail`
-- routine delete → confirmation `루틴을 삭제할까요?` / `삭제` / `취소` → confirmed delete returns to `03A_Routine_List`
-- routine estimated duration now has a deterministic rule:
-  - unchanged routine with history → median of up to 3 recent fully completed sessions, rounded to 5 min
-  - no valid history / structure changed → planned structure fallback using active-set time + rest + exercise transition, rounded to 5 min
-  - reps/load set default active time = 45 sec
-  - duration set = programmed duration
-  - configured rest wins; otherwise fallback rest = 90 sec between sets
-  - exercise transition = 60 sec between exercises
-  - partial records excluded
-  - structural changes invalidate history estimate; KG/REPS-only edits do not
-  - recommended routine templates carry validated duration compatible with recommendation preference `30 / 45 / 60분`
+- reorder reuses `05J_Reorder`
+- replacement reuses `05G_Exercise_Replace_Suggest` and loads the selected exercise's own recent personal record
+- create/edit unsaved-change confirmation is defined
+- create/edit save returns to routine detail
+- delete confirms then returns to routine list
+- deterministic routine estimated-duration rule is defined
 
-The current `예상 시간` UI pattern remains valid; no new visual component is required for the duration rule.
-
-Recommendation acceptance remains:
-`추천 결과/상세 → 운동 시작 → Active Workout → 운동 완료 → 내 루틴 저장 여부 선택`
+Recent confirmed Group 03 component masters were organized under `Common_Component / 03_GROUP_CONFIRMED_COMPONENTS`; shared instances remain linked.
 
 ---
 
@@ -82,9 +102,9 @@ Product Owner explicitly deferred Group 02 Home refinement. Do not resume it unl
 
 # NEXT OPEN ITEM
 
-Group 03 product follow-up is resolved.
+Group 04 current Figma QA is PASS.
 
-Wait for the Product Owner to select the next Figma QA group / product item. Do not automatically return to deferred Group 02 and do not begin Cursor implementation handoff.
+Wait for Product Owner instruction for the next action. Do not automatically reopen passed Group 04 design work, do not automatically return to deferred Group 02, and do not begin Cursor implementation handoff.
 
 # Development boundary
 
