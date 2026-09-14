@@ -1,7 +1,7 @@
 # Group 07B — Empty state plain-text refinement
 
 **Date:** 2026-09-14  
-**Status:** PO APPROVED / FIGMA APPLIED / QA PASS / NO CURSOR HANDOFF
+**Status:** PO APPROVED / FINAL CENTERING CONFIRMED / FIGMA APPLIED / QA PASS / NO CURSOR HANDOFF
 
 ## Decision
 
@@ -33,6 +33,8 @@ Removed from the empty state:
 - empty wrappers `1057:628`, `1057:7467`
 - `진행한 운동` SectionHeader `1057:627`
 - former `OverviewSection` wrapper `1057:597`
+
+Final PO visual confirmation after the last Figma adjustment: centered placement accepted.
 
 Post-change screenshot/read-back = PASS.
 
