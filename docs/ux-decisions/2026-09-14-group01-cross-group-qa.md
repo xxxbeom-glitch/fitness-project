@@ -73,8 +73,11 @@ Page:
 Current top-level product/state frames after QA:
 - `01A_Login` — `40:2075`
 - `01C_Basic_Info` — `40:2138`
-- `01A1_Login_Error_Dialog_Cases` — `322:908`
 - `01C1_Basic_Info_Error` — `1292:1183`
+- `01A1_Login_Error_Overlay_Cases` — `1296:643`
+  - `01A1_Login_Error_General` — `1296:644`
+  - `01A2_Login_Error_Network` — `1296:676`
+  - `01A3_Login_Error_Service` — `1296:708`
 
 The page title/subtitle/divider remain page-level annotation elements and are not product routes.
 
@@ -146,13 +149,30 @@ The screen-root `62px` status-area offset remains an intentional shell/status-ar
 Renamed current top-level screen/state frames:
 - `01A_로그인` → `01A_Login`
 - `01C_기본정보` → `01C_Basic_Info`
-- `LOGIN_ERROR_DIALOG_CASES` → `01A1_Login_Error_Dialog_Cases`
+- old isolated dialog reference was retired and replaced by `01A1_Login_Error_Overlay_Cases`
 
 Also renamed generic local layout layers such as action/spacer/dialog-text containers where encountered during this QA.
 
+### 7. Login error dialogs were shown as isolated cards — FIXED
+
+The previous reference placed the three login-error `DialogCard` instances by themselves on the canvas. That was useful for copy inspection but did not represent the actual product state.
+
+Rebuilt all three cases as real full-screen reference states:
+- viewport = `360 × 780`
+- base screen = `01A_Login`
+- full-screen scrim = `ModalOverlay`, `360 × 780`
+- scrim color uses the existing local `bg/overlay` variable
+- `DialogCard` remains the existing local component instance
+- each DialogCard is centered in the viewport at visual center `x=180 / y=390`
+- general / network / authentication-service error copy and actions remain unchanged
+
+The obsolete isolated-dialog-only reference frame was removed after the approved dialog instances were cloned into the full-screen states.
+
+This follows the established Fitness modal pattern already used by workout-end/account/support dialogs rather than introducing a new modal treatment.
+
 ## Component / dependency QA
 
-Actual post-fix page audit:
+Actual post-fix dialog-state audit:
 - external component instance = `0`
 - external variable = `0`
 - external style = `0`
@@ -177,7 +197,14 @@ Screenshot/read-back verified after the corrections:
 - `01A_Login` — no visual regression
 - `01C_Basic_Info` — default sex none selected, DOB `19880101`, CTA Disabled, corrected purpose copy
 - `01C1_Basic_Info_Error` — selected sex state, invalid DOB, inline danger error, CTA Disabled
-- `01A1_Login_Error_Dialog_Cases` — all three DialogCard cases remain visually intact
+- `01A1_Login_Error_Overlay_Cases` — three `360 × 780` login states with full-screen scrim and centered DialogCard
+
+Dialog overlay read-back:
+- all three viewport sizes = `360 × 780`
+- all three overlays = `360 × 780`
+- all three overlay fills bound to local `bg/overlay`
+- all three dialogs = `294 × 166`
+- all three dialog centers = `180 × 390`
 
 Result: `PASS`.
 
