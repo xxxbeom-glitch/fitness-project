@@ -4,7 +4,7 @@
 
 ## Current mode
 
-`PRODUCT/UX FIGMA · GROUP 08 SETTINGS/ACCOUNT EXPLORATION ACTIVE · SUPPORT INQUIRY APPROVED · FAQ APPROVED · 08B PROFILE/ACCOUNT LOCKED WITH ACCOUNT-EXIT PRIVACY POLICY · UNIT + WORKOUT SETTINGS APPROVED · GROUP 07 ANALYSIS LOCKED · GROUP 06 COMPLETION APPROVED · NO CURSOR IMPLEMENTATION HANDOFF`
+`PRODUCT/UX FIGMA · GROUP 08 SETTINGS/ACCOUNT EXPLORATION ACTIVE · LEGAL LINKS POLICY SET · SUPPORT INQUIRY APPROVED · FAQ APPROVED · 08B PROFILE/ACCOUNT LOCKED WITH ACCOUNT-EXIT PRIVACY POLICY · UNIT + WORKOUT SETTINGS APPROVED · NOTIFICATION SCOPE ACCEPTED · GROUP 07 ANALYSIS LOCKED · GROUP 06 COMPLETION APPROVED · NO CURSOR IMPLEMENTATION HANDOFF`
 
 ## Resume rule
 
@@ -14,9 +14,10 @@
 
 ## Latest active checkpoint
 
-- `docs/ux-decisions/2026-09-14-group08-support-inquiry-pass.md`
+- `docs/ux-decisions/2026-09-14-group08-legal-links-session-handoff.md`
 
 Supporting Group 08 checkpoints:
+- `docs/ux-decisions/2026-09-14-group08-support-inquiry-pass.md`
 - `docs/ux-decisions/2026-09-14-group08-faq-accordion-pass.md`
 - `docs/ux-decisions/2026-09-14-group08b-account-exit-privacy-policy.md`
 - `docs/ux-decisions/2026-09-14-group08b-account-exit-flow.md` — superseded for deletion/privacy copy by later checkpoint
@@ -70,6 +71,22 @@ Current PO-approved / recorded directions:
 - rest-time range = `없음` through `5분`, step = `5초`
 - timer end sound currently has 3 choices; tapping selects and immediately previews the sound
 - current sound labels `기본 / 차임 / 벨` are temporary until real sound assets are selected
+
+## Workout settings — PRESENTATION / FLOW APPROVED
+
+- current screen = `08G_운동설정_Exploration_V1` — `1158:7365`
+- structure = 기본 휴식 시간 / 타이머 종료음 / 타이머 종료 진동 / 운동 중 화면 꺼짐 방지
+- 기본 휴식 시간 = bottom-sheet wheel picker, `없음` through `5분`, `5초` step
+- timer end sound = 3 current choices; one tap selects + immediately previews
+- current sound labels are temporary until actual assets are chosen
+- do not reinterpret current displayed toggle/value examples as newly locked launch defaults unless separately decided
+
+## Notification settings — CURRENT SCOPE ACCEPTED
+
+- current screen = `08H_알림설정_Exploration_V1` — `1158:7457`
+- `운동 리마인더` is removed
+- remaining rows = `휴식 타이머 알림`, `업데이트 및 공지`
+- exact launch default on/off values are not newly locked by the session-handoff checkpoint
 
 ## 08B Profile + account — BASE LOCKED / ACCOUNT-EXIT PRIVACY POLICY UPDATED
 
@@ -173,6 +190,23 @@ Targeted Figma QA for base profile, account-management sheet, dedicated account-
 - this approval is product/UX policy only; no Cursor implementation handoff has been requested
 - inquiry default/category/success/failure Figma screenshots and shared-component linkage = PASS
 
+## Legal / privacy presentation — EXTERNAL PUBLIC LINKS
+
+- Settings keeps `이용약관` and `개인정보처리방침` entry rows
+- full legal documents are not rendered as dedicated app screens
+- each row will open a public external document URL
+- planned publication surface = public Notion shared pages; actual pages / URLs are not created yet
+- exact system-browser vs in-app-browser presentation is not locked yet
+- Figma full-document screens removed:
+  - temporary `08K_이용약관_Exploration_V1` — former `1267:1034`
+  - temporary `08L_개인정보처리방침_Exploration_V1` — former `1268:1039`
+  - obsolete legacy `08F_법률문서` — former `41:3827`
+- Settings rows remain:
+  - `SettingRow_이용약관` — `1158:781`
+  - `SettingRow_개인정보처리방침` — `1158:785`
+- pre-release follow-up must create actual public URLs, keep privacy/deletion policy consistent, disclose support inquiry handling, and provide an external account-deletion request web entry
+- exact support inquiry / attachment retention period remains unresolved and must not be invented
+
 ## Shared UI changed during Group 08
 
 ### Wheel picker
@@ -261,17 +295,19 @@ Do not mechanically repeat Group 06/07 QA.
 
 # NEXT OPEN ITEM
 
-Continue Group 08 with terms / privacy / legal presentation.
+Continue in a new chat from **Group 08 closeout**.
 
-The legal/privacy presentation must:
-1. reuse the approved account-exit privacy-destruction policy
-2. define inquiry-record / attachment handling and retention/deletion disclosure
-3. include the external account-deletion request entry required for store compliance
-4. keep the unified support contact at `lumianthecompany@gmail.com`
+1. decide whether `구독 관리 / 언어 / 테마` are visible at MVP launch or hidden/deferred
+2. identify whether any remaining launch-level Group 08 policy actually blocks closeout
+3. perform only the necessary final Settings-home cleanup / Group 08 lock
 
-After legal/privacy presentation is resolved, reassess remaining Group 08 TBD items (`구독 관리`, `언어`, `테마`) only if needed for Group 08 closeout.
+Release follow-up, not current Figma blocker:
+- create actual public Terms / Privacy URLs
+- create external account-deletion request URL
+- finalize support-inquiry record / attachment retention period and disclose it
+- choose final timer sound assets / labels if required before implementation/release
 
-Do not reopen locked 08B profile/account base, approved unit, workout settings, FAQ, or support inquiry without a new issue.
+Do not recreate in-app legal full-text screens. Do not reopen locked 08B profile/account base, approved unit, workout settings, FAQ, support inquiry, Group 06, or Group 07 without a new issue.
 
 # Development boundary
 
