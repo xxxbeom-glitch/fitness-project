@@ -4,7 +4,7 @@
 
 ## Current mode
 
-`PRODUCT/UX FIGMA · GROUP 08 SETTINGS/ACCOUNT EXPLORATION ACTIVE · UNIT SETTINGS APPROVED · GROUP 07 ANALYSIS LOCKED · GROUP 06 COMPLETION APPROVED · NO CURSOR IMPLEMENTATION HANDOFF`
+`PRODUCT/UX FIGMA · GROUP 08 SETTINGS/ACCOUNT EXPLORATION ACTIVE · PROFILE + UNIT SETTINGS APPROVED · GROUP 07 ANALYSIS LOCKED · GROUP 06 COMPLETION APPROVED · NO CURSOR IMPLEMENTATION HANDOFF`
 
 ## Resume rule
 
@@ -14,9 +14,10 @@
 
 ## Latest active checkpoint
 
-- `docs/ux-decisions/2026-09-14-group08-unit-settings-policy.md`
+- `docs/ux-decisions/2026-09-14-group08-profile-settings-pass.md`
 
-Supporting Group 08 checkpoint:
+Supporting Group 08 checkpoints:
+- `docs/ux-decisions/2026-09-14-group08-unit-settings-policy.md`
 - `docs/ux-decisions/2026-09-14-group08-settings-account-exploration-v1.md`
 
 Supporting locked / prior checkpoints:
@@ -39,6 +40,8 @@ Canonical Figma:
 
 Current exploration screens:
 - `08A_설정홈_Exploration_V1` — `1158:649`
+- `08B_프로필설정_Exploration_V1` — `1180:713`
+- `08B1_ProfilePhoto_Sheet_Exploration_V1` — `1181:724`
 - `08C_단위설정_Sheet_Exploration_V1` — `1175:709`
 - `08G_운동설정_Exploration_V1` — `1158:7365`
 - `08H_알림설정_Exploration_V1` — `1158:7457`
@@ -53,6 +56,20 @@ Current PO-approved / recorded directions:
 - timer end sound currently has 3 choices; tapping selects and immediately previews the sound
 - current sound labels `기본 / 차임 / 벨` are temporary until real sound assets are selected
 
+### Profile settings — APPROVED
+
+- profile photo can be changed from profile settings
+- photo action sheet currently offers `사진 선택 / 기본 이미지로 변경 / 취소`
+- nickname is editable
+- gender must reuse the `01C_기본정보` two-button pattern: `남성 / 여성`
+- no separate gender sheet
+- birthdate must reuse the `01C_기본정보` direct `YYYYMMDD` input pattern
+- no birthdate wheel/date-picker sheet
+- example birthdate = `19880101`
+- `저장` is disabled until there is a valid change
+- invalid or incomplete input must not enable save
+- targeted Figma QA = PASS
+
 ### Unit settings — APPROVED
 
 - supported weight units = `kg / lb`
@@ -64,7 +81,6 @@ Current PO-approved / recorded directions:
 - Figma targeted QA = PASS
 
 Shared UI added during this track:
-- reference frame `631_Reminder_Time_Sheet` — `1165:7945`
 - shared component `WheelPicker/SingleColumn` — `1169:1105`
 - rest-time instance `WheelPicker_RestTime` — `1170:697`
 
@@ -190,9 +206,15 @@ No broader repeat QA is required unless a new change/regression is introduced.
 
 # NEXT OPEN ITEM
 
-Continue Group 08 with `프로필 설정` review.
+Continue Group 08 with `계정 관리`.
 
-After profile, review account / login-provider / logout behavior, then FAQ/contact and legal presentation. Do not reopen approved unit/workout settings without a new issue.
+Review:
+- logged-in provider presentation
+- whether multiple providers can be linked
+- logout placement / confirmation behavior
+- destructive account deletion entry and confirmation consistency with the already-recorded deletion policy
+
+After account management, review FAQ/contact and legal presentation. Do not reopen approved profile/unit/workout settings without a new issue.
 
 Do not reopen Group 06 or Group 07 mechanically.
 
