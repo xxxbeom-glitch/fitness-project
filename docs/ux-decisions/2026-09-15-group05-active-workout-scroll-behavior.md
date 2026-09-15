@@ -7,7 +7,7 @@
 
 This is a scoped post-closure amendment for the common Active Workout scrolling behavior after the 2026-09-15 `WorkoutLiveBar` amendment.
 
-It defines what remains visible while the user scrolls a long workout list. Existing workout recording, end/discard, elapsed-time, Rest Timer, recovery, reorder, replacement, and routine-update semantics are unchanged unless explicitly stated below.
+It defines what remains visible while the user scrolls a long workout list. Existing workout recording, end/discard, elapsed-time, recovery, reorder, replacement, and routine-update semantics are unchanged unless explicitly stated below.
 
 Canonical Figma:
 
@@ -33,7 +33,7 @@ The `Nav Header` and `WorkoutLiveBar` do not collapse, auto-hide, or scroll away
 
 ### 2. Only WorkoutContent scrolls
 
-Canonical `05A_Workout_Weight` now uses a real viewport structure:
+Canonical `05A_Workout_Weight` uses a real viewport structure:
 
 - root: `360 × 780`
 - fixed top region: `y=0..182`
@@ -59,20 +59,24 @@ It shows:
 
 This representative state documents the expected runtime composition without creating a new parallel component system.
 
-### 4. Rest Timer coexistence
+### 4. Rest Timer coexistence — latest 2026-09-15 rule
 
-The automatic Rest Timer remains a separate transient pill and does not replace the fixed Nav Header or `WorkoutLiveBar`.
+The earlier transient top `RestTimerPill` treatment is superseded by the PO-approved fixed-bottom `RestLiveBar`.
 
-When visible:
+When the automatic Rest Timer is running:
 
 - fixed Nav Header remains visible
 - fixed `WorkoutLiveBar` remains visible
-- `RestTimerPill` floats in the workout-content area directly below the live bar
-- it may temporarily overlay the scrolling exercise content, but it does not change the fixed-header hierarchy
+- `RestLiveBar` is fixed to the bottom of the 360 × 780 viewport
+- `RestLiveBar`: y `708`, h `72`
+- `WorkoutContent`: y `182`, h `526`, clipped internal vertical scroll
+- the exercise list scrolls only in the space between the fixed top region and RestLiveBar
+- the Rest Timer does not replace or hide workout elapsed-time control, `종료`, or `취소`
 
-`05F_Workout_RestTimer` was rebuilt from the current canonical `05A` structure so it no longer shows the superseded three-metric summary.
+The exact Rest Timer trigger/countdown/end semantics are governed by:
 
-Rest Timer behavior itself remains governed by `docs/ux-decisions/2026-09-03-rest-timer-behavior.md`.
+- `docs/ux-decisions/2026-09-03-rest-timer-behavior.md`
+- `docs/ux-decisions/2026-09-15-group05-rest-live-bar-amendment.md`
 
 ## Figma reflection
 
@@ -100,12 +104,12 @@ Final top-level structure:
 
 `05F_Workout_RestTimer` — `1498:2769`
 
-- rebuilt from the same fixed-header / internal-scroll structure
-- `RestTimerPill` instance — `1498:2765`
-- pill remains bound to local `RestTimerPill` component `721:3456`
-- pill is positioned below the live bar as a transient overlay
-
-No new shared component or parallel visual system was created for the scroll behavior.
+- 360 × 780
+- same fixed top hierarchy as canonical 05A
+- `WorkoutContent` — `1498:2773` — y 182 / h 526 / clipped internal scroll
+- local `RestLiveBar` instance — `1516:6607` — y 708 / h 72
+- RestLiveBar main component — `1516:6598`
+- obsolete RestTimerPill removed
 
 ## Focused QA
 
@@ -113,17 +117,19 @@ PASS:
 
 - canonical 05A root is `360 × 780`
 - fixed top region remains outside the scrolling container
-- `WorkoutContent` is `360 × 598`, clipped, vertical scroll
+- normal `WorkoutContent` is `360 × 598`, clipped, vertical scroll
 - Nav Header and WorkoutLiveBar remain local component instances
 - canonical initial-state screenshot: PASS
 - third-exercise scrolled representative screenshot: PASS
-- Rest Timer representative state synchronized to the new live-bar structure: PASS
-- Rest Timer pill does not replace the fixed header/live-bar hierarchy
+- Rest Timer representative state uses the same fixed top hierarchy plus fixed bottom RestLiveBar
+- Rest Timer state `WorkoutContent` read-back is `360 × 526`
+- RestLiveBar read-back is y `708`, h `72`
+- no content overlap with the fixed bottom RestLiveBar
+- canonical Rest Timer screenshot: PASS
 
 ## Explicitly not changed
 
 - workout elapsed-time Running / Paused semantics
-- Rest Timer trigger/countdown/close semantics
 - workout end / discard semantics
 - exercise-card data entry behavior
 - set completion behavior
@@ -131,9 +137,11 @@ PASS:
 - recovery / reorder / replacement behavior
 - Cursor/runtime implementation
 
+Rest Timer presentation/control details are no longer excluded from this amendment chain; they were separately updated by the later `2026-09-15-group05-rest-live-bar-amendment.md` decision.
+
 ## Result
 
-**PASS — fixed Active Workout header/live-bar scrolling behavior is locked and Group 05 returns to CLOSED.**
+**PASS — fixed Active Workout top hierarchy + Rest Timer bottom-bar coexistence is locked and Group 05 returns to CLOSED.**
 
 The next project QA item remains Group 06 completion final closure QA.
 
