@@ -91,17 +91,25 @@ This keeps the timer as a lightweight workout utility instead of adding a separa
 - Paused `초기화` resets the manual timer to the Idle default representative value `01:30` and returns to Idle.
 - Reset is intentionally separated from pause so an accidental pause does not discard the current remaining time.
 
-## Close affordance visual — 2026-09-16 PO lock
+## Close affordance + behavior — 2026-09-16 PO lock
 
 The former `닫기` text action is removed.
 
+Visual:
 - existing Fitness `icon/close-circle` component is reused
 - local main component: `1255:1142`
 - visual size: `24 × 24`
 - positioned at the popup upper-right on the existing 24 px inset rhythm
 - same close affordance is shown in Idle / Running / Paused
 
-The **behavioral result of closing while Running or Paused remains open** and is not implied by this visual decision.
+Behavior:
+- `X` means **close and terminate the current Manual Timer**, not hide/preserve it in the background.
+- Idle `X` simply dismisses the popup.
+- Running `X` immediately ends the current manual countdown and dismisses the popup.
+- Paused `X` immediately ends the paused manual countdown and dismisses the popup.
+- remaining time is not preserved after closing.
+- reopening the Manual Timer starts again from the Idle default `01:30` state.
+- no separate background-running or hidden-manual-timer state exists for MVP.
 
 ## Copy reduction
 
@@ -148,18 +156,19 @@ No new shared timer-popup component has been promoted yet because the remaining 
 - Idle / Running / Paused screenshots checked after refinement
 - Paused screenshot shows both bottom actions without clipping or overlap
 
+No additional visual state is required solely for the close behavior because `X` terminates and dismisses the popup.
+
 ## Still open before canonical promotion
 
-1. behavioral result of the circular close action while Running or Paused
-2. timer-complete feedback when countdown reaches zero
-3. conflict/priority rule if the manual timer and automatic Rest Timer overlap
-4. reusable component/variant promotion and final canonical screen naming
+1. timer-complete feedback when countdown reaches zero
+2. conflict/priority rule if the manual timer and automatic Rest Timer overlap
+3. reusable component/variant promotion and final canonical screen naming
 
 These must be resolved before Group 05 is closed again.
 
 ## Result
 
-**CHECKPOINT UPDATED — direct time entry is removed; `±15초` is locked; Running now pauses instead of resetting; Paused exposes `초기화 / 계속하기`; circular close-icon visuals are reflected; all three experimental states are screenshot-checked. Manual Timer is still not final/canonical because close behavior, completion feedback, Rest Timer overlap, and final promotion remain open.**
+**CHECKPOINT UPDATED — direct time entry is removed; `±15초` is locked; Running pauses instead of resetting; Paused exposes `초기화 / 계속하기`; circular `X` now explicitly terminates and dismisses the Manual Timer in Running/Paused; all three experimental states remain visually valid. Manual Timer is still not final/canonical because completion feedback, Rest Timer overlap, and final promotion remain open.**
 
 The next work item is to finish those remaining interaction rules, promote the approved structure, run focused QA, close the scoped Group 05 reopen, then return to Group 06 completion final closure QA.
 
