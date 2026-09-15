@@ -7,7 +7,11 @@
 
 This is a scoped post-closure amendment triggered by the Product Owner after the 2026-09-10 Group 05 closure.
 
-It supersedes only the **common 05A active-workout progress/action presentation**. Existing Group 05 recording rules, rest-timer behavior, session recovery, end confirmation, discard semantics, routine switching, replacement, reorder, and set-entry behavior remain unchanged unless explicitly stated below.
+It supersedes only the **common 05A active-workout progress/action presentation**. Existing Group 05 recording rules, session recovery, end confirmation, discard semantics, routine switching, replacement, reorder, and set-entry behavior remain unchanged unless explicitly stated below.
+
+The Rest Timer was unchanged at the time of this decision, but a later PO-approved same-day amendment supersedes the old Rest Timer pill presentation:
+
+- `docs/ux-decisions/2026-09-15-group05-rest-live-bar-amendment.md`
 
 Canonical Figma:
 
@@ -60,16 +64,21 @@ Reference: `docs/ux-decisions/2026-09-03-workout-end-flow.md`.
 
 ## Workout elapsed-time states
 
-`WorkoutLiveBar` is now a two-state component set:
+`WorkoutLiveBar` is a two-state component set:
 
 - `Timer=Running` → pause icon + elapsed time at normal opacity
 - `Timer=Paused` → resume/play icon + elapsed time at `60%` opacity
 
 This control/state is for the **workout elapsed-time display** in the live bar.
 
-It does not change the separate automatic Rest Timer policy. The Rest Timer remains the set-completion-triggered toast/pill behavior defined in `docs/ux-decisions/2026-09-03-rest-timer-behavior.md`.
+It does not pause, reset, or synchronize the separate automatic Rest Timer.
 
-No additional rule is introduced here for pausing, resetting, or synchronizing the Rest Timer.
+Latest Rest Timer presentation/control authority:
+
+- `docs/ux-decisions/2026-09-03-rest-timer-behavior.md`
+- `docs/ux-decisions/2026-09-15-group05-rest-live-bar-amendment.md`
+
+The Rest Timer still starts automatically from set completion, but its latest presentation is the fixed-bottom `RestLiveBar`, not the earlier top pill.
 
 ## Design-system reflection
 
@@ -138,7 +147,7 @@ Final canonical top-level structure read-back:
 3. `WorkoutLiveBar` — `1492:2407`, `Timer=Running`
 4. `WorkoutContent`
 
-`WorkoutContent` begins immediately below the 64px live bar and its bottom action area is now `ActionButtons_AddOnly` containing only `운동 추가`.
+`WorkoutContent` begins immediately below the 64px live bar and its bottom action area is `ActionButtons_AddOnly` containing only `운동 추가`.
 
 ## Focused QA
 
@@ -156,9 +165,8 @@ PASS:
 - canonical 05A screenshot after promotion renders without a blocking visual regression
 - temporary compact comparison frames are removed after canonical promotion
 
-## Explicitly not changed
+## Explicitly not changed by this specific amendment
 
-- Rest Timer trigger/presentation/control policy
 - workout-end save rules
 - discard confirmation/destructive semantics
 - session recovery
@@ -166,6 +174,8 @@ PASS:
 - exercise card/set entry behavior
 - Group 05 recording-type rules
 - Cursor/runtime implementation
+
+Rest Timer presentation/control was later changed by the same-day `2026-09-15-group05-rest-live-bar-amendment.md`; that later document supersedes only Rest Timer-specific statements from the earlier state.
 
 ## Result
 
