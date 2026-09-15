@@ -4,7 +4,7 @@
 
 ## Current mode
 
-`PRODUCT/UX FIGMA · GROUP 04 EXERCISE DETAIL PRODUCT QA ACTIVE · 360×780 VIEWPORT RULE LOCKED · CUSTOM EXERCISE SELECTION FLOW PASS · GROUP 03 ROUTINE CLOSED · GROUP 02 HOME DEFERRED BY PO · NO CURSOR IMPLEMENTATION HANDOFF`
+`PRODUCT/UX FIGMA · GROUP 04 EXERCISE DETAIL PRODUCT QA ACTIVE · 360×780 BASELINE HEIGHT RULE LOCKED · CUSTOM EXERCISE SELECTION FLOW PASS · GROUP 03 ROUTINE CLOSED · GROUP 02 HOME DEFERRED BY PO · NO CURSOR IMPLEMENTATION HANDOFF`
 
 ## Resume rule
 
@@ -56,13 +56,19 @@ Custom-exercise selection states reflected and QA-passed:
 - `04L_Custom_RecordingType_Select` — `1396:8271`
 - `04F_Custom_Edit_HistoryLocked` — `1396:8393`
 
-## Group 04 viewport rule
+## Group 04 screen-height rule
 
-- base top-level screen viewport: `360 × 780`
-- top-level screen is not enlarged merely to expose overflowing content
-- content exceeding the viewport remains inside the relevant vertical-scroll content frame
-- vertical-scroll frames clip overflow and preserve the full internal content
-- previous Group 04 `360 × 954` sizing notes are superseded by `2026-09-15-group04-780-viewport-correction.md`
+- base/reference screen size: `360 × 780`
+- `780` is not a hard maximum and is not a reason to compress or hide content
+- finite content that fits within 780 uses `360 × 780`
+- finite content that genuinely needs more room may grow beyond 780 to its natural required height
+- search results, workout history, and other variable/unbounded content may keep a 780 root and use the relevant internal vertical-scroll frame
+- grow-vs-scroll is decided by the screen/content pattern; do not apply one blanket rule to every screen
+- root `minHeight=780` is not used
+
+Current verified exceptions to the 780 baseline:
+- `04D_Exercise_Detail_Info` — `360 × 894`, full finite content + bottom padding preserved
+- `04K_Custom_SecondaryMuscle_Select` — `360 × 834`, all finite options + bottom padding preserved
 
 ## Locked custom-exercise rules
 
@@ -87,13 +93,14 @@ Edit history lock:
 - equipment / primary / secondary muscle remain editable
 
 Figma QA:
-- Group 04 top-level 360px screens: `360 × 780` fixed viewport
-- overflowing internal content uses vertical scroll + clipping
+- `04B_Search_Selected` remains `360 × 780`; bottom `SelectionFooter` restored to `y=680`, bottom=`780`
+- `04D_Exercise_Detail_Info` restored to `360 × 894`; `ExerciseDetailContent=722px`, bottom padding `24px`
+- `04K_Custom_SecondaryMuscle_Select` restored to `360 × 834`; `SelectionPageContent=716px`, bottom padding `20px`
+- `04E`, `04F`, `04F_Custom_Edit_HistoryLocked`, Growth and Empty representative states fit the 780 baseline without forced compression
+- search/history and other dynamic lists keep internal vertical scroll + clipping where appropriate
 - accidental root minHeight constraint = 0
-- existing components reused
-- no new component/token/style for viewport correction
-- no detached shared instances introduced
-- screenshot/read-back PASS
+- no new component/token/style introduced for this correction
+- screenshot/read-back PASS on corrected states
 
 ## Preserved deferred data/runtime work
 
