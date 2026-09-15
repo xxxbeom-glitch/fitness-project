@@ -4,7 +4,7 @@
 
 ## Current mode
 
-`PRODUCT/UX FIGMA · GROUP 04 EXERCISE DETAIL PRODUCT QA ACTIVE · 360×780 BASELINE HEIGHT RULE LOCKED · CUSTOM EXERCISE SELECTION FLOW PASS · GROUP 03 ROUTINE CLOSED · GROUP 02 HOME DEFERRED BY PO · NO CURSOR IMPLEMENTATION HANDOFF`
+`PRODUCT/UX FIGMA · GROUP 04 EXERCISE DETAIL PRODUCT QA ACTIVE · 360×780 BASELINE HEIGHT RULE LOCKED · CUSTOM EXERCISE DELETE POLICY LOCKED · GROUP 03 ROUTINE CLOSED · GROUP 02 HOME DEFERRED BY PO · NO CURSOR IMPLEMENTATION HANDOFF`
 
 ## Resume rule
 
@@ -14,9 +14,10 @@
 
 ## Latest active checkpoint
 
-- `docs/ux-decisions/2026-09-15-group04-780-viewport-correction.md`
+- `docs/ux-decisions/2026-09-15-group04-custom-exercise-delete-policy.md`
 
 Directly relevant Group 04 decisions / checkpoints:
+- `docs/ux-decisions/2026-09-15-group04-780-viewport-correction.md`
 - `docs/ux-decisions/2026-09-15-group04-custom-exercise-selection-flow.md`
 - `docs/ux-decisions/2026-09-15-group04-recording-type-history-growth-policy.md`
 - `docs/ux-decisions/2026-09-14-group04-cross-group-regression-qa.md`
@@ -56,6 +57,10 @@ Custom-exercise selection states reflected and QA-passed:
 - `04L_Custom_RecordingType_Select` — `1396:8271`
 - `04F_Custom_Edit_HistoryLocked` — `1396:8393`
 
+Completion representative states already present:
+- `04E_Custom_Create_Valid` — `1401:1890`
+- `04EF_Custom_Unsaved_Confirm` — `1401:7683`
+
 ## Group 04 screen-height rule
 
 - base/reference screen size: `360 × 780`
@@ -92,6 +97,17 @@ Edit history lock:
 - helper copy: `기록이 있는 운동은 기록 방식을 변경할 수 없어요.`
 - equipment / primary / secondary muscle remain editable
 
+Delete policy — PO APPROVED:
+- deleting a custom exercise removes it from exercise search/list and new-add targets
+- it is also removed from every saved routine that currently contains it
+- completed historical workout records remain preserved
+- recent-history/growth history derived from those completed records remains preserved
+- destructive confirmation dialog is required before delete
+- if affected routine count is reliably known, the dialog may state `N개의 루틴`
+
+Open delete edge case:
+- if the deleted exercise is the only exercise in a saved routine, whether that now-empty routine is also deleted or retained is still DECISION NEEDED
+
 Figma QA:
 - `04B_Search_Selected` remains `360 × 780`; bottom `SelectionFooter` restored to `y=680`, bottom=`780`
 - `04D_Exercise_Detail_Info` restored to `360 × 894`; `ExerciseDetailContent=722px`, bottom padding `24px`
@@ -126,16 +142,15 @@ Product Owner explicitly deferred Group 02 Home refinement. Do not resume it unl
 
 # NEXT OPEN ITEM
 
-Continue Group 04 Product/UX QA with custom-exercise create/edit completion behavior:
+Finish Group 04 Product/UX QA with the remaining completion decisions only:
 
-1. required-field validation and Save enabled/disabled state
-2. unsaved-change Back behavior
-3. create/edit Save destination
-4. custom-exercise delete confirmation and destination
+1. create/edit Save destination
+2. decide the single-exercise-routine edge case when deleting a custom exercise
+3. reflect the final delete-confirmation state in Figma using the existing Dialog pattern and focused QA only
+4. add/check the no-media Exercise Detail representative state because approved policy says media absence must not reserve an empty media box
+5. if no blocker remains, run scoped final Group 04 closure QA and mark Group 04 CLOSED
 
-Reuse existing Dialog/CTA/Nav patterns. Do not invent a parallel pattern.
-
-After this, check for any remaining Group 04 product blockers before closure.
+Do not reopen already passed recording-type, selector, list/filter, or height QA without a new conflict/regression.
 
 Do not return to deferred Group 02 and do not begin Cursor implementation handoff.
 
