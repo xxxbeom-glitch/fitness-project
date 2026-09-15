@@ -4,7 +4,7 @@
 
 ## Current mode
 
-`PRODUCT/UX · GROUP 04 EXERCISE LIBRARY/DETAIL CLOSED · ANALYSIS BODY-AREA GRANULARITY NEXT · GROUP 03 ROUTINE CLOSED · GROUP 02 HOME DEFERRED BY PO · NO CURSOR IMPLEMENTATION HANDOFF`
+`PRODUCT/UX · GROUP 04 EXERCISE LIBRARY/DETAIL CLOSED · ANALYSIS BODY-MAP ASSET MAPPING DEFERRED · ANALYSIS WORKOUT-FREQUENCY DEFINITION NEXT · GROUP 03 ROUTINE CLOSED · GROUP 02 HOME DEFERRED BY PO · NO CURSOR IMPLEMENTATION HANDOFF`
 
 ## Resume rule
 
@@ -14,7 +14,7 @@
 
 ## Latest active checkpoint
 
-- `docs/ux-decisions/2026-09-15-group04-final-closure-qa.md`
+- `docs/ux-decisions/2026-09-15-analysis-bodymap-asset-mapping-deferred.md`
 
 Directly relevant closed Group 04 decisions / checkpoints:
 - `docs/ux-decisions/2026-09-03-cable-attachment-active-workout.md`
@@ -162,24 +162,45 @@ Product Owner explicitly deferred Group 02 Home refinement. Do not resume it unl
 
 ---
 
+# ANALYSIS — BODY-MAP ASSET MAPPING DEFERRED
+
+Decision:
+- `docs/ux-decisions/2026-09-15-analysis-bodymap-asset-mapping-deferred.md`
+
+PO will first prepare the production-ready body-map image set.
+
+Until then:
+- use existing source muscle-highlight PNGs; do not redraw/recolor them
+- preserve the already-validated blend-mode approach
+- do not create replacement body-map artwork in Figma
+- final canonical-muscle → PNG-layer mapping remains deferred
+- this does not block unrelated Analysis product/data decisions
+
+---
+
 # NEXT OPEN ITEM
 
-Resume the approved Analysis track at the next unresolved product/data decision:
+Continue the approved Analysis track with the next unresolved product/data decision:
 
-**body-area granularity / mapping to the final front/back body-map visual regions**
+**workout-frequency definition**
 
 Primary decision source:
 - `docs/ux-decisions/2026-09-05-analysis-tab-ia.md`
 
-Already locked there:
+Already locked:
 - Analysis IA
 - `4주 / 3개월 / 1년`
 - top metrics: 운동 횟수 / 완료 세트 / 운동 시간
 - body-map data basis: completed-set muscle exposure, primary `1.0` / secondary `0.5`
-- visual color/rendering treatment remains deferred until actual design composition
 
-Next is to decide which canonical muscles roll up into which visible front/back body-map regions. Do not jump to Figma visual treatment before this mapping is locked.
+Now decide what the workout-frequency summary means and how it counts real saved workout sessions across the selected period.
 
+After that, continue in order with:
+- `최근 성장한 운동` selection rule
+- recent-record card/list information density
+- empty / insufficient-data states
+
+Do not return to deferred body-map asset mapping until the Product Owner supplies the prepared image assets.
 Do not return to deferred Group 02 and do not begin Cursor implementation handoff.
 
 # Development boundary
