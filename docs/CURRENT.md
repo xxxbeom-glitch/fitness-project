@@ -4,7 +4,7 @@
 
 ## Current mode
 
-`PRODUCT/UX · GROUP 04 EXERCISE LIBRARY/DETAIL CLOSED · ANALYSIS BODY-MAP ASSET MAPPING DEFERRED · ANALYSIS WORKOUT-FREQUENCY DEFINITION NEXT · GROUP 03 ROUTINE CLOSED · GROUP 02 HOME DEFERRED BY PO · NO CURSOR IMPLEMENTATION HANDOFF`
+`PRODUCT/UX FIGMA QA · GROUP 04 EXERCISE LIBRARY/DETAIL CLOSED · GROUP 05 ACTIVE WORKOUT ALREADY CLOSED · GROUP 06 COMPLETION FINAL CLOSURE QA NEXT · ANALYSIS BODY-MAP ASSET MAPPING DEFERRED · GROUP 03 ROUTINE CLOSED · GROUP 02 HOME DEFERRED BY PO · NO CURSOR IMPLEMENTATION HANDOFF`
 
 ## Resume rule
 
@@ -14,19 +14,13 @@
 
 ## Latest active checkpoint
 
-- `docs/ux-decisions/2026-09-15-analysis-bodymap-asset-mapping-deferred.md`
+- `docs/ux-decisions/2026-09-15-group04-final-closure-qa.md`
 
-Directly relevant closed Group 04 decisions / checkpoints:
-- `docs/ux-decisions/2026-09-03-cable-attachment-active-workout.md`
-- `docs/ux-decisions/2026-09-15-group04-custom-exercise-delete-policy.md`
-- `docs/ux-decisions/2026-09-15-group04-custom-exercise-save-destination.md`
-- `docs/ux-decisions/2026-09-15-group04-780-viewport-correction.md`
-- `docs/ux-decisions/2026-09-15-group04-custom-exercise-selection-flow.md`
-- `docs/ux-decisions/2026-09-15-group04-recording-type-history-growth-policy.md`
-- `docs/ux-decisions/2026-09-14-group04-cross-group-regression-qa.md`
-- `docs/ux-decisions/2026-09-10-group04-session-handoff.md`
-- `docs/ux-decisions/2026-09-05-exercise-recording-types.md`
-- `docs/ux-decisions/2026-09-10-group05-closure-qa.md`
+Directly relevant next Group 06 checkpoints:
+- `docs/ux-decisions/2026-09-14-group06-completion-shared-summary-sync.md`
+- `docs/ux-decisions/2026-09-12-group06-page-cleanup.md`
+- `docs/ux-decisions/2026-09-12-group06-completion-final-shell.md`
+- `docs/ux-decisions/2026-09-14-recommended-routine-acceptance-current.md`
 
 ---
 
@@ -142,6 +136,15 @@ The old 195/211 Production target is not the current raw-source basis after the 
 
 ---
 
+# GROUP 05 — ACTIVE WORKOUT CLOSED
+
+Final closure already recorded:
+- `docs/ux-decisions/2026-09-10-group05-closure-qa.md`
+
+Do not repeat Group 05 QA unless a later shared change creates a concrete regression risk.
+
+---
+
 # GROUP 03 — ROUTINE CLOSED
 
 Group 03 remains closed.
@@ -174,34 +177,26 @@ Until then:
 - preserve the already-validated blend-mode approach
 - do not create replacement body-map artwork in Figma
 - final canonical-muscle → PNG-layer mapping remains deferred
-- this does not block unrelated Analysis product/data decisions
+
+Analysis policy expansion is paused while the agreed group-by-group QA sequence is completed.
 
 ---
 
 # NEXT OPEN ITEM
 
-Continue the approved Analysis track with the next unresolved product/data decision:
+Continue the agreed group-by-group Figma/Product QA sequence.
 
-**workout-frequency definition**
+**Group 06 — 운동 완료 final closure QA**
 
-Primary decision source:
-- `docs/ux-decisions/2026-09-05-analysis-tab-ia.md`
+Focused scope only:
+1. verify canonical completion states after the 2026-09-14 shared-summary sync
+2. verify the two recommended-routine completion dialogs against the current accepted recommendation flow
+3. verify shared component/instance integrity and current 360×780 representative states
+4. if no blocker remains, create a Group 06 final closure checkpoint and mark Group 06 CLOSED
 
-Already locked:
-- Analysis IA
-- `4주 / 3개월 / 1년`
-- top metrics: 운동 횟수 / 완료 세트 / 운동 시간
-- body-map data basis: completed-set muscle exposure, primary `1.0` / secondary `0.5`
-
-Now decide what the workout-frequency summary means and how it counts real saved workout sessions across the selected period.
-
-After that, continue in order with:
-- `최근 성장한 운동` selection rule
-- recent-record card/list information density
-- empty / insufficient-data states
-
-Do not return to deferred body-map asset mapping until the Product Owner supplies the prepared image assets.
-Do not return to deferred Group 02 and do not begin Cursor implementation handoff.
+Do not reopen Group 05, Group 04, Group 03, or deferred Group 02 without a concrete conflict/regression.
+Do not resume Analysis product-policy decisions until the group-by-group QA sequence reaches that group.
+Do not begin Cursor implementation handoff.
 
 # Development boundary
 
