@@ -1,7 +1,7 @@
 # Group 04 Custom Exercise — Delete Policy
 
 **Date:** 2026-09-15  
-**Status:** PO APPROVED / PRODUCT POLICY LOCKED / EMPTY-ROUTINE FIGMA STATE REFLECTED / DELETE DIALOG FIGMA PENDING / NO CURSOR HANDOFF
+**Status:** PO APPROVED / PRODUCT POLICY LOCKED / EMPTY-ROUTINE FIGMA STATE REFLECTED / DELETE DIALOG FIGMA REFLECTED / NO CURSOR HANDOFF
 
 ## Scope
 
@@ -31,7 +31,7 @@
 
 커스텀 운동 삭제가 사용자 의도 없이 루틴 자체의 삭제까지 연쇄적으로 발생시키지 않는다.
 
-## Figma representative state — REFLECTED
+## Figma representative state — EMPTY ROUTINE REFLECTED
 
 커스텀 운동 삭제로 인해 발생할 수 있는 저장 루틴의 빈 상태를 Group 03 canonical page에 대표 상태로 추가했다.
 
@@ -56,7 +56,7 @@ Figma screenshot/read-back QA 완료.
 
 루틴까지 영향을 주는 파괴적 변경이므로 삭제 전 확인 다이얼로그를 반드시 노출한다.
 
-권장 기본 문구:
+확정 문구:
 
 - Title: `운동을 삭제할까요?`
 - Body: `이 운동은 운동 목록과 포함된 모든 루틴에서 제거됩니다. 완료된 운동 기록은 유지됩니다.`
@@ -65,6 +65,34 @@ Figma screenshot/read-back QA 완료.
 앱이 영향받는 루틴 수를 확실히 계산할 수 있는 경우에는 본문에 `N개의 루틴`처럼 구체적인 영향을 표시할 수 있다.
 
 루틴에서 운동이 모두 제거되어 빈 루틴이 되더라도 루틴 자체는 유지되므로, 다이얼로그에서 루틴 자체가 삭제된다고 표현하지 않는다.
+
+## Figma representative state — DELETE DIALOG REFLECTED
+
+삭제 확인 상태를 Group 04 canonical page에 반영했다.
+
+- Figma file: `W3lZurXCXbThP67rF2xk2b`
+- page: `04 운동 목록 · 상세` — `233:2075`
+- state: `04F_Custom_Delete_Confirm` — `1429:1751`
+- size: `360 × 780`
+
+Implementation of the representative state:
+
+- 기존 canonical `DialogCard` instance를 재사용하고 detach/rebuild하지 않음
+- `ModalOverlay`가 전체 `360 × 780` viewport를 덮음
+- dialog QA state에서는 underlying product screen을 중복 배치하지 않고 빈 dark viewport context를 사용
+- dialog copy는 위 확정 문구와 동일
+- `삭제` action text는 기존 semantic variable `state/danger`에 바인딩
+- dialog는 longer body copy 반영 후 viewport 중앙에 재정렬
+- 새 component/token/style을 추가하지 않음
+
+Focused Figma QA:
+
+- structure read-back PASS: top-level frame → full-screen `ModalOverlay` → `DialogCard` instance
+- canonical `DialogCard` main component 관계 유지 PASS
+- overlay variable binding 유지 PASS
+- title/body/action labels read-back PASS
+- `삭제` action danger semantic binding PASS
+- screenshot visual QA PASS
 
 ## Historical data invariant
 
