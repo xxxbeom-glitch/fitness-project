@@ -4,7 +4,7 @@
 
 ## Current mode
 
-`PRODUCT/UX FIGMA · GROUP 04 EXERCISE DETAIL PRODUCT QA ACTIVE · CUSTOM EXERCISE SAVE DESTINATION LOCKED · CUSTOM EXERCISE DELETE DIALOG FIGMA REFLECTED · 360×780 BASELINE HEIGHT RULE LOCKED · CUSTOM EXERCISE DELETE POLICY LOCKED · GROUP 03 EMPTY-ROUTINE EXCEPTION STATE REFLECTED · GROUP 03 ROUTINE OTHERWISE CLOSED · GROUP 02 HOME DEFERRED BY PO · NO CURSOR IMPLEMENTATION HANDOFF`
+`PRODUCT/UX FIGMA · GROUP 04 EXERCISE DETAIL PRODUCT QA ACTIVE · ATTACHMENT MEDIA FALLBACK LOCKED · CUSTOM EXERCISE SAVE DESTINATION LOCKED · CUSTOM EXERCISE DELETE DIALOG FIGMA REFLECTED · 360×780 BASELINE HEIGHT RULE LOCKED · CUSTOM EXERCISE DELETE POLICY LOCKED · GROUP 03 EMPTY-ROUTINE EXCEPTION STATE REFLECTED · GROUP 03 ROUTINE OTHERWISE CLOSED · GROUP 02 HOME DEFERRED BY PO · NO CURSOR IMPLEMENTATION HANDOFF`
 
 ## Resume rule
 
@@ -14,9 +14,10 @@
 
 ## Latest active checkpoint
 
-- `docs/ux-decisions/2026-09-15-group04-custom-exercise-delete-policy.md`
+- `docs/ux-decisions/2026-09-03-cable-attachment-active-workout.md`
 
 Directly relevant Group 04 decisions / checkpoints:
+- `docs/ux-decisions/2026-09-15-group04-custom-exercise-delete-policy.md`
 - `docs/ux-decisions/2026-09-15-group04-custom-exercise-save-destination.md`
 - `docs/ux-decisions/2026-09-15-group04-780-viewport-correction.md`
 - `docs/ux-decisions/2026-09-15-group04-custom-exercise-selection-flow.md`
@@ -26,6 +27,7 @@ Directly relevant Group 04 decisions / checkpoints:
 - `docs/ux-decisions/2026-09-10-group04-session-handoff.md`
 - `docs/ux-decisions/2026-09-05-exercise-recording-types.md`
 - `docs/ux-decisions/2026-09-10-group05-closure-qa.md`
+- `docs/ux-decisions/2026-09-03-cable-attachment-active-workout.md`
 
 ---
 
@@ -116,6 +118,13 @@ Delete policy — PO APPROVED:
 - corresponding empty saved-routine Figma state is reflected on Group 03: `03D_Routine_Detail_Empty` — `1423:1972`
 - delete-confirmation Figma state is reflected on Group 04: `04F_Custom_Delete_Confirm` — `1429:1751`
 
+Attachment media fallback — PO APPROVED:
+- if an attachment-specific reviewed Gym Animations media exists, show it
+- if it does not exist, show the canonical exercise's base media
+- custom/direct-input attachment text does not auto-map to media; it also uses the base exercise media
+- attachment-media absence does not create a separate no-media Exercise Detail state
+- obsolete `04D_Exercise_Detail_Info_NoMedia` representative frame was removed from canonical Figma
+
 Delete dialog Figma state:
 - full `360 × 780` viewport state
 - no duplicated underlying product screen in the QA/reference state
@@ -174,10 +183,10 @@ Product Owner explicitly deferred Group 02 Home refinement. Do not resume it unl
 
 Finish Group 04 Product/UX QA with the remaining completion work only:
 
-1. add/check the no-media Exercise Detail representative state because approved policy says media absence must not reserve an empty media box
-2. if no blocker remains, run scoped final Group 04 closure QA and mark Group 04 CLOSED
+1. run scoped final Group 04 closure QA
+2. if no blocker remains, mark Group 04 CLOSED
 
-Do not reopen already passed recording-type, selector, list/filter, save-destination, delete-policy/dialog, or height QA without a new conflict/regression.
+Do not reopen already passed recording-type, selector, list/filter, save-destination, delete-policy/dialog, attachment-picker/media-fallback, or height QA without a new conflict/regression.
 
 Do not return to deferred Group 02 and do not begin Cursor implementation handoff.
 
