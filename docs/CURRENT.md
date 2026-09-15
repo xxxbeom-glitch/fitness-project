@@ -242,3 +242,7 @@ Focused scope only:
 Do not reopen Group 05, Group 04, Group 03, or deferred Group 02 without a concrete conflict/regression or explicit PO request.
 Do not resume Analysis product-policy decisions until the group-by-group QA sequence reaches that group.
 Do not begin Cursor implementation handoff.
+
+# Development boundary
+
+Product Owner가 개발 전환을 명시하기 전까지 개발/Cursor handoff를 하지 않는다.
