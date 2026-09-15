@@ -4,7 +4,7 @@
 
 ## Current mode
 
-`PRODUCT/UX FIGMA · GROUP 04 EXERCISE DETAIL PRODUCT QA ACTIVE · CUSTOM EXERCISE SAVE DESTINATION LOCKED · 360×780 BASELINE HEIGHT RULE LOCKED · CUSTOM EXERCISE DELETE POLICY LOCKED · GROUP 03 EMPTY-ROUTINE EXCEPTION STATE REFLECTED · GROUP 03 ROUTINE OTHERWISE CLOSED · GROUP 02 HOME DEFERRED BY PO · NO CURSOR IMPLEMENTATION HANDOFF`
+`PRODUCT/UX FIGMA · GROUP 04 EXERCISE DETAIL PRODUCT QA ACTIVE · CUSTOM EXERCISE SAVE DESTINATION LOCKED · CUSTOM EXERCISE DELETE DIALOG FIGMA REFLECTED · 360×780 BASELINE HEIGHT RULE LOCKED · CUSTOM EXERCISE DELETE POLICY LOCKED · GROUP 03 EMPTY-ROUTINE EXCEPTION STATE REFLECTED · GROUP 03 ROUTINE OTHERWISE CLOSED · GROUP 02 HOME DEFERRED BY PO · NO CURSOR IMPLEMENTATION HANDOFF`
 
 ## Resume rule
 
@@ -14,10 +14,10 @@
 
 ## Latest active checkpoint
 
-- `docs/ux-decisions/2026-09-15-group04-custom-exercise-save-destination.md`
+- `docs/ux-decisions/2026-09-15-group04-custom-exercise-delete-policy.md`
 
 Directly relevant Group 04 decisions / checkpoints:
-- `docs/ux-decisions/2026-09-15-group04-custom-exercise-delete-policy.md`
+- `docs/ux-decisions/2026-09-15-group04-custom-exercise-save-destination.md`
 - `docs/ux-decisions/2026-09-15-group04-780-viewport-correction.md`
 - `docs/ux-decisions/2026-09-15-group04-custom-exercise-selection-flow.md`
 - `docs/ux-decisions/2026-09-15-group04-recording-type-history-growth-policy.md`
@@ -61,6 +61,7 @@ Custom-exercise selection states reflected and QA-passed:
 Completion representative states already present:
 - `04E_Custom_Create_Valid` — `1401:1890`
 - `04EF_Custom_Unsaved_Confirm` — `1401:7683`
+- `04F_Custom_Delete_Confirm` — `1429:1751`
 
 ## Group 04 screen-height rule
 
@@ -113,6 +114,18 @@ Delete policy — PO APPROVED:
 - if affected routine count is reliably known, the dialog may state `N개의 루틴`
 - if the deleted exercise was the only exercise in a saved routine, that routine is **retained as an empty routine**; the routine itself is not cascade-deleted
 - corresponding empty saved-routine Figma state is reflected on Group 03: `03D_Routine_Detail_Empty` — `1423:1972`
+- delete-confirmation Figma state is reflected on Group 04: `04F_Custom_Delete_Confirm` — `1429:1751`
+
+Delete dialog Figma state:
+- full `360 × 780` viewport state
+- no duplicated underlying product screen in the QA/reference state
+- full-screen existing `ModalOverlay` reused
+- existing canonical `DialogCard` remains an instance; no detach/rebuild
+- Title: `운동을 삭제할까요?`
+- Body: `이 운동은 운동 목록과 포함된 모든 루틴에서 제거됩니다. 완료된 운동 기록은 유지됩니다.`
+- Actions: `취소 / 삭제`
+- `삭제` action uses existing semantic `state/danger`
+- screenshot/read-back focused QA PASS
 
 Figma QA:
 - `04B_Search_Selected` remains `360 × 780`; bottom `SelectionFooter` restored to `y=680`, bottom=`780`
@@ -161,11 +174,10 @@ Product Owner explicitly deferred Group 02 Home refinement. Do not resume it unl
 
 Finish Group 04 Product/UX QA with the remaining completion work only:
 
-1. reflect the final delete-confirmation state in Figma using the existing Dialog pattern and focused QA only
-2. add/check the no-media Exercise Detail representative state because approved policy says media absence must not reserve an empty media box
-3. if no blocker remains, run scoped final Group 04 closure QA and mark Group 04 CLOSED
+1. add/check the no-media Exercise Detail representative state because approved policy says media absence must not reserve an empty media box
+2. if no blocker remains, run scoped final Group 04 closure QA and mark Group 04 CLOSED
 
-Do not reopen already passed recording-type, selector, list/filter, or height QA without a new conflict/regression.
+Do not reopen already passed recording-type, selector, list/filter, save-destination, delete-policy/dialog, or height QA without a new conflict/regression.
 
 Do not return to deferred Group 02 and do not begin Cursor implementation handoff.
 
