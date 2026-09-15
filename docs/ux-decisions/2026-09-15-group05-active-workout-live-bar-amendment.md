@@ -14,7 +14,7 @@ Canonical Figma:
 - file: `W3lZurXCXbThP67rF2xk2b`
 - page: `05 운동 중` — `233:2076`
 - canonical `05A_Workout_Weight` — `148:1979`
-- approved comparison source `05A_Workout_Weight_CompactMetrics_C` — `1475:1729`
+- scrolled representative `05A_Workout_Weight_Scrolled_3rdExercise` — `1495:2408`
 
 ## Decision
 
@@ -127,7 +127,9 @@ No parallel CTA Button family was created.
 
 ## Canonical promotion
 
-The approved C comparison treatment was promoted into the real canonical `05A_Workout_Weight` (`148:1979`).
+The approved comparison treatment was promoted into the real canonical `05A_Workout_Weight` (`148:1979`).
+
+After promotion and scroll-behavior QA, the temporary compact comparison frames were removed from the Group 05 page. The canonical initial screen and the dedicated scrolled representative state remain.
 
 Final canonical top-level structure read-back:
 
@@ -142,7 +144,7 @@ Final canonical top-level structure read-back:
 
 PASS:
 
-- canonical 05A promoted from the approved live-bar pattern
+- canonical 05A uses the approved live-bar pattern
 - old 05A `WorkoutSummarySection` removed
 - old bottom end/cancel row removed
 - bottom Primary `운동 추가` retained
@@ -152,6 +154,7 @@ PASS:
 - live-bar spacing/color/radius/text bindings read back against the Fitness design system
 - Running and Paused representative screenshots render without clipping/layout break
 - canonical 05A screenshot after promotion renders without a blocking visual regression
+- temporary compact comparison frames are removed after canonical promotion
 
 ## Explicitly not changed
 
