@@ -4,7 +4,7 @@
 
 ## Current mode
 
-`PRODUCT/UX FIGMA QA · GROUP 04 EXERCISE LIBRARY/DETAIL CLOSED · GROUP 05 ACTIVE WORKOUT CLOSED (2026-09-15 LIVE-BAR + SCROLL AMENDMENTS LOCKED) · GROUP 06 COMPLETION FINAL CLOSURE QA NEXT · ANALYSIS BODY-MAP ASSET MAPPING DEFERRED · GROUP 03 ROUTINE CLOSED · GROUP 02 HOME DEFERRED BY PO · NO CURSOR IMPLEMENTATION HANDOFF`
+`PRODUCT/UX FIGMA QA · GROUP 04 EXERCISE LIBRARY/DETAIL CLOSED · GROUP 05 ACTIVE WORKOUT CLOSED (2026-09-15 LIVE-BAR + SCROLL + REST-LIVE-BAR AMENDMENTS LOCKED) · GROUP 06 COMPLETION FINAL CLOSURE QA NEXT · ANALYSIS BODY-MAP ASSET MAPPING DEFERRED · GROUP 03 ROUTINE CLOSED · GROUP 02 HOME DEFERRED BY PO · NO CURSOR IMPLEMENTATION HANDOFF`
 
 ## Resume rule
 
@@ -14,6 +14,7 @@
 
 ## Latest active checkpoint
 
+- `docs/ux-decisions/2026-09-15-group05-rest-live-bar-amendment.md`
 - `docs/ux-decisions/2026-09-15-group05-active-workout-scroll-behavior.md`
 - `docs/ux-decisions/2026-09-15-group05-active-workout-live-bar-amendment.md`
 - `docs/ux-decisions/2026-09-15-group04-final-closure-qa.md`
@@ -146,16 +147,18 @@ Original final closure:
 Latest PO-approved post-closure amendments:
 - `docs/ux-decisions/2026-09-15-group05-active-workout-live-bar-amendment.md`
 - `docs/ux-decisions/2026-09-15-group05-active-workout-scroll-behavior.md`
+- `docs/ux-decisions/2026-09-15-group05-rest-live-bar-amendment.md`
 
 Canonical Figma:
 - file `W3lZurXCXbThP67rF2xk2b`
 - page `05 운동 중` — `233:2076`
 - `05A_Workout_Weight` — `148:1979`
-- canonical live-bar instance — `1492:2407`
+- canonical workout live-bar instance — `1492:2407`
 - `05A_Workout_Weight_Scrolled_3rdExercise` — `1495:2408`
 - `05F_Workout_RestTimer` — `1498:2769`
+- canonical rest live-bar instance — `1516:6607`
 
-Latest locked presentation:
+Latest locked workout presentation:
 - old 3-metric `운동시간 / 볼륨 / 완료 세트` summary is removed from canonical 05A
 - 64px `WorkoutLiveBar` sits directly below the Nav Header
 - left = workout elapsed-time control + elapsed time
@@ -167,15 +170,32 @@ Latest locked presentation:
 Workout elapsed-time variants:
 - `Timer=Running` → pause icon + time at 100%
 - `Timer=Paused` → resume/play icon + time at 60%
-- this does not alter the separate automatic Rest Timer policy
+- this does not pause/reset/synchronize the separate automatic Rest Timer
 
 Pinned scrolling behavior:
 - representative viewport is `360 × 780`
 - fixed top region = StatusArea 62 + Nav Header 56 + WorkoutLiveBar 64 = `182 px`
-- only `WorkoutContent` scrolls (`y=182`, `360 × 598`, clipped vertical scroll)
+- normal Active Workout: only `WorkoutContent` scrolls (`y=182`, `360 × 598`)
 - Nav Header and WorkoutLiveBar do not collapse/hide while moving to later exercises
 - bottom `운동 추가` stays inside the scrolling content; it is not fixed
-- RestTimerPill remains separate and floats below the live bar without replacing the fixed top hierarchy
+
+Latest Rest Timer presentation:
+- set completion still starts the Rest Timer automatically
+- previous top `RestTimerPill` / X-close presentation is superseded
+- while countdown runs, `RestLiveBar` is fixed to the bottom
+- `RestLiveBar`: y `708`, `360 × 72`
+- Rest Timer state `WorkoutContent`: y `182`, `360 × 526`, internal vertical scroll
+- left = large countdown only; no `휴식` label
+- countdown = `display/01`, `20 / 28`, `text/primary`
+- top progress line = `2 px` Track + Fill
+- Track = `border/default`
+- Fill = `brand/primary`
+- remaining time decreases by moving the Fill right edge toward the left
+- right action = `휴식 종료`
+- `휴식 종료` ends the current rest countdown and removes the bar
+- no separate MVP UI-only close action
+- no `+15 / -15`, Rest Timer pause, or reset controls
+- countdown reaching zero removes the bar; exact motion/sound/vibration/background notification remains deferred
 
 Design system:
 - `WorkoutLiveBar` component set — `1488:7122`
@@ -184,19 +204,26 @@ Design system:
 - `Workout Inline Action` — `1485:934`
 - local `icon/play` — `1488:7086`
 - existing local `icon/pause` reused
+- `RestLiveBar` component — `1516:6598`
+- obsolete local `RestTimerPill` removed after zero remaining instances
 - `neutral/925` = `#0D0D10`
 - `bg/workout-live` → `neutral/925`
-- existing `heading/01`, `label/02`, `text/primary`, `border/default`, `state/danger`, `radius/xs`, `spacing/20`, `spacing/10`, `spacing/6` reused
+- existing `heading/01`, `display/01`, `label/02`, `text/primary`, `border/default`, `brand/primary`, `state/danger`, `radius/xs`, `spacing/20`, `spacing/10`, `spacing/8`, `spacing/16`, `spacing/6` reused
 
 Focused post-closure QA:
-- approved C treatment promoted into canonical 05A
-- old summary and old bottom end/cancel row absent
+- approved workout live-bar treatment promoted into canonical 05A
+- old workout summary and old bottom end/cancel row absent
 - bottom `운동 추가` retained
 - Running/Paused visual read-back PASS
 - Paused time opacity read-back = `0.60`
-- canonical 05A now reads back as a 360 × 780 viewport with internal vertical scrolling
+- canonical 05A reads back as a 360 × 780 viewport with internal vertical scrolling
 - third-exercise scrolled representative screenshot PASS
-- Rest Timer representative screen synchronized to fixed Nav Header + WorkoutLiveBar structure; screenshot PASS
+- canonical 05F now uses fixed Nav Header + WorkoutLiveBar + internal WorkoutContent + fixed bottom RestLiveBar
+- canonical 05F RestLiveBar instance main = `1516:6598`
+- RestLiveBar spacing/color/type/progress bindings read back against existing Fitness system
+- Rest Timer representative screenshot PASS
+- obsolete RestTimerPill remaining instance count = `0`
+- temporary Rest Timer bottom-bar comparison frame removed after canonical promotion
 
 **GROUP 05 CLOSED AGAIN AFTER THE SCOPED 2026-09-15 AMENDMENTS.**
 
