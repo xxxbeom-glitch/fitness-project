@@ -4,7 +4,7 @@
 
 ## Current mode
 
-`PRODUCT/UX FIGMA · GROUP 04 EXERCISE DETAIL PRODUCT QA ACTIVE · CUSTOM EXERCISE SELECTION FLOW PASS · GROUP 03 ROUTINE CLOSED · GROUP 02 HOME DEFERRED BY PO · NO CURSOR IMPLEMENTATION HANDOFF`
+`PRODUCT/UX FIGMA · GROUP 04 EXERCISE DETAIL PRODUCT QA ACTIVE · 360×780 VIEWPORT RULE LOCKED · CUSTOM EXERCISE SELECTION FLOW PASS · GROUP 03 ROUTINE CLOSED · GROUP 02 HOME DEFERRED BY PO · NO CURSOR IMPLEMENTATION HANDOFF`
 
 ## Resume rule
 
@@ -14,9 +14,10 @@
 
 ## Latest active checkpoint
 
-- `docs/ux-decisions/2026-09-15-group04-custom-exercise-selection-flow.md`
+- `docs/ux-decisions/2026-09-15-group04-780-viewport-correction.md`
 
 Directly relevant Group 04 decisions / checkpoints:
+- `docs/ux-decisions/2026-09-15-group04-custom-exercise-selection-flow.md`
 - `docs/ux-decisions/2026-09-15-group04-recording-type-history-growth-policy.md`
 - `docs/ux-decisions/2026-09-14-group04-cross-group-regression-qa.md`
 - `docs/ux-decisions/2026-09-10-group04-closure-qa.md`
@@ -55,6 +56,14 @@ Custom-exercise selection states reflected and QA-passed:
 - `04L_Custom_RecordingType_Select` — `1396:8271`
 - `04F_Custom_Edit_HistoryLocked` — `1396:8393`
 
+## Group 04 viewport rule
+
+- base top-level screen viewport: `360 × 780`
+- top-level screen is not enlarged merely to expose overflowing content
+- content exceeding the viewport remains inside the relevant vertical-scroll content frame
+- vertical-scroll frames clip overflow and preserve the full internal content
+- previous Group 04 `360 × 954` sizing notes are superseded by `2026-09-15-group04-780-viewport-correction.md`
+
 ## Locked custom-exercise rules
 
 Required structured metadata:
@@ -78,11 +87,12 @@ Edit history lock:
 - equipment / primary / secondary muscle remain editable
 
 Figma QA:
-- all selector/locked states `360 × 954`
+- Group 04 top-level 360px screens: `360 × 780` fixed viewport
+- overflowing internal content uses vertical scroll + clipping
+- accidental root minHeight constraint = 0
 - existing components reused
-- no new component/token/style
-- no detached shared instances
-- missing main-component link = 0
+- no new component/token/style for viewport correction
+- no detached shared instances introduced
 - screenshot/read-back PASS
 
 ## Preserved deferred data/runtime work
