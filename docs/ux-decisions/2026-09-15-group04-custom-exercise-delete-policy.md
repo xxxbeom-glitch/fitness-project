@@ -1,7 +1,7 @@
 # Group 04 Custom Exercise — Delete Policy
 
 **Date:** 2026-09-15  
-**Status:** PO APPROVED / PRODUCT POLICY LOCKED / FIGMA REFLECTION PENDING / NO CURSOR HANDOFF
+**Status:** PO APPROVED / PRODUCT POLICY LOCKED / EMPTY-ROUTINE FIGMA STATE REFLECTED / DELETE DIALOG FIGMA PENDING / NO CURSOR HANDOFF
 
 ## Scope
 
@@ -30,6 +30,27 @@
 - 사용자는 이후 해당 루틴에 다른 운동을 다시 추가하거나 루틴 자체를 별도로 삭제할 수 있다.
 
 커스텀 운동 삭제가 사용자 의도 없이 루틴 자체의 삭제까지 연쇄적으로 발생시키지 않는다.
+
+## Figma representative state — REFLECTED
+
+커스텀 운동 삭제로 인해 발생할 수 있는 저장 루틴의 빈 상태를 Group 03 canonical page에 대표 상태로 추가했다.
+
+- Figma file: `W3lZurXCXbThP67rF2xk2b`
+- page: `03 루틴` — `233:2074`
+- state: `03D_Routine_Detail_Empty` — `1423:1972`
+- size: `360 × 780`
+
+State behavior:
+
+- 루틴 이름/identity 유지
+- Summary: `총 운동 0개 / 예상 시간 0분 / 총 세트 0세트`
+- Empty State: `운동이 없어요`
+- supporting copy: `운동을 추가해 루틴을 완성해보세요.`
+- CTA: `운동 추가`
+- `운동 시작` CTA는 노출하지 않음
+- 기존 공용 `EmptyState` 패턴을 재사용
+
+Figma screenshot/read-back QA 완료.
 
 ## Confirmation requirement
 
