@@ -3,7 +3,7 @@
 **Status:** PO APPROVED · FIGMA REFLECTED
 
 **Date:** 2026-09-03  
-**Updated:** 2026-09-10
+**Updated:** 2026-09-15
 
 ## Decision
 
@@ -26,6 +26,22 @@ Active Workout의 휴식 타이머는 사용자가 별도로 관리해야 하는
 
 이전의 `시작 직후 잠깐 노출 후 임의로 사라질 수 있음` 표현은 최신 PO 결정에 의해 superseded 된다. 기본 presentation은 **카운트다운 동안 노출 → 종료 시 위로 사라짐**이다.
 
+### Pinned-header coexistence — 2026-09-15
+
+Active Workout의 최신 고정 상단 구조에서는 세로 스크롤 중에도 `Nav Header`와 `WorkoutLiveBar`가 계속 보인다.
+
+따라서 Rest Timer pill은 이 고정 상단 영역을 대체하거나 숨기지 않는다.
+
+- `Nav Header` 유지
+- `WorkoutLiveBar` 유지
+- `RestTimerPill`은 live bar 바로 아래의 workout-content 영역에 transient overlay로 노출
+- 운동 목록은 계속 스크롤 가능
+- Rest Timer가 떠 있어도 workout elapsed-time control, `종료`, `취소` entry는 live bar에 그대로 유지
+
+이 변경은 Rest Timer의 trigger/countdown/close 의미를 바꾸는 것이 아니라 최신 Active Workout 화면 계층에 맞춘 presentation sync다.
+
+Reference: `docs/ux-decisions/2026-09-15-group05-active-workout-scroll-behavior.md`.
+
 ### Controls
 
 - MVP에서는 `+15초`, `-15초` 같은 시간 증감 버튼을 제공하지 않는다.
@@ -43,7 +59,8 @@ Active Workout의 휴식 타이머는 사용자가 별도로 관리해야 하는
 Canonical Figma file: `W3lZurXCXbThP67rF2xk2b`
 
 - local `RestTimerPill` component — `721:3456`
-- `05F_Workout_RestTimer` — `721:3460`
+- `05F_Workout_RestTimer` — `1498:2769`
+- visible RestTimerPill instance — `1498:2765`
 - local component library — `635:788`
 
 The temporary copied `410_Rest_Timer` frame on the Group 05 page was used only as the visual reference and removed after localization.
@@ -69,6 +86,16 @@ The source reference did not contain actual Figma prototype reactions. The drop-
 - `05F_Workout_RestTimer`: remote Variable 0 / missing Variable 0
 - `05F_Workout_RestTimer`: remote Style 0 / missing Style 0
 - representative screenshot read-back: PASS
+
+## Focused presentation sync QA — 2026-09-15
+
+- `05F_Workout_RestTimer` rebuilt from the current canonical 05A fixed-header/internal-scroll structure
+- obsolete three-metric summary removed from the representative Rest Timer state
+- local `Nav Header` instance retained
+- local `WorkoutLiveBar` instance retained
+- local `RestTimerPill` instance retained
+- pill positioned below the live bar without replacing the fixed top hierarchy
+- 360 × 780 screenshot read-back: PASS
 
 ## Deferred
 
