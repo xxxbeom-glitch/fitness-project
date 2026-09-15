@@ -16,6 +16,7 @@ Canonical Figma file/page:
 Current experimental states:
 - `EXP_ManualTimer_Popup_A_Idle` — `1519:2581`
 - `EXP_ManualTimer_Popup_A_Running` — `1525:4014`
+- `EXP_ManualTimer_Popup_A_Paused` — `1547:3691`
 
 These states are **comparison/refinement artifacts**, not canonical production screens yet.
 
@@ -45,25 +46,30 @@ PO selected the **A / ring-centered popup direction** for continued development.
 
 The prior B / quick-set proposal was deleted from Figma.
 
-Current retained states:
-
 ### Idle
 - title: `타이머`
-- right action: `닫기`
-- large countdown value: representative `01:30`
+- upper-right close action: circular `X` icon using existing `icon/close-circle`
+- countdown: representative `01:30`
 - circular progress ring
 - quick adjustment actions: `-15초`, `+15초`
 - Primary CTA: `타이머 시작`
 
 ### Running
 - title: `타이머`
-- right action: `닫기`
-- running countdown value: representative `01:12`
+- upper-right close action: circular `X` icon
+- countdown: representative `01:12`
 - circular progress ring shown partially depleted
 - quick adjustment actions remain available: `-15초`, `+15초`
-- Primary CTA changes to `타이머 중지`
+- Primary CTA: `일시정지`
 
-The start → stop CTA transition is the current required direction for the header manual timer.
+### Paused
+- title: `타이머`
+- upper-right close action: circular `X` icon
+- countdown and ring freeze at the remaining state; representative `01:12`
+- quick adjustment actions remain available: `-15초`, `+15초`
+- bottom action row:
+  - Secondary `초기화`
+  - Primary `계속하기`
 
 ## Time adjustment policy — 2026-09-16 PO lock
 
@@ -77,63 +83,84 @@ Manual Timer time adjustment is intentionally simple for MVP:
 
 This keeps the timer as a lightweight workout utility instead of adding a separate time-entry interaction.
 
+## Pause / resume / reset policy — 2026-09-16 PO lock
+
+- Running CTA is `일시정지`, not stop/reset.
+- `일시정지` freezes the countdown at the current remaining value and freezes the ring at the matching progress position.
+- Paused `계속하기` resumes countdown from that same remaining value.
+- Paused `초기화` resets the manual timer to the Idle default representative value `01:30` and returns to Idle.
+- Reset is intentionally separated from pause so an accidental pause does not discard the current remaining time.
+
+## Close affordance visual — 2026-09-16 PO lock
+
+The former `닫기` text action is removed.
+
+- existing Fitness `icon/close-circle` component is reused
+- local main component: `1255:1142`
+- visual size: `24 × 24`
+- positioned at the popup upper-right on the existing 24 px inset rhythm
+- same close affordance is shown in Idle / Running / Paused
+
+The **behavioral result of closing while Running or Paused remains open** and is not implied by this visual decision.
+
 ## Copy reduction
 
-Per PO direction, explanatory/helper copy was removed from the timer popup design.
+Per PO direction, explanatory/helper copy is omitted.
 
-The current design does not show explanatory lines such as:
+The timer popup does not show explanatory lines such as:
 - `수동 타이머`
 - setup guidance
 - time-edit guidance
-- running-state guidance
+- running/paused guidance
 
 Only functional labels/actions remain visible.
 
 ## Design-system alignment
-
-The exploratory popup was reworked to follow the existing Fitness system instead of introducing an unrelated modal style.
 
 Current read-back:
 - popup surface: `294 × 412`
 - representative position on `360 × 780`: x `33`, y `184`
 - radius: `24`, matching the existing Dialog surface treatment
 - existing Dialog background/border variable bindings reused
-- countdown ring Track reuses `border/default`
-- countdown ring Fill reuses `brand/primary`
-- existing Primary `CTA Button` component reused
-  - Idle label: `타이머 시작`
-  - Running label: `타이머 중지`
+- ring Track: `border/default`
+- ring Fill: `brand/primary`
+- existing `CTA Button` component set reused
+  - Idle: Primary `타이머 시작`
+  - Running: Primary `일시정지`
+  - Paused: Secondary `초기화` + Primary `계속하기`
+- existing `icon/close-circle` reused
 - existing typography/color system reused
 - countdown value is centered in the ring without an edit icon
 
 No new shared timer-popup component has been promoted yet because the remaining interaction behavior is not finally approved.
 
-## Figma cleanup already reflected
+## Figma cleanup / focused visual QA already reflected
 
 - B / quick-set screen deleted
 - comparison labels outside the screen deleted
-- A retained as Idle + Running representative states
-- descriptive helper copy removed from both retained states
-- manual time-edit icons removed from Idle and Running
-- countdown values recentered inside the ring after edit-icon removal
-- Idle / Running screenshots checked after the latest refinement
+- descriptive helper copy removed
+- manual time-edit icons removed
+- countdown values recentered after edit-icon removal
+- `닫기` text replaced by existing circular close icon in Idle / Running
+- Running CTA changed to `일시정지`
+- new Paused representative state added at `1547:3691`
+- Paused bottom row uses existing Secondary/Primary CTA variants for `초기화 / 계속하기`
+- Idle / Running / Paused screenshots checked after refinement
+- Paused screenshot shows both bottom actions without clipping or overlap
 
 ## Still open before canonical promotion
 
-The following are not locked by this checkpoint:
-
-1. exact semantic result of `타이머 중지` (stop/reset vs. pause-like behavior)
-2. `닫기` behavior while the manual timer is running
-3. timer-complete feedback (sound / vibration / visual state)
-4. conflict/priority rule if the manual timer and automatic Rest Timer would overlap
-5. reusable component/variant promotion and final canonical screen naming
+1. behavioral result of the circular close action while Running or Paused
+2. timer-complete feedback when countdown reaches zero
+3. conflict/priority rule if the manual timer and automatic Rest Timer overlap
+4. reusable component/variant promotion and final canonical screen naming
 
 These must be resolved before Group 05 is closed again.
 
 ## Result
 
-**CHECKPOINT UPDATED — A ring-popup direction retained; direct time entry removed; `-15초 / +15초` is the locked MVP adjustment method; Idle/Running Figma states were updated and screenshot-checked, but the manual timer is still not final/canonical.**
+**CHECKPOINT UPDATED — direct time entry is removed; `±15초` is locked; Running now pauses instead of resetting; Paused exposes `초기화 / 계속하기`; circular close-icon visuals are reflected; all three experimental states are screenshot-checked. Manual Timer is still not final/canonical because close behavior, completion feedback, Rest Timer overlap, and final promotion remain open.**
 
-The next work item is to finish the remaining manual timer interaction rules and final Figma promotion/QA, then return to Group 06 completion final closure QA.
+The next work item is to finish those remaining interaction rules, promote the approved structure, run focused QA, close the scoped Group 05 reopen, then return to Group 06 completion final closure QA.
 
 **NO CURSOR IMPLEMENTATION HANDOFF.**
