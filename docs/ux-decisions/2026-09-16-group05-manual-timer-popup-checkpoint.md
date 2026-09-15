@@ -111,6 +111,20 @@ Behavior:
 - reopening the Manual Timer starts again from the Idle default `01:30` state.
 - no separate background-running or hidden-manual-timer state exists for MVP.
 
+## Zero-completion behavior — 2026-09-16 PO lock
+
+When the Manual Timer countdown reaches zero:
+
+- countdown stops at `00:00`; it never goes negative.
+- the popup **remains open** in place.
+- do not auto-close the popup.
+- do not auto-reset to `01:30`.
+- do not transition to another page, dialog, toast, or separate completion screen.
+- do not add a separate completion animation, sound, or vibration for MVP.
+- the existing circular `X` remains the explicit way to close and terminate the completed Manual Timer popup.
+
+No extra Figma representative screen is required solely for completion; `00:00` is a runtime end-state of the same popup shell.
+
 ## Copy reduction
 
 Per PO direction, explanatory/helper copy is omitted.
@@ -156,20 +170,19 @@ No new shared timer-popup component has been promoted yet because the remaining 
 - Idle / Running / Paused screenshots checked after refinement
 - Paused screenshot shows both bottom actions without clipping or overlap
 
-No additional visual state is required solely for the close behavior because `X` terminates and dismisses the popup.
+No additional visual state is required solely for close behavior or zero-completion behavior.
 
 ## Still open before canonical promotion
 
-1. timer-complete feedback when countdown reaches zero
-2. conflict/priority rule if the manual timer and automatic Rest Timer overlap
-3. reusable component/variant promotion and final canonical screen naming
+1. conflict/priority rule if the manual timer and automatic Rest Timer overlap
+2. reusable component/variant promotion and final canonical screen naming
 
 These must be resolved before Group 05 is closed again.
 
 ## Result
 
-**CHECKPOINT UPDATED — direct time entry is removed; `±15초` is locked; Running pauses instead of resetting; Paused exposes `초기화 / 계속하기`; circular `X` now explicitly terminates and dismisses the Manual Timer in Running/Paused; all three experimental states remain visually valid. Manual Timer is still not final/canonical because completion feedback, Rest Timer overlap, and final promotion remain open.**
+**CHECKPOINT UPDATED — direct time entry is removed; `±15초` is locked; Running pauses instead of resetting; Paused exposes `초기화 / 계속하기`; circular `X` explicitly terminates and dismisses the Manual Timer; reaching `00:00` now leaves the same popup open with no auto-close/reset or extra completion feedback. Manual Timer is still not final/canonical because Rest Timer overlap and final promotion remain open.**
 
-The next work item is to finish those remaining interaction rules, promote the approved structure, run focused QA, close the scoped Group 05 reopen, then return to Group 06 completion final closure QA.
+The next work item is to resolve Manual Timer vs. automatic Rest Timer overlap, then promote the approved structure, run focused QA, close the scoped Group 05 reopen, and return to Group 06 completion final closure QA.
 
 **NO CURSOR IMPLEMENTATION HANDOFF.**
