@@ -4,7 +4,7 @@
 
 ## Current mode
 
-`PRODUCT/UX FIGMA · GROUP 04 EXERCISE DETAIL PRODUCT QA ACTIVE · 360×780 BASELINE HEIGHT RULE LOCKED · CUSTOM EXERCISE DELETE POLICY LOCKED · GROUP 03 EMPTY-ROUTINE EXCEPTION STATE REFLECTED · GROUP 03 ROUTINE OTHERWISE CLOSED · GROUP 02 HOME DEFERRED BY PO · NO CURSOR IMPLEMENTATION HANDOFF`
+`PRODUCT/UX FIGMA · GROUP 04 EXERCISE DETAIL PRODUCT QA ACTIVE · CUSTOM EXERCISE SAVE DESTINATION LOCKED · 360×780 BASELINE HEIGHT RULE LOCKED · CUSTOM EXERCISE DELETE POLICY LOCKED · GROUP 03 EMPTY-ROUTINE EXCEPTION STATE REFLECTED · GROUP 03 ROUTINE OTHERWISE CLOSED · GROUP 02 HOME DEFERRED BY PO · NO CURSOR IMPLEMENTATION HANDOFF`
 
 ## Resume rule
 
@@ -14,9 +14,10 @@
 
 ## Latest active checkpoint
 
-- `docs/ux-decisions/2026-09-15-group04-custom-exercise-delete-policy.md`
+- `docs/ux-decisions/2026-09-15-group04-custom-exercise-save-destination.md`
 
 Directly relevant Group 04 decisions / checkpoints:
+- `docs/ux-decisions/2026-09-15-group04-custom-exercise-delete-policy.md`
 - `docs/ux-decisions/2026-09-15-group04-780-viewport-correction.md`
 - `docs/ux-decisions/2026-09-15-group04-custom-exercise-selection-flow.md`
 - `docs/ux-decisions/2026-09-15-group04-recording-type-history-growth-policy.md`
@@ -97,6 +98,12 @@ Edit history lock:
 - helper copy: `기록이 있는 운동은 기록 방식을 변경할 수 없어요.`
 - equipment / primary / secondary muscle remain editable
 
+Save destination — PO APPROVED:
+- create Save returns to the exercise list/add-exercise flow
+- the newly created custom exercise is immediately selected, using the existing selected-list pattern (`04B_Search_Selected`)
+- edit Save returns to that exercise's detail screen with updated metadata reflected
+- no separate creation-complete screen is added
+
 Delete policy — PO APPROVED:
 - deleting a custom exercise removes it from exercise search/list and new-add targets
 - it is also removed from every saved routine that currently contains it
@@ -154,10 +161,9 @@ Product Owner explicitly deferred Group 02 Home refinement. Do not resume it unl
 
 Finish Group 04 Product/UX QA with the remaining completion work only:
 
-1. create/edit Save destination
-2. reflect the final delete-confirmation state in Figma using the existing Dialog pattern and focused QA only
-3. add/check the no-media Exercise Detail representative state because approved policy says media absence must not reserve an empty media box
-4. if no blocker remains, run scoped final Group 04 closure QA and mark Group 04 CLOSED
+1. reflect the final delete-confirmation state in Figma using the existing Dialog pattern and focused QA only
+2. add/check the no-media Exercise Detail representative state because approved policy says media absence must not reserve an empty media box
+3. if no blocker remains, run scoped final Group 04 closure QA and mark Group 04 CLOSED
 
 Do not reopen already passed recording-type, selector, list/filter, or height QA without a new conflict/regression.
 
