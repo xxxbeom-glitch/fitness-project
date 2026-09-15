@@ -4,7 +4,7 @@
 
 ## Current mode
 
-`PRODUCT/UX FIGMA QA · GROUP 04 EXERCISE LIBRARY/DETAIL CLOSED · GROUP 05 ACTIVE WORKOUT CLOSED (2026-09-15 LIVE-BAR AMENDMENT LOCKED) · GROUP 06 COMPLETION FINAL CLOSURE QA NEXT · ANALYSIS BODY-MAP ASSET MAPPING DEFERRED · GROUP 03 ROUTINE CLOSED · GROUP 02 HOME DEFERRED BY PO · NO CURSOR IMPLEMENTATION HANDOFF`
+`PRODUCT/UX FIGMA QA · GROUP 04 EXERCISE LIBRARY/DETAIL CLOSED · GROUP 05 ACTIVE WORKOUT CLOSED (2026-09-15 LIVE-BAR + SCROLL AMENDMENTS LOCKED) · GROUP 06 COMPLETION FINAL CLOSURE QA NEXT · ANALYSIS BODY-MAP ASSET MAPPING DEFERRED · GROUP 03 ROUTINE CLOSED · GROUP 02 HOME DEFERRED BY PO · NO CURSOR IMPLEMENTATION HANDOFF`
 
 ## Resume rule
 
@@ -14,6 +14,7 @@
 
 ## Latest active checkpoint
 
+- `docs/ux-decisions/2026-09-15-group05-active-workout-scroll-behavior.md`
 - `docs/ux-decisions/2026-09-15-group05-active-workout-live-bar-amendment.md`
 - `docs/ux-decisions/2026-09-15-group04-final-closure-qa.md`
 
@@ -142,14 +143,17 @@ The old 195/211 Production target is not the current raw-source basis after the 
 Original final closure:
 - `docs/ux-decisions/2026-09-10-group05-closure-qa.md`
 
-Latest PO-approved post-closure amendment:
+Latest PO-approved post-closure amendments:
 - `docs/ux-decisions/2026-09-15-group05-active-workout-live-bar-amendment.md`
+- `docs/ux-decisions/2026-09-15-group05-active-workout-scroll-behavior.md`
 
 Canonical Figma:
 - file `W3lZurXCXbThP67rF2xk2b`
 - page `05 운동 중` — `233:2076`
 - `05A_Workout_Weight` — `148:1979`
 - canonical live-bar instance — `1492:2407`
+- `05A_Workout_Weight_Scrolled_3rdExercise` — `1495:2408`
+- `05F_Workout_RestTimer` — `1498:2769`
 
 Latest locked presentation:
 - old 3-metric `운동시간 / 볼륨 / 완료 세트` summary is removed from canonical 05A
@@ -164,6 +168,14 @@ Workout elapsed-time variants:
 - `Timer=Running` → pause icon + time at 100%
 - `Timer=Paused` → resume/play icon + time at 60%
 - this does not alter the separate automatic Rest Timer policy
+
+Pinned scrolling behavior:
+- representative viewport is `360 × 780`
+- fixed top region = StatusArea 62 + Nav Header 56 + WorkoutLiveBar 64 = `182 px`
+- only `WorkoutContent` scrolls (`y=182`, `360 × 598`, clipped vertical scroll)
+- Nav Header and WorkoutLiveBar do not collapse/hide while moving to later exercises
+- bottom `운동 추가` stays inside the scrolling content; it is not fixed
+- RestTimerPill remains separate and floats below the live bar without replacing the fixed top hierarchy
 
 Design system:
 - `WorkoutLiveBar` component set — `1488:7122`
@@ -182,9 +194,11 @@ Focused post-closure QA:
 - bottom `운동 추가` retained
 - Running/Paused visual read-back PASS
 - Paused time opacity read-back = `0.60`
-- canonical 05A screenshot after promotion PASS
+- canonical 05A now reads back as a 360 × 780 viewport with internal vertical scrolling
+- third-exercise scrolled representative screenshot PASS
+- Rest Timer representative screen synchronized to fixed Nav Header + WorkoutLiveBar structure; screenshot PASS
 
-**GROUP 05 CLOSED AGAIN AFTER THE SCOPED 2026-09-15 AMENDMENT.**
+**GROUP 05 CLOSED AGAIN AFTER THE SCOPED 2026-09-15 AMENDMENTS.**
 
 Do not repeat prior Group 05 QA or reopen unrelated behavior unless a later shared change creates a concrete regression risk or the PO explicitly requests a new change.
 
