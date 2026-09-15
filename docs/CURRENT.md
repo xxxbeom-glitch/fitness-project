@@ -1,10 +1,10 @@
 # CURRENT — Fitness Project
 
-**Updated:** 2026-09-15
+**Updated:** 2026-09-16
 
 ## Current mode
 
-`PRODUCT/UX FIGMA QA · GROUP 04 EXERCISE LIBRARY/DETAIL CLOSED · GROUP 05 ACTIVE WORKOUT CLOSED (2026-09-15 LIVE-BAR + SCROLL + REST-LIVE-BAR AMENDMENTS LOCKED) · GROUP 06 COMPLETION FINAL CLOSURE QA NEXT · ANALYSIS BODY-MAP ASSET MAPPING DEFERRED · GROUP 03 ROUTINE CLOSED · GROUP 02 HOME DEFERRED BY PO · NO CURSOR IMPLEMENTATION HANDOFF`
+`PRODUCT/UX FIGMA QA · GROUP 04 EXERCISE LIBRARY/DETAIL CLOSED · GROUP 05 MANUAL-TIMER POPUP SCOPED REFINEMENT OPEN (PREVIOUS LIVE-BAR + SCROLL + REST-LIVE-BAR AMENDMENTS LOCKED) · GROUP 06 COMPLETION FINAL CLOSURE QA QUEUED AFTER GROUP 05 TIMER · ANALYSIS BODY-MAP ASSET MAPPING DEFERRED · GROUP 03 ROUTINE CLOSED · GROUP 02 HOME DEFERRED BY PO · NO CURSOR IMPLEMENTATION HANDOFF`
 
 ## Resume rule
 
@@ -14,6 +14,7 @@
 
 ## Latest active checkpoint
 
+- `docs/ux-decisions/2026-09-16-group05-manual-timer-popup-checkpoint.md`
 - `docs/ux-decisions/2026-09-15-group05-rest-live-bar-amendment.md`
 - `docs/ux-decisions/2026-09-15-group05-active-workout-scroll-behavior.md`
 - `docs/ux-decisions/2026-09-15-group05-active-workout-live-bar-amendment.md`
@@ -139,15 +140,18 @@ The old 195/211 Production target is not the current raw-source basis after the 
 
 ---
 
-# GROUP 05 — ACTIVE WORKOUT CLOSED
+# GROUP 05 — ACTIVE WORKOUT SCOPED REOPEN (MANUAL TIMER)
 
 Original final closure:
 - `docs/ux-decisions/2026-09-10-group05-closure-qa.md`
 
-Latest PO-approved post-closure amendments:
+PO-approved post-closure amendments already locked:
 - `docs/ux-decisions/2026-09-15-group05-active-workout-live-bar-amendment.md`
 - `docs/ux-decisions/2026-09-15-group05-active-workout-scroll-behavior.md`
 - `docs/ux-decisions/2026-09-15-group05-rest-live-bar-amendment.md`
+
+Current scoped reopen checkpoint:
+- `docs/ux-decisions/2026-09-16-group05-manual-timer-popup-checkpoint.md`
 
 Canonical Figma:
 - file `W3lZurXCXbThP67rF2xk2b`
@@ -157,6 +161,10 @@ Canonical Figma:
 - `05A_Workout_Weight_Scrolled_3rdExercise` — `1495:2408`
 - `05F_Workout_RestTimer` — `1498:2769`
 - canonical rest live-bar instance — `1516:6607`
+
+Current manual-timer experimental states (not canonical yet):
+- `EXP_ManualTimer_Popup_A_Idle` — `1519:2581`
+- `EXP_ManualTimer_Popup_A_Running` — `1525:4014`
 
 Latest locked workout presentation:
 - old 3-metric `운동시간 / 볼륨 / 완료 세트` summary is removed from canonical 05A
@@ -197,6 +205,28 @@ Latest Rest Timer presentation:
 - no `+15 / -15`, Rest Timer pause, or reset controls
 - countdown reaching zero removes the bar; exact motion/sound/vibration/background notification remains deferred
 
+Current manual-timer direction:
+- Nav Header timer action opens a **separate manual countdown popup**; it does not reuse the automatic RestLiveBar
+- A / ring-centered popup direction selected for refinement
+- B / quick-set proposal deleted from Figma
+- retained Idle state: `01:30`, `-15초`, `+15초`, `타이머 시작`
+- retained Running state: `01:12`, partial ring, `-15초`, `+15초`, `타이머 중지`
+- `타이머 시작` → `타이머 중지` transition is the current required direction
+- explanatory/helper copy removed; only functional labels/actions remain
+- popup surface aligned to existing Dialog treatment: `294 × 412`, radius `24`, existing Dialog background/border bindings
+- existing Primary CTA component and local `icon/edit` reused
+- ring Track = `border/default`, Fill = `brand/primary`
+- no shared ManualTimerPopup component promoted yet
+
+Manual-timer behavior still open:
+- exact time-edit interaction
+- final quick-adjust step (`±15초` is current candidate)
+- exact semantic result of `타이머 중지`
+- `닫기` behavior while running
+- completion feedback
+- conflict/priority if manual timer and automatic Rest Timer overlap
+- final component/variant promotion and canonical screen naming
+
 Design system:
 - `WorkoutLiveBar` component set — `1488:7122`
   - Running — `1485:935`
@@ -210,7 +240,7 @@ Design system:
 - `bg/workout-live` → `neutral/925`
 - existing `heading/01`, `display/01`, `label/02`, `text/primary`, `border/default`, `brand/primary`, `state/danger`, `radius/xs`, `spacing/20`, `spacing/10`, `spacing/8`, `spacing/16`, `spacing/6` reused
 
-Focused post-closure QA:
+Focused post-closure QA already passed before the current manual-timer reopen:
 - approved workout live-bar treatment promoted into canonical 05A
 - old workout summary and old bottom end/cancel row absent
 - bottom `운동 추가` retained
@@ -225,9 +255,7 @@ Focused post-closure QA:
 - obsolete RestTimerPill remaining instance count = `0`
 - temporary Rest Timer bottom-bar comparison frame removed after canonical promotion
 
-**GROUP 05 CLOSED AGAIN AFTER THE SCOPED 2026-09-15 AMENDMENTS.**
-
-Do not repeat prior Group 05 QA or reopen unrelated behavior unless a later shared change creates a concrete regression risk or the PO explicitly requests a new change.
+Group 05 had been closed after the scoped 2026-09-15 amendments. It is now **reopened only for the 2026-09-16 manual-timer popup refinement**. Do not reopen the already-passed WorkoutLiveBar, pinned-scroll, RestLiveBar, end/discard, or other unrelated Group 05 behavior without a concrete conflict/regression.
 
 ---
 
@@ -270,17 +298,27 @@ Analysis policy expansion is paused while the agreed group-by-group QA sequence 
 
 # NEXT OPEN ITEM
 
-Continue the agreed group-by-group Figma/Product QA sequence.
+Finish the current scoped Group 05 manual-timer popup refinement before resuming the agreed group-by-group QA sequence.
+
+**Group 05 — Header manual timer finalization**
+
+Focused scope only:
+1. lock the time-edit interaction and quick-adjust step
+2. lock `타이머 중지`, `닫기`, completion, and Rest Timer overlap behavior
+3. promote the approved popup structure to reusable component/variants and canonical representative states only after PO approval
+4. run focused binding/screenshot QA and close the scoped Group 05 reopen
+
+After that, resume:
 
 **Group 06 — 운동 완료 final closure QA**
 
-Focused scope only:
+Focused scope:
 1. verify canonical completion states after the 2026-09-14 shared-summary sync
 2. verify the two recommended-routine completion dialogs against the current accepted recommendation flow
 3. verify shared component/instance integrity and current 360×780 representative states
 4. if no blocker remains, create a Group 06 final closure checkpoint and mark Group 06 CLOSED
 
-Do not reopen Group 05, Group 04, Group 03, or deferred Group 02 without a concrete conflict/regression or explicit PO request.
+Do not reopen Group 04, Group 03, or deferred Group 02 without a concrete conflict/regression or explicit PO request.
 Do not resume Analysis product-policy decisions until the group-by-group QA sequence reaches that group.
 Do not begin Cursor implementation handoff.
 
