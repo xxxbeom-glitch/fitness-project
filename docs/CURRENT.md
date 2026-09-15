@@ -104,9 +104,7 @@ Delete policy — PO APPROVED:
 - recent-history/growth history derived from those completed records remains preserved
 - destructive confirmation dialog is required before delete
 - if affected routine count is reliably known, the dialog may state `N개의 루틴`
-
-Open delete edge case:
-- if the deleted exercise is the only exercise in a saved routine, whether that now-empty routine is also deleted or retained is still DECISION NEEDED
+- if the deleted exercise was the only exercise in a saved routine, that routine is **retained as an empty routine**; the routine itself is not cascade-deleted
 
 Figma QA:
 - `04B_Search_Selected` remains `360 × 780`; bottom `SelectionFooter` restored to `y=680`, bottom=`780`
@@ -142,13 +140,12 @@ Product Owner explicitly deferred Group 02 Home refinement. Do not resume it unl
 
 # NEXT OPEN ITEM
 
-Finish Group 04 Product/UX QA with the remaining completion decisions only:
+Finish Group 04 Product/UX QA with the remaining completion work only:
 
 1. create/edit Save destination
-2. decide the single-exercise-routine edge case when deleting a custom exercise
-3. reflect the final delete-confirmation state in Figma using the existing Dialog pattern and focused QA only
-4. add/check the no-media Exercise Detail representative state because approved policy says media absence must not reserve an empty media box
-5. if no blocker remains, run scoped final Group 04 closure QA and mark Group 04 CLOSED
+2. reflect the final delete-confirmation state in Figma using the existing Dialog pattern and focused QA only
+3. add/check the no-media Exercise Detail representative state because approved policy says media absence must not reserve an empty media box
+4. if no blocker remains, run scoped final Group 04 closure QA and mark Group 04 CLOSED
 
 Do not reopen already passed recording-type, selector, list/filter, or height QA without a new conflict/regression.
 
