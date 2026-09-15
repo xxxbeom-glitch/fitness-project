@@ -4,7 +4,7 @@
 
 ## Current mode
 
-`PRODUCT/UX FIGMA QA · GROUP 04 EXERCISE LIBRARY/DETAIL CLOSED · GROUP 05 ACTIVE WORKOUT ALREADY CLOSED · GROUP 06 COMPLETION FINAL CLOSURE QA NEXT · ANALYSIS BODY-MAP ASSET MAPPING DEFERRED · GROUP 03 ROUTINE CLOSED · GROUP 02 HOME DEFERRED BY PO · NO CURSOR IMPLEMENTATION HANDOFF`
+`PRODUCT/UX FIGMA QA · GROUP 04 EXERCISE LIBRARY/DETAIL CLOSED · GROUP 05 ACTIVE WORKOUT CLOSED (2026-09-15 LIVE-BAR AMENDMENT LOCKED) · GROUP 06 COMPLETION FINAL CLOSURE QA NEXT · ANALYSIS BODY-MAP ASSET MAPPING DEFERRED · GROUP 03 ROUTINE CLOSED · GROUP 02 HOME DEFERRED BY PO · NO CURSOR IMPLEMENTATION HANDOFF`
 
 ## Resume rule
 
@@ -14,6 +14,7 @@
 
 ## Latest active checkpoint
 
+- `docs/ux-decisions/2026-09-15-group05-active-workout-live-bar-amendment.md`
 - `docs/ux-decisions/2026-09-15-group04-final-closure-qa.md`
 
 Directly relevant next Group 06 checkpoints:
@@ -138,10 +139,54 @@ The old 195/211 Production target is not the current raw-source basis after the 
 
 # GROUP 05 — ACTIVE WORKOUT CLOSED
 
-Final closure already recorded:
+Original final closure:
 - `docs/ux-decisions/2026-09-10-group05-closure-qa.md`
 
-Do not repeat Group 05 QA unless a later shared change creates a concrete regression risk.
+Latest PO-approved post-closure amendment:
+- `docs/ux-decisions/2026-09-15-group05-active-workout-live-bar-amendment.md`
+
+Canonical Figma:
+- file `W3lZurXCXbThP67rF2xk2b`
+- page `05 운동 중` — `233:2076`
+- `05A_Workout_Weight` — `148:1979`
+- canonical live-bar instance — `1492:2407`
+
+Latest locked presentation:
+- old 3-metric `운동시간 / 볼륨 / 완료 세트` summary is removed from canonical 05A
+- 64px `WorkoutLiveBar` sits directly below the Nav Header
+- left = workout elapsed-time control + elapsed time
+- right = compact `종료 / 취소`
+- bottom = large Primary `운동 추가` only
+- `종료` keeps the existing complete/incomplete save flow
+- `취소` is the entry for the existing full-session discard confirmation; destructive semantics are unchanged
+
+Workout elapsed-time variants:
+- `Timer=Running` → pause icon + time at 100%
+- `Timer=Paused` → resume/play icon + time at 60%
+- this does not alter the separate automatic Rest Timer policy
+
+Design system:
+- `WorkoutLiveBar` component set — `1488:7122`
+  - Running — `1485:935`
+  - Paused — `1488:7106`
+- `Workout Inline Action` — `1485:934`
+- local `icon/play` — `1488:7086`
+- existing local `icon/pause` reused
+- `neutral/925` = `#0D0D10`
+- `bg/workout-live` → `neutral/925`
+- existing `heading/01`, `label/02`, `text/primary`, `border/default`, `state/danger`, `radius/xs`, `spacing/20`, `spacing/10`, `spacing/6` reused
+
+Focused post-closure QA:
+- approved C treatment promoted into canonical 05A
+- old summary and old bottom end/cancel row absent
+- bottom `운동 추가` retained
+- Running/Paused visual read-back PASS
+- Paused time opacity read-back = `0.60`
+- canonical 05A screenshot after promotion PASS
+
+**GROUP 05 CLOSED AGAIN AFTER THE SCOPED 2026-09-15 AMENDMENT.**
+
+Do not repeat prior Group 05 QA or reopen unrelated behavior unless a later shared change creates a concrete regression risk or the PO explicitly requests a new change.
 
 ---
 
@@ -194,10 +239,6 @@ Focused scope only:
 3. verify shared component/instance integrity and current 360×780 representative states
 4. if no blocker remains, create a Group 06 final closure checkpoint and mark Group 06 CLOSED
 
-Do not reopen Group 05, Group 04, Group 03, or deferred Group 02 without a concrete conflict/regression.
+Do not reopen Group 05, Group 04, Group 03, or deferred Group 02 without a concrete conflict/regression or explicit PO request.
 Do not resume Analysis product-policy decisions until the group-by-group QA sequence reaches that group.
 Do not begin Cursor implementation handoff.
-
-# Development boundary
-
-Product Owner가 개발 전환을 명시하기 전까지 개발/Cursor handoff를 하지 않는다.
