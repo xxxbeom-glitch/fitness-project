@@ -212,6 +212,20 @@ States:
 
 이 목록은 **랫풀다운 UI 샘플/allowlist 예시**이며 전역 exhaustive taxonomy가 아니다. 실제 Production exercise별 allowlist는 Exercise DB data QA에서 별도로 확정한다.
 
+### 8.6 Attachment media fallback — 2026-09-15 PO clarification
+
+손잡이를 선택했더라도 해당 손잡이를 정확히 보여주는 별도 Gym Animations media가 없을 수 있다.
+
+MVP 표시 규칙:
+
+1. 선택한 attachment와 정확히 매칭되는 reviewed media가 있으면 해당 attachment-specific media를 표시한다.
+2. attachment-specific media가 없으면 **해당 canonical exercise의 기본 media를 그대로 표시한다.**
+3. `직접 입력` attachment는 입력 문자열만으로 media를 자동 매칭하지 않으며 기본 exercise media를 표시한다.
+4. attachment-specific media 부재 때문에 Exercise Detail에서 media 영역 자체를 숨기거나 별도의 `NoMedia` 상태를 만들지 않는다.
+5. 기본 제공 운동은 Gym Animations source 기반이며, 이 fallback 규칙은 **손잡이별 세부 media 차이**를 처리하기 위한 것이다.
+
+따라서 `04D_Exercise_Detail_Info_NoMedia` 같은 기본 제공 운동의 별도 no-media representative state는 사용하지 않는다.
+
 ## Remaining data boundary
 
 Group 04에서 attachment picker의 **UI/interaction contract는 닫을 수 있다.**
