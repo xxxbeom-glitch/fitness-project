@@ -4,7 +4,7 @@
 
 ## Current mode
 
-`PRODUCT/UX FIGMA · GROUP 04 EXERCISE DETAIL PRODUCT QA ACTIVE · 360×780 BASELINE HEIGHT RULE LOCKED · CUSTOM EXERCISE DELETE POLICY LOCKED · GROUP 03 ROUTINE CLOSED · GROUP 02 HOME DEFERRED BY PO · NO CURSOR IMPLEMENTATION HANDOFF`
+`PRODUCT/UX FIGMA · GROUP 04 EXERCISE DETAIL PRODUCT QA ACTIVE · 360×780 BASELINE HEIGHT RULE LOCKED · CUSTOM EXERCISE DELETE POLICY LOCKED · GROUP 03 EMPTY-ROUTINE EXCEPTION STATE REFLECTED · GROUP 03 ROUTINE OTHERWISE CLOSED · GROUP 02 HOME DEFERRED BY PO · NO CURSOR IMPLEMENTATION HANDOFF`
 
 ## Resume rule
 
@@ -105,6 +105,7 @@ Delete policy — PO APPROVED:
 - destructive confirmation dialog is required before delete
 - if affected routine count is reliably known, the dialog may state `N개의 루틴`
 - if the deleted exercise was the only exercise in a saved routine, that routine is **retained as an empty routine**; the routine itself is not cascade-deleted
+- corresponding empty saved-routine Figma state is reflected on Group 03: `03D_Routine_Detail_Empty` — `1423:1972`
 
 Figma QA:
 - `04B_Search_Selected` remains `360 × 780`; bottom `SelectionFooter` restored to `y=680`, bottom=`780`
@@ -129,6 +130,17 @@ Remaining Group 04-specific component-master promotion into `Common_Component` h
 # GROUP 03 — ROUTINE CLOSED
 
 Group 03 Product/UX rules and representative Figma states are closed at the current approved checkpoint.
+
+Cross-group exception state added from approved Group 04 delete policy:
+- `03D_Routine_Detail_Empty` — `1423:1972`
+- saved routine identity remains even when exercise count becomes 0
+- Summary = `0개 / 0분 / 0세트`
+- `운동 추가` CTA shown
+- `운동 시작` CTA hidden
+- shared `EmptyState` pattern reused
+- screenshot/read-back QA PASS
+
+This does not reopen the rest of Group 03.
 
 ---
 
