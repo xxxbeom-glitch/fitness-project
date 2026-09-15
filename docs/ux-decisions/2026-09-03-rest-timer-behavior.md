@@ -12,90 +12,127 @@ Active Workout의 휴식 타이머는 사용자가 별도로 관리해야 하는
 ### Trigger
 
 - 사용자가 세트 완료 체크를 하면 해당 운동의 휴식 타이머가 자동으로 시작된다.
-- 상단에서 내려오는 짧은 toast / pill 형태를 사용한다.
+- 사용자가 별도 시작 동작을 하지 않는다.
 
 ### Running behavior
 
 - 예: 기본 휴식 시간이 1분이면 1분 카운트다운이 진행된다.
-- 타이머가 시작되면 toast / pill이 화면 상단에서 아래로 내려와 노출된다.
-- 카운트다운이 끝나면 toast / pill은 다시 위로 사라진다.
 - 사용자는 휴식 시간을 꼭 기다릴 필요가 없다.
 - 사용자가 바로 다음 세트나 다른 운동을 진행해도 타이머는 운동 흐름을 막거나 순서를 강제하지 않는다.
-- 노출 중 사용자가 UI를 치우고 싶으면 `X`로 닫을 수 있다.
-- `X`는 노출된 UI만 닫는 행동이며 복잡한 타이머 조작 흐름을 열지 않는다.
+- 타이머가 실행 중인 동안에는 화면 하단에 고정된 `RestLiveBar`가 노출된다.
+- 카운트다운이 끝나거나 사용자가 `휴식 종료`를 누르면 `RestLiveBar`가 제거된다.
 
-이전의 `시작 직후 잠깐 노출 후 임의로 사라질 수 있음` 표현은 최신 PO 결정에 의해 superseded 된다. 기본 presentation은 **카운트다운 동안 노출 → 종료 시 위로 사라짐**이다.
+이전의 상단 toast / pill presentation과 `X = UI만 닫기` 동작은 2026-09-15 PO 승인으로 superseded 된다.
 
-### Pinned-header coexistence — 2026-09-15
+### Fixed-bottom presentation — 2026-09-15
 
-Active Workout의 최신 고정 상단 구조에서는 세로 스크롤 중에도 `Nav Header`와 `WorkoutLiveBar`가 계속 보인다.
+Canonical representative viewport: `360 × 780`.
 
-따라서 Rest Timer pill은 이 고정 상단 영역을 대체하거나 숨기지 않는다.
+상단 고정 구조는 그대로 유지한다.
 
-- `Nav Header` 유지
-- `WorkoutLiveBar` 유지
-- `RestTimerPill`은 live bar 바로 아래의 workout-content 영역에 transient overlay로 노출
-- 운동 목록은 계속 스크롤 가능
-- Rest Timer가 떠 있어도 workout elapsed-time control, `종료`, `취소` entry는 live bar에 그대로 유지
+- `StatusArea_Spacer` — `62`
+- `Nav Header` — `56`
+- `WorkoutLiveBar` — `64`
+- fixed top total — `182 px`
 
-이 변경은 Rest Timer의 trigger/countdown/close 의미를 바꾸는 것이 아니라 최신 Active Workout 화면 계층에 맞춘 presentation sync다.
+Rest Timer가 실행 중일 때:
 
-Reference: `docs/ux-decisions/2026-09-15-group05-active-workout-scroll-behavior.md`.
+- `WorkoutContent`: y `182`, h `526`, 내부 세로 스크롤
+- `RestLiveBar`: y `708`, h `72`, 화면 하단 고정
+- 운동 목록은 상단 고정 영역과 하단 RestLiveBar 사이에서만 스크롤된다.
+- RestLiveBar는 Nav Header / WorkoutLiveBar를 대체하거나 숨기지 않는다.
+
+Reference: `docs/ux-decisions/2026-09-15-group05-rest-live-bar-amendment.md`.
+
+### Countdown hierarchy
+
+- `휴식` 라벨은 표시하지 않는다.
+- 남은 시간만 크게 표시한다.
+- representative value: `01:29`
+- typography: `display/01` — SUIT Bold `20 / 28`
+- color: `text/primary`
+
+### Progress track / fill
+
+RestLiveBar의 최상단에 `2 px` 진행 라인을 표시한다.
+
+- Track: `border/default`
+- Fill: `brand/primary`
+- Fill은 왼쪽에서 시작한다.
+- 남은 시간이 줄수록 **Fill의 오른쪽 끝이 왼쪽으로 이동**하며 길이가 줄어든다.
+- Figma의 특정 Fill 길이는 대표 상태일 뿐 고정 percentage를 의미하지 않는다.
 
 ### Controls
 
-- MVP에서는 `+15초`, `-15초` 같은 시간 증감 버튼을 제공하지 않는다.
-- 별도 일시정지/재설정 버튼을 toast 안에 추가하지 않는다.
-- 핵심은 `자동 시작 → 필요하면 X로 닫기 → 운동은 자유롭게 계속`이다.
+오른쪽 action은 `휴식 종료`다.
+
+- `휴식 종료`를 누르면 현재 휴식 카운트다운 자체를 종료한다.
+- 종료 후 RestLiveBar를 제거한다.
+- MVP에서는 UI만 숨기고 같은 Rest Timer를 백그라운드에서 계속 돌리는 별도 close action을 두지 않는다.
+
+MVP에서 제공하지 않음:
+
+- `+15초`
+- `-15초`
+- Rest Timer pause
+- Rest Timer reset
 
 ### End of rest
 
-- 설정된 휴식 시간이 끝나면 toast / pill은 위로 사라진다.
-- 종료 시 별도 진동 / 소리 / background notification 여부는 구현 및 디자인 단계에서 별도 확정한다.
-- 종료 피드백은 다음 세트 진행을 막지 않는다.
+- 설정된 휴식 시간이 0이 되면 RestLiveBar를 제거한다.
+- 다음 세트 진행을 막는 별도 transition은 없다.
+- 정확한 등장/퇴장 motion, 진동, 소리, background notification 여부는 별도 확정한다.
 
 ## Figma visual authority
 
 Canonical Figma file: `W3lZurXCXbThP67rF2xk2b`
 
-- local `RestTimerPill` component — `721:3456`
-- `05F_Workout_RestTimer` — `1498:2769`
-- visible RestTimerPill instance — `1498:2765`
-- local component library — `635:788`
+- page: `05 운동 중` — `233:2076`
+- canonical `05F_Workout_RestTimer` — `1498:2769`
+- local `RestLiveBar` component — `1516:6598`
+- canonical RestLiveBar instance — `1516:6607`
+- local Group 05 component area — `05_GROUP_CONFIRMED_COMPONENTS` — `1485:922`
 
-The temporary copied `410_Rest_Timer` frame on the Group 05 page was used only as the visual reference and removed after localization.
+`RestLiveBar` reuses existing design-system foundations:
 
-`RestTimerPill` uses existing local design-system foundations:
-
-- `glass/surface-20`
-- `radius/full`
-- `spacing/12`, `spacing/20`, `spacing/2`
-- `text/primary`
-- `state-bg/danger`, `state/danger`
+- `bg/workout-live`
 - `display/01`
+- `label/02`
+- `text/primary`
+- `border/default`
+- `brand/primary`
+- `radius/xs`
+- `spacing/20`
+- `spacing/10`
+- `spacing/8`
+- `spacing/16`
 
-No new token was added.
+Locked visual details:
 
-The source reference did not contain actual Figma prototype reactions. The drop-down / count-down / upward-dismiss motion is therefore a product interaction rule, while `05F` is the canonical static representative state.
+- bar: `360 × 72`
+- horizontal padding: `20`
+- top padding: `8`
+- bottom padding: `16`
+- asymmetric vertical padding is intentional
+- progress Track / Fill height: `2`
+- `휴식 종료` touch target: `76 × 44`
+- `휴식 종료` visual: `76 × 32`
 
-## Focused binding QA — 2026-09-10
+The previous local `RestTimerPill` component and its canonical 05F instance were removed after the new RestLiveBar was promoted.
 
-- `RestTimerPill`: remote Variable 0 / missing Variable 0
-- `RestTimerPill`: remote Style 0 / missing Style 0
-- `05F_Workout_RestTimer`: missing main 0 / remote main 0
-- `05F_Workout_RestTimer`: remote Variable 0 / missing Variable 0
-- `05F_Workout_RestTimer`: remote Style 0 / missing Style 0
-- representative screenshot read-back: PASS
+## Focused presentation QA — 2026-09-15
 
-## Focused presentation sync QA — 2026-09-15
-
-- `05F_Workout_RestTimer` rebuilt from the current canonical 05A fixed-header/internal-scroll structure
-- obsolete three-metric summary removed from the representative Rest Timer state
-- local `Nav Header` instance retained
-- local `WorkoutLiveBar` instance retained
-- local `RestTimerPill` instance retained
-- pill positioned below the live bar without replacing the fixed top hierarchy
-- 360 × 780 screenshot read-back: PASS
+- canonical 05F retains local `Nav Header` and `WorkoutLiveBar` instances
+- `WorkoutContent` read-back: `360 × 526`, y `182`, clipped internal scroll
+- `RestLiveBar` read-back: `360 × 72`, y `708`
+- countdown read-back: `display/01`, `20 / 28`
+- action read-back: `label/02`
+- progress Track: `border/default`, `2 px`
+- progress Fill: `brand/primary`, `2 px`
+- bar background: `bg/workout-live`
+- spacing bindings: `spacing/20`, `spacing/10`, `spacing/8`, `spacing/16`
+- obsolete RestTimerPill remaining instance count: `0`
+- canonical 360 × 780 screenshot read-back: PASS
 
 ## Deferred
 
@@ -104,6 +141,7 @@ The source reference did not contain actual Figma prototype reactions. The drop-
 - 타이머 종료 시 진동 / 소리 세기 및 on/off
 - background notification 정책
 - 새 세트 완료 시 기존 타이머가 남아 있는 경우의 정확한 재시작 처리
+- exact runtime entrance/exit animation
 
 ## Implementation
 
