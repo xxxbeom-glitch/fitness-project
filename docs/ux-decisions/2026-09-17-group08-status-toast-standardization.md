@@ -82,7 +82,8 @@ Applied:
 - message = `준비 중인 기능이에요.`
 - size after text override = 174×48
 - horizontally centered
-- y = 708, preserving the existing bottom feedback position without covering the Settings header
+- y = 72, matching the approved top drop-down toast position used by `634_Backup_Complete_Toast` and `703_Server_Error`
+- toast is a transient overlay that appears from the top rather than a bottom feedback bar
 
 The subscription-management product behavior is unchanged: the row remains a future-facing stub and tapping it shows unavailable/preparation feedback rather than navigating to a management screen.
 
@@ -100,7 +101,8 @@ Visual QA PASS:
 - Positive reference preserves dark pill + tinted green circular state + visible check mark + white message
 - Negative reference preserves dark pill + tinted red circular state + visible X mark + white message
 - `08A1` now matches the compact negative-toast visual language
-- no clipping or overlap in `08A1` at 360×780
+- `08A1` toast position matches the top drop-down reference position at y=72
+- no clipping at 360×780
 
 Structural QA PASS:
 - `08A1` toast main-component link → `Common_Component`
