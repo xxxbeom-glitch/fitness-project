@@ -17,6 +17,7 @@
 ## Latest active checkpoints
 
 ### Group 07 final closure
+- `docs/ux-decisions/2026-09-16-group07-common-component-naming-cleanup.md`
 - `docs/ux-decisions/2026-09-16-group07-screen-name-normalization.md`
 - `docs/ux-decisions/2026-09-16-group07-final-closure-qa.md`
 - `docs/ux-decisions/2026-09-14-group07-final-policy-lock.md`
@@ -161,7 +162,8 @@ Do not reopen completion shell, PR/no-PR presentation, volume-N/A presentation, 
 Final closure:
 - `docs/ux-decisions/2026-09-16-group07-final-closure-qa.md`
 
-Post-closure naming normalization:
+Post-closure maintenance:
+- `docs/ux-decisions/2026-09-16-group07-common-component-naming-cleanup.md`
 - `docs/ux-decisions/2026-09-16-group07-screen-name-normalization.md`
 
 Product rules:
@@ -183,22 +185,31 @@ Final closure corrections / verification:
 - 07D shared PR trophy card and shared 2×2 summary remain linked through `Common_Component`
 - 07D saved-session Trash + destructive confirmation PASS
 - separate 07C workout-record overview remains removed
-- Group 07 canonical Figma page/screen frame names normalized to English-only; node IDs unchanged
+- Group 07 canonical Figma page/screen/layer names normalized to English-only; user-facing Korean copy remains unchanged
 
 Common_Component organization:
 - `07_GROUP_CONFIRMED_COMPONENTS` — `1578:987`
-- existing original masters moved without duplication/detach:
+- Group 07-specific masters remain original nodes without duplication/detach:
   - `AnalysisPeriodTabs` — `961:1368`
+    - `Active=4Weeks / Active=3Months / Active=1Year`
   - `MetricSegmentedControl` — `1025:1092`
+    - `Active=TotalWeight / Active=Sets / Active=Time`
   - `AnalysisProgressRow` — `854:6951`
+- `SHARED_LIST_COMPONENTS` — `1593:1386`
+  - `RecentWorkoutRow` — `937:7292`
+  - `ListCard` — `952:611`
+- the two shared list masters were moved from legacy `MVP_공용_UI` into `Common_Component` by explicit PO request; existing Group 02/07 instances retain their main-component linkage
+- shared Nav Header / DialogCard / DialogButtons internal layer naming used by Group 07 was normalized to English without changing visible copy or behavior
 
 Final structural QA:
 - Group 07 page instance nodes: `77`
 - missing main-component links: `0`
-- source `Common_Component`: `73`
-- source `MVP_공용_UI`: `4`
-- remaining 4 legacy-source instances are only `ListCard` / `RecentWorkoutRow`, intentionally shared with deferred Group 02 and therefore not moved during Group 07 closure
+- source `Common_Component`: `77 / 77`
+- source legacy `MVP_공용_UI`: `0`
+- Korean/mixed Figma layer names across the five canonical Group 07 frames: `0`
+- Korean/mixed Figma layer names inside `07_GROUP_CONFIRMED_COMPONENTS`: `0`
 - local Group 07 production-page component masters: `0`
+- screenshot regression QA: `07A_Analysis_Home`, `07B_BodyArea_Detail_Empty`, `07D_Workout_History_Detail_DeleteConfirm` PASS
 
 ## Body-map production asset mapping deferred
 
@@ -215,7 +226,7 @@ This prepared-asset dependency is not a blocker to the closed Group 07 Product/U
 
 **GROUP 07 CLOSED.**
 
-Do not reopen analysis structure, contributor/empty presentation, 07D PR/summary/delete behavior, chart formatting, or component organization without a concrete new conflict/regression or explicit PO request.
+Do not reopen analysis structure, contributor/empty presentation, 07D PR/summary/delete behavior, chart formatting, naming, or component organization without a concrete new conflict/regression or explicit PO request.
 
 ---
 
