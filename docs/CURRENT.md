@@ -17,6 +17,7 @@
 ## Latest active checkpoints
 
 ### Group 07 final closure
+- `docs/ux-decisions/2026-09-16-group07-screen-name-normalization.md`
 - `docs/ux-decisions/2026-09-16-group07-final-closure-qa.md`
 - `docs/ux-decisions/2026-09-14-group07-final-policy-lock.md`
 - `docs/ux-decisions/2026-09-13-group07-session-detail-current-checkpoint.md`
@@ -160,17 +161,20 @@ Do not reopen completion shell, PR/no-PR presentation, volume-N/A presentation, 
 Final closure:
 - `docs/ux-decisions/2026-09-16-group07-final-closure-qa.md`
 
+Post-closure naming normalization:
+- `docs/ux-decisions/2026-09-16-group07-screen-name-normalization.md`
+
 Product rules:
 - `docs/ux-decisions/2026-09-14-group07-final-policy-lock.md`
 
 Canonical Figma:
 - file `W3lZurXCXbThP67rF2xk2b`
-- page `07 분석 · 운동 기록` — `233:2078`
-- `07A_분석홈` — `887:936`
-- `07B_부위상세` — `887:1028`
-- `07B_부위상세_Empty` — `1057:593`
-- `07D_운동기록상세_Exploration` — `836:1593`
-- `07D_운동기록상세_DeleteConfirm` — `1136:4054`
+- page `07 Analysis · Workout History` — `233:2078`
+- `07A_Analysis_Home` — `887:936`
+- `07B_BodyArea_Detail` — `887:1028`
+- `07B_BodyArea_Detail_Empty` — `1057:593`
+- `07D_Workout_History_Detail` — `836:1593`
+- `07D_Workout_History_Detail_DeleteConfirm` — `1136:4054`
 
 Final closure corrections / verification:
 - 07A total-weight Y-axis normalized to approved Korean compact labels `1.5만 / 1만 / 5천 / 0`
@@ -179,6 +183,7 @@ Final closure corrections / verification:
 - 07D shared PR trophy card and shared 2×2 summary remain linked through `Common_Component`
 - 07D saved-session Trash + destructive confirmation PASS
 - separate 07C workout-record overview remains removed
+- Group 07 canonical Figma page/screen frame names normalized to English-only; node IDs unchanged
 
 Common_Component organization:
 - `07_GROUP_CONFIRMED_COMPONENTS` — `1578:987`
@@ -210,7 +215,7 @@ This prepared-asset dependency is not a blocker to the closed Group 07 Product/U
 
 **GROUP 07 CLOSED.**
 
-Do not reopen analysis structure, contributor/empty presentation, 07D PR/summary/delete behavior, chart formatting, or component organization without a concrete conflict/regression or explicit PO request.
+Do not reopen analysis structure, contributor/empty presentation, 07D PR/summary/delete behavior, chart formatting, or component organization without a concrete new conflict/regression or explicit PO request.
 
 ---
 
