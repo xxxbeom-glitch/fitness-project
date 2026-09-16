@@ -4,7 +4,7 @@
 
 ## Current mode
 
-`PRODUCT/UX FIGMA QA · GROUP 03 ROUTINE CLOSED · GROUP 04 EXERCISE LIBRARY/DETAIL CLOSED · GROUP 05 ACTIVE WORKOUT CLOSED · GROUP 06 COMPLETION CLOSED · GROUP 07 FINAL CLOSURE QA NEXT · GROUP 02 HOME DEFERRED BY PO · ANALYSIS BODY-MAP ASSET MAPPING DEFERRED · NO CURSOR IMPLEMENTATION HANDOFF`
+`PRODUCT/UX FIGMA QA · GROUP 03 ROUTINE CLOSED · GROUP 04 EXERCISE LIBRARY/DETAIL CLOSED · GROUP 05 ACTIVE WORKOUT CLOSED · GROUP 06 COMPLETION CLOSED · GROUP 07 ANALYSIS/WORKOUT HISTORY CLOSED (BODY-MAP PRODUCTION ASSET MAPPING DEFERRED) · GROUP 08 SETTINGS/ACCOUNT CLOSEOUT NEXT · GROUP 02 HOME DEFERRED BY PO · NO CURSOR IMPLEMENTATION HANDOFF`
 
 ## Resume rule
 
@@ -16,19 +16,22 @@
 
 ## Latest active checkpoints
 
+### Group 07 final closure
+- `docs/ux-decisions/2026-09-16-group07-final-closure-qa.md`
+- `docs/ux-decisions/2026-09-14-group07-final-policy-lock.md`
+- `docs/ux-decisions/2026-09-13-group07-session-detail-current-checkpoint.md`
+- `docs/ux-decisions/2026-09-15-analysis-bodymap-asset-mapping-deferred.md`
+
 ### Group 06 final closure
 - `docs/ux-decisions/2026-09-16-group06-final-closure-qa.md`
 - `docs/ux-decisions/2026-09-14-group06-completion-shared-summary-sync.md`
 - `docs/ux-decisions/2026-09-14-recommended-routine-acceptance-current.md`
-- `docs/ux-decisions/2026-09-12-group06-page-cleanup.md`
-- `docs/ux-decisions/2026-09-12-group06-completion-final-shell.md`
 
-### Directly relevant Group 07 checkpoints
-- `docs/ux-decisions/2026-09-14-group07-final-policy-lock.md`
-- `docs/ux-decisions/2026-09-13-group07-session-detail-current-checkpoint.md`
-- `docs/ux-decisions/2026-09-13-group07-page-cleanup-renumber.md`
-- `docs/ux-decisions/2026-09-12-group07-analysis-design-system-reference-qa.md`
-- `docs/ux-decisions/2026-09-15-analysis-bodymap-asset-mapping-deferred.md`
+### Directly relevant next Group 08 checkpoints
+- `docs/ux-decisions/2026-09-14-group08-legal-links-session-handoff.md`
+- `docs/ux-decisions/2026-09-14-group08-profile-account-current.md`
+- `docs/ux-decisions/2026-09-14-group08-profile-settings-pass.md`
+- `docs/ux-decisions/2026-09-14-group08b-profile-account-lock.md`
 
 ---
 
@@ -146,25 +149,18 @@ Final component organization:
 - legacy `MVP_공용_UI` source instances: `0`
 - local component masters on the Group 06 production page: `0`
 
-The shared-summary relocation regression was repaired and screenshot/read-back QA passed for 06A/06B/06C, dialogs, the confirmed component group, and an affected Group 07 summary instance.
-
 **GROUP 06 CLOSED.**
 
 Do not reopen completion shell, PR/no-PR presentation, volume-N/A presentation, recommended-routine completion dialogs, or component organization without a concrete new conflict/regression or explicit PO request.
 
 ---
 
-# GROUP 02 — HOME REFINEMENT DEFERRED
+# GROUP 07 — ANALYSIS / WORKOUT HISTORY CLOSED
 
-Product Owner explicitly deferred Group 02 Home refinement.
+Final closure:
+- `docs/ux-decisions/2026-09-16-group07-final-closure-qa.md`
 
-Do not resume it unless PO requests it.
-
----
-
-# GROUP 07 — ANALYSIS / WORKOUT HISTORY
-
-Product rules are already locked by:
+Product rules:
 - `docs/ux-decisions/2026-09-14-group07-final-policy-lock.md`
 
 Canonical Figma:
@@ -176,18 +172,30 @@ Canonical Figma:
 - `07D_운동기록상세_Exploration` — `836:1593`
 - `07D_운동기록상세_DeleteConfirm` — `1136:4054`
 
-Current IA:
-- separate 07C workout-record overview was removed and must not be recreated without explicit PO direction
-- Group 06 `기록 상세 보기` routes to 07D saved-session detail
-- exercise-specific recent history/growth remains in Group 04
+Final closure corrections / verification:
+- 07A total-weight Y-axis normalized to approved Korean compact labels `1.5만 / 1만 / 5천 / 0`
+- 07B Empty restored to approved `진행한 운동` section header + compact empty-state card + single centered period-specific message
+- 07B contributor list remains all rows / page scroll / no arbitrary truncation
+- 07D shared PR trophy card and shared 2×2 summary remain linked through `Common_Component`
+- 07D saved-session Trash + destructive confirmation PASS
+- separate 07C workout-record overview remains removed
 
-Locked Group 07 rules include:
-- 07D volume N/A fallback = `총 볼륨 —`
-- 07D saved-session deletion via existing Nav Header Trash + confirmation
-- 07B long contributor list = all rows, page scroll; no arbitrary truncation/more affordance
-- product-policy decisions already QA-passed are not reopened during final closure QA
+Common_Component organization:
+- `07_GROUP_CONFIRMED_COMPONENTS` — `1578:987`
+- existing original masters moved without duplication/detach:
+  - `AnalysisPeriodTabs` — `961:1368`
+  - `MetricSegmentedControl` — `1025:1092`
+  - `AnalysisProgressRow` — `854:6951`
 
-## Body-map asset mapping deferred
+Final structural QA:
+- Group 07 page instance nodes: `77`
+- missing main-component links: `0`
+- source `Common_Component`: `73`
+- source `MVP_공용_UI`: `4`
+- remaining 4 legacy-source instances are only `ListCard` / `RecentWorkoutRow`, intentionally shared with deferred Group 02 and therefore not moved during Group 07 closure
+- local Group 07 production-page component masters: `0`
+
+## Body-map production asset mapping deferred
 
 Decision:
 - `docs/ux-decisions/2026-09-15-analysis-bodymap-asset-mapping-deferred.md`
@@ -198,22 +206,65 @@ Until PO prepares the production-ready body-map image set:
 - do not create replacement body-map artwork in Figma
 - final canonical-muscle → PNG-layer mapping remains deferred
 
-This deferred asset mapping is not to be treated as a blocker for QA of Group 07 areas that do not depend on the final production body-map mapping.
+This prepared-asset dependency is not a blocker to the closed Group 07 Product/UX/Figma QA state.
+
+**GROUP 07 CLOSED.**
+
+Do not reopen analysis structure, contributor/empty presentation, 07D PR/summary/delete behavior, chart formatting, or component organization without a concrete conflict/regression or explicit PO request.
+
+---
+
+# GROUP 02 — HOME REFINEMENT DEFERRED
+
+Product Owner explicitly deferred Group 02 Home refinement.
+
+Do not resume it unless PO requests it.
+
+---
+
+# GROUP 08 — SETTINGS / ACCOUNT ACTIVE
+
+Canonical Figma:
+- file `W3lZurXCXbThP67rF2xk2b`
+- page `08 설정 · 계정` — `233:2079`
+- exploration section `08_SETTINGS_V1_EXPLORATION` — `1158:645`
+
+Current checkpoint:
+- `docs/ux-decisions/2026-09-14-group08-legal-links-session-handoff.md`
+
+Already approved / do not reopen without a new issue:
+- profile/account base and account-exit flow/privacy policy
+- unit settings
+- workout settings presentation / flow
+- notification settings current scope
+- FAQ accordion and shared `AccordionItem`
+- support inquiry flow and shared `TextArea` / `AttachmentSlot`
+- Terms / Privacy entry rows link to external public documents; do not rebuild full legal-document screens in Figma
+
+Release follow-ups that are not current Figma blockers:
+- actual public Terms / Privacy URLs
+- exact support-inquiry record/image-attachment retention period
+- external account-deletion request URL
+- final timer sound assets / labels
+
+Current unresolved Group 08 launch-level items:
+- `구독 관리`
+- `언어`
+- `테마`
 
 ---
 
 # NEXT OPEN ITEM
 
-**Group 07 — Analysis / Workout History final closure QA**
+**Group 08 — Settings / Account closeout**
 
-Focused scope:
-1. verify only the current canonical 07A / 07B / 07B Empty / 07D / 07D DeleteConfirm states
-2. verify current locked Group 07 policies without reopening already approved Product/UX decisions
-3. verify shared component/instance integrity, including the shared PR/session-summary components touched by Group 06 organization
-4. keep final production body-map asset mapping deferred; do not redraw/recolor or invent replacement assets
-5. if no blocker remains outside the explicitly deferred body-map asset mapping, create a Group 07 final closure checkpoint and mark Group 07 CLOSED with that deferral preserved
+Continue from `docs/ux-decisions/2026-09-14-group08-legal-links-session-handoff.md`:
+1. decide whether `구독 관리 / 언어 / 테마` are visible at MVP launch or hidden/deferred
+2. check whether any remaining Group 08 launch-level policy is truly blocking
+3. perform only the necessary final Settings-home cleanup / Group 08 lock
 
-Do not reopen Group 06, Group 05, Group 04, Group 03, or deferred Group 02 without a concrete conflict/regression or explicit PO request.
+Do not rebuild legal full-text screens in Figma. Terms and Privacy use external public pages.
+Do not reopen Group 07, Group 06, Group 05, Group 04, Group 03, or deferred Group 02 without a concrete conflict/regression or explicit PO request.
 Do not begin Cursor implementation handoff.
 
 # Development boundary
