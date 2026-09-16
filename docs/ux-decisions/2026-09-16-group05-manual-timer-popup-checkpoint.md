@@ -125,6 +125,27 @@ When the Manual Timer countdown reaches zero:
 
 No extra Figma representative screen is required solely for completion; `00:00` is a runtime end-state of the same popup shell.
 
+## Manual Timer vs. automatic Rest Timer overlap — 2026-09-16 PO lock
+
+The two countdown tools must **not run at the same time** in MVP.
+
+When the automatic Rest Timer is active:
+
+- the Nav Header Manual Timer action is unavailable.
+- tapping the timer action does not open the Manual Timer popup.
+- no second countdown is created and no existing Rest Timer state is interrupted.
+- no additional warning dialog or toast is required.
+- when the automatic Rest Timer reaches zero or the user selects `휴식 종료`, the Manual Timer action becomes available again.
+
+Canonical Rest Timer screen reflection:
+- `05F_Workout_RestTimer` — `1498:2769`
+- Nav Header instance — `1498:2771`
+- Manual Timer `right-action` remains visible for layout consistency but is shown at **30% opacity** while Rest Timer is active.
+- this reuses the existing low-emphasis/disabled opacity convention already present in the Fitness file rather than introducing a new component or token.
+- focused screenshot QA after the override shows the timer action visibly disabled with no clipping or layout regression.
+
+Because the Manual Timer itself is modal and closing it terminates it, there is no supported path where a running/paused Manual Timer remains in the background while a new automatic Rest Timer begins.
+
 ## Copy reduction
 
 Per PO direction, explanatory/helper copy is omitted.
@@ -154,7 +175,7 @@ Current read-back:
 - existing typography/color system reused
 - countdown value is centered in the ring without an edit icon
 
-No new shared timer-popup component has been promoted yet because the remaining interaction behavior is not finally approved.
+No new shared timer-popup component has been promoted yet because final canonical component promotion/QA is still pending.
 
 ## Figma cleanup / focused visual QA already reflected
 
@@ -169,20 +190,22 @@ No new shared timer-popup component has been promoted yet because the remaining 
 - Paused bottom row uses existing Secondary/Primary CTA variants for `초기화 / 계속하기`
 - Idle / Running / Paused screenshots checked after refinement
 - Paused screenshot shows both bottom actions without clipping or overlap
+- canonical `05F_Workout_RestTimer` Manual Timer action dimmed to 30% while automatic Rest Timer is active
+- Rest Timer screenshot rechecked after the disabled-action override; no blocking visual regression found
 
 No additional visual state is required solely for close behavior or zero-completion behavior.
 
 ## Still open before canonical promotion
 
-1. conflict/priority rule if the manual timer and automatic Rest Timer overlap
-2. reusable component/variant promotion and final canonical screen naming
+1. reusable component/variant promotion and final canonical screen naming
+2. final focused binding / screenshot QA after promotion
 
 These must be resolved before Group 05 is closed again.
 
 ## Result
 
-**CHECKPOINT UPDATED — direct time entry is removed; `±15초` is locked; Running pauses instead of resetting; Paused exposes `초기화 / 계속하기`; circular `X` explicitly terminates and dismisses the Manual Timer; reaching `00:00` now leaves the same popup open with no auto-close/reset or extra completion feedback. Manual Timer is still not final/canonical because Rest Timer overlap and final promotion remain open.**
+**CHECKPOINT UPDATED — Manual Timer behavior is now fully locked for MVP: direct time entry is removed; `±15초` is locked; Running pauses; Paused exposes `초기화 / 계속하기`; `X` terminates and dismisses; `00:00` remains open without extra feedback; and automatic Rest Timer activity disables Manual Timer entry so the two countdowns cannot overlap. Remaining work is canonical component/variant promotion and final focused QA only.**
 
-The next work item is to resolve Manual Timer vs. automatic Rest Timer overlap, then promote the approved structure, run focused QA, close the scoped Group 05 reopen, and return to Group 06 completion final closure QA.
+The next work item is to promote the approved Manual Timer structure to reusable component/variants and canonical representative states, run focused QA, close the scoped Group 05 reopen, and return to Group 06 completion final closure QA.
 
 **NO CURSOR IMPLEMENTATION HANDOFF.**
