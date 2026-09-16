@@ -14,6 +14,9 @@
 
 ## Latest active checkpoint
 
+- `docs/ux-decisions/2026-09-16-group05-page-cleanup.md`
+- `docs/ux-decisions/2026-09-16-group05-common-component-organization-qa.md`
+- `docs/ux-decisions/2026-09-16-group04-common-component-organization.md`
 - `docs/ux-decisions/2026-09-16-group05-manual-timer-final-closure-qa.md`
 - `docs/ux-decisions/2026-09-16-group05-manual-timer-popup-checkpoint.md`
 - `docs/ux-decisions/2026-09-15-group05-rest-live-bar-amendment.md`
@@ -32,6 +35,9 @@ Directly relevant next Group 06 checkpoints:
 # GROUP 04 — EXERCISE LIBRARY / DETAIL CLOSED
 
 **Final closure:** `docs/ux-decisions/2026-09-15-group04-final-closure-qa.md`
+
+Post-closure maintenance:
+- `docs/ux-decisions/2026-09-16-group04-common-component-organization.md`
 
 Canonical Figma:
 - file `W3lZurXCXbThP67rF2xk2b`
@@ -126,10 +132,11 @@ Attachment media fallback:
 - canonical Exercise Detail remains media-present and structurally intact
 - obsolete no-media representative frame absent
 - no blocking regression found
+- Common_Component organization maintenance PASS; Group 04 page now resolves all component instances through confirmed Common_Component groups with no legacy `MVP_공용_UI` source remaining
 
 **GROUP 04 CLOSED.**
 
-Do not reopen already passed recording-type, selector, list/filter, save-destination, delete-policy/dialog, attachment-picker/media-fallback, or height QA without a new conflict/regression.
+Do not reopen already passed recording-type, selector, list/filter, save-destination, delete-policy/dialog, attachment-picker/media-fallback, height QA, or component-organization QA without a new conflict/regression.
 
 ## Preserved deferred data/runtime work
 
@@ -154,6 +161,10 @@ PO-approved post-closure amendments:
 Manual Timer scoped reopen and final closure:
 - working checkpoint: `docs/ux-decisions/2026-09-16-group05-manual-timer-popup-checkpoint.md`
 - final closure: `docs/ux-decisions/2026-09-16-group05-manual-timer-final-closure-qa.md`
+
+Post-closure artifact maintenance:
+- `docs/ux-decisions/2026-09-16-group05-common-component-organization-qa.md`
+- `docs/ux-decisions/2026-09-16-group05-page-cleanup.md`
 
 Canonical Figma:
 - file `W3lZurXCXbThP67rF2xk2b`
@@ -275,10 +286,12 @@ PASS:
 - Paused `초기화 / 계속하기` row PASS
 - `05F_Workout_RestTimer` disabled manual-timer affordance + RestLiveBar screenshot PASS
 - no blocking regression found in the scoped reopen
+- Common_Component organization QA PASS; Group 05 screen instances resolve through confirmed Common_Component groups with no local legacy `MVP_공용_UI` source remaining
+- obsolete legacy recording-type full-screen shells, Slice, and Keypad artifacts removed; 18 canonical representative screens remain
 
 **GROUP 05 CLOSED.**
 
-Do not reopen WorkoutLiveBar, pinned scroll, RestLiveBar, Manual Timer, end/discard, or other QA-passed Group 05 behavior without a concrete conflict/regression or explicit PO request.
+Do not reopen WorkoutLiveBar, pinned scroll, RestLiveBar, Manual Timer, end/discard, component organization, page cleanup, or other QA-passed Group 05 behavior without a concrete conflict/regression or explicit PO request.
 
 ---
 
