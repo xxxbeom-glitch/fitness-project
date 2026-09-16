@@ -4,7 +4,7 @@
 
 ## Current mode
 
-`PRODUCT/UX FIGMA QA · GROUP 04 EXERCISE LIBRARY/DETAIL CLOSED · GROUP 05 MANUAL-TIMER POPUP SCOPED REFINEMENT OPEN (PREVIOUS LIVE-BAR + SCROLL + REST-LIVE-BAR AMENDMENTS LOCKED) · GROUP 06 COMPLETION FINAL CLOSURE QA QUEUED AFTER GROUP 05 TIMER · ANALYSIS BODY-MAP ASSET MAPPING DEFERRED · GROUP 03 ROUTINE CLOSED · GROUP 02 HOME DEFERRED BY PO · NO CURSOR IMPLEMENTATION HANDOFF`
+`PRODUCT/UX FIGMA QA · GROUP 04 EXERCISE LIBRARY/DETAIL CLOSED · GROUP 05 ACTIVE WORKOUT CLOSED (MANUAL TIMER CANONICAL + FINAL QA PASS; LIVE-BAR + SCROLL + REST-LIVE-BAR LOCKED) · GROUP 06 COMPLETION FINAL CLOSURE QA NEXT · ANALYSIS BODY-MAP ASSET MAPPING DEFERRED · GROUP 03 ROUTINE CLOSED · GROUP 02 HOME DEFERRED BY PO · NO CURSOR IMPLEMENTATION HANDOFF`
 
 ## Resume rule
 
@@ -14,6 +14,7 @@
 
 ## Latest active checkpoint
 
+- `docs/ux-decisions/2026-09-16-group05-manual-timer-final-closure-qa.md`
 - `docs/ux-decisions/2026-09-16-group05-manual-timer-popup-checkpoint.md`
 - `docs/ux-decisions/2026-09-15-group05-rest-live-bar-amendment.md`
 - `docs/ux-decisions/2026-09-15-group05-active-workout-scroll-behavior.md`
@@ -140,18 +141,19 @@ The old 195/211 Production target is not the current raw-source basis after the 
 
 ---
 
-# GROUP 05 — ACTIVE WORKOUT SCOPED REOPEN (MANUAL TIMER)
+# GROUP 05 — ACTIVE WORKOUT CLOSED
 
-Original final closure:
+Original closure:
 - `docs/ux-decisions/2026-09-10-group05-closure-qa.md`
 
-PO-approved post-closure amendments already locked:
+PO-approved post-closure amendments:
 - `docs/ux-decisions/2026-09-15-group05-active-workout-live-bar-amendment.md`
 - `docs/ux-decisions/2026-09-15-group05-active-workout-scroll-behavior.md`
 - `docs/ux-decisions/2026-09-15-group05-rest-live-bar-amendment.md`
 
-Current scoped reopen checkpoint:
-- `docs/ux-decisions/2026-09-16-group05-manual-timer-popup-checkpoint.md`
+Manual Timer scoped reopen and final closure:
+- working checkpoint: `docs/ux-decisions/2026-09-16-group05-manual-timer-popup-checkpoint.md`
+- final closure: `docs/ux-decisions/2026-09-16-group05-manual-timer-final-closure-qa.md`
 
 Canonical Figma:
 - file `W3lZurXCXbThP67rF2xk2b`
@@ -161,19 +163,19 @@ Canonical Figma:
 - `05A_Workout_Weight_Scrolled_3rdExercise` — `1495:2408`
 - `05F_Workout_RestTimer` — `1498:2769`
 - canonical rest live-bar instance — `1516:6607`
+- `05Q_ManualTimer_Idle` — `1519:2581`
+- `05Q_ManualTimer_Running` — `1525:4014`
+- `05Q_ManualTimer_Paused` — `1547:3691`
 
-Current manual-timer experimental states (not canonical yet):
-- `EXP_ManualTimer_Popup_A_Idle` — `1519:2581`
-- `EXP_ManualTimer_Popup_A_Running` — `1525:4014`
+## Locked workout presentation
 
-Latest locked workout presentation:
 - old 3-metric `운동시간 / 볼륨 / 완료 세트` summary is removed from canonical 05A
 - 64px `WorkoutLiveBar` sits directly below the Nav Header
 - left = workout elapsed-time control + elapsed time
 - right = compact `종료 / 취소`
 - bottom = large Primary `운동 추가` only
 - `종료` keeps the existing complete/incomplete save flow
-- `취소` is the entry for the existing full-session discard confirmation; destructive semantics are unchanged
+- `취소` enters the existing full-session discard confirmation; destructive semantics are unchanged
 
 Workout elapsed-time variants:
 - `Timer=Running` → pause icon + time at 100%
@@ -185,77 +187,98 @@ Pinned scrolling behavior:
 - fixed top region = StatusArea 62 + Nav Header 56 + WorkoutLiveBar 64 = `182 px`
 - normal Active Workout: only `WorkoutContent` scrolls (`y=182`, `360 × 598`)
 - Nav Header and WorkoutLiveBar do not collapse/hide while moving to later exercises
-- bottom `운동 추가` stays inside the scrolling content; it is not fixed
+- bottom `운동 추가` stays inside scrolling content; it is not fixed
 
-Latest Rest Timer presentation:
-- set completion still starts the Rest Timer automatically
-- previous top `RestTimerPill` / X-close presentation is superseded
+## Locked automatic Rest Timer
+
+- set completion starts the Rest Timer automatically
 - while countdown runs, `RestLiveBar` is fixed to the bottom
 - `RestLiveBar`: y `708`, `360 × 72`
 - Rest Timer state `WorkoutContent`: y `182`, `360 × 526`, internal vertical scroll
 - left = large countdown only; no `휴식` label
-- countdown = `display/01`, `20 / 28`, `text/primary`
 - top progress line = `2 px` Track + Fill
 - Track = `border/default`
 - Fill = `brand/primary`
-- remaining time decreases by moving the Fill right edge toward the left
 - right action = `휴식 종료`
 - `휴식 종료` ends the current rest countdown and removes the bar
-- no separate MVP UI-only close action
-- no `+15 / -15`, Rest Timer pause, or reset controls
-- countdown reaching zero removes the bar; exact motion/sound/vibration/background notification remains deferred
+- no separate MVP close, `±15초`, pause, or reset controls
+- countdown reaching zero removes the bar
 
-Current manual-timer direction:
-- Nav Header timer action opens a **separate manual countdown popup**; it does not reuse the automatic RestLiveBar
-- A / ring-centered popup direction selected for refinement
-- B / quick-set proposal deleted from Figma
-- retained Idle state: `01:30`, `-15초`, `+15초`, `타이머 시작`
-- retained Running state: `01:12`, partial ring, `-15초`, `+15초`, `타이머 중지`
-- `타이머 시작` → `타이머 중지` transition is the current required direction
-- explanatory/helper copy removed; only functional labels/actions remain
-- popup surface aligned to existing Dialog treatment: `294 × 412`, radius `24`, existing Dialog background/border bindings
-- existing Primary CTA component and local `icon/edit` reused
-- ring Track = `border/default`, Fill = `brand/primary`
-- no shared ManualTimerPopup component promoted yet
+## Locked Manual Timer
 
-Manual-timer behavior still open:
-- exact time-edit interaction
-- final quick-adjust step (`±15초` is current candidate)
-- exact semantic result of `타이머 중지`
-- `닫기` behavior while running
-- completion feedback
-- conflict/priority if manual timer and automatic Rest Timer overlap
-- final component/variant promotion and canonical screen naming
+Product separation:
+- Manual Timer is a separate user-invoked countdown tool opened from the Nav Header timer action.
+- it is separate from workout elapsed time and automatic Rest Timer.
+- it uses a centered popup and does not reuse RestLiveBar.
 
-Design system:
+Shared component:
+- `ManualTimerPopup` component set — `1556:3897`
+  - `State=Idle` — `1556:3867`
+  - `State=Running` — `1556:3881`
+  - `State=Paused` — `1556:3896`
+- parent: `Common_Component / 05_GROUP_CONFIRMED_COMPONENTS`
+
+Time adjustment:
+- default representative value `01:30`
+- no direct/manual time entry
+- no edit icon/affordance
+- only `-15초 / +15초` adjustment for MVP
+
+State behavior:
+- Idle Primary CTA = `타이머 시작`
+- Running Primary CTA = `일시정지`
+- Paused = Secondary `초기화` + Primary `계속하기`
+- pause freezes the remaining time/ring
+- continue resumes from the same remaining time
+- reset returns to Idle `01:30`
+
+Close:
+- circular `X` uses existing `icon/close-circle`
+- Running/Paused X terminates the Manual Timer and closes the popup
+- remaining time is not preserved after close
+- reopening starts from Idle `01:30`
+
+Zero completion:
+- stops at `00:00`
+- same popup remains open
+- no auto-close/reset or separate completion screen/toast/animation/sound/vibration for MVP
+- X closes the completed timer
+
+Rest Timer overlap:
+- Manual Timer and automatic Rest Timer do not run simultaneously
+- while RestLiveBar is active, the Nav Header timer action is unavailable
+- canonical `05F_Workout_RestTimer` timer action is shown at opacity `0.30`
+- after automatic rest ends / `휴식 종료`, manual-timer entry becomes available again
+- no unavailable-state toast/dialog
+
+## Design system
+
 - `WorkoutLiveBar` component set — `1488:7122`
   - Running — `1485:935`
   - Paused — `1488:7106`
 - `Workout Inline Action` — `1485:934`
-- local `icon/play` — `1488:7086`
-- existing local `icon/pause` reused
 - `RestLiveBar` component — `1516:6598`
+- `ManualTimerPopup` component set — `1556:3897`
+- existing `CTA Button`, `icon/close-circle`, typography and color variables reused
 - obsolete local `RestTimerPill` removed after zero remaining instances
-- `neutral/925` = `#0D0D10`
-- `bg/workout-live` → `neutral/925`
-- existing `heading/01`, `display/01`, `label/02`, `text/primary`, `border/default`, `brand/primary`, `state/danger`, `radius/xs`, `spacing/20`, `spacing/10`, `spacing/8`, `spacing/16`, `spacing/6` reused
+- obsolete Manual Timer edit affordance removed from canonical shared variants and representative screens
 
-Focused post-closure QA already passed before the current manual-timer reopen:
-- approved workout live-bar treatment promoted into canonical 05A
-- old workout summary and old bottom end/cancel row absent
-- bottom `운동 추가` retained
-- Running/Paused visual read-back PASS
-- Paused time opacity read-back = `0.60`
-- canonical 05A reads back as a 360 × 780 viewport with internal vertical scrolling
-- third-exercise scrolled representative screenshot PASS
-- canonical 05F now uses fixed Nav Header + WorkoutLiveBar + internal WorkoutContent + fixed bottom RestLiveBar
-- canonical 05F RestLiveBar instance main = `1516:6598`
-- RestLiveBar spacing/color/type/progress bindings read back against existing Fitness system
-- Rest Timer representative screenshot PASS
-- obsolete RestTimerPill remaining instance count = `0`
-- temporary Rest Timer bottom-bar comparison frame removed after canonical promotion
+## Final focused QA
 
-Group 05 had been closed after the scoped 2026-09-15 amendments. It is now **reopened only for the 2026-09-16 manual-timer popup refinement**. Do not reopen the already-passed WorkoutLiveBar, pinned-scroll, RestLiveBar, end/discard, or other unrelated Group 05 behavior without a concrete conflict/regression.
+PASS:
+- ManualTimerPopup component/variant promotion
+- canonical 05Q instance linkage
+- no `EXP_ManualTimer_*` representative screen remains
+- surface/ring/text variable bindings preserved
+- existing CTA and close-icon component reuse verified
+- Idle / Running / Paused screenshots render without clipping or overlap
+- Paused `초기화 / 계속하기` row PASS
+- `05F_Workout_RestTimer` disabled manual-timer affordance + RestLiveBar screenshot PASS
+- no blocking regression found in the scoped reopen
+
+**GROUP 05 CLOSED.**
+
+Do not reopen WorkoutLiveBar, pinned scroll, RestLiveBar, Manual Timer, end/discard, or other QA-passed Group 05 behavior without a concrete conflict/regression or explicit PO request.
 
 ---
 
@@ -298,18 +321,6 @@ Analysis policy expansion is paused while the agreed group-by-group QA sequence 
 
 # NEXT OPEN ITEM
 
-Finish the current scoped Group 05 manual-timer popup refinement before resuming the agreed group-by-group QA sequence.
-
-**Group 05 — Header manual timer finalization**
-
-Focused scope only:
-1. lock the time-edit interaction and quick-adjust step
-2. lock `타이머 중지`, `닫기`, completion, and Rest Timer overlap behavior
-3. promote the approved popup structure to reusable component/variants and canonical representative states only after PO approval
-4. run focused binding/screenshot QA and close the scoped Group 05 reopen
-
-After that, resume:
-
 **Group 06 — 운동 완료 final closure QA**
 
 Focused scope:
@@ -318,7 +329,7 @@ Focused scope:
 3. verify shared component/instance integrity and current 360×780 representative states
 4. if no blocker remains, create a Group 06 final closure checkpoint and mark Group 06 CLOSED
 
-Do not reopen Group 04, Group 03, or deferred Group 02 without a concrete conflict/regression or explicit PO request.
+Do not reopen Group 05, Group 04, Group 03, or deferred Group 02 without a concrete conflict/regression or explicit PO request.
 Do not resume Analysis product-policy decisions until the group-by-group QA sequence reaches that group.
 Do not begin Cursor implementation handoff.
 
