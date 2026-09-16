@@ -1,7 +1,7 @@
 # Group 08 — Status Toast Standardization
 
 **Date:** 2026-09-17  
-**Status:** PO-DIRECTED POST-CLOSURE MAINTENANCE · FIGMA APPLIED · QA PASS · GROUP 08 REMAINS CLOSED · NO CURSOR HANDOFF
+**Status:** PO APPROVED · POST-CLOSURE MAINTENANCE · FIGMA APPLIED · QA PASS · GROUP 08 REMAINS CLOSED · NO CURSOR HANDOFF
 
 ## Trigger
 
@@ -111,9 +111,13 @@ Structural QA PASS:
 - external Tracker APP variable IDs inside `StatusToastIcon / StatusToast` = `0`
 - local component/component-set masters on Group 08 production page = `0`
 
+## PO approval
+
+Approved by PO on 2026-09-17 after the toast position was corrected to the top drop-down position (`y=72`). This locks the current StatusToast anatomy, Positive/Negative state treatment, and top-position presentation for this scope.
+
 ## Closure status
 
-This is a targeted post-closure component/visual correction requested by the PO. It does not reopen the previously locked Group 08 product flows or other Group 08 screens.
+This is a targeted post-closure component/visual correction requested and approved by the PO. It does not reopen the previously locked Group 08 product flows or other Group 08 screens.
 
 **GROUP 08 REMAINS CLOSED.**  
 **NO CURSOR IMPLEMENTATION HANDOFF.**
