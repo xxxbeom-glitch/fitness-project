@@ -1,6 +1,6 @@
 # Group 02 Home Refinement Checkpoint — 2026-09-14
 
-**Status:** ACTIVE / PO-DIRECTED REFINEMENT
+**Status:** DEFERRED BY PO / RECOMMENDED PRESET ROUTE PATCH APPLIED 2026-09-16
 **Phase:** Product / UX / Figma
 **Development handoff:** NOT APPROVED
 
@@ -58,10 +58,27 @@ Artwork exploration:
 - colors may differ by card while retaining the same 3D material / lighting language
 - final asset placement is still open and must not be treated as locked
 
-Recommendation routing correction:
-- Home `추천 루틴 받기` must not be documented as a direct jump to `03C_추천루틴상세`
-- the recommendation system still has the confirmed three matching inputs before a result: goal / weekly availability / preferred workout duration
-- whether Home re-entry reuses prior values or asks again remains TBD
+### Recommendation routing — UPDATED 2026-09-16
+
+The current recommendation experience is preset-based, not a personalized questionnaire.
+
+- `추천 루틴 받기` opens the curated recommended-routine list.
+- no `목표 / 주당 가능일 / 운동시간` matcher screens are required in the current MVP route.
+- the recommended list reuses the existing `03A_Routine_List` structure rather than introducing a special carousel or recommendation-only visual pattern.
+- selecting one preset opens the existing `03C` recommended-routine detail.
+
+Canonical route:
+
+`02A 추천 루틴 받기 → 03A_Recommended_Routine_List → 03C 추천 루틴 상세 → 운동 시작`
+
+Figma:
+- page `03 루틴` — `233:2074`
+- `03A_Recommended_Routine_List` — `1613:1996`
+
+Detailed current contract:
+- `docs/ux-decisions/2026-09-16-recommended-routine-preset-list.md`
+
+This supersedes the older note in this checkpoint that reintroduced three recommendation-matching inputs.
 
 ## 02B — Routine Selected
 
@@ -92,7 +109,7 @@ Requirement:
 
 ## Navigation contract
 
-- `02A 추천 루틴 받기` → recommendation-input flow → recommendation result/detail
+- `02A 추천 루틴 받기` → `03A_Recommended_Routine_List` → selected `03C` recommended-routine detail
 - `02A 내 루틴 만들기` → Group 03 routine-create flow
 - `02B 운동 시작` → active workout
 - `02B 다른 루틴` → `03A_Routine_List`
@@ -109,13 +126,18 @@ Verified during the current Home refinement:
 - no new foundation token is required for the Home direction itself
 - user edits to the current canonical Home basis are preserved rather than regenerated from the old layouts
 
-Current state is a checkpoint, not final Group 02 lock.
+Recommended-preset list patch verified 2026-09-16:
+- cloned/reused `03A_Routine_List` composition
+- shared Nav Header and `RoutineListCard` linkage retained
+- no recommendation-specific card/component family added
+- `03A_Recommended_Routine_List` screenshot QA PASS at 360 × 780
+
+Current Home remains deferred outside this explicit recommendation-route patch.
 
 ## Next open items
 
 1. finalize / apply 02A large-card artwork treatment if retained
-2. decide recommendation re-entry behavior: reuse previous matching answers vs ask again
-3. targeted screenshot + component/binding QA across `02A / 02B / 02D`
-4. lock Group 02 only after the PO accepts the three-state Home set
+2. targeted screenshot + component/binding QA across `02A / 02B / 02D` when PO resumes Home refinement
+3. lock Group 02 only after the PO explicitly resumes and accepts the three-state Home set
 
 Do not begin Cursor implementation handoff.
