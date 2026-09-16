@@ -4,7 +4,7 @@
 
 ## Current mode
 
-`PRODUCT/UX FIGMA QA · GROUP 03 ROUTINE CLOSED · GROUP 04 EXERCISE LIBRARY/DETAIL CLOSED · GROUP 05 ACTIVE WORKOUT CLOSED · GROUP 06 COMPLETION CLOSED · GROUP 07 ANALYSIS/WORKOUT HISTORY CLOSED (BODY-MAP PRODUCTION ASSET MAPPING DEFERRED) · GROUP 08 SETTINGS/ACCOUNT CLOSEOUT NEXT · GROUP 02 HOME DEFERRED BY PO · NO CURSOR IMPLEMENTATION HANDOFF`
+`PRODUCT/UX FIGMA QA · GROUP 03 ROUTINE CLOSED · GROUP 04 EXERCISE LIBRARY/DETAIL CLOSED · GROUP 05 ACTIVE WORKOUT CLOSED · GROUP 06 COMPLETION CLOSED · GROUP 07 ANALYSIS/WORKOUT HISTORY CLOSED (BODY-MAP PRODUCTION ASSET MAPPING DEFERRED) · GROUP 08 SETTINGS/ACCOUNT CLOSED · GROUP 02 HOME DEFERRED BY PO · NO ACTIVE PRODUCT/UX GROUP · NO CURSOR IMPLEMENTATION HANDOFF`
 
 ## Resume rule
 
@@ -15,6 +15,12 @@
 ---
 
 ## Latest active checkpoints
+
+### Group 08 final closure
+- `docs/ux-decisions/2026-09-16-group08-final-closure-qa.md`
+- `docs/ux-decisions/2026-09-14-group08-legal-links-session-handoff.md`
+- `docs/ux-decisions/2026-09-14-group08-profile-account-current.md`
+- `docs/ux-decisions/2026-09-14-group08b-profile-account-lock.md`
 
 ### Group 07 final closure
 - `docs/ux-decisions/2026-09-16-group07-common-component-naming-cleanup.md`
@@ -28,12 +34,6 @@
 - `docs/ux-decisions/2026-09-16-group06-final-closure-qa.md`
 - `docs/ux-decisions/2026-09-14-group06-completion-shared-summary-sync.md`
 - `docs/ux-decisions/2026-09-14-recommended-routine-acceptance-current.md`
-
-### Directly relevant next Group 08 checkpoints
-- `docs/ux-decisions/2026-09-14-group08-legal-links-session-handoff.md`
-- `docs/ux-decisions/2026-09-14-group08-profile-account-current.md`
-- `docs/ux-decisions/2026-09-14-group08-profile-settings-pass.md`
-- `docs/ux-decisions/2026-09-14-group08b-profile-account-lock.md`
 
 ---
 
@@ -238,50 +238,100 @@ Do not resume it unless PO requests it.
 
 ---
 
-# GROUP 08 — SETTINGS / ACCOUNT ACTIVE
+# GROUP 08 — SETTINGS / ACCOUNT CLOSED
+
+Final closure:
+- `docs/ux-decisions/2026-09-16-group08-final-closure-qa.md`
 
 Canonical Figma:
 - file `W3lZurXCXbThP67rF2xk2b`
-- page `08 설정 · 계정` — `233:2079`
-- exploration section `08_SETTINGS_V1_EXPLORATION` — `1158:645`
+- page `08 Settings · Account` — `233:2079`
+- `08A_Settings_Home` — `1158:649`
+- `08A1_Settings_Home_SubscriptionToast` — `1601:1015`
+- `08B_Profile` — `1204:770`
+- `08B1_Profile_Photo_Sheet` — `1181:724`
+- `08B2_Account_Management_Sheet` — `1207:799`
+- `08B3_Account_Deletion` — `1222:846`
+- `08B4_Account_Deletion_Confirm` — `1222:7487`
+- `08C_Unit_Settings_Sheet` — `1175:709`
+- `08D_Workout_Settings` — `1158:7365`
+- `08D1_Default_Rest_Time_Sheet` — `1163:676`
+- `08D2_Timer_End_Sound` — `1163:7296`
+- `08E_Notification_Settings` — `1158:7457`
+- `08F_FAQ` — `1232:812`
+- `08F1_FAQ_Expanded` — `1232:924`
+- `08G_Support_Inquiry` — `1257:927`
+- `08G1_Inquiry_Category_Sheet` — `1260:946`
+- `08G2_Inquiry_Submitted` — `1261:977`
+- `08G3_Inquiry_Send_Failed` — `1261:1044`
+- `08H_Language_Settings` — `1601:987`
 
-Current checkpoint:
-- `docs/ux-decisions/2026-09-14-group08-legal-links-session-handoff.md`
+Final launch-level settings decisions:
+- `언어` stays visible and supports `한국어 / English`
+- language selection applies immediately; no separate Save action
+- no duplicate full English Figma screen set; runtime localization swaps strings in the same UI
+- `테마` hidden for MVP
+- `구독 관리` menu row retained as a future-facing stub, with no destination screen
+- tapping `구독 관리` shows `준비 중인 기능이에요.` feedback
 
-Already approved / do not reopen without a new issue:
+Already locked behavior retained:
 - profile/account base and account-exit flow/privacy policy
 - unit settings
 - workout settings presentation / flow
 - notification settings current scope
-- FAQ accordion and shared `AccordionItem`
-- support inquiry flow and shared `TextArea` / `AttachmentSlot`
-- Terms / Privacy entry rows link to external public documents; do not rebuild full legal-document screens in Figma
+- FAQ accordion
+- support inquiry flow
+- Terms / Privacy entry rows use external public documents; do not rebuild full legal-document screens in Figma
 
-Release follow-ups that are not current Figma blockers:
+Common_Component organization:
+- `08_GROUP_CONFIRMED_COMPONENTS` — `1602:989`
+- moved original masters without duplication/detach:
+  - `Toggle` — `638:3288`
+  - `WheelPicker/SingleColumn` — `1169:1105`
+  - `AccordionItem` — `1238:1139`
+  - `TextArea` — `1255:1137`
+  - `AttachmentSlot` — `1255:1161`
+
+Final structural QA:
+- active Group 08 frames: `19`
+- all frame widths: `360px`
+- minimum frame height violations: `0`
+- instance nodes checked: `180`
+- missing main-component links: `0`
+- source `Common_Component`: `110`
+- source external/shared library: `70`
+- source legacy `MVP_공용_UI`: `0`
+- local component masters on Group 08 production page: `0`
+- Korean/mixed local layer names across active Group 08 frames: `0`
+- Korean/mixed layer names inside `08_GROUP_CONFIRMED_COMPONENTS`: `0`
+- main structural content / settings cards / fields / bottom sheets normalized to Auto Layout and existing spacing bindings
+- overlay roots remain absolute only where dimming/sheet/dialog stacking requires it
+- representative English-copy stress QA: Settings Home + Workout Settings PASS; temporary QA frames removed
+
+Release follow-ups that are not Figma blockers:
 - actual public Terms / Privacy URLs
 - exact support-inquiry record/image-attachment retention period
 - external account-deletion request URL
 - final timer sound assets / labels
 
-Current unresolved Group 08 launch-level items:
-- `구독 관리`
-- `언어`
-- `테마`
+**GROUP 08 CLOSED.**
+
+Do not reopen Group 08 without a concrete new conflict/regression, a release requirement that changes the product flow, or explicit PO request.
 
 ---
 
 # NEXT OPEN ITEM
 
-**Group 08 — Settings / Account closeout**
+**No automatic next Product/UX group. Await Product Owner direction.**
 
-Continue from `docs/ux-decisions/2026-09-14-group08-legal-links-session-handoff.md`:
-1. decide whether `구독 관리 / 언어 / 테마` are visible at MVP launch or hidden/deferred
-2. check whether any remaining Group 08 launch-level policy is truly blocking
-3. perform only the necessary final Settings-home cleanup / Group 08 lock
+Remaining intentionally deferred / later items:
+1. Group 02 Home refinement — deferred by PO; resume only on explicit request
+2. Group 07 final body-map production asset mapping — deferred until PO provides/prepares the production-ready body-map image set
+3. pre-release Settings follow-ups — public Terms/Privacy URLs, inquiry retention disclosure, external account-deletion request URL, final timer sound assets/labels
+4. implementation/Cursor handoff — only after explicit Product Owner authorization
 
-Do not rebuild legal full-text screens in Figma. Terms and Privacy use external public pages.
-Do not reopen Group 07, Group 06, Group 05, Group 04, Group 03, or deferred Group 02 without a concrete conflict/regression or explicit PO request.
-Do not begin Cursor implementation handoff.
+Do not reopen Groups 03–08 without a concrete conflict/regression or explicit PO request.
+Do not begin Cursor implementation handoff automatically.
 
 # Development boundary
 
