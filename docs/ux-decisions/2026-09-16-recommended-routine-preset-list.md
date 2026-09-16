@@ -28,9 +28,10 @@ Page:
 Tabbed Routine List states:
 - `03A_Routine_List_My` — `34:1401`
 - `03A_Routine_List_Recommended` — `1613:1996`
-- both = `360 × 780`
+- `03B_Routine_Empty` — `34:1438`
+- all = `360 × 780`
 
-Both states intentionally reuse the same list composition and `RoutineListCard` component instances. No special recommendation-only card, carousel, badge, illustration, or new foundation/component family is introduced.
+Both populated states intentionally reuse the same list composition and `RoutineListCard` component instances. No special recommendation-only card, carousel, badge, illustration, or new foundation/component family is introduced.
 
 ### Shared tab pattern
 
@@ -40,13 +41,27 @@ Existing shared component reused:
 - Recommended state instance uses existing 2-tab right-active variant `638:3304`
 - labels are overridden to `내 루틴 / 추천 루틴`
 
-The tab bar is centered at `x=16`, `y=118`, size `328 × 54`. Routine content starts immediately below at `y=172` with the existing 20px content inset.
+The tab bar is centered at `x=16`, `y=118`, size `328 × 54`. Routine content starts immediately below at `y=172`.
 
 The prior redundant section headings (`내 루틴`, `추천 루틴`) are removed because the selected tab already communicates the current list context.
 
+### Empty-state alignment
+
+`03B_Routine_Empty` is the empty state of the `내 루틴` tab, not a separate navigation model.
+
+Applied:
+- the same shared `fixed-tab-bar` left-active variant is added to `03B_Routine_Empty`
+- labels remain `내 루틴 / 추천 루틴`
+- empty content is reflowed from `y=118` to `y=172`
+- content height becomes `608`
+- existing empty-state copy and `루틴 만들기` CTA are preserved
+- switching to `추천 루틴` must show the populated recommended-preset list rather than an empty state
+
+This keeps the tab/navigation model consistent regardless of whether the user has personal routines.
+
 ### Header
 
-Both tab states use the same page header:
+All Routine List states use the same page header:
 - title = `루틴`
 - left action = None
 - right action = Plus
@@ -65,10 +80,11 @@ The sample names and current card metadata/tags are representative Figma content
 ## Interaction contract
 
 - Routine List defaults to `내 루틴` when entered through the normal Routine destination.
+- if there are no personal routines, the `내 루틴` tab renders `03B_Routine_Empty` with the tab bar still visible.
 - tapping `추천 루틴` switches the same Routine List surface to the preset list.
 - `02A Home · 추천 루틴 받기` opens the same Routine List surface with `추천 루틴` active.
 - tapping a recommended-routine card opens the existing `03C` recommended-routine detail for that selected preset.
-- tapping `내 루틴` returns to the personal routine list state.
+- tapping `내 루틴` returns to either the populated personal routine list or `03B_Routine_Empty`, depending on whether personal routines exist.
 - there is no intermediate personalization questionnaire.
 - there is no recommendation-result carousel.
 - the selected recommended routine is not automatically saved to `내 루틴` before workout.
@@ -76,15 +92,17 @@ The sample names and current card metadata/tags are representative Figma content
 
 ## QA
 
-Targeted screenshot QA = PASS for both tab states:
+Targeted screenshot QA = PASS for:
 - `03A_Routine_List_My`
 - `03A_Routine_List_Recommended`
+- `03B_Routine_Empty`
 
 Structural read-back:
-- both tab instances remain linked to the existing shared `fixed-tab-bar` component set
-- both screens retain shared Nav Header / RoutineListCard linkage
-- missing main-component links = `0` on both states
-- content/list alignment is identical between the two tab states
+- all tab instances remain linked to the existing shared `fixed-tab-bar` component set
+- populated screens retain shared Nav Header / RoutineListCard linkage
+- `03B_Routine_Empty` retains shared Nav Header / Compact Button linkage
+- the empty-state tab instance uses the same `638:3299` left-active shared variant as the populated My Routine state
+- no new tab component or local duplicate was created
 - no clipping or overlap at `360 × 780`
 
 ## Scope boundary
