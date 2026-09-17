@@ -4,7 +4,7 @@
 
 ## Current mode
 
-`DESIGN SYSTEM / FIGMA QA · LIGHT COLOR SYSTEM D MVP ROLLOUT APPLIED / COLOR-SURFACE PO ACCEPTED · RADIUS RULE PREVIEW ONLY / NOT ROLLED OUT · GROUP 03 ROUTINE CLOSED · GROUP 04 EXERCISE LIBRARY/DETAIL CLOSED · GROUP 05 ACTIVE WORKOUT CLOSED · GROUP 06 COMPLETION CLOSED · GROUP 07 ANALYSIS/WORKOUT HISTORY CLOSED (BODY-MAP PRODUCTION ASSET MAPPING DEFERRED) · GROUP 08 SETTINGS/ACCOUNT CLOSED · GROUP 02 HOME DEFERRED BY PO · NO ACTIVE PRODUCT/UX GROUP · NO CURSOR IMPLEMENTATION HANDOFF`
+`DESIGN SYSTEM / FIGMA QA · LIGHT COLOR SYSTEM D MVP ROLLOUT APPLIED / COLOR-SURFACE PO ACCEPTED · SHARED TABS / SELECTION LIST MAINTENANCE PO APPROVED · RADIUS RULE PREVIEW ONLY / NOT ROLLED OUT · GROUP 03 ROUTINE CLOSED · GROUP 04 EXERCISE LIBRARY/DETAIL CLOSED · GROUP 05 ACTIVE WORKOUT CLOSED · GROUP 06 COMPLETION CLOSED · GROUP 07 ANALYSIS/WORKOUT HISTORY CLOSED (BODY-MAP PRODUCTION ASSET MAPPING DEFERRED) · GROUP 08 SETTINGS/ACCOUNT CLOSED · GROUP 02 HOME DEFERRED BY PO · NO ACTIVE PRODUCT/UX GROUP · NO CURSOR IMPLEMENTATION HANDOFF`
 
 ## Resume rule
 
@@ -30,6 +30,7 @@ Current Figma editing surface:
 - `docs/ux-decisions/2026-09-17-mvp-light-theme-color-acceptance.md`
 - `docs/ux-decisions/2026-09-17-light-radius-exploration-checkpoint.md`
 - `docs/ux-decisions/2026-09-17-shared-tabs-consolidation-checkpoint.md`
+- `docs/ux-decisions/2026-09-17-shared-tabs-option-list-maintenance.md`
 
 Current status:
 - D / Petrol Teal Tonal is the approved light-theme baseline.
@@ -37,8 +38,11 @@ Current status:
 - 98/98 MVP screen roots use `Colors / Light`.
 - theme-sensitive variable-bound fills/strokes were force-synchronized to resolved Light values after a stale-render mismatch was found; post-sync mismatch count is `0`.
 - color/surface implementation is driven through local semantic Variables, registered Paint/Effect Styles, and Common_Component masters instead of one-off screen recoloring.
-- shared page-level tabs are consolidated into one `Tabs` component family and use a full-width 360px rule with no outer horizontal inset.
-- Product Owner visually confirmed the refreshed canonical Figma state and accepted the current color/surface result.
+- shared page-level tabs are consolidated into one `Tabs` component family, use a full-width 360px rule with equal-width items, and show a `2px brand/primary` active underline.
+- immediate/applied selection lists use shared `OptionItem` + right-side check; RadioButton is reserved for flows that require an explicit confirmation CTA after choosing.
+- full-page selection lists and sheet option lists now share the same row/divider language while keeping context-appropriate container surfaces.
+- Light `text/primary` is PO approved at `#242927`; Dark mode is unchanged.
+- Product Owner visually confirmed the refreshed canonical Figma state and accepted the current color/surface and selection-list result.
 - radius experiment remains preview-only and has not been propagated across the 98 screens.
 - no Cursor/development handoff.
 
@@ -73,6 +77,7 @@ Applied rollout / QA checkpoints:
 - `docs/ux-decisions/2026-09-17-mvp-light-theme-rollout-preview.md`
 - `docs/ux-decisions/2026-09-17-mvp-light-theme-color-acceptance.md`
 - `docs/ux-decisions/2026-09-17-shared-tabs-consolidation-checkpoint.md`
+- `docs/ux-decisions/2026-09-17-shared-tabs-option-list-maintenance.md`
 
 Figma reference:
 - file `W3lZurXCXbThP67rF2xk2b`
@@ -91,7 +96,7 @@ Locked light baseline:
 - Subtle Surface `#EFF2F2`
 - Border / Subtle `#EAEEED`
 - Border / Default Control `#E3E8E7`
-- Text Primary `#151918`
+- Text Primary `#242927`
 - Text Secondary `#626866`
 - Text Tertiary `#929A98`
 - Success `#4F8A61`
@@ -108,8 +113,12 @@ Shared design-system implementation:
 - registered Effect Style: `Elevation/Card`
 - CTA / Compact Button / OptionItem / WheelPicker / DialogCard / DialogButtons / ActionSheet / ManualTimerPopup / StatusToast / segmented controls / shared cards and dividers are bound through local semantic variables/components
 - page-level Routine / Exercise Detail / Analysis period tabs resolve through shared `Tabs` — `638:3298` under `SHARED_NAVIGATION_COMPONENTS` — `1773:1016`
-- shared Tabs use `Count`, numeric `Active`, `Indicator`, and `State` axes; current page-level instances fill the full `360 × 54` width
+- shared Tabs use `Count`, numeric `Active`, `Indicator`, and `State` axes; current page-level instances fill the full `360 × 54` width with equal-width tab items and active underline
 - obsolete Group 07-only `AnalysisPeriodTabs` — `961:1368` was removed after zero-instance verification
+- immediate/applied selection screens use shared `OptionItem` + right-side check
+- RadioButton remains only where selection is pending until an explicit confirmation CTA, including the Group 05 replacement-exercise flow
+- normalized full-page selection lists use `bg/surface`, Radius `12`, `border/subtle` row dividers, clipping, and no divider after the final row
+- normalized sheet option lists use the same `OptionItem` row/divider language with their sheet-context surface treatment
 - theme-sensitive external/shared-library component dependencies were localized or swapped to existing local Common_Component equivalents
 - AppLogo uses the same approved artwork with adaptive blend treatment so it remains visible on light and dark neutral canvases
 
@@ -126,12 +135,13 @@ Final read-back after synchronization / screenshot QA:
 - A–H screenshot QA completed across all 98 screens
 - remaining first-pass gaps found by screenshot QA (logo visibility, WheelPicker old dark text, sheet Cancel actions, OptionItem selected/unselected coloring) were corrected and affected categories re-screenshotted PASS
 - representative post-sync screenshots verified: `03A_Routine_List_Recommended`, `04A_Search`, `04B_Search_Selected`, `05A_Workout_Weight`, `05A_Workout_Weight_Scrolled_3rdExercise`
-- shared Tabs screenshot QA verified full-width Group 03 RoutineTabs and Group 07 PeriodTabs after consolidation
-- Product Owner refreshed the canonical Figma file and accepted the current color result
+- shared Tabs screenshot QA verified full-width/equal-width active-underline presentation across Group 03, Group 04, and Group 07
+- selection-list maintenance screenshot QA verified `04A_Filter_Equipment_Page`, `04I_Custom_Equipment_Select`, `04J_Custom_PrimaryMuscle_Select`, `04K_Custom_SecondaryMuscle_Select`, `04L_Custom_RecordingType_Select`, `08D2_Timer_End_Sound`, and `08H_Language_Settings`
+- Product Owner refreshed the canonical Figma file and accepted the current color/selection result
 - temporary screenshot QA frames removed
 
 Scope boundary:
-- this color/surface rollout is accepted for the current consolidated MVP screen set.
+- this color/surface and selection-list maintenance is accepted for the current consolidated MVP screen set.
 - Groups 03–08 remain product/UX closed; this migration does not reopen their flow/policy decisions.
 - Group 02 product refinement remains deferred.
 - radius scale/application is a separate decision and remains preview-only until PO explicitly approves propagation.
@@ -151,7 +161,7 @@ Cross-group empty-routine exception already reflected and QA-passed:
 
 Design-system maintenance:
 - RoutineTabs now reuse shared `Tabs` — `638:3298`
-- page-level routine tab rows use `x=0 / width=360` with no outer horizontal inset
+- page-level routine tab rows use `x=0 / width=360` with equal-width items and active underline
 
 Do not reopen without a new conflict/regression or explicit PO request.
 
@@ -164,6 +174,7 @@ Final closure:
 
 Post-closure maintenance:
 - `docs/ux-decisions/2026-09-16-group04-common-component-organization.md`
+- `docs/ux-decisions/2026-09-17-shared-tabs-option-list-maintenance.md`
 
 Historical closure Figma reference:
 - page `04 운동 목록 · 상세` — `233:2075`
@@ -172,7 +183,9 @@ Final state:
 - canonical search/detail/custom-exercise states QA PASS
 - delete/save/attachment/recording-type/height policies locked
 - Group 04 component instances resolve through confirmed `Common_Component` groups
-- exercise-detail tabs reuse the shared full-width `Tabs` component family
+- exercise-detail tabs reuse the shared full-width `Tabs` component family with equal-width items and active underline
+- full-page immediate selection lists use shared `OptionItem` + right-side check with one normalized page-list treatment
+- normalized page-list targets include `04A_Filter_Equipment_Page`, `04A_Filter_BodyPart_Page`, `04I_Custom_Equipment_Select`, `04J_Custom_PrimaryMuscle_Select`, `04K_Custom_SecondaryMuscle_Select`, and `04L_Custom_RecordingType_Select`
 - no legacy `MVP_공용_UI` source remains in the closed Group 04 component structure
 
 Deferred data/runtime work remains:
@@ -212,6 +225,7 @@ Locked:
 - end/discard/update flow
 - Common_Component organization
 - obsolete legacy recording-type full-screen shells and timer-entry debris removed
+- replacement-exercise selection remains an intentional RadioButton flow because the user must press `선택 완료` to commit the choice
 
 **GROUP 05 CLOSED.**
 
@@ -272,6 +286,7 @@ Post-closure maintenance:
 - `docs/ux-decisions/2026-09-16-group07-common-component-naming-cleanup.md`
 - `docs/ux-decisions/2026-09-16-group07-screen-name-normalization.md`
 - `docs/ux-decisions/2026-09-17-shared-tabs-consolidation-checkpoint.md`
+- `docs/ux-decisions/2026-09-17-shared-tabs-option-list-maintenance.md`
 
 Product rules:
 - `docs/ux-decisions/2026-09-14-group07-final-policy-lock.md`
@@ -319,7 +334,7 @@ Final structural QA:
 - Korean/mixed Figma layer names inside `07_GROUP_CONFIRMED_COMPONENTS`: `0`
 - local Group 07 production-page component masters: `0`
 - screenshot regression QA: `07A_Analysis_Home`, `07B_BodyArea_Detail_Empty`, `07D_Workout_History_Detail_DeleteConfirm` PASS
-- shared Tabs consolidation screenshot QA: Group 07 PeriodTabs full-width PASS
+- shared Tabs consolidation screenshot QA: Group 07 PeriodTabs full-width + active underline PASS
 
 ## Body-map production asset mapping deferred
 
@@ -393,6 +408,11 @@ Already locked behavior retained:
 - support inquiry flow
 - Terms / Privacy entry rows use external public documents; do not rebuild full legal-document screens in Figma
 
+Current design-system selection maintenance:
+- `08C_Unit_Settings_Sheet`, `08D2_Timer_End_Sound`, and `08H_Language_Settings` use the shared `OptionItem` + right-side check language for immediate/applied selection
+- `08D2_Timer_End_Sound` and `08H_Language_Settings` no longer use RadioButton presentation
+- bottom-sheet option lists use normalized Radius/divider/shared-OptionItem treatment
+
 Common_Component organization:
 - `08_GROUP_CONFIRMED_COMPONENTS` — `1602:989`
 - moved original masters without duplication/detach:
@@ -436,7 +456,7 @@ Do not reopen Group 08 without a concrete new conflict/regression, a release req
 
 # NEXT OPEN ITEM
 
-**Color/surface rollout is PO accepted. No automatic next Product/UX group. Await Product Owner direction.**
+**Color/surface + shared tabs/selection-list maintenance are PO accepted. No automatic next Product/UX group. Await Product Owner direction.**
 
 Remaining intentionally deferred / later items:
 1. size-aware radius system — D preview exists; propagate to shared Radius/component rules only after explicit PO approval
