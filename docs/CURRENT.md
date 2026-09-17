@@ -4,7 +4,7 @@
 
 ## Current mode
 
-`DESIGN SYSTEM / FIGMA QA · LIGHT COLOR SYSTEM D MVP ROLLOUT APPLIED / SHARED BINDING QA PASS / PO FINAL VISUAL LOCK PENDING · RADIUS RULE PREVIEW ONLY / NOT ROLLED OUT · GROUP 03 ROUTINE CLOSED · GROUP 04 EXERCISE LIBRARY/DETAIL CLOSED · GROUP 05 ACTIVE WORKOUT CLOSED · GROUP 06 COMPLETION CLOSED · GROUP 07 ANALYSIS/WORKOUT HISTORY CLOSED (BODY-MAP PRODUCTION ASSET MAPPING DEFERRED) · GROUP 08 SETTINGS/ACCOUNT CLOSED · GROUP 02 HOME DEFERRED BY PO · NO ACTIVE PRODUCT/UX GROUP · NO CURSOR IMPLEMENTATION HANDOFF`
+`DESIGN SYSTEM / FIGMA QA · LIGHT COLOR SYSTEM D MVP ROLLOUT APPLIED / COLOR-SURFACE PO ACCEPTED · RADIUS RULE PREVIEW ONLY / NOT ROLLED OUT · GROUP 03 ROUTINE CLOSED · GROUP 04 EXERCISE LIBRARY/DETAIL CLOSED · GROUP 05 ACTIVE WORKOUT CLOSED · GROUP 06 COMPLETION CLOSED · GROUP 07 ANALYSIS/WORKOUT HISTORY CLOSED (BODY-MAP PRODUCTION ASSET MAPPING DEFERRED) · GROUP 08 SETTINGS/ACCOUNT CLOSED · GROUP 02 HOME DEFERRED BY PO · NO ACTIVE PRODUCT/UX GROUP · NO CURSOR IMPLEMENTATION HANDOFF`
 
 ## Resume rule
 
@@ -27,14 +27,16 @@ Current Figma editing surface:
 - `docs/ux-decisions/2026-09-17-light-color-system-po-approval.md`
 - `docs/ux-decisions/2026-09-17-light-color-system-session-handoff.md`
 - `docs/ux-decisions/2026-09-17-mvp-light-theme-rollout-preview.md`
+- `docs/ux-decisions/2026-09-17-mvp-light-theme-color-acceptance.md`
 - `docs/ux-decisions/2026-09-17-light-radius-exploration-checkpoint.md`
 
 Current status:
 - D / Petrol Teal Tonal is the approved light-theme baseline.
 - PO explicitly authorized application to the consolidated MVP set.
 - 98/98 MVP screen roots use `Colors / Light`.
-- color/surface implementation is now driven through local semantic Variables, registered Paint/Effect Styles, and Common_Component masters instead of one-off screen recoloring.
-- shared binding screenshot/structural QA PASS; PO final visual lock is still pending.
+- theme-sensitive variable-bound fills/strokes were force-synchronized to resolved Light values after a stale-render mismatch was found; post-sync mismatch count is `0`.
+- color/surface implementation is driven through local semantic Variables, registered Paint/Effect Styles, and Common_Component masters instead of one-off screen recoloring.
+- Product Owner visually confirmed the refreshed canonical Figma state and accepted the current color/surface result.
 - radius experiment remains preview-only and has not been propagated across the 98 screens.
 - no Cursor/development handoff.
 
@@ -59,14 +61,15 @@ Current status:
 
 ---
 
-# LIGHT COLOR SYSTEM — D MVP ROLLOUT APPLIED / SHARED BINDING QA PASS
+# LIGHT COLOR SYSTEM — D MVP ROLLOUT APPLIED / COLOR-SURFACE PO ACCEPTED
 
 Approval / reference:
 - `docs/ux-decisions/2026-09-17-light-color-system-po-approval.md`
 - `docs/ux-decisions/2026-09-17-light-color-system-session-handoff.md`
 
-Applied rollout / QA checkpoint:
+Applied rollout / QA checkpoints:
 - `docs/ux-decisions/2026-09-17-mvp-light-theme-rollout-preview.md`
+- `docs/ux-decisions/2026-09-17-mvp-light-theme-color-acceptance.md`
 
 Figma reference:
 - file `W3lZurXCXbThP67rF2xk2b`
@@ -93,7 +96,7 @@ Locked light baseline:
 - content cards and grouped list cards: no outer border + subtle `0 2px 8px` shadow at 5%
 - controls may retain explicit default border
 - standard D surfaces use no background-blur glass effect
-- Workout LiveBar keeps its approved local light treatment and no border
+- Workout LiveBar uses the accepted light treatment and no border
 
 Shared design-system implementation:
 - `Colors` collection retains Dark/Light modes
@@ -104,22 +107,26 @@ Shared design-system implementation:
 - theme-sensitive external/shared-library component dependencies were localized or swapped to existing local Common_Component equivalents
 - AppLogo uses the same approved artwork with adaptive blend treatment so it remains visible on light and dark neutral canvases
 
-Final read-back after screenshot QA:
+Final read-back after synchronization / screenshot QA:
 - MVP screen frames: `98`
 - Light roots: `98 / 98`
+- synchronized variable-bound theme-sensitive paints: `5,398`
+- Light-variable actual-value mismatch count after synchronization: `0`
+- large unintended dark-surface residue checked after synchronization: `0`
 - remote component instances across current MVP + Common_Component: `0`
 - external variable bindings: `0`
 - standard visible GLASS / BACKGROUND_BLUR effects: `0`
 - remaining unbound theme-sensitive palette paints: `0`
 - A–H screenshot QA completed across all 98 screens
 - remaining first-pass gaps found by screenshot QA (logo visibility, WheelPicker old dark text, sheet Cancel actions, OptionItem selected/unselected coloring) were corrected and affected categories re-screenshotted PASS
+- representative post-sync screenshots verified: `03A_Routine_List_Recommended`, `04A_Search`, `04B_Search_Selected`, `05A_Workout_Weight`, `05A_Workout_Weight_Scrolled_3rdExercise`
+- Product Owner refreshed the canonical Figma file and accepted the current color result
 - temporary screenshot QA frames removed
 
 Scope boundary:
-- this color/surface rollout is applied to the current consolidated MVP screen set.
+- this color/surface rollout is accepted for the current consolidated MVP screen set.
 - Groups 03–08 remain product/UX closed; this migration does not reopen their flow/policy decisions.
 - Group 02 product refinement remains deferred.
-- final PO visual lock for the full light set is pending.
 - radius scale/application is a separate decision and remains preview-only until PO explicitly approves propagation.
 - do not hand off to Cursor.
 
@@ -413,7 +420,7 @@ Do not reopen Group 08 without a concrete new conflict/regression, a release req
 
 # NEXT OPEN ITEM
 
-**Product Owner review of the fully applied Light D MVP set. No automatic next Product/UX group.**
+**Color/surface rollout is PO accepted. No automatic next Product/UX group. Await Product Owner direction.**
 
 Remaining intentionally deferred / later items:
 1. size-aware radius system — D preview exists; propagate to shared Radius/component rules only after explicit PO approval
