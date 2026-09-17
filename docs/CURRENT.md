@@ -1,10 +1,10 @@
 # CURRENT — Fitness Project
 
-**Updated:** 2026-09-16
+**Updated:** 2026-09-17
 
 ## Current mode
 
-`PRODUCT/UX FIGMA QA · GROUP 03 ROUTINE CLOSED · GROUP 04 EXERCISE LIBRARY/DETAIL CLOSED · GROUP 05 ACTIVE WORKOUT CLOSED · GROUP 06 COMPLETION CLOSED · GROUP 07 ANALYSIS/WORKOUT HISTORY CLOSED (BODY-MAP PRODUCTION ASSET MAPPING DEFERRED) · GROUP 08 SETTINGS/ACCOUNT CLOSED · GROUP 02 HOME DEFERRED BY PO · NO ACTIVE PRODUCT/UX GROUP · NO CURSOR IMPLEMENTATION HANDOFF`
+`PRODUCT/UX FIGMA QA · LIGHT COLOR SYSTEM D APPROVED / PRODUCTION-WIDE ROLLOUT DEFERRED · GROUP 03 ROUTINE CLOSED · GROUP 04 EXERCISE LIBRARY/DETAIL CLOSED · GROUP 05 ACTIVE WORKOUT CLOSED · GROUP 06 COMPLETION CLOSED · GROUP 07 ANALYSIS/WORKOUT HISTORY CLOSED (BODY-MAP PRODUCTION ASSET MAPPING DEFERRED) · GROUP 08 SETTINGS/ACCOUNT CLOSED · GROUP 02 HOME DEFERRED BY PO · NO ACTIVE PRODUCT/UX GROUP · NO CURSOR IMPLEMENTATION HANDOFF`
 
 ## Resume rule
 
@@ -15,6 +15,16 @@
 ---
 
 ## Latest active checkpoints
+
+### Light color system approval / non-production exploration
+- `docs/ux-decisions/2026-09-17-light-color-system-po-approval.md`
+- `docs/ux-decisions/2026-09-17-light-color-system-session-handoff.md`
+
+Current status:
+- D / Petrol Teal Tonal direction is PO approved as the light-theme baseline.
+- approved palette/surface rules are documented in the two checkpoints above.
+- exploratory Figma section only; production-wide rollout is explicitly deferred.
+- do not update shared production Variables/Styles or closed production groups until PO explicitly requests rollout.
 
 ### Group 08 final closure
 - `docs/ux-decisions/2026-09-16-group08-final-closure-qa.md`
@@ -34,6 +44,48 @@
 - `docs/ux-decisions/2026-09-16-group06-final-closure-qa.md`
 - `docs/ux-decisions/2026-09-14-group06-completion-shared-summary-sync.md`
 - `docs/ux-decisions/2026-09-14-recommended-routine-acceptance-current.md`
+
+---
+
+# LIGHT COLOR SYSTEM — D APPROVED / ROLLOUT DEFERRED
+
+Approval checkpoint:
+- `docs/ux-decisions/2026-09-17-light-color-system-po-approval.md`
+
+Session handoff / exact exploratory Figma state:
+- `docs/ux-decisions/2026-09-17-light-color-system-session-handoff.md`
+
+Figma reference:
+- file `W3lZurXCXbThP67rF2xk2b`
+- exploratory section `LIGHT_COLOR_CASE_D — PETROL TEAL TONAL` — `1642:1328`
+- Workout — `1642:1364`
+- Analysis — `1642:1759`
+- Settings — `1642:1953`
+
+Locked at this checkpoint:
+- Primary / Brand `#218F8A`
+- Primary Action / CTA `#1A7E79`
+- Primary Soft `#DCEFED`
+- Canvas `#F6F7F7`
+- Surface `#FFFFFF`
+- Subtle Surface `#EFF2F2`
+- Border / Subtle `#EAEEED`
+- Border / Default Control `#E3E8E7`
+- Text Primary `#151918`
+- Text Secondary `#626866`
+- Success `#4F8A61`
+- Danger `#C85A64`
+- content cards and grouped list cards: no outer border + subtle `0 2px 8px` shadow at 5%
+- controls may retain explicit default border
+- standard D surfaces use no background-blur glass effect
+- Workout LiveBar keeps its PO-manually-adjusted local background and no border
+- D Settings section wrappers were changed to allow shadows to render without clipping
+
+Scope boundary:
+- D is exploratory/reference only, not the production canonical screen set.
+- do not roll this palette into production pages or shared production Variables/Styles without explicit PO direction.
+- do not reopen Groups 03–08 solely because the light color direction was approved.
+- do not hand off to Cursor.
 
 ---
 
@@ -88,7 +140,7 @@ Final relevant checkpoints:
 - `docs/ux-decisions/2026-09-16-group05-page-cleanup.md`
 - `docs/ux-decisions/2026-09-15-group05-active-workout-live-bar-amendment.md`
 - `docs/ux-decisions/2026-09-15-group05-active-workout-scroll-behavior.md`
-- `docs/ux-decisions/2026-09-15-group05-rest-live-bar-amendment.md`
+- `docs/ux-decisions/2026-09-15-rest-live-bar-amendment.md`
 
 Canonical Figma:
 - page `05 운동 중` — `233:2076`
@@ -325,12 +377,14 @@ Do not reopen Group 08 without a concrete new conflict/regression, a release req
 **No automatic next Product/UX group. Await Product Owner direction.**
 
 Remaining intentionally deferred / later items:
-1. Group 02 Home refinement — deferred by PO; resume only on explicit request
-2. Group 07 final body-map production asset mapping — deferred until PO provides/prepares the production-ready body-map image set
-3. pre-release Settings follow-ups — public Terms/Privacy URLs, inquiry retention disclosure, external account-deletion request URL, final timer sound assets/labels
-4. implementation/Cursor handoff — only after explicit Product Owner authorization
+1. approved Light Color System production rollout — deferred; resume only on explicit PO request and start with semantic Variable/Style mapping, not manual screen recoloring
+2. Group 02 Home refinement — deferred by PO; resume only on explicit request
+3. Group 07 final body-map production asset mapping — deferred until PO provides/prepares the production-ready body-map image set
+4. pre-release Settings follow-ups — public Terms/Privacy URLs, inquiry retention disclosure, external account-deletion request URL, final timer sound assets/labels
+5. implementation/Cursor handoff — only after explicit Product Owner authorization
 
 Do not reopen Groups 03–08 without a concrete conflict/regression or explicit PO request.
+Do not begin the approved light-color production rollout automatically.
 Do not begin Cursor implementation handoff automatically.
 
 # Development boundary
