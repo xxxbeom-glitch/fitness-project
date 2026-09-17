@@ -54,6 +54,7 @@ Dark values for these added semantics preserve the prior dark appearance; Light 
 - progress tracks use a dedicated light neutral track surface
 - Workout LiveBar keeps the approved local light treatment
 - standard dialogs, sheets, action sheets, timer popups, and toast surfaces no longer use Figma `GLASS`; they use solid Surface in Light mode
+- remaining legacy raw dark-palette paints on the consolidated MVP page were rebound to semantic light roles instead of left as one-off dark values
 
 ## Targeted QA
 
@@ -62,10 +63,12 @@ Structural read-back after application:
 - screen roots in Light mode: `98 / 98`
 - explicit Dark-mode overrides inside the MVP page: `0`
 - remaining visible `GLASS` effects inside MVP screens: `0`
+- exact legacy unbound dark palette paints checked after cleanup: `0`
 
 Representative visual QA PASS:
 - `05A_Workout_Weight` — Canvas / cards / controls / success / CTA
 - `07A_Analysis_Home` — Brand / Primary Soft / cards / tracks / text
+- `07D_Workout_History_Detail` — summary cards / body distribution / history table text and dividers
 - `08A_Settings_Home` — grouped-card surface and shadow treatment
 - `08C_Unit_Settings_Sheet` — solid light bottom sheet + CTA
 - `03EF_Routine_Unsaved_Confirm` — solid light dialog + action text
