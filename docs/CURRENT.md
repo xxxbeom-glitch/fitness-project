@@ -4,7 +4,7 @@
 
 ## Current mode
 
-`PRODUCT/UX FIGMA QA · LIGHT COLOR SYSTEM D APPROVED / PRODUCTION-WIDE ROLLOUT DEFERRED · GROUP 03 ROUTINE CLOSED · GROUP 04 EXERCISE LIBRARY/DETAIL CLOSED · GROUP 05 ACTIVE WORKOUT CLOSED · GROUP 06 COMPLETION CLOSED · GROUP 07 ANALYSIS/WORKOUT HISTORY CLOSED (BODY-MAP PRODUCTION ASSET MAPPING DEFERRED) · GROUP 08 SETTINGS/ACCOUNT CLOSED · GROUP 02 HOME DEFERRED BY PO · NO ACTIVE PRODUCT/UX GROUP · NO CURSOR IMPLEMENTATION HANDOFF`
+`DESIGN SYSTEM / FIGMA QA · LIGHT COLOR SYSTEM D MVP ROLLOUT APPLIED / SHARED BINDING QA PASS / PO FINAL VISUAL LOCK PENDING · RADIUS RULE PREVIEW ONLY / NOT ROLLED OUT · GROUP 03 ROUTINE CLOSED · GROUP 04 EXERCISE LIBRARY/DETAIL CLOSED · GROUP 05 ACTIVE WORKOUT CLOSED · GROUP 06 COMPLETION CLOSED · GROUP 07 ANALYSIS/WORKOUT HISTORY CLOSED (BODY-MAP PRODUCTION ASSET MAPPING DEFERRED) · GROUP 08 SETTINGS/ACCOUNT CLOSED · GROUP 02 HOME DEFERRED BY PO · NO ACTIVE PRODUCT/UX GROUP · NO CURSOR IMPLEMENTATION HANDOFF`
 
 ## Resume rule
 
@@ -12,19 +12,31 @@
 
 이미 PO 승인 또는 QA PASS된 범위는 새 변경·충돌·regression 가능성·명시 재검토 요청이 없으면 다시 처음부터 검토하지 않는다.
 
+Current Figma editing surface:
+- file `W3lZurXCXbThP67rF2xk2b`
+- page `MVP_전체_와이어프레임` — `34:1076`
+- current Groups 01–08 screen set: `98` independent frames, visually classified A–H by screen character
+- no group wrapper frames
+- previous per-group page/node references below are retained as historical closure references; current visual editing/QA uses the consolidated MVP page unless PO explicitly changes the organization again
+
 ---
 
 ## Latest active checkpoints
 
-### Light color system approval / non-production exploration
+### Light color system / MVP rollout / shared design-system binding
 - `docs/ux-decisions/2026-09-17-light-color-system-po-approval.md`
 - `docs/ux-decisions/2026-09-17-light-color-system-session-handoff.md`
+- `docs/ux-decisions/2026-09-17-mvp-light-theme-rollout-preview.md`
+- `docs/ux-decisions/2026-09-17-light-radius-exploration-checkpoint.md`
 
 Current status:
-- D / Petrol Teal Tonal direction is PO approved as the light-theme baseline.
-- approved palette/surface rules are documented in the two checkpoints above.
-- exploratory Figma section only; production-wide rollout is explicitly deferred.
-- do not update shared production Variables/Styles or closed production groups until PO explicitly requests rollout.
+- D / Petrol Teal Tonal is the approved light-theme baseline.
+- PO explicitly authorized application to the consolidated MVP set.
+- 98/98 MVP screen roots use `Colors / Light`.
+- color/surface implementation is now driven through local semantic Variables, registered Paint/Effect Styles, and Common_Component masters instead of one-off screen recoloring.
+- shared binding screenshot/structural QA PASS; PO final visual lock is still pending.
+- radius experiment remains preview-only and has not been propagated across the 98 screens.
+- no Cursor/development handoff.
 
 ### Group 08 final closure
 - `docs/ux-decisions/2026-09-16-group08-final-closure-qa.md`
@@ -47,22 +59,24 @@ Current status:
 
 ---
 
-# LIGHT COLOR SYSTEM — D APPROVED / ROLLOUT DEFERRED
+# LIGHT COLOR SYSTEM — D MVP ROLLOUT APPLIED / SHARED BINDING QA PASS
 
-Approval checkpoint:
+Approval / reference:
 - `docs/ux-decisions/2026-09-17-light-color-system-po-approval.md`
-
-Session handoff / exact exploratory Figma state:
 - `docs/ux-decisions/2026-09-17-light-color-system-session-handoff.md`
+
+Applied rollout / QA checkpoint:
+- `docs/ux-decisions/2026-09-17-mvp-light-theme-rollout-preview.md`
 
 Figma reference:
 - file `W3lZurXCXbThP67rF2xk2b`
-- exploratory section `LIGHT_COLOR_CASE_D — PETROL TEAL TONAL` — `1642:1328`
-- Workout — `1642:1364`
-- Analysis — `1642:1759`
-- Settings — `1642:1953`
+- consolidated page `MVP_전체_와이어프레임` — `34:1076`
+- original exploratory section `LIGHT_COLOR_CASE_D — PETROL TEAL TONAL` — `1642:1328`
+- exploratory Workout — `1642:1364`
+- exploratory Analysis — `1642:1759`
+- exploratory Settings — `1642:1953`
 
-Locked at this checkpoint:
+Locked light baseline:
 - Primary / Brand `#218F8A`
 - Primary Action / CTA `#1A7E79`
 - Primary Soft `#DCEFED`
@@ -73,18 +87,40 @@ Locked at this checkpoint:
 - Border / Default Control `#E3E8E7`
 - Text Primary `#151918`
 - Text Secondary `#626866`
+- Text Tertiary `#929A98`
 - Success `#4F8A61`
 - Danger `#C85A64`
 - content cards and grouped list cards: no outer border + subtle `0 2px 8px` shadow at 5%
 - controls may retain explicit default border
 - standard D surfaces use no background-blur glass effect
-- Workout LiveBar keeps its PO-manually-adjusted local background and no border
-- D Settings section wrappers were changed to allow shadows to render without clipping
+- Workout LiveBar keeps its approved local light treatment and no border
+
+Shared design-system implementation:
+- `Colors` collection retains Dark/Light modes
+- added/retained reusable semantics include `action/primary`, `brand/soft`, `state/success`, `state-bg/success`, `state-bg/danger`, `surface/track`, `effect/card-shadow`, `state-bg/pressed`
+- registered Paint Styles: `Surface/Canvas`, `Surface/Content`, `Surface/Subtle`, `Surface/Track`, `Brand/Primary`, `Brand/Soft`, `Action/Primary`, `State/Success`, `State/Danger`, `Text/Primary`, `Text/Secondary`, `Text/Tertiary`, `Text/OnAction`, `Border/Default`, `Border/Subtle`
+- registered Effect Style: `Elevation/Card`
+- CTA / Compact Button / OptionItem / WheelPicker / DialogCard / DialogButtons / ActionSheet / ManualTimerPopup / StatusToast / segmented controls / shared cards and dividers are bound through local semantic variables/components
+- theme-sensitive external/shared-library component dependencies were localized or swapped to existing local Common_Component equivalents
+- AppLogo uses the same approved artwork with adaptive blend treatment so it remains visible on light and dark neutral canvases
+
+Final read-back after screenshot QA:
+- MVP screen frames: `98`
+- Light roots: `98 / 98`
+- remote component instances across current MVP + Common_Component: `0`
+- external variable bindings: `0`
+- standard visible GLASS / BACKGROUND_BLUR effects: `0`
+- remaining unbound theme-sensitive palette paints: `0`
+- A–H screenshot QA completed across all 98 screens
+- remaining first-pass gaps found by screenshot QA (logo visibility, WheelPicker old dark text, sheet Cancel actions, OptionItem selected/unselected coloring) were corrected and affected categories re-screenshotted PASS
+- temporary screenshot QA frames removed
 
 Scope boundary:
-- D is exploratory/reference only, not the production canonical screen set.
-- do not roll this palette into production pages or shared production Variables/Styles without explicit PO direction.
-- do not reopen Groups 03–08 solely because the light color direction was approved.
+- this color/surface rollout is applied to the current consolidated MVP screen set.
+- Groups 03–08 remain product/UX closed; this migration does not reopen their flow/policy decisions.
+- Group 02 product refinement remains deferred.
+- final PO visual lock for the full light set is pending.
+- radius scale/application is a separate decision and remains preview-only until PO explicitly approves propagation.
 - do not hand off to Cursor.
 
 ---
@@ -111,15 +147,14 @@ Final closure:
 Post-closure maintenance:
 - `docs/ux-decisions/2026-09-16-group04-common-component-organization.md`
 
-Canonical Figma:
-- file `W3lZurXCXbThP67rF2xk2b`
+Historical closure Figma reference:
 - page `04 운동 목록 · 상세` — `233:2075`
 
 Final state:
 - canonical search/detail/custom-exercise states QA PASS
 - delete/save/attachment/recording-type/height policies locked
-- Group 04 page component instances resolve through confirmed `Common_Component` groups
-- no legacy `MVP_공용_UI` source remains on the Group 04 production page
+- Group 04 component instances resolve through confirmed `Common_Component` groups
+- no legacy `MVP_공용_UI` source remains in the closed Group 04 component structure
 
 Deferred data/runtime work remains:
 - final Production Exercise DB regeneration from purchased Gym Animations raw 2,109-source-row catalog after normalization/deduplication
@@ -142,7 +177,7 @@ Final relevant checkpoints:
 - `docs/ux-decisions/2026-09-15-group05-active-workout-scroll-behavior.md`
 - `docs/ux-decisions/2026-09-15-group05-rest-live-bar-amendment.md`
 
-Canonical Figma:
+Historical closure Figma reference:
 - page `05 운동 중` — `233:2076`
 - `05A_Workout_Weight` — `148:1979`
 - `05A_Workout_Weight_Scrolled_3rdExercise` — `1495:2408`
@@ -170,7 +205,7 @@ Do not reopen without a concrete conflict/regression or explicit PO request.
 Final closure:
 - `docs/ux-decisions/2026-09-16-group06-final-closure-qa.md`
 
-Canonical Figma:
+Historical closure Figma reference:
 - file `W3lZurXCXbThP67rF2xk2b`
 - page `06 운동 완료` — `233:2077`
 - `06A_Completion_Default` — `793:15748`
@@ -198,10 +233,10 @@ Final component organization:
 - `07D/PersonalRecordTrophyCard` — `1113:733`
 - `07D/SessionSummaryCard` — `1124:736`
 - `CompletionMetricCard` — `936:914`
-- Group 06 page: `36 / 36` instances resolve through `Common_Component`
+- final Group 06 closure check: `36 / 36` instances resolved through `Common_Component`
 - missing main-component links: `0`
 - legacy `MVP_공용_UI` source instances: `0`
-- local component masters on the Group 06 production page: `0`
+- local component masters on the former Group 06 production page: `0`
 
 **GROUP 06 CLOSED.**
 
@@ -221,7 +256,7 @@ Post-closure maintenance:
 Product rules:
 - `docs/ux-decisions/2026-09-14-group07-final-policy-lock.md`
 
-Canonical Figma:
+Historical closure Figma reference:
 - file `W3lZurXCXbThP67rF2xk2b`
 - page `07 Analysis · Workout History` — `233:2078`
 - `07A_Analysis_Home` — `887:936`
@@ -254,7 +289,7 @@ Common_Component organization:
 - shared Nav Header / DialogCard / DialogButtons internal layer naming used by Group 07 was normalized to English without changing visible copy or behavior
 
 Final structural QA:
-- Group 07 page instance nodes: `77`
+- Group 07 page instance nodes at closure: `77`
 - missing main-component links: `0`
 - source `Common_Component`: `77 / 77`
 - source legacy `MVP_공용_UI`: `0`
@@ -295,7 +330,7 @@ Do not resume it unless PO requests it.
 Final closure:
 - `docs/ux-decisions/2026-09-16-group08-final-closure-qa.md`
 
-Canonical Figma:
+Historical closure Figma reference:
 - file `W3lZurXCXbThP67rF2xk2b`
 - page `08 Settings · Account` — `233:2079`
 - `08A_Settings_Home` — `1158:649`
@@ -344,7 +379,7 @@ Common_Component organization:
   - `TextArea` — `1255:1137`
   - `AttachmentSlot` — `1255:1161`
 
-Final structural QA:
+Historical final structural QA at Group 08 closure:
 - active Group 08 frames: `19`
 - all frame widths: `360px`
 - minimum frame height violations: `0`
@@ -360,6 +395,10 @@ Final structural QA:
 - overlay roots remain absolute only where dimming/sheet/dialog stacking requires it
 - representative English-copy stress QA: Settings Home + Workout Settings PASS; temporary QA frames removed
 
+Current consolidated design-system migration supersedes the former external/shared-library dependency for the live MVP set:
+- current MVP + Common_Component remote component instances: `0`
+- current external variable bindings: `0`
+
 Release follow-ups that are not Figma blockers:
 - actual public Terms / Privacy URLs
 - exact support-inquiry record/image-attachment retention period
@@ -374,17 +413,17 @@ Do not reopen Group 08 without a concrete new conflict/regression, a release req
 
 # NEXT OPEN ITEM
 
-**No automatic next Product/UX group. Await Product Owner direction.**
+**Product Owner review of the fully applied Light D MVP set. No automatic next Product/UX group.**
 
 Remaining intentionally deferred / later items:
-1. approved Light Color System production rollout — deferred; resume only on explicit PO request and start with semantic Variable/Style mapping, not manual screen recoloring
+1. size-aware radius system — D preview exists; propagate to shared Radius/component rules only after explicit PO approval
 2. Group 02 Home refinement — deferred by PO; resume only on explicit request
 3. Group 07 final body-map production asset mapping — deferred until PO provides/prepares the production-ready body-map image set
 4. pre-release Settings follow-ups — public Terms/Privacy URLs, inquiry retention disclosure, external account-deletion request URL, final timer sound assets/labels
 5. implementation/Cursor handoff — only after explicit Product Owner authorization
 
 Do not reopen Groups 03–08 without a concrete conflict/regression or explicit PO request.
-Do not begin the approved light-color production rollout automatically.
+Do not propagate the radius experiment across the MVP set automatically.
 Do not begin Cursor implementation handoff automatically.
 
 # Development boundary
