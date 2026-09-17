@@ -29,6 +29,7 @@ Current Figma editing surface:
 - `docs/ux-decisions/2026-09-17-mvp-light-theme-rollout-preview.md`
 - `docs/ux-decisions/2026-09-17-mvp-light-theme-color-acceptance.md`
 - `docs/ux-decisions/2026-09-17-light-radius-exploration-checkpoint.md`
+- `docs/ux-decisions/2026-09-17-shared-tabs-consolidation-checkpoint.md`
 
 Current status:
 - D / Petrol Teal Tonal is the approved light-theme baseline.
@@ -36,6 +37,7 @@ Current status:
 - 98/98 MVP screen roots use `Colors / Light`.
 - theme-sensitive variable-bound fills/strokes were force-synchronized to resolved Light values after a stale-render mismatch was found; post-sync mismatch count is `0`.
 - color/surface implementation is driven through local semantic Variables, registered Paint/Effect Styles, and Common_Component masters instead of one-off screen recoloring.
+- shared page-level tabs are consolidated into one `Tabs` component family and use a full-width 360px rule with no outer horizontal inset.
 - Product Owner visually confirmed the refreshed canonical Figma state and accepted the current color/surface result.
 - radius experiment remains preview-only and has not been propagated across the 98 screens.
 - no Cursor/development handoff.
@@ -70,6 +72,7 @@ Approval / reference:
 Applied rollout / QA checkpoints:
 - `docs/ux-decisions/2026-09-17-mvp-light-theme-rollout-preview.md`
 - `docs/ux-decisions/2026-09-17-mvp-light-theme-color-acceptance.md`
+- `docs/ux-decisions/2026-09-17-shared-tabs-consolidation-checkpoint.md`
 
 Figma reference:
 - file `W3lZurXCXbThP67rF2xk2b`
@@ -104,6 +107,9 @@ Shared design-system implementation:
 - registered Paint Styles: `Surface/Canvas`, `Surface/Content`, `Surface/Subtle`, `Surface/Track`, `Brand/Primary`, `Brand/Soft`, `Action/Primary`, `State/Success`, `State/Danger`, `Text/Primary`, `Text/Secondary`, `Text/Tertiary`, `Text/OnAction`, `Border/Default`, `Border/Subtle`
 - registered Effect Style: `Elevation/Card`
 - CTA / Compact Button / OptionItem / WheelPicker / DialogCard / DialogButtons / ActionSheet / ManualTimerPopup / StatusToast / segmented controls / shared cards and dividers are bound through local semantic variables/components
+- page-level Routine / Exercise Detail / Analysis period tabs resolve through shared `Tabs` — `638:3298` under `SHARED_NAVIGATION_COMPONENTS` — `1773:1016`
+- shared Tabs use `Count`, numeric `Active`, `Indicator`, and `State` axes; current page-level instances fill the full `360 × 54` width
+- obsolete Group 07-only `AnalysisPeriodTabs` — `961:1368` was removed after zero-instance verification
 - theme-sensitive external/shared-library component dependencies were localized or swapped to existing local Common_Component equivalents
 - AppLogo uses the same approved artwork with adaptive blend treatment so it remains visible on light and dark neutral canvases
 
@@ -120,6 +126,7 @@ Final read-back after synchronization / screenshot QA:
 - A–H screenshot QA completed across all 98 screens
 - remaining first-pass gaps found by screenshot QA (logo visibility, WheelPicker old dark text, sheet Cancel actions, OptionItem selected/unselected coloring) were corrected and affected categories re-screenshotted PASS
 - representative post-sync screenshots verified: `03A_Routine_List_Recommended`, `04A_Search`, `04B_Search_Selected`, `05A_Workout_Weight`, `05A_Workout_Weight_Scrolled_3rdExercise`
+- shared Tabs screenshot QA verified full-width Group 03 RoutineTabs and Group 07 PeriodTabs after consolidation
 - Product Owner refreshed the canonical Figma file and accepted the current color result
 - temporary screenshot QA frames removed
 
@@ -142,6 +149,10 @@ Cross-group empty-routine exception already reflected and QA-passed:
 - `운동 추가` shown
 - `운동 시작` hidden
 
+Design-system maintenance:
+- RoutineTabs now reuse shared `Tabs` — `638:3298`
+- page-level routine tab rows use `x=0 / width=360` with no outer horizontal inset
+
 Do not reopen without a new conflict/regression or explicit PO request.
 
 ---
@@ -161,6 +172,7 @@ Final state:
 - canonical search/detail/custom-exercise states QA PASS
 - delete/save/attachment/recording-type/height policies locked
 - Group 04 component instances resolve through confirmed `Common_Component` groups
+- exercise-detail tabs reuse the shared full-width `Tabs` component family
 - no legacy `MVP_공용_UI` source remains in the closed Group 04 component structure
 
 Deferred data/runtime work remains:
@@ -259,6 +271,7 @@ Final closure:
 Post-closure maintenance:
 - `docs/ux-decisions/2026-09-16-group07-common-component-naming-cleanup.md`
 - `docs/ux-decisions/2026-09-16-group07-screen-name-normalization.md`
+- `docs/ux-decisions/2026-09-17-shared-tabs-consolidation-checkpoint.md`
 
 Product rules:
 - `docs/ux-decisions/2026-09-14-group07-final-policy-lock.md`
@@ -284,11 +297,13 @@ Final closure corrections / verification:
 Common_Component organization:
 - `07_GROUP_CONFIRMED_COMPONENTS` — `1578:987`
 - Group 07-specific masters remain original nodes without duplication/detach:
-  - `AnalysisPeriodTabs` — `961:1368`
-    - `Active=4Weeks / Active=3Months / Active=1Year`
   - `MetricSegmentedControl` — `1025:1092`
     - `Active=TotalWeight / Active=Sets / Active=Time`
   - `AnalysisProgressRow` — `854:6951`
+- Analysis period navigation now reuses shared `Tabs` — `638:3298` under `SHARED_NAVIGATION_COMPONENTS` — `1773:1016`
+  - representative configuration: `Count=3 / Indicator=Underline`
+  - page-level width: `360px`, each tab `120px`
+  - obsolete `AnalysisPeriodTabs` — `961:1368` removed after zero-instance verification
 - `SHARED_LIST_COMPONENTS` — `1593:1386`
   - `RecentWorkoutRow` — `937:7292`
   - `ListCard` — `952:611`
@@ -304,6 +319,7 @@ Final structural QA:
 - Korean/mixed Figma layer names inside `07_GROUP_CONFIRMED_COMPONENTS`: `0`
 - local Group 07 production-page component masters: `0`
 - screenshot regression QA: `07A_Analysis_Home`, `07B_BodyArea_Detail_Empty`, `07D_Workout_History_Detail_DeleteConfirm` PASS
+- shared Tabs consolidation screenshot QA: Group 07 PeriodTabs full-width PASS
 
 ## Body-map production asset mapping deferred
 
