@@ -140,7 +140,7 @@ Final relevant checkpoints:
 - `docs/ux-decisions/2026-09-16-group05-page-cleanup.md`
 - `docs/ux-decisions/2026-09-15-group05-active-workout-live-bar-amendment.md`
 - `docs/ux-decisions/2026-09-15-group05-active-workout-scroll-behavior.md`
-- `docs/ux-decisions/2026-09-15-rest-live-bar-amendment.md`
+- `docs/ux-decisions/2026-09-15-group05-rest-live-bar-amendment.md`
 
 Canonical Figma:
 - page `05 운동 중` — `233:2076`
