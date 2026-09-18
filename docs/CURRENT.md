@@ -4,7 +4,7 @@
 
 ## Current mode
 
-`DESIGN SYSTEM / FIGMA QA · LIGHT COLOR SYSTEM D MVP ROLLOUT APPLIED / COLOR-SURFACE PO ACCEPTED · COMPONENT/BINDING MAINTENANCE PO APPROVED · SPLASH / APP LOGO / EXERCISE THUMBNAIL VISUAL MAINTENANCE PO APPROVED · SHARED TABS / SELECTION LIST MAINTENANCE PO APPROVED · RADIUS RULE PREVIEW ONLY / NOT ROLLED OUT · GROUP 02 02A BLANK-WORKOUT ENTRY PO APPROVED / TARGETED FOLLOW-UP OPEN · GROUP 03 ROUTINE CLOSED · GROUP 04 EXERCISE LIBRARY/DETAIL CLOSED · GROUP 05 ACTIVE WORKOUT CLOSED EXCEPT TARGETED BLANK-WORKOUT EMPTY STATE FOLLOW-UP · GROUP 06 COMPLETION CLOSED WITH 2026-09-17 VISUAL AMENDMENTS · GROUP 07 ANALYSIS/WORKOUT HISTORY CLOSED (BODY-MAP PRODUCTION ASSET MAPPING DEFERRED) · GROUP 08 SETTINGS/ACCOUNT CLOSED WITH 2026-09-18 VISUAL AMENDMENTS · NO CURSOR IMPLEMENTATION HANDOFF`
+`DESIGN SYSTEM / FIGMA QA · LIGHT COLOR SYSTEM D MVP ROLLOUT APPLIED / COLOR-SURFACE PO ACCEPTED · COMPONENT/BINDING MAINTENANCE PO APPROVED · SPLASH / APP LOGO / EXERCISE THUMBNAIL VISUAL MAINTENANCE PO APPROVED · EXERCISE THUMBNAIL PRODUCTION-ASSET PREP SAMPLE VALIDATION OPEN · SHARED TABS / SELECTION LIST MAINTENANCE PO APPROVED · RADIUS RULE PREVIEW ONLY / NOT ROLLED OUT · GROUP 02 02A BLANK-WORKOUT ENTRY PO APPROVED / TARGETED FOLLOW-UP OPEN · GROUP 03 ROUTINE CLOSED · GROUP 04 EXERCISE LIBRARY/DETAIL CLOSED · GROUP 05 ACTIVE WORKOUT CLOSED EXCEPT TARGETED BLANK-WORKOUT EMPTY STATE FOLLOW-UP · GROUP 06 COMPLETION CLOSED WITH 2026-09-17 VISUAL AMENDMENTS · GROUP 07 ANALYSIS/WORKOUT HISTORY CLOSED (BODY-MAP PRODUCTION ASSET MAPPING DEFERRED) · GROUP 08 SETTINGS/ACCOUNT CLOSED WITH 2026-09-18 VISUAL AMENDMENTS · NO CURSOR IMPLEMENTATION HANDOFF`
 
 ## Resume rule
 
@@ -34,6 +34,9 @@ The prior `97` screen count after the Group 08 FAQ removal and Group 06 recommen
 ---
 
 ## Latest active checkpoints
+
+### Current active asset-prep checkpoint
+- `docs/ux-decisions/2026-09-18-exercise-thumbnail-production-crop-prep.md`
 
 ### Current consolidated maintenance
 - `docs/ux-decisions/2026-09-18-mvp-figma-maintenance-checkpoint.md`
@@ -165,6 +168,10 @@ Approved and reflected in canonical Figma:
 - current exercise-thumbnail visual preview is applied to `93` instances across `19` screens
 - shared exercise thumbnails use `1px INSIDE border/subtle` to separate very-light imagery from white/light surfaces
 - current thumbnail image assignment is a visual preview only; exact Production exercise-to-media mapping remains deferred
+- Production thumbnail crop/framing prep is now active in Adobe Creative Cloud using three `male` source samples plus `example_guide.jpg / example_noguide.jpg`
+- current working crop baseline is `512 × 512`, with per-exercise optical scale/position normalization rather than fixed crop coordinates; the standard is still provisional
+- three first-pass Adobe crops were generated, but target-folder cloud persistence is **NOT VERIFIED** after repeated Adobe asset-copy HTTP `500`; upload-path fallback remains open
+- canonical prep record: `docs/ux-decisions/2026-09-18-exercise-thumbnail-production-crop-prep.md`
 - focused read-back: `93 / 93` thumbnails have the subtle outline; old placeholder remains in current exercise-thumbnail instances = `0`
 - latest whole-MVP linkage: `1,977 / 1,977` instances resolve; missing main-component links = `0`; non-`Common_Component` sources = `0`
 
@@ -450,11 +457,12 @@ Release follow-ups that are not Figma blockers:
 
 # NEXT OPEN ITEM
 
-**The newly opened direct follow-up is the zero-exercise Active Workout destination required by the approved 02A blank-workout entry. Broader Group 02 and unrelated Group 05 behavior remain closed/deferred.**
+**The current active side-track is Production exercise-thumbnail crop/framing sample validation. Do not bulk-process the purchased source set until the three-sample convention is visually accepted. The previously opened zero-exercise Active Workout follow-up remains next in the Figma track.**
 
 Immediate focused follow-ups:
-1. Blank-workout Active state — add the canonical zero-exercise Active Workout destination for `02A 빈 운동 시작`, reusing existing Group 05 shell/components and existing exercise-add flow
-2. Group 03 `03E / 03E2` routine-create/save Figma alignment — verify name is optional and save is not visually/structurally gated by name alone
+1. Exercise thumbnail Production crop prep — persist/read back the three `male` crop samples in Adobe Cloud, compare at `512` and actual UI sizes (`44 / 52 / 64px`), tune per-image scale/position, and get PO approval on the crop convention before any bulk workflow
+2. Blank-workout Active state — add the canonical zero-exercise Active Workout destination for `02A 빈 운동 시작`, reusing existing Group 05 shell/components and existing exercise-add flow
+3. Group 03 `03E / 03E2` routine-create/save Figma alignment — verify name is optional and save is not visually/structurally gated by name alone
 
 Remaining intentionally deferred / later items:
 1. size-aware radius system — preview only; propagate only after explicit PO approval
