@@ -148,7 +148,7 @@ Latest maintenance result:
 - Group 08: settings rows/cards, option lists, headers, and screen-content patterns consolidated into shared components
 
 Latest whole-MVP linkage verification:
-- `1,973 / 1,973` instances resolve to a main component
+- `1,977 / 1,977` instances resolve to a main component
 - all current MVP component sources resolve through `Common_Component`
 - detached/missing main-component instances: `0`
 
