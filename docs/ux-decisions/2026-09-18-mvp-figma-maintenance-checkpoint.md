@@ -5,7 +5,7 @@
 
 ## Scope
 
-Targeted post-closure Figma/product-policy maintenance performed on Groups 03–05.
+Targeted post-closure Figma/product-policy maintenance performed on Groups 03–05 and Group 08.
 
 This checkpoint records only the explicit PO-directed amendments below. Previously closed flows remain closed unless a later Decision explicitly supersedes them.
 
@@ -191,6 +191,49 @@ Representative verification:
 
 ---
 
+## Group 08 — Support inquiry attachment maintenance
+
+### 08G attached-image remove affordance
+
+PO approved a removable attachment badge for `08G_Support_Inquiry`.
+
+Shared Figma:
+- `AttachmentSlot` set: `1255:1161`
+- Filled variant: `1255:1150`
+- shared `SupportInquiryContent`: `1882:9310`
+- `RemoveBadge`: `1928:8903`
+- representative screen: `08G_Support_Inquiry` — `1257:927`
+
+Locked visual treatment:
+- Filled attachment exposes a circular remove badge overlapping the slot top-right edge
+- badge size remains `20 × 20`
+- badge position inside Filled slot: `x=56 / y=-2`
+- fill uses dark `neutral/900`
+- 1px light outline uses `neutral/100`
+- existing subtle shared shadow is retained
+- badge radius uses `radius/full`
+- Filled slot and `AttachmentSlots` container do not clip overflow so the overlapping badge remains fully visible
+
+Close glyph:
+- PO-provided `close 1` SVG from the 08G screen was used as the source
+- source contained two 12 × 12 vectors
+- vectors were copied into `RemoveBadge`, reduced to `6 × 6`, and centered at `x=7 / y=7`
+- vector stroke uses `neutral/100` for contrast on the dark badge
+- temporary imported `close 1` source frame was removed after reuse
+
+Representative 08G state:
+- `AttachmentSlot_1` = Filled with remove badge
+- `AttachmentSlot_2 / 3` = Empty
+- this visually documents the attached-image state while preserving the existing three-image limit
+
+Focused screenshot/read-back QA:
+- badge is no longer clipped
+- badge remains visually attached to the slot edge rather than floating outside
+- shared Filled variant carries the treatment
+- PASS
+
+---
+
 ## QA boundary
 
 Focused QA was performed on the changed representative states after each amendment.
@@ -201,6 +244,7 @@ Verified:
 - target labels/rendered states read back correctly
 - no target-screen overlap after inline-hint insertion
 - replacement card surface and Secondary CTA border bindings read back correctly
+- 08G Filled attachment remove badge geometry, close-glyph placement, and overflow visibility read back correctly
 
 This checkpoint does **not** re-run already accepted whole-MVP QA.
 
