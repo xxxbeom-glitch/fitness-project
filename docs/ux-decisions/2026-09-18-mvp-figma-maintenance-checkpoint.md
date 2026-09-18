@@ -191,6 +191,35 @@ Representative verification:
 
 ---
 
+## Group 08 — Settings visual maintenance
+
+### 08D1 default rest-time wheel picker container
+
+PO approved aligning `08D1_Default_Rest_Time_Sheet` with the internal-box treatment already used by other Group 08 bottom sheets.
+
+Shared Figma:
+- `WheelPicker/SingleColumn` master: `1169:1105`
+- representative instance: `WheelPicker_RestTime` — `1170:697`
+- representative screen: `08D1_Default_Rest_Time_Sheet` — `1163:676`
+
+Applied:
+- picker background = `bg/default` (`VariableID:278:917`)
+- radius = `12` using the existing radius token (`VariableID:278:910`)
+- picker width/height remain `320 × 200`
+- existing wheel rows remain unchanged
+- existing selected-row top/bottom lines remain unchanged
+- no extra stroke or shadow added
+
+Intent:
+- match the visual hierarchy of other Group 08 bottom-sheet internal containers such as `OptionsList`
+- keep the wheel-picker interaction distinct while removing the previous “floating directly on the sheet” appearance
+
+Focused read-back:
+- `bg/default` binding verified
+- radius 12 verified
+- both selection lines preserved
+- PASS
+
 ## Group 08 — Support inquiry attachment maintenance
 
 ### 08G attached-image remove affordance
@@ -244,6 +273,7 @@ Verified:
 - target labels/rendered states read back correctly
 - no target-screen overlap after inline-hint insertion
 - replacement card surface and Secondary CTA border bindings read back correctly
+- 08D1 WheelPicker internal-box fill/radius bindings and selection lines read back correctly
 - 08G Filled attachment remove badge geometry, close-glyph placement, and overflow visibility read back correctly
 
 This checkpoint does **not** re-run already accepted whole-MVP QA.
