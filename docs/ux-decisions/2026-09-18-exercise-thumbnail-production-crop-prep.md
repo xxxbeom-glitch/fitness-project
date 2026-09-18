@@ -1,7 +1,7 @@
 # 2026-09-18 Exercise Thumbnail Production Crop Prep
 
 **Date:** 2026-09-18  
-**Status:** IN PROGRESS · SAMPLE VALIDATION OPEN · NOT PRODUCTION LOCKED · NO CURSOR HANDOFF
+**Status:** IN PROGRESS · LOCAL PHOTOSHOP AUTO-CROP PATH VALIDATED · 50-IMAGE EXECUTION CONFIRMED · OVERNIGHT BULK CANDIDATE PREPARED · FINAL LARGE-RUN QA OPEN · NO CURSOR HANDOFF
 
 ## Purpose
 
@@ -108,16 +108,95 @@ Do not report the crop results as saved in the target folder until a successful 
 
 ---
 
+## Local Photoshop auto-crop route — validated
+
+Because Adobe MCP crop generation succeeded but saving generated outputs back into the target Creative Cloud folder repeatedly failed with HTTP `500`, a local Photoshop UXP script route was prototyped and verified.
+
+### Root cause found during script bring-up
+
+Early `.psjs` tests appeared to stop after folder selection.
+
+The decisive fix was keeping the Photoshop script execution context alive with top-level Global Await:
+
+- failing pattern: `main();`
+- working pattern: `await main();`
+
+After this correction:
+- local folder selection: PASS
+- image enumeration: PASS
+- opening source images in Photoshop: PASS
+- pixel analysis through Photoshop Imaging API: PASS
+- automatic crop / resize / PNG save: PASS
+
+### Crop algorithm currently used
+
+The local script does not apply one fixed crop coordinate to every source.
+
+For each image it:
+1. reads a reduced-resolution pixel sample
+2. treats near-white pixels as background
+3. finds the non-white athlete + equipment bounding region
+4. calculates a square crop around that region
+5. normalizes the long side of the detected content toward about `400px` inside the final canvas
+6. crops and resizes to `512 × 512`
+7. saves as PNG while leaving the original source untouched
+
+Current working parameters:
+- output: `512 × 512`
+- target content span: about `400px`
+- white threshold: `245 / 255`
+- analysis size: `256px`
+- supported source extensions: JPG / JPEG / PNG
+
+### Validation progression
+
+- 5-image real crop test: execution PASS; Product Owner feedback = output looked reasonably good
+- 50-image test with logging: execution PASS; Product Owner confirmed the batch route works
+- this validates the local Photoshop automation route technically, but does **not** yet mean all 3,000 outputs have passed visual QA
+
+### Overnight bulk candidate
+
+Canonical candidate script:
+- `tools/photoshop/tampin_auto_crop_v05_overnight.psjs`
+
+Current overnight safeguards:
+- process the full selected source folder
+- batch size: `100` images
+- pause after each batch: `60s`
+- write checkpoint log after every 100 images
+- skip outputs that already exist
+- safe restart: rerunning the script resumes by processing only missing outputs
+- continue past per-file failures instead of stopping the entire run
+- preserve originals
+- output folder: `tampin_crop_output`
+- log file: `tampin_crop_log.txt`
+
+This v0.5 script is prepared for the large run, but the full 3,000-image run and post-run visual exception QA are still pending.
+
+### Route decision
+
+The unresolved Adobe MCP target-folder save error is no longer a blocker for Production crop generation.
+
+Current preferred production route:
+- Adobe MCP / visual work: small-sample exploration only when useful
+- Photoshop UXP local script: repeatable high-volume crop production
+- manual correction: only for exceptions found after batch QA
+
+Do not mark the Production crop standard fully locked until the overnight batch has completed and representative / exception QA has passed.
+
+---
+
 ## Next validation steps
 
-1. Persist the three first-pass/adjusted crop results into the Adobe Cloud working area through a verified upload path.
-2. Read back the saved outputs from Adobe Cloud.
-3. Compare all three at `512px` and at actual product thumbnail size (`44 / 52 / 64px`).
-4. Adjust each image independently until perceived athlete/equipment scale is consistent.
-5. Product Owner approves the sample convention.
-6. Only after approval, convert the convention into the large-set production workflow.
+1. Run the prepared Photoshop v0.5 overnight candidate against the full purchased source folder.
+2. Confirm the run log, total success/failure count, and restart/skip behavior if the run is interrupted.
+3. Visually QA a representative spread of outputs, with extra attention to horizontal/lying poses, long bars, benches, and large equipment.
+4. Review every logged failure and any obvious crop outlier.
+5. Tune the shared crop parameters only if the exception rate or visual inconsistency is materially high.
+6. Product Owner locks the Production crop convention only after the large-run QA is acceptable.
+7. Then proceed to the next media-preparation/mapping step without reopening already approved Figma thumbnail styling.
 
-For hundreds of source images, do not assume the ChatGPT Adobe connector should perform the entire batch. Once the visual rule is locked, Photoshop Actions / Bridge batch processing remains the expected scalable production route unless a better verified batch route is established.
+The local Photoshop UXP script is now the expected scalable route for the ~3,000-image source set. Adobe MCP remains useful for small-sample inspection/editing, but is not the bulk production path.
 
 ---
 
