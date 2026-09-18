@@ -4,7 +4,7 @@
 
 ## Current mode
 
-`DESIGN SYSTEM / FIGMA QA · LIGHT COLOR SYSTEM D MVP ROLLOUT APPLIED / COLOR-SURFACE PO ACCEPTED · COMPONENT/BINDING MAINTENANCE PO APPROVED · SPLASH / APP LOGO / EXERCISE THUMBNAIL VISUAL MAINTENANCE PO APPROVED · EXERCISE THUMBNAIL PRODUCTION-ASSET PREP SAMPLE VALIDATION OPEN · SHARED TABS / SELECTION LIST MAINTENANCE PO APPROVED · RADIUS RULE PREVIEW ONLY / NOT ROLLED OUT · GROUP 02 02A BLANK-WORKOUT ENTRY PO APPROVED / TARGETED FOLLOW-UP OPEN · GROUP 03 ROUTINE CLOSED · GROUP 04 EXERCISE LIBRARY/DETAIL CLOSED · GROUP 05 ACTIVE WORKOUT CLOSED EXCEPT TARGETED BLANK-WORKOUT EMPTY STATE FOLLOW-UP · GROUP 06 COMPLETION CLOSED WITH 2026-09-17 VISUAL AMENDMENTS · GROUP 07 ANALYSIS/WORKOUT HISTORY CLOSED (BODY-MAP PRODUCTION ASSET MAPPING DEFERRED) · GROUP 08 SETTINGS/ACCOUNT CLOSED WITH 2026-09-18 VISUAL AMENDMENTS · NO CURSOR IMPLEMENTATION HANDOFF`
+`DESIGN SYSTEM / FIGMA QA · LIGHT COLOR SYSTEM D MVP ROLLOUT APPLIED / COLOR-SURFACE PO ACCEPTED · COMPONENT/BINDING MAINTENANCE PO APPROVED · SPLASH / APP LOGO / EXERCISE THUMBNAIL VISUAL MAINTENANCE PO APPROVED · EXERCISE THUMBNAIL LOCAL AUTO-CROP VALIDATED / OVERNIGHT BULK RUN PENDING · SHARED TABS / SELECTION LIST MAINTENANCE PO APPROVED · RADIUS RULE PREVIEW ONLY / NOT ROLLED OUT · GROUP 02 02A BLANK-WORKOUT ENTRY PO APPROVED / TARGETED FOLLOW-UP OPEN · GROUP 03 ROUTINE CLOSED · GROUP 04 EXERCISE LIBRARY/DETAIL CLOSED · GROUP 05 ACTIVE WORKOUT CLOSED EXCEPT TARGETED BLANK-WORKOUT EMPTY STATE FOLLOW-UP · GROUP 06 COMPLETION CLOSED WITH 2026-09-17 VISUAL AMENDMENTS · GROUP 07 ANALYSIS/WORKOUT HISTORY CLOSED (BODY-MAP PRODUCTION ASSET MAPPING DEFERRED) · GROUP 08 SETTINGS/ACCOUNT CLOSED WITH 2026-09-18 VISUAL AMENDMENTS · NO CURSOR IMPLEMENTATION HANDOFF`
 
 ## Resume rule
 
@@ -168,9 +168,15 @@ Approved and reflected in canonical Figma:
 - current exercise-thumbnail visual preview is applied to `93` instances across `19` screens
 - shared exercise thumbnails use `1px INSIDE border/subtle` to separate very-light imagery from white/light surfaces
 - current thumbnail image assignment is a visual preview only; exact Production exercise-to-media mapping remains deferred
-- Production thumbnail crop/framing prep is now active in Adobe Creative Cloud using three `male` source samples plus `example_guide.jpg / example_noguide.jpg`
-- current working crop baseline is `512 × 512`, with per-exercise optical scale/position normalization rather than fixed crop coordinates; the standard is still provisional
-- three first-pass Adobe crops were generated, but target-folder cloud persistence is **NOT VERIFIED** after repeated Adobe asset-copy HTTP `500`; upload-path fallback remains open
+- Production thumbnail crop/framing prep began with Adobe MCP sample work; generated crop output was valid, but saving generated outputs back into the target Creative Cloud folder repeatedly failed with HTTP `500`
+- that Adobe cloud-save problem is no longer the production blocker: a local Photoshop UXP auto-crop route is now technically validated
+- the decisive Photoshop script fix was top-level Global Await (`await main();`) so folder/file operations remain alive after the picker returns
+- current local crop baseline: `512 × 512`, detected non-white athlete/equipment bounds, target content span about `400px`, per-image square crop, originals preserved
+- 5-image real crop test: PASS / PO feedback positive enough to expand testing
+- 50-image logged batch: execution confirmed working
+- prepared overnight candidate: `tools/photoshop/tampin_auto_crop_v05_overnight.psjs`
+- overnight safeguards: 100 images per batch, 60s pause, checkpoint logging, existing-output skip/resume, per-file failure continuation
+- full ~3,000-image overnight run and post-run visual exception QA are still pending; Production crop convention is not yet fully locked
 - canonical prep record: `docs/ux-decisions/2026-09-18-exercise-thumbnail-production-crop-prep.md`
 - focused read-back: `93 / 93` thumbnails have the subtle outline; old placeholder remains in current exercise-thumbnail instances = `0`
 - latest whole-MVP linkage: `1,977 / 1,977` instances resolve; missing main-component links = `0`; non-`Common_Component` sources = `0`
@@ -457,10 +463,10 @@ Release follow-ups that are not Figma blockers:
 
 # NEXT OPEN ITEM
 
-**The current active side-track is Production exercise-thumbnail crop/framing sample validation. Do not bulk-process the purchased source set until the three-sample convention is visually accepted. The previously opened zero-exercise Active Workout follow-up remains next in the Figma track.**
+**The current active side-track is the Production exercise-thumbnail overnight bulk crop run. The local Photoshop auto-crop path is technically validated through 5-image and 50-image tests; the full ~3,000-image run and post-run exception QA remain open. The previously opened zero-exercise Active Workout follow-up remains next in the Figma track.**
 
 Immediate focused follow-ups:
-1. Exercise thumbnail Production crop prep — persist/read back the three `male` crop samples in Adobe Cloud, compare at `512` and actual UI sizes (`44 / 52 / 64px`), tune per-image scale/position, and get PO approval on the crop convention before any bulk workflow
+1. Exercise thumbnail Production crop prep — run `tools/photoshop/tampin_auto_crop_v05_overnight.psjs` on the full source folder, inspect `tampin_crop_log.txt`, QA representative/edge-case outputs, and lock the crop convention only if the large-run result is acceptable
 2. Blank-workout Active state — add the canonical zero-exercise Active Workout destination for `02A 빈 운동 시작`, reusing existing Group 05 shell/components and existing exercise-add flow
 3. Group 03 `03E / 03E2` routine-create/save Figma alignment — verify name is optional and save is not visually/structurally gated by name alone
 
