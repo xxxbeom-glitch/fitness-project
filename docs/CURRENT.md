@@ -52,6 +52,7 @@ The previous `98` screen count is superseded by the current `97` count after the
 ### Historical group closures / current product-policy references
 - Group 03 routine-name amendment: `docs/ux-decisions/2026-09-18-group03-routine-name-auto-default-policy.md`
 - Group 04: `docs/ux-decisions/2026-09-15-group04-final-closure-qa.md`
+- Group 04 custom-exercise field policy: `docs/ux-decisions/2026-09-15-group04-custom-exercise-selection-flow.md` — amended 2026-09-18
 - Group 05: `docs/ux-decisions/2026-09-16-group05-manual-timer-final-closure-qa.md`
 - Group 06: `docs/ux-decisions/2026-09-16-group06-final-closure-qa.md`
 - Group 06 recommended flow: `docs/ux-decisions/2026-09-14-recommended-routine-acceptance-current.md`
@@ -185,10 +186,17 @@ Do not reopen unrelated Group 03 behavior without a concrete conflict/regression
 Group 04 remains Product/UX closed.
 
 Current locked direction remains:
-- exercise search/detail/custom-exercise flows closed
+- exercise search/detail/custom-exercise flows closed except explicit 2026-09-18 custom-create required-field amendment
 - shared full-width Tabs
 - immediate selection lists use `OptionItem` + check
 - recording/attachment policies unchanged
+
+Custom exercise create required-field policy:
+- required: `운동명`, `주 타겟 근육`, `기록 방식`
+- optional: `장비`, `보조 타겟 근육`
+- optional fields do not block Save
+- `주 타겟 근육` remains required for analysis/filter attribution
+- decision authority: `docs/ux-decisions/2026-09-15-group04-custom-exercise-selection-flow.md` (2026-09-18 amendment)
 
 Deferred data/runtime work remains:
 - final Production Exercise DB normalization/deduplication from purchased Gym Animations source
