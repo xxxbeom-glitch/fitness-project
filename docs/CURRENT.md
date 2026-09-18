@@ -4,7 +4,7 @@
 
 ## Current mode
 
-`DESIGN SYSTEM / FIGMA QA · LIGHT COLOR SYSTEM D MVP ROLLOUT APPLIED / COLOR-SURFACE PO ACCEPTED · COMPONENT/BINDING MAINTENANCE PO APPROVED · SPLASH / APP LOGO / EXERCISE THUMBNAIL VISUAL MAINTENANCE PO APPROVED · EXERCISE THUMBNAIL LOCAL AUTO-CROP VALIDATED / OVERNIGHT BULK RUN PENDING · SHARED TABS / SELECTION LIST MAINTENANCE PO APPROVED · RADIUS RULE PREVIEW ONLY / NOT ROLLED OUT · GROUP 02 02A BLANK-WORKOUT ENTRY PO APPROVED / 02B COMPACT HOME GRID DIRECTION PO APPROVED / CANONICAL REFLECTED / FOCUSED QA PASS · GROUP 03 ROUTINE CLOSED · GROUP 04 EXERCISE LIBRARY/DETAIL CLOSED · GROUP 05 ACTIVE WORKOUT CLOSED EXCEPT TARGETED BLANK-WORKOUT EMPTY STATE FOLLOW-UP · GROUP 06 COMPLETION CLOSED WITH 2026-09-17 VISUAL AMENDMENTS · GROUP 07 ANALYSIS/WORKOUT HISTORY CLOSED (BODY-MAP PRODUCTION VISUAL ASSETS APPLIED) · GROUP 08 SETTINGS/ACCOUNT CLOSED WITH 2026-09-18 VISUAL AMENDMENTS · NO CURSOR IMPLEMENTATION HANDOFF`
+`DESIGN SYSTEM / FIGMA QA · LIGHT COLOR SYSTEM D MVP ROLLOUT APPLIED / COLOR-SURFACE PO ACCEPTED · COMPONENT/BINDING MAINTENANCE PO APPROVED · SPLASH / APP LOGO / EXERCISE THUMBNAIL VISUAL MAINTENANCE PO APPROVED · EXERCISE THUMBNAIL LOCAL AUTO-CROP VALIDATED / OVERNIGHT BULK RUN PENDING · SHARED TABS / SELECTION LIST MAINTENANCE PO APPROVED · RADIUS RULE PREVIEW ONLY / NOT ROLLED OUT · GROUP 02 HOME STATES ALIGNED · 02A BLANK-WORKOUT ENTRY PO APPROVED / 02B COMPACT HOME GRID PO APPROVED / 02D ACTIVE HOME COMPACTED / CANONICAL REFLECTED / FOCUSED QA PASS · GROUP 03 ROUTINE CLOSED · GROUP 04 EXERCISE LIBRARY/DETAIL CLOSED · GROUP 05 ACTIVE WORKOUT CLOSED EXCEPT TARGETED BLANK-WORKOUT EMPTY STATE FOLLOW-UP · GROUP 06 COMPLETION CLOSED WITH 2026-09-17 VISUAL AMENDMENTS · GROUP 07 ANALYSIS/WORKOUT HISTORY CLOSED (BODY-MAP PRODUCTION VISUAL ASSETS APPLIED) · GROUP 08 SETTINGS/ACCOUNT CLOSED WITH 2026-09-18 VISUAL AMENDMENTS · NO CURSOR IMPLEMENTATION HANDOFF`
 
 ## Resume rule
 
@@ -25,7 +25,7 @@ Current editing surface:
 - group wrapper frames: `0`
 
 Whole-MVP component linkage read-back after the latest maintenance:
-- instance nodes: `1,977`
+- instance nodes: `1,971`
 - missing main-component links: `0`
 - live MVP instances whose source page is not `Common_Component`: `0`
 
@@ -153,7 +153,7 @@ Latest maintenance result:
 - Group 08: settings rows/cards, option lists, headers, and screen-content patterns consolidated into shared components
 
 Latest whole-MVP linkage verification:
-- `1,977 / 1,977` instances resolve to a main component
+- `1,971 / 1,971` instances resolve to a main component
 - all current MVP component sources resolve through `Common_Component`
 - detached/missing main-component instances: `0`
 
@@ -181,7 +181,7 @@ Approved and reflected in canonical Figma:
 - full ~3,000-image overnight run and post-run visual exception QA are still pending; Production crop convention is not yet fully locked
 - canonical prep record: `docs/ux-decisions/2026-09-18-exercise-thumbnail-production-crop-prep.md`
 - focused read-back: `93 / 93` thumbnails have the subtle outline; old placeholder remains in current exercise-thumbnail instances = `0`
-- latest whole-MVP linkage: `1,977 / 1,977` instances resolve; missing main-component links = `0`; non-`Common_Component` sources = `0`
+- latest whole-MVP linkage: `1,971 / 1,971` instances resolve; missing main-component links = `0`; non-`Common_Component` sources = `0`
 
 Canonical record:
 - `docs/ux-decisions/2026-09-18-mvp-figma-maintenance-checkpoint.md`
@@ -214,6 +214,12 @@ Decision:
 Figma reflected:
 - `02A_Home_NoRoutine` `1346:686`
 - shared `HomeStartChoiceCard` Recommended variant repurposed to `Type=BlankWorkout` `1719:1042`
+- Home scroll top padding / section rhythm aligned to `24px`
+- one-off start prompt replaced by shared `SectionHeader / Trailing=None` with title `빠른 시작`
+- existing `StartChoiceCard / BlankWorkout` and `BuildOwn` masters are now `320 × 80`
+- both use the approved Home quick-action language: `36 × 36` `brand/soft` circle + `action/primary` `chevron-right`
+- current card copy: `빈 운동 / 루틴 없이 바로 기록`, `내 루틴 만들기 / 운동과 세트를 직접 구성`
+- `최근 운동` remains as state-specific secondary content
 
 ## 02B routine-selected state — compact grid direction approved / canonical reflected
 
@@ -256,6 +262,34 @@ Decision / exploration history:
 - `docs/ux-decisions/2026-09-18-group02-home-routine-selected-compact-direction.md`
 
 Do not begin Cursor implementation.
+
+## 02D active Home state — compact direction aligned / canonical reflected
+
+Canonical screen:
+- `02D_Home_Active` — `1346:710`
+
+Current reflected direction:
+- Home scroll top padding / section rhythm aligned to `24px`
+- shared `SectionHeader / Trailing=None` remains `진행 중인 운동`
+- existing shared `RoutineFocusCard / State=Active` master `1719:1036` is compacted from the prior 198px hero to `320 × 80`
+- old target-muscle tag row removed from the Active Home card
+- old large `운동 계속하기` CTA removed from the Active Home card
+- card now uses routine title + active progress meta + the approved `36 × 36` soft circular chevron action
+- title/meta typography matches the approved 02B quick-start card
+- `최근 운동` remains as state-specific secondary content
+
+Shared Home-state QA:
+- 02A StartChoice cards = `320 × 80` × 2
+- 02D Active card = `320 × 80`
+- 02A / 02D visible text overflow = `0`
+- visible text font family = SUIT
+- missing main-component links = `0`
+- whole-MVP instances after this maintenance = `1,971 / 1,971`
+- whole-MVP instance sources outside `Common_Component` = `0`
+- focused QA PASS
+
+Decision / canonical record:
+- `docs/ux-decisions/2026-09-18-group02-home-routine-selected-compact-direction.md`
 
 Direct design gap still open:
 - current MVP Figma has no zero-exercise Active Workout state
