@@ -1,7 +1,7 @@
 # 24 PRODUCT DIRECTION V2
 
 **Status:** CONFIRMED BASELINE — PRODUCT RESET
-**Updated:** 2026-09-02
+**Updated:** 2026-09-18
 
 ## Purpose
 
@@ -79,7 +79,7 @@ Home의 가장 중요한 역할은 **사용자가 지금 할 운동을 바로 �
 
 동일한 Home 구조에서 최상단 행동만 상태에 따라 바뀐다.
 
-- 루틴 없음 -> `추천 루틴` / `내 루틴 만들기`
+- 루틴 없음 -> `빈 운동 시작` / `내 루틴 만들기`
 - 루틴 있음 + 요일 미지정 -> `다음 운동`
 - 루틴 있음 + 요일 지정 -> `오늘의 운동`
 - active workout 존재 -> `운동 계속하기`
@@ -88,36 +88,32 @@ Home의 가장 중요한 역할은 **사용자가 지금 할 운동을 바로 �
 
 카드 모양, 이번 주 상태의 정확한 지표, 최근 운동의 정보량은 후속 UI 단계에서 조정할 수 있다. 이 세부 표현을 바꾸더라도 **Home의 최상위 역할은 운동 시작/복귀**라는 방향은 유지한다.
 
-## Routine model — CONFIRMED DIRECTION
+## Routine / start model — CONFIRMED DIRECTION
 
-사용자는 두 방식을 모두 동등하게 사용할 수 있다.
+사용자는 루틴을 만들지 않고도 운동을 바로 시작할 수 있다.
 
-- **내 루틴 직접 만들기**
-- **G Fit 추천 루틴 사용하기**
+Primary start paths:
+- **빈 운동 시작** — 저장된 루틴 없이 Active Workout을 시작하고, 운동 중 기존 운동 추가 flow로 운동을 구성
+- **내 루틴 직접 만들기** — 저장 루틴을 먼저 구성한 뒤 반복 사용
 
-사용자-facing 용어는 `프리셋`이 아니라 **`추천 루틴`**을 사용한다.
+G Fit이 미리 구성하고 검수한 ready-made `추천 루틴` 기능은 MVP에서 유지하되, no-routine Home의 primary action에서는 제외한다.
 
-다만 초기 `추천 루틴`은 사용자 데이터를 바탕으로 계산된 개인화 추천이 아니다.
+추천 루틴은 Routine 영역의 secondary discovery/use path로 둔다. 초기 추천 루틴은 사용자 데이터를 계산한 개인화 추천이 아니며, 개인 맞춤이라고 오해시키는 카피를 사용하지 않는다.
 
-정의:
-
-> G Fit이 미리 구성하고 검수한 ready-made routine을 사용자가 선택해서 사용하는 기능.
-
-개인 맞춤이라고 오해시키는 카피는 사용하지 않는다.
-
-### Home recommendation presentation — CONFIRMED
+### Home no-routine presentation — CONFIRMED 2026-09-18
 
 신규 사용자는 onboarding 완료 후 바로 Home으로 이동한다.
 
-Home에는 G Fit이 미리 준비한 여러 **추천 루틴 카드**를 노출할 수 있다.
+루틴이 없는 `02A_Home_NoRoutine`의 시작 선택:
+- `빈 운동 시작`
+- `내 루틴 만들기`
 
-- 카드 1개 = 완성된 루틴 1개
-- 예시: `무분할 전신 루틴`, `상체 루틴`, `하체 루틴` 등
-- 사용자는 원하는 카드를 선택해서 사용할 수 있음
-- 별도의 category-first questionnaire를 먼저 통과할 필요 없음
-- `내 루틴 만들기`도 함께 제공
+`추천 루틴 받기`는 02A에서 제거한다.
 
-추천 카드를 탭한 뒤 정확히 어떤 상세/확인 단계를 거쳐 운동을 시작하는지는 아직 OPEN이다.
+`빈 운동 시작`은 저장된 루틴을 자동 생성하지 않는다. 사용자는 빈 Active Workout에서 운동을 추가하고 정상적으로 기록/완료할 수 있다.
+
+Decision:
+- `docs/ux-decisions/2026-09-18-group02-home-blank-workout-entry.md`
 
 ## First-run onboarding — CONFIRMED RESET
 
@@ -305,6 +301,6 @@ LLM 없이 구조화된 규칙/통계로 더 안정적으로 해결 가능한 �
 - Home -> 운동 시작/복귀를 최우선
 - Active workout -> 전체 운동을 한 화면에서 보고 현재 운동만 펼쳐 기록
 
-**현재 다음 결정:** 추천 루틴 카드를 누른 뒤 `상세 확인 -> 저장/시작`을 어떤 방식으로 연결할지.
+**현재 직접 후속:** `빈 운동 시작`의 canonical 목적지인 zero-exercise Active Workout 상태를 Figma에 추가한다. 추천 루틴의 Routine-tab secondary placement는 이후 별도 refinement로 다룬다.
 
 Implementation / Cursor handoff는 이 상위 기획이 충분히 정리되기 전까지 시작하지 않는다.
