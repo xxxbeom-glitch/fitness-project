@@ -4,7 +4,7 @@
 
 ## Current mode
 
-`DESIGN SYSTEM / FIGMA QA · LIGHT COLOR SYSTEM D MVP ROLLOUT APPLIED / COLOR-SURFACE PO ACCEPTED · COMPONENT/BINDING MAINTENANCE PO APPROVED · SPLASH / APP LOGO / EXERCISE THUMBNAIL VISUAL MAINTENANCE PO APPROVED · EXERCISE THUMBNAIL LOCAL AUTO-CROP VALIDATED / OVERNIGHT BULK RUN PENDING · SHARED TABS / SELECTION LIST MAINTENANCE PO APPROVED · RADIUS RULE PREVIEW ONLY / NOT ROLLED OUT · GROUP 02 02A BLANK-WORKOUT ENTRY PO APPROVED / TARGETED FOLLOW-UP OPEN · GROUP 03 ROUTINE CLOSED · GROUP 04 EXERCISE LIBRARY/DETAIL CLOSED · GROUP 05 ACTIVE WORKOUT CLOSED EXCEPT TARGETED BLANK-WORKOUT EMPTY STATE FOLLOW-UP · GROUP 06 COMPLETION CLOSED WITH 2026-09-17 VISUAL AMENDMENTS · GROUP 07 ANALYSIS/WORKOUT HISTORY CLOSED (BODY-MAP PRODUCTION VISUAL ASSETS APPLIED) · GROUP 08 SETTINGS/ACCOUNT CLOSED WITH 2026-09-18 VISUAL AMENDMENTS · NO CURSOR IMPLEMENTATION HANDOFF`
+`DESIGN SYSTEM / FIGMA QA · LIGHT COLOR SYSTEM D MVP ROLLOUT APPLIED / COLOR-SURFACE PO ACCEPTED · COMPONENT/BINDING MAINTENANCE PO APPROVED · SPLASH / APP LOGO / EXERCISE THUMBNAIL VISUAL MAINTENANCE PO APPROVED · EXERCISE THUMBNAIL LOCAL AUTO-CROP VALIDATED / OVERNIGHT BULK RUN PENDING · SHARED TABS / SELECTION LIST MAINTENANCE PO APPROVED · RADIUS RULE PREVIEW ONLY / NOT ROLLED OUT · GROUP 02 02A BLANK-WORKOUT ENTRY PO APPROVED / 02B COMPACT HOME DIRECTION EXPLORATION REFLECTED / CANONICAL PROMOTION PENDING · GROUP 03 ROUTINE CLOSED · GROUP 04 EXERCISE LIBRARY/DETAIL CLOSED · GROUP 05 ACTIVE WORKOUT CLOSED EXCEPT TARGETED BLANK-WORKOUT EMPTY STATE FOLLOW-UP · GROUP 06 COMPLETION CLOSED WITH 2026-09-17 VISUAL AMENDMENTS · GROUP 07 ANALYSIS/WORKOUT HISTORY CLOSED (BODY-MAP PRODUCTION VISUAL ASSETS APPLIED) · GROUP 08 SETTINGS/ACCOUNT CLOSED WITH 2026-09-18 VISUAL AMENDMENTS · NO CURSOR IMPLEMENTATION HANDOFF`
 
 ## Resume rule
 
@@ -54,6 +54,7 @@ The prior `97` screen count after the Group 08 FAQ removal and Group 06 recommen
 - `docs/ux-decisions/2026-09-17-light-radius-exploration-checkpoint.md`
 
 ### Historical group closures / current product-policy references
+- Group 02 compact Home direction exploration: `docs/ux-decisions/2026-09-18-group02-home-routine-selected-compact-direction.md`
 - Group 03 routine-name amendment: `docs/ux-decisions/2026-09-18-group03-routine-name-auto-default-policy.md`
 - Group 04: `docs/ux-decisions/2026-09-15-group04-final-closure-qa.md`
 - Group 04 custom-exercise field policy: `docs/ux-decisions/2026-09-15-group04-custom-exercise-selection-flow.md` — amended 2026-09-18
@@ -187,9 +188,11 @@ Canonical record:
 
 ---
 
-# GROUP 02 — HOME REFINEMENT DEFERRED / 02A TARGETED AMENDMENT
+# GROUP 02 — HOME TARGETED REFINEMENT
 
-Broader Group 02 Home refinement remains deferred, but the Product Owner explicitly reopened and approved the no-routine start choice in `02A_Home_NoRoutine`.
+The Product Owner explicitly reopened only the Home start/access presentation around blank workouts and the routine-selected Home state.
+
+## 02A no-routine state — approved
 
 Current locked 02A primary actions:
 - `빈 운동 시작`
@@ -211,9 +214,36 @@ Decision:
 Figma reflected:
 - `02A_Home_NoRoutine` `1346:686`
 - shared `HomeStartChoiceCard` Recommended variant repurposed to `Type=BlankWorkout` `1719:1042`
-- copy: `빈 운동 시작` / `루틴 없이 운동을 추가하며 바로 기록해보세요.`
 
-Direct design gap:
+## 02B routine-selected state — compact direction exploration reflected
+
+Current existing canonical screen:
+- `02B_Home_RoutineSelected` — `1329:593`
+
+Current selected exploration:
+- `02B_Home_RoutineSelected_Exploration_SlimActions` — `2001:8788`
+
+Current selected visual direction:
+- large selected-routine hero is replaced by compact quick-start cards
+- selected routine and blank workout use the same ~`320 × 80` white card language
+- both cards use a `36 × 36` circular action with existing `Common_Component` `chevron-right`
+- action treatment = `brand/soft` circle + `action/primary` chevron
+- Quick Start shared `SectionHeader` uses `Trailing=None`
+- the temporary `루틴 변경` header action is removed
+- Home `최근 운동` region is replaced in the exploration by compact `내 루틴`
+- `내 루틴` uses one grouped card with two 60px rows + full-width divider
+- `내 루틴 > 새 루틴` uses the existing shared `SectionHeader / Trailing=Action` text format
+- custom plus/chevron header overlays are not used
+
+Exploration history and rejected alternatives are recorded in:
+- `docs/ux-decisions/2026-09-18-group02-home-routine-selected-compact-direction.md`
+
+Boundary:
+- `2001:8788` is the current selected exploration, not yet the canonical replacement for `1329:593`
+- promote/update canonical 02B only after explicit PO decision
+- do not begin Cursor implementation
+
+Direct design gap still open:
 - current MVP Figma has no zero-exercise Active Workout state
 - add a focused blank-workout empty state as the canonical destination
 - do not reopen unrelated Group 05 behavior
@@ -487,7 +517,7 @@ Immediate focused follow-ups:
 
 Remaining intentionally deferred / later items:
 1. size-aware radius system — preview only; propagate only after explicit PO approval
-2. broader Group 02 Home refinement — deferred by PO
+2. Group 02 02B compact Home direction — current selected exploration `2001:8788`; canonical promotion/update of `1329:593` only after explicit PO decision
 3. Routine-tab recommended-routine secondary placement refinement
 4. pre-release Settings follow-ups — public Terms/Privacy URLs, inquiry-retention disclosure, external deletion-request URL, final timer-sound assets/labels
 5. implementation/Cursor handoff — only after explicit Product Owner authorization
