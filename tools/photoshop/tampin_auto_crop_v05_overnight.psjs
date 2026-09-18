@@ -1,0 +1,314 @@
+const photoshop = require("photoshop");
+const { app, core, imaging, constants } = photoshop;
+const fs = require("uxp").storage.localFileSystem;
+
+// =========================
+// TAMPIN OVERNIGHT SETTINGS
+// =========================
+const BATCH_SIZE = 100;
+const BATCH_PAUSE_MS = 60000;
+const OUTPUT_SIZE = 512;
+const CONTENT_TARGET = 400;
+const WHITE_THRESHOLD = 245;
+const ANALYZE_SIZE = 256;
+const OUTPUT_FOLDER_NAME = "tampin_crop_output";
+const LOG_FILE_NAME = "tampin_crop_log.txt";
+
+function baseName(name) {
+    const i = name.lastIndexOf(".");
+    return i > 0 ? name.substring(0, i) : name;
+}
+
+function pixelMax(componentSize) {
+    if (componentSize === 16) return 32768;
+    if (componentSize === 32) return 1;
+    return 255;
+}
+
+function nowStamp() {
+    const d = new Date();
+    const pad = (n) => String(n).padStart(2, "0");
+    return `${d.getFullYear()}-${pad(d.getMonth()+1)}-${pad(d.getDate())} ${pad(d.getHours())}:${pad(d.getMinutes())}:${pad(d.getSeconds())}`;
+}
+
+function sleep(ms) {
+    return new Promise(resolve => setTimeout(resolve, ms));
+}
+
+async function findContentBounds(doc) {
+    const originalW = Number(doc.width);
+    const originalH = Number(doc.height);
+
+    const scaleW = originalW >= originalH ? ANALYZE_SIZE : undefined;
+    const scaleH = originalH > originalW ? ANALYZE_SIZE : undefined;
+
+    const result = await imaging.getPixels({
+        documentID: doc.id,
+        sourceBounds: { left: 0, top: 0, right: originalW, bottom: originalH },
+        targetSize: scaleW ? { width: scaleW } : { height: scaleH },
+        colorSpace: "RGB"
+    });
+
+    const img = result.imageData;
+    const data = await img.getData({ chunky: true });
+
+    const w = img.width;
+    const h = img.height;
+    const comps = img.components;
+    const maxV = pixelMax(img.componentSize);
+    const threshold = (WHITE_THRESHOLD / 255) * maxV;
+
+    let minX = w, minY = h, maxX = -1, maxY = -1;
+    let contentPixels = 0;
+
+    for (let y = 0; y < h; y++) {
+        for (let x = 0; x < w; x++) {
+            const idx = (y * w + x) * comps;
+            let r, g, b, a = maxV;
+
+            if (img.colorSpace === "Grayscale") {
+                r = g = b = data[idx];
+                if (comps > 1) a = data[idx + 1];
+            } else {
+                r = data[idx];
+                g = data[idx + 1];
+                b = data[idx + 2];
+                if (comps > 3) a = data[idx + 3];
+            }
+
+            const transparent = a < maxV * 0.05;
+            const nearWhite = r >= threshold && g >= threshold && b >= threshold;
+
+            if (!transparent && !nearWhite) {
+                if (x < minX) minX = x;
+                if (x > maxX) maxX = x;
+                if (y < minY) minY = y;
+                if (y > maxY) maxY = y;
+                contentPixels++;
+            }
+        }
+    }
+
+    img.dispose();
+
+    if (maxX < minX || maxY < minY || contentPixels < 20) {
+        return null;
+    }
+
+    return {
+        left: (minX / w) * originalW,
+        top: (minY / h) * originalH,
+        right: ((maxX + 1) / w) * originalW,
+        bottom: ((maxY + 1) / h) * originalH
+    };
+}
+
+function makeSquareCrop(bounds, docW, docH) {
+    const bw = bounds.right - bounds.left;
+    const bh = bounds.bottom - bounds.top;
+    const cx = (bounds.left + bounds.right) / 2;
+    const cy = (bounds.top + bounds.bottom) / 2;
+
+    let side = Math.max(bw, bh) * (OUTPUT_SIZE / CONTENT_TARGET);
+    side = Math.min(side, docW, docH);
+
+    let left = cx - side / 2;
+    let top = cy - side / 2;
+
+    if (left < 0) left = 0;
+    if (top < 0) top = 0;
+    if (left + side > docW) left = docW - side;
+    if (top + side > docH) top = docH - side;
+
+    return {
+        left: Math.round(left),
+        top: Math.round(top),
+        right: Math.round(left + side),
+        bottom: Math.round(top + side)
+    };
+}
+
+async function getOrCreateOutputFolder(sourceFolder) {
+    try {
+        const existing = await sourceFolder.getEntry(OUTPUT_FOLDER_NAME);
+        if (existing && existing.isFolder) return existing;
+    } catch (e) {}
+    return await sourceFolder.createFolder(OUTPUT_FOLDER_NAME);
+}
+
+async function getExistingOutputNames(outFolder) {
+    const names = new Set();
+    try {
+        const entries = await outFolder.getEntries();
+        for (const e of entries) {
+            if (e.isFile) names.add((e.name || "").toLowerCase());
+        }
+    } catch (e) {}
+    return names;
+}
+
+async function writeLog(outFolder, lines) {
+    const f = await outFolder.createFile(LOG_FILE_NAME, { overwrite: true });
+    await f.write(lines.join("\n"));
+}
+
+async function main() {
+    try {
+        await core.showAlert(
+            "TAMPIN 전체 자동 크롭 v0.5\n\n" +
+            "전체 이미지를 처리합니다.\n" +
+            "100장마다 60초 휴식합니다.\n\n" +
+            "중간에 종료되어도 다시 실행하면\n" +
+            "이미 완료된 파일은 건너뜁니다.\n\n" +
+            "원본 이미지 폴더를 선택하세요."
+        );
+
+        const folder = await fs.getFolder();
+        if (!folder) return;
+
+        const entries = await folder.getEntries();
+        const images = entries.filter((e) => {
+            const n = (e.name || "").toLowerCase();
+            return e.isFile && (
+                n.endsWith(".jpg") ||
+                n.endsWith(".jpeg") ||
+                n.endsWith(".png")
+            );
+        });
+
+        if (images.length === 0) {
+            await core.showAlert("JPG/JPEG/PNG 이미지를 찾지 못했습니다.");
+            return;
+        }
+
+        const outFolder = await getOrCreateOutputFolder(folder);
+        const existing = await getExistingOutputNames(outFolder);
+
+        const pending = images.filter(file => {
+            const outName = (baseName(file.name) + ".png").toLowerCase();
+            return !existing.has(outName);
+        });
+
+        const alreadyDone = images.length - pending.length;
+
+        if (pending.length === 0) {
+            await core.showAlert(
+                "처리할 이미지가 없습니다.\n\n" +
+                "전체 " + images.length + "장이 이미 완료되어 있습니다."
+            );
+            return;
+        }
+
+        const logLines = [];
+        logLines.push("TAMPIN Auto Crop v0.5 Overnight");
+        logLines.push("Started: " + nowStamp());
+        logLines.push("Source folder: " + folder.name);
+        logLines.push("Total source images: " + images.length);
+        logLines.push("Already completed: " + alreadyDone);
+        logLines.push("Pending this run: " + pending.length);
+        logLines.push("Batch size: " + BATCH_SIZE);
+        logLines.push("Pause between batches: " + (BATCH_PAUSE_MS / 1000) + " sec");
+        logLines.push("");
+
+        let success = 0;
+        let failed = 0;
+        let processedInCurrentBatch = 0;
+
+        for (let i = 0; i < pending.length; i++) {
+            const file = pending[i];
+            let doc = null;
+
+            try {
+                doc = await app.open(file);
+
+                const bounds = await findContentBounds(doc);
+                if (!bounds) throw new Error("사람/기구 영역을 찾지 못함");
+
+                const crop = makeSquareCrop(
+                    bounds,
+                    Number(doc.width),
+                    Number(doc.height)
+                );
+
+                const outName = baseName(file.name) + ".png";
+                const outFile = await outFolder.createFile(outName, { overwrite: true });
+
+                await core.executeAsModal(async () => {
+                    await doc.crop(crop);
+                    await doc.resizeImage(OUTPUT_SIZE, OUTPUT_SIZE);
+                    await doc.saveAs.png(
+                        outFile,
+                        { compression: 6, interlaced: false },
+                        true
+                    );
+                    await doc.close(constants.SaveOptions.DONOTSAVECHANGES);
+                }, { commandName: "TAMPIN Auto Crop " + (i + 1) });
+
+                doc = null;
+                success++;
+                logLines.push(`[OK] ${file.name} -> ${outName}`);
+
+            } catch (e) {
+                failed++;
+                const msg = e && e.message ? e.message : String(e);
+                logLines.push(`[FAIL] ${file.name} -> ${msg}`);
+
+                if (doc) {
+                    try {
+                        await core.executeAsModal(async () => {
+                            await doc.close(constants.SaveOptions.DONOTSAVECHANGES);
+                        }, { commandName: "TAMPIN Close Failed File" });
+                    } catch (_) {}
+                }
+            }
+
+            processedInCurrentBatch++;
+
+            const isBatchEnd = processedInCurrentBatch >= BATCH_SIZE;
+            const hasMore = i < pending.length - 1;
+
+            if (isBatchEnd) {
+                logLines.push("");
+                logLines.push(
+                    `[CHECKPOINT] ${nowStamp()} | processed this run: ${i + 1}/${pending.length} | success: ${success} | failed: ${failed}`
+                );
+                logLines.push("");
+                await writeLog(outFolder, logLines);
+                processedInCurrentBatch = 0;
+
+                if (hasMore) {
+                    logLines.push(`[PAUSE] ${BATCH_PAUSE_MS / 1000} seconds`);
+                    await writeLog(outFolder, logLines);
+                    await sleep(BATCH_PAUSE_MS);
+                    logLines.push(`[RESUME] ${nowStamp()}`);
+                    logLines.push("");
+                }
+            }
+        }
+
+        logLines.push("");
+        logLines.push("Finished: " + nowStamp());
+        logLines.push(`Run result: success ${success}, failed ${failed}`);
+        logLines.push(`Total source: ${images.length}, previously completed: ${alreadyDone}, attempted this run: ${pending.length}`);
+        await writeLog(outFolder, logLines);
+
+        await core.showAlert(
+            "전체 작업 종료\n\n" +
+            "이번 실행 성공: " + success + "\n" +
+            "실패: " + failed + "\n" +
+            "기존 완료: " + alreadyDone + "\n\n" +
+            "결과 폴더:\n" + OUTPUT_FOLDER_NAME + "\n\n" +
+            "로그:\n" + LOG_FILE_NAME
+        );
+
+    } catch (e) {
+        try {
+            await core.showAlert(
+                "스크립트 오류\n\n" +
+                (e && e.stack ? e.stack : String(e))
+            );
+        } catch (_) {}
+    }
+}
+
+await main();
