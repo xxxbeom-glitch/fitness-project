@@ -119,6 +119,74 @@ The following were explored and intentionally rejected before final approval:
 10. 2-column grid with right chevrons
    - chevrons removed in the final approved state for a cleaner tile presentation
 
+## 02A / 02D canonical Home-state alignment
+
+After the 02B compact Home direction was approved, the Product Owner requested the remaining canonical Home states to use the same visual language.
+
+### 02A_Home_NoRoutine
+
+Canonical screen:
+- `02A_Home_NoRoutine` — `1346:686`
+
+Reflected:
+- Home scroll top padding = `24px`
+- Home top-level section gap = `24px`
+- one-off `어떻게 운동을 시작할까요?` title removed
+- shared `SectionHeader / Trailing=None` now uses title `빠른 시작`
+- existing shared `StartChoiceCard` variants are preserved and updated rather than replaced:
+  - `Type=BlankWorkout` — `1719:1042`
+  - `Type=BuildOwn` — `1719:1047`
+- both StartChoiceCard variants = `320 × 80`
+- existing white surface / radius 12 / subtle 0 2px 8px shadow remain
+- both use the same `36 × 36` soft circular chevron action as the approved 02B quick-start language
+- `BlankWorkout`: `빈 운동` / `루틴 없이 바로 기록`
+- `BuildOwn`: `내 루틴 만들기` / `운동과 세트를 직접 구성`
+- `최근 운동` remains as state-specific secondary content
+
+### 02D_Home_Active
+
+Canonical screen:
+- `02D_Home_Active` — `1346:710`
+
+Reflected:
+- Home scroll top padding = `24px`
+- Home top-level section gap = `24px`
+- shared `SectionHeader / Trailing=None` remains `진행 중인 운동`
+- existing shared `RoutineFocusCard / State=Active` master `1719:1036` is preserved and compacted to `320 × 80`
+- old target-muscle tag row is removed from the Active Home card
+- old large `운동 계속하기` CTA is removed from the Active Home card
+- card now uses routine title + active progress meta + the same `36 × 36` soft circular chevron action
+- active title/meta typography matches approved 02B quick-start typography
+- `최근 운동` remains as state-specific secondary content
+
+### Shared implementation/design-system rule
+
+No duplicate Home card component was introduced.
+
+The alignment reuses and updates existing Common_Component masters:
+- `StartChoiceCard`
+- `RoutineFocusCard / State=Active`
+- existing `chevron-right` component
+- existing `brand/soft` + `action/primary` token pairing
+
+This keeps the Home states visually consistent while preserving their different product states.
+
+### Focused QA — 02A / 02D
+
+Read-back:
+- 02A StartChoice cards: `320 × 80` × 2
+- 02A quick-action count: 1 per card
+- 02D Active card: `320 × 80`
+- 02D quick-action count: 1
+- 02A / 02D scroll top padding and section gap: `24px`
+- visible text overflow: `0`
+- visible text font family: SUIT
+- missing main-component links in both screens: `0`
+- whole-MVP instances after this maintenance: `1,971 / 1,971`
+- whole-MVP non-`Common_Component` instance sources: `0`
+
+Focused QA: **PASS**
+
 ## Product behavior represented by the approved Home
 
 - saved-routine users retain direct blank-workout access from Home
