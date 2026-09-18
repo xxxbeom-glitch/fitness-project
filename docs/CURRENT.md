@@ -4,7 +4,7 @@
 
 ## Current mode
 
-`DESIGN SYSTEM / FIGMA QA · LIGHT COLOR SYSTEM D MVP ROLLOUT APPLIED / COLOR-SURFACE PO ACCEPTED · COMPONENT/BINDING MAINTENANCE PO APPROVED · SPLASH / APP LOGO / EXERCISE THUMBNAIL VISUAL MAINTENANCE PO APPROVED · EXERCISE THUMBNAIL LOCAL AUTO-CROP VALIDATED / OVERNIGHT BULK RUN PENDING · SHARED TABS / SELECTION LIST MAINTENANCE PO APPROVED · RADIUS RULE PREVIEW ONLY / NOT ROLLED OUT · GROUP 02 02A BLANK-WORKOUT ENTRY PO APPROVED / 02B COMPACT HOME DIRECTION EXPLORATION REFLECTED / CANONICAL PROMOTION PENDING · GROUP 03 ROUTINE CLOSED · GROUP 04 EXERCISE LIBRARY/DETAIL CLOSED · GROUP 05 ACTIVE WORKOUT CLOSED EXCEPT TARGETED BLANK-WORKOUT EMPTY STATE FOLLOW-UP · GROUP 06 COMPLETION CLOSED WITH 2026-09-17 VISUAL AMENDMENTS · GROUP 07 ANALYSIS/WORKOUT HISTORY CLOSED (BODY-MAP PRODUCTION VISUAL ASSETS APPLIED) · GROUP 08 SETTINGS/ACCOUNT CLOSED WITH 2026-09-18 VISUAL AMENDMENTS · NO CURSOR IMPLEMENTATION HANDOFF`
+`DESIGN SYSTEM / FIGMA QA · LIGHT COLOR SYSTEM D MVP ROLLOUT APPLIED / COLOR-SURFACE PO ACCEPTED · COMPONENT/BINDING MAINTENANCE PO APPROVED · SPLASH / APP LOGO / EXERCISE THUMBNAIL VISUAL MAINTENANCE PO APPROVED · EXERCISE THUMBNAIL LOCAL AUTO-CROP VALIDATED / OVERNIGHT BULK RUN PENDING · SHARED TABS / SELECTION LIST MAINTENANCE PO APPROVED · RADIUS RULE PREVIEW ONLY / NOT ROLLED OUT · GROUP 02 02A BLANK-WORKOUT ENTRY PO APPROVED / 02B COMPACT HOME GRID DIRECTION PO APPROVED / CANONICAL REFLECTED / FOCUSED QA PASS · GROUP 03 ROUTINE CLOSED · GROUP 04 EXERCISE LIBRARY/DETAIL CLOSED · GROUP 05 ACTIVE WORKOUT CLOSED EXCEPT TARGETED BLANK-WORKOUT EMPTY STATE FOLLOW-UP · GROUP 06 COMPLETION CLOSED WITH 2026-09-17 VISUAL AMENDMENTS · GROUP 07 ANALYSIS/WORKOUT HISTORY CLOSED (BODY-MAP PRODUCTION VISUAL ASSETS APPLIED) · GROUP 08 SETTINGS/ACCOUNT CLOSED WITH 2026-09-18 VISUAL AMENDMENTS · NO CURSOR IMPLEMENTATION HANDOFF`
 
 ## Resume rule
 
@@ -215,33 +215,47 @@ Figma reflected:
 - `02A_Home_NoRoutine` `1346:686`
 - shared `HomeStartChoiceCard` Recommended variant repurposed to `Type=BlankWorkout` `1719:1042`
 
-## 02B routine-selected state — compact direction exploration reflected
+## 02B routine-selected state — compact grid direction approved / canonical reflected
 
-Current existing canonical screen:
+Canonical screen:
 - `02B_Home_RoutineSelected` — `1329:593`
 
-Current selected exploration:
-- `02B_Home_RoutineSelected_Exploration_SlimActions` — `2001:8788`
-
-Current selected visual direction:
+Approved direction:
 - large selected-routine hero is replaced by compact quick-start cards
 - selected routine and blank workout use the same ~`320 × 80` white card language
 - both cards use a `36 × 36` circular action with existing `Common_Component` `chevron-right`
 - action treatment = `brand/soft` circle + `action/primary` chevron
 - Quick Start shared `SectionHeader` uses `Trailing=None`
-- the temporary `루틴 변경` header action is removed
-- Home `최근 운동` region is replaced in the exploration by compact `내 루틴`
-- `내 루틴` uses one grouped card with two 60px rows + full-width divider
+- `루틴 변경` header action is not used
+- Home `최근 운동` region is replaced by compact `내 루틴`
+- `내 루틴` uses a `2 × n` grid
+- grid width = `320`, gap = `8px`
+- current routine tiles = `156 × 88`
+- current examples: `Pull Day`, `Leg Day`
+- routine tile content = routine name + workout count/time
+- right-side chevrons are intentionally omitted from My Routine tiles
 - `내 루틴 > 새 루틴` uses the existing shared `SectionHeader / Trailing=Action` text format
 - custom plus/chevron header overlays are not used
 
-Exploration history and rejected alternatives are recorded in:
+Canonical promotion / cleanup:
+- approved B-grid direction promoted into existing canonical `1329:593`
+- all temporary 02B Home exploration frames deleted after promotion
+- only one top-level `02B_Home*` frame remains
+
+Focused QA:
+- canonical viewport `360 × 780`
+- My Routine section `320 × 124`
+- two current tiles `156 × 88`
+- My Routine tile chevrons = `0`
+- visible text overflow = `0`
+- visible text font family = SUIT
+- missing main-component links inside canonical 02B = `0`
+- focused QA PASS
+
+Decision / exploration history:
 - `docs/ux-decisions/2026-09-18-group02-home-routine-selected-compact-direction.md`
 
-Boundary:
-- `2001:8788` is the current selected exploration, not yet the canonical replacement for `1329:593`
-- promote/update canonical 02B only after explicit PO decision
-- do not begin Cursor implementation
+Do not begin Cursor implementation.
 
 Direct design gap still open:
 - current MVP Figma has no zero-exercise Active Workout state
@@ -517,8 +531,7 @@ Immediate focused follow-ups:
 
 Remaining intentionally deferred / later items:
 1. size-aware radius system — preview only; propagate only after explicit PO approval
-2. Group 02 02B compact Home direction — current selected exploration `2001:8788`; canonical promotion/update of `1329:593` only after explicit PO decision
-3. Routine-tab recommended-routine secondary placement refinement
+2. Routine-tab recommended-routine secondary placement refinement
 4. pre-release Settings follow-ups — public Terms/Privacy URLs, inquiry-retention disclosure, external deletion-request URL, final timer-sound assets/labels
 5. implementation/Cursor handoff — only after explicit Product Owner authorization
 
