@@ -296,6 +296,115 @@ Focused screenshot/read-back QA:
 
 ---
 
+## Cross-group — Launch / branding / thumbnail visual maintenance
+
+### 02A start-card shadow clipping correction
+Observed issue:
+- `02A_Home_NoRoutine` start-card shadows were visually cut even though the card shadow values themselves were correct.
+
+Root cause:
+- local layout wrapper `StartChoiceSection` matched the card width and had `Clip content = ON`
+- the actual Home scroll viewport is still the intended clipping boundary
+
+Applied:
+- `StartChoiceSection` — `1346:693`
+- `Clip content: ON → OFF`
+- card shadow values unchanged
+- actual Home scroll viewport clipping remains unchanged
+
+Current rule:
+- simple layout wrappers around shadowed cards should not clip visual overflow
+- real viewport / scroll / mask containers may continue to clip intentionally
+
+Focused read-back:
+- `StartChoiceSection.clipsContent = false`
+- PASS
+
+### AppLogo artwork replacement
+PO supplied final Tampin black/white wordmark artwork and requested replacement inside the existing shared AppLogo size.
+
+Shared Figma:
+- `AppLogo` — `633:3251`
+- size remains `139 × 28`
+
+Applied:
+- internal artwork replaced with Tampin black/white image assets
+- current Light usage displays the black artwork
+- white artwork is retained for dark/brand-background use
+- existing AppLogo instances remain the same size
+
+Representative existing usages remain linked in:
+- `01A_Login`
+- `02A_Home_NoRoutine`
+- `02B_Home_RoutineSelected`
+- `02D_Home_Active`
+
+### 00_Splash finalized
+Three launch-screen candidates were explored in Figma:
+- Light continuity
+- Dark
+- Brand-primary
+
+PO selected the Brand-primary candidate.
+
+Final screen:
+- `00_Splash` — `1961:8909`
+- `360 × 780`
+- background = `brand/primary`
+- centered white Tampin wordmark = `139 × 28`
+- no loading indicator
+- no supporting copy
+
+The two rejected candidate frames were removed.
+
+This increases the current top-level MVP screen-frame count from `97` to `98`.
+
+### Exercise thumbnail production-style visual preview
+PO supplied three real exercise thumbnail source images under:
+- `Common_Component > thumbs` — `1962:10943`
+
+Current source sample count:
+- `3`
+
+Applied:
+- all current visible MVP exercise-thumbnail instances now use one of the three supplied source images
+- repeated exercise names are kept visually consistent across screens
+- current affected exercise-thumbnail instances: `93`
+- affected top-level screens containing exercise thumbnails: `19`
+
+Important scope boundary:
+- this is a **visual production-thumbnail style preview**
+- the three supplied samples do not semantically map to every exercise currently shown in the wireframes
+- this does **not** replace the deferred final Production Exercise DB/media mapping work
+
+### Exercise thumbnail subtle outline
+Because the supplied thumbnail imagery and surrounding UI both use very light backgrounds, PO approved a very subtle common outline.
+
+Shared treatment:
+- stroke = `1px`
+- alignment = `INSIDE`
+- semantic token = `border/subtle` (`VariableID:278:922`)
+- current Light value = `#EAEEED`
+
+Applied through shared thumbnail masters used by:
+- 64 × 64 exercise cards
+- 52 × 52 exercise search rows
+- 44 × 44 analysis rows
+- replacement-exercise cards
+
+Unchanged:
+- thumbnail dimensions
+- existing corner radii
+- image aspect ratio
+
+Focused whole-MVP read-back:
+- exercise thumbnails found: `93`
+- thumbnails with the approved subtle outline: `93 / 93`
+- previous placeholder image remaining in current exercise-thumbnail instances: `0`
+- PASS
+
+---
+
 ## QA boundary
 
 Focused QA was performed on the changed representative states after each amendment.
@@ -309,6 +418,11 @@ Verified:
 - replacement card surface and Secondary CTA border bindings read back correctly
 - 08D1 WheelPicker internal-box fill/radius bindings and selection lines read back correctly
 - 08G Filled attachment remove badge geometry, close-glyph placement, and overflow visibility read back correctly
+- 02A start-card shadow clipping fix read back with local wrapper clipping disabled while viewport clipping remains intact
+- shared AppLogo remains 139 × 28 after Tampin artwork replacement
+- final `00_Splash` uses `brand/primary` + centered white Tampin wordmark and rejected candidates are removed
+- all 93 current MVP exercise thumbnails use the supplied real-image preview set and inherit 1px INSIDE `border/subtle`
+- whole-MVP component linkage after this maintenance: `1,977 / 1,977` instances resolve to a main component; non-`Common_Component` sources = `0`
 
 This checkpoint does **not** re-run already accepted whole-MVP QA.
 
