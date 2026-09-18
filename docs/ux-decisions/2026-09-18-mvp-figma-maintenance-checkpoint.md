@@ -152,6 +152,27 @@ The existing Group 05 exception remains:
 - replacement selection uses RadioButton
 - commit uses explicit `선택 완료`
 
+### ActionRows contrast adjustment
+
+PO approved the shared bottom-sheet/action-sheet `ActionRows` background adjustment.
+
+Applied to all shared variants:
+- `Mode=Workout, Buttons=3`
+- `Mode=RoutineExercise, Buttons=3`
+- `Mode=RoutineList, Buttons=3`
+- `Mode=CustomExercise, Buttons=2`
+
+Change:
+- background: `bg/default` → `bg/surface`
+- outer `border/default` preserved
+- vertical Divider treatment preserved
+
+Intent:
+- improve separation between action columns by increasing background/divider contrast slightly
+- do not strengthen the divider itself
+- representative state: `05I_Workout_Menu`
+- focused read-back + screenshot QA PASS
+
 ### Secondary CTA outline
 Problem:
 - `CTA Button / Secondary` using global `border/default #E7EBEA` was too weak against the Light canvas.
