@@ -1,7 +1,7 @@
 # 00 PROJECT BRIEF
 
 **Status:** ACTIVE — V2 ALIGNED
-**Updated:** 2026-09-01
+**Updated:** 2026-09-18
 
 ## Product definition — CONFIRMED
 
@@ -25,10 +25,13 @@ Core product principle:
 
 ### Routine / program start
 
-사용자는 두 방식 모두를 동등하게 사용할 수 있어야 한다.
+사용자는 저장 루틴 없이도 바로 운동을 시작할 수 있어야 한다.
 
+Primary entry:
+- 빈 운동 시작
 - 직접 루틴 만들기
-- G Fit이 미리 준비한 추천 루틴 사용하기
+
+G Fit이 미리 준비한 추천 루틴은 MVP에서 유지하되 Home의 primary entry가 아니라 Routine 영역의 secondary path로 제공한다.
 
 추천 루틴은 first-run 개인화 matcher 결과가 아니라 **G Fit이 미리 구성하고 검수한 ready-made routine**이다.
 
@@ -89,16 +92,11 @@ New account:
 
 The old recommendation questionnaire / result carousel is superseded.
 
-Home can expose:
-- G Fit 추천 루틴 cards
+No-routine Home primary actions:
+- 빈 운동 시작
 - 내 루틴 만들기
 
-Example recommended-routine cards:
-- 무분할 전신 루틴
-- 상체 루틴
-- 하체 루틴
-
-Each card represents one complete ready-made routine. Exact detail / save / start interaction remains to be decided.
+추천 루틴은 Home primary action에서 제외하고 Routine 영역의 secondary discovery/use path로 유지한다.
 
 ## Home direction — CONFIRMED
 
@@ -138,7 +136,7 @@ Current visual baseline:
 - independent prior-performance history
 
 ### Active workout
-- start routine/workout
+- start routine-based workout or blank workout
 - enter weight and reps
 - show previous performance inline
 - complete/uncomplete sets
