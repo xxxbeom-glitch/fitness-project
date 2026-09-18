@@ -36,7 +36,8 @@ The previous `98` screen count is superseded by the current `97` count after the
 ## Latest active checkpoints
 
 ### Current consolidated maintenance
-- `docs/ux-decisions/2026-09-17-mvp-component-binding-settings-maintenance-checkpoint.md`
+- `docs/ux-decisions/2026-09-18-mvp-figma-maintenance-checkpoint.md`
+- previous baseline: `docs/ux-decisions/2026-09-17-mvp-component-binding-settings-maintenance-checkpoint.md`
 
 ### Light color system / MVP rollout
 - `docs/ux-decisions/2026-09-17-light-color-system-po-approval.md`
@@ -89,8 +90,8 @@ Current approved Light values relevant to the live MVP:
 Latest amendments:
 - Light `text/primary`: `#242927`
 - Light `border/default`: `#E7EBEA`
-- Secondary CTA outline contrast: new semantic `border/strong` = Light `#D7DCDA`, Dark `#343635`; `CTA Button / Secondary` Default + Pressed use `border/strong`, Disabled remains `border/default`
-- Dark values for those tokens were not changed by these amendments.
+- Secondary CTA outline contrast: semantic `border/strong` = Light `#D7DCDA`, Dark `#343635`; `CTA Button / Secondary` Default + Pressed use `border/strong`, Disabled remains `border/default`
+- other previously accepted Dark token values remain unchanged.
 
 Surface rule remains:
 - content/grouped cards: no outer border + subtle `0 2px 8px` shadow at ~5%
@@ -238,6 +239,11 @@ Locked:
 - shared Common_Component structure
 
 Post-closure component/binding maintenance is recorded in the latest consolidated checkpoint.
+
+2026-09-18 targeted visual maintenance:
+- shared `ExerciseReplaceItem` uses standalone-card surface: white surface / no outer stroke / 12px radius / subtle 0 2px 8px shadow
+- `05H_Exercise_Replace_Selected` reflects the card treatment; shared inheritance also aligns 05G / 05G2
+- Secondary CTA Default/Pressed outline uses `border/strong`; Disabled remains `border/default`
 
 **GROUP 05 CLOSED.**
 
