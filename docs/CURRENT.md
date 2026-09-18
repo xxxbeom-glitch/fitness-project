@@ -53,6 +53,7 @@ The previous `98` screen count is superseded by the current `97` count after the
 - Group 03 routine-name amendment: `docs/ux-decisions/2026-09-18-group03-routine-name-auto-default-policy.md`
 - Group 04: `docs/ux-decisions/2026-09-15-group04-final-closure-qa.md`
 - Group 04 custom-exercise field policy: `docs/ux-decisions/2026-09-15-group04-custom-exercise-selection-flow.md` — amended 2026-09-18
+- Group 04 custom-exercise save action/destination: `docs/ux-decisions/2026-09-15-group04-custom-exercise-save-destination.md` — amended 2026-09-18 / Figma reflected
 - Group 05: `docs/ux-decisions/2026-09-16-group05-manual-timer-final-closure-qa.md`
 - Group 06: `docs/ux-decisions/2026-09-16-group06-final-closure-qa.md`
 - Group 06 recommended flow: `docs/ux-decisions/2026-09-14-recommended-routine-acceptance-current.md`
@@ -197,6 +198,15 @@ Custom exercise create required-field policy:
 - optional fields do not block Save
 - `주 타겟 근육` remains required for analysis/filter attribution
 - decision authority: `docs/ux-decisions/2026-09-15-group04-custom-exercise-selection-flow.md` (2026-09-18 amendment)
+
+Custom exercise save-action policy:
+- primary save commit is the bottom Primary CTA `저장`
+- Create header right = none
+- Edit header right = Trash
+- Edit base states keep Save Disabled until a valid change exists
+- old header Save and bottom `운동 삭제 / 확인` DualCTA are not used
+- shared Figma `CustomExerciseSaveFooter` uses `State=Default / Disabled`
+- decision authority: `docs/ux-decisions/2026-09-15-group04-custom-exercise-save-destination.md` (2026-09-18 amendment / Figma reflected)
 
 Deferred data/runtime work remains:
 - final Production Exercise DB normalization/deduplication from purchased Gym Animations source
