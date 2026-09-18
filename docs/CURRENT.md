@@ -244,6 +244,8 @@ Post-closure component/binding maintenance is recorded in the latest consolidate
 - shared `ExerciseReplaceItem` uses standalone-card surface: white surface / no outer stroke / 12px radius / subtle 0 2px 8px shadow
 - `05H_Exercise_Replace_Selected` reflects the card treatment; shared inheritance also aligns 05G / 05G2
 - Secondary CTA Default/Pressed outline uses `border/strong`; Disabled remains `border/default`
+- shared `ActionRows` background uses `bg/surface` instead of `bg/default`; existing outer border and vertical Divider styling are preserved
+- `05I_Workout_Menu` representative QA PASS
 
 **GROUP 05 CLOSED.**
 
