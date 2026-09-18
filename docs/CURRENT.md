@@ -346,6 +346,22 @@ Current approved grouping:
 - `PageOptionList` `Items=2/3` uses full 320px between-row dividers with no trailing divider
 - `08D2_Timer_End_Sound` and `08H_Language_Settings` remain immediate-selection `OptionItem` + check screens
 
+## Default rest-time wheel picker
+
+`08D1_Default_Rest_Time_Sheet` current approved picker presentation:
+- shared `WheelPicker/SingleColumn` uses `bg/default`
+- radius = 12 using the existing radius token
+- width/height remain `320 × 200`
+- existing wheel rows and selected-row guide lines remain unchanged
+- no additional stroke or shadow
+- treatment aligns the picker with the internal-box hierarchy used by other Group 08 bottom sheets
+- focused read-back QA PASS
+
+Shared nodes:
+- `WheelPicker/SingleColumn` `1169:1105`
+- `WheelPicker_RestTime` `1170:697`
+- `08D1_Default_Rest_Time_Sheet` `1163:676`
+
 ## Support inquiry attachment remove affordance
 
 `08G_Support_Inquiry` current approved attached-image presentation:
