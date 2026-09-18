@@ -4,7 +4,7 @@
 
 ## Current mode
 
-`DESIGN SYSTEM / FIGMA QA · LIGHT COLOR SYSTEM D MVP ROLLOUT APPLIED / COLOR-SURFACE PO ACCEPTED · COMPONENT/BINDING MAINTENANCE PO APPROVED · SHARED TABS / SELECTION LIST MAINTENANCE PO APPROVED · RADIUS RULE PREVIEW ONLY / NOT ROLLED OUT · GROUP 02 02A BLANK-WORKOUT ENTRY PO APPROVED / TARGETED FOLLOW-UP OPEN · GROUP 03 ROUTINE CLOSED · GROUP 04 EXERCISE LIBRARY/DETAIL CLOSED · GROUP 05 ACTIVE WORKOUT CLOSED EXCEPT TARGETED BLANK-WORKOUT EMPTY STATE FOLLOW-UP · GROUP 06 COMPLETION CLOSED WITH 2026-09-17 VISUAL AMENDMENTS · GROUP 07 ANALYSIS/WORKOUT HISTORY CLOSED (BODY-MAP PRODUCTION ASSET MAPPING DEFERRED) · GROUP 08 SETTINGS/ACCOUNT CLOSED WITH 2026-09-18 VISUAL AMENDMENTS · NO CURSOR IMPLEMENTATION HANDOFF`
+`DESIGN SYSTEM / FIGMA QA · LIGHT COLOR SYSTEM D MVP ROLLOUT APPLIED / COLOR-SURFACE PO ACCEPTED · COMPONENT/BINDING MAINTENANCE PO APPROVED · SPLASH / APP LOGO / EXERCISE THUMBNAIL VISUAL MAINTENANCE PO APPROVED · SHARED TABS / SELECTION LIST MAINTENANCE PO APPROVED · RADIUS RULE PREVIEW ONLY / NOT ROLLED OUT · GROUP 02 02A BLANK-WORKOUT ENTRY PO APPROVED / TARGETED FOLLOW-UP OPEN · GROUP 03 ROUTINE CLOSED · GROUP 04 EXERCISE LIBRARY/DETAIL CLOSED · GROUP 05 ACTIVE WORKOUT CLOSED EXCEPT TARGETED BLANK-WORKOUT EMPTY STATE FOLLOW-UP · GROUP 06 COMPLETION CLOSED WITH 2026-09-17 VISUAL AMENDMENTS · GROUP 07 ANALYSIS/WORKOUT HISTORY CLOSED (BODY-MAP PRODUCTION ASSET MAPPING DEFERRED) · GROUP 08 SETTINGS/ACCOUNT CLOSED WITH 2026-09-18 VISUAL AMENDMENTS · NO CURSOR IMPLEMENTATION HANDOFF`
 
 ## Resume rule
 
@@ -20,16 +20,16 @@ Current editing surface:
 - file `W3lZurXCXbThP67rF2xk2b`
 - page `MVP_전체_와이어프레임` — `34:1076`
 - shared component page `Common_Component`
-- current top-level independent screen frames: `97`
-- current Light roots: `97 / 97`
+- current top-level independent screen frames: `98`
+- current Light roots: `98 / 98`
 - group wrapper frames: `0`
 
 Whole-MVP component linkage read-back after the latest maintenance:
-- instance nodes: `1,973`
+- instance nodes: `1,977`
 - missing main-component links: `0`
 - live MVP instances whose source page is not `Common_Component`: `0`
 
-The previous `98` screen count is superseded by the current `97` count after the Group 08 FAQ removal and Group 06 recommended-routine dialog restructuring.
+The prior `97` screen count after the Group 08 FAQ removal and Group 06 recommended-routine dialog restructuring is superseded by the current `98` count after adding the approved `00_Splash` screen.
 
 ---
 
@@ -151,6 +151,25 @@ Latest whole-MVP linkage verification:
 - `1,973 / 1,973` instances resolve to a main component
 - all current MVP component sources resolve through `Common_Component`
 - detached/missing main-component instances: `0`
+
+---
+
+# LATEST CROSS-GROUP VISUAL MAINTENANCE — 2026-09-18
+
+Approved and reflected in canonical Figma:
+- final `00_Splash` added: `360 × 780`, `brand/primary` background, centered white Tampin wordmark `139 × 28`, no loading indicator/copy
+- rejected Light/Dark splash exploration candidates removed
+- shared `AppLogo` remains `139 × 28`; internal artwork uses PO-supplied Tampin black/white assets
+- `02A` `StartChoiceSection` local wrapper uses `Clip content = OFF` so card shadows are not cut; actual Home scroll viewport clipping remains unchanged
+- PO-supplied `Common_Component > thumbs` contains 3 real thumbnail source samples
+- current exercise-thumbnail visual preview is applied to `93` instances across `19` screens
+- shared exercise thumbnails use `1px INSIDE border/subtle` to separate very-light imagery from white/light surfaces
+- current thumbnail image assignment is a visual preview only; exact Production exercise-to-media mapping remains deferred
+- focused read-back: `93 / 93` thumbnails have the subtle outline; old placeholder remains in current exercise-thumbnail instances = `0`
+- latest whole-MVP linkage: `1,977 / 1,977` instances resolve; missing main-component links = `0`; non-`Common_Component` sources = `0`
+
+Canonical record:
+- `docs/ux-decisions/2026-09-18-mvp-figma-maintenance-checkpoint.md`
 
 ---
 
