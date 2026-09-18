@@ -4,7 +4,7 @@
 
 ## Current mode
 
-`DESIGN SYSTEM / FIGMA QA · LIGHT COLOR SYSTEM D MVP ROLLOUT APPLIED / COLOR-SURFACE PO ACCEPTED · COMPONENT/BINDING MAINTENANCE PO APPROVED · SHARED TABS / SELECTION LIST MAINTENANCE PO APPROVED · RADIUS RULE PREVIEW ONLY / NOT ROLLED OUT · GROUP 03 ROUTINE CLOSED · GROUP 04 EXERCISE LIBRARY/DETAIL CLOSED · GROUP 05 ACTIVE WORKOUT CLOSED · GROUP 06 COMPLETION CLOSED WITH 2026-09-17 VISUAL AMENDMENTS · GROUP 07 ANALYSIS/WORKOUT HISTORY CLOSED (BODY-MAP PRODUCTION ASSET MAPPING DEFERRED) · GROUP 08 SETTINGS/ACCOUNT CLOSED WITH FAQ REMOVED FROM MVP · GROUP 02 HOME DEFERRED BY PO · NO ACTIVE PRODUCT/UX GROUP · NO CURSOR IMPLEMENTATION HANDOFF`
+`DESIGN SYSTEM / FIGMA QA · LIGHT COLOR SYSTEM D MVP ROLLOUT APPLIED / COLOR-SURFACE PO ACCEPTED · COMPONENT/BINDING MAINTENANCE PO APPROVED · SHARED TABS / SELECTION LIST MAINTENANCE PO APPROVED · RADIUS RULE PREVIEW ONLY / NOT ROLLED OUT · GROUP 03 ROUTINE CLOSED · GROUP 04 EXERCISE LIBRARY/DETAIL CLOSED · GROUP 05 ACTIVE WORKOUT CLOSED · GROUP 06 COMPLETION CLOSED WITH 2026-09-17 VISUAL AMENDMENTS · GROUP 07 ANALYSIS/WORKOUT HISTORY CLOSED (BODY-MAP PRODUCTION ASSET MAPPING DEFERRED) · GROUP 08 SETTINGS/ACCOUNT CLOSED WITH 2026-09-18 SUPPORT-INQUIRY VISUAL AMENDMENT · GROUP 02 HOME DEFERRED BY PO · NO ACTIVE PRODUCT/UX GROUP · NO CURSOR IMPLEMENTATION HANDOFF`
 
 ## Resume rule
 
@@ -346,6 +346,25 @@ Current approved grouping:
 - `PageOptionList` `Items=2/3` uses full 320px between-row dividers with no trailing divider
 - `08D2_Timer_End_Sound` and `08H_Language_Settings` remain immediate-selection `OptionItem` + check screens
 
+## Support inquiry attachment remove affordance
+
+`08G_Support_Inquiry` current approved attached-image presentation:
+- shared `AttachmentSlot / Filled` includes a circular remove badge overlapping the slot top-right
+- badge: `20 × 20`, position `x=56 / y=-2`
+- badge fill = `neutral/900`
+- badge outline = 1px `neutral/100`
+- existing subtle shadow + `radius/full` retained
+- PO-provided `close 1` SVG glyph is used at `6 × 6`, centered in the badge
+- Filled slot and parent `AttachmentSlots` allow overflow so the badge is not clipped
+- representative 08G state shows slot 1 Filled and slots 2–3 Empty
+- focused screenshot/read-back QA PASS
+
+Shared nodes:
+- `AttachmentSlot` set `1255:1161`
+- Filled `1255:1150`
+- `RemoveBadge` `1928:8903`
+- `SupportInquiryContent` `1882:9310`
+
 ## Existing Group 08 behavior retained
 
 Unchanged:
@@ -354,7 +373,7 @@ Unchanged:
 - unit settings
 - workout settings
 - notification scope
-- support inquiry flow
+- support inquiry category / submit / failure behavior outside the approved attachment-remove visual amendment
 - Terms / Privacy external-document entry behavior
 - language supports `한국어 / English` and applies immediately
 - theme remains hidden for MVP
