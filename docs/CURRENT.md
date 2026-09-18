@@ -1,10 +1,10 @@
 # CURRENT — Fitness Project
 
-**Updated:** 2026-09-18
+**Updated:** 2026-09-19
 
 ## Current mode
 
-`DESIGN SYSTEM / FIGMA QA · LIGHT COLOR SYSTEM D MVP ROLLOUT APPLIED / COLOR-SURFACE PO ACCEPTED · COMPONENT/BINDING MAINTENANCE PO APPROVED · SPLASH / APP LOGO / EXERCISE THUMBNAIL VISUAL MAINTENANCE PO APPROVED · EXERCISE THUMBNAIL LOCAL AUTO-CROP VALIDATED / OVERNIGHT BULK RUN PENDING · SHARED TABS / SELECTION LIST MAINTENANCE PO APPROVED · RADIUS RULE PREVIEW ONLY / NOT ROLLED OUT · GROUP 02 HOME STATES ALIGNED · 02A BLANK-WORKOUT ENTRY PO APPROVED / 02B COMPACT HOME GRID PO APPROVED / 02D ACTIVE HOME COMPACTED / CANONICAL REFLECTED / FOCUSED QA PASS · GROUP 03 ROUTINE CLOSED · GROUP 04 EXERCISE LIBRARY/DETAIL CLOSED · GROUP 05 ACTIVE WORKOUT CLOSED EXCEPT TARGETED BLANK-WORKOUT EMPTY STATE FOLLOW-UP · GROUP 06 COMPLETION CLOSED WITH 2026-09-17 VISUAL AMENDMENTS · GROUP 07 ANALYSIS/WORKOUT HISTORY CLOSED (BODY-MAP PRODUCTION VISUAL ASSETS APPLIED) · GROUP 08 SETTINGS/ACCOUNT CLOSED WITH 2026-09-18 VISUAL AMENDMENTS · NO CURSOR IMPLEMENTATION HANDOFF`
+`DESIGN SYSTEM / FIGMA QA · LIGHT COLOR SYSTEM D MVP ROLLOUT APPLIED / COLOR-SURFACE PO ACCEPTED · COMPONENT/BINDING MAINTENANCE PO APPROVED · SPLASH / APP LOGO / EXERCISE THUMBNAIL VISUAL MAINTENANCE PO APPROVED · EXERCISE THUMBNAIL LOCAL AUTO-CROP VALIDATED / OVERNIGHT BULK RUN PENDING · SHARED TABS / SELECTION LIST MAINTENANCE PO APPROVED · RADIUS RULE PREVIEW ONLY / NOT ROLLED OUT · GROUP 02 HOME STATES ALIGNED · HOME COMPONENT/BINDING QA PASS · 02A BLANK-WORKOUT ENTRY PO APPROVED / 02B COMPACT HOME GRID PO APPROVED / 02D ACTIVE HOME COMPACTED / CANONICAL REFLECTED · GROUP 03 ROUTINE CLOSED · GROUP 04 EXERCISE LIBRARY/DETAIL CLOSED · GROUP 05 ACTIVE WORKOUT CLOSED EXCEPT TARGETED BLANK-WORKOUT EMPTY STATE FOLLOW-UP · GROUP 06 COMPLETION CLOSED WITH 2026-09-17 VISUAL AMENDMENTS · GROUP 07 ANALYSIS/WORKOUT HISTORY CLOSED (BODY-MAP PRODUCTION VISUAL ASSETS APPLIED) · GROUP 08 SETTINGS/ACCOUNT CLOSED WITH 2026-09-18 VISUAL AMENDMENTS · NO CURSOR IMPLEMENTATION HANDOFF`
 
 ## Resume rule
 
@@ -25,7 +25,7 @@ Current editing surface:
 - group wrapper frames: `0`
 
 Whole-MVP component linkage read-back after the latest maintenance:
-- instance nodes: `1,971`
+- instance nodes: `1,980`
 - missing main-component links: `0`
 - live MVP instances whose source page is not `Common_Component`: `0`
 
@@ -54,7 +54,8 @@ The prior `97` screen count after the Group 08 FAQ removal and Group 06 recommen
 - `docs/ux-decisions/2026-09-17-light-radius-exploration-checkpoint.md`
 
 ### Historical group closures / current product-policy references
-- Group 02 compact Home direction exploration: `docs/ux-decisions/2026-09-18-group02-home-routine-selected-compact-direction.md`
+- Group 02 Home component/binding maintenance: `docs/ux-decisions/2026-09-19-group02-home-component-binding-maintenance.md`
+- Group 02 compact Home direction: `docs/ux-decisions/2026-09-18-group02-home-routine-selected-compact-direction.md`
 - Group 03 routine-name amendment: `docs/ux-decisions/2026-09-18-group03-routine-name-auto-default-policy.md`
 - Group 04: `docs/ux-decisions/2026-09-15-group04-final-closure-qa.md`
 - Group 04 custom-exercise field policy: `docs/ux-decisions/2026-09-15-group04-custom-exercise-selection-flow.md` — amended 2026-09-18
@@ -144,7 +145,8 @@ The corrected component QA standard is:
 `repeated UI → Common_Component master → production Instance → nested shared UI remains linked → variable/type/style bindings preserved`
 
 Latest maintenance result:
-- Groups 01–02: no additional repeated-UI component gap found
+- Group 01: no additional repeated-UI component gap found
+- Group 02 Home: remaining local Home cards componentized; shared `HomeQuickAction` + `HomeRoutineTile` added, existing `HomeRoutineFocusCard` / `HomeStartChoiceCard` reused and rebound
 - Group 03: repeated routine-name / attachment-overlay / bottom-CTA patterns componentized
 - Group 04: custom-exercise/search/attachment/history/growth/selection/footer repeated patterns componentized
 - Group 05: workout attachment overlay reuse + replacement footer + timer quick-adjust shared patterns
@@ -153,7 +155,7 @@ Latest maintenance result:
 - Group 08: settings rows/cards, option lists, headers, and screen-content patterns consolidated into shared components
 
 Latest whole-MVP linkage verification:
-- `1,971 / 1,971` instances resolve to a main component
+- `1,980 / 1,980` instances resolve to a main component
 - all current MVP component sources resolve through `Common_Component`
 - detached/missing main-component instances: `0`
 
@@ -181,7 +183,7 @@ Approved and reflected in canonical Figma:
 - full ~3,000-image overnight run and post-run visual exception QA are still pending; Production crop convention is not yet fully locked
 - canonical prep record: `docs/ux-decisions/2026-09-18-exercise-thumbnail-production-crop-prep.md`
 - focused read-back: `93 / 93` thumbnails have the subtle outline; old placeholder remains in current exercise-thumbnail instances = `0`
-- latest whole-MVP linkage: `1,971 / 1,971` instances resolve; missing main-component links = `0`; non-`Common_Component` sources = `0`
+- latest whole-MVP linkage: `1,980 / 1,980` instances resolve; missing main-component links = `0`; non-`Common_Component` sources = `0`
 
 Canonical record:
 - `docs/ux-decisions/2026-09-18-mvp-figma-maintenance-checkpoint.md`
@@ -284,12 +286,26 @@ Shared Home-state QA:
 - 02A / 02D visible text overflow = `0`
 - visible text font family = SUIT
 - missing main-component links = `0`
-- whole-MVP instances after this maintenance = `1,971 / 1,971`
+- whole-MVP instances after this maintenance = `1,980 / 1,980`
 - whole-MVP instance sources outside `Common_Component` = `0`
 - focused QA PASS
 
-Decision / canonical record:
+Decision / canonical records:
 - `docs/ux-decisions/2026-09-18-group02-home-routine-selected-compact-direction.md`
+- `docs/ux-decisions/2026-09-19-group02-home-component-binding-maintenance.md`
+
+Home component/binding state:
+- shared `HomeQuickAction` — `2038:1951`
+- shared `HomeRoutineTile` — `2039:1953`
+- `HomeRoutineFocusCard / Ready / Active` = `320 × 80`
+- `HomeStartChoiceCard / BlankWorkout / BuildOwn` = `320 × 80`
+- 02B selected-routine, blank-workout, Pull Day, Leg Day cards are all Common_Component instances
+- repeated manual Home-card frame count in canonical 02B = `0`
+- `HomeRoutineFocusCard` exposes `RoutineName / RoutineMeta` TEXT properties
+- `HomeRoutineTile` exposes `RoutineName / RoutineMeta` TEXT properties
+- Home scroll / section / grid spacing values are bound to existing spacing tokens
+- no new spacing/radius/color variables were created
+- latest focused component/binding QA PASS
 
 Direct design gap still open:
 - current MVP Figma has no zero-exercise Active Workout state
