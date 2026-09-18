@@ -208,6 +208,14 @@ Custom exercise save-action policy:
 - shared Figma `CustomExerciseSaveFooter` uses `State=Default / Disabled`
 - decision authority: `docs/ux-decisions/2026-09-15-group04-custom-exercise-save-destination.md` (2026-09-18 amendment / Figma reflected)
 
+Custom exercise history-lock presentation:
+- completed history exists → `기록 방식` is `ValueOnly` read-only
+- do not open selector and do not show a Toast on tap
+- persistently show neutral inline hint: `기록이 있는 운동은 기록 방식을 변경할 수 없어요.`
+- shared `icon/hint` now has `State=Error / Info`; existing Group 01 validation remains Error
+- shared `InlineHint` component is used in `04F_Custom_Edit_HistoryLocked`
+- decision authority: `docs/ux-decisions/2026-09-15-group04-custom-exercise-selection-flow.md` (2026-09-18 amendment / Figma reflected)
+
 Deferred data/runtime work remains:
 - final Production Exercise DB normalization/deduplication from purchased Gym Animations source
 - exact Production attachment allowlists / canonical attachment IDs/names / media mapping
