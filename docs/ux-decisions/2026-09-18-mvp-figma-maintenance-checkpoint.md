@@ -5,7 +5,7 @@
 
 ## Scope
 
-Targeted post-closure Figma/product-policy maintenance performed on Groups 03–05 and Group 08.
+Targeted post-closure Figma/product-policy maintenance performed on Groups 02–05 and Group 08.
 
 This checkpoint records only the explicit PO-directed amendments below. Previously closed flows remain closed unless a later Decision explicitly supersedes them.
 
@@ -13,6 +13,39 @@ Canonical Figma:
 - file: `W3lZurXCXbThP67rF2xk2b`
 - MVP page: `MVP_전체_와이어프레임` — `34:1076`
 - shared page: `Common_Component`
+
+---
+
+## Group 02 — Home no-routine start amendment
+
+Decision authority:
+- `docs/ux-decisions/2026-09-18-group02-home-blank-workout-entry.md`
+
+PO-approved product change:
+- `02A_Home_NoRoutine` no longer leads with recommended routines
+- primary actions are `빈 운동 시작` and `내 루틴 만들기`
+- `빈 운동 시작` starts an unsaved-routine active workout with zero exercises, then uses the existing exercise-add flow
+- completing a blank workout creates normal workout history but does not automatically create a saved routine
+- recommended ready-made routines remain an MVP secondary path under the Routine area
+
+Figma:
+- `02A_Home_NoRoutine` — `1346:686`
+- shared `HomeStartChoiceCard` — `1719:1048`
+- former `Type=Recommended` variant repurposed as `Type=BlankWorkout` — `1719:1042`
+- copy:
+  - title `빈 운동 시작`
+  - description `루틴 없이 운동을 추가하며 바로 기록해보세요.`
+- `Type=BuildOwn` unchanged
+
+Focused read-back:
+- 02A first card resolves to `Type=BlankWorkout`
+- BuildOwn remains unchanged
+- screenshot generated for representative 02A state
+- PASS for the 02A amendment itself
+
+Direct linked follow-up:
+- current Figma has no dedicated zero-exercise Active Workout state
+- create one as a targeted Group 05 follow-up without reopening unrelated Group 05 behavior
 
 ---
 
@@ -268,6 +301,7 @@ Focused screenshot/read-back QA:
 Focused QA was performed on the changed representative states after each amendment.
 
 Verified:
+- 02A no-routine action now uses the shared BlankWorkout variant while BuildOwn remains unchanged
 - shared component linkage preserved for changed UI
 - no intentional detach introduced
 - target labels/rendered states read back correctly
