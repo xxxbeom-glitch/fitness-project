@@ -79,6 +79,7 @@ Current approved Light values relevant to the live MVP:
 - Subtle Surface `#EFF2F2`
 - Border / Subtle `#EAEEED`
 - Border / Default Control `#E7EBEA`
+- Border / Strong CTA `#C7CDCB`
 - Text Primary `#242927`
 - Text Secondary `#626866`
 - Text Tertiary `#929A98`
@@ -88,6 +89,7 @@ Current approved Light values relevant to the live MVP:
 Latest amendments:
 - Light `text/primary`: `#242927`
 - Light `border/default`: `#E7EBEA`
+- Secondary CTA outline contrast: new semantic `border/strong` = Light `#C7CDCB`, Dark `#48484A`; `CTA Button / Secondary` Default + Pressed use `border/strong`, Disabled remains `border/default`
 - Dark values for those tokens were not changed by these amendments.
 
 Surface rule remains:
