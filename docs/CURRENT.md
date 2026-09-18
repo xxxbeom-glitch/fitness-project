@@ -4,7 +4,7 @@
 
 ## Current mode
 
-`DESIGN SYSTEM / FIGMA QA · LIGHT COLOR SYSTEM D MVP ROLLOUT APPLIED / COLOR-SURFACE PO ACCEPTED · COMPONENT/BINDING MAINTENANCE PO APPROVED · SPLASH / APP LOGO / EXERCISE THUMBNAIL VISUAL MAINTENANCE PO APPROVED · EXERCISE THUMBNAIL LOCAL AUTO-CROP VALIDATED / OVERNIGHT BULK RUN PENDING · SHARED TABS / SELECTION LIST MAINTENANCE PO APPROVED · RADIUS RULE PREVIEW ONLY / NOT ROLLED OUT · GROUP 02 02A BLANK-WORKOUT ENTRY PO APPROVED / TARGETED FOLLOW-UP OPEN · GROUP 03 ROUTINE CLOSED · GROUP 04 EXERCISE LIBRARY/DETAIL CLOSED · GROUP 05 ACTIVE WORKOUT CLOSED EXCEPT TARGETED BLANK-WORKOUT EMPTY STATE FOLLOW-UP · GROUP 06 COMPLETION CLOSED WITH 2026-09-17 VISUAL AMENDMENTS · GROUP 07 ANALYSIS/WORKOUT HISTORY CLOSED (BODY-MAP PRODUCTION ASSET MAPPING DEFERRED) · GROUP 08 SETTINGS/ACCOUNT CLOSED WITH 2026-09-18 VISUAL AMENDMENTS · NO CURSOR IMPLEMENTATION HANDOFF`
+`DESIGN SYSTEM / FIGMA QA · LIGHT COLOR SYSTEM D MVP ROLLOUT APPLIED / COLOR-SURFACE PO ACCEPTED · COMPONENT/BINDING MAINTENANCE PO APPROVED · SPLASH / APP LOGO / EXERCISE THUMBNAIL VISUAL MAINTENANCE PO APPROVED · EXERCISE THUMBNAIL LOCAL AUTO-CROP VALIDATED / OVERNIGHT BULK RUN PENDING · SHARED TABS / SELECTION LIST MAINTENANCE PO APPROVED · RADIUS RULE PREVIEW ONLY / NOT ROLLED OUT · GROUP 02 02A BLANK-WORKOUT ENTRY PO APPROVED / TARGETED FOLLOW-UP OPEN · GROUP 03 ROUTINE CLOSED · GROUP 04 EXERCISE LIBRARY/DETAIL CLOSED · GROUP 05 ACTIVE WORKOUT CLOSED EXCEPT TARGETED BLANK-WORKOUT EMPTY STATE FOLLOW-UP · GROUP 06 COMPLETION CLOSED WITH 2026-09-17 VISUAL AMENDMENTS · GROUP 07 ANALYSIS/WORKOUT HISTORY CLOSED (BODY-MAP PRODUCTION VISUAL ASSETS APPLIED) · GROUP 08 SETTINGS/ACCOUNT CLOSED WITH 2026-09-18 VISUAL AMENDMENTS · NO CURSOR IMPLEMENTATION HANDOFF`
 
 ## Resume rule
 
@@ -63,7 +63,8 @@ The prior `97` screen count after the Group 08 FAQ removal and Group 06 recommen
 - Group 06 recommended flow: `docs/ux-decisions/2026-09-14-recommended-routine-acceptance-current.md`
 - Group 07: `docs/ux-decisions/2026-09-16-group07-final-closure-qa.md`
 - Group 07 policy: `docs/ux-decisions/2026-09-14-group07-final-policy-lock.md`
-- Group 07 body-map defer: `docs/ux-decisions/2026-09-15-analysis-bodymap-asset-mapping-deferred.md`
+- Group 07 body-map Production visual asset application: `docs/ux-decisions/2026-09-18-analysis-bodymap-production-visual-asset-application.md`
+- Group 07 prior body-map asset defer baseline: `docs/ux-decisions/2026-09-15-analysis-bodymap-asset-mapping-deferred.md`
 - Group 08 historical closure: `docs/ux-decisions/2026-09-16-group08-final-closure-qa.md`
 
 The 2026-09-17 consolidated maintenance checkpoint supersedes older closure documents only where it explicitly records a later PO-approved amendment.
@@ -345,7 +346,21 @@ Latest design-system maintenance:
 - `07D_Workout_History_Detail_DeleteConfirm` is normalized to a standard `360 × 780` full-screen dialog overlay state
 - shared component/binding cleanup is recorded in the current consolidated checkpoint
 
-Body-map final Production asset mapping remains deferred until PO supplies/prepares the production-ready image set.
+PO-prepared Production front/back body-map visual assets are now applied through the existing shared Group 07 components.
+
+Current reflected Figma:
+- source: `Common_Component > bodymap` — `1979:11119`
+- `BodyDistributionCard / Context=Analysis` BodyMapPreview — `1868:8169`
+- `BodyDistributionCard / Context=Session` BodyMapPreview — `1868:8241`
+- `BodyAreaDetailCard / State=Data` BodyMapPreview — `1868:8398`
+- neutral front/back base layers added; all existing muscle layers now use the PO-prepared source images
+- existing visibility/opacity semantics are preserved
+- focused master/instance read-back QA PASS
+
+Canonical record:
+- `docs/ux-decisions/2026-09-18-analysis-bodymap-production-visual-asset-application.md`
+
+This resolves the prior missing-production-asset Figma deferral. Runtime binding/implementation remains outside the current Design/Figma mode.
 
 **GROUP 07 CLOSED.**
 
@@ -474,9 +489,8 @@ Remaining intentionally deferred / later items:
 1. size-aware radius system — preview only; propagate only after explicit PO approval
 2. broader Group 02 Home refinement — deferred by PO
 3. Routine-tab recommended-routine secondary placement refinement
-4. Group 07 final body-map production asset mapping — deferred until production-ready assets are provided/prepared
-5. pre-release Settings follow-ups — public Terms/Privacy URLs, inquiry-retention disclosure, external deletion-request URL, final timer-sound assets/labels
-6. implementation/Cursor handoff — only after explicit Product Owner authorization
+4. pre-release Settings follow-ups — public Terms/Privacy URLs, inquiry-retention disclosure, external deletion-request URL, final timer-sound assets/labels
+5. implementation/Cursor handoff — only after explicit Product Owner authorization
 
 Do not automatically reopen Groups 03–08.
 Do not automatically propagate the radius experiment.
