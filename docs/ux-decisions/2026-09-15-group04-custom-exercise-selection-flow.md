@@ -1,7 +1,7 @@
 # Group 04 Custom Exercise — Selection Flow
 
 **Date:** 2026-09-15  
-**Status:** PO APPROVED / PRODUCT POLICY LOCKED / 2026-09-18 REQUIRED-FIELD AMENDMENT / FIGMA FOLLOW-UP NEEDED / NO CURSOR HANDOFF
+**Status:** PO APPROVED / PRODUCT POLICY LOCKED / 2026-09-18 REQUIRED-FIELD + HISTORY-LOCK PRESENTATION AMENDMENTS / FIGMA REFLECTED / FOCUSED QA PASS / NO CURSOR HANDOFF
 
 ## Scope
 
@@ -102,6 +102,31 @@ UI:
 대표 상태: `04F_Custom_Edit_HistoryLocked`
 
 기록이 아직 없는 커스텀 운동은 `기록 방식`을 변경할 수 있다.
+
+## History-lock presentation — 2026-09-18 PO amendment
+
+`04F_Custom_Edit_HistoryLocked`의 기록 방식 변경 제한은 transient error가 아니라 persistent constraint로 취급한다.
+
+Locked UI:
+- `기록 방식` row는 `ValueOnly` read-only 상태
+- row 탭 시 selector를 열지 않는다
+- row 탭 시 별도 Toast/error feedback도 띄우지 않는다
+- row 아래에 neutral inline hint를 항상 표시한다
+- copy: `기록이 있는 운동은 기록 방식을 변경할 수 없어요.`
+
+Rationale:
+- 이미 완료 기록이 존재하는 동안 계속 유지되는 제약이므로, 탭한 뒤 잠깐 나타나는 Toast보다 사유를 항상 노출하는 편이 적절하다.
+- 동일 사유를 inline hint와 Toast로 중복 표시하지 않는다.
+
+Figma reflection:
+- shared `icon/hint` extended to `State=Error / Info`
+- existing Group 01 validation use remains `State=Error`
+- new shared `InlineHint` component uses `State=Info`, caption-style text, `text/secondary`, `spacing/4`
+- `04F_Custom_Edit_HistoryLocked` uses `RecordingTypeLockedHint` instance
+- settings section ↔ hint gap = `spacing/8`
+- no Toast instance exists on the state
+- read-back: `RowValue Type=ValueOnly`, no footer overlap
+- focused QA PASS
 
 ## Figma QA result
 
