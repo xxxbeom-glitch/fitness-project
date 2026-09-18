@@ -4,7 +4,7 @@
 
 ## Current mode
 
-`DESIGN SYSTEM / FIGMA QA · LIGHT COLOR SYSTEM D MVP ROLLOUT APPLIED / COLOR-SURFACE PO ACCEPTED · COMPONENT/BINDING MAINTENANCE PO APPROVED · SHARED TABS / SELECTION LIST MAINTENANCE PO APPROVED · RADIUS RULE PREVIEW ONLY / NOT ROLLED OUT · GROUP 03 ROUTINE CLOSED · GROUP 04 EXERCISE LIBRARY/DETAIL CLOSED · GROUP 05 ACTIVE WORKOUT CLOSED · GROUP 06 COMPLETION CLOSED WITH 2026-09-17 VISUAL AMENDMENTS · GROUP 07 ANALYSIS/WORKOUT HISTORY CLOSED (BODY-MAP PRODUCTION ASSET MAPPING DEFERRED) · GROUP 08 SETTINGS/ACCOUNT CLOSED WITH 2026-09-18 SUPPORT-INQUIRY VISUAL AMENDMENT · GROUP 02 HOME DEFERRED BY PO · NO ACTIVE PRODUCT/UX GROUP · NO CURSOR IMPLEMENTATION HANDOFF`
+`DESIGN SYSTEM / FIGMA QA · LIGHT COLOR SYSTEM D MVP ROLLOUT APPLIED / COLOR-SURFACE PO ACCEPTED · COMPONENT/BINDING MAINTENANCE PO APPROVED · SHARED TABS / SELECTION LIST MAINTENANCE PO APPROVED · RADIUS RULE PREVIEW ONLY / NOT ROLLED OUT · GROUP 02 02A BLANK-WORKOUT ENTRY PO APPROVED / TARGETED FOLLOW-UP OPEN · GROUP 03 ROUTINE CLOSED · GROUP 04 EXERCISE LIBRARY/DETAIL CLOSED · GROUP 05 ACTIVE WORKOUT CLOSED EXCEPT TARGETED BLANK-WORKOUT EMPTY STATE FOLLOW-UP · GROUP 06 COMPLETION CLOSED WITH 2026-09-17 VISUAL AMENDMENTS · GROUP 07 ANALYSIS/WORKOUT HISTORY CLOSED (BODY-MAP PRODUCTION ASSET MAPPING DEFERRED) · GROUP 08 SETTINGS/ACCOUNT CLOSED WITH 2026-09-18 VISUAL AMENDMENTS · NO CURSOR IMPLEMENTATION HANDOFF`
 
 ## Resume rule
 
@@ -154,11 +154,36 @@ Latest whole-MVP linkage verification:
 
 ---
 
-# GROUP 02 — HOME REFINEMENT DEFERRED
+# GROUP 02 — HOME REFINEMENT DEFERRED / 02A TARGETED AMENDMENT
 
-Product Owner explicitly deferred Group 02 Home refinement.
+Broader Group 02 Home refinement remains deferred, but the Product Owner explicitly reopened and approved the no-routine start choice in `02A_Home_NoRoutine`.
 
-Do not resume it unless PO requests it.
+Current locked 02A primary actions:
+- `빈 운동 시작`
+- `내 루틴 만들기`
+
+The previous `추천 루틴 받기` Home action is removed.
+
+`빈 운동 시작`:
+- starts an active workout without a saved routine
+- begins with zero exercises
+- uses the existing exercise-add flow during the session
+- does not automatically create a saved routine
+
+Recommended ready-made routines remain in MVP as a secondary Routine-area discovery/use path rather than a Home primary action.
+
+Decision:
+- `docs/ux-decisions/2026-09-18-group02-home-blank-workout-entry.md`
+
+Figma reflected:
+- `02A_Home_NoRoutine` `1346:686`
+- shared `HomeStartChoiceCard` Recommended variant repurposed to `Type=BlankWorkout` `1719:1042`
+- copy: `빈 운동 시작` / `루틴 없이 운동을 추가하며 바로 기록해보세요.`
+
+Direct design gap:
+- current MVP Figma has no zero-exercise Active Workout state
+- add a focused blank-workout empty state as the canonical destination
+- do not reopen unrelated Group 05 behavior
 
 ---
 
@@ -406,17 +431,19 @@ Release follow-ups that are not Figma blockers:
 
 # NEXT OPEN ITEM
 
-**Current Figma component/binding/settings maintenance is PO accepted and checkpointed. The only newly opened focused follow-up is Group 03 routine-create/save Figma alignment for the 2026-09-18 optional-name policy; do not reopen unrelated Group 03 behavior.**
+**The newly opened direct follow-up is the zero-exercise Active Workout destination required by the approved 02A blank-workout entry. Broader Group 02 and unrelated Group 05 behavior remain closed/deferred.**
 
-Immediate focused follow-up:
-1. Group 03 `03E / 03E2` routine-create/save Figma alignment — verify name is optional and save is not visually/structurally gated by name alone
+Immediate focused follow-ups:
+1. Blank-workout Active state — add the canonical zero-exercise Active Workout destination for `02A 빈 운동 시작`, reusing existing Group 05 shell/components and existing exercise-add flow
+2. Group 03 `03E / 03E2` routine-create/save Figma alignment — verify name is optional and save is not visually/structurally gated by name alone
 
 Remaining intentionally deferred / later items:
 1. size-aware radius system — preview only; propagate only after explicit PO approval
-2. Group 02 Home refinement — deferred by PO
-3. Group 07 final body-map production asset mapping — deferred until production-ready assets are provided/prepared
-4. pre-release Settings follow-ups — public Terms/Privacy URLs, inquiry-retention disclosure, external deletion-request URL, final timer-sound assets/labels
-5. implementation/Cursor handoff — only after explicit Product Owner authorization
+2. broader Group 02 Home refinement — deferred by PO
+3. Routine-tab recommended-routine secondary placement refinement
+4. Group 07 final body-map production asset mapping — deferred until production-ready assets are provided/prepared
+5. pre-release Settings follow-ups — public Terms/Privacy URLs, inquiry-retention disclosure, external deletion-request URL, final timer-sound assets/labels
+6. implementation/Cursor handoff — only after explicit Product Owner authorization
 
 Do not automatically reopen Groups 03–08.
 Do not automatically propagate the radius experiment.
