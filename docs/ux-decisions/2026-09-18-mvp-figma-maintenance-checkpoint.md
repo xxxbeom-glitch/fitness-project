@@ -5,7 +5,7 @@
 
 ## Scope
 
-Targeted post-closure Figma/product-policy maintenance performed on Groups 02–05 and Group 08.
+Targeted post-closure Figma/product-policy maintenance performed on Groups 02–05, Group 08, and the cross-group launch/branding/exercise-thumbnail visual system.
 
 This checkpoint records only the explicit PO-directed amendments below. Previously closed flows remain closed unless a later Decision explicitly supersedes them.
 
