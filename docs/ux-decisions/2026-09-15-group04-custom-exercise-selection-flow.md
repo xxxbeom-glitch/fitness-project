@@ -1,7 +1,7 @@
 # Group 04 Custom Exercise — Selection Flow
 
 **Date:** 2026-09-15  
-**Status:** PO APPROVED / PRODUCT POLICY LOCKED / FIGMA QA PASS / NO CURSOR HANDOFF
+**Status:** PO APPROVED / PRODUCT POLICY LOCKED / 2026-09-18 REQUIRED-FIELD AMENDMENT / FIGMA FOLLOW-UP NEEDED / NO CURSOR HANDOFF
 
 ## Scope
 
@@ -13,6 +13,30 @@
 - 주 타겟 근육
 - 보조 타겟 근육
 - 기록 방식
+
+
+## Required-field policy — 2026-09-18 PO amendment
+
+`04E_Custom_Create`의 저장 필수값은 아래 3개로 확정한다.
+
+필수:
+- `운동명`
+- `주 타겟 근육`
+- `기록 방식`
+
+선택:
+- `장비`
+- `보조 타겟 근육`
+
+Save eligibility:
+- 필수 3개가 모두 유효하면 저장 가능
+- 장비 미선택은 저장을 막지 않는다.
+- 보조 타겟 근육은 기존처럼 `선택 안 함`을 허용하며 저장을 막지 않는다.
+- 기록 방식은 필수 데이터지만 기본값이 사전 선택되어 있을 수 있다.
+- 운동명은 공백/유효하지 않은 값이면 저장 불가
+- 주 타겟 근육은 분석 및 부위 필터 귀속을 위해 반드시 하나 선택해야 한다.
+
+이 결정은 기존의 `주 타겟 근육 필수 / 보조 타겟 근육 optional` 정책을 유지하면서, `장비`를 명시적으로 optional로 확정한다.
 
 ## Selection pattern
 
@@ -26,7 +50,7 @@
 
 ### 장비
 
-단일 선택.
+단일 선택. 선택값은 optional이며 미선택 상태로도 저장할 수 있다.
 
 대표 선택 화면: `04I_Custom_Equipment_Select`
 
@@ -47,7 +71,7 @@
 
 ### 기록 방식
 
-MVP 4종 중 단일 선택:
+필수값. MVP 4종 중 단일 선택:
 
 - `중량 + 횟수`
 - `횟수`
