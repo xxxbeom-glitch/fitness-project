@@ -174,7 +174,7 @@ Handoff correctly marks this as:
 - `DECISION NEEDED`
 - Cursor must not invent interaction behavior
 
-Verdict: **CONDITIONAL PASS**
+Verdict: **DECISION NEEDED**
 
 ## 9. Technology architecture readiness
 
