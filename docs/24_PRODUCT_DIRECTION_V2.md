@@ -1,7 +1,7 @@
 # 24 PRODUCT DIRECTION V2
 
 **Status:** CONFIRMED BASELINE — PRODUCT RESET
-**Updated:** 2026-09-18
+**Updated:** 2026-09-19
 
 ## Purpose
 
@@ -32,7 +32,7 @@ Core repeated value:
 G Fit은 다음 네 층으로 확장한다.
 
 1. **Core Tracker** — 루틴 생성/관리, 운동 실행, 기록, 기본 분석
-2. **Exercise / Program Content** — 자체 운동 DB, 운동 가이드 에셋, G Fit 제공 루틴
+2. **Exercise Content** — 자체 운동 DB, 운동 가이드 에셋
 3. **Personal Intelligence** — 실제 운동 기록 기반 개인화 제안 및 데이터 해석
 4. **Social** — 운동 사진, 좋아요, 루틴 공유 등
 
@@ -43,7 +43,6 @@ G Fit은 다음 네 층으로 확장한다.
 첫 출시 MVP의 핵심 범위:
 
 - 루틴 생성 / 수정 / 삭제 / 관리
-- G Fit이 준비한 추천 루틴을 사용 가능
 - 운동 시작 / 진행 / 종료
 - 기본 운동 기록: `중량 / 횟수 / 세트 / 휴식`
 - 이전 수행 기록 확인
@@ -96,9 +95,12 @@ Primary start paths:
 - **빈 운동 시작** — 저장된 루틴 없이 Active Workout을 시작하고, 운동 중 기존 운동 추가 flow로 운동을 구성
 - **내 루틴 직접 만들기** — 저장 루틴을 먼저 구성한 뒤 반복 사용
 
-G Fit이 미리 구성하고 검수한 ready-made `추천 루틴` 기능은 MVP에서 유지하되, no-routine Home의 primary action에서는 제외한다.
+`추천 루틴` 기능은 현재 MVP에 포함하지 않는다.
 
-추천 루틴은 Routine 영역의 secondary discovery/use path로 둔다. 초기 추천 루틴은 사용자 데이터를 계산한 개인화 추천이 아니며, 개인 맞춤이라고 오해시키는 카피를 사용하지 않는다.
+Routine 영역은 사용자가 직접 만든 저장 루틴의 생성 / 수정 / 삭제 / 관리에 집중한다. 추천 루틴 목록, 추천 루틴 상세, 추천 매칭, 추천 루틴 저장 분기는 현재 제품 범위에서 제거한다.
+
+Decision:
+- `docs/ux-decisions/2026-09-19-recommended-routine-feature-removal.md`
 
 ### Home no-routine presentation — CONFIRMED 2026-09-18
 
@@ -108,7 +110,7 @@ G Fit이 미리 구성하고 검수한 ready-made `추천 루틴` 기능은 MVP�
 - `빈 운동 시작`
 - `내 루틴 만들기`
 
-`추천 루틴 받기`는 02A에서 제거한다.
+`추천 루틴` 기능 자체가 현재 MVP에서 제외되어 있으므로 02A뿐 아니라 Routine 영역에도 추천 루틴 진입점은 두지 않는다.
 
 `빈 운동 시작`은 저장된 루틴을 자동 생성하지 않는다. 사용자는 빈 Active Workout에서 운동을 추가하고 정상적으로 기록/완료할 수 있다.
 
@@ -261,7 +263,7 @@ LLM 없이 구조화된 규칙/통계로 더 안정적으로 해결 가능한 �
 - active workout must survive interruption/restart
 - active workout remains flexible: exercise/set changes are allowed
 - prior performance should be immediately available during logging
-- workout records must not be silently changed by recommendation/AI
+- workout records must not be silently changed by personalization/AI
 - offline-first active-workout persistence and safe sync principles
 - custom exercises remain important because gym equipment differs
 
@@ -277,7 +279,10 @@ LLM 없이 구조화된 규칙/통계로 더 안정적으로 해결 가능한 �
 - recommendation-result skip/exit UX problem
 - onboarding recommendation questionnaire -> curated matcher requirement
 
-향후 개인화 추천을 다시 설계할 수 있으나, first-run onboarding의 전제는 아니다.
+2026-09-19 PO 결정으로 추천 루틴 기능 자체도 현재 MVP에서 제거되었다. 향후 개인화 제안을 다시 설계할 수는 있으나, 이는 추천 루틴 카탈로그/매칭 흐름과 별개다.
+
+Current superseding decision:
+- `docs/ux-decisions/2026-09-19-recommended-routine-feature-removal.md`
 
 ## Next planning sequence
 
@@ -285,7 +290,7 @@ LLM 없이 구조화된 규칙/통계로 더 안정적으로 해결 가능한 �
 
 1. Account / Onboarding baseline 마무리
 2. Home structure
-3. Routine / G Fit recommended-routine system
+3. Routine / saved-routine management
 4. Exercise DB / visual assets / exercise identity
 5. Active workout execution
 6. Post-workout summary dashboard
@@ -301,6 +306,6 @@ LLM 없이 구조화된 규칙/통계로 더 안정적으로 해결 가능한 �
 - Home -> 운동 시작/복귀를 최우선
 - Active workout -> 전체 운동을 한 화면에서 보고 현재 운동만 펼쳐 기록
 
-**현재 직접 후속:** `빈 운동 시작`의 canonical 목적지인 zero-exercise Active Workout 상태를 Figma에 추가한다. 추천 루틴의 Routine-tab secondary placement는 이후 별도 refinement로 다룬다.
+**현재 직접 후속:** `빈 운동 시작`의 canonical 목적지인 zero-exercise Active Workout 상태를 Figma에 추가한다.
 
 Implementation / Cursor handoff는 이 상위 기획이 충분히 정리되기 전까지 시작하지 않는다.
