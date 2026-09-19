@@ -4,7 +4,7 @@
 
 ## Current mode
 
-`MVP SCREEN DESIGN FROZEN · CURSOR IMPLEMENTATION HANDOFF PREPARED · IMPLEMENTATION NOT STARTED · CANONICAL FIGMA 94 FRAMES / 1,855 LINKED INSTANCES · RECOMMENDED ROUTINES REMOVED · CURRENT LIGHT DESIGN SYSTEM / DIALOG COPY / APP LOGO REFLECTED · PRODUCTION EXERCISE-THUMBNAIL ASSET SIDE-TRACK OPEN · TECH STACK / ARCHITECTURE DECISION NEEDED · DURATION ACTIVE-SET UX DECISION NEEDED`
+`MVP 94 CONTENT/STATE FRAMES FROZEN · 94-SCREEN BEHAVIOR MATRIX COMPLETE · HANDOFF QA = FIX / DECISION NEEDED · PRIMARY BOTTOM-NAV DESIGN GAP FOUND · WEEKDAY SCHEDULING CONFLICT FOUND · ROUTINE DUPLICATE SEMANTICS OPEN · W/D/F SET SEMANTICS OPEN · TECH STACK / ARCHITECTURE OPEN · DURATION ACTIVE-SET UX OPEN · IMPLEMENTATION NOT STARTED`
 
 ## Resume rule
 
@@ -40,6 +40,7 @@ The previous `98` screen count is superseded by the current `94` after the 2026-
 - `docs/implementation/README.md`
 - `docs/implementation/MVP_IMPLEMENTATION_HANDOFF.md`
 - `docs/implementation/MVP_SCREEN_INVENTORY.md`
+- `docs/implementation/MVP_SCREEN_BEHAVIOR_MATRIX.md`
 - `docs/implementation/MVP_HANDOFF_QA.md`
 
 ### Current active asset-prep checkpoint
@@ -619,35 +620,79 @@ Release follow-ups that are not Figma blockers:
 
 # NEXT OPEN ITEM
 
-**MVP screen design is frozen. Cursor-facing handoff documentation is prepared, but production implementation has not started.**
+**94개 canonical content/state frame의 화면별 행동 매핑 QA까지 완료했다. 기존 handoff의 `CONDITIONAL PASS`는 철회하고 현재 판정은 `FIX / DECISION NEEDED`다.**
 
-Implementation readiness gates:
-1. **Technology stack / platform architecture decision** — select the production client framework/platform priority, local persistence approach, backend/sync architecture, and related core architecture. Cursor must not choose these implicitly.
-2. **Duration Active Workout interaction decision** — `recording_type=duration` is MVP-active, but stopwatch/countdown/start-stop/rest-transition interaction is still `DECISION NEEDED`.
-3. **Explicit Product Owner development authorization** — after 1–2 are resolved, create the first scoped implementation Issue and begin Cursor implementation from that Issue.
+Detailed QA:
+- `docs/implementation/MVP_SCREEN_BEHAVIOR_MATRIX.md`
+- `docs/implementation/MVP_HANDOFF_QA.md`
 
-Active non-blocking asset side-track:
-- run `tools/photoshop/tampin_auto_crop_v05_overnight.psjs` on the full Production exercise source
-- inspect log and exceptions
-- lock final crop/mapping before final visual/release QA
+## Targeted FIX
 
-Remaining pre-release follow-ups:
-- public Terms / Privacy URLs
-- inquiry-retention disclosure
-- external deletion-request URL if required by release policy
+1. **Primary bottom navigation design gap**
+   - current product IA = `홈 / 루틴 / 분석 / 설정`
+   - frozen root screens / `Common_Component`에 실제 primary bottom-navigation component/instance가 없음
+   - Cursor가 임의 디자인하면 안 됨
+   - 94개 content/state frame 전체를 reopen하지 말고 app-shell navigation만 targeted design completion
+
+2. **Brand naming cleanup**
+   - canonical visual = Tampin
+   - 일부 top-level product docs의 `G Fit` working-name 표현이 stale
+   - production package/code naming 전에 implementation-facing docs를 Tampin 기준으로 정리
+
+## Product Decision Needed
+
+3. **Weekday scheduling / today-next semantics**
+   - older product text: optional weekday assignment / scheduled-vs-unscheduled Home
+   - current frozen Figma: weekday control 없음, today/next Home state 없음
+   - MVP에서 제거/연기할지, 필요한 화면을 targeted reopen할지 PO 결정 필요
+
+4. **Routine Duplicate**
+   - `03A_Routine_List_Menu`의 `복제` action은 존재
+   - name / metadata / deep-copy / destination / collision rule 미정
+
+5. **W / D / F set-type semantics**
+   - Routine / Active Workout Figma에 W / numbered / D / F rows 존재
+   - 의미 / 선택 / 저장 / 완료 / volume / PR / history 영향 미정
+
+6. **Technology stack / platform architecture**
+   - production client framework / platform priority / local persistence / backend-sync architecture 결정 필요
+
+7. **Duration Active Workout interaction**
+   - `recording_type=duration` storage semantics는 확정
+   - stopwatch/countdown/start-stop/rest-transition은 여전히 미정
+
+## Conditional platform alignment
+
+8. **iOS launch scope**
+   - current Login Figma = Google / Kakao
+   - iOS launch 시 Apple sign-in/provider-specific account copy alignment 필요
+
+## Active non-blocking asset side-track
+
+- Production exercise-thumbnail full crop/mapping QA
 - final timer-end sound assets/labels
-- exact legal/store/privacy review
+- public Terms/Privacy URLs and inquiry-retention disclosure before release
 
-Do not reopen frozen MVP screens merely to represent a state that the implementation handoff explicitly defines from an existing shell/component.
-Do not begin a broad unscoped Cursor build.
+## Development authorization
+
+위 FIX / Product Decision Needed를 해결한 뒤 Product Owner가 개발 시작을 명시하면 첫 scoped implementation Issue를 만든다.
+Broad unscoped Cursor build는 시작하지 않는다.
 
 # Development boundary
 
-Cursor가 읽을 구현 handoff 문서는 준비되어 있다.
+Cursor-facing documents exist, but **production implementation is not authorized yet**.
 
-그러나 **production code implementation은 아직 시작하지 않는다.**
-- tech stack / architecture 결정
-- duration Active Workout interaction 결정
-- Product Owner의 명시적 개발 시작 승인
+Current handoff verdict:
+- `FIX / DECISION NEEDED`
 
-이 세 조건을 확인한 뒤 첫 scoped implementation Issue를 만들고 개발 mode로 전환한다.
+Before development:
+- targeted app-shell navigation design FIX
+- weekday scheduling decision
+- routine Duplicate decision
+- W / D / F set-type decision
+- tech stack / architecture decision
+- duration Active Workout interaction decision
+- launch-platform scope check
+- explicit Product Owner development authorization
+
+After resolution, create the first scoped Issue and switch to Development mode.
