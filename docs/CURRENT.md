@@ -54,6 +54,7 @@ The previous `98` screen count is superseded by the current `94` after the 2026-
 - `docs/ux-decisions/2026-09-17-light-radius-exploration-checkpoint.md`
 
 ### Historical group closures / current product-policy references
+- AppLogo primary color update: `docs/ux-decisions/2026-09-19-app-logo-primary-color.md`
 - Cross-group dialog copy simplification: `docs/ux-decisions/2026-09-19-dialog-copy-simplification.md`
 - Group 02 Home component/binding maintenance: `docs/ux-decisions/2026-09-19-group02-home-component-binding-maintenance.md`
 - Group 02 compact Home direction: `docs/ux-decisions/2026-09-18-group02-home-routine-selected-compact-direction.md`
@@ -167,7 +168,9 @@ Latest whole-MVP linkage verification:
 Approved and reflected in canonical Figma:
 - final `00_Splash` added: `360 × 780`, `brand/primary` background, centered white Tampin wordmark `139 × 28`, no loading indicator/copy
 - rejected Light/Dark splash exploration candidates removed
-- shared `AppLogo` remains `139 × 28`; internal artwork uses PO-supplied Tampin black/white assets
+- shared `AppLogo` remains `139 × 28`; default artwork now renders with existing `brand/primary` (`#218F8A`) through the existing wordmark mask
+- current live default AppLogo instances: Login + Home states (4 total)
+- Splash remains the explicit exception and keeps its separate white Tampin wordmark
 - `02A` `StartChoiceSection` local wrapper uses `Clip content = OFF` so card shadows are not cut; actual Home scroll viewport clipping remains unchanged
 - PO-supplied `Common_Component > thumbs` contains 3 real thumbnail source samples
 - current exercise-thumbnail visual preview is applied to `93` instances across `19` screens
