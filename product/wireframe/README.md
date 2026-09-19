@@ -1,5 +1,8 @@
 # G Fit Cumulative Wireframe
 
+> **IMPLEMENTATION NOTICE — 2026-09-20:** This is a historical planning/wireframe artifact and is **not** an implementation Source of Truth. It contains superseded recommendation and visual-baseline material. Cursor must start from `docs/implementation/README.md`, `docs/CURRENT.md`, current Decisions, and canonical Figma.
+
+
 **Status:** CANONICAL · WHOLE-APP PLANNING SPEC · FIGMA SYSTEM SYNCED
 **Wireframe version:** `2026-09-02.14`
 **Updated:** 2026-09-02
