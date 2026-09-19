@@ -4,7 +4,7 @@
 
 ## Current mode
 
-`DESIGN SYSTEM / FIGMA QA · LIGHT COLOR SYSTEM D MVP ROLLOUT APPLIED / COLOR-SURFACE PO ACCEPTED · COMPONENT/BINDING MAINTENANCE PO APPROVED · SPLASH / APP LOGO / EXERCISE THUMBNAIL VISUAL MAINTENANCE PO APPROVED · EXERCISE THUMBNAIL LOCAL AUTO-CROP VALIDATED / OVERNIGHT BULK RUN PENDING · SHARED TABS / SELECTION LIST MAINTENANCE PO APPROVED · RADIUS RULE PREVIEW ONLY / NOT ROLLED OUT · GROUP 02 HOME STATES ALIGNED · HOME COMPONENT/BINDING QA PASS · 02A BLANK-WORKOUT ENTRY PO APPROVED / 02B COMPACT HOME GRID PO APPROVED / 02D ACTIVE HOME COMPACTED / CANONICAL REFLECTED · GROUP 03 ROUTINE CLOSED / RECOMMENDED ROUTINES REMOVED / ROUTINE LIST SIMPLIFIED · GROUP 04 EXERCISE LIBRARY/DETAIL CLOSED · GROUP 05 ACTIVE WORKOUT CLOSED EXCEPT TARGETED BLANK-WORKOUT EMPTY STATE FOLLOW-UP · GROUP 06 COMPLETION CLOSED / RECOMMENDED-ROUTINE DIALOGS REMOVED · GROUP 07 ANALYSIS/WORKOUT HISTORY CLOSED (BODY-MAP PRODUCTION VISUAL ASSETS APPLIED) · GROUP 08 SETTINGS/ACCOUNT CLOSED WITH 2026-09-18 VISUAL AMENDMENTS · NO CURSOR IMPLEMENTATION HANDOFF`
+`DESIGN SYSTEM / FIGMA QA · LIGHT COLOR SYSTEM D MVP ROLLOUT APPLIED / COLOR-SURFACE PO ACCEPTED · COMPONENT/BINDING MAINTENANCE PO APPROVED · SPLASH / APP LOGO / EXERCISE THUMBNAIL VISUAL MAINTENANCE PO APPROVED · EXERCISE THUMBNAIL LOCAL AUTO-CROP VALIDATED / OVERNIGHT BULK RUN PENDING · SHARED TABS / SELECTION LIST MAINTENANCE PO APPROVED · RADIUS RULE PREVIEW ONLY / NOT ROLLED OUT · GROUP 02 HOME STATES ALIGNED · HOME COMPONENT/BINDING QA PASS · 02A BLANK-WORKOUT ENTRY PO APPROVED / 02B COMPACT HOME GRID PO APPROVED / 02D ACTIVE HOME COMPACTED / CANONICAL REFLECTED · GROUP 03 ROUTINE CLOSED / RECOMMENDED ROUTINES REMOVED / ROUTINE LIST SIMPLIFIED · DIALOG COPY SIMPLIFICATION FIGMA REFLECTED / QA PASS · GROUP 04 EXERCISE LIBRARY/DETAIL CLOSED · GROUP 05 ACTIVE WORKOUT CLOSED EXCEPT TARGETED BLANK-WORKOUT EMPTY STATE FOLLOW-UP · GROUP 06 COMPLETION CLOSED / RECOMMENDED-ROUTINE DIALOGS REMOVED · GROUP 07 ANALYSIS/WORKOUT HISTORY CLOSED (BODY-MAP PRODUCTION VISUAL ASSETS APPLIED) · GROUP 08 SETTINGS/ACCOUNT CLOSED WITH 2026-09-18 VISUAL AMENDMENTS · NO CURSOR IMPLEMENTATION HANDOFF`
 
 ## Resume rule
 
@@ -54,6 +54,7 @@ The previous `98` screen count is superseded by the current `94` after the 2026-
 - `docs/ux-decisions/2026-09-17-light-radius-exploration-checkpoint.md`
 
 ### Historical group closures / current product-policy references
+- Cross-group dialog copy simplification: `docs/ux-decisions/2026-09-19-dialog-copy-simplification.md`
 - Group 02 Home component/binding maintenance: `docs/ux-decisions/2026-09-19-group02-home-component-binding-maintenance.md`
 - Group 02 compact Home direction: `docs/ux-decisions/2026-09-18-group02-home-routine-selected-compact-direction.md`
 - Recommended-routine feature removal / Group 03 Routine simplification: `docs/ux-decisions/2026-09-19-recommended-routine-feature-removal.md`
@@ -187,6 +188,30 @@ Approved and reflected in canonical Figma:
 
 Canonical record:
 - `docs/ux-decisions/2026-09-18-mvp-figma-maintenance-checkpoint.md`
+
+---
+
+# CROSS-GROUP DIALOG COPY — 2026-09-19
+
+The Product Owner approved a copy simplification pass across all live MVP dialogs.
+
+Scope:
+- copy only: title / body / button labels
+- behavior, branching, component structure, and action order unchanged
+- live `DialogCard` count = `18`
+- system-like wording reduced where possible
+- active-workout dialogs shortened for faster scanning
+- destructive actions use explicit action labels
+
+Focused Figma QA:
+- text overflow = `0`
+- button-label overflow = `0`
+- visible dialog text font family = SUIT
+- missing main-component links inside dialog structures = `0`
+- representative long-copy visual QA PASS
+
+Canonical record:
+- `docs/ux-decisions/2026-09-19-dialog-copy-simplification.md`
 
 ---
 
