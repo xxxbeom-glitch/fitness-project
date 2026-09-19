@@ -178,7 +178,7 @@ Tonal's video/hardware-centric active-session model is not copied as the Fitness
 - Exercise order remains flexible.
 - Important workout actions require clear state feedback.
 - Active workout prioritizes current set, previous performance, completion state, and rest timing.
-- Recommendation/self-build users converge into the same routine/workout/history system.
+- Blank-workout and routine-based users converge into the same workout/history system.
 - Weekday scheduling remains optional.
 - Home remains action-first rather than becoming a dense analytics dashboard.
 - Exercise detail remains text-first / media-optional; missing media does not leave a fixed empty rectangle.
