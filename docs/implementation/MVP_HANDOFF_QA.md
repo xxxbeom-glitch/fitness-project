@@ -379,7 +379,7 @@ The deep QA also found later PO-approved Group 07 rules that supersede older Ana
 - completed-set count and saved workout duration use native aggregates
 - rolling 4-week / 3-month buckets and 12-month yearly buckets are locked
 - adaptive zero-based Y scale / tooltip contract is locked
-- total-weight Y labels use compact K/M/B formatting with kg once
+- total-weight Y labels follow the final Group 07 closure / current Figma Korean compact format (`1.5만 / 1만 / 5천 / 0`) with kg shown once
 
 Body map:
 - completed-set exposure
