@@ -41,6 +41,7 @@ Figma는 visual implementation artifact다. 행동/제품 의미가 GitHub의 �
 - 오래된 추천 루틴 관련 문서
 - recommendation-heavy onboarding/result-carousel 문서
 - 과거 dark-theme wireframe token 값
+- `docs/09_DESIGN_SYSTEM.md` / `docs/15_TONAL_DESIGN_SYSTEM_SPEC.md`의 Phase-A Pretendard/old Tonal provisional 수치가 current Figma와 충돌하는 경우 해당 옛 수치
 - superseded Figma/wireframe 이름 또는 화면
 
 현재 MVP에는 **추천 루틴 기능이 없다**.
