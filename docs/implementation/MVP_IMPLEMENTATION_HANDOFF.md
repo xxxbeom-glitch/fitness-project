@@ -1,6 +1,6 @@
 # MVP Implementation Handoff
 
-**Status:** SCREEN DESIGN FROZEN · CURSOR HANDOFF PREPARED · IMPLEMENTATION NOT STARTED · CONDITIONAL READY  
+**Status:** SCREEN DESIGN FROZEN · 94-SCREEN BEHAVIOR QA COMPLETE · FIX / DECISION NEEDED · IMPLEMENTATION NOT STARTED  
 **Updated:** 2026-09-20
 
 ## 1. Purpose
@@ -39,6 +39,9 @@
 
 화면 목록:
 - `docs/implementation/MVP_SCREEN_INVENTORY.md`
+
+화면별 행동 매핑:
+- `docs/implementation/MVP_SCREEN_BEHAVIOR_MATRIX.md`
 
 검증:
 - `docs/implementation/MVP_HANDOFF_QA.md`
@@ -115,6 +118,8 @@ Primary navigation:
 - 분석
 - 설정
 
+**Current design gap:** the frozen 94-frame Figma and `Common_Component` do not currently contain a primary bottom-navigation/app-bar component or live root-screen instances. Cursor must not invent this shell. Resolve `FIX-01` in `MVP_SCREEN_BEHAVIOR_MATRIX.md` before implementing the primary navigation UI.
+
 Exercise library/search is contextual and is not a fifth primary tab.
 
 One active workout at a time.
@@ -128,6 +133,8 @@ When an active workout exists:
 Supported provider entry:
 - Android: Google / Kakao
 - iOS: Google / Kakao / Apple
+
+Current Figma `01A_Login` renders Google / Kakao only. This is sufficient for an Android-first launch surface. If iOS is in launch scope, Apple sign-in presentation and related provider copy must be aligned before that platform is implemented.
 
 UI semantics:
 - provider buttons use unified `계속하기`
@@ -164,7 +171,7 @@ No recommendation entry.
 
 ### Routine selected — `02B_Home_RoutineSelected`
 
-- quick start of current/next saved routine
+- quick start of the currently selected saved routine
 - blank-workout entry remains available
 - compact `내 루틴` grid provides saved-routine access
 - routine tiles are whole-card targets; no tile chevron
@@ -187,7 +194,8 @@ Supported:
 - delete
 - add/remove/reorder exercises
 - set configuration
-- optional weekday/scheduling metadata where used by current flow
+
+**Weekday/scheduling is not implementation-ready.** Older top-level policy still mentions optional weekday assignment / today-next semantics, but the frozen Home and Routine Figma contain no weekday controls or today/next Home state. Do not implement scheduling until Product Owner resolves `DECISION-01` in the screen behavior matrix.
 
 ### Routine name
 
@@ -206,6 +214,44 @@ Rules:
 Figma interpretation:
 - `03E_Routine_Create` Save is Disabled because no exercise is composed, not because its name is blank.
 - no extra blank-name-with-exercises screen is required.
+
+### Routine flow / destination rules
+
+- Create Save → newly created routine's `03D_Routine_Detail`
+- Edit Save → updated `03D_Routine_Detail`
+- changed Create/Edit + Back → `03EF_Routine_Unsaved_Confirm`
+- confirmed routine delete → `03A_Routine_List`
+- `순서 변경` reuses the approved reorder pattern and returns to the originating routine create/edit context
+- `대체 운동` reuses the replacement flow
+- a replacement exercise does not inherit kg/reps from the removed exercise
+- use the replacement exercise's own latest personal record according to its recording type
+- no personal history → initialize one empty set row
+
+### Routine estimated-duration rule
+
+For the visible `예상 시간` metric:
+- unchanged routine with valid history → median of up to 3 recent fully completed sessions, rounded to 5 minutes
+- no valid history or structural change → planned-structure fallback
+- load/reps set default active time = 45 sec
+- duration set = programmed duration
+- configured rest wins; otherwise fallback rest = 90 sec between sets
+- exercise transition = 60 sec
+- partial sessions excluded
+- structural changes invalidate the history estimate
+- kg/reps-only edits do not invalidate the history estimate
+
+Older recommendation-template duration rules are superseded because recommended routines are removed.
+
+### Routine duplicate blocker
+
+`03A_Routine_List_Menu` visibly contains `복제`, but the current authority does not define its exact data-copy/name/destination semantics.
+
+Cursor must not implement Duplicate until Product Owner resolves:
+- copied-name rule
+- copied metadata scope
+- deep-copy boundary for exercise/set configuration
+- destination after duplication
+- repeated-name collision behavior
 
 ### Routine/history integrity
 
@@ -237,6 +283,24 @@ History lock:
   `기록이 있는 운동은 기록 방식을 변경할 수 없어요.`
 
 Custom exercise history remains independent even if display metadata/name changes.
+
+### Custom exercise save / delete destinations
+
+- Create Save → return to the originating exercise add/list flow with the newly created custom exercise already selected, using the existing `04B_Search_Selected` pattern
+- no separate creation-success screen
+- Edit Save → return to that exercise detail with updated metadata
+- confirmed custom-exercise delete:
+  - remove the custom exercise from the exercise catalog
+  - remove it from saved routines that contain it
+  - preserve completed workout history
+  - if a saved routine loses its final exercise, keep the routine and represent it with `03D_Routine_Detail_Empty`
+
+### Attachment media fallback
+
+- reviewed attachment-specific media exists → use it
+- otherwise → use canonical base exercise media
+- direct/custom attachment text does not auto-map to arbitrary media
+- absence of attachment-specific media does not create a separate no-media detail route
 
 ## 10. Recording types
 
@@ -282,6 +346,19 @@ However the Active Workout interaction is **not approved yet**:
 Cursor must not invent this behavior.
 
 Verdict for this component state: `DECISION NEEDED`.
+
+### W / D / F set-type blocker
+
+The current Routine / Active Workout Figma visibly contains set-row identifiers `W`, normal numbered rows, `D`, and `F`.
+
+The current reviewed authority does not define:
+- user-facing meaning of W / D / F
+- how set type is selected/changed
+- persistence representation
+- completion behavior
+- volume / PR / history calculation behavior
+
+Cursor must not infer Warm-up / Drop / Failure semantics. This is a separate `DECISION NEEDED` item.
 
 ## 11. Active Workout contract
 
@@ -376,6 +453,29 @@ Behavior must distinguish:
 
 Destructive actions must affect only the intended current data.
 
+### Replacement-candidate policy
+
+- prepare at most 6 candidates for the source exercise
+- show at most 3 at a time
+- first and second groups must not duplicate
+- `다른 운동 보기` cycles only between already secured candidate groups
+- do not generate/show a 7th+ candidate
+- there is no `전체 운동에서 찾기` route in the approved replacement flow
+- if fewer than 6 candidates exist, use only the available candidates
+- browsing candidates never mutates the active workout
+- replacement commits only after explicit selection + `선택 완료`
+- 0 completed sets in the source exercise → replace without destructive confirmation
+- 1+ completed sets → show `05P_Exercise_Replace_DeleteConfirm`
+- confirmed 05P deletes only the current session's completed sets for that exercise, then replaces it
+- prior completed workout history is never deleted by replacement
+
+### Starting another routine while active
+
+- incomplete current workout → save completed sets only, end current session, then start selected routine
+- complete current workout → save current workout, end, then start selected routine
+- if the source saved routine has structural changes, handle `05O_Workout_UpdateRoutine` before the new routine starts
+- preserve one-active-workout invariant
+
 ## 14. Completion / History / Analysis
 
 Workout completion:
@@ -394,6 +494,26 @@ Analysis:
 - body distribution assets already applied through shared components
 - PR/history/progress calculations must respect recording-type semantics
 - no ordinary weight-performance interpretation for assisted-weight exercises
+
+Group 07 locked rules:
+- total volume counts only completed `weight_reps` sets as weight × reps
+- if a saved session has no eligible completed `weight_reps` set, keep the volume metric and display `—`; never `0kg`
+- 07D PR card:
+  - hide when no valid PR
+  - show all valid PRs generated by that session
+  - order by workout-session exercise display order
+  - use native recording-type formatting
+  - do not duplicate identical PR results merely because multiple sets matched
+- 07B contributor list:
+  - show all contributor exercise rows
+  - no arbitrary first-N truncation / no `더보기`
+  - use approved contribution-score sorting with recency tie-break
+  - page scroll handles long content; no nested contributor-list scroll
+- confirmed 07D workout deletion:
+  - delete the whole saved workout session
+  - remove its contributions from analysis totals, body distribution, recent workout lists, exercise history, and PR/history-derived views
+  - recalculate derived data from remaining history
+  - return to previous valid parent; use Home as fallback if the prior destination is invalid
 
 Detailed recording-type-specific PR/progression formulas not explicitly approved must not be invented.
 
@@ -417,7 +537,9 @@ Language:
 - immediate-selection presentation
 
 Notifications:
-- implement only the current approved surface/behavior; do not invent notification categories/backend scheduling not specified.
+- current Figma surfaces rest-timer notification and updates/notices toggles
+- implement only the approved setting surface/state
+- do not invent delivery scheduling, permission timing, backend push infrastructure, or new notification categories
 
 Subscription:
 - `구독 관리` is a stub
@@ -600,6 +722,10 @@ Cursor must stop and report `DECISION NEEDED` rather than choosing product behav
 
 - technology stack / production architecture
 - launch platform priority
+- primary bottom-navigation visual/component contract
+- weekday scheduling / today-next semantics
+- routine duplicate semantics
+- W / D / F set-type semantics
 - `duration` Active Workout timed-set interaction
 - unapproved PR/progression formula
 - unresolved non-active multi-device conflict behavior
@@ -619,11 +745,43 @@ Do not choose framework, database, backend, navigation framework, DI/state archi
 
 Requires Product Owner decision before first implementation Issue.
 
-### BLOCKER B — duration Active Workout interaction
+### BLOCKER B — primary bottom navigation design gap
+
+Primary IA is `홈 / 루틴 / 분석 / 설정`, but no current canonical bottom-navigation component/instance exists in frozen Figma.
+
+Requires an approved visual/component contract before implementing the primary app shell.
+
+### BLOCKER C — weekday scheduling conflict
+
+Older policy still mentions optional weekday assignment and today/next Home semantics, while frozen Home/Routine Figma does not represent them.
+
+Requires PO decision: remove/defer scheduling from MVP or reopen the affected product/design states.
+
+### BLOCKER D — routine Duplicate semantics
+
+The `복제` menu action exists visually, but exact copy/name/metadata/destination behavior is not defined.
+
+Requires PO decision before implementation.
+
+### BLOCKER E — W / D / F set-type semantics
+
+Set rows visibly contain W / D / F but their product/data/calculation meaning is not defined in current authority.
+
+Requires PO decision before implementing these set types.
+
+### BLOCKER F — duration Active Workout interaction
 
 `recording_type = duration` is MVP-active at the data-policy level, but timed-set interaction remains explicitly deferred.
 
 Requires focused Product/UX decision before implementation of duration exercise logging.
+
+### Conditional platform alignment — iOS
+
+If iOS is part of launch scope:
+- add/align Apple sign-in presentation
+- align provider-specific account/deletion copy where necessary
+
+This is resolved together with launch-platform priority.
 
 ### Non-blocking early-development side track
 
@@ -691,9 +849,10 @@ QA:
 
 ## 26. Handoff verdict
 
-**CONDITIONAL PASS**
+**FIX / DECISION NEEDED**
 
 Verified:
+- all 94 canonical screens have screen-level behavior mapping in `MVP_SCREEN_BEHAVIOR_MATRIX.md`
 - product direction aligned
 - obsolete recommended-routine requirements removed from current core docs
 - MVP screen design frozen
@@ -703,10 +862,17 @@ Verified:
 - engineering/QA contracts aligned
 
 Not ready to start production implementation yet because:
-1. technology stack / architecture is not locked
-2. duration timed-set interaction is not locked
+1. primary bottom-navigation visual/component contract is missing
+2. weekday scheduling policy conflicts with frozen Figma
+3. routine Duplicate semantics are undefined
+4. W / D / F set-type semantics are undefined
+5. technology stack / architecture is not locked
+6. duration timed-set interaction is not locked
+7. launch-platform decision controls whether Apple-provider UI/copy alignment is required
 
-After those two decisions and explicit PO development authorization:
+Also fix stale G Fit/Tampin naming in current implementation-facing product documentation before package/code naming is established.
+
+After the required FIX / DECISION NEEDED items and explicit PO development authorization:
 - create the first scoped implementation Issue
 - hand only that Issue + this contract to Cursor
 - implement/test/QA incrementally
