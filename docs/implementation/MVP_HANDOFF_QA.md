@@ -1,6 +1,6 @@
 # MVP Implementation Handoff QA
 
-**Status:** CONDITIONAL PASS · DOCUMENT/Figma HANDOFF VERIFIED · IMPLEMENTATION NOT STARTED  
+**Status:** 94-SCREEN DEEP QA COMPLETE · FIX / DECISION NEEDED · IMPLEMENTATION NOT STARTED  
 **Verified:** 2026-09-20
 
 ## QA purpose
@@ -241,9 +241,137 @@ High-risk focus:
 
 Logic PASS must not be reported as Runtime/Device PASS.
 
-## 13. Final QA verdict
+## 13. Deep screen-by-screen behavior QA — 2026-09-20
+
+The first handoff QA verified exact screen inventory and major contracts. A second, stricter QA was then performed at the Product Owner's request.
+
+New artifact:
+- `docs/implementation/MVP_SCREEN_BEHAVIOR_MATRIX.md`
+
+Coverage:
+- canonical frames mapped: `94 / 94`
+- each frame classified by purpose / entry / primary behavior / implementation rule / QA verdict
+- current Figma visible copy/state was read back for Groups 01–08
+- previously approved behavior not visible as a standalone frame was recovered into the implementation contract where supported
+- no Figma prototype reactions were found on representative route surfaces, so routing must come from GitHub behavior contracts rather than inferred Figma links
+
+### New FIX findings
+
+#### FIX-01 — primary bottom navigation missing
+
+Product IA requires:
+- 홈
+- 루틴
+- 분석
+- 설정
+
+But canonical Figma root screens contain no primary bottom-navigation instance, and `Common_Component` contains no corresponding primary bottom-nav component.
+
+This would force Cursor to invent:
+- visual shell
+- selected/unselected states
+- safe-area/height behavior
+- root switching interaction
+
+Verdict: **FIX**
+
+The 94 content/state frames remain valid; the primary navigation shell requires targeted design completion before app-shell implementation.
+
+#### FIX-02 — stale brand naming
+
+Canonical visual artifact is Tampin:
+- default Tampin AppLogo
+- Tampin white Splash wordmark
+
+Some top-level product documents still use working-name `G Fit`.
+
+Verdict: **FIX documentation naming before production package/code naming is established.**
+
+### New DECISION NEEDED findings
+
+#### DECISION-01 — weekday scheduling conflict
+
+Current top-level product text still allows optional weekday assignment and today/next semantics.
+
+Frozen Figma:
+- has no weekday assignment control in current Routine states
+- has no `오늘의 운동 / 다음 운동` Home state
+- uses a selected saved routine in `02B_Home_RoutineSelected`
+
+Verdict: **DECISION NEEDED — remove/defer scheduling from MVP or reopen only the required affected states.**
+
+#### DECISION-02 — routine Duplicate
+
+`03A_Routine_List_Menu` contains `복제`, but exact duplicate behavior is not currently specified.
+
+Missing:
+- generated copied name
+- metadata copy scope
+- deep-copy boundary
+- destination
+- repeat-name collision handling
+
+Verdict: **DECISION NEEDED**
+
+#### DECISION-03 — W / D / F set semantics
+
+Current routine/workout cards visibly include W / numbered / D / F set rows.
+
+No reviewed authority defines:
+- exact meaning
+- set-type editing
+- storage semantics
+- completion behavior
+- volume/PR/history effect
+
+Verdict: **DECISION NEEDED**
+
+### Conditional platform finding
+
+Current Login Figma = Google / Kakao.
+Policy says iOS also requires Apple.
+
+Verdict:
+- Android-first surface: aligned
+- iOS launch: Apple provider presentation and provider-specific account/deletion copy require alignment
+
+### Previously known blockers remain
+
+- technology stack / architecture
+- duration Active Workout timed-set interaction
+
+### Detailed rules added to handoff
+
+The deep QA also found approved behavior that was valid but under-specified in the original Cursor handoff. These were added rather than treated as new decisions:
+
+Group 03:
+- create/edit/delete destinations
+- unsaved Back behavior
+- replacement record initialization
+- routine estimated-duration calculation
+
+Group 04:
+- custom exercise create/edit save destinations
+- custom exercise delete consequences
+- attachment-media fallback
+
+Group 05:
+- replacement candidate pool / batch policy
+- completed-set replacement boundary
+- other-routine start ordering
+
+Group 07:
+- total-volume applicability
+- all-valid-PR presentation
+- body-area contributor-list behavior
+- workout deletion derived-data consequences
+
+Verdict for these additions: **PASS — recovered approved rules, not new product behavior.**
+
+## 14. Final QA verdict
 
 ### PASS
+- 94 / 94 screen behavior rows mapped
 - current product scope alignment
 - recommendation removal
 - MVP screen freeze
@@ -255,13 +383,23 @@ Logic PASS must not be reported as Runtime/Device PASS.
 - dialog/logo current-state references
 - stale planning artifact guardrails
 
+### FIX before relevant UI implementation
+1. primary bottom-navigation visual/component contract
+2. stale G Fit/Tampin naming in implementation-facing core docs
+
 ### DECISION NEEDED before production implementation
-1. technology stack / platform architecture
-2. `duration` Active Workout timed-set interaction
+1. weekday scheduling / today-next semantics
+2. routine Duplicate behavior
+3. W / D / F set-type semantics
+4. technology stack / platform architecture
+5. `duration` Active Workout timed-set interaction
+
+### CONDITIONAL
+- iOS launch requires Apple sign-in/provider copy alignment
 
 ### Open but non-blocking for early development
 - Production exercise-thumbnail crop/mapping
 
 ## Final result
 
-**CONDITIONAL PASS — MVP design/handoff documentation is verified and ready for Cursor consumption, but production implementation must not start until the two DECISION NEEDED gates are resolved and the Product Owner explicitly authorizes development.**
+**FIX / DECISION NEEDED — the 94 canonical screens are now individually mapped and most behavior is implementation-ready, but the handoff is not a full PASS. Resolve the targeted FIX / DECISION NEEDED items above before production implementation, then re-run focused handoff QA.**
