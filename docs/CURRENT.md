@@ -40,7 +40,7 @@ The previous `98` screen count is superseded by the current `94` after the 2026-
 - `docs/implementation/README.md`
 - `docs/implementation/MVP_IMPLEMENTATION_HANDOFF.md`
 - `docs/implementation/MVP_SCREEN_INVENTORY.md`
-- `docs/implementation/MVP_HANDOFF_QA.md` — created/updated after final handoff verification
+- `docs/implementation/MVP_HANDOFF_QA.md`
 
 ### Current active asset-prep checkpoint
 - `docs/ux-decisions/2026-09-18-exercise-thumbnail-production-crop-prep.md`
