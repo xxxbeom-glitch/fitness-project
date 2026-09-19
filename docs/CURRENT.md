@@ -4,7 +4,7 @@
 
 ## Current mode
 
-`DESIGN SYSTEM / FIGMA QA · LIGHT COLOR SYSTEM D MVP ROLLOUT APPLIED / COLOR-SURFACE PO ACCEPTED · COMPONENT/BINDING MAINTENANCE PO APPROVED · SPLASH / APP LOGO / EXERCISE THUMBNAIL VISUAL MAINTENANCE PO APPROVED · EXERCISE THUMBNAIL LOCAL AUTO-CROP VALIDATED / OVERNIGHT BULK RUN PENDING · SHARED TABS / SELECTION LIST MAINTENANCE PO APPROVED · RADIUS RULE PREVIEW ONLY / NOT ROLLED OUT · GROUP 02 HOME STATES ALIGNED · HOME COMPONENT/BINDING QA PASS · 02A BLANK-WORKOUT ENTRY PO APPROVED / 02B COMPACT HOME GRID PO APPROVED / 02D ACTIVE HOME COMPACTED / CANONICAL REFLECTED · GROUP 03 ROUTINE CLOSED · GROUP 04 EXERCISE LIBRARY/DETAIL CLOSED · GROUP 05 ACTIVE WORKOUT CLOSED EXCEPT TARGETED BLANK-WORKOUT EMPTY STATE FOLLOW-UP · GROUP 06 COMPLETION CLOSED WITH 2026-09-17 VISUAL AMENDMENTS · GROUP 07 ANALYSIS/WORKOUT HISTORY CLOSED (BODY-MAP PRODUCTION VISUAL ASSETS APPLIED) · GROUP 08 SETTINGS/ACCOUNT CLOSED WITH 2026-09-18 VISUAL AMENDMENTS · NO CURSOR IMPLEMENTATION HANDOFF`
+`DESIGN SYSTEM / FIGMA QA · LIGHT COLOR SYSTEM D MVP ROLLOUT APPLIED / COLOR-SURFACE PO ACCEPTED · COMPONENT/BINDING MAINTENANCE PO APPROVED · SPLASH / APP LOGO / EXERCISE THUMBNAIL VISUAL MAINTENANCE PO APPROVED · EXERCISE THUMBNAIL LOCAL AUTO-CROP VALIDATED / OVERNIGHT BULK RUN PENDING · SHARED TABS / SELECTION LIST MAINTENANCE PO APPROVED · RADIUS RULE PREVIEW ONLY / NOT ROLLED OUT · GROUP 02 HOME STATES ALIGNED · HOME COMPONENT/BINDING QA PASS · 02A BLANK-WORKOUT ENTRY PO APPROVED / 02B COMPACT HOME GRID PO APPROVED / 02D ACTIVE HOME COMPACTED / CANONICAL REFLECTED · GROUP 03 ROUTINE CLOSED / RECOMMENDED ROUTINES REMOVED / ROUTINE LIST SIMPLIFIED · GROUP 04 EXERCISE LIBRARY/DETAIL CLOSED · GROUP 05 ACTIVE WORKOUT CLOSED EXCEPT TARGETED BLANK-WORKOUT EMPTY STATE FOLLOW-UP · GROUP 06 COMPLETION CLOSED / RECOMMENDED-ROUTINE DIALOGS REMOVED · GROUP 07 ANALYSIS/WORKOUT HISTORY CLOSED (BODY-MAP PRODUCTION VISUAL ASSETS APPLIED) · GROUP 08 SETTINGS/ACCOUNT CLOSED WITH 2026-09-18 VISUAL AMENDMENTS · NO CURSOR IMPLEMENTATION HANDOFF`
 
 ## Resume rule
 
@@ -20,16 +20,16 @@ Current editing surface:
 - file `W3lZurXCXbThP67rF2xk2b`
 - page `MVP_전체_와이어프레임` — `34:1076`
 - shared component page `Common_Component`
-- current top-level independent screen frames: `98`
-- current Light roots: `98 / 98`
+- current top-level independent screen frames: `94`
+- current Light roots: `94 / 94`
 - group wrapper frames: `0`
 
 Whole-MVP component linkage read-back after the latest maintenance:
-- instance nodes: `1,980`
+- instance nodes: `1,855`
 - missing main-component links: `0`
 - live MVP instances whose source page is not `Common_Component`: `0`
 
-The prior `97` screen count after the Group 08 FAQ removal and Group 06 recommended-routine dialog restructuring is superseded by the current `98` count after adding the approved `00_Splash` screen.
+The previous `98` screen count is superseded by the current `94` after the 2026-09-19 PO decision removed the recommended-routine list/detail/completion-dialog screens from the MVP.
 
 ---
 
@@ -56,13 +56,13 @@ The prior `97` screen count after the Group 08 FAQ removal and Group 06 recommen
 ### Historical group closures / current product-policy references
 - Group 02 Home component/binding maintenance: `docs/ux-decisions/2026-09-19-group02-home-component-binding-maintenance.md`
 - Group 02 compact Home direction: `docs/ux-decisions/2026-09-18-group02-home-routine-selected-compact-direction.md`
+- Recommended-routine feature removal / Group 03 Routine simplification: `docs/ux-decisions/2026-09-19-recommended-routine-feature-removal.md`
 - Group 03 routine-name amendment: `docs/ux-decisions/2026-09-18-group03-routine-name-auto-default-policy.md`
 - Group 04: `docs/ux-decisions/2026-09-15-group04-final-closure-qa.md`
 - Group 04 custom-exercise field policy: `docs/ux-decisions/2026-09-15-group04-custom-exercise-selection-flow.md` — amended 2026-09-18
 - Group 04 custom-exercise save action/destination: `docs/ux-decisions/2026-09-15-group04-custom-exercise-save-destination.md` — amended 2026-09-18 / Figma reflected
 - Group 05: `docs/ux-decisions/2026-09-16-group05-manual-timer-final-closure-qa.md`
 - Group 06: `docs/ux-decisions/2026-09-16-group06-final-closure-qa.md`
-- Group 06 recommended flow: `docs/ux-decisions/2026-09-14-recommended-routine-acceptance-current.md`
 - Group 07: `docs/ux-decisions/2026-09-16-group07-final-closure-qa.md`
 - Group 07 policy: `docs/ux-decisions/2026-09-14-group07-final-policy-lock.md`
 - Group 07 body-map Production visual asset application: `docs/ux-decisions/2026-09-18-analysis-bodymap-production-visual-asset-application.md`
@@ -107,7 +107,7 @@ Surface rule remains:
 
 ## Shared Tabs
 
-Page-level Routine / Exercise Detail / Analysis period tabs reuse shared `Tabs`:
+Page-level Exercise Detail / Analysis period tabs reuse shared `Tabs`:
 - full width `360 × 54`
 - equal-width items
 - selected label `brand/primary`
@@ -155,7 +155,7 @@ Latest maintenance result:
 - Group 08: settings rows/cards, option lists, headers, and screen-content patterns consolidated into shared components
 
 Latest whole-MVP linkage verification:
-- `1,980 / 1,980` instances resolve to a main component
+- `1,855 / 1,855` instances resolve to a main component
 - all current MVP component sources resolve through `Common_Component`
 - detached/missing main-component instances: `0`
 
@@ -183,7 +183,7 @@ Approved and reflected in canonical Figma:
 - full ~3,000-image overnight run and post-run visual exception QA are still pending; Production crop convention is not yet fully locked
 - canonical prep record: `docs/ux-decisions/2026-09-18-exercise-thumbnail-production-crop-prep.md`
 - focused read-back: `93 / 93` thumbnails have the subtle outline; old placeholder remains in current exercise-thumbnail instances = `0`
-- latest whole-MVP linkage: `1,980 / 1,980` instances resolve; missing main-component links = `0`; non-`Common_Component` sources = `0`
+- latest whole-MVP linkage: `1,855 / 1,855` instances resolve; missing main-component links = `0`; non-`Common_Component` sources = `0`
 
 Canonical record:
 - `docs/ux-decisions/2026-09-18-mvp-figma-maintenance-checkpoint.md`
@@ -208,14 +208,14 @@ The previous `추천 루틴 받기` Home action is removed.
 - uses the existing exercise-add flow during the session
 - does not automatically create a saved routine
 
-Recommended ready-made routines remain in MVP as a secondary Routine-area discovery/use path rather than a Home primary action.
+`추천 루틴` 기능 자체는 2026-09-19 PO 결정으로 현재 MVP에서 제거되었다. Home과 Routine 영역 모두 추천 루틴 진입점을 두지 않는다.
 
 Decision:
 - `docs/ux-decisions/2026-09-18-group02-home-blank-workout-entry.md`
 
 Figma reflected:
 - `02A_Home_NoRoutine` `1346:686`
-- shared `HomeStartChoiceCard` Recommended variant repurposed to `Type=BlankWorkout` `1719:1042`
+- shared `HomeStartChoiceCard / Type=BlankWorkout` `1719:1042`
 - Home scroll top padding / section rhythm aligned to `24px`
 - one-off start prompt replaced by shared `SectionHeader / Trailing=None` with title `빠른 시작`
 - existing `StartChoiceCard / BlankWorkout` and `BuildOwn` masters are now `320 × 80`
@@ -286,7 +286,7 @@ Shared Home-state QA:
 - 02A / 02D visible text overflow = `0`
 - visible text font family = SUIT
 - missing main-component links = `0`
-- whole-MVP instances after this maintenance = `1,980 / 1,980`
+- whole-MVP instances after this maintenance = `1,855 / 1,855`
 - whole-MVP instance sources outside `Common_Component` = `0`
 - focused QA PASS
 
@@ -314,9 +314,21 @@ Direct design gap still open:
 
 ---
 
-# GROUP 03 — ROUTINE CLOSED / ROUTINE-NAME POLICY AMENDED
+# GROUP 03 — ROUTINE CLOSED / RECOMMENDED ROUTINES REMOVED / ROUTINE-NAME POLICY AMENDED
 
-Group 03 remains Product/UX closed except for the explicit 2026-09-18 routine-name amendment.
+Group 03 remains Product/UX closed after the explicit 2026-09-19 recommended-routine removal and the 2026-09-18 routine-name amendment.
+
+Current Routine scope:
+- user-created saved routines only
+- `03A_Routine_List` — `34:1401` — no My/Recommended tabs
+- `03B_Routine_Empty` — `34:1438` — no tabs / no recommendation preview
+- `03A_Routine_List_Recommended` removed
+- `03C_추천루틴상세` removed
+- recommendation questionnaire / matching / acceptance / save flows are not part of the current MVP
+
+Superseding decision:
+- `docs/ux-decisions/2026-09-19-recommended-routine-feature-removal.md`
+
 
 Current locked routine-name rule:
 - user-entered routine name is optional
@@ -413,17 +425,14 @@ Current Figma amendments recorded 2026-09-17:
 - plain shared `07D/PersonalRecordCard` treatment with standalone trophy/status visual in the completion header area
 - current Default / PR-none / Volume-N/A completion states remain linked to the shared completion structure
 
-Recommended-routine dialog states are now normal app-screen states:
-- `FINAL_06_RECOMMENDED_ROUTINE_DIALOGS` — `1896:8585` — `360 × 780`
-- `FINAL_06_RECOMMENDED_ROUTINE_MODIFIED_SAVE_DIALOG` — `1896:8610` — `360 × 780`
+2026-09-19 recommended-routine removal amendment:
+- `FINAL_06_RECOMMENDED_ROUTINE_DIALOGS` removed
+- `FINAL_06_RECOMMENDED_ROUTINE_MODIFIED_SAVE_DIALOG` removed
+- generic shared `DialogCard / DialogButtons` remain because they are not recommendation-specific
+- normal workout-completion behavior remains unchanged
 
-Both use:
-- completion screen background
-- full-screen dim overlay
-- shared `DialogCard / DialogButtons`
-- centered dialog
-
-Recommended-routine behavior itself is unchanged.
+Decision:
+- `docs/ux-decisions/2026-09-19-recommended-routine-feature-removal.md`
 
 Do not reopen completion behavior without a concrete conflict/regression or explicit PO request.
 
@@ -581,9 +590,8 @@ Immediate focused follow-ups:
 
 Remaining intentionally deferred / later items:
 1. size-aware radius system — preview only; propagate only after explicit PO approval
-2. Routine-tab recommended-routine secondary placement refinement
-4. pre-release Settings follow-ups — public Terms/Privacy URLs, inquiry-retention disclosure, external deletion-request URL, final timer-sound assets/labels
-5. implementation/Cursor handoff — only after explicit Product Owner authorization
+2. pre-release Settings follow-ups — public Terms/Privacy URLs, inquiry-retention disclosure, external deletion-request URL, final timer-sound assets/labels
+3. implementation/Cursor handoff — only after explicit Product Owner authorization
 
 Do not automatically reopen Groups 03–08.
 Do not automatically propagate the radius experiment.
