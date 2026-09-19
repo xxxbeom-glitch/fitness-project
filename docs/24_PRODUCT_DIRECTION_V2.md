@@ -5,15 +5,15 @@
 
 ## Purpose
 
-2026-09-01 Product Owner review에서 G Fit의 상위 제품 방향을 다시 정리했다.
+2026-09-01 Product Owner review에서 Tampin의 상위 제품 방향을 다시 정리했다.
 
 이 문서는 기존 recommendation-heavy onboarding / result-carousel 기획보다 최신이다. 충돌 시 이 문서와 `docs/CURRENT.md`를 우선한다.
 
-Working product name: `G Fit` (`Go Fitness`) — **가칭이며 출시 브랜드 확정이 아님**.
+Current product brand: `Tampin`.
 
 ## Product identity — CONFIRMED
 
-G Fit은 **운동 루틴을 만들고, 실행 기록을 쌓고, 지속적으로 관리하는 웨이트 트레이닝 앱**이다.
+Tampin은 **운동 루틴을 만들고, 실행 기록을 쌓고, 지속적으로 관리하는 웨이트 트레이닝 앱**이다.
 
 Primary early target:
 - 일반적인 헬스 이용자
@@ -29,7 +29,7 @@ Core repeated value:
 
 ## Product layers — CONFIRMED DIRECTION
 
-G Fit은 다음 네 층으로 확장한다.
+Tampin은 다음 네 층으로 확장한다.
 
 1. **Core Tracker** — 루틴 생성/관리, 운동 실행, 기록, 기본 분석
 2. **Exercise Content** — 자체 운동 DB, 운동 가이드 에셋
@@ -196,7 +196,7 @@ YouTube embed/API/삭제/광고/콘텐츠 품질 정책은 구현 전에 별도 
 
 ## Personalization / AI — CONFIRMED DIRECTION
 
-G Fit의 제품 정체성은 `AI fitness coach`가 아니다.
+Tampin의 제품 정체성은 `AI fitness coach`가 아니다.
 
 AI 또는 개인화 기능은 **사용자의 실제 운동 데이터를 해석하는 보조 레이어**다.
 
