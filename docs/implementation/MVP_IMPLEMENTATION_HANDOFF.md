@@ -870,7 +870,7 @@ Not ready to start production implementation yet because:
 6. duration timed-set interaction is not locked
 7. launch-platform decision controls whether Apple-provider UI/copy alignment is required
 
-Also fix stale G Fit/Tampin naming in current implementation-facing product documentation before package/code naming is established.
+Current implementation-facing product brand is Tampin; the stale G Fit working-name text found during deep QA has been corrected in the current Product Direction / Project Brief.
 
 After the required FIX / DECISION NEEDED items and explicit PO development authorization:
 - create the first scoped implementation Issue
