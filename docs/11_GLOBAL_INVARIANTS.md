@@ -26,8 +26,8 @@ kg/lb presentation may change, but conversion must not progressively mutate or d
 ### INV-005 — User-entered set data is not silently reinterpreted
 Weight, reps, set completion, notes, and exercise order must not change meaning because of a UI or recommendation feature.
 
-### INV-006 — Recommendations are proposals, not silent mutations
-Recommended routines, substitutions, weight/reps suggestions, schedule adjustments, or future AI features must not silently rewrite the user's saved plan or completed history without an explicit approved behavior.
+### INV-006 — Suggestions are proposals, not silent mutations
+Exercise substitutions, future weight/reps suggestions, schedule adjustments, or future personalization/AI features must not silently rewrite the user's saved plan or completed history without an explicit approved behavior.
 
 ### INV-007 — Routine editing does not damage unrelated workout data
 Add/remove/reorder operations must not delete or remap unrelated exercises, sets, or history.
@@ -37,8 +37,8 @@ Weekday assignment is optional.
 
 A feature must not assume every user has a fixed weekday schedule unless the relevant flow is explicitly schedule-specific.
 
-### INV-009 — Recommendation and self-build converge on the same core workout semantics
-A routine that came from curated recommendation and a routine built manually must use compatible workout logging, history, editing, and recovery behavior.
+### INV-009 — Blank-workout and routine-based starts converge on the same core workout semantics
+A workout started from a saved routine and a workout started blank must use compatible logging, history, completion, and recovery semantics. Starting blank must not require or silently create a saved routine.
 
 ### INV-010 — Equipment substitution does not pretend every same-muscle exercise is equivalent
 Substitution logic should preserve exercise purpose as reasonably as possible using exercise family/movement intent/equipment context.
