@@ -1,5 +1,8 @@
 # G Fit Product Planning Hub
 
+> **IMPLEMENTATION NOTICE — 2026-09-20:** This is a historical planning/wireframe artifact and is **not** an implementation Source of Truth. It contains superseded recommendation and visual-baseline material. Cursor must start from `docs/implementation/README.md`, `docs/CURRENT.md`, current Decisions, and canonical Figma.
+
+
 **Status:** ACTIVE
 **Updated:** 2026-09-02
 
