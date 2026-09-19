@@ -543,7 +543,7 @@ Analysis:
 - 3개월 = rolling 91 days / thirteen 7-day buckets
 - 1년 = 12 calendar-month buckets ending in current month
 - Y-axis starts at 0 and uses readable rounded adaptive steps
-- total-weight Y-axis compact suffix formatter = raw below 1K, then K / M / B fallback, max one decimal when needed; `kg` shown once
+- total-weight Y-axis uses the current final Korean compact labels for large values, e.g. `1.5만 / 1만 / 5천 / 0`; `kg` is shown once rather than repeated on every tick
 - tap a bucket/point → anchored tooltip with exact period + exact metric; outside tap dismisses; no drag scrub
 - zero-value eligible bucket and unavailable/pre-history bucket are distinct
 - entirely empty selected period keeps chart region and shows `이 기간에는 운동 기록이 없어요`
