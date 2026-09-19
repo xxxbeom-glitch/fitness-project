@@ -81,6 +81,34 @@ No current implementation authority reviewed in this QA defines:
 
 Verdict: **DECISION NEEDED. Cursor must not infer Warm-up / Drop / Failure semantics without a Product Decision.**
 
+### DECISION-04 — Automatic Rest Timer runtime edge policy
+
+Locked:
+- set completion automatically starts Rest Timer
+- RestLiveBar stays visible for the countdown
+- `휴식 종료` terminates it
+- reaching zero removes the bar
+
+Still explicitly deferred:
+- another set completes while Rest Timer is already running → replace / restart / keep-current rule
+- exact zero-completion sound / vibration / background-notification behavior
+
+Verdict: **DECISION NEEDED before full Rest Timer runtime implementation.**
+
+### DECISION-05 — Active-session recovery system-notification UX
+
+Locked:
+- active workout survives interruption/restart
+- normal recovery does not use a dedicated in-app recovery screen/banner
+- ongoing active session should be surfaced through the system notification area
+
+Still undefined:
+- notification copy
+- actions/controls
+- platform-specific persistent/ongoing behavior
+
+Verdict: **DECISION NEEDED before recovery-notification implementation.**
+
 ### CONDITIONAL-01 — iOS Apple sign-in variant depends on platform decision
 
 Policy:
@@ -224,7 +252,7 @@ Recommendation-template duration language from older Group 03 history is superse
 | `05G2_Exercise_Replace_SecondBatch` | Second replacement candidate group | select or `다른 운동 보기` cycles within already secured groups | No `전체 운동에서 찾기`; no 7th+ candidate. | PASS |
 | `05P_Exercise_Replace_DeleteConfirm` | Replacement after >=1 completed set in current exercise | Cancel or delete those current-session completed sets and replace | Never delete prior-date history. | PASS |
 | `05A_Workout_Weight_Scrolled_3rdExercise` | Scroll/pinned-shell reference | same active-workout actions at scrolled position | Implement as scroll state, not separate route. Preserve pinned/live elements. | PASS |
-| `05F_Workout_RestTimer` | Automatic rest timer active | continue logging; `휴식 종료` ends rest | Manual timer action unavailable while automatic rest countdown is active. | PASS |
+| `05F_Workout_RestTimer` | Automatic Rest Timer active after set completion | Continue logging; `휴식 종료` terminates countdown; zero removes bar | Fixed-bottom RestLiveBar; no ±15/pause/reset. Manual Timer unavailable while rest is active. | PASS visual / DECISION-04 runtime edge |
 | `05Q_ManualTimer_Idle` | Manual timer popup idle | ±15 sec; start; X dismiss | Default 01:30; no direct time typing. | PASS |
 | `05Q_ManualTimer_Running` | Manual timer counting down | ±15 sec; pause; X terminates timer | No simultaneous automatic Rest Timer. | PASS |
 | `05Q_ManualTimer_Paused` | Manual timer paused | reset / continue / X terminate | Reopen after close starts fresh Idle 01:30. | PASS |
@@ -249,7 +277,7 @@ Recommendation-template duration language from older Group 03 history is superse
 
 | Screen | Purpose / Entry | Primary behavior / Exit | Implementation rule | QA |
 |---|---|---|---|---|
-| `06A_Completion_Default` | Completed workout with PR + applicable volume | `기록 상세 보기` → saved-session detail; `홈으로 돌아가기` → Home | Current completion sample shows all valid representative PR rows in one card + 2×2 summary. | PASS |
+| `06A_Completion_Default` | Completed workout with PR + applicable volume | `기록 상세 보기` → saved-session detail; `홈으로 돌아가기` → Home | Summary derives from final session state: elapsed time excluding explicit pause, final completed sets, exercises with ≥1 completed set, eligible completed weight_reps volume only. | PASS |
 | `FINAL_06_PR_NONE_CASE` | Completed workout with no valid PR | same exits | Hide PR card entirely; no empty/error placeholder. | PASS |
 | `FINAL_06_VOLUME_NA_CASE` | Completion where total weight-volume is not applicable | same exits | Keep volume metric cell; display `—`, never `0kg`. | PASS |
 
@@ -258,12 +286,27 @@ Recommendation-template duration language from older Group 03 history is superse
 | Screen | Purpose / Entry | Primary behavior / Exit | Implementation rule | QA |
 |---|---|---|---|---|
 | `07D_Workout_History_Detail` | Saved workout-session detail | Back; Trash → delete confirm | Show all valid PRs for this session; 2×2 summary; body distribution; performed exercise table. | PASS |
-| `07A_Analysis_Home` | Analysis root | metric segment + period selection; body-area entry; recent record/detail entry | Current default metric state = TotalWeight; native data semantics required. | PASS + FIX-01 |
-| `07B_BodyArea_Detail` | Selected body-area drilldown | period tabs; view contributor exercise list | Show all contributors; no first-N truncation or nested scroll. Sort by approved contribution score + recency tie-break. | PASS |
+| `07A_Analysis_Home` | Analysis root | `총 중량 / 세트 / 시간`; `4주 / 3개월 / 1년`; body-area/recent progress/history drilldown | Default = 총 중량 + 4주. 총 중량=eligible completed weight×reps; 세트=completed set count; 시간=saved session duration. Approved rolling/month buckets, adaptive zero-based scale, K/M/B kg formatter and point tooltip apply. | PASS + FIX-01 |
+| `07B_BodyArea_Detail` | Selected body-area drilldown | period tabs; view contributor exercise list | Show all contributors; sort by muscle-exposure contribution + recency tie-break. Trailing aggregate is recording-type native: weight volume / reps total / duration total / assisted reps total. | PASS |
 | `07B_BodyArea_Detail_Empty` | Body-area/period has no records | change period/back | Keep section shell; no body-map fake activity. | PASS |
 | `07D_Workout_History_Detail_DeleteConfirm` | Delete saved workout session | Cancel / Delete | Delete whole session; recalc derived analysis/PR/history; previous valid destination or Home fallback. | PASS |
 
 ## Group 07 data rules
+
+07A body-map basis:
+- one final completed set → primary muscle +1.0, secondary muscle +0.5
+- no multiplication by weight/reps/duration/assistance
+- no runtime guess from exercise name when muscle mapping is missing
+- score is an exposure/distribution heuristic, not recovery/readiness physiology
+
+07A trend:
+- periods: 4주 = rolling 28 days / 4 weekly buckets; 3개월 = rolling 91 days / 13 weekly buckets; 1년 = 12 calendar-month buckets
+- 총 중량: eligible completed load × reps only; weightless recording types excluded rather than converted
+- 세트: completed/persisted sets
+- 시간: saved workout-session duration
+- total-weight Y-axis: raw <1K, then K/M/B compact suffix, max one decimal when useful, kg shown once
+- point tap shows exact period/value tooltip; no drag scrub
+- real zero and unavailable/pre-history are distinct
 
 - total volume counts only completed `weight_reps` sets as weight × reps
 - if no eligible completed weight_reps set: `총 볼륨 = —`
@@ -336,8 +379,10 @@ Most static/state/detail/dialog/sheet screens in Groups 01, 04, 06, 07, 08, and 
 1. Weekday scheduling vs current frozen Home/Routine design.
 2. Routine `복제` exact behavior.
 3. W / D / F set-type semantics.
-4. Existing known blocker: duration Active Workout timed-set interaction.
-5. Existing known blocker: production technology stack / platform architecture.
+4. Automatic Rest Timer already-running / end-feedback runtime policy.
+5. Active-session recovery system-notification UX.
+6. Duration Active Workout timed-set interaction.
+7. Production technology stack / platform architecture.
 
 ### CONDITIONAL
 - Apple sign-in/account copy if iOS is included in launch scope.
