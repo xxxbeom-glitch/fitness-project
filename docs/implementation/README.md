@@ -61,9 +61,11 @@ Figma는 visual implementation artifact다. 행동/제품 의미가 GitHub의 �
 2. weekday scheduling / today-next semantics
 3. routine Duplicate behavior
 4. W / D / F set-type semantics
-5. production app technology stack / platform architecture
-6. `duration` recording type의 Active Workout timed-set interaction
-7. launch platform 결정에 따라 iOS Apple sign-in/provider copy alignment
+5. automatic Rest Timer already-running / end-feedback runtime policy
+6. active-session recovery system-notification UX
+7. production app technology stack / platform architecture
+8. `duration` recording type의 Active Workout timed-set interaction
+9. launch platform 결정에 따라 iOS Apple sign-in/provider copy alignment
 
 문서 정리 완료:
 - current Product Direction / Project Brief의 브랜드 명칭을 Tampin으로 동기화
