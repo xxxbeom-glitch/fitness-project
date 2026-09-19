@@ -335,6 +335,66 @@ Verdict:
 - Android-first surface: aligned
 - iOS launch: Apple provider presentation and provider-specific account/deletion copy require alignment
 
+### Additional runtime-rule findings
+
+#### DECISION-04 — Automatic Rest Timer edge policy
+
+Latest approved Rest Timer contract confirms:
+- set completion automatically starts Rest Timer
+- countdown uses fixed-bottom RestLiveBar
+- `휴식 종료` terminates the countdown
+- reaching zero removes RestLiveBar
+- no ±15 / pause / reset for automatic Rest Timer
+- Manual Timer is unavailable while automatic Rest Timer runs
+
+Still explicitly deferred:
+- what happens when another set completes while the existing Rest Timer is still running
+- exact rest-end sound / vibration / background-notification behavior
+
+Verdict: **DECISION NEEDED**
+
+#### DECISION-05 — Active-session recovery system-notification UX
+
+Locked:
+- active workout persistence/recovery required
+- no dedicated in-app recovery screen/banner
+- ongoing session should surface through system notification area
+
+Still undefined:
+- notification copy
+- actions/controls
+- platform-specific ongoing/persistent behavior
+
+Verdict: **DECISION NEEDED**
+
+### Approved Analysis rules recovered into handoff
+
+The deep QA also found later PO-approved Group 07 rules that supersede older Analysis drafts.
+
+07A current trend:
+- `총 중량 / 세트 / 시간`
+- default `총 중량`
+- period `4주 / 3개월 / 1년`
+- total weight = eligible completed weight × reps volume
+- completed-set count and saved workout duration use native aggregates
+- rolling 4-week / 3-month buckets and 12-month yearly buckets are locked
+- adaptive zero-based Y scale / tooltip contract is locked
+- total-weight Y labels use compact K/M/B formatting with kg once
+
+Body map:
+- completed-set exposure
+- primary +1.0 / secondary +0.5
+- no false load/reps/time conversion into the exposure score
+
+07B contributor trailing metrics:
+- weight_reps → total volume
+- reps → total reps
+- duration → total duration
+- assisted_weight_reps → total reps
+- sorting remains contribution score + recency, not trailing metric magnitude
+
+These are **PASS — existing approved rules recovered into the Cursor handoff**, not new product decisions.
+
 ### Previously known blockers remain
 
 - technology stack / architecture
@@ -390,8 +450,10 @@ Verdict for these additions: **PASS — recovered approved rules, not new produc
 1. weekday scheduling / today-next semantics
 2. routine Duplicate behavior
 3. W / D / F set-type semantics
-4. technology stack / platform architecture
-5. `duration` Active Workout timed-set interaction
+4. automatic Rest Timer already-running / end-feedback policy
+5. active-session recovery system-notification UX
+6. technology stack / platform architecture
+7. `duration` Active Workout timed-set interaction
 
 ### CONDITIONAL
 - iOS launch requires Apple sign-in/provider copy alignment
