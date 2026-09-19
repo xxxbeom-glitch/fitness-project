@@ -1,5 +1,7 @@
 # 08 DECISIONS
 
+> **Current supersession note — 2026-09-19:** The Product Owner removed the recommended-routine feature from the current MVP. Recommendation-specific decisions `DEC-005`, `DEC-006`, `DEC-009`, and `DEC-014` are historical only and are superseded by `docs/ux-decisions/2026-09-19-recommended-routine-feature-removal.md`. Recommendation-specific wording elsewhere in this historical log must not override the current Product Direction / CURRENT / superseding Decision.
+
 ## DEC-001 — General-purpose tracker over weekday-only routine app
 
 **Date:** 2026-08-27
@@ -69,7 +71,7 @@ Persistence/session-recovery architecture must be considered before implementati
 ## DEC-005 — Recommendation and self-build are equal primary entry modes
 
 **Date:** 2026-08-27
-**Status:** CONFIRMED
+**Status:** SUPERSEDED 2026-09-19 — RECOMMENDED-ROUTINE FEATURE REMOVED
 
 ### Decision
 The first-run product experience should offer two equal primary paths:
@@ -93,7 +95,7 @@ Some users want a ready-to-use program, while others already know what they want
 ## DEC-006 — Recommended routines use curated program matching, not LLM generation
 
 **Date:** 2026-08-27
-**Status:** CONFIRMED — INPUT DETAILS REFINED BY DEC-009
+**Status:** SUPERSEDED 2026-09-19 — RECOMMENDED-ROUTINE FEATURE REMOVED
 
 ### Decision
 Recommended routines will be selected from a curated, QA-reviewed program-template system using structured onboarding inputs.
@@ -171,7 +173,7 @@ A beginner should not need detailed equipment knowledge or programming theory ju
 ## DEC-009 — Initial recommendation onboarding is three inputs and gym-first
 
 **Date:** 2026-08-28
-**Status:** CONFIRMED
+**Status:** SUPERSEDED 2026-09-19 — RECOMMENDED-ROUTINE FEATURE REMOVED
 
 ### Decision
 The initial recommended-routine onboarding should use only three required matching inputs:
@@ -294,10 +296,10 @@ The data model should allow a program/template or exercise prescription to provi
 ### Why
 Sex/gender alone does not estimate an individual's usable starting load accurately enough for this product. Actual performance is more directly relevant and becomes increasingly useful after the first recorded session.
 
-This also preserves the intentionally short recommendation onboarding while creating a clear path from first-use guidance to the product's core strength: prior-performance-based logging.
+This also keeps first-run onboarding simple while creating a clear path from first-use guidance to the product's core strength: prior-performance-based logging.
 
 ### Product impact
-- sex/gender is not required in the initial recommendation onboarding for starting-load logic
+- sex/gender is not used for starting-load logic
 - no fixed `male starting kg` / `female starting kg` table should drive the first workout
 - first-load guidance belongs in workout execution UX, not recommendation onboarding
 - exercises with no prior history need a clear `no-history` state
@@ -396,7 +398,7 @@ The choice is an immediate action; an additional full-screen confirmation step i
 ## DEC-014 — Accepting a recommended routine goes directly to Home
 
 **Date:** 2026-08-28
-**Status:** CONFIRMED
+**Status:** SUPERSEDED 2026-09-19 — RECOMMENDED-ROUTINE FEATURE REMOVED
 
 ### Decision
 After the user completes the three recommendation questions, reviews the single recommended routine, and chooses **`이 루틴 사용하기`**, the routine is saved and the user goes directly to Home.
@@ -434,7 +436,7 @@ Android and iOS are planned in parallel rather than treating iOS as a later port
 The product is intended to preserve workout history across reinstalls and devices, and cloud-backed identity provides a stable account boundary for synchronization and future paid/data features.
 
 ### Product impact
-- first-run IA includes authentication before the recommendation/self-build entry split
+- first-run IA includes authentication before required basic profile information and normal app use
 - account identity must be platform-independent internally even when the external login provider differs
 - authentication failures must not corrupt or partially create workout data
 - future account-linking/provider-linking behavior should avoid duplicate user identities
