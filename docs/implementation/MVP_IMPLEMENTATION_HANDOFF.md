@@ -414,8 +414,21 @@ Three separate concepts must not be conflated:
 
 ### Automatic Rest Timer
 
-- set completion may start rest behavior according to approved Group 05 policy
-- RestLiveBar must not block workout logging
+Locked behavior:
+- completing a set automatically starts the Rest Timer; there is no separate Start action
+- while countdown runs, show fixed-bottom `RestLiveBar`
+- RestLiveBar does not replace the pinned Nav Header / WorkoutLiveBar
+- countdown reaching `00:00` removes the RestLiveBar
+- `휴식 종료` explicitly terminates the current rest countdown and removes the bar
+- there is no MVP action that only hides the bar while keeping that same Rest Timer running invisibly
+- no Rest Timer `+15초 / -15초 / pause / reset`
+- Rest Timer never blocks set/exercise progression
+
+Current unresolved runtime edge:
+- if another set is completed while a Rest Timer is already running, the exact replace/restart/keep-current rule is not approved
+- exact zero-completion feedback across sound / vibration / background notification remains deferred despite the current Settings surfaces
+
+Cursor must not invent these runtime rules.
 
 ### Manual Timer
 
@@ -437,6 +450,21 @@ Rules:
 - no auto-close/reset/completion screen
 - while automatic Rest Timer is active, manual-timer nav action is unavailable
 - do not run both countdown timers simultaneously
+
+### Active-session recovery presentation
+
+Locked:
+- in-progress workout persistence/recovery remains required across interruption/restart
+- normal recovery does not show a dedicated in-app recovery screen or `복구했어요` banner
+- product direction surfaces the ongoing active session through the system notification area
+- re-entry opens the same active workout session; it is not a newly created/recovered-copy session
+
+Still unresolved:
+- exact system-notification copy
+- notification actions/controls
+- platform-specific persistent/ongoing-notification behavior
+
+Cursor must not invent those notification UX details.
 
 ## 13. Workout end / discard / other-routine / replacement
 
@@ -484,6 +512,16 @@ Workout completion:
 - save only the work that product policy defines as completed/retained
 - do not duplicate a completed workout on retry/navigation
 
+Completion metric rules:
+- workout time = elapsed time from Start to End, excluding explicitly paused time
+- backgrounding alone does not auto-pause workout time
+- recovered active sessions continue preserved session timing
+- completed sets = final completed/check state only; repeated check/uncheck events do not duplicate count
+- completed exercise count = exercises with at least one final completed set
+- total volume = Σ(recorded weight × actual reps) for final completed eligible `weight_reps` sets only
+- assisted/duration/reps-only records are not coerced into kg volume
+- current completion/session-detail N/A policy: when no eligible completed weight-volume exists, keep the metric cell and display `—`, never `0kg`
+
 History:
 - completed history is historical fact
 - routine/exercise definition edits do not rewrite old records
@@ -494,6 +532,30 @@ Analysis:
 - body distribution assets already applied through shared components
 - PR/history/progress calculations must respect recording-type semantics
 - no ordinary weight-performance interpretation for assisted-weight exercises
+
+07A trend:
+- periods = `4주 / 3개월 / 1년`; default = `4주`
+- metric selector = `총 중량 / 세트 / 시간`; default = `총 중량`
+- `총 중량` = Σ(weight × completed reps) for eligible completed weight-bearing sets; weightless records are excluded, not converted
+- `세트` = count of completed/persisted sets
+- `시간` = total completed saved-workout session duration in the bucket
+- 4주 = rolling 28 days / four 7-day buckets
+- 3개월 = rolling 91 days / thirteen 7-day buckets
+- 1년 = 12 calendar-month buckets ending in current month
+- Y-axis starts at 0 and uses readable rounded adaptive steps
+- total-weight Y-axis compact suffix formatter = raw below 1K, then K / M / B fallback, max one decimal when needed; `kg` shown once
+- tap a bucket/point → anchored tooltip with exact period + exact metric; outside tap dismisses; no drag scrub
+- zero-value eligible bucket and unavailable/pre-history bucket are distinct
+- entirely empty selected period keeps chart region and shows `이 기간에는 운동 기록이 없어요`
+
+Body distribution:
+- data basis = completed-set muscle exposure
+- each mapped primary muscle = 1.0 point per final completed set
+- each mapped secondary muscle = 0.5 point
+- unfinished/unpersisted set = 0
+- do not multiply this score by load/reps/duration/assistance
+- do not label the map as recovery/readiness/undertrained/overtrained
+- exercise without usable muscle mapping remains in workout history but is excluded from body-map calculation rather than guessed from its name
 
 Group 07 locked rules:
 - total volume counts only completed `weight_reps` sets as weight × reps
@@ -507,7 +569,13 @@ Group 07 locked rules:
 - 07B contributor list:
   - show all contributor exercise rows
   - no arbitrary first-N truncation / no `더보기`
-  - use approved contribution-score sorting with recency tie-break
+  - sort by selected-area contribution score descending, recency as tie-break
+  - trailing metric uses selected-period native aggregate, not a universal kg value:
+    - `weight_reps` → Σ(weight × completed reps)
+    - `reps` → total completed reps
+    - `duration` → total completed duration
+    - `assisted_weight_reps` → total completed reps; do not multiply assistance kg
+  - trailing aggregate does not redefine contribution sorting
   - page scroll handles long content; no nested contributor-list scroll
 - confirmed 07D workout deletion:
   - delete the whole saved workout session
@@ -729,6 +797,9 @@ Cursor must stop and report `DECISION NEEDED` rather than choosing product behav
 - `duration` Active Workout timed-set interaction
 - unapproved PR/progression formula
 - unresolved non-active multi-device conflict behavior
+- Rest Timer behavior when another set completes while a rest countdown is already active
+- exact Rest Timer zero-completion sound/vibration/background-notification behavior
+- active-session recovery system-notification copy/actions/controls
 - release legal URLs/copy/retention period
 - notification delivery/backend behavior beyond approved UI
 - billing/subscription
@@ -774,6 +845,20 @@ Requires PO decision before implementing these set types.
 `recording_type = duration` is MVP-active at the data-policy level, but timed-set interaction remains explicitly deferred.
 
 Requires focused Product/UX decision before implementation of duration exercise logging.
+
+### BLOCKER G — automatic Rest Timer runtime edge policy
+
+RestLiveBar presentation/trigger/end action are locked, but the current authority explicitly leaves open:
+- what happens if another set completes while a Rest Timer is already counting down
+- exact sound/vibration/background-notification feedback when rest reaches zero
+
+Requires Product/UX runtime policy before full Rest Timer implementation.
+
+### BLOCKER H — active-session recovery system notification UX
+
+Recovery persistence is required and the in-app recovery banner is explicitly rejected. The session should be surfaced through the system notification area, but notification copy/actions/controls remain undefined.
+
+Requires platform-aware UX decision before implementing the recovery notification surface.
 
 ### Conditional platform alignment — iOS
 
@@ -868,7 +953,9 @@ Not ready to start production implementation yet because:
 4. W / D / F set-type semantics are undefined
 5. technology stack / architecture is not locked
 6. duration timed-set interaction is not locked
-7. launch-platform decision controls whether Apple-provider UI/copy alignment is required
+7. automatic Rest Timer runtime edge/end-feedback policy is not locked
+8. active-session recovery system-notification UX is not locked
+9. launch-platform decision controls whether Apple-provider UI/copy alignment is required
 
 Current implementation-facing product brand is Tampin; the stale G Fit working-name text found during deep QA has been corrected in the current Product Direction / Project Brief.
 
