@@ -65,8 +65,8 @@ Figma는 visual implementation artifact다. 행동/제품 의미가 GitHub의 �
 6. `duration` recording type의 Active Workout timed-set interaction
 7. launch platform 결정에 따라 iOS Apple sign-in/provider copy alignment
 
-문서 정리 FIX:
-- current visual brand Tampin과 오래된 `G Fit` working-name 문구 통일
+문서 정리 완료:
+- current Product Direction / Project Brief의 브랜드 명칭을 Tampin으로 동기화
 
 별도 asset side-track:
 - Production exercise-thumbnail full crop/mapping QA
