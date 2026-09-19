@@ -1,6 +1,6 @@
 # 2026-09-20 MVP Screen Design Freeze
 
-**Status:** PO APPROVED · MVP SCREEN DESIGN FROZEN · FIGMA READ-BACK VERIFIED · IMPLEMENTATION HANDOFF PREPARATION
+**Status:** PO APPROVED · 94 CONTENT/STATE FRAMES FROZEN · POST-FREEZE DEEP QA FOUND TARGETED APP-SHELL FIX · IMPLEMENTATION NOT STARTED
 
 ## Decision
 
@@ -111,10 +111,29 @@ This decision supersedes the following as **additional Figma-screen requirements
 
 The underlying behavior decisions remain active and are now implementation rules.
 
+## Post-freeze deep-QA amendment — 2026-09-20
+
+A later 94-screen behavior audit found that the frozen content/state frames are not the whole app-shell contract.
+
+Verified design gap:
+- product IA requires primary destinations `홈 / 루틴 / 분석 / 설정`
+- current root screens contain no primary bottom-navigation instance
+- `Common_Component` contains no corresponding primary bottom-navigation component
+
+Interpretation:
+- keep the existing 94 canonical content/state frames frozen
+- do **not** reopen all screen families
+- reopen only the primary app-shell navigation contract for a targeted design completion
+- Cursor must not invent the missing bottom-navigation visual/state behavior
+
+Additional product conflicts found by the same deep QA are recorded in:
+- `docs/implementation/MVP_SCREEN_BEHAVIOR_MATRIX.md`
+- `docs/implementation/MVP_HANDOFF_QA.md`
+
+These include weekday scheduling, routine Duplicate semantics, and W/D/F set-type semantics.
+
 ## Result
 
-**MVP screen design is frozen at 94 canonical top-level frames.**
+**The 94 canonical content/state frames remain frozen. Primary app-shell navigation requires one targeted design FIX before UI implementation.**
 
-Development handoff documentation may now be prepared.
-
-Implementation itself remains subject to the Development Handoff readiness gates, including unresolved technology architecture and the duration-set interaction decision.
+Development handoff documentation is prepared, but the deep-QA FIX / DECISION NEEDED items must be resolved before production implementation. See `docs/CURRENT.md`.
