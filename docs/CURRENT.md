@@ -634,36 +634,34 @@ Detailed QA:
    - Cursor가 임의 디자인하면 안 됨
    - 94개 content/state frame 전체를 reopen하지 말고 app-shell navigation만 targeted design completion
 
-2. **Brand naming cleanup**
-   - canonical visual = Tampin
-   - 일부 top-level product docs의 `G Fit` working-name 표현이 stale
-   - production package/code naming 전에 implementation-facing docs를 Tampin 기준으로 정리
+Brand naming drift found by deep QA was corrected:
+- current Product Direction / Project Brief now use Tampin
 
 ## Product Decision Needed
 
-3. **Weekday scheduling / today-next semantics**
+2. **Weekday scheduling / today-next semantics**
    - older product text: optional weekday assignment / scheduled-vs-unscheduled Home
    - current frozen Figma: weekday control 없음, today/next Home state 없음
    - MVP에서 제거/연기할지, 필요한 화면을 targeted reopen할지 PO 결정 필요
 
-4. **Routine Duplicate**
+3. **Routine Duplicate**
    - `03A_Routine_List_Menu`의 `복제` action은 존재
    - name / metadata / deep-copy / destination / collision rule 미정
 
-5. **W / D / F set-type semantics**
+4. **W / D / F set-type semantics**
    - Routine / Active Workout Figma에 W / numbered / D / F rows 존재
    - 의미 / 선택 / 저장 / 완료 / volume / PR / history 영향 미정
 
-6. **Technology stack / platform architecture**
+5. **Technology stack / platform architecture**
    - production client framework / platform priority / local persistence / backend-sync architecture 결정 필요
 
-7. **Duration Active Workout interaction**
+6. **Duration Active Workout interaction**
    - `recording_type=duration` storage semantics는 확정
    - stopwatch/countdown/start-stop/rest-transition은 여전히 미정
 
 ## Conditional platform alignment
 
-8. **iOS launch scope**
+7. **iOS launch scope**
    - current Login Figma = Google / Kakao
    - iOS launch 시 Apple sign-in/provider-specific account copy alignment 필요
 
