@@ -35,7 +35,7 @@ Before judging:
 - MVP scope respected
 - Product Policy respected
 - no silent feature-meaning change
-- recommendation/self-build semantics remain compatible
+- blank-workout and routine-based workout semantics remain compatible
 - optional scheduling/body-data rules remain optional where relevant
 
 ### Q1 Research / Evidence when applicable
@@ -50,7 +50,6 @@ For claims about exercise, health, policy, or other factual product decisions:
 - normal workout flow works
 - save/edit/delete behavior is correct
 - failure can recover
-- recommendation/template matching works as specified
 - substitution/change actions affect only intended data
 
 ### Q3 State / Edge Case
@@ -73,7 +72,7 @@ For relevant flows verify:
 - historical data is not rewritten by routine/exercise edits
 - exercise identity and custom-exercise history remain correct
 - kg/lb handling does not corrupt stored values
-- recommendations do not silently rewrite completed history
+- personalization/substitution logic does not silently rewrite completed history
 - user data isolation is correct once accounts/sync exist
 - secrets are not exposed
 
@@ -95,7 +94,7 @@ For Figma/UI work verify:
 - existing design-system primitives are reused where appropriate
 
 ### Q7 Regression
-Shared state, persistence, routine, exercise, history, unit, recommendation, or shared-component changes require the affected regression packs.
+Shared state, persistence, routine, exercise, history, unit, or shared-component changes require the affected regression packs.
 
 Do not test only static final state for Medium/High risk. Include relevant transitions such as:
 - cold start
@@ -133,7 +132,7 @@ Minimum release gate:
 ### P1
 - wrong previous performance mapped to exercise
 - recovery failure in meaningful scenario
-- recommendation silently overwrites user edits
+- personalization/substitution silently overwrites user edits
 - kg/lb conversion produces materially wrong records
 - major UX/policy drift
 
