@@ -93,15 +93,15 @@ Verdict:
 - Android-first implementation: current Figma is sufficient for provider presentation
 - iOS launch scope: Apple provider state/copy requires implementation/design alignment
 
-### FIX-02 — Current brand naming is inconsistent in GitHub
+### RESOLVED-01 — Brand naming
 
-Current canonical visual artifact uses Tampin:
-- default Tampin AppLogo
-- Tampin white Splash logo
+Deep QA found stale `G Fit` working-name text in current top-level product docs while canonical visual branding was already Tampin.
 
-Some older top-level product text still calls the working product `G Fit`.
+Resolved during this QA:
+- `docs/24_PRODUCT_DIRECTION_V2.md` → Tampin
+- `docs/00_PROJECT_BRIEF.md` → Tampin
 
-Verdict: **FIX documentation naming before Cursor implementation so code/package/UI naming does not drift.**
+Current implementation-facing brand = **Tampin**.
 
 ---
 
@@ -331,7 +331,6 @@ Most static/state/detail/dialog/sheet screens in Groups 01, 04, 06, 07, 08, and 
 
 ### FIX
 1. Primary bottom navigation visual/component contract missing from canonical Figma.
-2. Current brand naming in core GitHub docs still contains stale G Fit naming while canonical visual brand is Tampin.
 
 ### DECISION NEEDED
 1. Weekday scheduling vs current frozen Home/Routine design.
