@@ -306,6 +306,9 @@ Current superseding decision:
 - Home -> 운동 시작/복귀를 최우선
 - Active workout -> 전체 운동을 한 화면에서 보고 현재 운동만 펼쳐 기록
 
-**현재 직접 후속:** `빈 운동 시작`의 canonical 목적지인 zero-exercise Active Workout 상태를 Figma에 추가한다.
+**MVP screen-design freeze:** 2026-09-20 PO 결정으로 현재 canonical Figma 94개 top-level frame을 MVP 화면 디자인 기준으로 잠근다. `빈 운동 시작`의 zero-exercise Active Workout은 별도 top-level 화면을 추가하지 않고 기존 Group 05 Active Workout shell의 empty ExerciseList 상태로 구현한다.
 
-Implementation / Cursor handoff는 이 상위 기획이 충분히 정리되기 전까지 시작하지 않는다.
+Decision:
+- `docs/ux-decisions/2026-09-20-mvp-screen-design-freeze.md`
+
+Cursor 구현 handoff 문서는 이 freeze를 기준으로 준비한다. 실제 구현 시작은 Product Owner의 명시 승인과 unresolved implementation gate 해소 후 진행한다.
