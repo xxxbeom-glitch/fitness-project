@@ -1,8 +1,12 @@
 # Recommended Routine Acceptance — Current Canonical Flow
 
 **Date:** 2026-09-14  
-**Status:** RECORDED CURRENT DECISION · SUPERSEDES DEC-014  
-**Scope:** 추천 결과 확인부터 운동 시작, 운동 완료 후 내 루틴 저장까지의 현재 제품 흐름
+**Status:** SUPERSEDED 2026-09-19 · RECOMMENDED-ROUTINE FEATURE REMOVED FROM MVP  
+**Scope:** 추천 결과 확인부터 운동 시작, 운동 완료 후 내 루틴 저장까지의 과거 제품 흐름
+
+> **Superseded:** 2026-09-19 Product Owner decision removes the recommended-routine feature from the current MVP. This document is historical only and must not be used as a current implementation/product requirement.
+>
+> Current authority: `docs/ux-decisions/2026-09-19-recommended-routine-feature-removal.md`
 
 ## Supersession
 
