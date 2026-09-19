@@ -277,15 +277,15 @@ Verdict: **FIX**
 
 The 94 content/state frames remain valid; the primary navigation shell requires targeted design completion before app-shell implementation.
 
-#### FIX-02 — stale brand naming
+#### RESOLVED — stale brand naming
 
-Canonical visual artifact is Tampin:
-- default Tampin AppLogo
-- Tampin white Splash wordmark
+Deep QA found stale working-name `G Fit` text in current top-level product docs while canonical visual branding was Tampin.
 
-Some top-level product documents still use working-name `G Fit`.
+Resolved during this QA:
+- `docs/24_PRODUCT_DIRECTION_V2.md` aligned to Tampin
+- `docs/00_PROJECT_BRIEF.md` aligned to Tampin
 
-Verdict: **FIX documentation naming before production package/code naming is established.**
+Verdict: **PASS after correction**
 
 ### New DECISION NEEDED findings
 
@@ -385,7 +385,6 @@ Verdict for these additions: **PASS — recovered approved rules, not new produc
 
 ### FIX before relevant UI implementation
 1. primary bottom-navigation visual/component contract
-2. stale G Fit/Tampin naming in implementation-facing core docs
 
 ### DECISION NEEDED before production implementation
 1. weekday scheduling / today-next semantics
