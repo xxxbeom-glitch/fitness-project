@@ -1,5 +1,8 @@
 # 09 DESIGN SYSTEM
 
+> **CURRENT MVP IMPLEMENTATION NOTICE — 2026-09-20:** This document preserves the Tonal/Phase-A reconstruction baseline and design-system history. It is **not the current production visual-value authority** for the frozen MVP. Where this file contains Pretendard, older dark/Tonal colors, provisional radius values, or other values that differ from the current canonical Figma, Cursor must use `docs/implementation/MVP_IMPLEMENTATION_HANDOFF.md` + canonical Figma `W3lZurXCXbThP67rF2xk2b`. Current MVP typography is SUIT and the current Light tokens are those read back from Figma. Do not reintroduce historical Phase-A values into production UI.
+
+
 **Status:** TONAL PHASE-A BASELINE CONSOLIDATED — FIGMA BUILD READY, FINAL TOKENS NOT FROZEN
 **Updated:** 2026-08-28
 
