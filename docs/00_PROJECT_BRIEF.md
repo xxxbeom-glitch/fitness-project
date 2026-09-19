@@ -5,7 +5,7 @@
 
 ## Product definition — CONFIRMED
 
-G Fit은 **운동 루틴을 만들고, 실행 기록을 쌓고, 지속적으로 관리하는 general-purpose weight-training tracker**다.
+Tampin은 **운동 루틴을 만들고, 실행 기록을 쌓고, 지속적으로 관리하는 general-purpose weight-training tracker**다.
 
 Primary early target:
 - 일반적인 헬스 이용자
@@ -74,7 +74,7 @@ Records should enable:
 
 ### 4. AI is not the product identity
 
-G Fit is not an AI coach-first product.
+Tampin is not an AI coach-first product.
 
 Use structured product logic when it is more reliable, testable, faster, and cheaper. AI/LLM may later help interpret user workout data or explain recommendations.
 
@@ -195,7 +195,7 @@ Users who do not use social should not be forced to set a custom nickname or pro
 
 ## MVP validation question
 
-> After creating a routine or starting a blank workout and completing one workout, does the user choose G Fit again for the next workout instead of returning to the previous method?
+> After creating a routine or starting a blank workout and completing one workout, does the user choose Tampin again for the next workout instead of returning to the previous method?
 
 ## Current authority
 
