@@ -1,7 +1,7 @@
 # 00 PROJECT BRIEF
 
 **Status:** ACTIVE — V2 ALIGNED
-**Updated:** 2026-09-18
+**Updated:** 2026-09-20
 
 ## Product definition — CONFIRMED
 
@@ -31,9 +31,7 @@ Primary entry:
 - 빈 운동 시작
 - 직접 루틴 만들기
 
-G Fit이 미리 준비한 추천 루틴은 MVP에서 유지하되 Home의 primary entry가 아니라 Routine 영역의 secondary path로 제공한다.
-
-추천 루틴은 first-run 개인화 matcher 결과가 아니라 **G Fit이 미리 구성하고 검수한 ready-made routine**이다.
+현재 MVP에는 추천 루틴 기능이 없다. Routine 영역은 사용자가 직접 만든 저장 루틴 관리에 집중한다.
 
 ### Workout logging
 
@@ -96,7 +94,7 @@ No-routine Home primary actions:
 - 빈 운동 시작
 - 내 루틴 만들기
 
-추천 루틴은 Home primary action에서 제외하고 Routine 영역의 secondary discovery/use path로 유지한다.
+추천 루틴 기능은 현재 MVP에서 제외한다.
 
 ## Home direction — CONFIRMED
 
@@ -123,7 +121,6 @@ Current visual baseline:
 
 ### Routine management
 - create/edit/delete routines
-- use G Fit recommended ready-made routines
 - add exercises
 - reorder exercises
 - configure basic set/rep prescription
@@ -198,7 +195,7 @@ Users who do not use social should not be forced to set a custom nickname or pro
 
 ## MVP validation question
 
-> After creating or adopting a routine and completing one workout, does the user choose G Fit again for the next workout instead of returning to the previous method?
+> After creating a routine or starting a blank workout and completing one workout, does the user choose G Fit again for the next workout instead of returning to the previous method?
 
 ## Current authority
 
