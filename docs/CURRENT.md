@@ -4,7 +4,7 @@
 
 ## Current mode
 
-`MVP 94 CONTENT/STATE FRAMES FROZEN · 94-SCREEN BEHAVIOR MATRIX COMPLETE · HANDOFF QA = FIX / DECISION NEEDED · PRIMARY BOTTOM-NAV DESIGN GAP FOUND · WEEKDAY SCHEDULING CONFLICT FOUND · ROUTINE DUPLICATE SEMANTICS OPEN · W/D/F SET SEMANTICS OPEN · TECH STACK / ARCHITECTURE OPEN · DURATION ACTIVE-SET UX OPEN · IMPLEMENTATION NOT STARTED`
+`MVP 94 CONTENT/STATE FRAMES FROZEN · 94-SCREEN BEHAVIOR MATRIX COMPLETE · HANDOFF QA = FIX / DECISION NEEDED · PRIMARY BOTTOM-NAV DESIGN GAP · WEEKDAY SCHEDULING CONFLICT · ROUTINE DUPLICATE OPEN · W/D/F SET SEMANTICS OPEN · REST-TIMER EDGE POLICY OPEN · RECOVERY SYSTEM-NOTIFICATION UX OPEN · TECH STACK / ARCHITECTURE OPEN · DURATION ACTIVE-SET UX OPEN · IMPLEMENTATION NOT STARTED`
 
 ## Resume rule
 
@@ -652,16 +652,27 @@ Brand naming drift found by deep QA was corrected:
    - Routine / Active Workout Figma에 W / numbered / D / F rows 존재
    - 의미 / 선택 / 저장 / 완료 / volume / PR / history 영향 미정
 
-5. **Technology stack / platform architecture**
+5. **Automatic Rest Timer runtime edge**
+   - 세트 완료 → 자동 시작 / RestLiveBar / 휴식 종료는 확정
+   - 이미 Rest Timer가 실행 중일 때 또 다른 세트를 완료하면 재시작/교체/유지 중 무엇을 할지 미정
+   - 0 도달 시 sound/vibration/background-notification 정확한 runtime feedback도 미정
+
+6. **Active-session recovery system notification UX**
+   - interruption/restart 후 동일 active session 복구는 확정
+   - dedicated in-app recovery screen/banner는 사용하지 않음
+   - system notification으로 ongoing state를 드러내는 방향은 확정
+   - notification copy / actions / platform behavior는 미정
+
+7. **Technology stack / platform architecture**
    - production client framework / platform priority / local persistence / backend-sync architecture 결정 필요
 
-6. **Duration Active Workout interaction**
+8. **Duration Active Workout interaction**
    - `recording_type=duration` storage semantics는 확정
    - stopwatch/countdown/start-stop/rest-transition은 여전히 미정
 
 ## Conditional platform alignment
 
-7. **iOS launch scope**
+9. **iOS launch scope**
    - current Login Figma = Google / Kakao
    - iOS launch 시 Apple sign-in/provider-specific account copy alignment 필요
 
@@ -688,6 +699,8 @@ Before development:
 - weekday scheduling decision
 - routine Duplicate decision
 - W / D / F set-type decision
+- automatic Rest Timer runtime edge/end-feedback decision
+- active-session recovery system-notification UX decision
 - tech stack / architecture decision
 - duration Active Workout interaction decision
 - launch-platform scope check
