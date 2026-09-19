@@ -1,10 +1,10 @@
 # CURRENT — Fitness Project
 
-**Updated:** 2026-09-19
+**Updated:** 2026-09-20
 
 ## Current mode
 
-`DESIGN SYSTEM / FIGMA QA · LIGHT COLOR SYSTEM D MVP ROLLOUT APPLIED / COLOR-SURFACE PO ACCEPTED · COMPONENT/BINDING MAINTENANCE PO APPROVED · SPLASH / APP LOGO / EXERCISE THUMBNAIL VISUAL MAINTENANCE PO APPROVED · EXERCISE THUMBNAIL LOCAL AUTO-CROP VALIDATED / OVERNIGHT BULK RUN PENDING · SHARED TABS / SELECTION LIST MAINTENANCE PO APPROVED · RADIUS RULE PREVIEW ONLY / NOT ROLLED OUT · GROUP 02 HOME STATES ALIGNED · HOME COMPONENT/BINDING QA PASS · 02A BLANK-WORKOUT ENTRY PO APPROVED / 02B COMPACT HOME GRID PO APPROVED / 02D ACTIVE HOME COMPACTED / CANONICAL REFLECTED · GROUP 03 ROUTINE CLOSED / RECOMMENDED ROUTINES REMOVED / ROUTINE LIST SIMPLIFIED · DIALOG COPY SIMPLIFICATION FIGMA REFLECTED / QA PASS · GROUP 04 EXERCISE LIBRARY/DETAIL CLOSED · GROUP 05 ACTIVE WORKOUT CLOSED EXCEPT TARGETED BLANK-WORKOUT EMPTY STATE FOLLOW-UP · GROUP 06 COMPLETION CLOSED / RECOMMENDED-ROUTINE DIALOGS REMOVED · GROUP 07 ANALYSIS/WORKOUT HISTORY CLOSED (BODY-MAP PRODUCTION VISUAL ASSETS APPLIED) · GROUP 08 SETTINGS/ACCOUNT CLOSED WITH 2026-09-18 VISUAL AMENDMENTS · NO CURSOR IMPLEMENTATION HANDOFF`
+`MVP SCREEN DESIGN FROZEN · CURSOR IMPLEMENTATION HANDOFF PREPARED · IMPLEMENTATION NOT STARTED · CANONICAL FIGMA 94 FRAMES / 1,855 LINKED INSTANCES · RECOMMENDED ROUTINES REMOVED · CURRENT LIGHT DESIGN SYSTEM / DIALOG COPY / APP LOGO REFLECTED · PRODUCTION EXERCISE-THUMBNAIL ASSET SIDE-TRACK OPEN · TECH STACK / ARCHITECTURE DECISION NEEDED · DURATION ACTIVE-SET UX DECISION NEEDED`
 
 ## Resume rule
 
@@ -34,6 +34,13 @@ The previous `98` screen count is superseded by the current `94` after the 2026-
 ---
 
 ## Latest active checkpoints
+
+### MVP design freeze / implementation handoff preparation
+- `docs/ux-decisions/2026-09-20-mvp-screen-design-freeze.md`
+- `docs/implementation/README.md`
+- `docs/implementation/MVP_IMPLEMENTATION_HANDOFF.md`
+- `docs/implementation/MVP_SCREEN_INVENTORY.md`
+- `docs/implementation/MVP_HANDOFF_QA.md` — created/updated after final handoff verification
 
 ### Current active asset-prep checkpoint
 - `docs/ux-decisions/2026-09-18-exercise-thumbnail-production-crop-prep.md`
@@ -335,10 +342,10 @@ Home component/binding state:
 - no new spacing/radius/color variables were created
 - latest focused component/binding QA PASS
 
-Direct design gap still open:
-- current MVP Figma has no zero-exercise Active Workout state
-- add a focused blank-workout empty state as the canonical destination
-- do not reopen unrelated Group 05 behavior
+Screen-freeze interpretation:
+- no additional zero-exercise top-level Figma frame is required
+- `빈 운동` reuses the approved Group 05 Active Workout shell with an empty ExerciseList and existing `운동 추가` flow
+- implementation contract: `docs/ux-decisions/2026-09-20-mvp-screen-design-freeze.md`
 
 ---
 
@@ -371,7 +378,10 @@ Decision:
 
 Post-closure component maintenance is recorded in the latest 2026-09-17 consolidated maintenance checkpoint.
 
-Focused Figma follow-up is limited to 03E/03E2 create/save states if current visuals imply that routine name is mandatory.
+Screen-freeze interpretation:
+- no extra 03E/03E2 top-level Figma state is required solely to prove optional naming
+- current 03E Save Disabled state represents an otherwise-invalid empty routine, not a name requirement
+- once other save-validity requirements are met, blank name is allowed and receives the approved automatic name at first save
 
 Do not reopen unrelated Group 03 behavior without a concrete conflict/regression or explicit PO request.
 
@@ -609,22 +619,35 @@ Release follow-ups that are not Figma blockers:
 
 # NEXT OPEN ITEM
 
-**The current active side-track is the Production exercise-thumbnail overnight bulk crop run. The local Photoshop auto-crop path is technically validated through 5-image and 50-image tests; the full ~3,000-image run and post-run exception QA remain open. The previously opened zero-exercise Active Workout follow-up remains next in the Figma track.**
+**MVP screen design is frozen. Cursor-facing handoff documentation is prepared, but production implementation has not started.**
 
-Immediate focused follow-ups:
-1. Exercise thumbnail Production crop prep — run `tools/photoshop/tampin_auto_crop_v05_overnight.psjs` on the full source folder, inspect `tampin_crop_log.txt`, QA representative/edge-case outputs, and lock the crop convention only if the large-run result is acceptable
-2. Blank-workout Active state — add the canonical zero-exercise Active Workout destination for `02A 빈 운동 시작`, reusing existing Group 05 shell/components and existing exercise-add flow
-3. Group 03 `03E / 03E2` routine-create/save Figma alignment — verify name is optional and save is not visually/structurally gated by name alone
+Implementation readiness gates:
+1. **Technology stack / platform architecture decision** — select the production client framework/platform priority, local persistence approach, backend/sync architecture, and related core architecture. Cursor must not choose these implicitly.
+2. **Duration Active Workout interaction decision** — `recording_type=duration` is MVP-active, but stopwatch/countdown/start-stop/rest-transition interaction is still `DECISION NEEDED`.
+3. **Explicit Product Owner development authorization** — after 1–2 are resolved, create the first scoped implementation Issue and begin Cursor implementation from that Issue.
 
-Remaining intentionally deferred / later items:
-1. size-aware radius system — preview only; propagate only after explicit PO approval
-2. pre-release Settings follow-ups — public Terms/Privacy URLs, inquiry-retention disclosure, external deletion-request URL, final timer-sound assets/labels
-3. implementation/Cursor handoff — only after explicit Product Owner authorization
+Active non-blocking asset side-track:
+- run `tools/photoshop/tampin_auto_crop_v05_overnight.psjs` on the full Production exercise source
+- inspect log and exceptions
+- lock final crop/mapping before final visual/release QA
 
-Do not automatically reopen Groups 03–08.
-Do not automatically propagate the radius experiment.
-Do not begin Cursor implementation handoff automatically.
+Remaining pre-release follow-ups:
+- public Terms / Privacy URLs
+- inquiry-retention disclosure
+- external deletion-request URL if required by release policy
+- final timer-end sound assets/labels
+- exact legal/store/privacy review
+
+Do not reopen frozen MVP screens merely to represent a state that the implementation handoff explicitly defines from an existing shell/component.
+Do not begin a broad unscoped Cursor build.
 
 # Development boundary
 
-Product Owner가 개발 전환을 명시하기 전까지 개발/Cursor handoff를 하지 않는다.
+Cursor가 읽을 구현 handoff 문서는 준비되어 있다.
+
+그러나 **production code implementation은 아직 시작하지 않는다.**
+- tech stack / architecture 결정
+- duration Active Workout interaction 결정
+- Product Owner의 명시적 개발 시작 승인
+
+이 세 조건을 확인한 뒤 첫 scoped implementation Issue를 만들고 개발 mode로 전환한다.
