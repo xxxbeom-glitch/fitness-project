@@ -286,7 +286,7 @@ Recommendation-template duration language from older Group 03 history is superse
 | Screen | Purpose / Entry | Primary behavior / Exit | Implementation rule | QA |
 |---|---|---|---|---|
 | `07D_Workout_History_Detail` | Saved workout-session detail | Back; Trash → delete confirm | Show all valid PRs for this session; 2×2 summary; body distribution; performed exercise table. | PASS |
-| `07A_Analysis_Home` | Analysis root | `총 중량 / 세트 / 시간`; `4주 / 3개월 / 1년`; body-area/recent progress/history drilldown | Default = 총 중량 + 4주. 총 중량=eligible completed weight×reps; 세트=completed set count; 시간=saved session duration. Approved rolling/month buckets, adaptive zero-based scale, K/M/B kg formatter and point tooltip apply. | PASS + FIX-01 |
+| `07A_Analysis_Home` | Analysis root | `총 중량 / 세트 / 시간`; `4주 / 3개월 / 1년`; body-area/recent progress/history drilldown | Default = 총 중량 + 4주. 총 중량=eligible completed weight×reps; 세트=completed set count; 시간=saved session duration. Approved rolling/month buckets, adaptive zero-based scale, current Korean compact kg-axis labels, and point tooltip apply. | PASS + FIX-01 |
 | `07B_BodyArea_Detail` | Selected body-area drilldown | period tabs; view contributor exercise list | Show all contributors; sort by muscle-exposure contribution + recency tie-break. Trailing aggregate is recording-type native: weight volume / reps total / duration total / assisted reps total. | PASS |
 | `07B_BodyArea_Detail_Empty` | Body-area/period has no records | change period/back | Keep section shell; no body-map fake activity. | PASS |
 | `07D_Workout_History_Detail_DeleteConfirm` | Delete saved workout session | Cancel / Delete | Delete whole session; recalc derived analysis/PR/history; previous valid destination or Home fallback. | PASS |
@@ -304,7 +304,7 @@ Recommendation-template duration language from older Group 03 history is superse
 - 총 중량: eligible completed load × reps only; weightless recording types excluded rather than converted
 - 세트: completed/persisted sets
 - 시간: saved workout-session duration
-- total-weight Y-axis: raw <1K, then K/M/B compact suffix, max one decimal when useful, kg shown once
+- total-weight Y-axis: current final Figma/Group 07 closure uses Korean compact labels such as `1.5만 / 1만 / 5천 / 0`, with `kg` shown once
 - point tap shows exact period/value tooltip; no drag scrub
 - real zero and unavailable/pre-history are distinct
 
