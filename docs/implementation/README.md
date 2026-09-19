@@ -13,15 +13,16 @@ Cursor는 아래 순서로 읽는다.
 2. `docs/CURRENT.md`
 3. `docs/implementation/MVP_IMPLEMENTATION_HANDOFF.md`
 4. `docs/implementation/MVP_SCREEN_INVENTORY.md`
-5. `docs/implementation/MVP_HANDOFF_QA.md`
-6. `docs/24_PRODUCT_DIRECTION_V2.md`
-7. `docs/01_PRODUCT_POLICY.md`
-8. `docs/11_GLOBAL_INVARIANTS.md`
-9. 현재 Task와 직접 관련된 최신 `docs/ux-decisions/`
-10. `docs/06_ENGINEERING_HARNESS.md`
-11. `docs/12_REGRESSION_MATRIX.md`
-12. `docs/07_QA_RELEASE_HARNESS.md`
-13. canonical Figma
+5. `docs/implementation/MVP_SCREEN_BEHAVIOR_MATRIX.md`
+6. `docs/implementation/MVP_HANDOFF_QA.md`
+7. `docs/24_PRODUCT_DIRECTION_V2.md`
+8. `docs/01_PRODUCT_POLICY.md`
+9. `docs/11_GLOBAL_INVARIANTS.md`
+10. 현재 Task와 직접 관련된 최신 `docs/ux-decisions/`
+11. `docs/06_ENGINEERING_HARNESS.md`
+12. `docs/12_REGRESSION_MATRIX.md`
+13. `docs/07_QA_RELEASE_HARNESS.md`
+14. canonical Figma
 
 ## Canonical Figma
 
@@ -53,9 +54,19 @@ Figma는 visual implementation artifact다. 행동/제품 의미가 GitHub의 �
 - Figma component-linkage QA
 - Cursor-facing behavior/data/design contract
 
-구현 시작 전 결정 필요:
-1. production app technology stack / platform architecture
-2. `duration` recording type의 Active Workout timed-set interaction
+현재 handoff verdict: **FIX / DECISION NEEDED**
+
+구현 전 해결:
+1. primary bottom navigation visual/component contract
+2. weekday scheduling / today-next semantics
+3. routine Duplicate behavior
+4. W / D / F set-type semantics
+5. production app technology stack / platform architecture
+6. `duration` recording type의 Active Workout timed-set interaction
+7. launch platform 결정에 따라 iOS Apple sign-in/provider copy alignment
+
+문서 정리 FIX:
+- current visual brand Tampin과 오래된 `G Fit` working-name 문구 통일
 
 별도 asset side-track:
 - Production exercise-thumbnail full crop/mapping QA
