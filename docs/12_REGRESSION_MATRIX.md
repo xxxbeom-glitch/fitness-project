@@ -77,7 +77,6 @@ Minimum checks where relevant:
 Use when changing:
 - routine CRUD
 - routine ordering
-- recommended-template import
 - scheduled routine metadata
 
 Minimum checks:
@@ -86,7 +85,7 @@ Minimum checks:
 - set-count changes
 - scheduled and unscheduled routine behavior
 - editing routine does not rewrite completed history
-- recommended and self-built routine use compatible semantics
+- blank-workout and routine-based workout paths preserve compatible logging/history semantics
 
 ### PACK-EXERCISE
 Use when changing:
@@ -147,23 +146,6 @@ Minimum checks:
 - zero/decimal/extreme reasonable values
 - mixed old/new records if migration exists
 
-### PACK-RECOMMENDATION
-Use when changing:
-- onboarding matching rules
-- curated program templates
-- duration/frequency adjustment
-- exercise substitution
-- recommendation presentation
-
-Minimum checks:
-- same structured inputs produce predictable matching
-- unavailable equipment substitution remains valid
-- weekly availability is not blindly prescribed as training frequency
-- optional weekdays do not become mandatory
-- optional height/body weight does not block recommendation
-- recommendation does not silently overwrite user-edited routine
-- self-build path remains available and first-class
-
 ### PACK-DESIGN-SYSTEM
 Use when changing:
 - shared components
@@ -189,6 +171,7 @@ Do not build these prematurely. Add them when the corresponding feature enters i
 - PACK-WATCH
 - PACK-NOTIFICATION
 - PACK-ANALYTICS / TELEMETRY
+- PACK-PERSONALIZATION / RECOMMENDATION — only when a future suggestion/recommendation feature actually enters implementation
 
 ## State-transition rule
 
