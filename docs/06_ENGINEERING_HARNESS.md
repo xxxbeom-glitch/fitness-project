@@ -80,8 +80,8 @@ Previous performance must bind to stable exercise identity. Custom exercises req
 ### Unit integrity
 kg/lb presentation must not progressively corrupt or reinterpret stored values.
 
-### Recommendation integrity
-Curated recommendation logic should remain deterministic/testable for the same structured inputs unless the matching rules explicitly change.
+### Personalization / substitution integrity
+Future personalization and current exercise-substitution behavior must remain explicit and testable. They must not silently rewrite saved routines or completed workout history.
 
 ## State-transition testing
 
