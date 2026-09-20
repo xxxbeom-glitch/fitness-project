@@ -790,7 +790,7 @@ Cursor must stop and report `DECISION NEEDED` rather than choosing product behav
 
 - technology stack / production architecture
 - launch platform priority
-- primary bottom-navigation visual/component contract
+- primary BottomAppBar root placement / safe-bottom application before primary-shell implementation
 - weekday scheduling / today-next semantics
 - routine duplicate semantics
 - W / D / F routine-set semantics
@@ -816,11 +816,19 @@ Do not choose framework, database, backend, navigation framework, DI/state archi
 
 Requires Product Owner decision before first implementation Issue.
 
-### BLOCKER B — primary bottom navigation design gap
+### BLOCKER B — primary BottomAppBar root placement
 
-Primary IA is `홈 / 루틴 / 분석 / 설정`, but no current canonical bottom-navigation component/instance exists in frozen Figma.
+The shared visual/component contract is now approved and local in canonical Figma:
+- `Common_Component > BottomAppBar` — `2078:2401`
+- variants = `Active=홈 / 루틴 / 분석 / 설정`
+- Light semantic bindings QA PASS
+- reference placement example = `2075:8536`
 
-Requires an approved visual/component contract before implementing the primary app shell.
+Still open:
+- the applicable frozen root screens do not yet contain the shared BottomAppBar instance
+- root placement / bottom clearance / active-variant application must be completed and QA'd before primary-shell UI implementation
+
+Cursor must reuse this shared component and must not invent a separate bottom-navigation design.
 
 ### BLOCKER C — weekday scheduling conflict
 
@@ -947,7 +955,7 @@ Verified:
 - engineering/QA contracts aligned
 
 Not ready to start production implementation yet because:
-1. primary bottom-navigation visual/component contract is missing
+1. primary BottomAppBar shared component is ready, but canonical root-screen placement is not yet applied
 2. weekday scheduling policy conflicts with frozen Figma
 3. routine Duplicate semantics are undefined
 4. W / D / F routine-set semantics are undefined
