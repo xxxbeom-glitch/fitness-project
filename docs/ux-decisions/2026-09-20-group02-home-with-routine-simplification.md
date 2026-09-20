@@ -57,6 +57,7 @@ Active Workout state remains the exception:
 ## My Routine header rule
 
 Across 02A / 02B / 02D:
+- My Routine header copy = `내 루틴 (n)` where `n` is the current saved-routine count
 - My Routine header = `SectionHeader / Trailing=None`
 - no `새 루틴` action on the right
 - routine creation remains available through the Quick Start `내 루틴 만들기` card
@@ -107,12 +108,14 @@ Retained:
 - `StartChoiceSection`
 - `MyRoutineSection`
 - `MyRoutineSection` contains only `SectionHeader / Trailing=None`
+- representative title = `내 루틴 (0)`
 - no empty-state body/copy is shown
 
 `02D_Home_Active` now contains:
 - `RoutineFocusSection`
 - `MyRoutineSection`
 - representative state shows populated routine tiles
+- representative title = `내 루틴 (2)`
 - runtime zero-routine state keeps only the `내 루틴` header; no empty-state copy/body
 
 ## Focused Figma QA
@@ -122,6 +125,9 @@ Retained:
 - Blank Workout cards = `1`
 - Build Own cards = `1`
 - HomeRoutineTile instances = `2` in the representative state
+- 02B representative title = `내 루틴 (2)`
+- 02A representative title = `내 루틴 (0)`
+- 02D representative title = `내 루틴 (2)`
 - sections:
   - `StartChoiceSection` — 320 × 208
   - `MyRoutineSection` — 320 × 124
