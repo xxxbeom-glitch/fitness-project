@@ -72,7 +72,7 @@ No recommended-routine Home state exists.
 |---|---|---:|
 | `34:1401` | `03A_Routine_List` | 360×780 |
 | `34:1438` | `03B_Routine_Empty` | 360×780 |
-| `34:1447` | `03D_Routine_Detail` | 360×1868 |
+| `34:1447` | `03D_Routine_Detail` | 360×1516 |
 | `34:1457` | `03E_Routine_Create` | 360×780 |
 | `34:1477` | `03F_Routine_Edit` | 360×2518 |
 | `352:896` | `03E2_Routine_Create_WithExercises` | 360×2518 |
