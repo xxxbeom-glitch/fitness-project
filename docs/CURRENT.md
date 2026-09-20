@@ -834,13 +834,27 @@ Canonical:
 Canonical:
 - `docs/ux-decisions/2026-09-20-android-rest-timer-sound-runtime.md`
 
+Locked:
+- crash/error reporting = Sentry
+- Sentry is diagnostics only; product-usage analytics is a separate decision
+- Session Replay is off
+- local development reporting is off by default
+- internal/preview vs production environments are separated
+- matching source maps/release IDs are required
+- sensitive/profile/workout-entered data is excluded; only minimal opaque diagnostic context is allowed
+- Sentry failure never blocks app/workout/persistence/sync
+- pre-release observability QA requires one intentional test error with readable stack information
+
+Canonical:
+- `docs/ux-decisions/2026-09-20-sentry-crash-error-reporting.md`
+
 NEXT OPEN ITEM:
-- finish any remaining Android runtime/background edge decisions, then move to analytics/crash reporting
+- decide whether the current MVP needs separate product-usage analytics
 
 ## Other already-known open decisions
 
 - remaining Android runtime/background implementation details
-- analytics/crash reporting
+- product-usage analytics scope
 - Android deployment / Play release pipeline
 
 ## Active non-blocking side tracks
@@ -862,8 +876,8 @@ Current handoff verdict:
 - `DECISION NEEDED`
 
 Before development:
-- finish remaining Android runtime architecture decisions
-- analytics/crash/release-pipeline decisions as needed for implementation scope
+- product-usage analytics decision if included in MVP
+- Android release-pipeline decisions as needed for implementation scope
 - explicit Product Owner development authorization
 
 After resolution, create the first scoped Issue and switch to Development mode.
