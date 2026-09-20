@@ -379,8 +379,6 @@ PO-approved:
 
 Verdict: **PASS — Figma reflected**
 
-Verdict: **DECISION NEEDED**
-
 ### Conditional platform finding
 
 Current Login Figma = Google / Kakao.
