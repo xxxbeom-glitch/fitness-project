@@ -507,8 +507,8 @@ Canonical decision:
 Verdict: **PASS — Group 00–01 closed.**
 
 Next sequential QA:
-- Group 03 Routine
-- stop for PO decision before Group 04
+- Group 05 Active Workout
+- stop for PO decision before Group 06–07
 
 ## 15. Final QA verdict
 
@@ -535,6 +535,32 @@ Next sequential QA:
 - whole-MVP: 94 top-level frames, 1,820 instances, missing links `0`, non-Common sources `0`
 
 Verdict: **PASS — Group 03 Routine closed.**
+
+### Sequential Group 04 result
+
+Baseline:
+- `docs/ux-decisions/2026-09-15-group04-final-closure-qa.md`
+- later custom-exercise field/save/history-lock amendments remain authoritative
+
+Current canonical Figma revalidation:
+- Group 04 canonical frames = `29 / 29`
+- Group 04 instances checked = `544`
+- missing main-component links = `0`
+- live Group 04 instance sources outside `Common_Component` = `0`
+- Group 04 references to the Group 03 shared `ExerciseCard` changed in the prior block = `0`, so no Group 04 regression from the numeric-set cleanup
+- custom Create: header right None + bottom Save Disabled
+- valid Create: bottom Save Default
+- Edit: header Trash + bottom Save Disabled until change
+- HistoryLocked: recording type = ValueOnly + persistent inline hint + no selector/toast pattern
+- recording-type selector exposes exactly 4 active MVP types; reserved types absent
+- secondary muscle selector keeps `선택 안 함`
+- current simplified custom delete dialog copy matches the later 2026-09-19 dialog-copy decision
+- reps / duration / assisted History/Growth representative screens keep native recording semantics
+- representative screenshots generated for Search / Selected / Custom Create / HistoryLocked / Recording Type / Assisted Growth
+
+New Group 04 Product/UX blocker found: `0`
+
+Verdict: **PASS — Group 04 Exercise Library / Custom Exercise sequential QA closed.**
 
 ### FIX before relevant UI implementation
 - none in the current frozen visual contract.
