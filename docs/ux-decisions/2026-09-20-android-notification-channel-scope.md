@@ -48,10 +48,12 @@ Default behavior:
 - approved rest-end copy remains:
   - title: `휴식 시간이 끝났어요`
   - body: `다음 세트를 시작하세요.`
+- channel itself has no app-owned notification sound
+- Tampin plays the selected bundled `기본 / 차임 / 벨` sound separately at Rest Timer completion
 - vibration follows Android/user notification settings; no custom vibration pattern
-- app-owned timer-end sound selection remains `기본 / 차임 / 벨`
 
-Exact physical Android channel handling for the selectable app-owned sounds is a separate implementation decision because Android channel auditory behavior becomes user-controlled/immutable after channel creation.
+Canonical sound runtime:
+- `docs/ux-decisions/2026-09-20-android-rest-timer-sound-runtime.md`
 
 ## Explicitly out of current MVP
 
@@ -77,6 +79,6 @@ Canonical Figma will need the corresponding small visual maintenance: remove onl
 
 ## NEXT
 
-Resolve Android handling for the selectable app-owned Rest Timer sounds without changing the two-category Product model.
+Continue remaining Android runtime closure.
 
 Production implementation remains unauthorized until explicit Product Owner approval.
