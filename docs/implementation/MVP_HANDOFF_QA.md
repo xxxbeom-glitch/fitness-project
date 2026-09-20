@@ -320,6 +320,17 @@ Canonical decision:
 
 Verdict: **PASS — former DECISION-01 resolved.**
 
+Additional PO-approved Home cleanup:
+- `최근 운동` / `전체 기록` removed from 02A and 02D
+- no Group 02 Home state shows Recent Workout
+- workout history remains in Analysis/history surfaces
+- focused Figma read-back: recent-workout copy count = `0` across 02A/02B/02D
+- 02A sections = Quick Start only
+- 02D sections = Active Workout only
+- text overflow = `0`
+- missing main-component links = `0`
+
+
 #### DECISION-02 — routine Duplicate
 
 `03A_Routine_List_Menu` contains `복제`, but exact duplicate behavior is not currently specified.
