@@ -24,6 +24,7 @@ Enable Sentry for:
 Do not enable for current MVP:
 - Session Replay
 - product analytics
+- performance tracing/profiling unless a later concrete performance problem justifies it
 - advertising/marketing attribution
 - arbitrary user-event tracking
 - recording form/input values for debugging
@@ -55,6 +56,11 @@ Rules:
 - add a Sentry filtering/scrubbing layer before events leave the app
 - never use Sentry as a substitute for application database logging
 
+Breadcrumbs / manual diagnostic logs:
+- only stable screen/feature/result/error-code context
+- never include workout-entered values, routine/exercise names, profile fields, support content, tokens, or raw database payloads
+- keep breadcrumbs intentionally sparse rather than mirroring application logs
+
 ## Environments
 
 - local development: Sentry disabled by default
@@ -65,8 +71,10 @@ Rules:
 ## Release / source maps
 
 - build/release pipeline must upload the matching source maps for Sentry symbolication
+- source-map upload credentials such as `SENTRY_AUTH_TOKEN` stay in the build/CI secret environment and are never shipped as app runtime secrets
 - release identifier must map to the actual app version/build
-- a release must not be considered observability-ready until one intentional test error is confirmed in Sentry with readable stack information
+- validate symbolication with one intentional test error in an Internal/Preview build; do not intentionally crash public Production users for this check
+- a release must not be considered observability-ready until that test error is confirmed in Sentry with readable stack information
 
 ## Failure behavior
 
