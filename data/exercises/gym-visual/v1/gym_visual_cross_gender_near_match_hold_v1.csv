@@ -1,0 +1,46 @@
+male_candidate_id,male_name,female_candidate_id,female_name,similarity,male_only_terms,female_only_terms,equipment,vendor_tags_male,vendor_tags_female,qa_result,hold_reason
+gvc_b22208096dff,Cable Seated Row With V Bar,gvc_3ab62bb6aa97,Cable Low Seated Row With V Bar,0.865,,low,Cable,Back,Back,HOLD_SEMANTIC_QA,meaningful_modifier_difference
+canon_gvr_f489cbb11d75,cable straight arm pulldown,gvc_fffdc22b28b6,Cable Straight Arm Pulldown Ii,0.855,,ii,Cable,Back,Back,HOLD_SEMANTIC_QA,semantic_equivalence_not_proven
+gvc_67ceeec29985,Seated Elbow Chest Fly On A Chair,gvc_f1c3e1f0417e,Sitting Chest Fly On A Chair,0.836,elbow,,,Chest,Chest,HOLD_SEMANTIC_QA,semantic_equivalence_not_proven
+gvc_8d618bec1a01,Standing Single Front Leg Raise Chair Supported (f,gvc_5f28cb7bebe8,Standing Single Front Leg Circle Chair Supported (,0.830,raise,circle,,,,HOLD_SEMANTIC_QA,semantic_equivalence_not_proven
+gvc_1cb6763b25c0,Dumbbell One Arm Hammer Preacher Curl,gvc_fcdb868a976b,Dumbbell Single Arm Preacher Curl,0.829,hammer,,Dumbbell,Upper-Arms,Upper-Arms,HOLD_SEMANTIC_QA,meaningful_modifier_difference
+gvc_05bf614d7ee3,Seated Overhead Triceps Extension On A Chair (,gvc_00fefc1f865a,Sitting Triceps Extension On A Chair,0.823,overhead,,,,Upper-Arms,HOLD_SEMANTIC_QA,meaningful_modifier_difference
+gvc_4a5f72b27cde,Dumbbell Standing Prone Lateral Raise,gvc_aecf5f9cf111,Dumbbell Standing Lateral Raise,0.821,prone,,Dumbbell,Shoulders,Shoulders,HOLD_SEMANTIC_QA,meaningful_modifier_difference
+gvc_22c423c89abf,Seated Alternate Knee Raises On A Chair,gvc_1bf4f55734ca,Sitting Alternate Knee Tuck On A Chair,0.815,raise,tuck,,Waist,Waist,HOLD_SEMANTIC_QA,semantic_equivalence_not_proven
+gvc_cc101949ca87,Seated Chest Press On A Chair,gvc_4805bb7235b6,Sitting Chest Push On A Chair,0.815,press,push,,Chest,Chest,HOLD_SEMANTIC_QA,semantic_equivalence_not_proven
+gvc_5eb6153dc2d9,Side Step Pick And Carry,gvc_3f09228ba55d,Side Step Squat Pick And Carry,0.815,,squat,,Plyometrics,Plyometrics,HOLD_SEMANTIC_QA,meaningful_modifier_difference
+gvc_9975bc8c9f89,Sitting Torso Twist On A Chair,gvc_e699fc688b97,Sitting Core Twist On A Chair,0.815,torso,core,,Waist,Waist,HOLD_SEMANTIC_QA,semantic_equivalence_not_proven
+gvc_39672087ab1b,Barbell Jm Bench Press,gvc_59e844d5d30e,Barbell Bench Press,0.813,jm,,Barbell,Upper-Arms,Chest,HOLD_SEMANTIC_QA,vendor_category_difference
+gvc_97efd211b02d,Barbell Pause Decline Bench Press,gvc_3a11b7d13b04,Barbell Decline Bench Press,0.810,pause,,Barbell,Chest,Chest,HOLD_SEMANTIC_QA,meaningful_modifier_difference
+gvc_a82c61e88d0e,Sitting Dynamic Side Stretch,gvc_f6af2c5b7045,Sitting Lotus Dynamic Side Stretch,0.810,,lotus,,Waist,Waist,HOLD_SEMANTIC_QA,meaningful_modifier_difference
+gvc_69c6d0cccf29,Kneeling Back Leg Lift,gvc_b0455a85d0e7,Kneeling Back Leg Lift Curl,0.808,,curl,,Hips,Hips,HOLD_SEMANTIC_QA,meaningful_modifier_difference
+gvc_7558e3e520e5,Lying Criss Cross Legs,gvc_4911ccb5b8ca,Lying High Criss Cross Legs,0.804,,high,,Hips,Hips,HOLD_SEMANTIC_QA,meaningful_modifier_difference
+gvc_0fc4d50192d4,Barbell Pin Good Morning,gvc_97a4cbf1630c,Barbell Good Morning,0.796,pin,,Barbell,Thighs,Thighs,HOLD_SEMANTIC_QA,meaningful_modifier_difference
+gvc_579a6d18cdb7,Resistance Band Standing Single Arm Lateral Raise,gvc_ff203fa6c90f,Resistance Band Single Arm Lateral Raise,0.795,standing,,Resistance Band,,,HOLD_SEMANTIC_QA,meaningful_modifier_difference
+gvc_e4c61e6bda63,Cable Seated Leg Extension,gvc_a181e1cace6d,Cable Seated Single Leg Extension,0.793,,single,Cable,Thighs,Thighs,HOLD_SEMANTIC_QA,meaningful_modifier_difference
+gvc_bed7bee64279,Seated Calf Raise On A Chair,gvc_3ef37bad19ea,Seated Calf Rock On A Chair,0.793,raise,rock,,Calves,Calves,HOLD_SEMANTIC_QA,semantic_equivalence_not_proven
+gvc_4ac2ce463882,Barbell Pin Front Squat,gvc_6af3bc6b2a97,Barbell Front Squat,0.792,pin,,Barbell,Thighs,Thighs,HOLD_SEMANTIC_QA,meaningful_modifier_difference
+gvc_fde85e8c3fbf,Seated Underhand Arm Circle On A Chair,gvc_9c9e3ccc5620,Sitting Arm Circle On A Chair,0.791,underhand,,,Shoulders,Shoulders,HOLD_SEMANTIC_QA,meaningful_modifier_difference
+gvc_7d509b88b9e8,Seated Lean Back On A Chair,gvc_081542f2ded4,Sitting Pull Back On A Chair,0.790,lean,pull,,Back,Back,HOLD_SEMANTIC_QA,semantic_equivalence_not_proven
+gvc_656ec805fc64,Sitting Knee Tuck On A Chair,gvc_c11c5dcce57a,Sitting Chin Tuck On A Chair,0.790,knee,chin,,Waist,Neck,HOLD_SEMANTIC_QA,vendor_category_difference
+gvc_a9622e7d0001,Seated Leg Raises On A Chair,gvc_b1fe73fbdd4d,Sitting Lateral Raise On A Chair,0.783,leg,lateral,,Waist,Shoulders,HOLD_SEMANTIC_QA,vendor_category_difference
+gvc_5dfbb0f4e59f,Seated Upright Twists On A Chair,gvc_d2b6da56c9ae,Sitting Upright Row On A Chair,0.783,twist,row,,Waist,Shoulders,HOLD_SEMANTIC_QA,meaningful_modifier_difference
+gvc_46e2b4ed8ef8,Single Leg Hip Thrusts,gvc_adc0c1db795f,Single Leg Thrusts,0.783,hip,,,Hips,Hips,HOLD_SEMANTIC_QA,semantic_equivalence_not_proven
+gvc_ac87f7604f73,Alternating Hamstring Curl Jack,gvc_901093596671,Alternating Hamstring Curl Kick,0.782,jack,kick,,Plyometrics,Plyometrics,HOLD_SEMANTIC_QA,meaningful_modifier_difference
+gvc_8d2f15a5d56f,Seated Piriformis Stretch On A Chair,gvc_62c604c673c5,Sitting Forearms Stretch On A Chair,0.780,piriformis,forearms,,Stretching,Stretching,HOLD_SEMANTIC_QA,semantic_equivalence_not_proven
+gvc_a98bd0ff2493,Bodyweight Rear Lunge Twist,gvc_74872c457dbd,Bodyweight Reverse Lunge,0.778,twist,,,Thighs,Thighs,HOLD_SEMANTIC_QA,meaningful_modifier_difference
+gvc_3de86c301417,Dumbbell Drag Bicep Curl,canon_gvr_73045d068242,dumbbell biceps curl,0.778,drag,,Dumbbell,Upper-Arms,Upper-Arms,HOLD_SEMANTIC_QA,semantic_equivalence_not_proven
+gvc_4f42632f0220,Push Up (wall) Ii,gvc_b97a4382f5ab,Push Up (wall),0.778,ii,,,Chest,Chest,HOLD_SEMANTIC_QA,semantic_equivalence_not_proven
+gvc_2dbaebf09646,Lever Seated Single Leg Press (version 2),gvc_87925ab99df4,Lever Seated Single Calf Press,0.777,leg,calf,Machine,Thighs,Calves,HOLD_SEMANTIC_QA,vendor_category_difference
+gvc_78142a5d437e,Seated Knee Thrust On A Chair,gvc_5320a18ea50f,Sitting Knee Drives On A Chair,0.777,thrust,drive,,Waist,Waist,HOLD_SEMANTIC_QA,semantic_equivalence_not_proven
+gvc_e9cd3e8b95a1,Cable Seated One Arm Alternate Row,gvc_bff6f43d5abc,Cable Seated Single Arm Row,0.776,alternate,,Cable,Back,Back,HOLD_SEMANTIC_QA,meaningful_modifier_difference
+gvc_10ba39b692f7,Cable Single Arm Crossover,gvc_723b9ae1d071,Cable Bent Over Single Arm Crossover,0.776,,bent,Cable,Chest,Chest,HOLD_SEMANTIC_QA,semantic_equivalence_not_proven
+gvc_b371f87054df,Seated Shoulder Tap On A Chair,gvc_78a7223ada2e,Sitting Shoulder Stretch On A Chair,0.774,tap,stretch,,Upper-Arms,Stretching,HOLD_SEMANTIC_QA,meaningful_modifier_difference
+gvc_d9f43e592876,Duck Side Punch,gvc_6e67d6bba51d,Duck And Side Punch,0.772,,and,,Plyometrics,Plyometrics,HOLD_SEMANTIC_QA,semantic_equivalence_not_proven
+gvc_87cc4cd84be1,Seated Arm Crossover On A Chair,gvc_1ed4bc9f42a7,Sitting Underhand Crossover On A Chair,0.772,arm,underhand,,Chest,Chest,HOLD_SEMANTIC_QA,meaningful_modifier_difference
+gvc_948c5f62b522,Kneeling Back Rotation,gvc_ad4dcf5b11b0,Kneeling Upper Back Rotation,0.770,,upper,,Back,Back,HOLD_SEMANTIC_QA,semantic_equivalence_not_proven
+gvc_d3b719f0999c,Band Alternating Biceps Curl,gvc_a5eafee7bc4a,Band Standing Alternate Biceps Curl,0.769,,standing,Resistance Band,Upper-Arms,Upper-Arms,HOLD_SEMANTIC_QA,meaningful_modifier_difference
+gvc_0a70901e0de3,Lever Seated Leg Curl (plate Loaded),gvc_a2b146e3ea9e,Lever Kneeling Leg Curl (plate Loaded),0.764,seated,kneeling,Machine,Thighs,Thighs,HOLD_SEMANTIC_QA,meaningful_modifier_difference
+gvc_f90e9d15c89f,Single Leg Bridge Pose,gvc_d5d19cb94014,Single Leg Bridge,0.763,pose,,,Stretching,Hips,HOLD_SEMANTIC_QA,vendor_category_difference
+gvc_f2db42e4f5eb,Cable Glute Dominant Step Up,gvc_0dcf5e2b843c,Cable Ipsilateral Glute Dominant Step Up,0.760,,ipsilateral,Cable,Hips,,HOLD_SEMANTIC_QA,meaningful_modifier_difference
+gvc_6a3372835303,Sitting Side Bend Stretch,gvc_04397fae298d,Seated Side Bend Shoulder Stretch Stretch,0.760,,shoulder,,Stretching,,HOLD_SEMANTIC_QA,semantic_equivalence_not_proven
