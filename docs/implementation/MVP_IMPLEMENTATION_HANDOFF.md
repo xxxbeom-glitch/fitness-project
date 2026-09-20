@@ -175,7 +175,7 @@ Primary actions:
 - `내 루틴 만들기`
 
 Home shows no Recent Workout / `전체 기록` section.
-`내 루틴` remains visible even when there are zero saved routines; keep the section header only. Do not render empty-state copy/body and do not show a right-side `새 루틴` action.
+`내 루틴` remains visible even when there are zero saved routines; header copy is `내 루틴 (n)` using the current saved-routine count, so zero routines renders `내 루틴 (0)`. Keep the section header only. Do not render empty-state copy/body and do not show a right-side `새 루틴` action.
 No recommendation entry.
 
 `빈 운동`:
@@ -188,9 +188,9 @@ No recommendation entry.
 
 - Quick Start is identical to `02A_Home_NoRoutine`: `빈 운동` + `내 루틴 만들기`
 - no saved routine is automatically promoted into Quick Start
-- compact `내 루틴` 2 × n grid provides saved-routine access
+- compact `내 루틴 (n)` 2 × n grid provides saved-routine access
 - no weekday/today-next/selected-routine Home semantics
-- My Routine section header uses `Trailing=None`; routine creation remains through the Quick Start `내 루틴 만들기` card
+- My Routine section header copy = `내 루틴 (n)`; use current saved-routine count; header uses `Trailing=None`; routine creation remains through the Quick Start `내 루틴 만들기` card
 - exact `내 루틴` tile tap destination remains unresolved; do not invent it
 
 ### Active workout — `02D_Home_Active`
@@ -198,7 +198,7 @@ No recommendation entry.
 - current workout is primary
 - tapping compact active card resumes the current active workout
 - `내 루틴` remains below the active-workout section
-- render populated grid when saved routines exist; with zero routines keep only the `내 루틴` header
+- render populated grid when saved routines exist; with zero routines keep only the `내 루틴 (0)` header
 - no Recent Workout / `전체 기록` section on Home
 - no second active workout is silently created
 
