@@ -1,6 +1,6 @@
 # 04 ARCHITECTURE
 
-**Status:** PARTIALLY FROZEN — LOCAL-FIRST + SQLITE LOCKED
+**Status:** PARTIALLY FROZEN — LOCAL-FIRST + SQLITE + SUPABASE LOCKED
 
 ## Architecture goals
 
@@ -41,6 +41,14 @@ Future domains such as Gym, Body Composition, Watch, AI, and Community should re
 - active session, sessions, set records, routines, custom exercises, and sync metadata use stable local identities
 - schema evolution uses explicit migrations
 - media files remain outside SQLite; database rows keep references/metadata
+
+## Server persistence technology — CONFIRMED
+
+- Supabase is the backend provider
+- canonical server database = Supabase Postgres
+- local SQLite remains authoritative for immediate workout interaction
+- synchronization maps local stable identities to server stable identities
+- server-side data access must be constrained independently of client presentation
 
 ## TBD
 
