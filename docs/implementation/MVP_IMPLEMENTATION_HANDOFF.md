@@ -465,10 +465,18 @@ Current overlap rule — PO APPROVED 2026-09-20:
 - only one automatic Rest Timer exists at a time
 - no confirmation, toast, or additional screen is required for the restart
 
-Still unresolved:
-- exact zero-completion feedback across sound / vibration / background notification remains deferred despite the current Settings surfaces
+Rest Timer end-sound source — PO APPROVED 2026-09-20:
+- use app-owned custom sound assets only
+- do not use the device default notification/ringtone sound as the product sound
+- do not depend on an OS system-sound picker
+- Product Owner will provide the final Production sound assets later
+- exact asset filenames/labels remain a later asset task
 
-Cursor must not invent the remaining zero-completion feedback rule.
+Still unresolved:
+- zero-completion vibration behavior
+- background/system-notification behavior
+
+Cursor must not invent the remaining zero-completion feedback rules.
 
 ### Manual Timer
 
@@ -833,7 +841,7 @@ Cursor must stop and report `DECISION NEEDED` rather than choosing product behav
 - `duration` Active Workout timed-set interaction
 - unapproved PR/progression formula
 - unresolved non-active multi-device conflict behavior
-- exact Rest Timer zero-completion sound/vibration/background-notification behavior
+- Rest Timer zero-completion vibration/background-notification behavior
 - active-session recovery system-notification copy/actions/controls
 - release legal URLs/copy/retention period
 - notification delivery/backend behavior beyond approved UI
@@ -863,14 +871,17 @@ The following former blockers are already resolved by `docs/ux-decisions/2026-09
 
 Requires focused Product/UX decision before implementation of duration exercise logging.
 
-### BLOCKER G — automatic Rest Timer zero-completion feedback
+### BLOCKER G — automatic Rest Timer remaining zero-completion feedback
 
-The overlap/restart rule is resolved: completing another set while a Rest Timer is active replaces it with a fresh Rest Timer for the newly completed set.
+Resolved:
+- completing another set while a Rest Timer is active replaces it with a fresh Rest Timer for the newly completed set
+- timer-end sound source uses app-owned custom sound assets only; final Production files/labels are supplied later by the Product Owner
 
 Still open:
-- exact sound/vibration/background-notification feedback when rest reaches zero
+- vibration behavior when rest reaches zero
+- background/system-notification behavior
 
-Requires Product/UX feedback policy before full Rest Timer implementation.
+Requires Product/UX feedback policy for the remaining behavior before full Rest Timer implementation.
 
 ### BLOCKER H — active-session recovery system notification UX
 
