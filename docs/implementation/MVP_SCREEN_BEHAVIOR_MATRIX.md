@@ -43,7 +43,7 @@ Placement:
 
 Approved root surfaces:
 - `02A_Home_NoRoutine`
-- `02B_Home_RoutineSelected`
+- `02B_Home_WithRoutine`
 - `02D_Home_Active`
 - `03A_Routine_List`
 - `03B_Routine_Empty`
@@ -56,16 +56,20 @@ Canonical records:
 
 Verdict: **PASS — prior FIX-01 closed.**
 
-### DECISION-01 — Weekday scheduling conflicts with frozen Figma
+### RESOLVED-04 — Weekday / today-next / selected-routine Home semantics removed from MVP
 
-Current Product Direction / older invariant text still allows optional weekday assignment and scheduled/unscheduled Home semantics.
+PO-approved 2026-09-20:
+- weekday assignment is not part of the current MVP
+- Home has no `오늘의 운동 / 다음 운동` state
+- Home has no hidden selected/default routine
+- `02B_Home_WithRoutine` uses the same Quick Start as 02A: `빈 운동 / 내 루틴 만들기`
+- only the lower section changes from 02A `최근 운동` to 02B `내 루틴` 2 × n grid
+- Active Workout still overrides normal Home with 02D resume state
 
-Frozen Figma:
-- has no weekday assignment UI in current Routine create/edit/detail
-- has no `오늘의 운동 / 다음 운동` state on current Home
-- current 02B is a selected saved-routine quick-start surface
+Canonical decision:
+- `docs/ux-decisions/2026-09-20-group02-home-with-routine-simplification.md`
 
-Verdict: **DECISION NEEDED — either remove weekday scheduling from current MVP or explicitly reopen the required product/design states.**
+Verdict: **PASS — former DECISION-01 resolved.**
 
 ### DECISION-02 — Routine duplicate semantics are not specified
 
@@ -188,7 +192,7 @@ Verdict: **PASS — Group 00–01 closed.**
 | Screen | Purpose / Entry | Primary behavior / Exit | Implementation rule | QA |
 |---|---|---|---|---|
 | `02A_Home_NoRoutine` | Home with no saved routine | `빈 운동` → zero-exercise Active Workout; `내 루틴 만들기` → routine create; recent workout row opens its record | Blank workout creates no saved routine. Recommendation entry absent. | PASS |
-| `02B_Home_RoutineSelected` | Home with saved routines / selected quick-start routine | selected routine card → routine workout start; `빈 운동` → blank workout; routine tile → selected routine access; `새 루틴` → create | Current Figma represents a selected routine, not weekday-derived `today/next` logic. Whole routine tile is the target. | DECISION-01 |
+| `02B_Home_WithRoutine` | Home with one or more saved routines | `빈 운동` → blank workout; `내 루틴 만들기` / `새 루틴` → routine create; `내 루틴` renders saved routines in 2×n grid | Quick Start is identical to 02A. No weekday/today-next/selected-routine semantics. Exact routine-tile tap destination remains a Group 02 decision. | DECISION NEEDED — routine-tile tap |
 | `02D_Home_Active` | Home while one active workout exists | active card → resume same session; recent workout → record detail | Never create a second active session silently. | PASS |
 
 # 03 — Routine
@@ -408,7 +412,6 @@ Most static/state/detail/dialog/sheet screens in Groups 01, 04, 06, 07, 08, and 
 - none in the current frozen visual contract.
 
 ### DECISION NEEDED
-1. Weekday scheduling vs current frozen Home/Routine design.
 2. Routine `복제` exact behavior.
 3. W / D / F routine-set semantics.
 4. Automatic Rest Timer already-running / end-feedback runtime policy.
