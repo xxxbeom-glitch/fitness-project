@@ -4,7 +4,7 @@
 
 ## Current mode
 
-`MVP 94 CONTENT/STATE FRAMES FROZEN · 94-SCREEN BEHAVIOR MATRIX COMPLETE · VISUAL FIXES CLOSED · HANDOFF QA = DECISION NEEDED · BOTTOM APP BAR ROOT PLACEMENT PASS · WEEKDAY SCHEDULING CONFLICT · ROUTINE DUPLICATE OPEN · W/D/F SET SEMANTICS OPEN · REST-TIMER EDGE POLICY OPEN · RECOVERY SYSTEM-NOTIFICATION UX OPEN · TECH STACK / ARCHITECTURE OPEN · DURATION ACTIVE-SET UX OPEN · IMPLEMENTATION NOT STARTED`
+`MVP 94 CONTENT/STATE FRAMES FROZEN · 94-SCREEN BEHAVIOR MATRIX COMPLETE · VISUAL FIXES CLOSED · GROUP 00–01 FIRST-RUN QA PASS · NEXT = GROUP 02 HOME QA · HANDOFF QA = DECISION NEEDED · BOTTOM APP BAR PASS · WEEKDAY SCHEDULING CONFLICT · ROUTINE DUPLICATE OPEN · W/D/F SET SEMANTICS OPEN · REST-TIMER EDGE POLICY OPEN · RECOVERY SYSTEM-NOTIFICATION UX OPEN · TECH STACK / ARCHITECTURE OPEN · DURATION ACTIVE-SET UX OPEN · IMPLEMENTATION NOT STARTED`
 
 ## Resume rule
 
@@ -25,7 +25,7 @@ Current editing surface:
 - group wrapper frames: `0`
 
 Whole-MVP component linkage read-back after the latest maintenance:
-- instance nodes: `1,855`
+- instance nodes: `1,872`
 - missing main-component links: `0`
 - live MVP instances whose source page is not `Common_Component`: `0`
 
@@ -64,6 +64,7 @@ The previous `98` screen count is superseded by the current `94` after the 2026-
 - `docs/ux-decisions/2026-09-17-light-radius-exploration-checkpoint.md`
 
 ### Historical group closures / current product-policy references
+- Group 00–01 first-run closure: `docs/ux-decisions/2026-09-20-group00-01-first-run-closure.md`
 - AppLogo primary color update: `docs/ux-decisions/2026-09-19-app-logo-primary-color.md`
 - Cross-group dialog copy simplification: `docs/ux-decisions/2026-09-19-dialog-copy-simplification.md`
 - Group 02 Home component/binding maintenance: `docs/ux-decisions/2026-09-19-group02-home-component-binding-maintenance.md`
@@ -623,69 +624,46 @@ Release follow-ups that are not Figma blockers:
 
 # NEXT OPEN ITEM
 
-**94개 canonical content/state frame의 화면별 행동 매핑 QA까지 완료했다. 기존 handoff의 `CONDITIONAL PASS`는 철회하고 현재 판정은 `FIX / DECISION NEEDED`다.**
+**Sequential handoff QA is now proceeding one block at a time. Do not advance to the next block until the Product Owner resolves/approves the current block.**
 
-Detailed QA:
-- `docs/implementation/MVP_SCREEN_BEHAVIOR_MATRIX.md`
-- `docs/implementation/MVP_HANDOFF_QA.md`
+Completed sequential block:
+- **Group 00–01 Splash / Authentication / First Run — PASS**
+- Login implicit Terms-consent copy removed; Terms/Privacy links retained
+- explicit required Terms agreement moved to Basic Info via shared `TermsAgreementRow`
+- Basic Info Back → Login while onboarding remains incomplete
+- same provider identity resumes the same incomplete internal account
+- focused Figma QA PASS
+- canonical record: `docs/ux-decisions/2026-09-20-group00-01-first-run-closure.md`
 
-## Resolved targeted visual FIX
+## Current sequential QA block — Group 02 Home
 
-**Primary BottomAppBar — PASS**
-- current IA = `홈 / 루틴 / 분석 / 설정`
-- shared local `BottomAppBar` = `2078:2401`
-- seven approved root screens only
-- active variants aligned per root
-- canonical placement = `x=0 / y=641 / 360×78`
-- unexpected non-root instances = `0`
-- whole-MVP instances = `1,862 / 1,862`
-- missing main-component links = `0`
-- component sources outside `Common_Component` = `0`
-- canonical decision: `docs/ux-decisions/2026-09-20-bottom-app-bar-root-placement.md`
+Start with the existing unresolved product conflict:
 
-Brand naming drift found by deep QA was corrected:
-- current Product Direction / Project Brief now use Tampin
+1. **Weekday scheduling / today-next semantics**
+   - older product text still allows optional weekday assignment and Home `오늘의 운동 / 다음 운동`
+   - current canonical Routine/Home Figma has no weekday assignment UI and current `02B` is a saved-routine quick-start surface
+   - decide whether weekday scheduling is removed/deferred from MVP or whether targeted design states must be reopened
+   - **STOP after presenting the Group 02 finding(s) and receiving PO decision; do not continue to Group 03 automatically**
 
-## Product Decision Needed
+Later sequential blocks after explicit approval:
+- Group 03 Routine
+- Group 04 Exercise Library / Custom Exercise
+- Group 05 Active Workout
+- Group 06–07 Completion / History / Analysis
+- Group 08 Settings / Account / Support
+- remaining cross-cutting runtime/architecture decisions
 
-2. **Weekday scheduling / today-next semantics**
-   - older product text: optional weekday assignment / scheduled-vs-unscheduled Home
-   - current frozen Figma: weekday control 없음, today/next Home state 없음
-   - MVP에서 제거/연기할지, 필요한 화면을 targeted reopen할지 PO 결정 필요
+## Still-open decisions already identified
 
-3. **Routine Duplicate**
-   - `03A_Routine_List_Menu`의 `복제` action은 존재
-   - name / metadata / deep-copy / destination / collision rule 미정
+- Routine Duplicate behavior
+- W / D / F routine-set semantics
+- Automatic Rest Timer runtime edge/end-feedback policy
+- Active-session recovery system-notification UX
+- Technology stack / platform architecture
+- Duration Active Workout interaction
+- iOS launch scope / Apple sign-in alignment
 
-4. **W / D / F routine-set semantics**
-   - Routine create/edit Figma에 W / numbered / D / F rows 존재; current 05A Active Workout representative screen uses numbered rows only
-   - 의미 / 선택 / 저장 / 완료 / volume / PR / history 영향 미정
-
-5. **Automatic Rest Timer runtime edge**
-   - 세트 완료 → 자동 시작 / RestLiveBar / 휴식 종료는 확정
-   - 이미 Rest Timer가 실행 중일 때 또 다른 세트를 완료하면 재시작/교체/유지 중 무엇을 할지 미정
-   - 0 도달 시 sound/vibration/background-notification 정확한 runtime feedback도 미정
-
-6. **Active-session recovery system notification UX**
-   - interruption/restart 후 동일 active session 복구는 확정
-   - dedicated in-app recovery screen/banner는 사용하지 않음
-   - system notification으로 ongoing state를 드러내는 방향은 확정
-   - notification copy / actions / platform behavior는 미정
-
-7. **Technology stack / platform architecture**
-   - production client framework / platform priority / local persistence / backend-sync architecture 결정 필요
-
-8. **Duration Active Workout interaction**
-   - `recording_type=duration` storage semantics는 확정
-   - stopwatch/countdown/start-stop/rest-transition은 여전히 미정
-
-## Conditional platform alignment
-
-9. **iOS launch scope**
-   - current Login Figma = Google / Kakao
-   - iOS launch 시 Apple sign-in/provider-specific account copy alignment 필요
-
-## Active non-blocking asset side-track
+## Active non-blocking side tracks
 
 - Production exercise-thumbnail full crop/mapping QA
 - final timer-end sound assets/labels
@@ -693,8 +671,8 @@ Brand naming drift found by deep QA was corrected:
 
 ## Development authorization
 
-위 FIX / Product Decision Needed를 해결한 뒤 Product Owner가 개발 시작을 명시하면 첫 scoped implementation Issue를 만든다.
-Broad unscoped Cursor build는 시작하지 않는다.
+Do not begin production implementation yet.
+After sequential Product/UX QA decisions and architecture gates are resolved, Product Owner must explicitly authorize development before the first scoped implementation Issue is created.
 
 # Development boundary
 
