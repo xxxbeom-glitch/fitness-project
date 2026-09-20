@@ -17,28 +17,31 @@ Cursor가 canonical Figma의 각 top-level frame을 어떤 제품 상태로 구�
 
 ## Cross-screen findings
 
-### FIX-01 — Primary bottom navigation component resolved; root placement remains
+### RESOLVED-02 — Primary BottomAppBar contract and root placement
 
-Current product IA says the primary destinations are:
+Current product IA destinations:
 - 홈
 - 루틴
 - 분석
 - 설정
 
-2026-09-20 targeted Figma maintenance resolved the shared-component gap:
+2026-09-20 targeted Figma maintenance fully resolves the prior bottom-navigation design gap.
+
+Shared component:
 - local `BottomAppBar` component set = `2078:2401`
 - variants = `Active=홈 / 루틴 / 분석 / 설정`
 - Light container = `bg/surface` + existing `Elevation/Card`
 - active = `brand/primary`
 - inactive = `text/secondary`
-- reference = `REF_하단앱바_화면내배치예시` `2075:8536`
-- canonical checkpoint = `docs/ux-decisions/2026-09-20-bottom-app-bar-light-component-foundation.md`
 
-Still open:
-- current canonical root frames do not yet contain the shared BottomAppBar instance
-- bottom placement / content clearance must be applied and QA'd on the applicable roots
+Placement:
+- only the seven approved root surfaces contain the BottomAppBar
+- authored 360×780 placement = `x=0 / y=641 / 360×78`
+- long Analysis/Settings compositions use the same first-viewport position to represent fixed viewport navigation
+- production scroll content must reserve bottom inset so final content can move above the bar
+- non-root/detail/edit/workout/overlay state frames do not add a separate BottomAppBar
 
-Affected root surfaces:
+Approved root surfaces:
 - `02A_Home_NoRoutine`
 - `02B_Home_RoutineSelected`
 - `02D_Home_Active`
@@ -47,9 +50,11 @@ Affected root surfaces:
 - `07A_Analysis_Home`
 - `08A_Settings_Home`
 
-Cursor must use the approved shared component and must not invent a separate bottom-navigation design.
+Canonical records:
+- `docs/ux-decisions/2026-09-20-bottom-app-bar-light-component-foundation.md`
+- `docs/ux-decisions/2026-09-20-bottom-app-bar-root-placement.md`
 
-Verdict: **FIX — component contract PASS; root-screen placement remains before primary-shell UI implementation.**
+Verdict: **PASS — prior FIX-01 closed.**
 
 ### DECISION-01 — Weekday scheduling conflicts with frozen Figma
 
@@ -166,16 +171,16 @@ Current implementation-facing brand = **Tampin**.
 
 | Screen | Purpose / Entry | Primary behavior / Exit | Implementation rule | QA |
 |---|---|---|---|---|
-| `02A_Home_NoRoutine` | Home with no saved routine | `빈 운동` → zero-exercise Active Workout; `내 루틴 만들기` → routine create; recent workout row opens its record | Blank workout creates no saved routine. Recommendation entry absent. | PASS + FIX-01 bottom nav |
-| `02B_Home_RoutineSelected` | Home with saved routines / selected quick-start routine | selected routine card → routine workout start; `빈 운동` → blank workout; routine tile → selected routine access; `새 루틴` → create | Current Figma represents a selected routine, not weekday-derived `today/next` logic. Whole routine tile is the target. | DECISION-01 + FIX-01 |
-| `02D_Home_Active` | Home while one active workout exists | active card → resume same session; recent workout → record detail | Never create a second active session silently. | PASS + FIX-01 |
+| `02A_Home_NoRoutine` | Home with no saved routine | `빈 운동` → zero-exercise Active Workout; `내 루틴 만들기` → routine create; recent workout row opens its record | Blank workout creates no saved routine. Recommendation entry absent. | PASS |
+| `02B_Home_RoutineSelected` | Home with saved routines / selected quick-start routine | selected routine card → routine workout start; `빈 운동` → blank workout; routine tile → selected routine access; `새 루틴` → create | Current Figma represents a selected routine, not weekday-derived `today/next` logic. Whole routine tile is the target. | DECISION-01 |
+| `02D_Home_Active` | Home while one active workout exists | active card → resume same session; recent workout → record detail | Never create a second active session silently. | PASS |
 
 # 03 — Routine
 
 | Screen | Purpose / Entry | Primary behavior / Exit | Implementation rule | QA |
 |---|---|---|---|---|
-| `03A_Routine_List` | Saved-routine root list | + → create; card → detail; more → routine menu | User-created routines only. No recommendation tab/catalog. | PASS + FIX-01 |
-| `03B_Routine_Empty` | Routine root with zero saved routines | `루틴 만들기` → create | Header intentionally has no redundant + action in this state. | PASS + FIX-01 |
+| `03A_Routine_List` | Saved-routine root list | + → create; card → detail; more → routine menu | User-created routines only. No recommendation tab/catalog. | PASS |
+| `03B_Routine_Empty` | Routine root with zero saved routines | `루틴 만들기` → create | Header intentionally has no redundant + action in this state. | PASS |
 | `03D_Routine_Detail` | View saved routine | Edit → edit; `운동 시작` → Active Workout | Summary shows exercise count / estimated time / set count. Completed history must not depend on later routine edits. | PASS; DECISION-01 affects schedule only |
 | `03E_Routine_Create` | New routine, before exercises | Back → leave or unsaved confirm when changed; `운동 추가` → exercise selection; Save initially Disabled | Routine name is optional. Current Disabled Save is because routine is otherwise invalid/empty, not because name is blank. | PASS |
 | `03F_Routine_Edit` | Edit existing routine | Back with changes → 03EF; Trash → delete confirm; exercise menu; add exercise; Save → updated detail | Existing routine history is immutable. Recording values here are planned/configured values, not past performance rewrite. | PASS |
@@ -297,7 +302,7 @@ Recommendation-template duration language from older Group 03 history is superse
 | Screen | Purpose / Entry | Primary behavior / Exit | Implementation rule | QA |
 |---|---|---|---|---|
 | `07D_Workout_History_Detail` | Saved workout-session detail | Back; Trash → delete confirm | Show all valid PRs for this session; 2×2 summary; body distribution; performed exercise table. | PASS |
-| `07A_Analysis_Home` | Analysis root | `총 중량 / 세트 / 시간`; `4주 / 3개월 / 1년`; body-area/recent progress/history drilldown | Default = 총 중량 + 4주. 총 중량=eligible completed weight×reps; 세트=completed set count; 시간=saved session duration. Approved rolling/month buckets, adaptive zero-based scale, current Korean compact kg-axis labels, and point tooltip apply. | PASS + FIX-01 |
+| `07A_Analysis_Home` | Analysis root | `총 중량 / 세트 / 시간`; `4주 / 3개월 / 1년`; body-area/recent progress/history drilldown | Default = 총 중량 + 4주. 총 중량=eligible completed weight×reps; 세트=completed set count; 시간=saved session duration. Approved rolling/month buckets, adaptive zero-based scale, current Korean compact kg-axis labels, and point tooltip apply. | PASS |
 | `07B_BodyArea_Detail` | Selected body-area drilldown | period tabs; view contributor exercise list | Show all contributors; sort by muscle-exposure contribution + recency tie-break. Trailing aggregate is recording-type native: weight volume / reps total / duration total / assisted reps total. | PASS |
 | `07B_BodyArea_Detail_Empty` | Body-area/period has no records | change period/back | Keep section shell; no body-map fake activity. | PASS |
 | `07D_Workout_History_Detail_DeleteConfirm` | Delete saved workout session | Cancel / Delete | Delete whole session; recalc derived analysis/PR/history; previous valid destination or Home fallback. | PASS |
@@ -339,7 +344,7 @@ Recommendation-template duration language from older Group 03 history is superse
 
 | Screen | Purpose / Entry | Primary behavior / Exit | Implementation rule | QA |
 |---|---|---|---|---|
-| `08A_Settings_Home` | Settings root | profile / subscription stub / workout / units / notifications / language / legal / inquiry | Theme and FAQ are not current MVP rows. Subscription is not billing. | PASS + FIX-01 |
+| `08A_Settings_Home` | Settings root | profile / subscription stub / workout / units / notifications / language / legal / inquiry | Theme and FAQ are not current MVP rows. Subscription is not billing. | PASS |
 | `08D_Workout_Settings` | Workout preferences | default rest time; timer sound; vibration; keep-screen-on | Current representative states: vibration On, keep-screen-on Off. Persist user preference. | PASS |
 | `08E_Notification_Settings` | Notification preferences | toggle rest-timer notification and updates/notices | Current UI defaults show both On. Delivery/backend behavior beyond approved UI must not be invented. | CONDITIONAL |
 | `08D1_Default_Rest_Time_Sheet` | Set default rest duration | 5-second increments; Complete applies value | Current representative value 2:00. | PASS |
@@ -384,7 +389,7 @@ Mapped canonical frames: **94 / 94**
 Most static/state/detail/dialog/sheet screens in Groups 01, 04, 06, 07, 08, and the locked parts of Groups 02/03/05.
 
 ### FIX
-1. Primary bottom navigation visual/component contract missing from canonical Figma.
+- none in the current frozen visual contract.
 
 ### DECISION NEEDED
 1. Weekday scheduling vs current frozen Home/Routine design.
@@ -401,4 +406,4 @@ Most static/state/detail/dialog/sheet screens in Groups 01, 04, 06, 07, 08, and 
 - final timer sound assets.
 - Production exercise-thumbnail crop/mapping.
 
-**Result: the 94 screens are now individually mapped, but the implementation handoff is NOT a full PASS until the FIX / DECISION NEEDED items above are resolved.**
+**Result: the 94 screens are now individually mapped, but the implementation handoff is NOT a full PASS until the DECISION NEEDED items above are resolved.**
