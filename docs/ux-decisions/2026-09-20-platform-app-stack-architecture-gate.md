@@ -1,7 +1,7 @@
 # Platform / App Stack Architecture Gate
 
 **Date:** 2026-09-20
-**Status:** PO APPROVED · APP STACK LOCKED · LOCAL-FIRST PERSISTENCE LOCKED · LOCAL DB NEXT
+**Status:** PO APPROVED · APP STACK / LOCAL-FIRST / SQLITE LOCKED · BACKEND NEXT
 
 ## Platform strategy
 
@@ -48,9 +48,30 @@ Rules:
 
 This is an offline-capable local-first model, not a server-first request queue.
 
+## Local database — PO APPROVED
+
+Locked:
+- SQLite
+- Expo integration: `expo-sqlite`
+
+Local SQLite is used for:
+- active workout/session state
+- workout sessions and set records
+- saved routines
+- custom exercises
+- local settings that belong to application data
+- synchronization metadata / pending-sync state where appropriate
+
+Rules:
+- SQLite is the durable local application database, not a temporary cache
+- active-workout recovery reads from local SQLite
+- schema changes require explicit migrations
+- server synchronization must map to stable local record identities rather than mutable display labels
+- do not store large image/media binaries inside SQLite; store references/metadata instead
+
 ## Still open
 
-- local database technology
+- backend/database provider
 - backend/database provider
 - auth implementation boundary
 - exact sync trigger / retry / conflict mechanics
@@ -61,6 +82,6 @@ This is an offline-capable local-first model, not a server-first request queue.
 
 ## NEXT OPEN ITEM
 
-Choose the local database technology.
+Choose the backend/database provider.
 
 Do not begin production implementation yet.
