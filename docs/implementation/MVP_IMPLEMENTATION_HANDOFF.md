@@ -383,18 +383,17 @@ Cursor must not invent this behavior.
 
 Verdict for this component state: `DECISION NEEDED`.
 
-### W / D / F set-type blocker
+### MVP set-type rule — resolved
 
-The current Routine / Active Workout Figma visibly contains set-row identifiers `W`, normal numbered rows, `D`, and `F`.
+Current MVP uses numeric sets only:
+- `1, 2, 3 ... n`
+- W / D / F special set types are not implemented
+- W = warm-up, D = drop set, F = failure set are post-MVP concepts only
+- no special-set selector/control or persistence branch is required in MVP
+- completed MVP sets use the existing normal-set volume/history/analysis treatment
 
-The current reviewed authority does not define:
-- user-facing meaning of W / D / F
-- how set type is selected/changed
-- persistence representation
-- completion behavior
-- volume / PR / history calculation behavior
-
-Cursor must not infer Warm-up / Drop / Failure semantics. This is a separate `DECISION NEEDED` item.
+Canonical decision:
+- `docs/ux-decisions/2026-09-20-group03-routine-final-closure.md`
 
 ## 11. Active Workout contract
 
