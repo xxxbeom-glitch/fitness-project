@@ -640,9 +640,20 @@ Group 07 navigation:
 - 07A `최근 기록 변화` exercise row → canonical Group 04 exercise-detail flow for that exercise
 - 07B contributor exercise row → canonical Group 04 exercise-detail flow for that exercise
 - 07A recent-workout row → matching `07D_Workout_History_Detail`
+- 07A `전체 기록` → `07C_Workout_History`
+- `07C_Workout_History` lists saved completed / saved-partial sessions with persisted performed work, newest first; discarded/no-work sessions excluded
+- 07C history-row tap → matching `07D_Workout_History_Detail`
 - Group 06 `기록 상세 보기` → the just-saved session's `07D_Workout_History_Detail`
-- the removed separate 07C workout-history overview must not be recreated unless a new PO decision explicitly restores it
-- current 07A `전체 기록` action has no approved destination and remains a sequential-QA decision item; Cursor must not invent one
+
+07A recent-record-change selection:
+- compare each exercise's most recent completed/persisted performance with its immediately previous comparable completed/persisted performance
+- include only exercises whose performance improved
+- newest qualifying improvement first
+- show at most 3 rows on 07A
+- do not rank across exercises by an invented improvement score
+- first-ever / equal / worse performances are excluded
+- use native improvement semantics: weight_reps = higher load, or higher reps at same load; reps = higher reps; duration = longer duration; assisted_weight_reps = lower assistance, or higher reps at same assistance
+- display the current native record + native delta; no cross-unit conversion
 
 07D performed-exercise presentation:
 - use the approved single compact performed-exercise table/card
