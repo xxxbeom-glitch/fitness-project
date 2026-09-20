@@ -85,6 +85,14 @@ Canonical policy:
 - one active-session write-owner device
 - media uploads do not block core workout-data sync
 
+## LOCKED — Android exact Rest Timer alarm
+
+- exact Rest Timer completion uses Android exact-alarm scheduling
+- permission model = `SCHEDULE_EXACT_ALARM`
+- do not use restricted `USE_EXACT_ALARM` for the Android fitness-tracker MVP
+- request exact-alarm special access contextually when precise Rest Timer alerts are first needed, not blindly at first launch
+- if access is denied/revoked, workout logging remains fully available and Rest Timer notification falls back to best-effort delivery
+
 ## TBD
 
 The following remain intentionally open:
