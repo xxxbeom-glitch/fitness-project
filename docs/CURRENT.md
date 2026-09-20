@@ -879,9 +879,10 @@ Completed:
 - Block 02 — Application stack / React Native + Expo + TypeScript + narrow native Android boundary: **PASS**
 - Block 03 — Local-first persistence scope / server-confirmed action boundary: **PASS**
 - Block 04 — SQLite local database / migrations / transactions / account-scoped ownership: **PASS**
+- Block 05 — Supabase Postgres / RLS / server correctness boundary: **PASS**
 
 NEXT OPEN ITEM:
-- Block 05 — Supabase backend / server authority
+- Block 06 — Authentication: Google + Kakao / Supabase Auth / secure session storage
 
 ## Other already-known open decisions
 
