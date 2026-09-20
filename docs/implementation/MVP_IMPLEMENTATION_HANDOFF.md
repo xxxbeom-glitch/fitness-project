@@ -944,9 +944,18 @@ Duration uses the existing manual TIME-entry + set-completion pattern. The heade
 
 The Rest Timer overlap, sound source, and system-notification behavior are Product/UX locked. Final Production sound assets remain a later asset task.
 
-### Resolved — active-session system notification UX
+### Resolved — active-session system notification UX + Android runtime
 
-The ongoing Active Workout system surface, tap-to-resume behavior, recovery behavior, and no-quick-action MVP boundary are Product/UX locked. Exact platform implementation remains part of the technology/architecture gate.
+The ongoing Active Workout system surface, tap-to-resume behavior, recovery behavior, and no-quick-action MVP boundary are Product/UX locked.
+
+Android runtime contract:
+- use a normal Android ongoing notification for the Active Workout
+- do not introduce a Foreground Service solely to preserve the workout timer/notification in the current MVP
+- show elapsed workout time using Android's system chronometer/time display backed by the persisted absolute start timestamp
+- React Native/JavaScript background ticking is not required for elapsed-time correctness
+- SQLite remains authoritative; the notification is presentation only
+- Rest Timer completion is handled separately through the approved exact-alarm path
+- future continuous sensor/location/health tracking requires a new Foreground Service decision
 
 ### Platform scope — Android only
 
