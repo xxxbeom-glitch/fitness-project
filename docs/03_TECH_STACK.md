@@ -135,11 +135,37 @@ Excluded:
 - sound selection changes do not recreate notification channels
 - asset failure falls back to bundled `기본`, never device default ringtone/notification sound
 
+## LOCKED — crash / error reporting
+
+Provider:
+- Sentry
+
+Scope:
+- crash/error diagnostics only
+- unhandled JS errors + native Android crashes
+- release/build tagging + source maps
+- limited non-sensitive breadcrumbs
+
+Privacy:
+- Session Replay off
+- product analytics not implied
+- no DOB/email/nickname/profile image/workout values/routine names/support contents/auth secrets/raw DB rows
+- only opaque internal user ID + app/build/OS/screen/high-level runtime context
+- PII disabled/scrubbed before events leave the app
+
+Environment:
+- local development disabled by default
+- internal/preview test builds use non-production Sentry environment
+- production uses production environment
+
+Canonical:
+- `docs/ux-decisions/2026-09-20-sentry-crash-error-reporting.md`
+
 ## TBD
 
 The following remain intentionally open:
-- analytics/crash reporting
-- exact background/runtime implementation
+- product-usage analytics scope
+- exact background/runtime implementation only if a concrete implementation conflict appears
 - deployment/release pipeline details
 
 ## Decision criteria
@@ -157,8 +183,7 @@ Do not select infrastructure merely because it is fashionable or familiar.
 ## NEXT ARCHITECTURE WORK
 
 Proceed one decision at a time:
-1. platform runtime implementation details
-2. analytics/crash reporting
-3. deployment/release pipeline details
+1. product-usage analytics scope
+2. deployment/release pipeline details
 
 Future iOS/Watch work remains outside the current MVP and must not drive Android overengineering.
