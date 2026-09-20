@@ -1,7 +1,7 @@
 # 24 PRODUCT DIRECTION V2
 
 **Status:** CONFIRMED BASELINE — PRODUCT RESET
-**Updated:** 2026-09-19
+**Updated:** 2026-09-20
 
 ## Purpose
 
@@ -135,6 +135,13 @@ New account baseline:
 
 - 성별: `남성 / 여성`
 - 생년월일: full date of birth
+- 서비스 이용약관 명시적 동의
+
+`시작하기`는 위 필수 상태가 모두 유효할 때만 활성화한다.
+
+Login에서는 `서비스 이용약관 / 개인정보처리방침` 링크만 유지하고 provider continuation 자체를 약관 동의로 간주하지 않는다. 첫 가입자의 명시적 이용약관 동의는 `기본정보`에서 받는다.
+
+기본정보에서 Back을 누르면 Login으로 돌아가되 onboarding은 미완료 상태로 유지한다. 같은 provider identity로 다시 인증하면 동일한 내부 계정을 재사용하고 `기본정보`부터 재개한다.
 
 성별과 생년월일은 시작 중량을 추정하는 용도로 사용하지 않는다.
 
