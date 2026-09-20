@@ -301,7 +301,7 @@ Recommendation-template duration language from older Group 03 history is superse
 | `05G2_Exercise_Replace_SecondBatch` | Second replacement candidate group | select or `다른 운동 보기` cycles within already secured groups | No `전체 운동에서 찾기`; no 7th+ candidate. | PASS |
 | `05P_Exercise_Replace_DeleteConfirm` | Replacement after >=1 completed set in current exercise | Cancel or delete those current-session completed sets and replace | Never delete prior-date history. | PASS |
 | `05A_Workout_Weight_Scrolled_3rdExercise` | Scroll/pinned-shell reference | same active-workout actions at scrolled position | Implement as scroll state, not separate route. Preserve pinned/live elements. | PASS |
-| `05F_Workout_RestTimer` | Automatic Rest Timer active after set completion | Continue logging; `휴식 종료` terminates countdown; zero removes bar | Fixed-bottom RestLiveBar; no ±15/pause/reset. Manual Timer unavailable while rest is active. | PASS visual / DECISION-04 runtime edge |
+| `05F_Workout_RestTimer` | Automatic Rest Timer active after set completion | Continue logging; completing another set restarts the automatic Rest Timer for that newly completed set; `휴식 종료` terminates countdown; zero removes bar | Fixed-bottom RestLiveBar; one automatic Rest Timer at a time; no ±15/pause/reset. Manual Timer unavailable while rest is active. | PASS visual / zero-completion feedback open |
 | `05Q_ManualTimer_Idle` | Manual timer popup idle | ±15 sec; start; X dismiss | Default 01:30; no direct time typing. | PASS |
 | `05Q_ManualTimer_Running` | Manual timer counting down | ±15 sec; pause; X terminates timer | No simultaneous automatic Rest Timer. | PASS |
 | `05Q_ManualTimer_Paused` | Manual timer paused | reset / continue / X terminate | Reopen after close starts fresh Idle 01:30. | PASS |
@@ -425,7 +425,7 @@ Most static/state/detail/dialog/sheet screens in Groups 01, 04, 06, 07, 08, and 
 - none in the current frozen visual contract.
 
 ### DECISION NEEDED
-1. Automatic Rest Timer already-running / end-feedback runtime policy.
+1. Automatic Rest Timer zero-completion feedback policy.
 2. Active-session recovery system-notification UX.
 3. Duration Active Workout timed-set interaction.
 4. Production technology stack / platform architecture.
