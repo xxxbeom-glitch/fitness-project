@@ -1,6 +1,6 @@
 # 04 ARCHITECTURE
 
-**Status:** PARTIALLY FROZEN — LOCAL-FIRST PERSISTENCE LOCKED
+**Status:** PARTIALLY FROZEN — LOCAL-FIRST + SQLITE LOCKED
 
 ## Architecture goals
 
@@ -34,9 +34,16 @@ Future domains such as Gym, Body Composition, Watch, AI, and Community should re
 - Unsynced local workout state must survive app interruption/restart.
 - Sync failure must not delete, roll back, or silently overwrite newer unsynced local workout data.
 
+## Local persistence technology — CONFIRMED
+
+- SQLite via `expo-sqlite`
+- SQLite is durable local application storage, not a cache
+- active session, sessions, set records, routines, custom exercises, and sync metadata use stable local identities
+- schema evolution uses explicit migrations
+- media files remain outside SQLite; database rows keep references/metadata
+
 ## TBD
 
-- local database technology
 - server schema
 - sync trigger / retry / conflict strategy
 - authentication boundary
