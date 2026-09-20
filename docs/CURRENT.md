@@ -4,7 +4,7 @@
 
 ## Current mode
 
-`MVP 94 CONTENT/STATE FRAMES FROZEN · 94-SCREEN BEHAVIOR MATRIX COMPLETE · HANDOFF QA = FIX / DECISION NEEDED · PRIMARY BOTTOM-NAV DESIGN GAP · WEEKDAY SCHEDULING CONFLICT · ROUTINE DUPLICATE OPEN · W/D/F SET SEMANTICS OPEN · REST-TIMER EDGE POLICY OPEN · RECOVERY SYSTEM-NOTIFICATION UX OPEN · TECH STACK / ARCHITECTURE OPEN · DURATION ACTIVE-SET UX OPEN · IMPLEMENTATION NOT STARTED`
+`MVP 94 CONTENT/STATE FRAMES FROZEN · 94-SCREEN BEHAVIOR MATRIX COMPLETE · HANDOFF QA = FIX / DECISION NEEDED · PRIMARY BOTTOM-NAV COMPONENT PASS / ROOT PLACEMENT OPEN · WEEKDAY SCHEDULING CONFLICT · ROUTINE DUPLICATE OPEN · W/D/F SET SEMANTICS OPEN · REST-TIMER EDGE POLICY OPEN · RECOVERY SYSTEM-NOTIFICATION UX OPEN · TECH STACK / ARCHITECTURE OPEN · DURATION ACTIVE-SET UX OPEN · IMPLEMENTATION NOT STARTED`
 
 ## Resume rule
 
@@ -57,6 +57,7 @@ The previous `98` screen count is superseded by the current `94` after the 2026-
 - `docs/ux-decisions/2026-09-17-mvp-light-theme-color-acceptance.md`
 
 ### Shared design-system maintenance
+- `docs/ux-decisions/2026-09-20-bottom-app-bar-light-component-foundation.md`
 - `docs/ux-decisions/2026-09-17-shared-tabs-consolidation-checkpoint.md`
 - `docs/ux-decisions/2026-09-17-shared-tabs-option-list-maintenance.md`
 - `docs/ux-decisions/2026-09-17-light-radius-exploration-checkpoint.md`
@@ -155,6 +156,7 @@ The corrected component QA standard is:
 `repeated UI → Common_Component master → production Instance → nested shared UI remains linked → variable/type/style bindings preserved`
 
 Latest maintenance result:
+- App shell: local `BottomAppBar` component set `2078:2401` promoted from the prior read-only reference; Light bindings and 4 current IA variants QA PASS; root-screen placement still open
 - Group 01: no additional repeated-UI component gap found
 - Group 02 Home: remaining local Home cards componentized; shared `HomeQuickAction` + `HomeRoutineTile` added, existing `HomeRoutineFocusCard` / `HomeStartChoiceCard` reused and rebound
 - Group 03: repeated routine-name / attachment-overlay / bottom-CTA patterns componentized
@@ -628,11 +630,13 @@ Detailed QA:
 
 ## Targeted FIX
 
-1. **Primary bottom navigation design gap**
+1. **Primary bottom navigation root placement**
    - current product IA = `홈 / 루틴 / 분석 / 설정`
-   - frozen root screens / `Common_Component`에 실제 primary bottom-navigation component/instance가 없음
-   - Cursor가 임의 디자인하면 안 됨
-   - 94개 content/state frame 전체를 reopen하지 말고 app-shell navigation만 targeted design completion
+   - shared local `BottomAppBar` component now exists on `Common_Component`: `2078:2401`
+   - variants = `Active=홈 / 루틴 / 분석 / 설정`
+   - Light semantic binding / reference QA PASS
+   - frozen root screens still do not contain the BottomAppBar instance
+   - next targeted design step = apply the shared component only to applicable roots and verify bottom placement/content clearance
 
 Brand naming drift found by deep QA was corrected:
 - current Product Direction / Project Brief now use Tampin
@@ -695,7 +699,7 @@ Current handoff verdict:
 - `FIX / DECISION NEEDED`
 
 Before development:
-- targeted app-shell navigation design FIX
+- targeted BottomAppBar root-screen placement FIX
 - weekday scheduling decision
 - routine Duplicate decision
 - W / D / F routine-set decision
