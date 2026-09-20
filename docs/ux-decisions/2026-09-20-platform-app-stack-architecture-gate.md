@@ -203,6 +203,27 @@ Locked:
 - the app must not request exact-alarm access at first launch with no context; request it when the user first enables/uses the precise Rest Timer alert feature
 - revocation later must be detected and handled without data loss
 
+## Android ongoing workout notification runtime — PO APPROVED
+
+Applies to:
+- `05A_Workout_Weight` — Active Workout shell and its ongoing system notification
+
+Locked:
+- do not keep a continuously running React Native/JavaScript timer solely to maintain workout elapsed time
+- do not introduce an Android Foreground Service solely to keep the Active Workout notification/timer alive for the current MVP
+- post a normal Android ongoing notification for the active workout
+- drive its elapsed display from the persisted absolute workout start time using the Android notification chronometer/system time display
+- SQLite remains the authoritative workout/session state; notification state is presentation only
+- Rest Timer completion remains a separate exact-alarm responsibility
+- ordinary backgrounding or process death must not corrupt the Active Workout; recovery reconstructs UI/notification from SQLite and timestamps
+- reboot recovery reconstructs the ongoing notification after boot as already approved
+- if future requirements add continuous sensor/location/health tracking, re-evaluate Foreground Service use rather than prebuilding it now
+
+Rationale:
+- the current MVP does not continuously sample location, heart rate, motion, microphone, or other sensor data
+- Android provides system-managed notification chronometer display for elapsed time
+- avoiding an unnecessary Foreground Service reduces runtime/policy complexity while preserving the approved Product behavior
+
 ## Still open
 
 - analytics/crash reporting
