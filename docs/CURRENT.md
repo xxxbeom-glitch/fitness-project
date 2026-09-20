@@ -4,7 +4,7 @@
 
 ## Current mode
 
-`MVP 95 CONTENT/STATE FRAMES CANONICAL · SEQUENTIAL PRODUCT/UX HANDOFF QA PASS · PLATFORM = ANDROID+iOS SHARED · QA/RELEASE = ANDROID FIRST · APP STACK = REACT NATIVE + EXPO + TYPESCRIPT LOCKED · PERSISTENCE = LOCAL-FIRST LOCKED · LOCAL DB = SQLITE / EXPO-SQLITE LOCKED · NEXT = BACKEND DATABASE PROVIDER DECISION · DATA/BACKEND/SYNC ARCHITECTURE OPEN · IMPLEMENTATION NOT STARTED`
+`MVP 95 CONTENT/STATE FRAMES CANONICAL · SEQUENTIAL PRODUCT/UX HANDOFF QA PASS · PLATFORM = ANDROID+iOS SHARED · QA/RELEASE = ANDROID FIRST · APP STACK = REACT NATIVE + EXPO + TYPESCRIPT LOCKED · PERSISTENCE = LOCAL-FIRST LOCKED · LOCAL DB = SQLITE / EXPO-SQLITE LOCKED · BACKEND = SUPABASE POSTGRES LOCKED · NEXT = AUTHENTICATION PROVIDER DECISION · SYNC/STORAGE/RUNTIME ARCHITECTURE OPEN · IMPLEMENTATION NOT STARTED`
 
 ## Resume rule
 
@@ -739,10 +739,15 @@ Locked:
 - active-session recovery reads from SQLite
 - large media binaries stay outside SQLite
 
-NEXT OPEN ITEM:
-- choose the backend/database provider
+Locked:
+- backend provider = Supabase
+- canonical server database = Supabase Postgres
+- local SQLite remains the immediate source of truth for workout interaction
 
-After that, decide auth/storage boundary, sync trigger/retry/conflict, then platform runtime details one item at a time.
+NEXT OPEN ITEM:
+- choose the authentication provider/boundary
+
+After that, decide media/profile-image storage, sync trigger/retry/conflict, then platform runtime details one item at a time.
 
 ## Other already-known open decisions
 
