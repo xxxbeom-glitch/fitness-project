@@ -72,6 +72,41 @@ Reason:
 - Do not let shared React Native abstractions silently reintroduce iOS requirements.
 - Future iOS remains a separate decision and must not change current Android acceptance criteria.
 
+## Block 02 — Application stack: React Native + Expo + TypeScript / native Android boundary
+
+### Current Tampin contract
+- React Native + Expo + TypeScript
+- Expo Development Builds, not Expo Go, for production development
+- Android-native Kotlin integration is allowed where required
+- no framework migration merely because the product is Android-only
+
+### Evidence / OnTalk comparison
+- OnTalk's verified Android runtime was a fully native Kotlin/Jetpack Compose/Gradle project.
+- That stack reached Internal and Closed Test successfully, so native Android itself was not a failure.
+- However, the later release history required strict tracking of which app branch/commit/versionCode represented the actual tested artifact.
+- Tampin therefore benefits from keeping the native surface smaller while still allowing native Android adapters where system APIs require them.
+
+### Locked re-audit boundary
+- keep React Native + Expo + TypeScript
+- use Expo Development Builds
+- keep product/domain logic in the shared TypeScript/application layer
+- use Kotlin/Expo native modules only for Android system integration such as reboot recovery, exact alarm, notification/runtime, and short timer-sound playback
+- prefer reproducible Expo Config Plugin / native-module configuration over scattered manual edits to generated Android files
+- do not switch to full native Kotlin, Flutter, or Bare React Native without a concrete blocker
+
+### QA verdict
+**PASS**
+
+Reason:
+- current requirements are satisfiable without a framework migration
+- Android-specific requirements can be isolated behind a small native boundary
+- this minimizes release/build surface area while preserving access to Android APIs
+- no current evidence shows that Expo Development Builds are a blocker for the approved MVP
+
+### Follow-up
+- actual package layout / config-plugin implementation is a Development-mode detail
+- generated native files must not become an undocumented second source of truth
+
 ## NEXT OPEN ITEM
 
-**Block 02 — Application stack: React Native + Expo + TypeScript / native Android boundary.**
+**Block 03 — Local-first persistence scope and semantics.**
