@@ -1,0 +1,204 @@
+schema_version: 1
+profile_kind: google_play_console_submission
+as_of: 2026-09-20
+
+project:
+  name: Tampin
+  repo: xxxbeom-glitch/fitness-project
+
+app:
+  app_name: Tampin
+  package_name:
+    status: needs_po_decision
+  default_language: ko-KR
+  supported_languages:
+    - ko-KR
+    - en
+  app_category:
+    candidate: health_and_fitness
+    status: needs_console_confirmation
+  support:
+    email:
+      status: needs_confirmation
+    website:
+      status: not_ready
+
+store_listing:
+  app_name: Tampin
+  short_description:
+    status: not_ready
+  full_description:
+    status: not_ready
+  assets:
+    icon_512x512:
+      ready: false
+    feature_graphic_1024x500:
+      ready: false
+    phone_screenshots:
+      ready: false
+      count: null
+
+policy_urls:
+  terms:
+    status: not_ready
+  privacy_policy:
+    status: not_ready
+  account_deletion:
+    status: not_ready
+  data_deletion_support:
+    status: not_ready
+
+app_content:
+  app_access:
+    restricted_or_login_required: true
+    auth_methods:
+      - google_oauth
+      - kakao_oauth
+    review_account:
+      prepared: false
+      secret_ref: stored_outside_git
+      credentials_in_git: false
+      instructions_summary:
+        status: not_ready
+
+  ads:
+    contains_ads: false
+    status: product_scope_locked_runtime_audit_pending
+
+  advertising_id:
+    uses_ad_id:
+      status: needs_implementation_audit
+    manifest_permission_present:
+      status: needs_implementation_audit
+    sdk_uses_ad_id:
+      status: needs_implementation_audit
+
+  target_audience:
+    age_groups:
+      status: needs_po_decision
+    evidence: null
+
+  content_rating:
+    questionnaire_submitted: false
+    final_rating:
+      status: not_ready
+
+  health_apps:
+    applicable: true
+    declaration_completed: false
+    classification:
+      candidate: activity_and_fitness
+      status: needs_console_confirmation
+    note: "Tampin records workout/routine activity. Final Play declaration must be verified against the then-current Console wording."
+
+  child_safety:
+    applicable:
+      status: not_expected_current_scope
+    note: "No anonymous/random chat or UGC/community feature in current MVP. Re-evaluate only if product scope changes."
+
+  data_safety:
+    collects_or_shares_user_data: true
+    encrypted_in_transit:
+      status: expected_true_runtime_verification_required
+    account_creation_methods:
+      - oauth
+    account_deletion_url:
+      status: not_ready
+    data_deletion_support_url:
+      status: not_ready
+    note: "Final answers must come from the implemented app, Android permissions, SDK/dependency audit, Supabase schema/storage, Sentry/PostHog runtime behavior, and Play Console wording. Do not copy OnTalk answers."
+
+    candidate_data_types:
+      - category: personal_info
+        type: name
+        product_basis: profile_nickname
+        handling_status: needs_implementation_audit
+      - category: personal_info
+        type: email_address
+        product_basis: support_reply_email_and_oauth_provider_data_as_applicable
+        handling_status: needs_implementation_audit
+      - category: personal_info
+        type: user_ids
+        product_basis: canonical_internal_account_id
+        handling_status: needs_implementation_audit
+      - category: personal_info
+        type: other_personal_info
+        product_basis: date_of_birth_and_sex_gender_profile_fields
+        handling_status: needs_implementation_audit
+      - category: health_and_fitness
+        type: fitness_info
+        product_basis: workout_routine_set_history_and_related_fitness_records
+        handling_status: needs_implementation_audit
+      - category: photos_and_videos
+        type: photos
+        product_basis: optional_profile_photo_and_support_attachments
+        handling_status: needs_implementation_audit
+      - category: app_activity
+        type: app_interactions
+        product_basis: explicit_PostHog_product_events
+        handling_status: needs_sdk_runtime_audit
+      - category: app_info_and_performance
+        type: crash_logs
+        product_basis: Sentry_crash_reporting
+        handling_status: needs_sdk_runtime_audit
+      - category: app_info_and_performance
+        type: diagnostics
+        product_basis: Sentry_error_diagnostics
+        handling_status: needs_sdk_runtime_audit
+      - category: device_or_other_ids
+        type: device_or_other_ids
+        product_basis: possible_SDK_generated_identifiers
+        handling_status: needs_sdk_runtime_audit
+
+monetization:
+  uses_google_play_billing: false
+  subscriptions: false
+  note: "08A subscription row is a future stub only; no current billing/product catalog."
+
+release:
+  countries:
+    status: needs_po_decision
+  internal_test:
+    enabled: true
+    canonical_version_name: null
+    canonical_version_code: null
+    canonical_git_commit: null
+  closed_test:
+    enabled:
+      status: planned
+    track_name: null
+    tester_credentials_stored: false
+    minimum_tester_target:
+      status: account_requirement_readback_needed
+    minimum_duration_days:
+      status: account_requirement_readback_needed
+  production:
+    enabled: false
+
+implementation_evidence:
+  android_permissions_audited: false
+  sdk_dependencies_audited: false
+  backend_data_model_audited: false
+  storage_audited: false
+  auth_providers_audited: false
+  analytics_audited: false
+  crash_reporting_audited: false
+  privacy_pages_live_readback: false
+  account_deletion_live_readback: false
+  app_access_review_account_verified: false
+
+submission_meta:
+  console_readback_date: null
+  profile_verified_by: null
+  unknown_fields:
+    - package_name
+    - support_email
+    - target_audience_age_groups
+    - release_countries
+    - public_terms_url
+    - public_privacy_url
+    - public_account_deletion_url
+    - exact_Data_Safety_handling_for_each_candidate_type
+    - Advertising_ID_runtime_state
+    - Play_testing_requirement_for_this_developer_account
+  security_note: "Do not store review-account passwords, tester credentials, API keys, service-account JSON, tokens, keystore passwords, or private keys in GitHub."
