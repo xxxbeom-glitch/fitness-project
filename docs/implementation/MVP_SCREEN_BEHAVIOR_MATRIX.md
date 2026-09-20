@@ -378,10 +378,10 @@ Recommendation-template duration language from older Group 03 history is superse
 | Screen | Purpose / Entry | Primary behavior / Exit | Implementation rule | QA |
 |---|---|---|---|---|
 | `08A_Settings_Home` | Settings root | profile / subscription stub / workout / units / notifications / language / legal / inquiry | Theme and FAQ are not current MVP rows. Subscription is not billing. | PASS |
-| `08D_Workout_Settings` | Workout preferences | default rest time; timer sound; vibration; keep-screen-on | Current representative states: vibration On, keep-screen-on Off. Persist user preference. | PASS |
-| `08E_Notification_Settings` | Notification preferences | toggle rest-timer notification and updates/notices | Current UI defaults show both On. Delivery/backend behavior beyond approved UI must not be invented. | CONDITIONAL |
+| `08D_Workout_Settings` | Workout preferences | default rest time; timer sound; vibration; keep-screen-on | Current Figma still exposes a timer-end vibration toggle, but the latest Group 05 notification policy says vibration follows platform/user notification settings. This needs one PO alignment decision before Group 08 sequential closure. | DECISION NEEDED |
+| `08E_Notification_Settings` | Notification preferences | toggle rest-timer notification and updates/notices | Rest-timer notification toggle governs the approved rest-end system alert. Updates/notices remains a separate app-notification preference; do not invent extra notification categories or scheduling. | PASS |
 | `08D1_Default_Rest_Time_Sheet` | Set default rest duration | 5-second increments; Complete applies value | Current representative value 2:00. | PASS |
-| `08D2_Timer_End_Sound` | Timer sound selection | choose 기본 / 차임 / 벨 | Final production sound assets/labels remain release follow-up. | CONDITIONAL asset |
+| `08D2_Timer_End_Sound` | Timer sound selection | choose 기본 / 차임 / 벨 | All options are app-owned custom sounds. `기본` means the app's bundled default timer sound, not the device default notification/ringtone. Final production sound files/labels remain release follow-up. | PASS / asset follow-up |
 | `08C_Unit_Settings_Sheet` | Weight display unit | choose kg/lb; Save | Conversion must not progressively mutate source values. Current selection = kg. | PASS |
 | `08B1_Profile_Photo_Sheet` | Change profile photo | photo select / default image / cancel | Photo is optional profile presentation. | PASS |
 | `08B_Profile` | Profile edit | photo; nickname; Logout; Save; More → account sheet | Logout is plain centered action above Save. | PASS |
@@ -416,13 +416,13 @@ Key routes:
 - 07A recent-progress exercise row → that exercise's canonical Group 04 detail
 - 07B contributor exercise row → that exercise's canonical Group 04 detail
 - 07A recent-workout row → matching 07D saved-session detail
-- 07A `전체 기록` → `07C_Workout_History` (new canonical screen to be reflected in Figma)
+- 07A `전체 기록` → `07C_Workout_History`
 - 07C history row → matching 07D saved-session detail
 - Settings legal rows → public external legal documents
 
 # Final screen-by-screen verdict
 
-Mapped canonical frames: **94 / 94**
+Mapped canonical frames: **95 / 95**
 
 ### PASS / adequately specified
 Most static/state/detail/dialog/sheet screens in Groups 01, 04, 06, 07, 08, and the locked parts of Groups 02/03/05.
