@@ -40,6 +40,8 @@ Future domains such as Gym, Body Composition, Watch, AI, and Community should re
 - Weak/offline network state must not block set entry, set completion, active-session editing, or workout completion.
 - Unsynced local workout state must survive app interruption/restart.
 - Sync failure must not delete, roll back, or silently overwrite newer unsynced local workout data.
+- Server-confirmed actions are outside local-first completion: authentication, account deletion, support inquiry submission, and profile/media upload must not be presented as complete until server success.
+- Network restoration may retry replication of already-accepted local-first state, but must not silently create a new user-visible action that previously failed.
 
 ## Local persistence technology — CONFIRMED
 
