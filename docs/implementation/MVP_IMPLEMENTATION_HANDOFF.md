@@ -718,6 +718,12 @@ Language:
 - immediate-selection presentation
 
 Notifications:
+- Android 13+ notification permission timing is locked by `docs/ux-decisions/2026-09-20-android-notification-permission-policy.md`
+- do not request `POST_NOTIFICATIONS` at app launch/login/onboarding/Home
+- request it contextually on the user's first Active Workout after the session has already been persisted locally
+- use the existing Dialog pattern for the one-time rationale; denial/dismissal never blocks the workout
+- do not automatically re-prompt on every workout after denial/dismissal
+- `08E_Notification_Settings` must respect Android system notification permission and request/route to system settings when needed
 - current Figma surfaces rest-timer notification and updates/notices toggles
 - `휴식 타이머 알림` controls delivery of the approved Rest Timer zero system alert
 - approved alert copy = `휴식 시간이 끝났어요` / `다음 세트를 시작하세요.`
