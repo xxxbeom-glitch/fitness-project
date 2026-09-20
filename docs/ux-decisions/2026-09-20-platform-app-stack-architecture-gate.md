@@ -1,7 +1,7 @@
 # Platform / App Stack Architecture Gate
 
 **Date:** 2026-09-20
-**Status:** PO APPROVED · APP STACK LOCKED · DATA ARCHITECTURE NEXT
+**Status:** PO APPROVED · APP STACK LOCKED · LOCAL-FIRST PERSISTENCE LOCKED · LOCAL DB NEXT
 
 ## Platform strategy
 
@@ -33,12 +33,27 @@ The stack fits the current priorities:
 
 A switch to Flutter is not justified by a current requirement and would add a separate Dart toolchain without resolving a known blocker.
 
+## Local-first persistence — PO APPROVED
+
+The phone's local database is the immediate source of truth for workout interaction.
+
+Rules:
+- set edits, set completion, exercise changes, active-session state, and workout completion write locally first
+- a weak or unavailable network must not block workout recording
+- local save success is sufficient for the user to continue the workout
+- server synchronization happens afterward according to a separate sync policy
+- unsynced local records remain durable across app backgrounding/restart
+- the server must not silently overwrite newer unsynced local workout changes
+- sync failure must not delete or roll back locally saved workout data
+
+This is an offline-capable local-first model, not a server-first request queue.
+
 ## Still open
 
 - local database technology
 - backend/database provider
 - auth implementation boundary
-- offline-first sync/conflict mechanics
+- exact sync trigger / retry / conflict mechanics
 - media/profile-image storage
 - analytics/crash reporting
 - exact Android/iOS background/runtime implementation
@@ -46,7 +61,6 @@ A switch to Flutter is not justified by a current requirement and would add a se
 
 ## NEXT OPEN ITEM
 
-Decide active-workout/workout-edit persistence:
-**local-first vs server-first**.
+Choose the local database technology.
 
 Do not begin production implementation yet.
