@@ -1,7 +1,7 @@
 # Group 06–07 Completion / History / Analysis — Sequential Handoff QA
 
 **Date:** 2026-09-20  
-**Status:** PO DECISIONS RECORDED · FIGMA FOLLOW-UP REQUIRED
+**Status:** SEQUENTIAL HANDOFF QA PASS · GROUP 06–07 CLOSED
 
 ## Scope
 
@@ -22,12 +22,13 @@ Group 06:
 - `FINAL_06_VOLUME_NA_CASE`
 
 Group 07:
-- canonical Figma top-level states = `5`
-- behavior-matrix entries = `5`
-- exact name match = `5 / 5`
+- canonical Figma top-level states = `6`
+- behavior-matrix entries = `6`
+- exact name match = `6 / 6`
 - `07A_Analysis_Home`
 - `07B_BodyArea_Detail`
 - `07B_BodyArea_Detail_Empty`
+- `07C_Workout_History`
 - `07D_Workout_History_Detail`
 - `07D_Workout_History_Detail_DeleteConfirm`
 
@@ -132,6 +133,13 @@ Group 06:
 
 Group 07:
 - Product/UX calculation/navigation decisions above are resolved
-- Figma follow-up required: create `07C_Workout_History` and then re-run focused inventory/navigation QA
+- `07C_Workout_History` created in canonical Figma — node `2121:8457`
+- size = `360 × 780`
+- existing Back NavHeader + ListCard + RecentWorkoutRow + Divider patterns reused
+- representative list rows = `9`, newest-first
+- saved-partial row visibly distinguished
+- 07C instance links = `29`, missing main-component links = `0`
+- whole-MVP canonical top-level count = `95`
+- whole-MVP instance links = `1,849`; missing = `0`; source outside `Common_Component` = `0`
 
-**Do not close Group 06–07 until the new 07C Figma screen is created and verified. Do not advance to Group 08 automatically.**
+**PASS — Group 06–07 Completion / History / Analysis sequential handoff QA is closed. Do not advance to Group 08 automatically without Product Owner approval.**
