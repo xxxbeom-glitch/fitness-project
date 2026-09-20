@@ -816,8 +816,20 @@ Locked:
 Canonical:
 - `docs/ux-decisions/2026-09-20-android-notification-permission-policy.md`
 
+Locked:
+- current MVP notification categories = `운동 진행` + `휴식 타이머` only
+- `운동 진행` uses LOW importance with no sound/vibration for ongoing status
+- `휴식 타이머` uses a separate time-sensitive alert category
+- updates/notices/marketing/promotional notifications are outside the current MVP; no production channel or speculative remote-push stack
+- `08E_Notification_Settings` Product scope is now `휴식 타이머 알림` only
+- previous `업데이트/공지` row is superseded; focused Figma row removal remains a visual-maintenance follow-up
+- exact handling of selectable app-owned Rest Timer sounds against Android channel immutability remains open
+
+Canonical:
+- `docs/ux-decisions/2026-09-20-android-notification-channel-scope.md`
+
 NEXT OPEN ITEM:
-- finish remaining Android runtime/background implementation decisions
+- decide Android Rest Timer app-owned sound implementation against notification-channel sound immutability
 
 ## Other already-known open decisions
 
