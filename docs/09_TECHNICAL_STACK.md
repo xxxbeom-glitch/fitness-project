@@ -65,3 +65,14 @@ Confirmed:
 - auth/session secrets must use secure device storage; SQLite remains for application data, not plain-text credentials
 
 Authentication service choice does not change the local-first workout persistence rule.
+
+
+## Media storage
+
+Confirmed:
+- Supabase Storage
+- profile photos and support inquiry attachments are server-stored there
+- SQLite keeps references/metadata/upload state rather than media binaries
+- user-owned media is private/scoped by default
+
+This does not change the local-first persistence rule for workout data.
