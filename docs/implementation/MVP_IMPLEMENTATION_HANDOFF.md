@@ -191,7 +191,8 @@ No recommendation entry.
 - compact `내 루틴 (n)` 2 × n grid provides saved-routine access
 - no weekday/today-next/selected-routine Home semantics
 - My Routine section header copy = `내 루틴 (n)`; use current saved-routine count; header uses `Trailing=None`; routine creation remains through the Quick Start `내 루틴 만들기` card
-- exact `내 루틴` tile tap destination remains unresolved; do not invent it
+- Home `내 루틴` tile tap → matching `03D_Routine_Detail`
+- tapping a Home routine tile does not directly start an Active Workout; the user starts from Routine Detail
 
 ### Active workout — `02D_Home_Active`
 
@@ -810,7 +811,6 @@ Cursor must stop and report `DECISION NEEDED` rather than choosing product behav
 
 - technology stack / production architecture
 - launch platform priority
-- Group 02 `내 루틴` tile tap destination
 - routine duplicate semantics
 - W / D / F routine-set semantics
 - `duration` Active Workout timed-set interaction
@@ -954,14 +954,13 @@ Verified:
 - engineering/QA contracts aligned
 
 Not ready to start production implementation yet because:
-1. Group 02 `내 루틴` tile tap behavior is not yet locked
-2. routine Duplicate semantics are undefined
-3. W / D / F routine-set semantics are undefined
-4. technology stack / architecture is not locked
-5. duration timed-set interaction is not locked
-6. automatic Rest Timer runtime edge/end-feedback policy is not locked
-7. active-session recovery system-notification UX is not locked
-8. launch-platform decision controls whether Apple-provider UI/copy alignment is required
+1. routine Duplicate semantics are undefined
+2. W / D / F routine-set semantics are undefined
+3. technology stack / architecture is not locked
+4. duration timed-set interaction is not locked
+5. automatic Rest Timer runtime edge/end-feedback policy is not locked
+6. active-session recovery system-notification UX is not locked
+7. launch-platform decision controls whether Apple-provider UI/copy alignment is required
 
 Current implementation-facing product brand is Tampin; the stale G Fit working-name text found during deep QA has been corrected in the current Product Direction / Project Brief.
 
