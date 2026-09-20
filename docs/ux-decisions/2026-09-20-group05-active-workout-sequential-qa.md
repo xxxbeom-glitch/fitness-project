@@ -33,11 +33,26 @@ Rest Timer completion sound uses app-owned custom sound assets only.
 - final asset filenames/labels may be finalized when those files are supplied
 - this decision locks the sound source only; vibration and background/system-notification behavior remain open
 
+## Decision 3 — Duration Active Workout interaction
+
+MVP keeps duration logging manual and simple.
+
+- use existing shared `ExerciseCard / Mode=WorkoutDuration`
+- each set exposes a TIME value and manual completion check
+- no inline duration stopwatch/countdown/start-stop control
+- the user may use the existing Nav Header Manual Timer as a reference
+- Manual Timer and duration set value are not automatically linked
+- timer completion does not auto-complete the set
+- user confirms/edits the TIME value and manually completes the set
+- completed duration stores the current TIME value in seconds
+- completing a duration set triggers the normal automatic Rest Timer rule
+
+Figma already supports this with `ExerciseCard / Mode=WorkoutDuration` (`651:3614`), so no new top-level screen is required.
+
 ## Still open in Group 05
 
 - Rest Timer zero-completion vibration / background notification behavior
 - active-session recovery system-notification UX
-- `duration` Active Workout timed-set interaction
 
 ## QA state
 
