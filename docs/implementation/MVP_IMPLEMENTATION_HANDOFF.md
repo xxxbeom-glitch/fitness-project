@@ -706,6 +706,10 @@ Units:
 
 Workout settings:
 - default rest time and timer-end sound surfaces exist
+- timer-end sound choices are app-owned custom sounds only
+- current Figma labels `기본 / 차임 / 벨` are product labels for bundled app sounds; `기본` is not the device default notification/ringtone
+- final production sound files/labels remain an asset follow-up
+- current Figma also exposes `타이머 종료 진동`; this conflicts with the latest Group 05 rule that vibration follows platform/user notification settings and requires one PO alignment decision before implementation
 
 Language:
 - 한국어 / English
@@ -713,8 +717,11 @@ Language:
 
 Notifications:
 - current Figma surfaces rest-timer notification and updates/notices toggles
-- implement only the approved setting surface/state
-- do not invent delivery scheduling, permission timing, backend push infrastructure, or new notification categories
+- `휴식 타이머 알림` controls delivery of the approved Rest Timer zero system alert
+- approved alert copy = `휴식 시간이 끝났어요` / `다음 세트를 시작하세요.`
+- alert uses the selected app-owned timer-end sound
+- do not invent additional notification categories, scheduling, or workout-mutating notification quick actions
+- platform permission timing / exact framework/service remains architecture implementation work
 
 Subscription:
 - `구독 관리` is a stub
