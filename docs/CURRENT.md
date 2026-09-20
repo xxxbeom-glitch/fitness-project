@@ -884,9 +884,10 @@ Completed:
 - Block 07 — Supabase Storage / private user media / canonical object reference: **PASS**
 - Block 08 — Sync / conflict / multi-device / idempotent retry: **PASS**
 - Block 09 — Active Workout Android runtime / process-death + reboot recovery boundary: **PASS**
+- Block 10 — Notification permission / channels / exact alarm / Rest Timer sound: **PASS**
 
 NEXT OPEN ITEM:
-- Block 10 — Notification permission / channels / exact alarm / Rest Timer sound
+- Block 11 — Sentry crash/error reporting
 
 ## Other already-known open decisions
 
