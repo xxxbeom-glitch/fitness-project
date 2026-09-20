@@ -287,7 +287,7 @@ Recommendation-template duration language from older Group 03 history is superse
 
 | Screen | Purpose / Entry | Primary behavior / Exit | Implementation rule | QA |
 |---|---|---|---|---|
-| `05A_Workout_Weight` | Core active workout for weight+reps example | edit/complete sets; add/delete sets; exercise menu; add exercise; timer; end/cancel | Durable local state authoritative while active. Previous performance by stable exercise identity. Numeric sets only in current MVP. | PASS |
+| `05A_Workout_Weight` | Core active workout shell | edit/complete sets; add/delete sets; exercise menu; add exercise; timer; end/cancel | Durable local state authoritative while active. Previous performance by stable exercise identity. Numeric sets only. Recording-type variants reuse the shared ExerciseCard; duration uses manual TIME value + manual completion, with header Manual Timer as optional unlinked reference. | PASS |
 | `05I_Workout_Menu` | Current-exercise action sheet | replace / reorder / delete / close | Delete affects current session exercise only unless separately updating saved routine at completion. | PASS |
 | `05J_Reorder` | Exercise order editor | reorder; Complete returns to originating workout/routine context | Reorder must not alter historical exercise identity/data. | PASS |
 | `05K_End_Incomplete` | End with unfinished planned work | Continue workout / End and save | Save only completed work according to approved partial-completion semantics. | PASS |
@@ -425,10 +425,9 @@ Most static/state/detail/dialog/sheet screens in Groups 01, 04, 06, 07, 08, and 
 - none in the current frozen visual contract.
 
 ### DECISION NEEDED
-1. Automatic Rest Timer zero-completion feedback policy.
+1. Automatic Rest Timer zero-completion vibration/background-notification policy.
 2. Active-session recovery system-notification UX.
-3. Duration Active Workout timed-set interaction.
-4. Production technology stack / platform architecture.
+3. Production technology stack / platform architecture.
 
 ### CONDITIONAL
 - Apple sign-in/account copy if iOS is included in launch scope.
