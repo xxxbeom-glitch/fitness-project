@@ -885,9 +885,10 @@ Completed:
 - Block 08 — Sync / conflict / multi-device / idempotent retry: **PASS**
 - Block 09 — Active Workout Android runtime / process-death + reboot recovery boundary: **PASS**
 - Block 10 — Notification permission / channels / exact alarm / Rest Timer sound: **PASS**
+- Block 11 — Sentry crash/error reporting / privacy + source-map QA: **PASS**
 
 NEXT OPEN ITEM:
-- Block 11 — Sentry crash/error reporting
+- Block 12 — PostHog product analytics / event taxonomy
 
 ## Other already-known open decisions
 
