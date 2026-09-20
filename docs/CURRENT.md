@@ -882,9 +882,10 @@ Completed:
 - Block 05 — Supabase Postgres / RLS / server correctness boundary: **PASS**
 - Block 06 — Supabase Auth / Google + Kakao / secure session / auth-restore state: **PASS**
 - Block 07 — Supabase Storage / private user media / canonical object reference: **PASS**
+- Block 08 — Sync / conflict / multi-device / idempotent retry: **PASS**
 
 NEXT OPEN ITEM:
-- Block 08 — Sync / conflict / multi-device behavior
+- Block 09 — Active Workout Android runtime / process death / reboot / notification restoration
 
 ## Other already-known open decisions
 
