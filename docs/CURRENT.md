@@ -876,9 +876,10 @@ Rules:
 
 Completed:
 - Block 01 — Platform scope / Android only: **PASS**
+- Block 02 — Application stack / React Native + Expo + TypeScript + narrow native Android boundary: **PASS**
 
 NEXT OPEN ITEM:
-- Block 02 — Application stack: React Native + Expo + TypeScript / native Android boundary
+- Block 03 — Local-first persistence scope and semantics
 
 ## Other already-known open decisions
 
