@@ -224,6 +224,22 @@ Rationale:
 - Android provides system-managed notification chronometer display for elapsed time
 - avoiding an unnecessary Foreground Service reduces runtime/policy complexity while preserving the approved Product behavior
 
+## Android notification permission timing — PO APPROVED
+
+Canonical:
+- `docs/ux-decisions/2026-09-20-android-notification-permission-policy.md`
+
+Locked:
+- Android 13+ notification runtime permission = `POST_NOTIFICATIONS`
+- do not request it at install/login/onboarding/Home
+- request contextually on the user's first Active Workout after the session has already been persisted locally
+- use the existing Dialog pattern for a one-time rationale; do not add a new top-level screen
+- denial/dismissal never blocks or rolls back the Active Workout
+- if permission is absent, ongoing workout notification and Rest Timer system-alert delivery are unavailable/best-effort as allowed by Android, while workout/rest persistence continues normally
+- do not nag on every workout after denial/dismissal
+- `08E_Notification_Settings` must respect Android system permission and route to runtime request/settings when needed
+- re-check permission before user-visible notification delivery because it may be revoked later
+
 ## Still open
 
 - analytics/crash reporting
@@ -232,6 +248,6 @@ Rationale:
 
 ## NEXT OPEN ITEM
 
-Finish Android runtime / background execution architecture.
+Finish remaining Android runtime / background execution architecture.
 
 Do not begin production implementation yet.
