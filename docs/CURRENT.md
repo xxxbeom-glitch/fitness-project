@@ -848,13 +848,25 @@ Locked:
 Canonical:
 - `docs/ux-decisions/2026-09-20-sentry-crash-error-reporting.md`
 
+Locked:
+- product-usage analytics = PostHog
+- explicit named events only; no Session Replay, broad autocapture, form/input capture, or advertising attribution
+- initial event taxonomy = 26 events across onboarding/permissions, routine, workout, timer, analysis/history, custom exercise/support/account
+- primary funnel = onboarding completed → workout started → first set completed → workout completed → later workout return/start
+- do not send profile demographics, email/nickname, routine/exercise names, exact workout values, support content, secrets, or raw DB rows
+- identity = opaque internal app user ID only; reset on logout/account change
+- local development analytics off by default; preview vs production distinguishable
+- analytics failure never blocks app/workout/persistence/sync
+
+Canonical:
+- `docs/ux-decisions/2026-09-20-posthog-product-analytics.md`
+
 NEXT OPEN ITEM:
-- decide whether the current MVP needs separate product-usage analytics
+- define Android deployment / Google Play release-pipeline architecture
 
 ## Other already-known open decisions
 
 - remaining Android runtime/background implementation details
-- product-usage analytics scope
 - Android deployment / Play release pipeline
 
 ## Active non-blocking side tracks
@@ -876,7 +888,6 @@ Current handoff verdict:
 - `DECISION NEEDED`
 
 Before development:
-- product-usage analytics decision if included in MVP
 - Android release-pipeline decisions as needed for implementation scope
 - explicit Product Owner development authorization
 
