@@ -333,10 +333,16 @@ Additional PO-approved Home cleanup:
 - header copy = `내 루틴 (n)` using current saved-routine count
 - representative Figma values: 02A=`내 루틴 (0)`, 02B=`내 루틴 (2)`, 02D=`내 루틴 (2)`
 - `새 루틴` header action = absent
-- zero-routine empty-state copy/body = absent
+- 02A zero-routine state now uses a full-width card; prior header-only empty state is superseded
+- 02A empty card copy = `아직 루틴이 없어요` / `자주 하는 운동을 루틴으로 만들어보세요`
+- 02A empty card CTA = `루틴 만들기`
+- card reuses existing `EmptyState / Action=Compact` content pattern + Home card surface treatment
 - runtime 02D My Routine = populated cards when routines exist, header-only when none exist
 - workout history remains in Analysis/history surfaces
 - focused Figma read-back: recent-workout copy count = `0` across 02A/02B/02D
+- 02A `MyRoutineEmptyCard` = `320 × 164`
+- visible text overflow in 02A = `0`
+- 02A missing main-component links = `0`
 - text overflow = `0`
 - missing main-component links = `0`
 
