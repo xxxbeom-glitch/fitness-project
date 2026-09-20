@@ -92,6 +92,15 @@ Core invariants:
 - time while the device is powered off is included
 - restore computes elapsed time from the persisted timestamp rather than relying on a continuously running timer loop
 
+## Android reboot recovery — CONFIRMED
+
+- an unfinished Active Workout survives a normal device reboot through persisted SQLite state
+- after Android boot completion, the app checks for the unfinished active session and reconstructs the ongoing workout notification
+- tapping the reconstructed notification resumes the same session
+- elapsed workout duration continues from the persisted absolute start timestamp
+- an active rest state is reconstructed from its persisted absolute end timestamp when still applicable
+- runtime notification state is recreated; it is not assumed to survive reboot itself
+
 ## TBD
 
 - server schema
