@@ -53,7 +53,6 @@ This funnel is the first analysis priority after launch.
 - `routine_edited`
 - `routine_deleted`
 - `routine_duplicated`
-- `workout_started_from_routine`
 
 ### Workout
 - `workout_started`
@@ -68,7 +67,9 @@ This funnel is the first analysis priority after launch.
 - `manual_timer_used`
 - `rest_timer_used`
 
-Timer rule:
+Workout/timer event rules:
+- `workout_started` is the single workout-start event; distinguish source with `source = blank | routine` instead of a second routine-start event
+- `first_set_completed` fires at most once per workout session, at the first completed set
 - do not send an event for every countdown tick or every completed set
 - `manual_timer_used` and `rest_timer_used` are captured at most once per workout session for adoption analysis
 
@@ -84,7 +85,7 @@ Timer rule:
 - `support_inquiry_failed`
 - `account_deletion_started`
 
-Total initial explicit event set: **26 events**.
+Total initial explicit event set: **24 events**.
 
 ## Allowed event properties
 
