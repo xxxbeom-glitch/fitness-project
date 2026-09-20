@@ -459,11 +459,16 @@ Locked behavior:
 - no Rest Timer `+15초 / -15초 / pause / reset`
 - Rest Timer never blocks set/exercise progression
 
-Current unresolved runtime edge:
-- if another set is completed while a Rest Timer is already running, the exact replace/restart/keep-current rule is not approved
+Current overlap rule — PO APPROVED 2026-09-20:
+- if another set is completed while a Rest Timer is already running, replace the current countdown and immediately start a fresh automatic Rest Timer for the newly completed set
+- use the same approved rest-duration resolution rule used for normal set completion
+- only one automatic Rest Timer exists at a time
+- no confirmation, toast, or additional screen is required for the restart
+
+Still unresolved:
 - exact zero-completion feedback across sound / vibration / background notification remains deferred despite the current Settings surfaces
 
-Cursor must not invent these runtime rules.
+Cursor must not invent the remaining zero-completion feedback rule.
 
 ### Manual Timer
 
@@ -828,7 +833,6 @@ Cursor must stop and report `DECISION NEEDED` rather than choosing product behav
 - `duration` Active Workout timed-set interaction
 - unapproved PR/progression formula
 - unresolved non-active multi-device conflict behavior
-- Rest Timer behavior when another set completes while a rest countdown is already active
 - exact Rest Timer zero-completion sound/vibration/background-notification behavior
 - active-session recovery system-notification copy/actions/controls
 - release legal URLs/copy/retention period
@@ -859,13 +863,14 @@ The following former blockers are already resolved by `docs/ux-decisions/2026-09
 
 Requires focused Product/UX decision before implementation of duration exercise logging.
 
-### BLOCKER G — automatic Rest Timer runtime edge policy
+### BLOCKER G — automatic Rest Timer zero-completion feedback
 
-RestLiveBar presentation/trigger/end action are locked, but the current authority explicitly leaves open:
-- what happens if another set completes while a Rest Timer is already counting down
+The overlap/restart rule is resolved: completing another set while a Rest Timer is active replaces it with a fresh Rest Timer for the newly completed set.
+
+Still open:
 - exact sound/vibration/background-notification feedback when rest reaches zero
 
-Requires Product/UX runtime policy before full Rest Timer implementation.
+Requires Product/UX feedback policy before full Rest Timer implementation.
 
 ### BLOCKER H — active-session recovery system notification UX
 
