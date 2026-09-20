@@ -1,6 +1,6 @@
 # 04 ARCHITECTURE
 
-**Status:** PARTIALLY FROZEN — LOCAL-FIRST + SQLITE + SUPABASE LOCKED
+**Status:** PARTIALLY FROZEN — LOCAL-FIRST + SQLITE + SUPABASE + SUPABASE AUTH LOCKED
 
 ## Architecture goals
 
@@ -50,11 +50,19 @@ Future domains such as Gym, Body Composition, Watch, AI, and Community should re
 - synchronization maps local stable identities to server stable identities
 - server-side data access must be constrained independently of client presentation
 
+## Authentication boundary — CONFIRMED
+
+- canonical auth provider = Supabase Auth
+- Google + Kakao are current MVP login providers
+- Apple Sign in is required before iOS production release
+- server-side user-owned rows map to the authenticated account identity
+- auth/session secrets are stored using secure platform storage, not ordinary SQLite application rows
+- local-first workout persistence remains independent from transient network/auth availability during an already-authorized local session
+
 ## TBD
 
 - server schema
 - sync trigger / retry / conflict strategy
-- authentication boundary
 - event/state architecture
 - background sync
 - migration strategy
