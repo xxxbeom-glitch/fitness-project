@@ -186,6 +186,19 @@ Canonical:
 - only minimal opaque identity + build/OS/screen/high-level runtime context is allowed
 - Sentry failure never blocks launch, workout logging, SQLite persistence, or Supabase sync
 
+## Product analytics — CONFIRMED
+
+Canonical:
+- `docs/ux-decisions/2026-09-20-posthog-product-analytics.md`
+
+- PostHog is the MVP product-usage analytics provider
+- explicit semantic events only; no Session Replay or broad autocapture
+- analytics is not authoritative application state and never gates user flows
+- identity uses opaque internal user ID only and resets on logout/account change
+- profile/demographic/free-text/workout-entered values are excluded from event payloads
+- preview vs production remains distinguishable
+- failed analytics delivery never affects SQLite/Supabase correctness
+
 ## TBD
 
 - server schema
