@@ -63,7 +63,7 @@ PO-approved 2026-09-20:
 - Home has no `오늘의 운동 / 다음 운동` state
 - Home has no hidden selected/default routine
 - `02B_Home_WithRoutine` uses the same Quick Start as 02A: `빈 운동 / 내 루틴 만들기`
-- `내 루틴` is persistent below the primary Home section: 02A = header only, 02B = 2 × n grid; 02D keeps My Routine below the active-workout section. My Routine headers use `Trailing=None`.
+- `내 루틴` is persistent below the primary Home section: 02A = header only, 02B = 2 × n grid; 02D keeps My Routine below the active-workout section. Header copy = `내 루틴 (n)` using the current saved-routine count; headers use `Trailing=None`.
 - Active Workout still overrides normal Home with 02D resume state
 
 Canonical decision:
@@ -191,9 +191,9 @@ Verdict: **PASS — Group 00–01 closed.**
 
 | Screen | Purpose / Entry | Primary behavior / Exit | Implementation rule | QA |
 |---|---|---|---|---|
-| `02A_Home_NoRoutine` | Home with no saved routine | `빈 운동` → zero-exercise Active Workout; `내 루틴 만들기` → routine create | Quick Start + persistent `내 루틴` header only. No empty-state copy/body and no header action. No Recent Workout section. Blank workout creates no saved routine. | PASS |
-| `02B_Home_WithRoutine` | Home with one or more saved routines | `빈 운동` → blank workout; `내 루틴 만들기` → routine create; `내 루틴` renders saved routines in 2×n grid | My Routine header has no right-side action. Quick Start is identical to 02A. No weekday/today-next/selected-routine semantics. Exact routine-tile tap destination remains a Group 02 decision. | DECISION NEEDED — routine-tile tap |
-| `02D_Home_Active` | Home while one active workout exists | active card → resume same session; `내 루틴` remains below | Active workout is the priority section; My Routine persists and uses cards when routines exist, header-only when none exist. No Recent Workout section. Never create a second active session silently. | PASS |
+| `02A_Home_NoRoutine` | Home with no saved routine | `빈 운동` → zero-exercise Active Workout; `내 루틴 만들기` → routine create | Quick Start + persistent `내 루틴 (0)` header only. No empty-state copy/body and no header action. No Recent Workout section. Blank workout creates no saved routine. | PASS |
+| `02B_Home_WithRoutine` | Home with one or more saved routines | `빈 운동` → blank workout; `내 루틴 만들기` → routine create; `내 루틴` renders saved routines in 2×n grid | My Routine header = `내 루틴 (n)` with no right-side action. Quick Start is identical to 02A. No weekday/today-next/selected-routine semantics. Exact routine-tile tap destination remains a Group 02 decision. | DECISION NEEDED — routine-tile tap |
+| `02D_Home_Active` | Home while one active workout exists | active card → resume same session; `내 루틴` remains below | Active workout is the priority section; My Routine persists with `내 루틴 (n)` and uses cards when routines exist, header-only when none exist. No Recent Workout section. Never create a second active session silently. | PASS |
 
 # 03 — Routine
 
