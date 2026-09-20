@@ -449,7 +449,7 @@ Verdict for these additions: **PASS — recovered approved rules, not new produc
 ### DECISION NEEDED before production implementation
 1. weekday scheduling / today-next semantics
 2. routine Duplicate behavior
-3. W / D / F set-type semantics
+3. W / D / F routine-set semantics
 4. automatic Rest Timer already-running / end-feedback policy
 5. active-session recovery system-notification UX
 6. technology stack / platform architecture
