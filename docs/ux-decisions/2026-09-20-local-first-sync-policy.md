@@ -7,9 +7,35 @@
 
 Workout interaction never waits for the network.
 
-Every user change writes to local SQLite first. Server synchronization only processes locally committed changes.
+Local-first applies to product state that must remain usable/recoverable without network:
+- Active Workout / workout records
+- saved routines
+- custom exercises
+- local app settings
+
+For those domains, user changes write to local SQLite first and server synchronization only processes locally committed changes.
+
+Server-confirmed actions are **not** treated as local-first completion:
+- authentication
+- account deletion
+- support inquiry submission
+- profile/media upload completion
+
+Those actions require server success before the app may present them as completed.
 
 No sync request is sent merely because an input field changed on screen before the local write is committed.
+
+## Server-confirmed action boundary
+
+Rules:
+- network restoration must not silently perform a new user-visible action that previously failed
+- a failed support inquiry stays unsent until the user explicitly retries/submits again
+- account deletion is complete only after the server-side deletion flow succeeds
+- profile/media upload is complete only after server/object-storage success
+- authentication requires online provider/server resolution
+- background retry may resume previously accepted local-first synchronization, because that is replication of already-saved product state rather than a new user action
+
+This boundary follows the OnTalk lesson where offline support submission and reconnect-triggered message send could falsely imply success or perform a new action without fresh user intent.
 
 ## Change tracking
 
