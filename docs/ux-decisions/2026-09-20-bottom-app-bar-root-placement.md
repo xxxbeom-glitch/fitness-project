@@ -20,7 +20,7 @@ It is **not** shown as a separate navigation element on every screen.
 Only on top-level root surfaces:
 
 - `02A_Home_NoRoutine` — `1346:686` — `Active=홈`
-- `02B_Home_RoutineSelected` — `1329:593` — `Active=홈`
+- `02B_Home_WithRoutine` — `1329:593` — `Active=홈`
 - `02D_Home_Active` — `1346:710` — `Active=홈`
 - `03A_Routine_List` — `34:1401` — `Active=루틴`
 - `03B_Routine_Empty` — `34:1438` — `Active=루틴`
@@ -87,7 +87,7 @@ For authored long scroll-composition frames such as Analysis / Settings:
 Placed local BottomAppBar instances:
 
 - `02A_Home_NoRoutine` → `2081:8183`
-- `02B_Home_RoutineSelected` → `2081:8215`
+- `02B_Home_WithRoutine` → `2081:8215`
 - `02D_Home_Active` → `2081:8247`
 - `03A_Routine_List` → `2081:8279`
 - `03B_Routine_Empty` → `2081:8311`
