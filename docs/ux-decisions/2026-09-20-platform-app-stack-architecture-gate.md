@@ -188,6 +188,21 @@ Locked behavior:
 
 The exact Android API/service mechanism remains an implementation detail and must satisfy this behavior without making the workout session dependent on a continuously running JS process.
 
+## Android exact Rest Timer alarm — PO APPROVED
+
+Applies to:
+- `05F_Workout_RestTimer` — automatic Rest Timer
+
+Locked:
+- Rest Timer completion uses Android exact alarm scheduling where platform support/permission allows
+- use `SCHEDULE_EXACT_ALARM`, not `USE_EXACT_ALARM`
+- reason: Tampin is not a dedicated alarm/timer/calendar app, so the restricted auto-granted `USE_EXACT_ALARM` permission is not the appropriate Play-policy fit
+- before scheduling an exact Rest Timer alert, check whether exact alarms are allowed
+- if special access is not granted, route the user to Android's exact-alarm access screen from an in-app explanation
+- denial does not block workout logging; fall back to best-effort notification timing and keep all workout/rest state intact
+- the app must not request exact-alarm access at first launch with no context; request it when the user first enables/uses the precise Rest Timer alert feature
+- revocation later must be detected and handled without data loss
+
 ## Still open
 
 - analytics/crash reporting
