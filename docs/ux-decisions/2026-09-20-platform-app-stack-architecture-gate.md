@@ -1,16 +1,19 @@
 # Platform / App Stack Architecture Gate
 
 **Date:** 2026-09-20
-**Status:** PO APPROVED · APP STACK / LOCAL-FIRST / SQLITE / SUPABASE / AUTH / STORAGE / SYNC LOCKED · RUNTIME NEXT
+**Status:** PO APPROVED · ANDROID-ONLY / APP STACK / LOCAL-FIRST / SQLITE / SUPABASE / AUTH / STORAGE / SYNC LOCKED · ANDROID RUNTIME NEXT
 
 ## Platform strategy
 
-PO approved:
-- one shared Android + iOS codebase from the beginning
-- Android-first runtime/device QA
-- Android-first production release
-- iOS compatibility maintained during implementation
-- iOS release only after iOS-specific real-device QA
+Superseded by:
+- `docs/ux-decisions/2026-09-20-android-only-platform-scope.md`
+
+Current PO-approved scope:
+- Android only
+- Android runtime/device QA
+- Android production release
+- no current requirement to preserve iOS compatibility
+- future iOS work requires a separate Product/Architecture decision
 
 ## Application stack
 
@@ -20,15 +23,15 @@ Locked:
 - TypeScript
 - Windows + Cursor as primary development environment
 - Expo Development Builds for production development; Expo Go is not the runtime contract
-- native Kotlin / Swift integration remains available behind platform boundaries when required
+- native Kotlin / Android integration remains available when required
 
 ## Rationale
 
 The stack fits the current priorities:
 1. active-workout reliability
 2. solo AI-assisted development speed
-3. shared Android/iOS codebase
-4. native platform integration when required
+3. Android runtime reliability
+4. native Android integration when required
 5. maintainability / operating cost
 
 A switch to Flutter is not justified by a current requirement and would add a separate Dart toolchain without resolving a known blocker.
@@ -87,12 +90,11 @@ Boundary:
 Locked:
 - Supabase Auth
 - current MVP social providers: Google + Kakao
-- Apple Sign in is added for iOS release alignment
 - authentication identity is the stable account boundary used to associate server-side user data
 
 Rules:
 - Supabase Auth is the canonical authentication service
-- Google / Kakao / Apple provider identities map into the same application account model
+- Google / Kakao provider identities map into the same application account model
 - authentication success alone does not make server data authoritative over newer unsynced local workout data
 - account deletion must remove or anonymize user-owned server data according to the approved deletion policy
 - token/session handling must use secure platform storage rather than SQLite plain-text secrets
@@ -189,11 +191,11 @@ The exact Android API/service mechanism remains an implementation detail and mus
 ## Still open
 
 - analytics/crash reporting
-- exact Android/iOS background/runtime implementation
+- exact Android background/runtime implementation
 - release pipeline details
 
 ## NEXT OPEN ITEM
 
-Define iOS runtime / background execution equivalent after Android behavior lock.
+Finish Android runtime / background execution architecture.
 
 Do not begin production implementation yet.
