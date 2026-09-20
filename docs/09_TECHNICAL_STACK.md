@@ -1,71 +1,76 @@
 # 09 TECHNICAL STACK
 
-**Status:** CONFIRMED — PLATFORM / APP STACK
+**Status:** CONFIRMED — ANDROID PLATFORM / APP STACK
 **Updated:** 2026-09-20
 
 ## Platform strategy
 
-The product is developed as one shared cross-platform mobile application rather than building Android first and later porting the product to iOS.
+Current product scope is Android only.
 
-Current release strategy:
-- Android = first continuous real-device QA target
-- Android = first production release target
-- iOS compatibility is maintained in the shared codebase from the beginning
-- iOS release follows only after iOS-specific real-device QA
+Confirmed:
+- target platform: Android
+- runtime/device QA: Android
+- production release: Android
+- iOS compatibility is not a current implementation requirement
+- future iOS support requires a separate Product/Architecture decision
 
-Confirmed application stack:
-- **React Native**
-- **Expo**
-- **TypeScript**
-- development environment: **Windows PC + Cursor**
-- production development runtime: **Expo Development Build**
+Superseding decision:
+- `docs/ux-decisions/2026-09-20-android-only-platform-scope.md`
 
-Android and iOS remain product targets from the beginning and should share the same primary application codebase wherever practical.
+## Application stack
+
+Confirmed:
+- React Native
+- Expo
+- TypeScript
+- development environment: Windows PC + Cursor
+- production development runtime: Expo Development Build
+
+The stack is retained because it remains suitable for the Android-only MVP. Removing iOS from scope does not by itself justify a framework migration.
 
 ## Build and test policy
 
-- Android runtime/device QA is performed continuously during implementation.
-- Android is the first production release target.
-- iOS-compatible code and configuration are maintained during development rather than postponed as a later port.
-- iOS builds may use Expo/EAS cloud build infrastructure when required from the Windows development environment.
-- **iOS runtime/device QA is not complete until release-critical flows are verified on a real iPhone.**
+- Android real-device/runtime QA is performed continuously during implementation.
+- Android is the only current production release target.
+- Do not add iOS build, iPhone QA, App Store, Apple Sign in, or Live Activity work to the current MVP.
+- Future iOS work must not be assumed from Android PASS.
 
-Android runtime success must never be used as evidence that iOS runtime QA has passed.
+## Native Android integration boundary
 
-## Release implication
-
-iOS-specific device behavior remains a separate QA gate and is not a blocker for Android-first shared-code implementation or Android-first release.
-
-Before an iOS production release, real-device QA must cover authentication, onboarding, workout logging, local persistence/session recovery, cloud synchronization, account management/deletion, navigation, keyboard/input behavior, background/foreground transitions, and other release-critical flows.
-
-## Native integration boundary
-
-Cross-platform does not mean avoiding native APIs.
+Cross-platform application code does not prohibit Android-native APIs.
 
 Where required:
-- Android ongoing workout / foreground notification behavior may use Kotlin/native Android integration behind a React Native/Expo module boundary.
-- iOS Live Activity / notification behavior may use Swift/native iOS integration behind the equivalent boundary.
-- product/domain state must remain platform-neutral so these integrations do not create two separate application architectures.
+- ongoing workout notification/runtime behavior may use Kotlin/native Android integration behind a React Native/Expo module boundary
+- reboot recovery may use Android boot-completed handling
+- Rest Timer alert delivery may use Android-native notification/scheduling primitives
+- product/domain state remains in the shared application/domain layer where practical; Android system integration must not become the source of workout truth
 
-## Decision rationale
+SQLite remains authoritative for the recoverable Active Workout state.
 
-This approach preserves one shared implementation path while matching the Android-first QA/release strategy. It also keeps platform-native escape hatches for notification/background features without forcing a later rewrite.
+## Local persistence
 
-Decision record:
-- `docs/ux-decisions/2026-09-20-platform-app-stack-architecture-gate.md`
+Confirmed:
+- SQLite via `expo-sqlite`
+- local-first workout/session persistence
+- active-session recovery from SQLite
+- explicit schema migrations
+- large media binaries are not stored inside SQLite
 
+## Backend
+
+Confirmed:
+- Supabase Postgres
+- local SQLite is authoritative for immediate workout interaction
+- Supabase is the server persistence target after synchronization
 
 ## Authentication
 
 Confirmed:
 - Supabase Auth
-- Google + Kakao for the current Android-first MVP
-- Apple Sign in for iOS release alignment
-- React Native / Expo client uses the Supabase JS auth flow
-- auth/session secrets must use secure device storage; SQLite remains for application data, not plain-text credentials
+- Google + Kakao for the Android MVP
+- auth/session secrets use secure device storage, not plain SQLite
 
-Authentication service choice does not change the local-first workout persistence rule.
-
+Apple Sign in is not part of the current Android-only MVP.
 
 ## Media storage
 
@@ -75,4 +80,37 @@ Confirmed:
 - SQLite keeps references/metadata/upload state rather than media binaries
 - user-owned media is private/scoped by default
 
-This does not change the local-first persistence rule for workout data.
+## Synchronization
+
+Canonical:
+- `docs/ux-decisions/2026-09-20-local-first-sync-policy.md`
+
+Confirmed:
+- durable local outbox / dirty-state model
+- no per-keystroke or per-set remote request
+- active-workout remote sync is batched/coalesced
+- workout completion and explicit low-frequency Save actions trigger immediate best-effort sync
+- app resume / connectivity restoration trigger pending sync
+- exponential retry with jitter
+- stable IDs + idempotent mutation IDs
+- optimistic server version conflict detection
+- media upload queue does not block core workout-data sync
+
+## Android active-workout runtime
+
+Confirmed product/runtime behavior:
+- workout elapsed time uses an absolute persisted start timestamp and continues across app termination and device reboot
+- a normal reboot does not end the Active Workout
+- after boot, an unfinished Active Workout reconstructs its Android ongoing notification
+- dismissing the notification does not mutate or end the workout
+- Rest Timer end alert remains expected through screen-off, ordinary backgrounding, another foreground app, and recent-apps removal
+- Android user Force stop is the explicit notification/background delivery exception until relaunch
+- notification/runtime state is presentation only; SQLite remains authoritative
+
+## Still open
+
+- exact Android native implementation primitives where multiple options satisfy the locked behavior
+- analytics / crash reporting
+- deployment / Play release pipeline details
+
+Production implementation is not authorized until the Product Owner explicitly switches to Development mode.
