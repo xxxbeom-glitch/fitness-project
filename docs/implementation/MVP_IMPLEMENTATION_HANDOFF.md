@@ -969,13 +969,11 @@ Verified:
 - engineering/QA contracts aligned
 
 Not ready to start production implementation yet because:
-1. routine Duplicate semantics are undefined
-2. W / D / F routine-set semantics are undefined
-3. technology stack / architecture is not locked
-4. duration timed-set interaction is not locked
-5. automatic Rest Timer runtime edge/end-feedback policy is not locked
-6. active-session recovery system-notification UX is not locked
-7. launch-platform decision controls whether Apple-provider UI/copy alignment is required
+1. technology stack / architecture is not locked
+2. duration timed-set interaction is not locked
+3. automatic Rest Timer runtime edge/end-feedback policy is not locked
+4. active-session recovery system-notification UX is not locked
+5. launch-platform decision controls whether Apple-provider UI/copy alignment is required
 
 Current implementation-facing product brand is Tampin; the stale G Fit working-name text found during deep QA has been corrected in the current Product Direction / Project Brief.
 
