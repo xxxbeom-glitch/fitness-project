@@ -1,6 +1,6 @@
 # 03 TECH STACK
 
-**Status:** PARTIALLY FROZEN — PLATFORM / APP STACK / LOCAL-FIRST / SQLITE LOCKED · BACKEND OPEN
+**Status:** PARTIALLY FROZEN — PLATFORM / APP STACK / LOCAL-FIRST / SQLITE / SUPABASE LOCKED · AUTH OPEN
 
 ## CONFIRMED PRODUCT CONSTRAINTS
 
@@ -50,10 +50,16 @@ Decision record:
 - explicit schema migrations are required
 - large media binaries are not stored directly in SQLite
 
+## LOCKED — backend database
+
+- Supabase
+- server database = Supabase Postgres
+- local SQLite remains authoritative for immediate workout interaction
+- Supabase is the canonical server persistence target after synchronization
+
 ## TBD
 
 The following remain intentionally open:
-- backend/database provider
 - auth implementation boundary
 - sync trigger / retry / conflict policy
 - media/profile-image storage
@@ -76,8 +82,8 @@ Do not select infrastructure merely because it is fashionable or familiar.
 ## NEXT ARCHITECTURE WORK
 
 Proceed one decision at a time:
-1. backend/database provider
-2. auth/storage boundary
+1. authentication boundary/provider
+2. media/profile-image storage boundary
 3. sync trigger / retry / conflict contract
 4. platform runtime implementation details
 
