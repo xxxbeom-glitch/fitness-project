@@ -791,6 +791,9 @@ Locked:
 - Android Rest Timer alert remains expected through screen-off, ordinary backgrounding, another foreground app, and recent-apps removal
 - normal reboot restores a future rest deadline; a deadline already passed during downtime is not replayed as a stale late alert
 - Android user Force stop is the explicit delivery exception until relaunch
+- exact Rest Timer scheduling uses `SCHEDULE_EXACT_ALARM` when access is granted; do not use restricted `USE_EXACT_ALARM`
+- exact-alarm access is requested contextually when precise Rest Timer delivery is first needed
+- if access is denied/revoked, workout logging continues and alert timing falls back to best effort
 - rest-alert delivery never owns or mutates the persisted workout state
 
 NEXT OPEN ITEM:
