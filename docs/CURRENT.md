@@ -4,7 +4,7 @@
 
 ## Current mode
 
-`MVP 95 CONTENT/STATE FRAMES CANONICAL · SEQUENTIAL PRODUCT/UX HANDOFF QA PASS · PLATFORM = ANDROID+iOS SHARED · QA/RELEASE = ANDROID FIRST · APP STACK = REACT NATIVE + EXPO + TYPESCRIPT LOCKED · PERSISTENCE = LOCAL-FIRST LOCKED · LOCAL DB = SQLITE / EXPO-SQLITE LOCKED · BACKEND = SUPABASE POSTGRES LOCKED · AUTH = SUPABASE AUTH LOCKED · STORAGE = SUPABASE STORAGE LOCKED · SYNC = OUTBOX/BATCH/IDEMPOTENT/OPTIMISTIC-VERSION LOCKED · NEXT = PLATFORM RUNTIME ARCHITECTURE · IMPLEMENTATION NOT STARTED`
+`MVP 95 CONTENT/STATE FRAMES CANONICAL · SEQUENTIAL PRODUCT/UX HANDOFF QA PASS · PLATFORM = ANDROID ONLY · QA/RELEASE = ANDROID · APP STACK = REACT NATIVE + EXPO + TYPESCRIPT LOCKED · PERSISTENCE = LOCAL-FIRST LOCKED · LOCAL DB = SQLITE / EXPO-SQLITE LOCKED · BACKEND = SUPABASE POSTGRES LOCKED · AUTH = SUPABASE AUTH (GOOGLE+KAKAO) LOCKED · STORAGE = SUPABASE STORAGE LOCKED · SYNC = OUTBOX/BATCH/IDEMPOTENT/OPTIMISTIC-VERSION LOCKED · NEXT = FINISH ANDROID RUNTIME ARCHITECTURE · IMPLEMENTATION NOT STARTED`
 
 ## Resume rule
 
@@ -39,6 +39,7 @@ The previous `98` count became `94` after the 2026-09-19 recommended-routine rem
 - `docs/ux-decisions/2026-09-20-mvp-screen-design-freeze.md`
 - Group 06–07 sequential QA: `docs/ux-decisions/2026-09-20-group06-07-sequential-handoff-qa.md`
 - Group 08 sequential QA: `docs/ux-decisions/2026-09-20-group08-sequential-handoff-qa.md`
+- Android-only platform scope: `docs/ux-decisions/2026-09-20-android-only-platform-scope.md`
 - current architecture checkpoint: `docs/ux-decisions/2026-09-20-platform-app-stack-architecture-gate.md`
 - `docs/implementation/README.md`
 - `docs/implementation/MVP_IMPLEMENTATION_HANDOFF.md`
@@ -720,11 +721,11 @@ Verdict: **PASS — Group 08 Settings / Account / Support sequential handoff QA 
 ## Current architecture gate
 
 Locked:
-- one shared Android + iOS codebase
-- Android-first runtime QA and production release
+- current product/platform scope = Android only
+- Android runtime/device QA and production release
 - React Native + Expo + TypeScript
 - Expo Development Builds for production development
-- iOS release requires separate iOS real-device QA
+- no current iOS compatibility / iPhone QA / App Store / Live Activity requirement
 
 Locked:
 - active workout / workout edits are local-first
@@ -747,7 +748,6 @@ Locked:
 Locked:
 - authentication = Supabase Auth
 - current MVP providers = Google + Kakao
-- Apple Sign in is added for iOS release alignment
 - auth/session secrets use secure platform storage, not plain SQLite
 
 Locked:
@@ -794,14 +794,13 @@ Locked:
 - rest-alert delivery never owns or mutates the persisted workout state
 
 NEXT OPEN ITEM:
-- define iOS runtime / background behavior equivalent
+- finish remaining Android runtime/background implementation decisions
 
 ## Other already-known open decisions
 
-- platform runtime/background architecture
+- remaining Android runtime/background implementation details
 - analytics/crash reporting
-- deployment/release pipeline
-- iOS Apple Sign in implementation verification before iOS release
+- Android deployment / Play release pipeline
 
 ## Active non-blocking side tracks
 
@@ -822,8 +821,8 @@ Current handoff verdict:
 - `DECISION NEEDED`
 
 Before development:
-- data/backend/sync architecture decisions
-- iOS provider alignment policy for eventual iOS release
+- finish remaining Android runtime architecture decisions
+- analytics/crash/release-pipeline decisions as needed for implementation scope
 - explicit Product Owner development authorization
 
 After resolution, create the first scoped Issue and switch to Development mode.
