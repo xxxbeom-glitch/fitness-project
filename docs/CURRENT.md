@@ -4,7 +4,7 @@
 
 ## Current mode
 
-`MVP 94 CONTENT/STATE FRAMES FROZEN · 94-SCREEN BEHAVIOR MATRIX COMPLETE · VISUAL FIXES CLOSED · GROUP 00–01 PASS · GROUP 02 HOME STRUCTURE PASS / ROUTINE-TILE TAP DECISION OPEN · HANDOFF QA = DECISION NEEDED · BOTTOM APP BAR PASS · WEEKDAY SCHEDULING REMOVED FROM MVP · ROUTINE DUPLICATE OPEN · W/D/F SET SEMANTICS OPEN · REST-TIMER EDGE POLICY OPEN · RECOVERY SYSTEM-NOTIFICATION UX OPEN · TECH STACK / ARCHITECTURE OPEN · DURATION ACTIVE-SET UX OPEN · IMPLEMENTATION NOT STARTED`
+`MVP 94 CONTENT/STATE FRAMES FROZEN · 94-SCREEN BEHAVIOR MATRIX COMPLETE · VISUAL FIXES CLOSED · GROUP 00–01 PASS · GROUP 02 HOME PASS · NEXT = GROUP 03 ROUTINE QA · HANDOFF QA = DECISION NEEDED · BOTTOM APP BAR PASS · WEEKDAY SCHEDULING REMOVED FROM MVP · ROUTINE DUPLICATE OPEN · W/D/F SET SEMANTICS OPEN · REST-TIMER EDGE POLICY OPEN · RECOVERY SYSTEM-NOTIFICATION UX OPEN · TECH STACK / ARCHITECTURE OPEN · DURATION ACTIVE-SET UX OPEN · IMPLEMENTATION NOT STARTED`
 
 ## Resume rule
 
@@ -628,39 +628,43 @@ Release follow-ups that are not Figma blockers:
 
 # NEXT OPEN ITEM
 
-**Sequential handoff QA proceeds one block at a time. Do not advance to Group 03 until the remaining Group 02 behavior is approved.**
+**Sequential handoff QA proceeds one block at a time. Do not advance beyond the current block without Product Owner approval.**
 
 Completed:
 - Group 00–01 Splash / Authentication / First Run — PASS
-- Group 02 Home weekday/today-next/selected-routine conflict — RESOLVED
-- canonical decision: `docs/ux-decisions/2026-09-20-group02-home-with-routine-simplification.md`
+- Group 02 Home — PASS
+- Group 02 canonical decision: `docs/ux-decisions/2026-09-20-group02-home-with-routine-simplification.md`
 
-Current canonical Group 02 structure:
-- `02A_Home_NoRoutine`: Quick Start = `빈 운동 / 내 루틴 만들기`; lower = `내 루틴 (0)` + empty card + `루틴 만들기` CTA
-- `02B_Home_WithRoutine`: same Quick Start; lower = `내 루틴 (n)` 2 × n grid
-- `02D_Home_Active`: active workout resume is primary; lower = persistent `내 루틴` section; no Recent Workout section
-- weekday assignment / `오늘의 운동` / `다음 운동` / hidden selected routine = not in current MVP
+## Closed Group 02 Home contract
 
-## Current Group 02 decision
+- `02A_Home_NoRoutine`
+  - Quick Start = `빈 운동 / 내 루틴 만들기`
+  - `내 루틴 (0)`
+  - full-width empty card = `아직 루틴이 없어요 / 자주 하는 운동을 루틴으로 만들어보세요 / 루틴 만들기`
+- `02B_Home_WithRoutine`
+  - same Quick Start
+  - `내 루틴 (n)` 2 × n grid
+- `02D_Home_Active`
+  - active-workout resume is primary
+  - persistent `내 루틴 (n)`
+- no Home Recent Workout / `전체 기록`
+- no weekday assignment / `오늘의 운동` / `다음 운동` / hidden selected routine
+- My Routine header = `Trailing=None`; no `새 루틴` header action
+- Home routine tile → matching `03D_Routine_Detail`
+- routine tile tap does not directly start an Active Workout
 
-**`내 루틴` tile tap behavior**
+## Current sequential QA block — Group 03 Routine
 
-Current visual:
-- routine tiles are compact `HomeRoutineTile`
-- no chevron
-- examples = Pull Day / Leg Day
+Start with the already-identified unresolved Routine behaviors:
+1. Routine Duplicate behavior
+2. W / D / F routine-set semantics
 
-Need PO decision on tap:
-- open Routine Detail, or
-- immediately start that routine
+Review only Group 03 Routine and directly required dependencies.
 
-Do not invent this behavior.
-
-**STOP after resolving this one Group 02 question. Do not continue to Group 03 automatically.**
+**STOP after presenting Group 03 finding(s) and receiving Product Owner decision. Do not continue to Group 04 automatically.**
 
 ## Later sequential blocks after explicit approval
 
-- Group 03 Routine
 - Group 04 Exercise Library / Custom Exercise
 - Group 05 Active Workout
 - Group 06–07 Completion / History / Analysis
@@ -669,8 +673,6 @@ Do not invent this behavior.
 
 ## Other already-known open decisions
 
-- Routine Duplicate behavior
-- W / D / F routine-set semantics
 - Automatic Rest Timer runtime edge/end-feedback policy
 - Active-session recovery system-notification UX
 - Technology stack / platform architecture
@@ -696,7 +698,6 @@ Current handoff verdict:
 - `DECISION NEEDED`
 
 Before development:
-- weekday scheduling decision
 - routine Duplicate decision
 - W / D / F routine-set decision
 - automatic Rest Timer runtime edge/end-feedback decision
