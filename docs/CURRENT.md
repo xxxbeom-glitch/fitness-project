@@ -1,6 +1,8 @@
-# CURRENT — Fitness Project
+# CURRENT — Tampin
 
 **Updated:** 2026-09-20
+
+Canonical GitHub repository: `xxxbeom-glitch/tampin`
 
 ## Current mode
 
@@ -824,7 +826,7 @@ Locked:
 - `08E_Notification_Settings` Product scope is now `휴식 타이머 알림` only
 - previous `업데이트/공지` row is superseded; focused Figma row removal remains a visual-maintenance follow-up
 - `휴식 타이머` channel does not own selectable app sounds; Tampin separately plays bundled `기본 / 차임 / 벨` at completion
-- background/screen-off timer sound uses a short-lived native `mediaPlayback` Foreground Service where Android requires it, then stops immediately
+- background/screen-off timer sound uses the smallest compliant native mechanism; add a short-lived Foreground Service only if Development Build/device QA proves it is required
 - this does not change the no-continuous-Foreground-Service rule for the Active Workout
 - changing timer sound does not recreate notification channels
 
@@ -851,7 +853,7 @@ Canonical:
 Locked:
 - product-usage analytics = PostHog
 - explicit named events only; no Session Replay, broad autocapture, form/input capture, or advertising attribution
-- initial event taxonomy = 26 events across onboarding/permissions, routine, workout, timer, analysis/history, custom exercise/support/account
+- initial event taxonomy = 24 explicit events across onboarding/permissions, routine, workout, timer, analysis/history, custom exercise/support/account
 - primary funnel = onboarding completed → workout started → first set completed → workout completed → later workout return/start
 - do not send profile demographics, email/nickname, routine/exercise names, exact workout values, support content, secrets, or raw DB rows
 - identity = opaque internal app user ID only; reset on logout/account change
@@ -861,7 +863,7 @@ Locked:
 Canonical:
 - `docs/ux-decisions/2026-09-20-posthog-product-analytics.md`
 
-## Pre-release architecture re-audit — ACTIVE
+## Pre-release architecture re-audit — COMPLETE
 
 Product Owner explicitly requested a full architecture re-audit before Android deployment / Google Play release-pipeline design.
 
@@ -900,8 +902,8 @@ NEXT OPEN ITEM:
 
 ## Other already-known open decisions
 
-- remaining Android runtime/background implementation details
-- Android deployment / Play release pipeline
+- no architecture decision remains open from the 01–14 re-audit
+- implementation-specific runtime details are validated during Development/Release QA
 
 ## Active non-blocking side tracks
 
@@ -919,10 +921,9 @@ After sequential Product/UX QA decisions and architecture gates are resolved, Pr
 Cursor-facing documents exist, but **production implementation is not authorized yet**.
 
 Current handoff verdict:
-- `DECISION NEEDED`
+- `READY FOR PO DEVELOPMENT AUTHORIZATION`
 
 Before development:
-- Android release-pipeline decisions as needed for implementation scope
 - explicit Product Owner development authorization
 
 After resolution, create the first scoped Issue and switch to Development mode.
