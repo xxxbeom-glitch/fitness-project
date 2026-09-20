@@ -1,6 +1,6 @@
 # MVP Implementation Handoff QA
 
-**Status:** 94-SCREEN DEEP QA COMPLETE · FIX / DECISION NEEDED · IMPLEMENTATION NOT STARTED  
+**Status:** 94-SCREEN DEEP QA COMPLETE · VISUAL FIXES CLOSED · DECISION NEEDED · IMPLEMENTATION NOT STARTED  
 **Verified:** 2026-09-20
 
 ## QA purpose
@@ -257,28 +257,34 @@ Coverage:
 
 ### New FIX findings
 
-#### FIX-01 — primary bottom navigation component resolved; root placement remains
+#### RESOLVED — primary BottomAppBar component + root placement
 
-Product IA requires:
+Product IA:
 - 홈
 - 루틴
 - 분석
 - 설정
 
-Targeted Figma maintenance now provides the canonical shared visual/component contract:
+Targeted Figma maintenance now provides both the shared component and canonical root placement:
 - `BottomAppBar` — `2078:2401`
 - variants = `Active=홈 / 루틴 / 분석 / 설정`
 - Light `bg/surface` container + existing `Elevation/Card`
 - active `brand/primary`
 - inactive `text/secondary`
-- `REF_하단앱바_화면내배치예시` now uses the new local component
-- focused component/binding QA PASS
+- `REF_하단앱바_화면내배치예시` uses the local component
+- exactly seven approved root-screen instances
+- unexpected non-root instances = `0`
+- all seven use `x=0 / y=641 / 360×78`
+- Home/Routine static visible content overlap = `0`
+- long Analysis/Settings frames use first-viewport fixed-navigation representation and require production scroll bottom inset
+- whole-MVP instances after placement = `1,862`
+- missing main-component links = `0`
+- non-`Common_Component` sources = `0`
 
-Remaining gap:
-- applicable root screens still contain no BottomAppBar instance
-- bottom placement/content-clearance QA is therefore still required before primary-shell implementation
+Canonical decision:
+- `docs/ux-decisions/2026-09-20-bottom-app-bar-root-placement.md`
 
-Verdict: **FIX remains only for root-screen placement; shared component contract = PASS.**
+Verdict: **PASS — prior bottom-navigation FIX closed.**
 
 #### RESOLVED — stale brand naming
 
@@ -447,7 +453,7 @@ Verdict for these additions: **PASS — recovered approved rules, not new produc
 - stale planning artifact guardrails
 
 ### FIX before relevant UI implementation
-1. primary BottomAppBar root-screen placement using the approved shared component
+- none in the current frozen visual contract.
 
 ### DECISION NEEDED before production implementation
 1. weekday scheduling / today-next semantics
@@ -466,4 +472,4 @@ Verdict for these additions: **PASS — recovered approved rules, not new produc
 
 ## Final result
 
-**FIX / DECISION NEEDED — the 94 canonical screens are now individually mapped and most behavior is implementation-ready, but the handoff is not a full PASS. Resolve the targeted FIX / DECISION NEEDED items above before production implementation, then re-run focused handoff QA.**
+**DECISION NEEDED — the 94 canonical screens are individually mapped and the current visual FIX list is closed, but the handoff is not a full PASS until the remaining Product/Runtime/Architecture decisions are resolved.**
