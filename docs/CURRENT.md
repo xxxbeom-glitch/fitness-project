@@ -1,6 +1,6 @@
 # CURRENT — Tampin
 
-**Updated:** 2026-09-20
+**Updated:** 2026-09-21
 
 Canonical GitHub repository: `xxxbeom-glitch/tampin`
 
@@ -75,22 +75,21 @@ PO-approved current direction:
     - additional merges = **6**
     - keep separate = **39**
   - current working identities = **5,648**
-- semantic normalization prepass v1 = **DATA PREPASS COMPLETE / MANUAL QA REMAINS**
-  - MVP resistance/strength candidates = **3,726**
-  - excluded non-MVP = **1,476**
-  - excluded added-weight bodyweight = **4**
+- semantic normalization v2 = **GENERATED / MANUAL QA REMAINS**
+  - current MVP resistance/strength candidates = **3722**
+  - excluded non-MVP = **1476**
+  - excluded added-weight bodyweight/apparatus = **8**
   - excluded reserved-recording UI = **17**
   - general semantic review = **274**
   - home/context review = **151**
-  - AUTO_DRAFT_COMPLETE = **495**
-  - MANUAL_QA_REQUIRED = **3,656**
-  - Korean controlled-glossary drafts = **644**
-  - body↔muscle-family conflict flags = **200**
-  - recording prepass: reps **1,815** / weight_reps **1,641** / duration **155** / assisted_weight_reps **5** / unresolved **2,014**
+  - AUTO_DRAFT_COMPLETE = **598**
+  - MANUAL_QA_REQUIRED = **3549**
+  - recording prepass: reps **2225** / weight_reps **1641** / duration **158** / assisted_weight_reps **5** / unresolved **1601**
+  - Resistance Band / Rings / Suspension recording semantics = **LOCKED FOR MVP**
 - all source media/provenance is preserved; identity merges/exclusions do not delete alternate media
 - raw purchased filename/path map is not committed to the public repo; only normalized derivative catalog data is committed
-- current data checkpoints: `docs/exercise-db/2026-09-20-gym-visual-auto-normalization-v1.md`, `docs/exercise-db/2026-09-20-gym-visual-duplicate-version-qa.md`, `docs/exercise-db/2026-09-20-gym-visual-cross-gender-near-match-qa.md`, `docs/exercise-db/2026-09-21-gym-visual-held-near-match-resolution.md`, `docs/exercise-db/2026-09-21-gym-visual-semantic-normalization-prepass-v1.md`
-- next data/media task = lock Resistance Band / Rings / Suspension recording semantics → focused Korean naming + metadata manual QA → default media selection → Cloudflare MP4 + in-app WebP manifest
+- current data checkpoints: `docs/exercise-db/2026-09-20-gym-visual-auto-normalization-v1.md`, `docs/exercise-db/2026-09-20-gym-visual-duplicate-version-qa.md`, `docs/exercise-db/2026-09-20-gym-visual-cross-gender-near-match-qa.md`, `docs/exercise-db/2026-09-21-gym-visual-held-near-match-resolution.md`, `docs/exercise-db/2026-09-21-gym-visual-semantic-normalization-v2.md`
+- next data/media task = focused Korean/local naming QA for gym-first weighted equipment → body/muscle conflict QA → catalog relevance review (including bodyweight search-noise pass) → default media selection → Cloudflare MP4 + in-app WebP manifest
 
 ### Current consolidated maintenance
 - `docs/ux-decisions/2026-09-18-mvp-figma-maintenance-checkpoint.md`
