@@ -68,10 +68,15 @@ PO-approved current direction:
 - multi-variant exact groups = **76**
 - duplicate/version review groups = **117** → **117 / 117 identity QA PASS**
 - version-deduplicated identity candidates = **5,729** (5,854 → 5,729; 125 candidate identities merged)
-- 329 source media rows in those groups are preserved as alternate media candidates; no source media deleted
+- cross-gender near-match QA = **PASS**
+  - high-confidence merge clusters = **73**
+  - additional candidate identity reduction = **75**
+  - current working identities = **5,654**
+  - ambiguous mutual near-match pairs held for semantic QA = **45**
+- all source media/provenance is preserved; identity merges do not delete alternate media
 - raw purchased filename/path map is not committed to the public repo; only normalized derivative catalog data is committed
-- current data checkpoints: `docs/exercise-db/2026-09-20-gym-visual-auto-normalization-v1.md`, `docs/exercise-db/2026-09-20-gym-visual-duplicate-version-qa.md`
-- next data/media task = cross-gender near-match QA → Korean naming + semantic metadata QA → default media selection → Cloudflare MP4 + in-app WebP manifest
+- current data checkpoints: `docs/exercise-db/2026-09-20-gym-visual-auto-normalization-v1.md`, `docs/exercise-db/2026-09-20-gym-visual-duplicate-version-qa.md`, `docs/exercise-db/2026-09-20-gym-visual-cross-gender-near-match-qa.md`
+- next data/media task = Korean/local semantic normalization + equipment/muscle/recording-type QA → default media selection → Cloudflare MP4 + in-app WebP manifest
 
 ### Current consolidated maintenance
 - `docs/ux-decisions/2026-09-18-mvp-figma-maintenance-checkpoint.md`
