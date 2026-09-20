@@ -149,10 +149,27 @@ Confirmed:
 Canonical:
 - `docs/ux-decisions/2026-09-20-sentry-crash-error-reporting.md`
 
+## Product analytics
+
+Confirmed:
+- provider = PostHog
+- explicit named events only
+- Session Replay off
+- broad autocapture off
+- no form/input capture
+- no advertising attribution
+- opaque internal user ID only; reset on logout/account change
+- do not send profile demographics, email/nickname, names/free text, exact workout values, support content, secrets, or raw database rows
+- local development off by default
+- preview/production distinguishable by `app_environment`
+- best-effort only; analytics failure never blocks product flows
+
+Initial taxonomy is defined in:
+- `docs/ux-decisions/2026-09-20-posthog-product-analytics.md`
+
 ## Still open
 
 - exact Android native implementation primitives where multiple options satisfy the locked behavior
-- product-usage analytics scope
 - deployment / Play release pipeline details
 
 Production implementation is not authorized until the Product Owner explicitly switches to Development mode.
