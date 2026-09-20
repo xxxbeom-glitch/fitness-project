@@ -176,8 +176,8 @@ Core invariants:
 - exact-alarm completion event posts the system notification and triggers separate app-owned sound playback
 - selected sound = `기본 / 차임 / 벨`
 - use alarm-appropriate audio usage
-- use a short-lived native Android `mediaPlayback` Foreground Service when background-audio restrictions require it
-- stop the service immediately after the sound finishes
+- use the smallest Android-native mechanism that reliably delivers the approved short completion sound
+- a short-lived Foreground Service may be added only if Development Build/device QA proves it is required by supported Android runtime restrictions
 - Active Workout itself still does not run a continuous Foreground Service
 - notification-channel identity remains stable across sound-setting changes
 
