@@ -1,6 +1,6 @@
 # 04 ARCHITECTURE
 
-**Status:** PARTIALLY FROZEN — LOCAL-FIRST + SQLITE + SUPABASE + SUPABASE AUTH LOCKED
+**Status:** PARTIALLY FROZEN — LOCAL-FIRST + SQLITE + SUPABASE + AUTH + STORAGE LOCKED
 
 ## Architecture goals
 
@@ -58,6 +58,15 @@ Future domains such as Gym, Body Composition, Watch, AI, and Community should re
 - server-side user-owned rows map to the authenticated account identity
 - auth/session secrets are stored using secure platform storage, not ordinary SQLite application rows
 - local-first workout persistence remains independent from transient network/auth availability during an already-authorized local session
+
+## Media storage boundary — CONFIRMED
+
+- Supabase Storage is the canonical server object storage
+- profile images and support inquiry attachments use Supabase Storage
+- SQLite stores local URI, remote object path, upload/sync state, and related metadata
+- large binaries are not embedded in SQLite
+- user-owned media is private/scoped by default
+- exercise-library Production assets remain a separate distribution concern unless explicitly moved into the same storage architecture
 
 ## TBD
 
