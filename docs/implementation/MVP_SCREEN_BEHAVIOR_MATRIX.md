@@ -425,12 +425,10 @@ Most static/state/detail/dialog/sheet screens in Groups 01, 04, 06, 07, 08, and 
 - none in the current frozen visual contract.
 
 ### DECISION NEEDED
-2. Routine `복제` exact behavior.
-3. W / D / F routine-set semantics.
-4. Automatic Rest Timer already-running / end-feedback runtime policy.
-5. Active-session recovery system-notification UX.
-6. Duration Active Workout timed-set interaction.
-7. Production technology stack / platform architecture.
+1. Automatic Rest Timer already-running / end-feedback runtime policy.
+2. Active-session recovery system-notification UX.
+3. Duration Active Workout timed-set interaction.
+4. Production technology stack / platform architecture.
 
 ### CONDITIONAL
 - Apple sign-in/account copy if iOS is included in launch scope.
