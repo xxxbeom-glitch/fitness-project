@@ -8,7 +8,7 @@
 Applies to Android 13+ `POST_NOTIFICATIONS` permission for:
 - `05A_Workout_Weight` — ongoing Active Workout notification
 - `05F_Workout_RestTimer` — Rest Timer completion alert
-- `08E_Notification_Settings` — notification preferences
+- `08E_Notification_Settings` — Rest Timer notification preference
 
 ## Decision
 
@@ -47,7 +47,7 @@ If permission is not granted:
 - exact-alarm permission alone does not override notification permission
 - do not repeatedly interrupt every workout with the same automatic permission prompt
 
-If the user later enables a notification feature in `08E_Notification_Settings` while system notification permission is unavailable:
+If the user later enables `휴식 타이머 알림` in `08E_Notification_Settings` while system notification permission is unavailable:
 - explain that Android notification permission is required
 - request it again if the platform still allows a runtime request, otherwise route to the app's Android notification settings
 - the app-level toggle never pretends notifications are deliverable when Android has blocked them
