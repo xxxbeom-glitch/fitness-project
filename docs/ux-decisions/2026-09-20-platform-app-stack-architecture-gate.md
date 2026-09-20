@@ -1,7 +1,7 @@
 # Platform / App Stack Architecture Gate
 
 **Date:** 2026-09-20
-**Status:** PO APPROVED · APP STACK / LOCAL-FIRST / SQLITE / SUPABASE / SUPABASE AUTH LOCKED · STORAGE NEXT
+**Status:** PO APPROVED · APP STACK / LOCAL-FIRST / SQLITE / SUPABASE / AUTH / STORAGE LOCKED · SYNC NEXT
 
 ## Platform strategy
 
@@ -97,16 +97,33 @@ Rules:
 - account deletion must remove or anonymize user-owned server data according to the approved deletion policy
 - token/session handling must use secure platform storage rather than SQLite plain-text secrets
 
+## Media / file storage — PO APPROVED
+
+Locked:
+- Supabase Storage
+
+Use Supabase Storage for server-side user media such as:
+- profile images
+- support inquiry attachments
+- other explicitly approved user-uploaded media
+
+Rules:
+- SQLite stores file metadata / local URI / remote object path / upload state, not the large binary itself
+- local file availability can precede upload; network failure must not block the rest of the local-first workout flow
+- user-owned private media must not be made public by default
+- object access must be scoped to the authenticated user or the specific support workflow
+- deletion/account-deletion flows must remove or invalidate the associated user-owned objects according to product policy
+- Production exercise-library media is a separate product asset distribution concern and is not automatically treated as user-uploaded Storage content
+
 ## Still open
 
 - exact sync trigger / retry / conflict mechanics
-- media/profile-image storage
 - analytics/crash reporting
 - exact Android/iOS background/runtime implementation
 - release pipeline details
 
 ## NEXT OPEN ITEM
 
-Choose the media/profile-image storage boundary.
+Define the synchronization trigger / retry / conflict contract.
 
 Do not begin production implementation yet.
