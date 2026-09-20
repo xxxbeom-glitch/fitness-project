@@ -139,6 +139,28 @@ Canonical policy amended:
 ### QA verdict
 **PASS**
 
+## Block 04 — SQLite local database suitability and operating rules
+
+### Re-audit result
+Keep `expo-sqlite` as the durable local database for the MVP.
+
+Locked operating rules:
+- SQLite is real local application storage, not a disposable cache
+- core workout/session/routine/custom-exercise state uses structured tables and stable IDs
+- schema changes use explicit migrations so existing user records survive app updates
+- multi-row state changes that must succeed/fail together use transactions
+- media binaries and auth/session secrets remain outside SQLite
+- user-owned local records must be account-scoped so unsynced Account A data cannot appear under or sync into Account B
+- no additional database encryption/ORM layer is required for MVP unless implementation evidence shows a concrete need
+
+### OnTalk comparison
+- OnTalk used SharedPreferences + JSON for some chat cache/pending state.
+- It later required explicit account-scoped cache envelopes and cache-publication guards to avoid showing another account's stale data.
+- Tampin's relational workout/session/set model is materially more structured, so SQLite is the safer default than expanding JSON preference storage.
+
+### QA verdict
+**PASS**
+
 ## NEXT OPEN ITEM
 
-**Block 04 — SQLite local database suitability and operating rules.**
+**Block 05 — Supabase backend / server authority.**
