@@ -201,7 +201,7 @@ Verdict: **PASS — Group 00–01 closed.**
 |---|---|---|---|---|
 | `03A_Routine_List` | Saved-routine root list | + → create; card → detail; more → routine menu | User-created routines only. No recommendation tab/catalog. | PASS |
 | `03B_Routine_Empty` | Routine root with zero saved routines | `루틴 만들기` → create | Header intentionally has no redundant + action in this state. | PASS |
-| `03D_Routine_Detail` | View saved routine | Edit → edit; `운동 시작` → Active Workout | Summary shows exercise count / estimated time / set count. Completed history must not depend on later routine edits. | PASS; DECISION-01 affects schedule only |
+| `03D_Routine_Detail` | View saved routine | Edit → edit; `운동 시작` → Active Workout | Summary shows exercise count / estimated time / set count. Completed history must not depend on later routine edits. | PASS |
 | `03E_Routine_Create` | New routine, before exercises | Back → leave or unsaved confirm when changed; `운동 추가` → exercise selection; Save initially Disabled | Routine name is optional. Current Disabled Save is because routine is otherwise invalid/empty, not because name is blank. | PASS |
 | `03F_Routine_Edit` | Edit existing routine | Back with changes → 03EF; Trash → delete confirm; exercise menu; add exercise; Save → updated detail | Existing routine history is immutable. Recording values here are planned/configured values, not past performance rewrite. | PASS |
 | `03E2_Routine_Create_WithExercises` | Create routine after adding exercises | edit set config / exercise menu / add exercise; Save → new routine detail | Blank name remains saveable if other validity rules are satisfied; auto-name on first save. | PASS |
