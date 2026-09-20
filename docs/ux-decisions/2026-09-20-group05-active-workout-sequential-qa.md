@@ -1,7 +1,7 @@
 # Group 05 Active Workout — Sequential Handoff QA Decision Checkpoint
 
 **Date:** 2026-09-20  
-**Status:** QA IN PROGRESS · PO DECISION RECORDED
+**Status:** SEQUENTIAL HANDOFF QA PASS · GROUP 05 CLOSED
 
 ## Scope
 
@@ -79,9 +79,11 @@ Platform interpretation:
 
 This resolves the remaining Group 05 notification/recovery Product UX decision.
 
-## Still open in Group 05
+## Group 05 closure
 
-- none at Product/UX behavior level; technology/platform implementation details remain in the architecture gate
+Product/UX behavior blockers remaining in Group 05: `0`.
+
+Platform/framework mechanics for the ongoing notification/activity surface remain part of the separate technology/architecture gate and do not reopen Group 05 Product/UX.
 
 ## QA state
 
@@ -90,4 +92,4 @@ This resolves the remaining Group 05 notification/recovery Product UX decision.
 - Figma ↔ matrix names: 18 / 18 exact match
 - no Group 05 screen omission found in the current sequential pass
 
-Group 05 is not closed until the remaining open Product/UX decisions above are resolved.
+**PASS — Group 05 Active Workout sequential Figma ↔ implementation-handoff QA is closed.**
