@@ -22,7 +22,7 @@ Primary early target:
 초보자도 사용할 수 있어야 하지만, 제품 전체를 초보자 교육용으로 단순화하지 않는다.
 
 Core repeated value:
-- 오늘/다음 운동을 빠르게 시작
+- 운동을 빠르게 시작하거나 진행 중인 운동으로 바로 복귀
 - 중량 / 횟수 / 세트 / 휴식을 간단히 기록
 - 이전 기록과 누적 데이터를 직관적으로 확인
 - 기록이 쌓일수록 이후 개인화 제안의 가치가 커짐
@@ -63,12 +63,12 @@ Tampin은 다음 네 층으로 확장한다.
 
 ## Core user loop — CONFIRMED
 
-`오늘/다음 운동 확인 -> 운동 시작 -> 세트 기록 -> 운동 종료 -> 요약/성장 확인 -> 다음 운동에서 이전 데이터 재사용`
+`운동 시작/복귀 -> 세트 기록 -> 운동 종료 -> 요약/성장 확인 -> 다음 운동에서 이전 데이터 재사용`
 
 Home의 핵심 우선순위:
 
-1. 오늘 또는 다음 운동을 바로 시작
-2. 최근 운동/성장 상태를 빠르게 확인
+1. 빈 운동/루틴 생성 또는 진행 중인 운동으로 빠르게 진입
+2. 저장 루틴 또는 최근 운동을 상태에 맞게 빠르게 확인
 
 루틴이 존재하는 일반 Home에서는 추천 콘텐츠보다 사용자의 현재 운동 행동이 우선한다.
 
@@ -76,12 +76,13 @@ Home의 핵심 우선순위:
 
 Home의 가장 중요한 역할은 **사용자가 지금 할 운동을 바로 시작하거나, 진행 중인 운동으로 바로 돌아가게 하는 것**으로 확정한다.
 
-동일한 Home 구조에서 최상단 행동만 상태에 따라 바뀐다.
+Home 상태는 다음처럼 단순화한다.
 
-- 루틴 없음 -> `빈 운동 시작` / `내 루틴 만들기`
-- 루틴 있음 + 요일 미지정 -> `다음 운동`
-- 루틴 있음 + 요일 지정 -> `오늘의 운동`
-- active workout 존재 -> `운동 계속하기`
+- 루틴 없음 -> 상단 `빈 운동` / `내 루틴 만들기`, 하단 `최근 운동`
+- 루틴 있음 -> 상단은 동일하게 `빈 운동` / `내 루틴 만들기`, 하단은 `내 루틴` 2 × n grid
+- active workout 존재 -> 진행 중인 운동 복귀가 최우선
+
+현재 MVP에는 weekday scheduling / `오늘의 운동` / `다음 운동` / hidden selected-routine Home state를 두지 않는다.
 
 상세 그래프와 깊은 분석은 `분석` 탭으로 보내고 Home에서는 운동 시작/복귀가 묻히지 않게 한다.
 
@@ -265,7 +266,7 @@ LLM 없이 구조화된 규칙/통계로 더 안정적으로 해결 가능한 �
 다음 기존 결정은 새 방향과 충돌하지 않으므로 유지한다.
 
 - primary navigation: `홈 / 루틴 / 분석 / 설정`
-- weekday scheduling is optional
+- weekday scheduling is deferred outside the current MVP
 - one active workout at a time
 - active workout must survive interruption/restart
 - active workout remains flexible: exercise/set changes are allowed
