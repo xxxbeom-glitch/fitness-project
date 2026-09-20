@@ -261,7 +261,7 @@ Figma reflected:
 - existing `StartChoiceCard / BlankWorkout` and `BuildOwn` masters are now `320 × 80`
 - both use the approved Home quick-action language: `36 × 36` `brand/soft` circle + `action/primary` `chevron-right`
 - current card copy: `빈 운동 / 루틴 없이 바로 기록`, `내 루틴 만들기 / 운동과 세트를 직접 구성`
-- `최근 운동` remains as state-specific secondary content
+- Home recent-workout section removed by PO decision
 
 ## 02B with-routine state — simplified Home structure approved / canonical reflected
 
@@ -276,7 +276,7 @@ Approved direction:
 - both Quick Start cards use the approved `36 × 36` circular action with existing `Common_Component` `chevron-right`
 - action treatment = `brand/soft` circle + `action/primary` chevron
 - Quick Start shared `SectionHeader` uses `Trailing=None`
-- 02A lower `최근 운동` region is replaced by compact `내 루틴` only in 02B
+- 02A has no lower secondary section; 02B adds compact `내 루틴` 2 × n below the same Quick Start
 - `내 루틴` uses a `2 × n` grid
 - grid width = `320`, gap = `8px`
 - current routine tiles = `156 × 88`
@@ -319,7 +319,7 @@ Current reflected direction:
 - old large `운동 계속하기` CTA removed from the Active Home card
 - card now uses routine title + active progress meta + the approved `36 × 36` soft circular chevron action
 - title/meta typography matches the approved 02B quick-start card
-- `최근 운동` remains as state-specific secondary content
+- Home recent-workout section removed by PO decision
 
 Shared Home-state QA:
 - 02A StartChoice cards = `320 × 80` × 2
@@ -632,9 +632,9 @@ Completed:
 - canonical decision: `docs/ux-decisions/2026-09-20-group02-home-with-routine-simplification.md`
 
 Current canonical Group 02 structure:
-- `02A_Home_NoRoutine`: Quick Start = `빈 운동 / 내 루틴 만들기`; lower = `최근 운동`
+- `02A_Home_NoRoutine`: Quick Start = `빈 운동 / 내 루틴 만들기`; no secondary section
 - `02B_Home_WithRoutine`: same Quick Start; lower = `내 루틴` 2 × n grid
-- `02D_Home_Active`: active workout resume is primary
+- `02D_Home_Active`: active workout resume is primary; no Recent Workout section
 - weekday assignment / `오늘의 운동` / `다음 운동` / hidden selected routine = not in current MVP
 
 ## Current Group 02 decision
