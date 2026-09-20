@@ -796,8 +796,16 @@ Locked:
 - if access is denied/revoked, workout logging continues and alert timing falls back to best effort
 - rest-alert delivery never owns or mutates the persisted workout state
 
+Locked:
+- Active Workout uses a normal Android ongoing notification
+- current MVP does not use a Foreground Service solely to keep workout elapsed time/notification alive
+- elapsed notification time uses Android's system chronometer/time display backed by the persisted absolute workout start timestamp
+- React Native/JavaScript does not need to tick elapsed time every second in background
+- SQLite remains authoritative; Rest Timer completion remains a separate exact-alarm concern
+- future continuous sensor/location/health tracking requires a separate Foreground Service re-evaluation
+
 NEXT OPEN ITEM:
-- finish remaining Android runtime/background implementation decisions
+- decide Android 13+ notification permission request timing
 
 ## Other already-known open decisions
 
