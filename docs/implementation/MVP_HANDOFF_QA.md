@@ -355,29 +355,29 @@ Home routine-tile behavior — PO APPROVED 2026-09-20:
 Verdict: **PASS — Group 02 Home closed.**
 
 
-#### DECISION-02 — routine Duplicate
+#### RESOLVED-02 — routine Duplicate
 
-`03A_Routine_List_Menu` contains `복제`, but exact duplicate behavior is not currently specified.
+PO-approved:
+- `복제` creates an independent saved copy immediately
+- remain on / return to Routine List
+- no automatic Create/Edit transition
+- copy editable routine definition, not completed history
+- generated name begins `원본명 (복제)` with numeric collision suffix
+- later card tap opens normal Routine Detail
 
-Missing:
-- generated copied name
-- metadata copy scope
-- deep-copy boundary
-- destination
-- repeat-name collision handling
+Verdict: **PASS**
 
-Verdict: **DECISION NEEDED**
+#### RESOLVED-03 — numeric-only MVP set model
 
-#### DECISION-03 — W / D / F set semantics
+PO-approved:
+- W / D / F = warm-up / drop / failure concepts, deferred post-MVP
+- current MVP uses numeric sets `1, 2, 3 ... n` only
+- no special-set selector/control
+- shared `ExerciseCard` View/Edit variants updated
+- Group 03 visible W/D/F count = `0`
+- 03D visible set rows = `12`, matching `총 세트 12세트`
 
-Current routine/workout cards visibly include W / numbered / D / F set rows.
-
-No reviewed authority defines:
-- exact meaning
-- set-type editing
-- storage semantics
-- completion behavior
-- volume/PR/history effect
+Verdict: **PASS — Figma reflected**
 
 Verdict: **DECISION NEEDED**
 
@@ -528,16 +528,24 @@ Next sequential QA:
 - Group 00–01 first-run consent/resume alignment
 - stale planning artifact guardrails
 
+### Sequential Group 03 result
+
+- canonical decision: `docs/ux-decisions/2026-09-20-group03-routine-final-closure.md`
+- duplicate behavior resolved
+- W/D/F removed from current MVP
+- focused Group 03 Figma QA: overflow `0`, missing main-component links `0`
+- whole-MVP: 94 top-level frames, 1,820 instances, missing links `0`, non-Common sources `0`
+
+Verdict: **PASS — Group 03 Routine closed.**
+
 ### FIX before relevant UI implementation
 - none in the current frozen visual contract.
 
 ### DECISION NEEDED before production implementation
-1. routine Duplicate behavior
-2. W / D / F routine-set semantics
-3. automatic Rest Timer already-running / end-feedback policy
-4. active-session recovery system-notification UX
-5. technology stack / platform architecture
-6. `duration` Active Workout timed-set interaction
+1. automatic Rest Timer already-running / end-feedback policy
+2. active-session recovery system-notification UX
+3. technology stack / platform architecture
+4. `duration` Active Workout timed-set interaction
 
 ### CONDITIONAL
 - iOS launch requires Apple sign-in/provider copy alignment
