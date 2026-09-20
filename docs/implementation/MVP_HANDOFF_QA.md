@@ -257,7 +257,7 @@ Coverage:
 
 ### New FIX findings
 
-#### FIX-01 — primary bottom navigation missing
+#### FIX-01 — primary bottom navigation component resolved; root placement remains
 
 Product IA requires:
 - 홈
@@ -265,17 +265,20 @@ Product IA requires:
 - 분석
 - 설정
 
-But canonical Figma root screens contain no primary bottom-navigation instance, and `Common_Component` contains no corresponding primary bottom-nav component.
+Targeted Figma maintenance now provides the canonical shared visual/component contract:
+- `BottomAppBar` — `2078:2401`
+- variants = `Active=홈 / 루틴 / 분석 / 설정`
+- Light `bg/surface` container + existing `Elevation/Card`
+- active `brand/primary`
+- inactive `text/secondary`
+- `REF_하단앱바_화면내배치예시` now uses the new local component
+- focused component/binding QA PASS
 
-This would force Cursor to invent:
-- visual shell
-- selected/unselected states
-- safe-area/height behavior
-- root switching interaction
+Remaining gap:
+- applicable root screens still contain no BottomAppBar instance
+- bottom placement/content-clearance QA is therefore still required before primary-shell implementation
 
-Verdict: **FIX**
-
-The 94 content/state frames remain valid; the primary navigation shell requires targeted design completion before app-shell implementation.
+Verdict: **FIX remains only for root-screen placement; shared component contract = PASS.**
 
 #### RESOLVED — stale brand naming
 
@@ -444,7 +447,7 @@ Verdict for these additions: **PASS — recovered approved rules, not new produc
 - stale planning artifact guardrails
 
 ### FIX before relevant UI implementation
-1. primary bottom-navigation visual/component contract
+1. primary BottomAppBar root-screen placement using the approved shared component
 
 ### DECISION NEEDED before production implementation
 1. weekday scheduling / today-next semantics
