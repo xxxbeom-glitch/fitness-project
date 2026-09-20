@@ -327,6 +327,31 @@ Locked:
 ### QA verdict
 **PASS**
 
+## Block 12 — PostHog product analytics / event taxonomy
+
+### Re-audit result
+Keep PostHog as the MVP product-usage analytics service, with a simplified explicit event taxonomy.
+
+Amendment:
+- remove duplicate `workout_started_from_routine`
+- use one `workout_started` event with `source = blank | routine`
+- `first_set_completed` fires at most once per workout session
+- final initial explicit event taxonomy = **24 events**
+
+Locked boundaries remain:
+- explicit named events only
+- no Session Replay / broad autocapture / form-input capture / advertising attribution
+- no profile demographics, email/nickname, routine/exercise names, exact workout-entered values, support content, secrets, or raw database rows
+- PostHog identity uses opaque internal account ID only and resets on logout/account change
+- analytics is best-effort and never blocks product behavior
+
+### OnTalk comparison
+- OnTalk introduced a deliberately small release-time analytics set focused on a defined funnel rather than broad event collection.
+- Tampin keeps a somewhat wider but still bounded taxonomy and removes redundant event names before implementation.
+
+### QA verdict
+**PASS**
+
 ## NEXT OPEN ITEM
 
-**Block 12 — PostHog product analytics / event taxonomy.**
+**Block 13 — Google Play submission source-data / policy profile readiness.**
