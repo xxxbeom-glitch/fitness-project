@@ -132,6 +132,16 @@ Core invariants:
 - denial/revocation does not alter workout/rest persistence; delivery falls back to best-effort timing
 - permission state must be rechecked before exact scheduling because the user/system can revoke access
 
+## Android ongoing workout notification runtime — CONFIRMED
+
+- current MVP does not use a Foreground Service solely to preserve the Active Workout timer/notification
+- Active Workout posts an Android ongoing notification
+- its elapsed display is derived from the persisted workout start timestamp through the Android system chronometer/time display
+- workout correctness never depends on a continuously running JS interval or notification process
+- SQLite/timestamps reconstruct the session after process death or reboot
+- Rest Timer completion remains a separate exact-alarm concern
+- future continuous sensor/location/health tracking would trigger a new Foreground Service architecture decision
+
 ## TBD
 
 - server schema
