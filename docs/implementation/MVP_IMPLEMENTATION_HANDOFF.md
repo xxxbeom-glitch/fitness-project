@@ -175,7 +175,7 @@ Primary actions:
 - `내 루틴 만들기`
 
 Home shows no Recent Workout / `전체 기록` section.
-`내 루틴` remains visible even when there are zero saved routines; header copy is `내 루틴 (n)` using the current saved-routine count, so zero routines renders `내 루틴 (0)`. Keep the section header only. Do not render empty-state copy/body and do not show a right-side `새 루틴` action.
+`내 루틴` remains visible even when there are zero saved routines; header copy is `내 루틴 (n)` using the current saved-routine count, so zero routines renders `내 루틴 (0)`. In `02A_Home_NoRoutine`, render the approved full-width empty card below the header: `아직 루틴이 없어요` / `자주 하는 운동을 루틴으로 만들어보세요` / `루틴 만들기`. The CTA routes to routine create. Do not show a right-side `새 루틴` header action.
 No recommendation entry.
 
 `빈 운동`:
