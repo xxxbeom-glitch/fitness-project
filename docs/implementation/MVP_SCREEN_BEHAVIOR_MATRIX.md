@@ -63,7 +63,7 @@ PO-approved 2026-09-20:
 - Home has no `오늘의 운동 / 다음 운동` state
 - Home has no hidden selected/default routine
 - `02B_Home_WithRoutine` uses the same Quick Start as 02A: `빈 운동 / 내 루틴 만들기`
-- only the lower section changes from 02A `최근 운동` to 02B `내 루틴` 2 × n grid
+- 02A has no secondary section; 02B adds `내 루틴` 2 × n below the same Quick Start
 - Active Workout still overrides normal Home with 02D resume state
 
 Canonical decision:
@@ -191,9 +191,9 @@ Verdict: **PASS — Group 00–01 closed.**
 
 | Screen | Purpose / Entry | Primary behavior / Exit | Implementation rule | QA |
 |---|---|---|---|---|
-| `02A_Home_NoRoutine` | Home with no saved routine | `빈 운동` → zero-exercise Active Workout; `내 루틴 만들기` → routine create; recent workout row opens its record | Blank workout creates no saved routine. Recommendation entry absent. | PASS |
+| `02A_Home_NoRoutine` | Home with no saved routine | `빈 운동` → zero-exercise Active Workout; `내 루틴 만들기` → routine create | Quick Start only. No Recent Workout section on Home. Blank workout creates no saved routine. | PASS |
 | `02B_Home_WithRoutine` | Home with one or more saved routines | `빈 운동` → blank workout; `내 루틴 만들기` / `새 루틴` → routine create; `내 루틴` renders saved routines in 2×n grid | Quick Start is identical to 02A. No weekday/today-next/selected-routine semantics. Exact routine-tile tap destination remains a Group 02 decision. | DECISION NEEDED — routine-tile tap |
-| `02D_Home_Active` | Home while one active workout exists | active card → resume same session; recent workout → record detail | Never create a second active session silently. | PASS |
+| `02D_Home_Active` | Home while one active workout exists | active card → resume same session | Active workout is the only Home content priority state; no Recent Workout section. Never create a second active session silently. | PASS |
 
 # 03 — Routine
 
