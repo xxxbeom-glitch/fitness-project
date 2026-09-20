@@ -80,15 +80,25 @@ Provider buttons use unified `계속하기` semantics. After successful provider
 The product does not require a separate email/password account-creation screen for the MVP authentication path.
 
 ### First-run legal / privacy consent policy
-The first-entry screen keeps **Terms of Use** and **Privacy Policy** links accessible without forcing the user into a long legal screen before choosing a sign-in provider.
+The first-entry Login screen keeps **Terms of Use** and **Privacy Policy** links accessible without forcing the user into a long legal screen before choosing a sign-in provider.
+
+Login provider continuation is **not** the explicit first-run Terms agreement. The prior implicit copy `계속하면 서비스 이용약관에 동의합니다.` is not used.
 
 For a first-time provider identity:
-- require an explicit agreement to the **Terms of Use** before completing normal first-run account setup
+- create/resolve the internal account in an onboarding-incomplete state
+- collect the required explicit **Terms of Use** agreement on the `기본정보` step before normal first-run setup can complete
+- `시작하기` requires sex + valid full DOB + Terms agreement
 - keep the **Privacy Policy** separately viewable
 - do not create a generic mandatory `개인정보처리방침 동의` checkbox merely for personal data that is necessary to establish or perform the service relationship
 - do not bundle optional or future consent-based processing into the required service-terms agreement
 
-For an existing Fitness account:
+If the user presses Back from `기본정보`:
+- return to Login
+- keep onboarding incomplete
+- when the same provider identity authenticates again, resolve the same internal account and resume `기본정보`
+- do not create a duplicate internal account for the same provider identity merely because onboarding was interrupted
+
+For an existing completed Fitness account:
 - do not ask the user to repeat the same first-run agreement on every login
 - if a later material terms update or a legally distinct new consent is required, handle that as a separate versioned flow rather than reusing the normal login screen
 
