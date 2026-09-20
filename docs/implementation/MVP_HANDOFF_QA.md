@@ -410,25 +410,30 @@ PO APPROVED 2026-09-20 — sound source:
 - no OS system-sound picker dependency
 - final Production sound files/labels are a later asset task
 
-Still explicitly deferred:
-- rest-end vibration behavior
-- background/system-notification behavior
+PO APPROVED 2026-09-20 — system notification behavior:
+- Rest Timer zero sends a system alert: `휴식 시간이 끝났어요` / `다음 세트를 시작하세요.`
+- uses the selected app-owned timer-end sound
+- delivery follows the existing Rest Timer notification setting
+- no custom MVP vibration pattern; platform/user notification settings govern vibration
+- no auto-open and no automatic set completion
+- ongoing Active Workout system surface remains after the rest-end alert
 
-Verdict: **PARTIALLY RESOLVED / REMAINING FEEDBACK DECISION NEEDED**
+Verdict: **RESOLVED**
 
-#### DECISION-05 — Active-session recovery system-notification UX
+#### DECISION-05 — Active-session system notification / recovery UX
 
-Locked:
-- active workout persistence/recovery required
-- no dedicated in-app recovery screen/banner
-- ongoing session should surface through system notification area
+PO APPROVED 2026-09-20:
+- keep one ongoing system notification/activity surface while an Active Workout exists
+- show workout name, elapsed workout time, and current exercise/set context when available
+- show `휴식 중` + remaining rest time while automatic Rest Timer runs
+- tapping opens/resumes the same active session
+- no workout-mutating quick actions in MVP
+- ending/discarding removes the ongoing system surface
+- recovered session restores the same ongoing surface and never creates a duplicate
+- Android MVP uses the native ongoing notification/status-bar surface
+- iOS later uses the platform-native Live Activity/notification equivalent if included in launch scope
 
-Still undefined:
-- notification copy
-- actions/controls
-- platform-specific ongoing/persistent behavior
-
-Verdict: **DECISION NEEDED**
+Verdict: **RESOLVED — exact framework/service remains architecture work**
 
 ### Approved Analysis rules recovered into handoff
 
