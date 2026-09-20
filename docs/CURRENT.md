@@ -62,7 +62,14 @@ PO-approved current direction:
 - total source media pairs = 7,197
 - source media count is not the final unique exercise count
 - final canonical exercise count is derived by normalization of the purchased source pool
-- next data/media task = normalize source filenames/identities → deduplicate true naming variants → classify exercise metadata/recording type → bind male/female media → generate Cloudflare production manifest
+- Gym Visual auto-normalization v1 generated from the 7,197-pair inventory
+- current filename-derived conservative exercise candidates = **5,854**
+- exact normalized male/female 1:1 groups = **1,108**
+- multi-variant exact groups = **76**
+- duplicate/version review groups = **117**
+- raw purchased filename/path map is not committed to the public repo; only normalized derivative catalog data is committed
+- current data checkpoint: `docs/exercise-db/2026-09-20-gym-visual-auto-normalization-v1.md`
+- next data/media task = duplicate/version QA → cross-gender near-match QA → Korean naming + semantic metadata QA → default media selection → Cloudflare MP4 + in-app WebP manifest
 
 ### Current consolidated maintenance
 - `docs/ux-decisions/2026-09-18-mvp-figma-maintenance-checkpoint.md`

@@ -1,0 +1,10 @@
+{
+  "source_rows": 7197,
+  "candidate_exercise_groups_conservative": 5854,
+  "paired_1_to_1_auto": 1108,
+  "paired_multi_variant_review": 76,
+  "male_only": 2911,
+  "female_only": 1759,
+  "duplicate_review_groups": 117,
+  "note": "Filename-derived working data only. Semantic/localization/media-selection QA remains open."
+}

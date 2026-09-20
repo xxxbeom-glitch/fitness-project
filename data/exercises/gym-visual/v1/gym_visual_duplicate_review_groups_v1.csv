@@ -1,0 +1,118 @@
+﻿duplicate_review_group_id,duplicate_review_key,candidate_count,source_count,candidate_ids,candidate_names,review_status
+gvr_378c05f18f0a,lever chest press,4,5,gvc_378c05f18f0a;gvc_8b30bf333ef0;gvc_8b30c6333ef0;gvc_8b30c5333ef0,Lever Chest Press | Lever Chest Press (version 3) | Lever Chest Press (version 4) | Lever Chest Press (version 5),manual_review_required
+gvr_38ddbd4fc791,lever triceps extension,3,6,gvc_38ddbd4fc791;gvc_20817c2702d0;gvc_20817d2702d0,Lever Triceps Extension | Lever Triceps Extension (version 2) | Lever Triceps Extension (version 3),manual_review_required
+gvr_329c4399d4b9,flutter kicks,3,5,gvc_329c4399d4b9;gvc_4932c8a47e8d;gvc_4932c9a47e8d,Flutter Kicks | Flutter Kicks (version 2) | Flutter Kicks (version 3),manual_review_required
+gvr_4554b77b50df,high knee squat,3,5,gvc_4554b77b50df;gvc_9fd0209ce187;gvc_9fd0219ce187,High Knee Squat | High Knee Squat (version 2) | High Knee Squat (version 3),manual_review_required
+gvr_9d7f07982733,dead bug,3,4,gvc_9d7f07982733;gvc_61a4aa25cb66;gvc_61a4a925cb66,Dead Bug | Dead Bug (version 2) | Dead Bug (version 3),manual_review_required
+gvr_3493a68d1dcd,dumbbell v up,3,3,gvc_3493a68d1dcd;gvc_089cb4d4b60c;gvc_089cb3d4b60c,Dumbbell V Up | Dumbbell V Up (version 2) | Dumbbell V Up (version 3),manual_review_required
+gvr_6f3f00e082af,lever high row plate loaded,3,3,gvc_6f3f00e082af;gvc_2e7345c68aa8;gvc_2e7346c68aa8,Lever High Row (plate Loaded) | Lever High Row (plate Loaded) (version 2) | Lever High Row (plate Loaded) (version 3),manual_review_required
+gvr_9632e3e8347c,sitting scapular adduction,2,5,gvc_9632e3e8347c;gvc_c0e45dcb9ff6,Sitting Scapular Adduction | Sitting Scapular Adduction (version 2),manual_review_required
+gvr_863be85846f3,cable kneeling crunch,2,4,gvc_863be85846f3;gvc_64c7997ea952,Cable Kneeling Crunch | Cable Kneeling Crunch (version 2),manual_review_required
+gvr_522ef291fb12,cable single arm lateral raise,2,4,gvc_522ef291fb12;gvc_219ceb273fd3,Cable One Arm Lateral Raise | Cable Single Arm Lateral Raise (version 2),manual_review_required
+gvr_81f09213429d,dumbbell hammer curl,2,4,gvc_81f09213429d;gvc_e1d22d45d22f,Dumbbell Hammer Curl | Dumbbell Hammer Curl (version 2),manual_review_required
+gvr_508c43cad5c9,lever back extension,2,4,gvc_508c43cad5c9;gvc_34736999e80d,Lever Back Extension | Lever Back Extension (version 2),manual_review_required
+gvr_067f0a089d4d,lever seated fly,2,4,gvc_067f0a089d4d;gvc_8bfa75e8947c,Lever Seated Fly | Lever Seated Fly (version 2),manual_review_required
+gvr_9e311408621e,lever seated row,2,4,gvc_9e311408621e;gvc_7ad7f82ad4f7,Lever Seated Row | Lever Seated Row (version 2),manual_review_required
+gvr_09ca5f168b9c,lying around the world,2,4,gvc_09ca5f168b9c;gvc_26b1d91a9eaf,Lying Around The World | Lying Around The World (version 2),manual_review_required
+gvr_3c309604ea9c,seated calf stretch,2,4,gvc_3c309604ea9c;gvc_4c64ef3ac51c,Seated Calf Stretch | Seated Calf Stretch (version 2),manual_review_required
+gvr_819958a07a76,ski runners,2,4,gvc_819958a07a76;gvc_2d857e5c50af,Ski Runners | Ski Runners (version 2),manual_review_required
+gvr_fb26acb94d13,walking on spot,2,4,gvc_fb26acb94d13;gvc_1f7582fca5e6,Walking On Spot | Walking On Spot (version 2),manual_review_required
+gvr_750fd6a1fc25,air twisting crunch,2,3,gvc_750fd6a1fc25;gvc_89403394cc9b,Air Twisting Crunch | Air Twisting Crunch (version 2),manual_review_required
+gvr_0a51478b7596,alternate leg raise with head up,2,3,gvc_0a51478b7596;gvc_329291ce686c,Alternate Leg Raise With Head Up | Alternate Leg Raise With Head Up (version 2),manual_review_required
+gvr_a52a19862179,around the world superman,2,3,gvc_a52a19862179;gvc_bfac4e117517,Around The World Superman | Around The World Superman (version 2),manual_review_required
+gvr_2eff564c40c7,band lateral raise,2,3,gvc_2eff564c40c7;gvc_4e19ae262756,Band Lateral Raise | Band Lateral Raise (version 2),manual_review_required
+gvr_7023a5a3b4dc,band narrow grip high row,2,3,gvc_7023a5a3b4dc;gvc_bbb9d74e16ec,Band Narrow Grip High Row | Band Narrow Grip High Row (version 2),manual_review_required
+gvr_48c44a122e81,band overhead triceps extension,2,3,gvc_48c44a122e81;gvc_f15d529d0964,Band Overhead Triceps Extension | Band Overhead Triceps Extension (version 2),manual_review_required
+gvr_bf4e44410f44,barbell rear lunge,2,3,gvc_bf4e44410f44;gvc_9047db5e7e64,Barbell Rear Lunge | Barbell Rear Lunge (version 2),manual_review_required
+gvr_775770e8f255,barbell split squat,2,3,gvc_775770e8f255;gvc_35e997642c29,Barbell Split Squat | Barbell Split Squat (version 2),manual_review_required
+gvr_6b8413581de2,biceps curl front step,2,3,gvc_6b8413581de2;gvc_dc8f4148c37b,Biceps Curl Front Step | Biceps Curl Front Step (version 2),manual_review_required
+gvr_7b378358b326,bird dog,2,3,gvc_7b378358b326;gvc_7c1dbde0ca1b,Bird Dog | Bird Dog (version 2),manual_review_required
+gvr_1f5e29b8676c,bodyweight skipping,2,3,gvc_1f5e29b8676c;gvc_f88b606a3eff,Bodyweight Skipping | Bodyweight Skipping (version 2),manual_review_required
+gvr_fc0b9d6cb8e6,cable kneeling triceps extension,2,3,gvc_fc0b9d6cb8e6;gvc_2fbbf8a4627c,Cable Kneeling Triceps Extension | Cable Kneeling Triceps Extension (version 2),manual_review_required
+gvr_9b97c068017e,cable side bend,2,3,gvc_9b97c068017e;gvc_55429158bc80,Cable Side Bend | Cable Side Bend (version 2),manual_review_required
+gvr_61fd09aa3ef8,cable twist up down,2,3,gvc_61fd09aa3ef8;gvc_051ee438bce7,Cable Twist (up Down) | Cable Twist (up Down) Version,manual_review_required
+gvr_cb07fd86a06a,coner wall chest stretch,2,3,gvc_cb07fd86a06a;gvc_596d957cc10f,Coner Wall Chest Stretch | Coner Wall Chest Stretch (version 2),manual_review_required
+gvr_5a20ab6c94ba,decline sit up,2,3,gvc_5a20ab6c94ba;gvc_5476e4f23103,Decline Sit Up | Decline Sit Up (version 3),manual_review_required
+gvr_0523a67dc591,dumbbell cross body hammer curl,2,3,gvc_0523a67dc591;gvc_816c3843752a,Dumbbell Cross Body Hammer Curl | Dumbbell Cross Body Hammer Curl (version 2),manual_review_required
+gvr_bb59b8ccccea,dumbbell front raise,2,3,gvc_bb59b8ccccea;gvc_26507137481d,Dumbbell Front Raise | Dumbbell Front Raise (version 3),manual_review_required
+gvr_736f68f2858c,dumbbell hip thrust,2,3,gvc_736f68f2858c;gvc_56f8ae04c13c,Dumbbell Hip Thrust | Dumbbell Hip Thrust (version 2),manual_review_required
+gvr_25b4d31033a9,dumbbell hyperextension,2,3,gvc_25b4d31033a9;gvc_d50f0fd90ca0,Dumbbell Hyperextension | Dumbbell Hyperextension (version 2),manual_review_required
+gvr_272273cab95b,dumbbell lying hammer press,2,3,gvc_272273cab95b;gvc_fc911e6d6b50,Dumbbell Lying Hammer Press | Dumbbell Lying Hammer Press (version 2),manual_review_required
+gvr_39ebb5860b63,dumbbell pullover,2,3,gvc_39ebb5860b63;gvc_c01454dc02fa,Dumbbell Pullover | Dumbbell Pullover (version 2),manual_review_required
+gvr_ed9cd9841ece,dumbbell seated triceps extension,2,3,gvc_ed9cd9841ece;gvc_a45dc3b6db92,Dumbbell Seated Triceps Extension | Dumbbell Seated Triceps Extension (version 2),manual_review_required
+gvr_76e2dc98dcbf,dumbbell side lunge,2,3,gvc_76e2dc98dcbf;gvc_d994d5143cd3,Dumbbell Side Lunge | Dumbbell Side Lunge (version 3),manual_review_required
+gvr_66f8e5a0e7ee,dumbbell single leg squat,2,3,gvc_66f8e5a0e7ee;gvc_13a3e3a8ebed,Dumbbell Single Leg Squat | Dumbbell Single Leg Squat (version 2),manual_review_required
+gvr_98a3dfdf6058,dumbbell step up,2,3,gvc_98a3dfdf6058;gvc_4a9dc723dba7,Dumbbell Step Up | Dumbbell Step Up (version 2),manual_review_required
+gvr_dafe1c217728,dumbbell straight arm pullover,2,3,gvc_dafe1c217728;gvc_f0679c57fc5b,Dumbbell Straight Arm Pullover | Dumbbell Straight Arm Pullover (version 2) (,manual_review_required
+gvr_d00c38c7e808,floor t raise,2,3,gvc_d00c38c7e808;gvc_d070d4cba402,Floor T Raise | Floor T Raise (version 2),manual_review_required
+gvr_87ae7911828c,handstand push up,2,3,gvc_87ae7911828c;gvc_34f2efe5104d,Handstand Push Up | Handstand Push Up (version 2),manual_review_required
+gvr_b5a3da53cfba,hip raise bent knee,2,3,gvc_b5a3da53cfba;gvc_2597ba8f3b00,Hip Raise (bent Knee) | Hip Raise (bent Knee) (version 2),manual_review_required
+gvr_5a0bdcf162d1,hyperextension,2,3,gvc_5a0bdcf162d1;gvc_fa5643a834f0,Hyperextension | Hyperextension (version 2),manual_review_required
+gvr_774beb0c3729,inchworm,2,3,gvc_774beb0c3729;gvc_69f7a6e68a8e,Inchworm | Inchworm (version 3),manual_review_required
+gvr_8b3be6f08ec9,incline twisting sit up,2,3,gvc_8b3be6f08ec9;gvc_ee4d86d8e20f,Incline Twisting Sit Up | Incline Twisting Sit Up (version 2),manual_review_required
+gvr_020e4d71fefe,kicks leg bent,2,3,gvc_020e4d71fefe;gvc_10adb00d25dd,Kicks Leg Bent | Kicks Leg Bent (version 2),manual_review_required
+gvr_6a9afbd90a03,landmine romanian deadlift,2,3,gvc_6a9afbd90a03;gvc_ce8f6be01e08,Landmine Romanian Deadlift | Landmine Romanian Deadlift (version 2),manual_review_required
+gvr_09bc43163d13,lever lateral raise,2,3,gvc_09bc43163d13;gvc_9cbe822d975b,Lever Lateral Raise | Lever Lateral Raise (version 2),manual_review_required
+gvr_9185f28218ce,lever preacher curl,2,3,gvc_9185f28218ce;gvc_7390c0438e97,Lever Preacher Curl | Lever Preacher Curl (version 2),manual_review_required
+gvr_691a6660be33,lever seated calf press,2,3,gvc_691a6660be33;gvc_611b89f1e11f,Lever Seated Calf Press | Lever Seated Calf Press (version 2),manual_review_required
+gvr_511c5fe0aa59,lever seated calf raise plate loaded,2,3,gvc_511c5fe0aa59;gvc_a93693a7bfac,Lever Seated Calf Raise (plate Loaded) | Lever Seated Calf Raise (plate Loaded) (version 2),manual_review_required
+gvr_9f52273874ea,lever seated hip abduction,2,3,gvc_9f52273874ea;gvc_6f1d7b5472e6,Lever Seated Hip Abduction | Lever Seated Hip Abduction (version 2),manual_review_required
+gvr_58377bed493f,lever seated hip adduction,2,3,gvc_58377bed493f;gvc_24187a45fa1e,Lever Seated Hip Adduction | Lever Seated Hip Adduction (version 2),manual_review_required
+gvr_7a6118162f2e,lever seated leg press,2,3,gvc_7a6118162f2e;gvc_896981555acf,Lever Seated Leg Press | Lever Seated Leg Press (version 2),manual_review_required
+gvr_53d67afbab23,lizard pose,2,3,gvc_53d67afbab23;gvc_e0db49af7f6a,Lizard Pose | Lizard Pose (version 2),manual_review_required
+gvr_6f8a1be8bcee,marching on spot,2,3,gvc_6f8a1be8bcee;gvc_22d95f3776f9,Marching On Spot | Marching On Spot (version 2),manual_review_required
+gvr_bfbcedd2c124,marching on spot press,2,3,gvc_bfbcedd2c124;gvc_865d6f863de6,Marching On Spot Press | Marching On Spot Press (version 2),manual_review_required
+gvr_4b6625013256,mountain climber,2,3,gvc_4b6625013256;gvc_b5556ef55a33,Mountain Climber | Mountain Climber (version 2),manual_review_required
+gvr_dc30358f3480,prayer push,2,3,gvc_dc30358f3480;gvc_02e9e72af777,Prayer Push | Prayer Push (version 2),manual_review_required
+gvr_73152af5433d,resistance band glute bridge,2,3,gvc_73152af5433d;gvc_8e91a9497b02,Resistance Band Glute Bridge | Resistance Band Glute Bridge (version 2),manual_review_required
+gvr_b8110a5e3a6f,resistance band seated hip abduction,2,3,gvc_b8110a5e3a6f;gvc_74653ab7dc97,Resistance Band Seated Hip Abduction | Resistance Band Seated Hip Abduction (version 2) (,manual_review_required
+gvr_ce198877e0ac,reverse crunch,2,3,gvc_ce198877e0ac;gvc_bf42b9d13e52,Reverse Crunch | Reverse Crunch (version 2),manual_review_required
+gvr_0a3e614dd820,side crunch,2,3,gvc_0a3e614dd820;gvc_9fc26c42f0ee,Side Crunch | Side Crunch (version 2),manual_review_required
+gvr_6db3579b372c,side lunge stretch,2,3,gvc_6db3579b372c;gvc_54f55635d80a,Side Lunge Stretch | Side Lunge Stretch (version 2),manual_review_required
+gvr_ee08b63f4fb3,standing side crunch,2,3,gvc_ee08b63f4fb3;gvc_16b9327de1aa,Standing Side Crunch | Standing Side Crunch (version 2),manual_review_required
+gvr_a5849e128127,stationary bike run,2,3,gvc_a55de443c85c;gvc_a55deb43c85c,Stationary Bike Run (version 3) | Stationary Bike Run (version 4),manual_review_required
+gvr_d9d039a45ac5,swimmer kicks,2,3,gvc_d9d039a45ac5;gvc_1e077e40e5e7,Swimmer Kicks | Swimmer Kicks (version 2),manual_review_required
+gvr_6402dfeee7c6,45 degree hip extension glute focused,2,2,gvc_6402dfeee7c6;gvc_c7a0b51bb92b,45 Degree Hip Extension Glute Focused | 45 Degree Hip Extension Glute Focused (version 2),manual_review_required
+gvr_3249bcc78323,air bike,2,2,gvc_3249bcc78323;gvc_b2e0f7a306dc,Air Bike | Air Bike (version 2),manual_review_required
+gvr_82af41fb245b,barbell forward backward lunge,2,2,gvc_82af41fb245b;gvc_cabd93fbd353,Barbell Forward Backward Lunge | Barbell Forward Backward Lunge (version 2),manual_review_required
+gvr_90ed9ab87e8d,barbell wrist curl,2,2,gvc_90ed9ab87e8d;gvc_41683cff9bdb,Barbell Wrist Curl | Barbell Wrist Curl (version 2),manual_review_required
+gvr_31b5b3c90f7f,cable low chest press,2,2,gvc_31b5b3c90f7f;gvc_d4da559a6b9f,Cable Low Chest Press | Cable Low Chest Press (version 2),manual_review_required
+gvr_a798d1b8995f,cable neutral grip wide pulldown,2,2,gvc_2321be546a4b;gvc_2321bd546a4b,Cable Neutral Grip Wide Pulldown (version 2) | Cable Neutral Grip Wide Pulldown (version 3),manual_review_required
+gvr_370203450e15,cable standing hip extension,2,2,gvc_370203450e15;gvc_8c9625c1f24c,Cable Standing Hip Extension | Cable Standing Hip Extension (version 2),manual_review_required
+gvr_2121bc9542a5,cable standing jab,2,2,gvc_2121bc9542a5;gvc_cfd17abcff0c,Cable Standing Jab | Cable Standing Jab (version 2),manual_review_required
+gvr_e106cd8ce230,cable standing single delt row,2,2,gvc_e106cd8ce230;gvc_9e2f4a6f044e,Cable Standing Single Delt Row | Cable Standing Single Delt Row (version 2),manual_review_required
+gvr_f489cbb11d75,cable straight arm pulldown,2,2,gvc_f489cbb11d75;gvc_66ed0477d65c,Cable Straight Arm Pulldown | Cable Straight Arm Pulldown (version 2),manual_review_required
+gvr_90b4abe96d25,crab walk,2,2,gvc_90b4abe96d25;gvc_538e438d120a,Crab Walk | Crab Walk (version 2),manual_review_required
+gvr_73045d068242,dumbbell biceps curl,2,2,gvc_73045d068242;gvc_7e5094637081,Dumbbell Biceps Curl | Dumbbell Biceps Curl (version 3),manual_review_required
+gvr_76ab5039609c,dumbbell military press russian twist with legs floor off,2,2,gvc_76ab5039609c;gvc_bf0c61f2b93a,Dumbbell Military Press Russian Twist With Legs Floor Off | Dumbbell Military Press Russian Twist With Legs Floor Off (version 2),manual_review_required
+gvr_4b887800feea,dumbbell single leg calf raise,2,2,gvc_4b887800feea;gvc_5ebfc4440405,Dumbbell Single Leg Calf Raise | Dumbbell Single Leg Calf Raise (version 2),manual_review_required
+gvr_db35b6f930bf,dumbbell standing inner biceps curl,2,2,gvc_db35b6f930bf;gvc_789d6bfb4e27,Dumbbell Standing Inner Biceps Curl | Dumbbell Standing Inner Biceps Curl (version 2),manual_review_required
+gvr_10ba5f1c7804,dumbbell straight arm crunch,2,2,gvc_10ba5f1c7804;gvc_38029f040eca,Dumbbell Straight Arm Crunch | Dumbbell Straight Arm Crunch (version 2),manual_review_required
+gvr_1100b46d3f6b,floor hyperextension,2,2,gvc_1100b46d3f6b;gvc_dfd2108a6706,Floor Hyperextension | Floor Hyperextension (version 2),manual_review_required
+gvr_853320e5b07a,half jumping jack,2,2,gvc_853320e5b07a;gvc_3ac564007ddf,Half Jumping Jack | Half Jumping Jack (version 2),manual_review_required
+gvr_f95986b94870,kettlebell forward lunge,2,2,gvc_f95986b94870;gvc_aa838bc48033,Kettlebell Forward Lunge | Kettlebell Forward Lunge (version 2),manual_review_required
+gvr_02c53be8b0b1,kettlebell sumo squat,2,2,gvc_02c53be8b0b1;gvc_e8aa9199d827,Kettlebell Sumo Squat | Kettlebell Sumo Squat (version 2),manual_review_required
+gvr_ece5100b582c,landmine rear lunge,2,2,gvc_ece5100b582c;gvc_ddef83b934ad,Landmine Rear Lunge | Landmine Rear Lunge (version 2),manual_review_required
+gvr_d41990494d35,landmine single arm bent over row,2,2,gvc_d41990494d35;gvc_a74ba9e2b64e,Landmine One Arm Bent Over Row | Landmine One Arm Bent Over Row (version 2),manual_review_required
+gvr_b527e8826bac,lever cross lat pulldown,2,2,gvc_b527e8826bac;gvc_71ccaa7c30ae,Lever Cross Lat Pulldown | Lever Cross Lat Pulldown (version 2),manual_review_required
+gvr_58544af37cd8,lever decline chest press,2,2,gvc_58544af37cd8;gvc_f4247f3bb951,Lever Decline Chest Press | Lever Decline Chest Press (version 2),manual_review_required
+gvr_9d062d4a3aa4,lever lying crunch,2,2,gvc_9d062d4a3aa4;gvc_64363a065518,Lever Lying Crunch | Lever Lying Crunch (version 2),manual_review_required
+gvr_16c4d578b68d,lever shoulder press plate loaded,2,2,gvc_597ff1c51e43;gvc_6146a1dc3c1a,Lever Shoulder Press (plate Loaded) (version 2) | Lever Shoulder Press (plate Loaded) Version,manual_review_required
+gvr_bc5a316d1a6b,lying leg hip raise on floor,2,2,gvc_bc5a316d1a6b;gvc_e776e2c28aea,Lying Leg Hip Raise On Floor | Lying Leg Hip Raise On Floor (version 2),manual_review_required
+gvr_b37bae67eb80,quadruped shoulder cars,2,2,gvc_b37bae67eb80;gvc_7bc880c9e51c,Quadruped Shoulder Cars | Quadruped Shoulder Cars (version 2),manual_review_required
+gvr_c73a2dc63207,resistance band air bike,2,2,gvc_c73a2dc63207;gvc_4b3b068a5739,Resistance Band Air Bike | Resistance Band Air Bike (version 2),manual_review_required
+gvr_bb02a66de209,resistance band hip thrust,2,2,gvc_bb02a66de209;gvc_e3f35b57bb9f,Resistance Band Hip Thrust | Resistance Band Hip Thrust (version 2),manual_review_required
+gvr_249e80ffe80c,resistance band overhead shoulder press,2,2,gvc_249e80ffe80c;gvc_43d20971c2e6,Resistance Band Overhead Shoulder Press | Resistance Band Overhead Shoulder Press (version,manual_review_required
+gvr_b0219d800c2f,seated chin tuck,2,2,gvc_b0219d800c2f;gvc_2241e62882f0,Seated Chin Tuck | Seated Chin Tuck (version 2),manual_review_required
+gvr_6a98667c916e,self assisted inverse leg curl,2,2,gvc_e531ebead74d;gvc_e531eaead74d,Self Assisted Inverse Leg Curl (version 2) | Self Assisted Inverse Leg Curl (version 3),manual_review_required
+gvr_ac594dd39821,shoulder backbend stretch,2,2,gvc_ac594dd39821;gvc_93f76fab739d,Shoulder Backbend Stretch | Shoulder Backbend Stretch (version 2),manual_review_required
+gvr_16b1f154b02a,side plank,2,2,gvc_16b1f154b02a;gvc_b0751246a88e,Side Plank | Side Plank (version 2),manual_review_required
+gvr_d473c714d069,side step arm circle,2,2,gvc_d473c714d069;gvc_fea196c1cc04,Side Step Arm Circle | Side Step Arm Circle (version 2),manual_review_required
+gvr_b4eaa77ce527,sitting side neck stretch,2,2,gvc_b4eaa77ce527;gvc_035fc78a26b8,Sitting Side Neck Stretch | Sitting Side Neck Stretch (version 2),manual_review_required
+gvr_f8b62bea7c38,standing back squeeze,2,2,gvc_f8b62bea7c38;gvc_cb6b63274615,Standing Back Squeeze | Standing Back Squeeze (version 2),manual_review_required
+gvr_0fc5553e31f1,standing side bend,2,2,gvc_0fc5553e31f1;gvc_7a6be20574ba,Standing Side Bend | Standing Side Bend (version 2),manual_review_required
+gvr_5d9bed000bf1,step up on chair,2,2,gvc_5d9bed000bf1;gvc_9cfb537fcb45,Step Up On Chair | Step Up On Chair (version 2),manual_review_required
+gvr_ec9b7c817174,suspender pull up,2,2,gvc_ec9b7c817174;gvc_8296fd552174,Suspender Pull Up | Suspender Pull Up (version 2),manual_review_required
+gvr_018b303ad3f3,suspender rollout,2,2,gvc_018b303ad3f3;gvc_b66c1aa656bf,Suspender Rollout | Suspender Rollout (version 2),manual_review_required
+gvr_8f4131bb50af,vertical leg raise on parallel bars,2,2,gvc_8f4131bb50af;gvc_3f3b7cc7db46,Vertical Leg Raise (on Parallel Bars) | Vertical Leg Raise (on Parallel Bars) (version 2),manual_review_required
+gvr_8a926787df2f,weighted crunch,2,2,gvc_8a926787df2f;gvc_e879ef623b08,Weighted Crunch | Weighted Crunch (version 2),manual_review_required
