@@ -1,7 +1,7 @@
 # Platform / App Stack Architecture Gate
 
 **Date:** 2026-09-20
-**Status:** PO APPROVED · ANDROID-ONLY / APP STACK / LOCAL-FIRST / SQLITE / SUPABASE / AUTH / STORAGE / SYNC LOCKED · ANDROID RUNTIME NEXT
+**Status:** PO APPROVED · ANDROID MVP ARCHITECTURE + RELEASE PIPELINE LOCKED · IMPLEMENTATION NOT STARTED
 
 ## Platform strategy
 
@@ -305,13 +305,28 @@ Locked:
 - preview vs production data is distinguishable
 - analytics is best-effort and never blocks navigation/workout/persistence/sync
 
+## Android release pipeline — PO APPROVED
+
+Canonical:
+- `docs/ux-decisions/2026-09-20-android-release-pipeline.md`
+
+Locked:
+- Android package name = `com.lumian.tampin`
+- Expo / EAS Build is the canonical release-build path
+- Google Play artifact = AAB
+- Google Play App Signing
+- exact release lineage records git SHA / EAS Build ID / versionName / versionCode / AAB / Play track
+- promote a verified Internal artifact to Closed/Production instead of rebuilding solely for track movement
+- initial Production publishing requires explicit Product Owner approval
+- Play Console package registration, current target API, testing requirements, and policy declarations are read back at execution time
+
 ## Still open
 
 - exact Android background/runtime implementation only if a concrete implementation conflict appears
-- release pipeline details
+- no architecture decision remains open in this gate; implementation details are validated during Development/Release QA
 
 ## NEXT OPEN ITEM
 
-Define Android deployment / Google Play release-pipeline architecture.
+Explicit Product Owner Development-mode authorization.
 
 Do not begin production implementation yet.
