@@ -1,6 +1,6 @@
 # 03 TECH STACK
 
-**Status:** PARTIALLY FROZEN — PLATFORM / APP STACK / LOCAL-FIRST / SQLITE / SUPABASE / AUTH / STORAGE LOCKED · SYNC OPEN
+**Status:** PARTIALLY FROZEN — PLATFORM / APP STACK / LOCAL-FIRST / SQLITE / SUPABASE / AUTH / STORAGE / SYNC LOCKED · RUNTIME OPEN
 
 ## CONFIRMED PRODUCT CONSTRAINTS
 
@@ -71,10 +71,24 @@ Decision record:
 - SQLite stores local/remote references and upload state, not large binary media
 - user-owned media is private/scoped by default
 
+## LOCKED — synchronization
+
+Canonical policy:
+- `docs/ux-decisions/2026-09-20-local-first-sync-policy.md`
+
+- durable local outbox / dirty-state model
+- active-workout remote sync coalesced and capped around one attempt per 5 minutes while dirty/foreground
+- immediate attempt on workout completion and explicit low-frequency Save actions
+- resume/connectivity-restored triggers pending sync
+- exponential retry with jitter; no local rollback
+- stable IDs + idempotent mutation IDs
+- optimistic server version conflict detection
+- one active-session write-owner device
+- media uploads do not block core workout-data sync
+
 ## TBD
 
 The following remain intentionally open:
-- sync trigger / retry / conflict policy
 - analytics/crash reporting
 - exact background/runtime implementation
 - deployment/release pipeline details
@@ -94,7 +108,8 @@ Do not select infrastructure merely because it is fashionable or familiar.
 ## NEXT ARCHITECTURE WORK
 
 Proceed one decision at a time:
-1. sync trigger / retry / conflict contract
-2. platform runtime implementation details
+1. platform runtime implementation details
+2. analytics/crash reporting
+3. deployment/release pipeline details
 
 Future Watch implications remain non-MVP and must not drive MVP overengineering.
