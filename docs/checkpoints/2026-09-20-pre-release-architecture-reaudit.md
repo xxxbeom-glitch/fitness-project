@@ -161,6 +161,29 @@ Locked operating rules:
 ### QA verdict
 **PASS**
 
+## Block 05 — Supabase backend / server authority
+
+### Re-audit result
+Keep Supabase Postgres as the server persistence target.
+
+Locked operating rules:
+- SQLite remains authoritative for immediate local workout interaction; Supabase is the durable server/cloud target after sync
+- user-owned tables exposed to the Data API require least-privilege grants plus Row Level Security
+- authenticated access alone is not sufficient; ownership checks must restrict each user to their own rows
+- the Android client may use a publishable key but never contains service-role/secret credentials
+- multi-step operations that must be atomic use a server-side transaction/RPC or equivalent server-owned path
+- database schema/security changes are migration-tracked in source control rather than dashboard-only undocumented changes
+- server rules must defend correctness even when the client is stale or buggy
+
+### OnTalk comparison
+- OnTalk successfully used Supabase through Internal and Closed Test.
+- Important production bugs occurred when terminal/chat rules were enforced only in client state or when related server mutations were not atomic.
+- The fixes moved critical invariants to the server/RLS layer, such as refusing messages after a room had ended and combining report success with room termination.
+- Tampin therefore keeps Supabase, but treats the server as an independent correctness/security boundary rather than trusting UI state.
+
+### QA verdict
+**PASS**
+
 ## NEXT OPEN ITEM
 
-**Block 05 — Supabase backend / server authority.**
+**Block 06 — Authentication: Google + Kakao / Supabase Auth / secure session storage.**
