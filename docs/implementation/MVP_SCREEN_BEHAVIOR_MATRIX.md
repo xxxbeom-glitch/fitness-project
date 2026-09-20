@@ -64,9 +64,9 @@ Missing current contract:
 
 Verdict: **DECISION NEEDED before implementing Duplicate.**
 
-### DECISION-03 — W / D / F set-row semantics are not specified
+### DECISION-03 — W / D / F routine-set semantics are not specified
 
-Current Routine / Active Workout cards visibly contain set identifiers such as:
+Current Routine create/edit cards visibly contain set identifiers such as:
 - `W`
 - normal numbered sets
 - `D`
@@ -378,7 +378,7 @@ Most static/state/detail/dialog/sheet screens in Groups 01, 04, 06, 07, 08, and 
 ### DECISION NEEDED
 1. Weekday scheduling vs current frozen Home/Routine design.
 2. Routine `복제` exact behavior.
-3. W / D / F set-type semantics.
+3. W / D / F routine-set semantics.
 4. Automatic Rest Timer already-running / end-feedback runtime policy.
 5. Active-session recovery system-notification UX.
 6. Duration Active Workout timed-set interaction.
