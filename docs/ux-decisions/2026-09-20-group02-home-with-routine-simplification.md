@@ -118,7 +118,7 @@ Retained:
 - `MyRoutineSection`
 - representative state shows populated routine tiles
 - representative title = `내 루틴 (2)`
-- runtime zero-routine state uses the same `내 루틴 (0)` + empty-state card pattern
+- runtime zero-routine behavior for 02D is not changed by this 02A amendment; retain the previously approved persistent section behavior
 
 ## 02A empty card QA
 
