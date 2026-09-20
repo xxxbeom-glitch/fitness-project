@@ -1,6 +1,6 @@
 # MVP Implementation Handoff — Start Here
 
-**Status:** HANDOFF PREPARED · SCREEN DESIGN FROZEN · IMPLEMENTATION NOT STARTED  
+**Status:** HANDOFF PREPARED · SCREEN DESIGN FROZEN · ANDROID-ONLY ARCHITECTURE IN PROGRESS · IMPLEMENTATION NOT STARTED  
 **Updated:** 2026-09-20
 
 이 폴더는 Cursor가 MVP 구현을 시작하기 전에 읽는 **개발 진입점**이다.
@@ -46,6 +46,8 @@ Figma는 visual implementation artifact다. 행동/제품 의미가 GitHub의 �
 
 현재 MVP에는 **추천 루틴 기능이 없다**.
 
+현재 플랫폼은 **Android 전용**이다. iOS / Apple Sign in / Live Activity / iPhone QA / App Store 작업은 현재 MVP 구현 범위가 아니다.
+
 ## Current readiness
 
 준비 완료:
@@ -64,9 +66,8 @@ Figma는 visual implementation artifact다. 행동/제품 의미가 GitHub의 �
 4. W / D / F set-type semantics
 5. automatic Rest Timer already-running / end-feedback runtime policy
 6. active-session recovery system-notification UX
-7. production app technology stack / platform architecture
-8. `duration` recording type의 Active Workout timed-set interaction
-9. launch platform 결정에 따라 iOS Apple sign-in/provider copy alignment
+7. remaining Android runtime implementation details
+8. Android analytics/crash reporting + Play release pipeline decisions
 
 문서 정리 완료:
 - current Product Direction / Project Brief의 브랜드 명칭을 Tampin으로 동기화
