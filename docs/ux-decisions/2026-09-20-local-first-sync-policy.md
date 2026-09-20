@@ -105,6 +105,11 @@ For MVP:
 
 Concurrent multi-device editing of the exact same non-active entity is an edge case; no dedicated conflict-resolution UI is added to MVP unless real QA evidence shows it is needed.
 
+Device-local settings:
+- Android runtime permissions / special app access are device-local and never synchronized as account settings
+- conflict ordering uses server revision/version, not device clock order
+- cross-device continuation/editing of the same in-progress workout is outside MVP
+
 ## Efficiency rules
 
 - no polling loop solely for synchronization
