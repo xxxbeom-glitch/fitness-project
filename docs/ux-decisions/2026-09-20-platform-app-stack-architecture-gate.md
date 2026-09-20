@@ -287,14 +287,30 @@ Locked:
 - event filtering/scrubbing occurs before transmission
 - Sentry failure never blocks launch, workout logging, SQLite persistence, or Supabase sync
 
+## Product analytics — PO APPROVED
+
+Canonical:
+- `docs/ux-decisions/2026-09-20-posthog-product-analytics.md`
+
+Locked:
+- PostHog is the MVP product-usage analytics provider
+- explicit semantic events only
+- Session Replay / broad autocapture / form-input capture / advertising attribution are off
+- initial event taxonomy is fixed in the canonical decision
+- core funnel = onboarding completed → workout started → first set completed → workout completed → later workout return/start
+- do not send DOB, sex/gender profile field, email, nickname, routine/exercise names, exact workout values, support content, secrets, or raw database rows
+- identity = opaque internal app user ID only; reset on logout/account change
+- local development analytics is off by default
+- preview vs production data is distinguishable
+- analytics is best-effort and never blocks navigation/workout/persistence/sync
+
 ## Still open
 
-- product-usage analytics scope
 - exact Android background/runtime implementation only if a concrete implementation conflict appears
 - release pipeline details
 
 ## NEXT OPEN ITEM
 
-Decide whether the MVP needs separate product-usage analytics.
+Define Android deployment / Google Play release-pipeline architecture.
 
 Do not begin production implementation yet.
