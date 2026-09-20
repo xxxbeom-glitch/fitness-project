@@ -458,10 +458,25 @@ Body map:
 
 These are **PASS — existing approved rules recovered into the Cursor handoff**, not new product decisions.
 
+### Duration Active Workout — resolved in sequential Group 05 QA
+
+PO APPROVED 2026-09-20:
+- use existing `ExerciseCard / Mode=WorkoutDuration`
+- TIME is entered/edited manually
+- set completion is manual
+- Nav Header Manual Timer is optional reference only and is not linked to TIME or set completion
+- completing the duration set triggers the normal automatic Rest Timer
+
+Figma read-back:
+- shared `Mode=WorkoutDuration` exists at `651:3614`
+- TIME column and per-set completion control are present
+- no inline stopwatch/countdown control exists
+
+Verdict: **PASS — duration interaction resolved without a new top-level screen.**
+
 ### Previously known blockers remain
 
 - technology stack / architecture
-- duration Active Workout timed-set interaction
 
 ### Detailed rules added to handoff
 
@@ -579,7 +594,7 @@ Verdict: **PASS — Group 04 Exercise Library / Custom Exercise sequential QA cl
 1. automatic Rest Timer zero-completion vibration/background-notification policy
 2. active-session recovery system-notification UX
 3. technology stack / platform architecture
-4. `duration` Active Workout timed-set interaction
+
 
 ### CONDITIONAL
 - iOS launch requires Apple sign-in/provider copy alignment
