@@ -1,6 +1,6 @@
 # 03 TECH STACK
 
-**Status:** PARTIALLY FROZEN — PLATFORM / APP STACK / LOCAL-FIRST / SQLITE / SUPABASE / AUTH / STORAGE / SYNC LOCKED · RUNTIME OPEN
+**Status:** PARTIALLY FROZEN — ANDROID-ONLY / APP STACK / LOCAL-FIRST / SQLITE / SUPABASE / AUTH / STORAGE / SYNC LOCKED · ANDROID RUNTIME OPEN
 
 ## CONFIRMED PRODUCT CONSTRAINTS
 
@@ -16,11 +16,11 @@ The technical design must support:
 ## LOCKED — platform / application layer
 
 Platform:
-- Android + iOS are developed from one shared codebase from the beginning
-- Android is the first runtime/device QA target
-- Android is the first production release target
-- iOS-compatible code/configuration is maintained during development
-- iOS release requires its own real-device QA and is not inferred from Android PASS
+- Android only for the current MVP and production scope
+- Android is the runtime/device QA target
+- Android is the production release target
+- no current requirement to preserve iOS compatibility
+- future iOS work requires a separate Product/Architecture decision
 
 Application stack:
 - React Native
@@ -28,7 +28,7 @@ Application stack:
 - TypeScript
 - primary development environment: Windows + Cursor
 - use Expo Development Builds for production development; Expo Go is not the runtime contract
-- platform-specific native functionality may use Expo/React Native native modules when required
+- Android-specific native functionality may use Expo/React Native native modules or Kotlin integration when required
 
 Decision record:
 - `docs/ux-decisions/2026-09-20-platform-app-stack-architecture-gate.md`
@@ -61,7 +61,6 @@ Decision record:
 
 - Supabase Auth
 - Google + Kakao for current MVP login
-- Apple Sign in added for iOS release alignment
 - auth/session secrets must use secure platform storage, not plain SQLite
 
 ## LOCKED — media storage
@@ -101,7 +100,7 @@ Technology should be chosen in this order:
 3. mobile UX quality
 4. operating cost
 5. maintainability
-6. future iOS/Watch expansion
+6. future expansion without overengineering the Android MVP
 
 Do not select infrastructure merely because it is fashionable or familiar.
 
@@ -112,4 +111,4 @@ Proceed one decision at a time:
 2. analytics/crash reporting
 3. deployment/release pipeline details
 
-Future Watch implications remain non-MVP and must not drive MVP overengineering.
+Future iOS/Watch work remains outside the current MVP and must not drive Android overengineering.
