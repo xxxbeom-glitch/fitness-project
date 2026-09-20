@@ -430,7 +430,9 @@ Most static/state/detail/dialog/sheet screens in Groups 01, 04, 06, 07, 08, and 
 - none in the current frozen visual contract.
 
 ### DECISION NEEDED
-1. Production technology stack / platform architecture.
+1. 07A `전체 기록` destination / workout-history-list policy.
+2. 07A `최근 기록 변화` runtime selection/comparison policy.
+3. Production technology stack / platform architecture.
 
 ### CONDITIONAL
 - Apple sign-in/account copy if iOS is included in launch scope.
