@@ -158,6 +158,16 @@ Implementation boundary:
 - Android boot-completed handling checks SQLite for an unfinished active session and re-establishes the system notification/runtime surface
 - Android stopped/force-stopped app behavior remains subject to platform restrictions and is not treated as equivalent to a normal device reboot
 
+## Android notification dismissal semantics — PO APPROVED
+
+Locked:
+- dismissing/removing the Android ongoing workout notification does not end, pause, discard, or mutate the Active Workout
+- the Active Workout remains persisted in SQLite as the authoritative session state
+- elapsed workout time, completed sets, current exercise/set context, and any applicable rest state continue independently from notification visibility
+- notification state is presentation/runtime state only, not the source of workout truth
+- opening the app or a later relevant runtime event may reconstruct the ongoing workout notification when an Active Workout still exists
+- workout end/discard remains an explicit in-app action
+
 ## Still open
 
 - analytics/crash reporting
