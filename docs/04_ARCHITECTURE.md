@@ -151,6 +151,15 @@ Core invariants:
 - notification permission is rechecked before posting ongoing/rest-end notifications
 - later Settings interaction may request permission again or route to Android app notification settings when needed
 
+## Android notification channel model — CONFIRMED
+
+- current MVP exposes two notification categories only
+- `운동 진행`: LOW-importance silent/non-vibrating channel for ongoing Active Workout status
+- `휴식 타이머`: separate time-sensitive channel for Rest Timer completion
+- updates/notices are not implemented and have no current production channel
+- no remote push stack is introduced for hypothetical update/notice messaging
+- Rest Timer sound-variant/channel mechanics remain a focused implementation decision because Android channel auditory behavior is immutable/user-controlled after creation
+
 ## TBD
 
 - server schema
