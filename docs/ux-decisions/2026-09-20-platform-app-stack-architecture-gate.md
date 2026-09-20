@@ -265,8 +265,8 @@ Locked:
 - the `휴식 타이머` notification channel does not carry the selectable app-owned sound
 - when Rest Timer reaches zero, post the approved system notification and separately play the selected bundled `기본 / 차임 / 벨` sound
 - exact alarm remains the completion trigger
-- use a short-lived native Android `mediaPlayback` Foreground Service for background/screen-off sound playback where required by Android
-- stop that temporary service immediately after the short sound completes
+- do not pre-lock a `mediaPlayback` Foreground Service as mandatory for the short completion sound
+- use the smallest Android-native mechanism that passes background/screen-off runtime QA; add a short-lived Foreground Service only if supported-device testing proves it is required
 - this does not change the earlier rule that the Active Workout itself does not run a continuous Foreground Service
 - changing timer sound does not recreate notification channels
 - asset-load failure falls back to Tampin's bundled `기본` sound, not the device default sound
