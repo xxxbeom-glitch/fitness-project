@@ -836,6 +836,22 @@ Required integrity:
 
 This section is a domain contract, not a mandated SQL/document schema.
 
+### Crash / error reporting
+
+- provider = Sentry
+- crash/error diagnostics only; product analytics remains separate
+- Session Replay off
+- local development reporting off by default
+- internal/preview and production environments separated
+- upload matching source maps/release metadata for readable stacks
+- do not send DOB/email/nickname/profile image/workout values/routine names/support content/auth secrets/raw DB rows
+- diagnostic context may include opaque internal user ID, app/build/OS, canonical screen/route, Active Workout yes/no, and high-level runtime state
+- Sentry failure must never block launch, workout logging, SQLite, or Supabase sync
+- before release, trigger one intentional test error and verify it arrives with readable stack information
+
+Canonical:
+- `docs/ux-decisions/2026-09-20-sentry-crash-error-reporting.md`
+
 ## 18. Visual implementation contract
 
 Canonical visual artifact:
@@ -1062,8 +1078,8 @@ Verified:
 
 Not ready to start production implementation yet because:
 1. Product Owner has not explicitly authorized Development mode
-2. remaining Android runtime implementation details still need final architecture closure
-3. analytics/crash reporting and Android Play release pipeline remain open where needed for release hardening
+2. product-usage analytics scope is not yet decided
+3. Android Play release pipeline details remain open where needed for release hardening
 
 Current implementation-facing product brand is Tampin; the stale G Fit working-name text found during deep QA has been corrected in the current Product Direction / Project Brief.
 
