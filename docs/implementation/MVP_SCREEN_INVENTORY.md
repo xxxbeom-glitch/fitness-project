@@ -60,7 +60,7 @@ Use current dialog copy from `2026-09-19-dialog-copy-simplification.md`.
 
 | Node | Frame | Authored size |
 |---|---|---:|
-| `1329:593` | `02B_Home_RoutineSelected` | 360×780 |
+| `1329:593` | `02B_Home_WithRoutine` | 360×780 |
 | `1346:686` | `02A_Home_NoRoutine` | 360×780 |
 | `1346:710` | `02D_Home_Active` | 360×780 |
 
