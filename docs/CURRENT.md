@@ -88,10 +88,17 @@ PO-approved current direction:
   - active MVP body/muscle conflict QA = **148 / 148 PASS**
   - recording prepass: reps **2,225** / weight_reps **1,641** / duration **158** / assisted_weight_reps **5** / unresolved **1,601**
   - Resistance Band / Rings / Suspension recording semantics = **LOCKED FOR MVP**
+  - Bodyweight relevance audit = **COMPLETE / NON-DESTRUCTIVE**
+    - Bodyweight active candidates audited = **1,588**
+    - default-search candidates = **546**
+    - extended variant review = **139**
+    - home/context variant review = **71**
+    - other/noise review = **832**
+    - no catalog-status change or source deletion applied
 - all source media/provenance is preserved; identity merges/exclusions do not delete alternate media
 - raw purchased filename/path map is not committed to the public repo; only normalized derivative catalog data is committed
-- current data checkpoints: `docs/exercise-db/2026-09-20-gym-visual-auto-normalization-v1.md`, `docs/exercise-db/2026-09-20-gym-visual-duplicate-version-qa.md`, `docs/exercise-db/2026-09-20-gym-visual-cross-gender-near-match-qa.md`, `docs/exercise-db/2026-09-21-gym-visual-held-near-match-resolution.md`, `docs/exercise-db/2026-09-21-gym-visual-semantic-normalization-v5.md`
-- next data/media task = bodyweight/search-noise catalog relevance QA → remaining semantic naming/metadata QA → final semantic row lock → default media selection → Cloudflare MP4 + in-app WebP manifest
+- current data checkpoints: `docs/exercise-db/2026-09-20-gym-visual-auto-normalization-v1.md`, `docs/exercise-db/2026-09-20-gym-visual-duplicate-version-qa.md`, `docs/exercise-db/2026-09-20-gym-visual-cross-gender-near-match-qa.md`, `docs/exercise-db/2026-09-21-gym-visual-held-near-match-resolution.md`, `docs/exercise-db/2026-09-21-gym-visual-semantic-normalization-v5.md`, `docs/exercise-db/2026-09-21-gym-visual-bodyweight-relevance-audit-v1.md`
+- next data/media task = remaining semantic naming/metadata QA → app-facing catalog exposure decision using bodyweight relevance audit → final semantic row lock → default media selection → Cloudflare MP4 + in-app WebP manifest
 
 ### Current consolidated maintenance
 - `docs/ux-decisions/2026-09-18-mvp-figma-maintenance-checkpoint.md`
