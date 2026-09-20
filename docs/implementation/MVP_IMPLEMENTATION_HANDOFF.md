@@ -581,6 +581,15 @@ Completion PR presentation:
 - do not use `외 N개`
 - the later 2026-09-14 Group 06 shared-summary sync supersedes the older representative-PR-only Group 06 rule
 
+Completion subtitle — `올해 N번째 운동이에요`:
+- `N` uses the existing approved workout-count semantics over the user's current local calendar year
+- count saved workout sessions in that year that contain actual persisted performed work
+- fully completed saved workout = 1
+- saved partial workout with at least one completed/persisted set = 1
+- discarded session / empty session with no persisted performed work = 0
+- include the just-saved session shown on the completion screen
+- if a saved workout is later deleted, it no longer contributes to the current-year count
+
 Completion metric rules:
 - workout time = elapsed time from Start to End, excluding explicitly paused time
 - backgrounding alone does not auto-pause workout time
