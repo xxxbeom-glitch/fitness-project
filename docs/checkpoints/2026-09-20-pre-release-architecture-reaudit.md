@@ -304,6 +304,29 @@ Locked:
 ### QA verdict
 **PASS**
 
+## Block 11 — Sentry crash/error reporting
+
+### Re-audit result
+Keep Sentry as the single MVP crash/error diagnostics service.
+
+Locked:
+- Sentry is diagnostics only; Supabase remains product/backend state and PostHog remains product analytics
+- capture unhandled JavaScript errors, native Android crashes surfaced through the Expo/React Native integration, release/build identity, symbolicated stacks, and sparse non-content breadcrumbs
+- Session Replay stays OFF
+- performance tracing/profiling stays OFF for MVP unless a later concrete performance problem justifies it
+- do not send profile/demographic data, workout-entered values, routine/exercise names, support content, tokens/secrets, or raw database rows
+- source-map upload credentials remain build/CI secrets and are never app runtime secrets
+- Internal/Preview must prove one intentional test error resolves to a readable source-mapped stack before release
+- Sentry failure never blocks launch, workout logging, persistence, or sync
+
+### OnTalk comparison
+- OnTalk used Crashlytics and still required real device/logcat/stack-trace evidence for a production-style Chat Room entry crash.
+- The lesson is not to duplicate crash providers, but to keep one reliable crash service and still require reproduction/test evidence before declaring a fix PASS.
+- Tampin therefore uses Sentry only; no duplicate Crashlytics integration is added for MVP.
+
+### QA verdict
+**PASS**
+
 ## NEXT OPEN ITEM
 
-**Block 11 — Sentry crash/error reporting.**
+**Block 12 — PostHog product analytics / event taxonomy.**
