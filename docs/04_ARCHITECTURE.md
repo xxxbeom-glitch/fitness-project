@@ -109,6 +109,15 @@ Core invariants:
 - a later app/runtime event may reconstruct the notification while the Active Workout remains unfinished
 - only explicit in-app end/discard actions terminate the session
 
+## Android Rest Timer delivery — CONFIRMED
+
+- automatic Rest Timer alert delivery is independent from the React Native screen remaining alive
+- screen-off, ordinary backgrounding, another foreground app, and recent-apps removal must not cancel the intended rest-end alert
+- normal reboot restores a future rest deadline from SQLite; a deadline already passed during downtime is not replayed as a stale late sound
+- user Force stop is the explicit Android exception until the user reopens the app
+- notification delivery state never owns or mutates workout/rest persistence
+- exact native Android scheduling primitive remains an implementation decision
+
 ## TBD
 
 - server schema
