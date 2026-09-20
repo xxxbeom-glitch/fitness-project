@@ -352,6 +352,34 @@ Locked boundaries remain:
 ### QA verdict
 **PASS**
 
+## Block 13 — Google Play submission source-data / policy profile readiness
+
+### Re-audit result
+Adopt an app-specific, machine-readable Google Play submission profile before implementation/release work proceeds.
+
+Created:
+- `docs/GOOGLE_PLAY_CONSOLE_TAMPIN_PROFILE.yaml`
+
+Locked operating rules:
+- Play Console answers are derived from actual Tampin behavior, SDKs, permissions, Supabase schema/storage, Sentry/PostHog behavior, and live policy wording
+- do not copy OnTalk Data Safety answers
+- profile tracks known / implementation-audit-needed / console-readback-needed / PO-decision-needed fields separately
+- OAuth App Access review credentials are prepared outside GitHub; secrets never enter the repo
+- public Terms / Privacy / account-deletion URLs remain required release follow-ups
+- account creation means both in-app deletion flow and an external deletion-request route must be ready before Production
+- current product stores workout/routine history and therefore requires current Play Health/Activity & Fitness declaration review
+- final Data Safety selection is not frozen before implementation audit
+- target audience remains a Product Owner decision; OnTalk's 18+ choice is not inherited
+- package name remains intentionally undecided until Block 14 because it becomes a long-lived release identity
+
+### OnTalk comparison
+- OnTalk lost time reconstructing Data Safety, App Access, policy URLs, target audience, store assets, and testing-track facts late in the release cycle.
+- Its later Play profile made the missing/verified distinction explicit.
+- Tampin starts with that source-data model before its first Android release artifact.
+
+### QA verdict
+**PASS**
+
 ## NEXT OPEN ITEM
 
-**Block 13 — Google Play submission source-data / policy profile readiness.**
+**Block 14 — Android package / build / signing / Internal → Closed → Production release pipeline.**
