@@ -253,7 +253,22 @@ Locked:
 - do not add remote-push infrastructure merely for hypothetical updates/notices
 - `08E_Notification_Settings` current Product scope is `휴식 타이머 알림` only
 - the previous `업데이트/공지` setting is removed from current MVP scope
-- exact Android handling of the selectable app-owned Rest Timer sounds remains the next notification-runtime subdecision
+- selectable app-owned Rest Timer sounds are handled separately from the channel per `2026-09-20-android-rest-timer-sound-runtime.md`
+
+## Android Rest Timer sound runtime — PO APPROVED
+
+Canonical:
+- `docs/ux-decisions/2026-09-20-android-rest-timer-sound-runtime.md`
+
+Locked:
+- the `휴식 타이머` notification channel does not carry the selectable app-owned sound
+- when Rest Timer reaches zero, post the approved system notification and separately play the selected bundled `기본 / 차임 / 벨` sound
+- exact alarm remains the completion trigger
+- use a short-lived native Android `mediaPlayback` Foreground Service for background/screen-off sound playback where required by Android
+- stop that temporary service immediately after the short sound completes
+- this does not change the earlier rule that the Active Workout itself does not run a continuous Foreground Service
+- changing timer sound does not recreate notification channels
+- asset-load failure falls back to Tampin's bundled `기본` sound, not the device default sound
 
 ## Still open
 
