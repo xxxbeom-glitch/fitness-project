@@ -67,6 +67,9 @@ Future domains such as Gym, Body Composition, Watch, AI, and Community should re
 - Google + Kakao are current MVP login providers
 - server-side user-owned rows map to the authenticated account identity
 - auth/session secrets are stored using secure platform storage, not ordinary SQLite application rows
+- startup has an explicit auth-restoring state; a transient missing session during restore is not treated as confirmed logout
+- local SQLite user-owned records are account-scoped across logout/account switch
+- logout does not silently destroy unsynced account-owned workout data
 - local-first workout persistence remains independent from transient network/auth availability during an already-authorized local session
 
 ## Media storage boundary — CONFIRMED
