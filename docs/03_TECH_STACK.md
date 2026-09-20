@@ -93,6 +93,15 @@ Canonical policy:
 - request exact-alarm special access contextually when precise Rest Timer alerts are first needed, not blindly at first launch
 - if access is denied/revoked, workout logging remains fully available and Rest Timer notification falls back to best-effort delivery
 
+## LOCKED — Android ongoing workout notification
+
+- Active Workout uses a normal Android ongoing notification, not a continuously running Foreground Service for the current MVP
+- elapsed notification time uses Android's system chronometer/time display backed by the persisted absolute workout start timestamp
+- React Native/JavaScript does not need to stay alive to tick elapsed time every second
+- SQLite remains authoritative; notification is presentation/runtime surface only
+- Rest Timer completion remains handled separately through the approved exact-alarm path
+- Foreground Service use must be reconsidered only if a future requirement adds continuous sensor/location/health tracking
+
 ## TBD
 
 The following remain intentionally open:
