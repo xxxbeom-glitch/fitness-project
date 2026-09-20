@@ -782,6 +782,11 @@ Locked:
 - the notification is reconstructed after boot from SQLite; it does not literally survive reboot
 - elapsed workout time continues through reboot using the persisted absolute start timestamp
 
+Locked:
+- dismissing the Android ongoing workout notification does not affect the Active Workout
+- notification visibility is presentation-only; SQLite session state remains authoritative
+- only explicit in-app end/discard actions terminate the workout
+
 NEXT OPEN ITEM:
 - continue Android platform runtime / background execution architecture
 
