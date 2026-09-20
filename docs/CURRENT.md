@@ -4,7 +4,7 @@
 
 ## Current mode
 
-`MVP 95 CONTENT/STATE FRAMES CANONICAL · 95-SCREEN BEHAVIOR MATRIX COMPLETE · VISUAL FIXES CLOSED · GROUP 00–01 PASS · GROUP 02 HOME PASS · GROUP 03 ROUTINE PASS · GROUP 04 EXERCISE LIBRARY / CUSTOM PASS · GROUP 05 ACTIVE WORKOUT PASS · GROUP 06–07 COMPLETION / HISTORY / ANALYSIS PASS · NEXT = GROUP 08 SETTINGS / ACCOUNT / SUPPORT QA — AWAITING PO APPROVAL · HANDOFF QA = ARCHITECTURE DECISION NEEDED · BOTTOM APP BAR PASS · WEEKDAY SCHEDULING REMOVED FROM MVP · NUMERIC-ONLY MVP SETS LOCKED · REST-TIMER RESTART RULE LOCKED · REST-TIMER CUSTOM SOUND SOURCE LOCKED · REST-TIMER SYSTEM ALERT LOCKED · ACTIVE-WORKOUT SYSTEM NOTIFICATION UX LOCKED · DURATION ACTIVE-SET UX LOCKED · TECH STACK / ARCHITECTURE OPEN · IMPLEMENTATION NOT STARTED`
+`MVP 95 CONTENT/STATE FRAMES CANONICAL · 95-SCREEN BEHAVIOR MATRIX COMPLETE · VISUAL FIXES CLOSED · GROUP 00–01 PASS · GROUP 02 HOME PASS · GROUP 03 ROUTINE PASS · GROUP 04 EXERCISE LIBRARY / CUSTOM PASS · GROUP 05 ACTIVE WORKOUT PASS · GROUP 06–07 COMPLETION / HISTORY / ANALYSIS PASS · NEXT = GROUP 08 SETTINGS / ACCOUNT / SUPPORT QA · GROUP 08 = VIBRATION POLICY DECISION NEEDED · HANDOFF QA = IN PROGRESS · BOTTOM APP BAR PASS · WEEKDAY SCHEDULING REMOVED FROM MVP · NUMERIC-ONLY MVP SETS LOCKED · REST-TIMER RESTART RULE LOCKED · REST-TIMER CUSTOM SOUND SOURCE LOCKED · REST-TIMER SYSTEM ALERT LOCKED · ACTIVE-WORKOUT SYSTEM NOTIFICATION UX LOCKED · DURATION ACTIVE-SET UX LOCKED · TECH STACK / ARCHITECTURE OPEN · IMPLEMENTATION NOT STARTED`
 
 ## Resume rule
 
@@ -37,7 +37,8 @@ The previous `98` count became `94` after the 2026-09-19 recommended-routine rem
 
 ### MVP design freeze / implementation handoff preparation
 - `docs/ux-decisions/2026-09-20-mvp-screen-design-freeze.md`
-- current Group 06–07 sequential QA: `docs/ux-decisions/2026-09-20-group06-07-sequential-handoff-qa.md`
+- Group 06–07 sequential QA: `docs/ux-decisions/2026-09-20-group06-07-sequential-handoff-qa.md`
+- current Group 08 sequential QA: `docs/ux-decisions/2026-09-20-group08-sequential-handoff-qa.md`
 - `docs/implementation/README.md`
 - `docs/implementation/MVP_IMPLEMENTATION_HANDOFF.md`
 - `docs/implementation/MVP_SCREEN_INVENTORY.md`
@@ -690,12 +691,24 @@ Current verification:
 
 Verdict: **PASS — Group 06–07 Completion / History / Analysis sequential handoff QA closed.**
 
-**STOP. Do not start Group 08 until Product Owner explicitly approves continuing.**
+Product Owner approved continuing to Group 08 on 2026-09-20.
 
-## Later sequential blocks after explicit approval
+## Current sequential QA block — Group 08 Settings / Account / Support
 
-- Group 08 Settings / Account / Support
-- remaining cross-cutting architecture decision
+Current verification:
+- Figma Group 08 frames = `17`
+- behavior-matrix Group 08 rows = `17`
+- Figma ↔ matrix names = `17 / 17`
+- all 17 sampled/current screen states missing main-component links = `0`
+- all Group 08 sampled/current sources outside `Common_Component` = `0`
+- Settings / profile / account deletion / units / workout settings / notification / support / language flows otherwise align
+- app-owned custom timer sound policy is compatible with current `기본 / 차임 / 벨` labels when `기본` is defined as the app-bundled default sound
+- Rest Timer notification row aligns with the approved system alert behavior
+
+Current Product/UX blocker:
+1. `08D_Workout_Settings > 타이머 종료 진동` app-level toggle conflicts/overlaps with the newer Group 05 rule that vibration follows platform/user notification settings.
+
+**STOP for Product Owner decision on the vibration-setting semantics.**
 
 ## Other already-known open decisions
 
@@ -721,6 +734,7 @@ Current handoff verdict:
 - `DECISION NEEDED`
 
 Before development:
+- Group 08 timer-end vibration setting decision
 - tech stack / architecture decision
 - launch-platform scope check
 - explicit Product Owner development authorization
