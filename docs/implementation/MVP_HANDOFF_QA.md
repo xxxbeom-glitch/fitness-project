@@ -1,6 +1,6 @@
 # MVP Implementation Handoff QA
 
-**Status:** 94-SCREEN DEEP QA COMPLETE · VISUAL FIXES CLOSED · DECISION NEEDED · IMPLEMENTATION NOT STARTED  
+**Status:** 95-SCREEN DEEP QA COMPLETE · VISUAL FIXES CLOSED · DECISION NEEDED · IMPLEMENTATION NOT STARTED  
 **Verified:** 2026-09-20
 
 ## QA purpose
@@ -52,8 +52,8 @@ Canonical:
 - file `W3lZurXCXbThP67rF2xk2b`
 - page `MVP_전체_와이어프레임` — `34:1076`
 
-Final read-back:
-- top-level frames: `94`
+Final current read-back after 07C addition:
+- top-level frames: `95`
 - group counts:
   - 00 = 1
   - 01 = 7
@@ -62,9 +62,9 @@ Final read-back:
   - 04 = 29
   - 05 = 18
   - 06 = 3
-  - 07 = 5
+  - 07 = 6
   - 08 = 17
-- current instances: `1,855`
+- current instances: `1,849`
 - missing main-component links: `0`
 - component sources outside `Common_Component`: `0`
 
@@ -77,13 +77,13 @@ Compared:
 - all rows in `docs/implementation/MVP_SCREEN_INVENTORY.md`
 
 Result:
-- Figma count = `94`
-- document count = `94`
+- Figma count = `95`
+- document count = `95`
 - missing in document = `0`
 - extra in document = `0`
 - ID/name/size mismatch = `0`
 
-Verdict: **PASS — 94 / 94 exact match**
+Verdict: **PASS — 95 / 95 exact match**
 
 ## 4. Recommendation removal verification
 
@@ -567,10 +567,16 @@ PO decisions resolved:
 1. restore a full saved-workout history list as `07C_Workout_History`; 07A `전체 기록` routes there, and list rows route to 07D
 2. 07A `최근 기록 변화` shows only exercises whose latest completed performance improved versus the immediately previous comparable completed performance; newest qualifying improvements first; max 3; native recording-type semantics only
 
-Current blocker is now visual reflection, not Product/UX:
-- `07C_Workout_History` must be created in canonical Figma and then inventory/navigation/component QA must be re-run
+Figma reflection:
+- `07C_Workout_History` created at `2121:8457`
+- size = `360 × 780`
+- existing Back NavHeader / ListCard / RecentWorkoutRow / Divider patterns reused
+- representative rows = `9`
+- saved-partial example is visibly distinguished as `하체 B · 부분 기록`
+- screen instance links = `29`, missing main-component links = `0`
+- whole-MVP current instance links = `1,849`, missing = `0`, sources outside `Common_Component` = `0`
 
-Verdict: **FIGMA FOLLOW-UP REQUIRED — Group 06 Product/UX is clear; Group 07 decisions are resolved.**
+Verdict: **PASS — Group 06–07 sequential handoff QA closed.**
 
 ## 15. Final QA verdict
 
@@ -630,8 +636,9 @@ Verdict: **PASS — Group 04 Exercise Library / Custom Exercise sequential QA cl
 ### DECISION NEEDED before production implementation
 1. technology stack / platform architecture
 
-### FIGMA FOLLOW-UP before Group 06–07 closure
-- create and verify `07C_Workout_History`
+### Group 06–07 closure
+- `07C_Workout_History` created and verified
+- Group 06–07 Product/UX / Figma handoff QA = PASS
 
 
 ### CONDITIONAL
