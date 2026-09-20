@@ -1,7 +1,7 @@
 # Group 06–07 Completion / History / Analysis — Sequential Handoff QA
 
 **Date:** 2026-09-20  
-**Status:** QA IN PROGRESS · PO DECISION NEEDED
+**Status:** PO DECISIONS RECORDED · FIGMA FOLLOW-UP REQUIRED
 
 ## Scope
 
@@ -80,52 +80,58 @@ Approved current presentation:
 
 Current Figma read-back matches this rule.
 
-## Current sequential QA blockers
+## Product Owner decisions — 2026-09-20
 
-### DECISION-06-07-01 — 07A `전체 기록` has no destination
+### Decision 1 — restore a full workout-history list
 
-Current canonical `07A_Analysis_Home` visibly contains:
-- section `최근 운동`
-- action `전체 기록`
+`07A_Analysis_Home > 최근 운동 > 전체 기록` requires a real destination.
 
-But the former separate workout-history overview/list screen was removed from the canonical Group 07 IA, and the current 94-screen inventory contains no replacement workout-history-list destination.
+Approved direction:
+- add a canonical full workout-history list screen
+- screen name: `07C_Workout_History`
+- `07A_Analysis_Home > 전체 기록` → `07C_Workout_History`
+- list saved workout sessions in reverse chronological order
+- include completed sessions and saved-partial sessions that contain persisted performed work
+- do not include discarded / no-performed-work sessions
+- tapping a history row → matching `07D_Workout_History_Detail`
+- the restored screen is a simple history browser; do not add unrelated analysis/dashboard content
 
-Therefore:
-- current `전체 기록` action has no approved route
-- Cursor must not invent a screen or route
-- PO decision is required: restore/provide a workout-history list destination, or remove/change the action
+This intentionally increases the canonical MVP top-level screen count by one once Figma is reflected and verified.
 
-### DECISION-06-07-02 — 07A `최근 기록 변화` data-selection/comparison semantics
+### Decision 2 — `최근 기록 변화` = recent exercises whose performance improved
 
-Current Figma defines the presentation but not the complete runtime selection/calculation rule.
+Keep the logic simple and based on actual recent completed records.
 
-Current visual examples show:
-- exercise identity
-- current representative record
-- delta
-- up to three review rows
+For each exercise:
+1. take the most recent completed/persisted performance
+2. compare it with the immediately previous comparable completed/persisted performance for the same exercise identity and recording type
+3. include the exercise only when performance improved
+4. sort qualifying exercises by the date/time of the latest improved performance, newest first
+5. show up to the current UI capacity of 3 rows on `07A_Analysis_Home`
 
-Existing approved docs define recording-type-native History/Growth semantics, but do not fully define:
-- which exercises qualify for the 07A recent-change list
-- which records are compared
-- how the representative current record is chosen for this section
-- ordering when several exercises changed
-- exact delta semantics when more than one field changes
+Do not rank exercises by a cross-exercise improvement score.
 
-Older analysis policy explicitly left these comparison/representative rules open, and no later current Decision closes them.
+Use the already-approved recording-type-native improvement semantics:
+- `weight_reps`: higher completed load is improvement; at the same load, higher reps can qualify
+- `reps`: higher completed reps
+- `duration`: longer completed duration
+- `assisted_weight_reps`: lower assistance is improvement; at the same assistance, higher reps can qualify
 
-Cursor must not invent this algorithm.
+Common rules:
+- first-ever performance has no previous comparison → do not show as a change
+- equal performance → do not show
+- worse performance → do not show
+- display the current native record and the changed value/delta
+- no conversion into one common score/unit
 
 ## Current result
 
 Group 06:
 - visual/state mapping = PASS
-- current completion rules = adequately recoverable after handoff clarification
-- new Product/UX blocker = `0`
+- Product/UX blocker = `0`
 
 Group 07:
-- visual/state mapping = PASS
-- 07B / 07D = aligned with current approved policy
-- Product/UX decisions still needed = `2`
+- Product/UX calculation/navigation decisions above are resolved
+- Figma follow-up required: create `07C_Workout_History` and then re-run focused inventory/navigation QA
 
-**STOP for Product Owner decision before closing Group 06–07 or advancing to Group 08.**
+**Do not close Group 06–07 until the new 07C Figma screen is created and verified. Do not advance to Group 08 automatically.**
