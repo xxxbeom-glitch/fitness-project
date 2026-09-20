@@ -881,9 +881,10 @@ Completed:
 - Block 04 — SQLite local database / migrations / transactions / account-scoped ownership: **PASS**
 - Block 05 — Supabase Postgres / RLS / server correctness boundary: **PASS**
 - Block 06 — Supabase Auth / Google + Kakao / secure session / auth-restore state: **PASS**
+- Block 07 — Supabase Storage / private user media / canonical object reference: **PASS**
 
 NEXT OPEN ITEM:
-- Block 07 — Supabase Storage / user media
+- Block 08 — Sync / conflict / multi-device behavior
 
 ## Other already-known open decisions
 
