@@ -811,6 +811,20 @@ Rules:
 
 SQLite remains authoritative for immediate active-workout interaction and recovery.
 
+### Server-confirmed actions
+
+The following are not considered completed by a local write alone:
+- authentication
+- account deletion
+- support inquiry submission
+- profile/media upload completion
+
+Rules:
+- require server/provider success before showing final completion
+- network restoration must not silently perform a new user-visible action that previously failed
+- automatic retry is allowed for replication of already-accepted local-first product state
+- failed support submission requires explicit user retry/resubmit
+
 ## 17. Implementation-neutral domain boundaries
 
 The selected storage technologies must still keep these domain identities separable:
