@@ -160,6 +160,17 @@ Core invariants:
 - no remote push stack is introduced for hypothetical update/notice messaging
 - Rest Timer sound-variant/channel mechanics remain a focused implementation decision because Android channel auditory behavior is immutable/user-controlled after creation
 
+## Android Rest Timer sound playback — CONFIRMED
+
+- keep `휴식 타이머` channel free of the selectable app-owned sound
+- exact-alarm completion event posts the system notification and triggers separate app-owned sound playback
+- selected sound = `기본 / 차임 / 벨`
+- use alarm-appropriate audio usage
+- use a short-lived native Android `mediaPlayback` Foreground Service when background-audio restrictions require it
+- stop the service immediately after the sound finishes
+- Active Workout itself still does not run a continuous Foreground Service
+- notification-channel identity remains stable across sound-setting changes
+
 ## TBD
 
 - server schema
