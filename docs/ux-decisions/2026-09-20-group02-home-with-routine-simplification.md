@@ -17,7 +17,7 @@ Top:
 - `내 루틴 만들기`
 
 Lower:
-- `최근 운동`
+- no secondary section
 
 ### 02B — Saved routine(s) exist
 `02B_Home_WithRoutine` — `1329:593`
@@ -34,9 +34,9 @@ Lower:
 - 2 × n routine grid
 - `새 루틴` action remains
 
-The only intended layout difference between 02A and 02B is the lower section:
-- 02A: Recent Workout
-- 02B: My Routine grid
+The intended layout difference between 02A and 02B is:
+- 02A: Quick Start only
+- 02B: the same Quick Start + My Routine grid
 
 Do not place a saved routine into Quick Start merely because routines exist.
 
@@ -46,7 +46,14 @@ Do not place a saved routine into Quick Start merely because routines exist.
 Active Workout state remains the exception:
 - the current in-progress workout is the primary Home action
 - the same active session is resumed
+- no Recent Workout section is shown on Home
 - one-active-workout invariant remains
+
+## Home recent-workout rule
+
+Home does not show a `최근 운동` / `전체 기록` section in any Group 02 state.
+
+Workout history remains available through the Analysis / history surfaces.
 
 ## Removed MVP semantics
 
