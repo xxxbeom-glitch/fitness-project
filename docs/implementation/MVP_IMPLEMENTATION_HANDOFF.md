@@ -475,11 +475,17 @@ Rest Timer end-sound source — PO APPROVED 2026-09-20:
 - Product Owner will provide the final Production sound assets later
 - exact asset filenames/labels remain a later asset task
 
-Still unresolved:
-- zero-completion vibration behavior
-- background/system-notification behavior
+Rest Timer completion system feedback — PO APPROVED 2026-09-20:
+- when the automatic Rest Timer reaches zero, surface a system notification alert
+- title: `휴식 시간이 끝났어요`
+- body: `다음 세트를 시작하세요.`
+- use the selected app-owned custom timer-end sound
+- the existing `휴식 타이머 알림` setting controls delivery of this rest-end alert
+- no app-defined custom vibration pattern in MVP; vibration follows platform/user notification settings
+- do not auto-open the app and do not auto-complete a set
+- the ongoing Active Workout system surface remains after the rest-end alert
 
-Cursor must not invent the remaining zero-completion feedback rules.
+The remaining implementation mechanics depend on the selected production platform/architecture.
 
 ### Manual Timer
 
@@ -502,20 +508,23 @@ Rules:
 - while automatic Rest Timer is active, manual-timer nav action is unavailable
 - do not run both countdown timers simultaneously
 
-### Active-session recovery presentation
+### Active-session system notification / recovery presentation — resolved
 
 Locked:
 - in-progress workout persistence/recovery remains required across interruption/restart
 - normal recovery does not show a dedicated in-app recovery screen or `복구했어요` banner
-- product direction surfaces the ongoing active session through the system notification area
-- re-entry opens the same active workout session; it is not a newly created/recovered-copy session
+- while an Active Workout exists, keep one platform-native ongoing system notification/activity surface for that same session
+- show workout name (fallback `빈 운동`), elapsed workout time, and current exercise/set context when available
+- while automatic Rest Timer runs, show `휴식 중` + remaining rest time on that ongoing surface
+- tapping the surface opens/resumes the same active workout session
+- no notification quick actions that mutate workout state in MVP
+- ending/discarding the workout removes/ends the ongoing system surface
+- recovery restores the same session and its ongoing system surface; it never creates a duplicate workout
 
-Still unresolved:
-- exact system-notification copy
-- notification actions/controls
-- platform-specific persistent/ongoing-notification behavior
-
-Cursor must not invent those notification UX details.
+Platform boundary:
+- Android MVP uses the platform-native ongoing status-bar/notification surface
+- iOS, if included later, uses the platform-native Live Activity / notification equivalent
+- exact framework/service implementation is architecture work, not an open Product/UX decision
 
 ## 13. Workout end / discard / other-routine / replacement
 
@@ -843,8 +852,7 @@ Cursor must stop and report `DECISION NEEDED` rather than choosing product behav
 - launch platform priority
 - unapproved PR/progression formula
 - unresolved non-active multi-device conflict behavior
-- Rest Timer zero-completion vibration/background-notification behavior
-- active-session recovery system-notification copy/actions/controls
+
 - release legal URLs/copy/retention period
 - notification delivery/backend behavior beyond approved UI
 - billing/subscription
@@ -871,23 +879,13 @@ The following former blockers are already resolved by `docs/ux-decisions/2026-09
 
 Duration uses the existing manual TIME-entry + set-completion pattern. The header Manual Timer is optional reference only and is not linked to the duration value or completion state.
 
-### BLOCKER G — automatic Rest Timer remaining zero-completion feedback
+### Resolved — Rest Timer completion notification
 
-Resolved:
-- completing another set while a Rest Timer is active replaces it with a fresh Rest Timer for the newly completed set
-- timer-end sound source uses app-owned custom sound assets only; final Production files/labels are supplied later by the Product Owner
+The Rest Timer overlap, sound source, and system-notification behavior are Product/UX locked. Final Production sound assets remain a later asset task.
 
-Still open:
-- vibration behavior when rest reaches zero
-- background/system-notification behavior
+### Resolved — active-session system notification UX
 
-Requires Product/UX feedback policy for the remaining behavior before full Rest Timer implementation.
-
-### BLOCKER H — active-session recovery system notification UX
-
-Recovery persistence is required and the in-app recovery banner is explicitly rejected. The session should be surfaced through the system notification area, but notification copy/actions/controls remain undefined.
-
-Requires platform-aware UX decision before implementing the recovery notification surface.
+The ongoing Active Workout system surface, tap-to-resume behavior, recovery behavior, and no-quick-action MVP boundary are Product/UX locked. Exact platform implementation remains part of the technology/architecture gate.
 
 ### Conditional platform alignment — iOS
 
