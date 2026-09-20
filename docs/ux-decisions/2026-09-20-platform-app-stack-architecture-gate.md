@@ -270,14 +270,31 @@ Locked:
 - changing timer sound does not recreate notification channels
 - asset-load failure falls back to Tampin's bundled `기본` sound, not the device default sound
 
+## Crash / error reporting — PO APPROVED
+
+Canonical:
+- `docs/ux-decisions/2026-09-20-sentry-crash-error-reporting.md`
+
+Locked:
+- Sentry is the Android MVP crash/error reporting provider
+- Sentry is diagnostics only; product-usage analytics is a separate decision
+- Session Replay is off for MVP
+- local development reporting is off by default
+- internal/preview and production environments are separated
+- source maps/release identifiers must correspond to the actual build
+- do not send DOB, email, nickname, profile image, workout values, routine names, support content, auth secrets, or raw database rows
+- allow only opaque internal user ID plus build/OS/screen/high-level runtime state needed for debugging
+- event filtering/scrubbing occurs before transmission
+- Sentry failure never blocks launch, workout logging, SQLite persistence, or Supabase sync
+
 ## Still open
 
-- analytics/crash reporting
-- exact Android background/runtime implementation
+- product-usage analytics scope
+- exact Android background/runtime implementation only if a concrete implementation conflict appears
 - release pipeline details
 
 ## NEXT OPEN ITEM
 
-Finish remaining Android runtime / background execution architecture.
+Decide whether the MVP needs separate product-usage analytics.
 
 Do not begin production implementation yet.
