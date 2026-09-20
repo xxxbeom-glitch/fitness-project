@@ -877,9 +877,10 @@ Rules:
 Completed:
 - Block 01 — Platform scope / Android only: **PASS**
 - Block 02 — Application stack / React Native + Expo + TypeScript + narrow native Android boundary: **PASS**
+- Block 03 — Local-first persistence scope / server-confirmed action boundary: **PASS**
 
 NEXT OPEN ITEM:
-- Block 03 — Local-first persistence scope and semantics
+- Block 04 — SQLite local database suitability and operating rules
 
 ## Other already-known open decisions
 
