@@ -709,7 +709,8 @@ Workout settings:
 - timer-end sound choices are app-owned custom sounds only
 - current Figma labels `기본 / 차임 / 벨` are product labels for bundled app sounds; `기본` is not the device default notification/ringtone
 - final production sound files/labels remain an asset follow-up
-- current Figma also exposes `타이머 종료 진동`; this conflicts with the latest Group 05 rule that vibration follows platform/user notification settings and requires one PO alignment decision before implementation
+- there is no app-level `타이머 종료 진동` preference in MVP
+- Rest Timer completion vibration follows the user's/platform notification/device settings; no custom vibration pattern is defined
 
 Language:
 - 한국어 / English
