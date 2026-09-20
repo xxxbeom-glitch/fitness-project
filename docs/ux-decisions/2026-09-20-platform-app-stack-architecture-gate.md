@@ -143,6 +143,21 @@ Locked:
 - the timer does not depend on a continuously running JavaScript interval
 - restoring an unfinished workout after reboot must preserve the same active session and elapsed duration
 
+## Android reboot notification recovery — PO APPROVED
+
+Locked:
+- if an Active Workout remains unfinished when the device reboots, Android restores the ongoing workout notification after boot completes
+- reboot does not end or discard the workout session
+- the restored ongoing notification represents the same persisted Active Workout
+- tapping it resumes that same session
+- elapsed workout time is recalculated from the persisted absolute start timestamp, so reboot/powered-off time remains included
+- if an automatic Rest Timer is still active at restore time, its remaining state is reconstructed from the persisted absolute rest-end timestamp
+- this is a reconstruction after boot, not an assumption that a notification itself survives the reboot
+
+Implementation boundary:
+- Android boot-completed handling checks SQLite for an unfinished active session and re-establishes the system notification/runtime surface
+- Android stopped/force-stopped app behavior remains subject to platform restrictions and is not treated as equivalent to a normal device reboot
+
 ## Still open
 
 - analytics/crash reporting
