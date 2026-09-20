@@ -109,9 +109,11 @@ Retained:
 `02A_Home_NoRoutine` now contains:
 - `StartChoiceSection`
 - `MyRoutineSection`
-- `MyRoutineSection` contains only `SectionHeader / Trailing=None`
-- representative title = `내 루틴 (0)`
-- no empty-state body/copy is shown
+- header = `내 루틴 (0)` / `SectionHeader / Trailing=None`
+- `MyRoutineEmptyCard` below the header
+- empty card reuses existing `EmptyState / Action=Compact`
+- copy = `아직 루틴이 없어요` / `자주 하는 운동을 루틴으로 만들어보세요`
+- CTA = `루틴 만들기`
 
 `02D_Home_Active` now contains:
 - `RoutineFocusSection`
