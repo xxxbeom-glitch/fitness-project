@@ -174,6 +174,7 @@ Primary actions:
 - `빈 운동`
 - `내 루틴 만들기`
 
+Home shows no Recent Workout / `전체 기록` section.
 No recommendation entry.
 
 `빈 운동`:
@@ -195,6 +196,7 @@ No recommendation entry.
 
 - current workout is primary
 - tapping compact active card resumes the current active workout
+- no Recent Workout / `전체 기록` section on Home
 - no second active workout is silently created
 
 ## 8. Routine contract
