@@ -159,13 +159,29 @@ Current implementation-facing brand = **Tampin**.
 
 | Screen | Purpose / Entry | Primary behavior / Exit | Implementation rule | QA |
 |---|---|---|---|---|
-| `01A_Login` | Signed-out entry | Google/Kakao continue; Terms/Privacy open public docs; 문의하기 opens support path | Unified sign-up/login semantics; no email/password path. Existing-account vs first-time account branches after provider auth. | CONDITIONAL — Apple variant if iOS |
-| `01C_Basic_Info` | First-time account after auth | Select sex + enter DOB; valid required data enables `시작하기` → Home | Sex + DOB required. DOB YYYYMMDD / valid date. No starting-weight inference. | PASS |
-| `01C1_Basic_Info_Error` | Invalid DOB | Correct field; CTA stays Disabled until valid | Current inline error = `올바른 생년월일 8자리를 입력해주세요.` | PASS |
+| `01A_Login` | Signed-out entry | Google/Kakao continue; Terms/Privacy open public docs; 문의하기 opens support path | Unified sign-up/login semantics; no email/password path. Provider continuation is not Terms agreement. Existing-account vs first-time account branches after provider auth. | PASS for Android surface · CONDITIONAL Apple variant if iOS |
+| `01C_Basic_Info` | First-time/incomplete onboarding account after auth | Select sex + enter DOB + explicitly agree to Terms; all required valid states enable `시작하기` → Home. Back → Login. | Sex + valid DOB + Terms agreement required. Back keeps onboarding incomplete; same provider identity resumes the same account at Basic Info on next auth. No duplicate account for interrupted onboarding. | PASS |
+| `01C1_Basic_Info_Error` | Invalid DOB | Correct field; CTA stays Disabled until sex + valid DOB + Terms agreement are all satisfied | Current inline error = `올바른 생년월일 8자리를 입력해주세요.` Terms agreement remains an independent required state. | PASS |
 | `01A1_Login_Error_Overlay_Cases` | Login failure reference board | General / network / service errors use DialogCard; retry or close | Not a separate navigation route. Use current 2026-09-19 dialog copy. | PASS |
 | `01C2_Basic_Info_Focused` | DOB field focus state | Continue input | Component state only; not separate route. | PASS |
-| `01C3_Basic_Info_Filled` | DOB filled but other required state not yet valid | Complete remaining requirement | Filled input alone does not imply form-valid. | PASS |
+| `01C3_Basic_Info_Filled` | DOB filled but one or more other required states not yet valid | Complete sex selection and/or Terms agreement | Filled DOB alone does not imply form-valid. | PASS |
 | `01C4_Basic_Info_Disabled` | DOB input unavailable/disabled representative state | No edit while disabled | Component-state reference; exact runtime trigger must come from feature state, not be invented. | PASS as visual state |
+
+
+### RESOLVED-03 — Group 00–01 first-run consent / resume alignment
+
+PO-approved 2026-09-20 amendment:
+- Login keeps Terms/Privacy links but no longer claims provider continuation itself equals Terms agreement
+- explicit Terms agreement moves to Basic Info via shared `TermsAgreementRow`
+- `시작하기` requires sex + valid DOB + Terms agreement
+- Basic Info Back → Login while onboarding remains incomplete
+- re-auth with the same provider identity resumes the same incomplete internal account at Basic Info
+- focused Figma/component QA PASS
+
+Canonical record:
+- `docs/ux-decisions/2026-09-20-group00-01-first-run-closure.md`
+
+Verdict: **PASS — Group 00–01 closed.**
 
 # 02 — Home
 
