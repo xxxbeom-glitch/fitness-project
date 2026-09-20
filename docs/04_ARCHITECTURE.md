@@ -79,6 +79,8 @@ Future domains such as Gym, Body Composition, Watch, AI, and Community should re
 - SQLite stores local URI, remote object path, upload/sync state, and related metadata
 - large binaries are not embedded in SQLite
 - user-owned media is private/scoped by default
+- profile row stores the canonical active object path; Storage folder listing is not used to infer the active profile image
+- profile/support media operations are not presented as complete until required Storage/server writes succeed
 - exercise-library Production assets remain a separate distribution concern unless explicitly moved into the same storage architecture
 
 ## Synchronization architecture — CONFIRMED
