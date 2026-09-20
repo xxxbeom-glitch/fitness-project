@@ -825,8 +825,6 @@ Cursor must stop and report `DECISION NEEDED` rather than choosing product behav
 
 - technology stack / production architecture
 - launch platform priority
-- routine duplicate semantics
-- W / D / F routine-set semantics
 - `duration` Active Workout timed-set interaction
 - unapproved PR/progression formula
 - unresolved non-active multi-device conflict behavior
@@ -849,17 +847,11 @@ Do not choose framework, database, backend, navigation framework, DI/state archi
 
 Requires Product Owner decision before first implementation Issue.
 
-### BLOCKER D — routine Duplicate semantics
+### Resolved before Group 05 handoff QA
 
-The `복제` menu action exists visually, but exact copy/name/metadata/destination behavior is not defined.
-
-Requires PO decision before implementation.
-
-### BLOCKER E — W / D / F routine-set semantics
-
-Routine create/edit set rows visibly contain W / D / F, while the current 05A Active Workout representative screen shows numbered rows only. Their intended product/data/calculation meaning and whether they should carry into Active Workout are not defined in current authority.
-
-Requires PO decision before implementing these set types.
+The following former blockers are already resolved by `docs/ux-decisions/2026-09-20-group03-routine-final-closure.md` and are not implementation blockers:
+- Routine `복제`: creates an independent saved copy immediately, stays on/returns to the Routine List, and uses the approved duplicate naming/collision rule.
+- W / D / F: outside the current MVP; Routine and Active Workout use numeric sets only (`1, 2, 3 ... n`).
 
 ### BLOCKER F — duration Active Workout interaction
 
