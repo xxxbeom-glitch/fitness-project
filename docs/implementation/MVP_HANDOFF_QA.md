@@ -326,7 +326,7 @@ Additional PO-approved Home cleanup:
 - `최근 운동` / `전체 기록` removed from 02A and 02D
 - no Group 02 Home state shows Recent Workout
 - `내 루틴` remains present instead of removing the secondary section
-- 02A = Quick Start + `내 루틴` header only
+- 02A = Quick Start + `내 루틴 (0)` + full-width empty card
 - 02B = Quick Start + My Routine populated 2 × n grid
 - 02D = Active Workout + My Routine
 - all My Routine headers = `Trailing=None`
@@ -345,6 +345,14 @@ Additional PO-approved Home cleanup:
 - 02A missing main-component links = `0`
 - text overflow = `0`
 - missing main-component links = `0`
+
+Home routine-tile behavior — PO APPROVED 2026-09-20:
+- Home `내 루틴` tile → matching `03D_Routine_Detail`
+- tapping a Home routine tile does not directly start an Active Workout
+- user starts the workout explicitly from Routine Detail
+- canonical detail destination verified at `34:1447`
+
+Verdict: **PASS — Group 02 Home closed.**
 
 
 #### DECISION-02 — routine Duplicate
@@ -501,8 +509,8 @@ Canonical decision:
 Verdict: **PASS — Group 00–01 closed.**
 
 Next sequential QA:
-- Group 02 Home
-- stop for PO decision before Group 03
+- Group 03 Routine
+- stop for PO decision before Group 04
 
 ## 15. Final QA verdict
 
@@ -524,13 +532,12 @@ Next sequential QA:
 - none in the current frozen visual contract.
 
 ### DECISION NEEDED before production implementation
-1. Group 02 `내 루틴` tile tap behavior
-2. routine Duplicate behavior
-3. W / D / F routine-set semantics
-4. automatic Rest Timer already-running / end-feedback policy
-5. active-session recovery system-notification UX
-6. technology stack / platform architecture
-7. `duration` Active Workout timed-set interaction
+1. routine Duplicate behavior
+2. W / D / F routine-set semantics
+3. automatic Rest Timer already-running / end-feedback policy
+4. active-session recovery system-notification UX
+5. technology stack / platform architecture
+6. `duration` Active Workout timed-set interaction
 
 ### CONDITIONAL
 - iOS launch requires Apple sign-in/provider copy alignment
