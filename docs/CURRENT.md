@@ -66,10 +66,12 @@ PO-approved current direction:
 - current filename-derived conservative exercise candidates = **5,854**
 - exact normalized male/female 1:1 groups = **1,108**
 - multi-variant exact groups = **76**
-- duplicate/version review groups = **117**
+- duplicate/version review groups = **117** → **117 / 117 identity QA PASS**
+- version-deduplicated identity candidates = **5,729** (5,854 → 5,729; 125 candidate identities merged)
+- 329 source media rows in those groups are preserved as alternate media candidates; no source media deleted
 - raw purchased filename/path map is not committed to the public repo; only normalized derivative catalog data is committed
-- current data checkpoint: `docs/exercise-db/2026-09-20-gym-visual-auto-normalization-v1.md`
-- next data/media task = duplicate/version QA → cross-gender near-match QA → Korean naming + semantic metadata QA → default media selection → Cloudflare MP4 + in-app WebP manifest
+- current data checkpoints: `docs/exercise-db/2026-09-20-gym-visual-auto-normalization-v1.md`, `docs/exercise-db/2026-09-20-gym-visual-duplicate-version-qa.md`
+- next data/media task = cross-gender near-match QA → Korean naming + semantic metadata QA → default media selection → Cloudflare MP4 + in-app WebP manifest
 
 ### Current consolidated maintenance
 - `docs/ux-decisions/2026-09-18-mvp-figma-maintenance-checkpoint.md`
