@@ -326,7 +326,7 @@ Recommendation-template duration language from older Group 03 history is superse
 
 | Screen | Purpose / Entry | Primary behavior / Exit | Implementation rule | QA |
 |---|---|---|---|---|
-| `06A_Completion_Default` | Completed workout with PR + applicable volume | `기록 상세 보기` → saved-session detail; `홈으로 돌아가기` → Home | Summary derives from final session state: elapsed time excluding explicit pause, final completed sets, exercises with ≥1 completed set, eligible completed weight_reps volume only. | PASS |
+| `06A_Completion_Default` | Completed workout with PR + applicable volume | `기록 상세 보기` → saved-session detail; `홈으로 돌아가기` → Home | Show all valid session PR rows in one shared PR card, ordered by session exercise order; no representative-only collapse / no `외 N개`. Summary derives from final session state: elapsed time excluding explicit pause, final completed sets, exercises with ≥1 completed set, eligible completed weight_reps volume only. | PASS |
 | `FINAL_06_PR_NONE_CASE` | Completed workout with no valid PR | same exits | Hide PR card entirely; no empty/error placeholder. | PASS |
 | `FINAL_06_VOLUME_NA_CASE` | Completion where total weight-volume is not applicable | same exits | Keep volume metric cell; display `—`, never `0kg`. | PASS |
 
@@ -334,7 +334,7 @@ Recommendation-template duration language from older Group 03 history is superse
 
 | Screen | Purpose / Entry | Primary behavior / Exit | Implementation rule | QA |
 |---|---|---|---|---|
-| `07D_Workout_History_Detail` | Saved workout-session detail | Back; Trash → delete confirm | Show all valid PRs for this session; 2×2 summary; body distribution; performed exercise table. | PASS |
+| `07D_Workout_History_Detail` | Saved workout-session detail | Back; Trash → delete confirm | Show all valid PRs for this session; 2×2 summary; body distribution; compact `운동 / 수행 / 세트` table. Group identical performance combinations by set count; keep different combinations separate; use native recording-type formatting. | PASS |
 | `07A_Analysis_Home` | Analysis root | `총 중량 / 세트 / 시간`; `4주 / 3개월 / 1년`; body-area/recent progress/history drilldown | Default = 총 중량 + 4주. 총 중량=eligible completed weight×reps; 세트=completed set count; 시간=saved session duration. Approved rolling/month buckets, adaptive zero-based scale, current Korean compact kg-axis labels, and point tooltip apply. | PASS |
 | `07B_BodyArea_Detail` | Selected body-area drilldown | period tabs; view contributor exercise list | Show all contributors; sort by muscle-exposure contribution + recency tie-break. Trailing aggregate is recording-type native: weight volume / reps total / duration total / assisted reps total. | PASS |
 | `07B_BodyArea_Detail_Empty` | Body-area/period has no records | change period/back | Keep section shell; no body-map fake activity. | PASS |
@@ -412,6 +412,11 @@ Key routes:
 - custom exercise Edit Save → that exercise detail
 - workout completion Detail → 07D saved-session detail
 - workout completion Home → Home
+- 07A body-area row → matching 07B body-area detail
+- 07A recent-progress exercise row → that exercise's canonical Group 04 detail
+- 07B contributor exercise row → that exercise's canonical Group 04 detail
+- 07A recent-workout row → matching 07D saved-session detail
+- 07A `전체 기록` → DECISION NEEDED; the former 07C history overview was removed and no current approved destination exists
 - Settings legal rows → public external legal documents
 
 # Final screen-by-screen verdict
