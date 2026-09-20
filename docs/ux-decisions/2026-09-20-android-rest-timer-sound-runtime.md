@@ -28,9 +28,9 @@ This avoids binding `기본 / 차임 / 벨` to immutable Android notification-ch
 - post the `휴식 시간이 끝났어요 / 다음 세트를 시작하세요.` notification on the `휴식 타이머` channel
 - the Rest Timer channel has no app-owned channel sound
 - play the selected bundled Tampin sound separately with alarm-appropriate audio usage
-- for background/screen-off delivery on Android versions that require it, use a short-lived native Android `mediaPlayback` Foreground Service started by the exact-alarm event
-- stop that temporary service immediately after the short timer sound completes
-- this temporary completion-sound service is distinct from the earlier decision not to keep a continuous Foreground Service alive for the whole Active Workout
+- background/screen-off delivery must be implemented through the smallest Android-native mechanism that reliably satisfies the approved Product behavior
+- do not pre-lock `mediaPlayback` Foreground Service as mandatory architecture
+- if Development Build / device QA proves a short-lived Foreground Service is required on supported Android versions, add it only for the completion sound path and stop it immediately after the short sound finishes
 - do not keep a persistent media service running between Rest Timer events
 
 ## Sound selection
@@ -60,12 +60,14 @@ Rules:
 - lack of notification permission does not delete or change workout/rest state
 - Android user Force stop remains the explicit background-delivery exception until relaunch
 - sound/notification failure never rolls back SQLite data
+- if the app-level `휴식 타이머 알림` setting is OFF, do not post the rest-end system alert or play the app-owned completion sound
+- if Android notification delivery is blocked at the system level, do not use separate audio playback as a hidden bypass around that user/system choice
 
 ## Rationale
 
 Android notification channel auditory behavior becomes user-controlled after channel creation and cannot be freely changed by the app later. Keeping the channel soundless while Tampin plays its selected bundled timer sound separately preserves the Product-level `기본 / 차임 / 벨` setting without multiplying or recreating channels.
 
-Modern Android also restricts background audio playback. A short native mediaPlayback Foreground Service at the exact-alarm event provides a deliberate, bounded background playback path without turning the entire Active Workout into a long-running Foreground Service.
+Modern Android restricts background execution/audio playback, but the exact minimum mechanism can vary by Android/runtime constraints. The Product requirement is reliable short completion sound delivery where permitted; the implementation should prove the least complex compliant native path in Development Build/device QA before adding a Foreground Service declaration.
 
 ## NEXT
 
