@@ -71,35 +71,41 @@ Canonical decision:
 
 Verdict: **PASS — former DECISION-01 resolved.**
 
-### DECISION-02 — Routine duplicate semantics are not specified
+### RESOLVED-02 — Routine duplicate
 
-`03A_Routine_List_Menu` visibly exposes `복제`, and the routine list contains a representative `하체 루틴 B (복제)`.
+PO-approved 2026-09-20:
+- `복제` creates a new saved routine immediately
+- stay on / return to `03A_Routine_List`
+- do not open Create/Edit automatically
+- duplicate receives a new routine identity
+- deep-copy the source routine's editable definition: exercise list/order + current set configuration/planned values
+- completed workout history is not copied
+- first generated name = `원본명 (복제)`
+- name collision → smallest available numeric suffix, e.g. `원본명 (복제 2)`
+- duplicated card later opens normal `03D_Routine_Detail`
+- duplicate action does not start an Active Workout
 
-Missing current contract:
-- copied name rule
-- whether weekday metadata is copied
-- whether exercise/set configuration is deep-copied
-- destination after duplication
-- collision handling for repeated duplicate names
+Canonical decision:
+- `docs/ux-decisions/2026-09-20-group03-routine-final-closure.md`
 
-Verdict: **DECISION NEEDED before implementing Duplicate.**
+Verdict: **PASS.**
 
-### DECISION-03 — W / D / F routine-set semantics are not specified
+### RESOLVED-03 — MVP routine sets are numeric-only
 
-Current Routine create/edit cards visibly contain set identifiers such as:
-- `W`
-- normal numbered sets
-- `D`
-- `F`
+PO-approved 2026-09-20:
+- Hevy-like W / D / F special set types are outside the current MVP
+- W = warm-up, D = drop set, F = failure set are post-MVP concepts only
+- Routine Detail / Create / Edit use numeric sets `1, 2, 3 ... n` only
+- no special-set selector/control in MVP
+- Active Workout remains numeric-only
+- completed MVP sets follow the existing normal-set volume/history/analysis rules
 
-No current implementation authority reviewed in this QA defines:
-- their user-facing meaning
-- whether/how a user changes set type
-- persistence representation
-- completion behavior
-- volume / PR / history treatment
+Figma reflected through shared `ExerciseCard` View/Edit variants.
 
-Verdict: **DECISION NEEDED. Cursor must not infer Warm-up / Drop / Failure semantics without a Product Decision.**
+Canonical decision:
+- `docs/ux-decisions/2026-09-20-group03-routine-final-closure.md`
+
+Verdict: **PASS.**
 
 ### DECISION-04 — Automatic Rest Timer runtime edge policy
 
@@ -205,11 +211,18 @@ Verdict: **PASS — Group 00–01 closed.**
 | `03E_Routine_Create` | New routine, before exercises | Back → leave or unsaved confirm when changed; `운동 추가` → exercise selection; Save initially Disabled | Routine name is optional. Current Disabled Save is because routine is otherwise invalid/empty, not because name is blank. | PASS |
 | `03F_Routine_Edit` | Edit existing routine | Back with changes → 03EF; Trash → delete confirm; exercise menu; add exercise; Save → updated detail | Existing routine history is immutable. Recording values here are planned/configured values, not past performance rewrite. | PASS |
 | `03E2_Routine_Create_WithExercises` | Create routine after adding exercises | edit set config / exercise menu / add exercise; Save → new routine detail | Blank name remains saveable if other validity rules are satisfied; auto-name on first save. | PASS |
-| `03A_Routine_List_Menu` | Routine-row action sheet | `복제`, `수정`, `삭제`, close | Modify/delete routes are defined; duplicate semantics are not sufficiently defined. | DECISION-02 |
+| `03A_Routine_List_Menu` | Routine-row action sheet | `복제` → immediate independent saved copy and return/stay on routine list; `수정`, `삭제`, close | Duplicate deep-copies editable routine definition only, not completed history. Generated name starts `원본명 (복제)` with numeric collision suffix. | PASS |
 | `03F_Routine_Exercise_Menu` | Exercise action inside routine create/edit | `순서 변경` → reuse 05J pattern; `대체 운동` → replacement flow; `삭제` removes this routine exercise | Replacement must use selected exercise's own latest personal record; do not copy old exercise performance values. | PASS |
 | `03EF_Routine_Unsaved_Confirm` | Back from changed create/edit | `계속 편집` returns; `나가기` discards unsaved changes | Exact current dialog copy is canonical. | PASS |
 | `03F_Routine_Delete_Confirm` | Delete saved routine | Cancel returns; Delete removes routine → routine list | Completed workout history remains. | PASS |
 | `03D_Routine_Detail_Empty` | Existing routine has zero exercises | Edit or `운동 추가` to rebuild routine | Routine can remain after its final exercise is removed through cross-feature custom-exercise deletion. | PASS |
+
+## Group 03 set model — PO APPROVED 2026-09-20
+
+- routine set labels are numeric only: `1, 2, 3 ... n`
+- W / D / F special set types are not part of current MVP
+- current Routine Detail/Create/Edit Figma has W/D/F count = `0`
+- representative 03D has 4 exercises × 3 sets = `12` visible rows, matching `총 세트 12세트`
 
 ## Group 03 runtime rules recovered during deep QA
 
