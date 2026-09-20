@@ -4,7 +4,7 @@
 
 ## Current mode
 
-`MVP 94 CONTENT/STATE FRAMES FROZEN · 94-SCREEN BEHAVIOR MATRIX COMPLETE · VISUAL FIXES CLOSED · GROUP 00–01 PASS · GROUP 02 HOME PASS · GROUP 03 ROUTINE PASS · GROUP 04 EXERCISE LIBRARY / CUSTOM PASS · GROUP 05 ACTIVE WORKOUT PASS · NEXT = GROUP 06–07 COMPLETION / HISTORY / ANALYSIS QA · HANDOFF QA = IN PROGRESS · BOTTOM APP BAR PASS · WEEKDAY SCHEDULING REMOVED FROM MVP · NUMERIC-ONLY MVP SETS LOCKED · REST-TIMER RESTART RULE LOCKED · REST-TIMER CUSTOM SOUND SOURCE LOCKED · REST-TIMER SYSTEM ALERT LOCKED · ACTIVE-WORKOUT SYSTEM NOTIFICATION UX LOCKED · DURATION ACTIVE-SET UX LOCKED · TECH STACK / ARCHITECTURE OPEN · IMPLEMENTATION NOT STARTED`
+`MVP 95 CONTENT/STATE FRAMES CANONICAL · 95-SCREEN BEHAVIOR MATRIX COMPLETE · VISUAL FIXES CLOSED · GROUP 00–01 PASS · GROUP 02 HOME PASS · GROUP 03 ROUTINE PASS · GROUP 04 EXERCISE LIBRARY / CUSTOM PASS · GROUP 05 ACTIVE WORKOUT PASS · GROUP 06–07 COMPLETION / HISTORY / ANALYSIS PASS · NEXT = GROUP 08 SETTINGS / ACCOUNT / SUPPORT QA — AWAITING PO APPROVAL · HANDOFF QA = ARCHITECTURE DECISION NEEDED · BOTTOM APP BAR PASS · WEEKDAY SCHEDULING REMOVED FROM MVP · NUMERIC-ONLY MVP SETS LOCKED · REST-TIMER RESTART RULE LOCKED · REST-TIMER CUSTOM SOUND SOURCE LOCKED · REST-TIMER SYSTEM ALERT LOCKED · ACTIVE-WORKOUT SYSTEM NOTIFICATION UX LOCKED · DURATION ACTIVE-SET UX LOCKED · TECH STACK / ARCHITECTURE OPEN · IMPLEMENTATION NOT STARTED`
 
 ## Resume rule
 
@@ -20,16 +20,16 @@ Current editing surface:
 - file `W3lZurXCXbThP67rF2xk2b`
 - page `MVP_전체_와이어프레임` — `34:1076`
 - shared component page `Common_Component`
-- current top-level independent screen frames: `94`
-- current Light roots: `94 / 94`
+- current top-level independent screen frames: `95`
+- current Light roots: `95 / 95`
 - group wrapper frames: `0`
 
 Whole-MVP component linkage read-back after the latest maintenance:
-- instance nodes: `1,820`
+- instance nodes: `1,849`
 - missing main-component links: `0`
 - live MVP instances whose source page is not `Common_Component`: `0`
 
-The previous `98` screen count is superseded by the current `94` after the 2026-09-19 PO decision removed the recommended-routine list/detail/completion-dialog screens from the MVP.
+The previous `98` count became `94` after the 2026-09-19 recommended-routine removal. The current canonical count is now `95` after the PO-approved `07C_Workout_History` full history list was added and verified on 2026-09-20.
 
 ---
 
@@ -671,38 +671,31 @@ Current verification:
 
 Verdict: **PASS — Group 05 Active Workout sequential handoff QA closed.**
 
-## Current sequential QA block — Group 06–07 Completion / History / Analysis
+## Closed Group 06–07 sequential revalidation
 
 Current verification:
 - Group 06 Figma ↔ behavior matrix = `3 / 3` exact match
-- Group 07 Figma ↔ behavior matrix = `5 / 5` exact match
-- no top-level Group 06–07 inventory omission
-- Group 06 current PR behavior recovered: all valid session PR rows, not representative-only
-- Group 06 NoPR / Volume-N/A states align with current policy
-- completion annual workout count clarified by reusing the approved workout-count semantics
-- 07B populated/empty states align with current policy
-- 07D current PR / summary / body distribution / performed-exercise table / delete flow align
-- Group 07 sampled canonical states missing main-component links = `0`
+- Group 07 Figma ↔ behavior matrix = `6 / 6` exact match
+- `07C_Workout_History` created at `2121:8457`, `360 × 780`
+- 07A `전체 기록` → 07C full saved-workout history list
+- 07C rows → matching 07D saved-session detail
+- completed + saved-partial sessions with persisted work are included; discard/no-work sessions excluded
+- partial sample visibly distinguished as `하체 B · 부분 기록`
+- `최근 기록 변화` = latest completed performance vs immediately previous comparable performance; improved only; newest first; max 3; recording-type-native comparison
+- 07C instance links = `29`, missing main-component links = `0`
+- whole-MVP top-level frames = `95`
+- whole-MVP instances = `1,849`
+- whole-MVP missing main-component links = `0`
+- whole-MVP instance sources outside `Common_Component` = `0`
 
-PO decisions resolved:
-- `07A_Analysis_Home > 최근 운동 > 전체 기록` → add `07C_Workout_History` full saved-workout history list
-- 07C row → matching `07D_Workout_History_Detail`
-- `07A_Analysis_Home > 최근 기록 변화` → latest performance vs immediately previous comparable performance; include only improved exercises; newest first; max 3; recording-type-native comparison only
+Verdict: **PASS — Group 06–07 Completion / History / Analysis sequential handoff QA closed.**
 
-Current next open item:
-1. create `07C_Workout_History` in canonical Figma using the existing Fitness design system / existing recent-workout and list patterns
-2. update canonical screen inventory from 94 only after the Figma screen actually exists
-3. focused QA: 07A `전체 기록` destination, 07C list rows → 07D, component links, overflow, spacing
-4. then close Group 06–07 if PASS
-
-Do not reopen other already-PASS Group 06–07 visual behavior without a concrete conflict/regression trigger.
-
-**STOP after the 07C Figma creation/QA result. Do not continue to Group 08 automatically.**
+**STOP. Do not start Group 08 until Product Owner explicitly approves continuing.**
 
 ## Later sequential blocks after explicit approval
 
 - Group 08 Settings / Account / Support
-- remaining cross-cutting runtime/architecture decisions
+- remaining cross-cutting architecture decision
 
 ## Other already-known open decisions
 
@@ -728,7 +721,6 @@ Current handoff verdict:
 - `DECISION NEEDED`
 
 Before development:
-- create/verify `07C_Workout_History` in canonical Figma
 - tech stack / architecture decision
 - launch-platform scope check
 - explicit Product Owner development authorization
