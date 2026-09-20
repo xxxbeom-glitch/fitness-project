@@ -4,7 +4,7 @@
 
 ## Current mode
 
-`MVP 95 CONTENT/STATE FRAMES CANONICAL · SEQUENTIAL PRODUCT/UX HANDOFF QA PASS · PLATFORM = ANDROID+iOS SHARED · QA/RELEASE = ANDROID FIRST · APP STACK = REACT NATIVE + EXPO + TYPESCRIPT LOCKED · PERSISTENCE = LOCAL-FIRST LOCKED · LOCAL DB = SQLITE / EXPO-SQLITE LOCKED · BACKEND = SUPABASE POSTGRES LOCKED · NEXT = AUTHENTICATION PROVIDER DECISION · SYNC/STORAGE/RUNTIME ARCHITECTURE OPEN · IMPLEMENTATION NOT STARTED`
+`MVP 95 CONTENT/STATE FRAMES CANONICAL · SEQUENTIAL PRODUCT/UX HANDOFF QA PASS · PLATFORM = ANDROID+iOS SHARED · QA/RELEASE = ANDROID FIRST · APP STACK = REACT NATIVE + EXPO + TYPESCRIPT LOCKED · PERSISTENCE = LOCAL-FIRST LOCKED · LOCAL DB = SQLITE / EXPO-SQLITE LOCKED · BACKEND = SUPABASE POSTGRES LOCKED · AUTH = SUPABASE AUTH LOCKED · NEXT = MEDIA/PROFILE IMAGE STORAGE DECISION · SYNC/STORAGE/RUNTIME ARCHITECTURE OPEN · IMPLEMENTATION NOT STARTED`
 
 ## Resume rule
 
@@ -744,15 +744,21 @@ Locked:
 - canonical server database = Supabase Postgres
 - local SQLite remains the immediate source of truth for workout interaction
 
-NEXT OPEN ITEM:
-- choose the authentication provider/boundary
+Locked:
+- authentication = Supabase Auth
+- current MVP providers = Google + Kakao
+- Apple Sign in is added for iOS release alignment
+- auth/session secrets use secure platform storage, not plain SQLite
 
-After that, decide media/profile-image storage, sync trigger/retry/conflict, then platform runtime details one item at a time.
+NEXT OPEN ITEM:
+- choose the media/profile-image storage boundary
+
+After that, decide sync trigger/retry/conflict, then platform runtime details one item at a time.
 
 ## Other already-known open decisions
 
-- data/backend/sync architecture
-- iOS Apple sign-in alignment before iOS release
+- media/storage + sync architecture
+- iOS Apple Sign in implementation verification before iOS release
 
 ## Active non-blocking side tracks
 
