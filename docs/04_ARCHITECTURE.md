@@ -2,6 +2,13 @@
 
 **Status:** PARTIALLY FROZEN — LOCAL-FIRST + SQLITE + SUPABASE + AUTH + STORAGE + SYNC LOCKED
 
+## Platform scope — CONFIRMED
+
+- current MVP and production target = Android only
+- no current iOS runtime, Apple sign-in, Live Activity, iPhone QA, or App Store requirement
+- Android-native integration may be used where needed without preserving hypothetical iOS parity
+- future iOS support requires a separate architecture decision
+
 ## Architecture goals
 
 The eventual architecture must make these behaviors reliable:
@@ -54,7 +61,6 @@ Future domains such as Gym, Body Composition, Watch, AI, and Community should re
 
 - canonical auth provider = Supabase Auth
 - Google + Kakao are current MVP login providers
-- Apple Sign in is required before iOS production release
 - server-side user-owned rows map to the authenticated account identity
 - auth/session secrets are stored using secure platform storage, not ordinary SQLite application rows
 - local-first workout persistence remains independent from transient network/auth availability during an already-authorized local session
@@ -122,7 +128,7 @@ Core invariants:
 
 - server schema
 - event/state architecture
-- exact platform background/runtime implementation
+- exact Android background/runtime implementation
 - migration strategy
 
 ## Anti-overengineering rule
