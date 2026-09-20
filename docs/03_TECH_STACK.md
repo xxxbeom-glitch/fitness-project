@@ -102,6 +102,16 @@ Canonical policy:
 - Rest Timer completion remains handled separately through the approved exact-alarm path
 - Foreground Service use must be reconsidered only if a future requirement adds continuous sensor/location/health tracking
 
+## LOCKED — Android notification permission
+
+- Android 13+ uses `POST_NOTIFICATIONS`
+- request it contextually on the user's first Active Workout, after local session creation
+- do not request it during install/login/onboarding/Home
+- denial/dismissal never blocks workout logging or local persistence
+- do not automatically re-prompt every workout
+- Settings notification controls must respect and surface the Android system permission state
+- permission state is rechecked before posting/scheduling user-visible notifications
+
 ## TBD
 
 The following remain intentionally open:
