@@ -118,6 +118,21 @@ Confirmed product/runtime behavior:
 - Android user Force stop is the explicit notification/background delivery exception until relaunch
 - notification/runtime state is presentation only; SQLite remains authoritative
 
+### Rest Timer sound playback
+
+Confirmed:
+- `휴식 타이머` notification channel does not own the selected Tampin sound
+- exact-alarm completion posts the system alert and separately plays the selected bundled timer sound
+- current labels = `기본 / 차임 / 벨`
+- background/screen-off playback uses a short-lived native Android `mediaPlayback` Foreground Service where Android requires it
+- the service stops immediately after the short sound completes
+- the whole Active Workout still does not run a continuous Foreground Service
+- selected-sound changes do not recreate notification channels
+- load failure falls back to bundled `기본`
+
+Canonical:
+- `docs/ux-decisions/2026-09-20-android-rest-timer-sound-runtime.md`
+
 ## Still open
 
 - exact Android native implementation primitives where multiple options satisfy the locked behavior
