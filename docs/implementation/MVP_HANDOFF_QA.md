@@ -404,10 +404,17 @@ PO APPROVED 2026-09-20:
 - completing another set while the existing Rest Timer is running replaces the current countdown and starts a fresh Rest Timer for the newly completed set
 - only one automatic Rest Timer exists at a time
 
-Still explicitly deferred:
-- exact rest-end sound / vibration / background-notification behavior
+PO APPROVED 2026-09-20 — sound source:
+- Rest Timer completion sound uses app-owned custom sound assets only
+- no device-default notification/ringtone sound dependency
+- no OS system-sound picker dependency
+- final Production sound files/labels are a later asset task
 
-Verdict: **PARTIALLY RESOLVED / END-FEEDBACK DECISION NEEDED**
+Still explicitly deferred:
+- rest-end vibration behavior
+- background/system-notification behavior
+
+Verdict: **PARTIALLY RESOLVED / REMAINING FEEDBACK DECISION NEEDED**
 
 #### DECISION-05 — Active-session recovery system-notification UX
 
@@ -569,7 +576,7 @@ Verdict: **PASS — Group 04 Exercise Library / Custom Exercise sequential QA cl
 - none in the current frozen visual contract.
 
 ### DECISION NEEDED before production implementation
-1. automatic Rest Timer zero-completion feedback policy
+1. automatic Rest Timer zero-completion vibration/background-notification policy
 2. active-session recovery system-notification UX
 3. technology stack / platform architecture
 4. `duration` Active Workout timed-set interaction
