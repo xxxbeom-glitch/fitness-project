@@ -17,8 +17,10 @@ Top:
 - `내 루틴 만들기`
 
 Lower:
-- `내 루틴` section remains visible
-- zero routines → section header only; no empty-state copy/body
+- `내 루틴 (0)` section remains visible
+- zero routines → full-width empty-state card below the header
+- card copy = `아직 루틴이 없어요` / `자주 하는 운동을 루틴으로 만들어보세요`
+- card CTA = `루틴 만들기`
 - section header has no right-side action
 
 ### 02B — Saved routine(s) exist
@@ -36,7 +38,7 @@ Lower:
 - 2 × n routine grid
 
 The Home section structure is persistent:
-- 02A: Quick Start + My Routine header-only zero-routine state
+- 02A: Quick Start + `내 루틴 (0)` + empty-state card
 - 02B: the same Quick Start + My Routine 2 × n grid
 
 The My Routine section is not removed when the routine count is zero; only its content state changes.
@@ -50,7 +52,7 @@ Active Workout state remains the exception:
 - the current in-progress workout is the primary Home action
 - the same active session is resumed
 - My Routine remains below the active-workout section
-- My Routine uses populated grid when routines exist; with zero routines, keep only the `내 루틴` header
+- My Routine uses populated grid when routines exist; with zero routines, render the approved empty-state card below `내 루틴 (0)`
 - no Recent Workout section is shown on Home
 - one-active-workout invariant remains
 
@@ -116,7 +118,20 @@ Retained:
 - `MyRoutineSection`
 - representative state shows populated routine tiles
 - representative title = `내 루틴 (2)`
-- runtime zero-routine state keeps only the `내 루틴` header; no empty-state copy/body
+- runtime zero-routine state uses the same `내 루틴 (0)` + empty-state card pattern
+
+## 02A empty card QA
+
+- `MyRoutineEmptyCard` = `320 × 164`
+- nested existing `EmptyState / Action=Compact`
+- title = `아직 루틴이 없어요`
+- description = `자주 하는 운동을 루틴으로 만들어보세요`
+- button = `루틴 만들기`
+- header remains `Trailing=None`
+- no `새 루틴` header action
+- no Recent Workout copy
+- visible text overflow = `0`
+- missing main-component links = `0`
 
 ## Focused Figma QA
 
