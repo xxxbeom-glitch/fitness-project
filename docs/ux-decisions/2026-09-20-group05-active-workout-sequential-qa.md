@@ -49,10 +49,39 @@ MVP keeps duration logging manual and simple.
 
 Figma already supports this with `ExerciseCard / Mode=WorkoutDuration` (`651:3614`), so no new top-level screen is required.
 
+## Decision 4 — System notification / ongoing workout surface
+
+Active Workout is surfaced through the platform system notification area while a workout session is active.
+
+MVP behavior:
+- while one Active Workout exists, keep one ongoing system notification/activity surface for that same session
+- notification content shows the workout name (fallback `빈 운동`), elapsed workout time, and the current exercise / set context when available
+- while automatic Rest Timer is running, the same ongoing surface shows `휴식 중` and the remaining rest time
+- tapping the ongoing surface opens/resumes the same Active Workout session
+- no notification quick actions for set completion, ±15 sec, workout end, or other workout mutation in MVP
+- ending or discarding the workout removes/ends the ongoing notification/activity surface
+- recovered active sessions restore the ongoing system surface; do not create a separate in-app recovery banner
+
+Rest Timer completion:
+- when automatic Rest Timer reaches zero, send/show a system alert notification
+- title copy: `휴식 시간이 끝났어요`
+- body copy: `다음 세트를 시작하세요.`
+- use the app-owned custom timer-end sound selected in Settings
+- do not auto-open the app and do not auto-complete any set
+- the active-workout ongoing system surface remains available after the rest-end alert
+- the existing `휴식 타이머 알림` setting controls whether the rest-end alert is delivered
+- no custom vibration pattern is defined in MVP; vibration follows the user's/platform notification settings
+
+Platform interpretation:
+- Android MVP: use the platform-native ongoing notification/status-bar surface required for a noticeable ongoing workout operation
+- iOS, if added to launch scope later: use the platform-native Live Activity / notification equivalent rather than inventing a separate in-app recovery UI
+- exact framework/service implementation remains part of the later technology-stack/architecture decision
+
+This resolves the remaining Group 05 notification/recovery Product UX decision.
+
 ## Still open in Group 05
 
-- Rest Timer zero-completion vibration / background notification behavior
-- active-session recovery system-notification UX
+- none at Product/UX behavior level; technology/platform implementation details remain in the architecture gate
 
 ## QA state
 
