@@ -207,6 +207,29 @@ Locked operating rules:
 ### QA verdict
 **PASS**
 
+## Block 07 — Supabase Storage / user media
+
+### Re-audit result
+Keep Supabase Storage for the limited MVP user-media surface.
+
+Locked operating rules:
+- separate private buckets for profile images and support attachments
+- Storage objects are user/account scoped by policy
+- SQLite/Postgres store object path/URI/state metadata, not image binaries
+- profile image change is not complete until object upload + profile reference update succeed
+- support submission is not complete until its required attachment/server submission path succeeds
+- object presence alone never determines which image is the active profile image; the profile row stores the canonical active object path
+- failed/orphaned uploads are cleanup candidates and must not be interpreted as active product state
+- no public bucket is needed for current Tampin profile/support scope
+
+### OnTalk comparison
+- OnTalk profile-photo flows became complex when Storage listing, local cache, and representative-photo state could disagree after logout/relogin and multi-photo edits.
+- OnTalk production hardening also moved profile-photo Storage from public to private.
+- Tampin avoids those failure modes by using one explicit canonical profile-image reference instead of inferring active state by listing a folder.
+
+### QA verdict
+**PASS**
+
 ## NEXT OPEN ITEM
 
-**Block 07 — Supabase Storage / user media.**
+**Block 08 — Sync / conflict / multi-device behavior.**
