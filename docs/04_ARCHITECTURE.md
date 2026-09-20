@@ -101,6 +101,14 @@ Core invariants:
 - an active rest state is reconstructed from its persisted absolute end timestamp when still applicable
 - runtime notification state is recreated; it is not assumed to survive reboot itself
 
+## Android notification dismissal semantics — CONFIRMED
+
+- Android notification visibility is not authoritative workout state
+- dismissing the ongoing workout notification never changes the persisted Active Workout
+- session data, elapsed time, and rest state continue independently in SQLite/time-based recovery logic
+- a later app/runtime event may reconstruct the notification while the Active Workout remains unfinished
+- only explicit in-app end/discard actions terminate the session
+
 ## TBD
 
 - server schema
