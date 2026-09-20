@@ -823,13 +823,19 @@ Locked:
 - updates/notices/marketing/promotional notifications are outside the current MVP; no production channel or speculative remote-push stack
 - `08E_Notification_Settings` Product scope is now `휴식 타이머 알림` only
 - previous `업데이트/공지` row is superseded; focused Figma row removal remains a visual-maintenance follow-up
-- exact handling of selectable app-owned Rest Timer sounds against Android channel immutability remains open
+- `휴식 타이머` channel does not own selectable app sounds; Tampin separately plays bundled `기본 / 차임 / 벨` at completion
+- background/screen-off timer sound uses a short-lived native `mediaPlayback` Foreground Service where Android requires it, then stops immediately
+- this does not change the no-continuous-Foreground-Service rule for the Active Workout
+- changing timer sound does not recreate notification channels
 
 Canonical:
 - `docs/ux-decisions/2026-09-20-android-notification-channel-scope.md`
 
+Canonical:
+- `docs/ux-decisions/2026-09-20-android-rest-timer-sound-runtime.md`
+
 NEXT OPEN ITEM:
-- decide Android Rest Timer app-owned sound implementation against notification-channel sound immutability
+- finish any remaining Android runtime/background edge decisions, then move to analytics/crash reporting
 
 ## Other already-known open decisions
 
