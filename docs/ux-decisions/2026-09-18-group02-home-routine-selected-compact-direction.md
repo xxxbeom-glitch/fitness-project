@@ -1,6 +1,14 @@
 # 2026-09-18 Group 02 Home routine-selected compact direction
 
-**Status:** PO APPROVED · CANONICAL FIGMA REFLECTED · FOCUSED QA PASS · NO CURSOR HANDOFF
+**Status:** PARTIALLY SUPERSEDED 2026-09-20 · HISTORICAL REFERENCE
+
+## Supersession note
+
+The selected-routine Quick Start portion of this document is superseded by `docs/ux-decisions/2026-09-20-group02-home-with-routine-simplification.md`.
+
+Current 02B uses the same Quick Start as 02A (`빈 운동 / 내 루틴 만들기`) and keeps only the `내 루틴` 2×n grid as the with-routine lower section. Weekday/today-next/selected-routine Home semantics are not part of the current MVP.
+
+The historical visual exploration rationale remains for provenance only.
 
 ## Context
 
