@@ -4,7 +4,7 @@
 
 ## Current mode
 
-`MVP 95 CONTENT/STATE FRAMES CANONICAL · SEQUENTIAL PRODUCT/UX HANDOFF QA PASS · PLATFORM = ANDROID ONLY · QA/RELEASE = ANDROID · APP STACK = REACT NATIVE + EXPO + TYPESCRIPT LOCKED · PERSISTENCE = LOCAL-FIRST LOCKED · LOCAL DB = SQLITE / EXPO-SQLITE LOCKED · BACKEND = SUPABASE POSTGRES LOCKED · AUTH = SUPABASE AUTH (GOOGLE+KAKAO) LOCKED · STORAGE = SUPABASE STORAGE LOCKED · SYNC = OUTBOX/BATCH/IDEMPOTENT/OPTIMISTIC-VERSION LOCKED · NEXT = FINISH ANDROID RUNTIME ARCHITECTURE · IMPLEMENTATION NOT STARTED`
+`MVP 95 CONTENT/STATE FRAMES CANONICAL · SEQUENTIAL PRODUCT/UX HANDOFF QA PASS · PLATFORM = ANDROID ONLY · QA/RELEASE = ANDROID · APP STACK = REACT NATIVE + EXPO + TYPESCRIPT LOCKED · PERSISTENCE = LOCAL-FIRST LOCKED · LOCAL DB = SQLITE / EXPO-SQLITE LOCKED · BACKEND = SUPABASE POSTGRES LOCKED · AUTH = SUPABASE AUTH (GOOGLE+KAKAO) LOCKED · STORAGE = SUPABASE STORAGE LOCKED · SYNC = OUTBOX/BATCH/IDEMPOTENT/OPTIMISTIC-VERSION LOCKED · PRE-RELEASE ARCHITECTURE RE-AUDIT 01–14 PASS · PACKAGE = com.lumian.tampin · NEXT = PO DEVELOPMENT AUTHORIZATION · IMPLEMENTATION NOT STARTED`
 
 ## Resume rule
 
@@ -888,9 +888,15 @@ Completed:
 - Block 11 — Sentry crash/error reporting / privacy + source-map QA: **PASS**
 - Block 12 — PostHog product analytics / 24-event explicit taxonomy: **PASS**
 - Block 13 — Google Play submission source-data / Tampin Play profile readiness: **PASS**
+- Block 14 — Android package / EAS Build / Play App Signing / artifact-lineage release pipeline: **PASS**
+
+Re-audit result:
+- **PASS — Blocks 01–14 complete**
+- Android package name: `com.lumian.tampin`
+- Canonical release pipeline: `docs/ux-decisions/2026-09-20-android-release-pipeline.md`
 
 NEXT OPEN ITEM:
-- Block 14 — Android package / build / signing / Internal → Closed → Production release pipeline
+- Product Owner explicit Development-mode authorization before first scoped production implementation Issue
 
 ## Other already-known open decisions
 
