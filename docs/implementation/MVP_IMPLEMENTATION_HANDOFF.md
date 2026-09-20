@@ -263,16 +263,31 @@ For the visible `예상 시간` metric:
 
 Older recommendation-template duration rules are superseded because recommended routines are removed.
 
-### Routine duplicate blocker
+### Routine duplicate
 
-`03A_Routine_List_Menu` visibly contains `복제`, but the current authority does not define its exact data-copy/name/destination semantics.
+`03A_Routine_List_Menu > 복제`:
+- creates a new saved routine immediately
+- remain on / return to `03A_Routine_List`
+- do not open Create/Edit automatically
+- assign a new routine identity
+- deep-copy the source routine's editable definition: exercise list/order + current set configuration/planned values
+- do not copy completed workout history
+- duplicate begins with no own completed-session history
+- first generated name = `원본명 (복제)`
+- collision = smallest available numeric duplicate suffix, e.g. `원본명 (복제 2)`
+- later card tap opens the duplicate's normal `03D_Routine_Detail`
+- duplication does not start an Active Workout
 
-Cursor must not implement Duplicate until Product Owner resolves:
-- copied-name rule
-- copied metadata scope
-- deep-copy boundary for exercise/set configuration
-- destination after duplication
-- repeated-name collision behavior
+### Routine set model
+
+Current MVP:
+- numeric sets only: `1, 2, 3 ... n`
+- W / D / F special set types are not implemented
+- no warm-up/drop/failure set selector or persistence branch in MVP
+- Active Workout remains numeric-only
+- completed sets use the existing normal-set volume/history/analysis treatment
+
+W / D / F may return only through a future Product Decision.
 
 ### Routine/history integrity
 
