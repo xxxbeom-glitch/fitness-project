@@ -1,6 +1,6 @@
 # 03 TECH STACK
 
-**Status:** PARTIALLY FROZEN — PLATFORM / APP STACK / LOCAL-FIRST / SQLITE / SUPABASE LOCKED · AUTH OPEN
+**Status:** PARTIALLY FROZEN — PLATFORM / APP STACK / LOCAL-FIRST / SQLITE / SUPABASE / AUTH LOCKED · STORAGE OPEN
 
 ## CONFIRMED PRODUCT CONSTRAINTS
 
@@ -57,10 +57,16 @@ Decision record:
 - local SQLite remains authoritative for immediate workout interaction
 - Supabase is the canonical server persistence target after synchronization
 
+## LOCKED — authentication
+
+- Supabase Auth
+- Google + Kakao for current MVP login
+- Apple Sign in added for iOS release alignment
+- auth/session secrets must use secure platform storage, not plain SQLite
+
 ## TBD
 
 The following remain intentionally open:
-- auth implementation boundary
 - sync trigger / retry / conflict policy
 - media/profile-image storage
 - analytics/crash reporting
@@ -82,9 +88,8 @@ Do not select infrastructure merely because it is fashionable or familiar.
 ## NEXT ARCHITECTURE WORK
 
 Proceed one decision at a time:
-1. authentication boundary/provider
-2. media/profile-image storage boundary
-3. sync trigger / retry / conflict contract
-4. platform runtime implementation details
+1. media/profile-image storage boundary
+2. sync trigger / retry / conflict contract
+3. platform runtime implementation details
 
 Future Watch implications remain non-MVP and must not drive MVP overengineering.
