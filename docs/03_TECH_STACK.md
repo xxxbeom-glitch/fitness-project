@@ -112,6 +112,19 @@ Canonical policy:
 - Settings notification controls must respect and surface the Android system permission state
 - permission state is rechecked before posting/scheduling user-visible notifications
 
+## LOCKED — Android notification channels
+
+Current MVP channels:
+- `운동 진행`: LOW importance, no sound, no vibration; used for Active Workout ongoing status
+- `휴식 타이머`: separate time-sensitive Rest Timer completion category
+
+Excluded:
+- updates/notices
+- marketing/promotions
+- speculative remote-push infrastructure
+
+`08E_Notification_Settings` current scope is Rest Timer notification only.
+
 ## TBD
 
 The following remain intentionally open:
