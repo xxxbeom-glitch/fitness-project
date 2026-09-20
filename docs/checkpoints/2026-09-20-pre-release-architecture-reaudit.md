@@ -230,6 +230,31 @@ Locked operating rules:
 ### QA verdict
 **PASS**
 
+## Block 08 — Sync / conflict / multi-device behavior
+
+### Re-audit result
+Keep the existing durable outbox + batched synchronization + idempotent mutation + optimistic-version model.
+
+Locked operating rules:
+- an Active Workout is write-owned by the device that started it until completion/discard
+- cross-device continuation/editing of the same in-progress workout is outside MVP
+- two independently created workouts on two devices remain two distinct workouts; do not guess-merge them
+- retries use stable record/mutation IDs so uncertain network responses cannot create duplicate workout/history records
+- conflict detection uses server revision/version rather than trusting device wall-clock order
+- newer unsynced local work is never silently overwritten
+- automatic retry is allowed only for replication of product state the user already accepted locally
+- server-confirmed actions such as support submission/account deletion/profile upload are not silently replayed as new user actions
+- Android permission/system settings are device-local and are not synchronized across devices
+
+### OnTalk comparison
+- OnTalk had durable pending/offline-message correctness work and later a regression where reconnect silently retried a failed message without fresh user intent.
+- OnTalk also had stale/account-unscoped cache leakage risk across relogin/account switch.
+- Billing history used exact-once/idempotent processing to prevent duplicate credit grants after retry.
+- Tampin carries those lessons into workout sync: durable pending state, account scope, no silent new action, and duplicate-safe retry.
+
+### QA verdict
+**PASS**
+
 ## NEXT OPEN ITEM
 
-**Block 08 — Sync / conflict / multi-device behavior.**
+**Block 09 — Active Workout Android runtime / process death / reboot / notification restoration.**
