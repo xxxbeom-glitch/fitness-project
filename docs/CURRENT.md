@@ -880,9 +880,10 @@ Completed:
 - Block 03 — Local-first persistence scope / server-confirmed action boundary: **PASS**
 - Block 04 — SQLite local database / migrations / transactions / account-scoped ownership: **PASS**
 - Block 05 — Supabase Postgres / RLS / server correctness boundary: **PASS**
+- Block 06 — Supabase Auth / Google + Kakao / secure session / auth-restore state: **PASS**
 
 NEXT OPEN ITEM:
-- Block 06 — Authentication: Google + Kakao / Supabase Auth / secure session storage
+- Block 07 — Supabase Storage / user media
 
 ## Other already-known open decisions
 
