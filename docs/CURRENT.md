@@ -787,8 +787,14 @@ Locked:
 - notification visibility is presentation-only; SQLite session state remains authoritative
 - only explicit in-app end/discard actions terminate the workout
 
+Locked:
+- Android Rest Timer alert remains expected through screen-off, ordinary backgrounding, another foreground app, and recent-apps removal
+- normal reboot restores a future rest deadline; a deadline already passed during downtime is not replayed as a stale late alert
+- Android user Force stop is the explicit delivery exception until relaunch
+- rest-alert delivery never owns or mutates the persisted workout state
+
 NEXT OPEN ITEM:
-- continue Android platform runtime / background execution architecture
+- define iOS runtime / background behavior equivalent
 
 ## Other already-known open decisions
 
