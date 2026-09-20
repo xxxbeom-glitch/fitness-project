@@ -776,8 +776,14 @@ Locked:
 - powered-off/reboot time is included
 - restore uses the persisted absolute workout start timestamp
 
+Locked:
+- Android reboot restores the ongoing workout notification for an unfinished Active Workout
+- tapping the restored notification resumes the same persisted session
+- the notification is reconstructed after boot from SQLite; it does not literally survive reboot
+- elapsed workout time continues through reboot using the persisted absolute start timestamp
+
 NEXT OPEN ITEM:
-- define platform runtime / background execution architecture
+- continue Android platform runtime / background execution architecture
 
 ## Other already-known open decisions
 
