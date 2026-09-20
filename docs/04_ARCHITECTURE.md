@@ -85,6 +85,13 @@ Core invariants:
 - active session has a single write-owner device until completion/discard
 - media upload failures cannot block workout-data synchronization
 
+## Active-workout time semantics — CONFIRMED
+
+- workout elapsed time uses a persisted absolute start timestamp
+- elapsed time continues through backgrounding, process death, app restart, and device reboot
+- time while the device is powered off is included
+- restore computes elapsed time from the persisted timestamp rather than relying on a continuously running timer loop
+
 ## TBD
 
 - server schema
