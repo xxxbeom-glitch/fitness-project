@@ -4,7 +4,7 @@
 
 ## Current mode
 
-`MVP 94 CONTENT/STATE FRAMES FROZEN · 94-SCREEN BEHAVIOR MATRIX COMPLETE · VISUAL FIXES CLOSED · GROUP 00–01 PASS · GROUP 02 HOME PASS · GROUP 03 ROUTINE PASS · NEXT = GROUP 04 EXERCISE LIBRARY / CUSTOM QA · HANDOFF QA = DECISION NEEDED · BOTTOM APP BAR PASS · WEEKDAY SCHEDULING REMOVED FROM MVP · NUMERIC-ONLY MVP SETS LOCKED · REST-TIMER EDGE POLICY OPEN · RECOVERY SYSTEM-NOTIFICATION UX OPEN · TECH STACK / ARCHITECTURE OPEN · DURATION ACTIVE-SET UX OPEN · IMPLEMENTATION NOT STARTED`
+`MVP 94 CONTENT/STATE FRAMES FROZEN · 94-SCREEN BEHAVIOR MATRIX COMPLETE · VISUAL FIXES CLOSED · GROUP 00–01 PASS · GROUP 02 HOME PASS · GROUP 03 ROUTINE PASS · GROUP 04 EXERCISE LIBRARY / CUSTOM PASS · NEXT = GROUP 05 ACTIVE WORKOUT QA · HANDOFF QA = DECISION NEEDED · BOTTOM APP BAR PASS · WEEKDAY SCHEDULING REMOVED FROM MVP · NUMERIC-ONLY MVP SETS LOCKED · REST-TIMER EDGE POLICY OPEN · RECOVERY SYSTEM-NOTIFICATION UX OPEN · TECH STACK / ARCHITECTURE OPEN · DURATION ACTIVE-SET UX OPEN · IMPLEMENTATION NOT STARTED`
 
 ## Resume rule
 
@@ -635,43 +635,46 @@ Completed:
 - Group 00–01 Splash / Authentication / First Run — PASS
 - Group 02 Home — PASS
 - Group 03 Routine — PASS
-- Group 03 canonical decision: `docs/ux-decisions/2026-09-20-group03-routine-final-closure.md`
+- Group 04 Exercise Library / Custom Exercise — PASS
 
-## Closed Group 03 Routine contract
+## Closed Group 04 revalidation
 
-- `복제` creates an independent saved copy immediately
-- stay on / return to `03A_Routine_List`
-- no automatic Create/Edit transition after duplicate
-- duplicate deep-copies editable routine definition, not completed history
-- duplicate generated name starts `원본명 (복제)`; collisions use numeric suffix
-- W / D / F special set types are outside current MVP
-- Routine Detail/Create/Edit use numeric sets `1, 2, 3 ... n` only
-- no special-set selector/control in MVP
-- shared `ExerciseCard` View/Edit updated in Figma
-- Group 03 visible W/D/F count = `0`
-- representative `03D_Routine_Detail` = 4 exercises × 3 sets = 12, matching `총 세트 12세트`
+Baseline:
+- `docs/ux-decisions/2026-09-15-group04-final-closure-qa.md`
+- later 2026-09-18 custom-exercise field/save/history-lock amendments remain authoritative
 
-## Current sequential QA block — Group 04 Exercise Library / Custom Exercise
+Current verification:
+- canonical Group 04 frames = `29 / 29`
+- Group 04 instance links checked = `544`
+- missing main-component links = `0`
+- Group 04 sources outside `Common_Component` = `0`
+- no dependency on the Group 03 shared `ExerciseCard` modified in the prior block
+- custom Create/Edit/HistoryLocked/selector/delete contracts remain aligned
+- exactly four active recording types exposed in custom recording-type selection
+- no new Group 04 Product/UX blocker found
 
-Review only Group 04 and directly required dependencies.
+## Current sequential QA block — Group 05 Active Workout
 
-Use the existing Group 04 closure and later amendments as baseline; do not re-open already-PASS scope unless a new conflict/regression is found.
+Review only Group 05 and directly required dependencies.
 
-**STOP after presenting Group 04 finding(s) and receiving Product Owner decision. Do not continue to Group 05 automatically.**
+Known open Group 05 / cross-cutting items that may surface in this block:
+1. Automatic Rest Timer: what happens if another set completes while an automatic Rest Timer is already running, plus exact end-feedback behavior
+2. Active-session recovery system-notification UX
+3. `duration` Active Workout timed-set interaction
+
+Do not reopen already-PASS Group 05 replacement/menu/manual-timer behavior without a new conflict/regression trigger.
+
+**STOP after presenting Group 05 finding(s) and receiving Product Owner decision. Do not continue to Group 06–07 automatically.**
 
 ## Later sequential blocks after explicit approval
 
-- Group 05 Active Workout
 - Group 06–07 Completion / History / Analysis
 - Group 08 Settings / Account / Support
 - remaining cross-cutting runtime/architecture decisions
 
 ## Other already-known open decisions
 
-- Automatic Rest Timer runtime edge/end-feedback policy
-- Active-session recovery system-notification UX
 - Technology stack / platform architecture
-- Duration Active Workout interaction
 - iOS launch scope / Apple sign-in alignment
 
 ## Active non-blocking side tracks
