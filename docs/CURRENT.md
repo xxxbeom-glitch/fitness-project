@@ -684,13 +684,20 @@ Current verification:
 - 07D current PR / summary / body distribution / performed-exercise table / delete flow align
 - Group 07 sampled canonical states missing main-component links = `0`
 
-Product/UX decisions still open:
-1. `07A_Analysis_Home > 최근 운동 > 전체 기록` has no approved destination after the former workout-history overview was removed.
-2. `07A_Analysis_Home > 최근 기록 변화` has presentation but no complete runtime exercise-selection / comparison / representative-record algorithm.
+PO decisions resolved:
+- `07A_Analysis_Home > 최근 운동 > 전체 기록` → add `07C_Workout_History` full saved-workout history list
+- 07C row → matching `07D_Workout_History_Detail`
+- `07A_Analysis_Home > 최근 기록 변화` → latest performance vs immediately previous comparable performance; include only improved exercises; newest first; max 3; recording-type-native comparison only
+
+Current next open item:
+1. create `07C_Workout_History` in canonical Figma using the existing Fitness design system / existing recent-workout and list patterns
+2. update canonical screen inventory from 94 only after the Figma screen actually exists
+3. focused QA: 07A `전체 기록` destination, 07C list rows → 07D, component links, overflow, spacing
+4. then close Group 06–07 if PASS
 
 Do not reopen other already-PASS Group 06–07 visual behavior without a concrete conflict/regression trigger.
 
-**STOP for Product Owner decision on the two items above. Do not continue to Group 08 automatically.**
+**STOP after the 07C Figma creation/QA result. Do not continue to Group 08 automatically.**
 
 ## Later sequential blocks after explicit approval
 
@@ -721,8 +728,7 @@ Current handoff verdict:
 - `DECISION NEEDED`
 
 Before development:
-- 07A `전체 기록` destination / history-list decision
-- 07A `최근 기록 변화` runtime calculation decision
+- create/verify `07C_Workout_History` in canonical Figma
 - tech stack / architecture decision
 - launch-platform scope check
 - explicit Product Owner development authorization
