@@ -400,11 +400,14 @@ Latest approved Rest Timer contract confirms:
 - no ±15 / pause / reset for automatic Rest Timer
 - Manual Timer is unavailable while automatic Rest Timer runs
 
+PO APPROVED 2026-09-20:
+- completing another set while the existing Rest Timer is running replaces the current countdown and starts a fresh Rest Timer for the newly completed set
+- only one automatic Rest Timer exists at a time
+
 Still explicitly deferred:
-- what happens when another set completes while the existing Rest Timer is still running
 - exact rest-end sound / vibration / background-notification behavior
 
-Verdict: **DECISION NEEDED**
+Verdict: **PARTIALLY RESOLVED / END-FEEDBACK DECISION NEEDED**
 
 #### DECISION-05 — Active-session recovery system-notification UX
 
@@ -566,7 +569,7 @@ Verdict: **PASS — Group 04 Exercise Library / Custom Exercise sequential QA cl
 - none in the current frozen visual contract.
 
 ### DECISION NEEDED before production implementation
-1. automatic Rest Timer already-running / end-feedback policy
+1. automatic Rest Timer zero-completion feedback policy
 2. active-session recovery system-notification UX
 3. technology stack / platform architecture
 4. `duration` Active Workout timed-set interaction
