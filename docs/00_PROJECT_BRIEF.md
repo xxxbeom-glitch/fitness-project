@@ -102,8 +102,8 @@ Use an action-first dashboard.
 
 Information priority:
 1. what should I do now?
-2. how did recent training go?
-3. am I progressing?
+2. what saved routines can I access?
+3. deeper history/progress belongs in Analysis
 
 For a user with routines, direct workout entry and access to saved routines are more important than recommendation content.
 
