@@ -330,6 +330,8 @@ Additional PO-approved Home cleanup:
 - 02B = Quick Start + My Routine populated 2 × n grid
 - 02D = Active Workout + My Routine
 - all My Routine headers = `Trailing=None`
+- header copy = `내 루틴 (n)` using current saved-routine count
+- representative Figma values: 02A=`내 루틴 (0)`, 02B=`내 루틴 (2)`, 02D=`내 루틴 (2)`
 - `새 루틴` header action = absent
 - zero-routine empty-state copy/body = absent
 - runtime 02D My Routine = populated cards when routines exist, header-only when none exist
