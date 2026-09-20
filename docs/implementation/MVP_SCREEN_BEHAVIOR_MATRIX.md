@@ -287,7 +287,7 @@ Recommendation-template duration language from older Group 03 history is superse
 
 | Screen | Purpose / Entry | Primary behavior / Exit | Implementation rule | QA |
 |---|---|---|---|---|
-| `05A_Workout_Weight` | Core active workout for weight+reps example | edit/complete sets; add/delete sets; exercise menu; add exercise; timer; end/cancel | Durable local state authoritative while active. Previous performance by stable exercise identity. | DECISION-03 for W/D/F; duration separate blocker |
+| `05A_Workout_Weight` | Core active workout for weight+reps example | edit/complete sets; add/delete sets; exercise menu; add exercise; timer; end/cancel | Durable local state authoritative while active. Previous performance by stable exercise identity. Numeric sets only in current MVP. | PASS |
 | `05I_Workout_Menu` | Current-exercise action sheet | replace / reorder / delete / close | Delete affects current session exercise only unless separately updating saved routine at completion. | PASS |
 | `05J_Reorder` | Exercise order editor | reorder; Complete returns to originating workout/routine context | Reorder must not alter historical exercise identity/data. | PASS |
 | `05K_End_Incomplete` | End with unfinished planned work | Continue workout / End and save | Save only completed work according to approved partial-completion semantics. | PASS |
