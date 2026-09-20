@@ -648,8 +648,8 @@ Brand naming drift found by deep QA was corrected:
    - `03A_Routine_List_Menu`의 `복제` action은 존재
    - name / metadata / deep-copy / destination / collision rule 미정
 
-4. **W / D / F set-type semantics**
-   - Routine / Active Workout Figma에 W / numbered / D / F rows 존재
+4. **W / D / F routine-set semantics**
+   - Routine create/edit Figma에 W / numbered / D / F rows 존재; current 05A Active Workout representative screen uses numbered rows only
    - 의미 / 선택 / 저장 / 완료 / volume / PR / history 영향 미정
 
 5. **Automatic Rest Timer runtime edge**
@@ -698,7 +698,7 @@ Before development:
 - targeted app-shell navigation design FIX
 - weekday scheduling decision
 - routine Duplicate decision
-- W / D / F set-type decision
+- W / D / F routine-set decision
 - automatic Rest Timer runtime edge/end-feedback decision
 - active-session recovery system-notification UX decision
 - tech stack / architecture decision
