@@ -4,7 +4,7 @@
 
 ## Current mode
 
-`MVP 94 CONTENT/STATE FRAMES FROZEN · 94-SCREEN BEHAVIOR MATRIX COMPLETE · VISUAL FIXES CLOSED · GROUP 00–01 PASS · GROUP 02 HOME PASS · GROUP 03 ROUTINE PASS · GROUP 04 EXERCISE LIBRARY / CUSTOM PASS · NEXT = GROUP 05 ACTIVE WORKOUT QA · HANDOFF QA = DECISION NEEDED · BOTTOM APP BAR PASS · WEEKDAY SCHEDULING REMOVED FROM MVP · NUMERIC-ONLY MVP SETS LOCKED · REST-TIMER EDGE POLICY OPEN · RECOVERY SYSTEM-NOTIFICATION UX OPEN · TECH STACK / ARCHITECTURE OPEN · DURATION ACTIVE-SET UX OPEN · IMPLEMENTATION NOT STARTED`
+`MVP 94 CONTENT/STATE FRAMES FROZEN · 94-SCREEN BEHAVIOR MATRIX COMPLETE · VISUAL FIXES CLOSED · GROUP 00–01 PASS · GROUP 02 HOME PASS · GROUP 03 ROUTINE PASS · GROUP 04 EXERCISE LIBRARY / CUSTOM PASS · NEXT = GROUP 05 ACTIVE WORKOUT QA · HANDOFF QA = DECISION NEEDED · BOTTOM APP BAR PASS · WEEKDAY SCHEDULING REMOVED FROM MVP · NUMERIC-ONLY MVP SETS LOCKED · REST-TIMER RESTART RULE LOCKED · REST-TIMER END-FEEDBACK OPEN · RECOVERY SYSTEM-NOTIFICATION UX OPEN · TECH STACK / ARCHITECTURE OPEN · DURATION ACTIVE-SET UX OPEN · IMPLEMENTATION NOT STARTED`
 
 ## Resume rule
 
@@ -75,7 +75,8 @@ The previous `98` screen count is superseded by the current `94` after the 2026-
 - Group 04: `docs/ux-decisions/2026-09-15-group04-final-closure-qa.md`
 - Group 04 custom-exercise field policy: `docs/ux-decisions/2026-09-15-group04-custom-exercise-selection-flow.md` — amended 2026-09-18
 - Group 04 custom-exercise save action/destination: `docs/ux-decisions/2026-09-15-group04-custom-exercise-save-destination.md` — amended 2026-09-18 / Figma reflected
-- Group 05: `docs/ux-decisions/2026-09-16-group05-manual-timer-final-closure-qa.md`
+- Group 05 current sequential QA: `docs/ux-decisions/2026-09-20-group05-active-workout-sequential-qa.md`
+- Group 05 prior closure: `docs/ux-decisions/2026-09-16-group05-manual-timer-final-closure-qa.md`
 - Group 06: `docs/ux-decisions/2026-09-16-group06-final-closure-qa.md`
 - Group 07: `docs/ux-decisions/2026-09-16-group07-final-closure-qa.md`
 - Group 07 policy: `docs/ux-decisions/2026-09-14-group07-final-policy-lock.md`
@@ -657,8 +658,15 @@ Current verification:
 
 Review only Group 05 and directly required dependencies.
 
-Known open Group 05 / cross-cutting items that may surface in this block:
-1. Automatic Rest Timer: what happens if another set completes while an automatic Rest Timer is already running, plus exact end-feedback behavior
+Current Group 05 sequential findings:
+- Figma top-level frames = `18`
+- behavior-matrix Group 05 entries = `18`
+- Figma ↔ matrix names = `18 / 18` exact match
+- no Group 05 screen omission found
+- automatic Rest Timer overlap rule PO APPROVED: completing another set replaces/restarts the current Rest Timer for the newly completed set
+
+Still open:
+1. Automatic Rest Timer exact zero-completion feedback: sound / vibration / background notification
 2. Active-session recovery system-notification UX
 3. `duration` Active Workout timed-set interaction
 
@@ -696,7 +704,7 @@ Current handoff verdict:
 - `DECISION NEEDED`
 
 Before development:
-- automatic Rest Timer runtime edge/end-feedback decision
+- automatic Rest Timer zero-completion feedback decision
 - active-session recovery system-notification UX decision
 - tech stack / architecture decision
 - duration Active Workout interaction decision
