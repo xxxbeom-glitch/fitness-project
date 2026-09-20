@@ -836,6 +836,20 @@ Required integrity:
 
 This section is a domain contract, not a mandated SQL/document schema.
 
+### Product analytics
+
+- provider = PostHog
+- explicit named events only; no broad autocapture
+- Session Replay off
+- form/input capture off
+- advertising attribution off
+- initial 26-event taxonomy and allowed properties are defined in `docs/ux-decisions/2026-09-20-posthog-product-analytics.md`
+- primary launch funnel = onboarding completed → workout started → first set completed → workout completed → later workout return/start
+- do not send DOB, sex/gender profile field, email, nickname, routine/exercise names, exact weight/reps/duration, custom free text, support content, secrets, or raw DB rows
+- identity = opaque internal app user ID only; reset on logout/account change
+- local dev analytics off by default; preview vs production distinguished by `app_environment`
+- analytics delivery is best-effort and must never block navigation/workout/persistence/sync
+
 ### Crash / error reporting
 
 - provider = Sentry
@@ -1078,8 +1092,7 @@ Verified:
 
 Not ready to start production implementation yet because:
 1. Product Owner has not explicitly authorized Development mode
-2. product-usage analytics scope is not yet decided
-3. Android Play release pipeline details remain open where needed for release hardening
+2. Android Play release pipeline details remain open where needed for release hardening
 
 Current implementation-facing product brand is Tampin; the stale G Fit working-name text found during deep QA has been corrected in the current Product Direction / Project Brief.
 
