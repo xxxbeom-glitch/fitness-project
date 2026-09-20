@@ -280,6 +280,30 @@ Locked operating rules:
 ### QA verdict
 **PASS**
 
+## Block 10 — Notification permission / channels / exact alarm / Rest Timer sound
+
+### Re-audit result
+Keep the current notification/Rest Timer product behavior with one implementation-boundary amendment.
+
+Locked:
+- Android 13+ `POST_NOTIFICATIONS` is requested contextually after the first Active Workout is already persisted; denial never blocks or rolls back the workout
+- MVP channels remain exactly `운동 진행` + `휴식 타이머`
+- no updates/notices/marketing channel or speculative remote-push stack
+- `05F_Workout_RestTimer` uses `SCHEDULE_EXACT_ALARM` where access is available; denial/revocation falls back without mutating workout data
+- selectable app-owned sounds remain `기본 / 차임 / 벨`, separate from immutable notification-channel sound
+- no custom vibration pattern
+- app-level Rest Timer alert OFF means no rest-end notification and no app-owned completion sound
+- blocked Android notification delivery is not bypassed by secretly playing the separate app-owned sound
+- do not pre-lock `mediaPlayback` Foreground Service as mandatory; prove the smallest compliant native delivery mechanism in Development Build/device QA and add a short-lived FGS only if necessary
+
+### OnTalk comparison
+- OnTalk had a real mismatch between app notification preference and effective Android OS permission state, requiring explicit recovery/effective-state handling.
+- Tampin therefore treats app preference, `POST_NOTIFICATIONS`, and exact-alarm access as separate gates.
+- OnTalk also showed that permission recovery prompts can become intrusive if triggered at generic app-entry points; Tampin keeps the request contextual to the workout/timer value moment.
+
+### QA verdict
+**PASS**
+
 ## NEXT OPEN ITEM
 
-**Block 10 — Notification permission / channels / exact alarm / Rest Timer sound.**
+**Block 11 — Sentry crash/error reporting.**
