@@ -1,6 +1,6 @@
 # MVP Screen Behavior Matrix
 
-**Status:** SCREEN-BY-SCREEN QA · 94 / 94 MAPPED · FIX / DECISION NEEDED ITEMS EXPLICIT  
+**Status:** SCREEN-BY-SCREEN QA · 95 / 95 MAPPED · FIX / DECISION NEEDED ITEMS EXPLICIT  
 **Verified:** 2026-09-20
 
 ## Purpose
@@ -13,7 +13,7 @@ Cursor가 canonical Figma의 각 top-level frame을 어떤 제품 상태로 구�
 - **Implementation rule** — Figma만 보고 임의 해석하면 안 되는 데이터/상태 규칙
 - **QA** — `PASS`, `FIX`, `DECISION NEEDED`, `CONDITIONAL`
 
-이 문서는 `MVP_SCREEN_INVENTORY.md`의 94개 canonical frame 전부를 포함한다.
+이 문서는 `MVP_SCREEN_INVENTORY.md`의 95개 canonical frame 전부를 포함한다.
 
 ## Cross-screen findings
 
@@ -434,8 +434,10 @@ Most static/state/detail/dialog/sheet screens in Groups 01, 04, 06, 07, 08, and 
 1. Production technology stack / platform architecture.
 
 ### FIGMA FOLLOW-UP
-- add `07C_Workout_History` as the approved full saved-workout history list
-- after creation, update inventory/matrix counts and re-run focused Group 07 navigation/component QA
+- `07C_Workout_History` created and focused-QA PASS on 2026-09-20
+- canonical node = `2121:8457`
+- canonical total = `95`; Group 07 = `6`
+- shared-instance missing main-component links = `0`
 
 ### CONDITIONAL
 - Apple sign-in/account copy if iOS is included in launch scope.
@@ -443,4 +445,4 @@ Most static/state/detail/dialog/sheet screens in Groups 01, 04, 06, 07, 08, and 
 - final timer sound assets.
 - Production exercise-thumbnail crop/mapping.
 
-**Result: the 94 screens are now individually mapped, but the implementation handoff is NOT a full PASS until the DECISION NEEDED items above are resolved.**
+**Result: the 95 screens are now individually mapped, but the implementation handoff is NOT a full PASS until the DECISION NEEDED items above are resolved.**
