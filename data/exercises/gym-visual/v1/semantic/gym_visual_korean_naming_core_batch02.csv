@@ -1,0 +1,78 @@
+working_id,equipment,name_en_normalized,name_ko_candidate,body_part_ko,recording_type,qa_status
+gvs_ba3ae85441edd9b6,Barbell,Barbell Bench Lateral Step Up,바벨 벤치 래터럴 스텝업,하체,weight_reps,PROMOTE_HIGH_CONFIDENCE
+gvs_f560305dadcbd81d,Barbell,Barbell Bent Arm Pullover,바벨 벤트 암 풀오버,등,weight_reps,PROMOTE_HIGH_CONFIDENCE
+gvs_2997973f07fac93f,Barbell,Barbell Clean Grip Front Squat,바벨 클린 그립 프론트 스쿼트,하체,weight_reps,PROMOTE_HIGH_CONFIDENCE
+gvs_13f6672e8461d524,Barbell,Barbell Cossack Squat,바벨 코사크 스쿼트,하체,weight_reps,PROMOTE_HIGH_CONFIDENCE
+gvs_dfa0f17d3c64ac21,Barbell,Barbell Curtsey Lunge,바벨 커시 런지,하체,weight_reps,PROMOTE_HIGH_CONFIDENCE
+gvs_863a17a26e3036e8,Barbell,Barbell Dimel Deadlift,바벨 디멜 데드리프트,하체,weight_reps,PROMOTE_HIGH_CONFIDENCE
+gvs_9fb128f35bfa35b3,Barbell,Barbell Front Rack Lunge,바벨 프론트 랙 런지,하체,weight_reps,PROMOTE_HIGH_CONFIDENCE
+gvs_e1b3d351aea54045,Barbell,Barbell Front Rack Split Squat,바벨 프론트 랙 스플릿 스쿼트,하체,weight_reps,PROMOTE_HIGH_CONFIDENCE
+gvs_cef9a38f193d09a7,Barbell,Barbell Incline Rear Delt Row,바벨 인클라인 리어 델트 로우,어깨,weight_reps,PROMOTE_HIGH_CONFIDENCE
+gvs_a5f77daed3c77934,Barbell,Barbell Lateral Lunge,바벨 래터럴 런지,하체,weight_reps,PROMOTE_HIGH_CONFIDENCE
+gvs_c60d6e42563c0810,Barbell,Barbell Paused Bent Over Row,바벨 포즈 벤트오버 로우,등,weight_reps,PROMOTE_HIGH_CONFIDENCE
+gvs_12ae356840e94f62,Barbell,Barbell Paused Sumo Deadlift,바벨 포즈 스모 데드리프트,하체,weight_reps,PROMOTE_HIGH_CONFIDENCE
+gvs_78c97a80c6eb5b52,Barbell,Barbell Pendlay Row,바벨 펜들레이 로우,등,weight_reps,PROMOTE_HIGH_CONFIDENCE
+gvs_845cebd964fa4bf5,Barbell,Barbell Pin Chest Press,바벨 핀 체스트 프레스,가슴,weight_reps,PROMOTE_HIGH_CONFIDENCE
+gvs_9a0795a7e7c08e67,Barbell,Barbell Pin Front Squat,바벨 핀 프론트 스쿼트,하체,weight_reps,PROMOTE_HIGH_CONFIDENCE
+gvs_674b9f90a42cd7c6,Barbell,Barbell Pin Good Morning,바벨 핀 굿모닝,하체,weight_reps,PROMOTE_HIGH_CONFIDENCE
+gvs_b91e535d9d3a5995,Barbell,Barbell Power Jerk,바벨 파워 저크,,weight_reps,PROMOTE_HIGH_CONFIDENCE
+gvs_185abc2393649ecb,Barbell,Barbell Quarter Squat,바벨 쿼터 스쿼트,하체,weight_reps,PROMOTE_HIGH_CONFIDENCE
+gvs_58a2156cda777a96,Barbell,Barbell Rack Pull,바벨 랙 풀,하체,weight_reps,PROMOTE_HIGH_CONFIDENCE
+gvs_518aaa9ef2fec4c8,Barbell,Barbell Reeves Deadlift,바벨 리브스 데드리프트,하체,weight_reps,PROMOTE_HIGH_CONFIDENCE
+gvs_efe5653fc106d4b7,Barbell,Barbell Rollout,바벨 롤아웃,하체,weight_reps,PROMOTE_HIGH_CONFIDENCE
+gvs_69d9c720bef22ce6,Barbell,Barbell Snatch Grip Deadlift,바벨 스내치 그립 데드리프트,하체,weight_reps,PROMOTE_HIGH_CONFIDENCE
+gvs_43f9f713c87baadb,Barbell,Barbell Standing Leg Calf Raise,바벨 스탠딩 레그 카프 레이즈,하체,weight_reps,PROMOTE_HIGH_CONFIDENCE
+gvs_48254dcd665dc5f1,Barbell,Barbell Stiff Legged Deadlift,바벨 스티프 레그 데드리프트,하체,weight_reps,PROMOTE_HIGH_CONFIDENCE
+gvs_3c331830a186375e,Barbell,Barbell Thruster,바벨 스러스터,,weight_reps,PROMOTE_HIGH_CONFIDENCE
+gvs_b7f4c660330b6696,Barbell,Barbell Underhand Bent Over Row,바벨 언더핸드 벤트오버 로우,등,weight_reps,PROMOTE_HIGH_CONFIDENCE
+gvs_5c93a5108fd08d22,Barbell,Barbell Zercher Bulgarian Split Squat,바벨 저처 불가리안 스플릿 스쿼트,하체,weight_reps,PROMOTE_HIGH_CONFIDENCE
+gvs_888093c5289b3ef9,Cable,Cable Donkey Kickback,케이블 동키 킥백,하체,weight_reps,PROMOTE_HIGH_CONFIDENCE
+gvs_2c4aa4f62ee481e0,Cable,Cable Forearm Pronation,케이블 포어암 프로네이션,팔,weight_reps,PROMOTE_HIGH_CONFIDENCE
+gvs_c109ac7a54bc3ec0,Cable,Cable Half Kneeling Pallof Press,케이블 하프 닐링 팔로프 프레스,코어,weight_reps,PROMOTE_HIGH_CONFIDENCE
+gvs_420de1e67d47e9e8,Cable,Cable Lying Bicep Curl,케이블 라잉 바이셉 컬,팔,weight_reps,PROMOTE_HIGH_CONFIDENCE
+gvs_56eff23b663f236b,Cable,Cable Rope Incline Tricep Extension,케이블 로프 인클라인 트라이셉 익스텐션,팔,weight_reps,PROMOTE_HIGH_CONFIDENCE
+gvs_58aea4f56fb45f35,Cable,Cable Single Arm Tricep Pushdown,케이블 원암 트라이셉 푸시다운,팔,weight_reps,PROMOTE_HIGH_CONFIDENCE
+gvs_9ab8c22154f550c5,Cable,Cable Underhand Pulldown,케이블 언더핸드 풀다운,등,weight_reps,PROMOTE_HIGH_CONFIDENCE
+gvs_1651862020bbc566,Dumbbell,Dumbbell Curtsey Lunge,덤벨 커시 런지,하체,weight_reps,PROMOTE_HIGH_CONFIDENCE
+gvs_08ccaea47c5d4642,Dumbbell,Dumbbell Front Plank Arm Leg Raise,덤벨 프론트 플랭크 암 레그 레이즈,코어,weight_reps,PROMOTE_HIGH_CONFIDENCE
+gvs_30a2bd6baefd504b,Dumbbell,Dumbbell Front Plank Arm Raise,덤벨 프론트 플랭크 암 레이즈,코어,weight_reps,PROMOTE_HIGH_CONFIDENCE
+gvs_ad30bb400a46408a,Dumbbell,Dumbbell Front Rack Lunge,덤벨 프론트 랙 런지,하체,weight_reps,PROMOTE_HIGH_CONFIDENCE
+gvs_f90fe2c0084b9526,Dumbbell,Dumbbell Incline Alternate Bicep Curl,덤벨 인클라인 얼터네이트 바이셉 컬,팔,weight_reps,PROMOTE_HIGH_CONFIDENCE
+gvs_61a93102da9274f4,Dumbbell,Dumbbell Incline Two Arm Extension,덤벨 인클라인 투암 익스텐션,팔,weight_reps,PROMOTE_HIGH_CONFIDENCE
+gvs_ae45d5c1353969d5,Dumbbell,Dumbbell Jefferson Curl,덤벨 제퍼슨 컬,하체,weight_reps,PROMOTE_HIGH_CONFIDENCE
+gvs_9806e47cf47980de,Dumbbell,Dumbbell Lateral Step Up,덤벨 래터럴 스텝업,하체,weight_reps,PROMOTE_HIGH_CONFIDENCE
+gvs_3d14f046108261e0,Dumbbell,Dumbbell Lying Rear Delt Row,덤벨 라잉 리어 델트 로우,어깨,weight_reps,PROMOTE_HIGH_CONFIDENCE
+gvs_9a9a349ee2193330,Dumbbell,Dumbbell Rollout,덤벨 롤아웃,코어,weight_reps,PROMOTE_HIGH_CONFIDENCE
+gvs_df484bd635de906c,Dumbbell,Dumbbell Seated Bent Arm Lateral Raise,덤벨 시티드 벤트 암 레터럴 레이즈,어깨,weight_reps,PROMOTE_HIGH_CONFIDENCE
+gvs_1efd7dc4e298cd96,Dumbbell,Dumbbell Seated Double Concentration Curl,덤벨 시티드 더블 컨센트레이션 컬,팔,weight_reps,PROMOTE_HIGH_CONFIDENCE
+gvs_e02b5a52dbee691c,Dumbbell,Dumbbell Side Plank Raise,덤벨 사이드 플랭크 레이즈,코어,weight_reps,PROMOTE_HIGH_CONFIDENCE
+gvs_418c8e95de826d89,Dumbbell,Dumbbell Single Arm Underhand Front Raise,덤벨 원암 언더핸드 프론트 레이즈,어깨,weight_reps,PROMOTE_HIGH_CONFIDENCE
+gvs_54c026b6fb54ef4c,Dumbbell,Dumbbell Standing Bent Arm Lateral Raise,덤벨 스탠딩 벤트 암 레터럴 레이즈,어깨,weight_reps,PROMOTE_HIGH_CONFIDENCE
+gvs_cef9cb7659371618,Dumbbell,Dumbbell Svend Press,덤벨 스벤드 프레스,가슴,weight_reps,PROMOTE_HIGH_CONFIDENCE
+gvs_129f2d80dea319be,Dumbbell,Dumbbell Thruster,덤벨 스러스터,하체,weight_reps,PROMOTE_HIGH_CONFIDENCE
+gvs_8444f341e5a40af5,Dumbbell,Dumbbell Underhand Renegade Row,덤벨 언더핸드 레니게이드 로우,코어,weight_reps,PROMOTE_HIGH_CONFIDENCE
+gvs_734060594c5b1a09,Kettlebell,Kettlebell Clean Grip Reverse Lunge,케틀벨 클린 그립 리버스 런지,하체,weight_reps,PROMOTE_HIGH_CONFIDENCE
+gvs_676e079f1e1eead7,Kettlebell,Kettlebell Cossack Squat,케틀벨 코사크 스쿼트,하체,weight_reps,PROMOTE_HIGH_CONFIDENCE
+gvs_aa8ba55e369d51ac,Kettlebell,Kettlebell Double Jerk,케틀벨 더블 저크,어깨,weight_reps,PROMOTE_HIGH_CONFIDENCE
+gvs_290dbe89e24c5681,Kettlebell,Kettlebell Double Push Press,케틀벨 더블 푸시 프레스,어깨,weight_reps,PROMOTE_HIGH_CONFIDENCE
+gvs_fa7987a1a02e21e9,Kettlebell,Kettlebell Double Snatch,케틀벨 더블 스내치,어깨,weight_reps,PROMOTE_HIGH_CONFIDENCE
+gvs_2a0d50c9ec74ed59,Kettlebell,Kettlebell Lateral Lunge,케틀벨 래터럴 런지,하체,weight_reps,PROMOTE_HIGH_CONFIDENCE
+gvs_1a7607c7862b5c17,Kettlebell,Kettlebell Lateral Step Up,케틀벨 래터럴 스텝업,하체,weight_reps,PROMOTE_HIGH_CONFIDENCE
+gvs_493865bbcc47c08b,Kettlebell,Kettlebell Lying Rear Delt Row,케틀벨 라잉 리어 델트 로우,어깨,weight_reps,PROMOTE_HIGH_CONFIDENCE
+gvs_9a0a0b28e7984d22,Kettlebell,Kettlebell Seated Two Arm Military Press,케틀벨 시티드 투암 밀리터리 프레스,어깨,weight_reps,PROMOTE_HIGH_CONFIDENCE
+gvs_d1cc50e8cde89462,Kettlebell,Kettlebell Swing Clean Grip Front Squat,케틀벨 스윙 클린 그립 프론트 스쿼트,하체,weight_reps,PROMOTE_HIGH_CONFIDENCE
+gvs_1058e6f9eccef0dd,Kettlebell,Kettlebell Thruster,케틀벨 스러스터,어깨,weight_reps,PROMOTE_HIGH_CONFIDENCE
+gvs_2769af26a383741c,Kettlebell,Kettlebell Two Arm Clean,케틀벨 투암 클린,어깨,weight_reps,PROMOTE_HIGH_CONFIDENCE
+gvs_7c67305a8cdb76d8,Kettlebell,Kettlebell Two Arm Military Press,케틀벨 투암 밀리터리 프레스,어깨,weight_reps,PROMOTE_HIGH_CONFIDENCE
+gvs_7722aa0aebfff280,Kettlebell,Kettlebell Two Arm Row,케틀벨 투암 로우,등,weight_reps,PROMOTE_HIGH_CONFIDENCE
+gvs_d12f92d6479eeaf8,Landmine,Landmine Kneeling Thruster Press,랜드마인 닐링 스러스터 프레스,어깨,weight_reps,PROMOTE_HIGH_CONFIDENCE
+gvs_8c9508f391103983,Machine,Machine Bicep Curl,머신 바이셉 컬,팔,weight_reps,PROMOTE_HIGH_CONFIDENCE
+gvs_c1545092379bb128,Machine,Machine Bulgarian Split Squat (Plate Loaded),머신 불가리안 스플릿 스쿼트 플레이트 로드,하체,weight_reps,PROMOTE_HIGH_CONFIDENCE
+gvs_93cc706ef570d2d4,Machine,Machine Lying Leg Raise Bent Knee,머신 라잉 레그 레이즈 벤트 니,코어,weight_reps,PROMOTE_HIGH_CONFIDENCE
+gvs_257585783a63c016,Machine,Machine Pronated Grip Seated Row (Plate Loaded),머신 프로네이티드 그립 시티드 로우 플레이트 로드,등,weight_reps,PROMOTE_HIGH_CONFIDENCE
+gvs_c87e614e3050a29c,Machine,Machine Seated Leg Raise Crunch (Plate Loaded),머신 시티드 레그 레이즈 크런치 플레이트 로드,코어,weight_reps,PROMOTE_HIGH_CONFIDENCE
+gvs_f0a63d0f53de5ddf,Machine,Machine Side Seated Single Arm Rear Delt Fly,머신 사이드 시티드 원암 리어 델트 플라이,어깨,weight_reps,PROMOTE_HIGH_CONFIDENCE
+gvs_18071cd0570beb9e,Machine,Machine Single Arm Lateral High Row,머신 원암 래터럴 하이 로우,등,weight_reps,PROMOTE_HIGH_CONFIDENCE
+gvs_da557a687bea23ce,Smith Machine,Smith Machine Bicep Curl,스미스 머신 바이셉 컬,팔,weight_reps,PROMOTE_HIGH_CONFIDENCE
+gvs_6aa368f5b62f7941,Smith Machine,Smith Machine Incline Tricep Extension,스미스 머신 인클라인 트라이셉 익스텐션,팔,weight_reps,PROMOTE_HIGH_CONFIDENCE
+gvs_157057b262de73a0,Dumbbell,Weighted Dumbbell Lying Knee Raise,웨이티드 덤벨 라잉 니 레이즈,코어,weight_reps,PROMOTE_HIGH_CONFIDENCE
