@@ -718,13 +718,20 @@ Language:
 - immediate-selection presentation
 
 Notifications:
+- Android notification channel scope is locked by `docs/ux-decisions/2026-09-20-android-notification-channel-scope.md`
+- current MVP has only two Android notification categories:
+  - `운동 진행`: LOW importance, silent/non-vibrating ongoing Active Workout status
+  - `휴식 타이머`: separate time-sensitive Rest Timer completion alert
+- do not create an updates/notices/marketing/promotional channel in the current MVP
+- do not add remote-push infrastructure merely for future updates/notices
+- `08E_Notification_Settings` current Product scope is `휴식 타이머 알림` only; the previous `업데이트/공지` row is superseded and must not be implemented
 - Android 13+ notification permission timing is locked by `docs/ux-decisions/2026-09-20-android-notification-permission-policy.md`
 - do not request `POST_NOTIFICATIONS` at app launch/login/onboarding/Home
 - request it contextually on the user's first Active Workout after the session has already been persisted locally
 - use the existing Dialog pattern for the one-time rationale; denial/dismissal never blocks the workout
 - do not automatically re-prompt on every workout after denial/dismissal
 - `08E_Notification_Settings` must respect Android system notification permission and request/route to system settings when needed
-- current Figma surfaces rest-timer notification and updates/notices toggles
+- current Product scope surfaces Rest Timer notification only; if canonical Figma still shows the superseded `업데이트/공지` row, ignore that row until the focused Figma maintenance is applied
 - `휴식 타이머 알림` controls delivery of the approved Rest Timer zero system alert
 - approved alert copy = `휴식 시간이 끝났어요` / `다음 세트를 시작하세요.`
 - alert uses the selected app-owned timer-end sound
