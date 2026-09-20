@@ -878,9 +878,10 @@ Completed:
 - Block 01 — Platform scope / Android only: **PASS**
 - Block 02 — Application stack / React Native + Expo + TypeScript + narrow native Android boundary: **PASS**
 - Block 03 — Local-first persistence scope / server-confirmed action boundary: **PASS**
+- Block 04 — SQLite local database / migrations / transactions / account-scoped ownership: **PASS**
 
 NEXT OPEN ITEM:
-- Block 04 — SQLite local database suitability and operating rules
+- Block 05 — Supabase backend / server authority
 
 ## Other already-known open decisions
 
