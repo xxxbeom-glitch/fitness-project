@@ -1,7 +1,7 @@
 # Platform / App Stack Architecture Gate
 
 **Date:** 2026-09-20
-**Status:** PO APPROVED · APP STACK / LOCAL-FIRST / SQLITE / SUPABASE LOCKED · AUTH NEXT
+**Status:** PO APPROVED · APP STACK / LOCAL-FIRST / SQLITE / SUPABASE / SUPABASE AUTH LOCKED · STORAGE NEXT
 
 ## Platform strategy
 
@@ -82,9 +82,23 @@ Boundary:
 - server-side authorization must be enforced independently of client UI
 - exact Supabase Auth / Storage usage is a separate decision and is not implied by choosing Supabase Postgres
 
+## Authentication — PO APPROVED
+
+Locked:
+- Supabase Auth
+- current MVP social providers: Google + Kakao
+- Apple Sign in is added for iOS release alignment
+- authentication identity is the stable account boundary used to associate server-side user data
+
+Rules:
+- Supabase Auth is the canonical authentication service
+- Google / Kakao / Apple provider identities map into the same application account model
+- authentication success alone does not make server data authoritative over newer unsynced local workout data
+- account deletion must remove or anonymize user-owned server data according to the approved deletion policy
+- token/session handling must use secure platform storage rather than SQLite plain-text secrets
+
 ## Still open
 
-- auth implementation boundary
 - exact sync trigger / retry / conflict mechanics
 - media/profile-image storage
 - analytics/crash reporting
@@ -93,6 +107,6 @@ Boundary:
 
 ## NEXT OPEN ITEM
 
-Choose the authentication boundary/provider.
+Choose the media/profile-image storage boundary.
 
 Do not begin production implementation yet.
