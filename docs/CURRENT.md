@@ -4,7 +4,7 @@
 
 ## Current mode
 
-`MVP 95 CONTENT/STATE FRAMES CANONICAL · SEQUENTIAL PRODUCT/UX HANDOFF QA PASS · PLATFORM = ANDROID+iOS SHARED · QA/RELEASE = ANDROID FIRST · APP STACK = REACT NATIVE + EXPO + TYPESCRIPT LOCKED · NEXT = DATA ARCHITECTURE GATE · LOCAL-FIRST VS SERVER-FIRST DECISION OPEN · DATA/BACKEND/SYNC ARCHITECTURE OPEN · IMPLEMENTATION NOT STARTED`
+`MVP 95 CONTENT/STATE FRAMES CANONICAL · SEQUENTIAL PRODUCT/UX HANDOFF QA PASS · PLATFORM = ANDROID+iOS SHARED · QA/RELEASE = ANDROID FIRST · APP STACK = REACT NATIVE + EXPO + TYPESCRIPT LOCKED · PERSISTENCE = LOCAL-FIRST LOCKED · NEXT = LOCAL DATABASE DECISION · DATA/BACKEND/SYNC ARCHITECTURE OPEN · IMPLEMENTATION NOT STARTED`
 
 ## Resume rule
 
@@ -726,10 +726,17 @@ Locked:
 - Expo Development Builds for production development
 - iOS release requires separate iOS real-device QA
 
-NEXT OPEN ITEM:
-- decide local-first vs server-first persistence for active workout / workout edits
+Locked:
+- active workout / workout edits are local-first
+- local save is authoritative for immediate workout interaction
+- weak/offline network must not block recording
+- server synchronization happens afterward under a separate sync policy
+- sync failure must not roll back locally saved workout data
 
-After that, decide local DB, backend/auth/storage, sync/conflict/recovery, then platform runtime details one item at a time.
+NEXT OPEN ITEM:
+- choose the local database technology
+
+After that, decide backend/auth/storage, sync trigger/retry/conflict, then platform runtime details one item at a time.
 
 ## Other already-known open decisions
 
