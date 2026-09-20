@@ -75,7 +75,7 @@ PO-approved current direction:
     - additional merges = **6**
     - keep separate = **39**
   - current working identities = **5,648**
-- semantic normalization v2 = **GENERATED / MANUAL QA REMAINS**
+- semantic normalization v3 = **GENERATED / MANUAL QA REMAINS**
   - current MVP resistance/strength candidates = **3722**
   - excluded non-MVP = **1476**
   - excluded added-weight bodyweight/apparatus = **8**
@@ -88,8 +88,8 @@ PO-approved current direction:
   - Resistance Band / Rings / Suspension recording semantics = **LOCKED FOR MVP**
 - all source media/provenance is preserved; identity merges/exclusions do not delete alternate media
 - raw purchased filename/path map is not committed to the public repo; only normalized derivative catalog data is committed
-- current data checkpoints: `docs/exercise-db/2026-09-20-gym-visual-auto-normalization-v1.md`, `docs/exercise-db/2026-09-20-gym-visual-duplicate-version-qa.md`, `docs/exercise-db/2026-09-20-gym-visual-cross-gender-near-match-qa.md`, `docs/exercise-db/2026-09-21-gym-visual-held-near-match-resolution.md`, `docs/exercise-db/2026-09-21-gym-visual-semantic-normalization-v2.md`
-- next data/media task = focused Korean/local naming QA for gym-first weighted equipment → body/muscle conflict QA → catalog relevance review (including bodyweight search-noise pass) → default media selection → Cloudflare MP4 + in-app WebP manifest
+- current data checkpoints: `docs/exercise-db/2026-09-20-gym-visual-auto-normalization-v1.md`, `docs/exercise-db/2026-09-20-gym-visual-duplicate-version-qa.md`, `docs/exercise-db/2026-09-20-gym-visual-cross-gender-near-match-qa.md`, `docs/exercise-db/2026-09-21-gym-visual-held-near-match-resolution.md`, `docs/exercise-db/2026-09-21-gym-visual-semantic-normalization-v3.md`
+- next data/media task = body/muscle conflict QA + unresolved core-equipment naming → catalog relevance review (including bodyweight search-noise pass) → final semantic row lock → default media selection → Cloudflare MP4 + in-app WebP manifest
 
 ### Current consolidated maintenance
 - `docs/ux-decisions/2026-09-18-mvp-figma-maintenance-checkpoint.md`
