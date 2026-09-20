@@ -861,8 +861,24 @@ Locked:
 Canonical:
 - `docs/ux-decisions/2026-09-20-posthog-product-analytics.md`
 
+## Pre-release architecture re-audit — ACTIVE
+
+Product Owner explicitly requested a full architecture re-audit before Android deployment / Google Play release-pipeline design.
+
+Canonical checkpoint:
+- `docs/checkpoints/2026-09-20-pre-release-architecture-reaudit.md`
+
+Rules:
+- proceed from the beginning, one block at a time
+- compare with verified OnTalk release/QA history where relevant
+- use current official platform evidence for time-sensitive Android/Google Play facts
+- do not begin release-pipeline design until this re-audit is complete
+
+Completed:
+- Block 01 — Platform scope / Android only: **PASS**
+
 NEXT OPEN ITEM:
-- define Android deployment / Google Play release-pipeline architecture
+- Block 02 — Application stack: React Native + Expo + TypeScript / native Android boundary
 
 ## Other already-known open decisions
 
