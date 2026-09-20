@@ -4,7 +4,7 @@
 
 ## Current mode
 
-`MVP 94 CONTENT/STATE FRAMES FROZEN · 94-SCREEN BEHAVIOR MATRIX COMPLETE · VISUAL FIXES CLOSED · GROUP 00–01 PASS · GROUP 02 HOME PASS · GROUP 03 ROUTINE PASS · GROUP 04 EXERCISE LIBRARY / CUSTOM PASS · NEXT = GROUP 05 ACTIVE WORKOUT QA · HANDOFF QA = DECISION NEEDED · BOTTOM APP BAR PASS · WEEKDAY SCHEDULING REMOVED FROM MVP · NUMERIC-ONLY MVP SETS LOCKED · REST-TIMER RESTART RULE LOCKED · REST-TIMER CUSTOM SOUND SOURCE LOCKED · REST-TIMER VIBRATION/NOTIFICATION OPEN · RECOVERY SYSTEM-NOTIFICATION UX OPEN · TECH STACK / ARCHITECTURE OPEN · DURATION ACTIVE-SET UX LOCKED · IMPLEMENTATION NOT STARTED`
+`MVP 94 CONTENT/STATE FRAMES FROZEN · 94-SCREEN BEHAVIOR MATRIX COMPLETE · VISUAL FIXES CLOSED · GROUP 00–01 PASS · GROUP 02 HOME PASS · GROUP 03 ROUTINE PASS · GROUP 04 EXERCISE LIBRARY / CUSTOM PASS · NEXT = GROUP 05 ACTIVE WORKOUT QA · HANDOFF QA = DECISION NEEDED · BOTTOM APP BAR PASS · WEEKDAY SCHEDULING REMOVED FROM MVP · NUMERIC-ONLY MVP SETS LOCKED · REST-TIMER RESTART RULE LOCKED · REST-TIMER CUSTOM SOUND SOURCE LOCKED · REST-TIMER SYSTEM ALERT LOCKED · ACTIVE-WORKOUT SYSTEM NOTIFICATION UX LOCKED · TECH STACK / ARCHITECTURE OPEN · DURATION ACTIVE-SET UX LOCKED · IMPLEMENTATION NOT STARTED`
 
 ## Resume rule
 
@@ -667,10 +667,16 @@ Current Group 05 sequential findings:
 
 Resolved in current Group 05 block:
 - `duration` Active Workout = existing WorkoutDuration TIME input + manual set completion; header Manual Timer is optional reference only and is not linked
+- automatic Rest Timer overlap = newly completed set replaces/restarts the current rest countdown
+- timer-end sound = app-owned custom sound assets
+- Rest Timer zero = system alert `휴식 시간이 끝났어요` / `다음 세트를 시작하세요.`
+- no custom MVP vibration pattern; vibration follows platform/user notification settings
+- Active Workout = one ongoing system notification/activity surface; tap resumes the same session; Rest Timer remaining time is reflected there
+- no workout-mutating notification quick actions in MVP
+- active-session recovery restores the same session/system surface; no in-app recovery banner
 
-Still open:
-1. Automatic Rest Timer zero-completion vibration / background-notification behavior
-2. Active-session recovery system-notification UX
+Still open in Group 05 Product/UX:
+- none
 
 Do not reopen already-PASS Group 05 replacement/menu/manual-timer behavior without a new conflict/regression trigger.
 
@@ -706,8 +712,6 @@ Current handoff verdict:
 - `DECISION NEEDED`
 
 Before development:
-- automatic Rest Timer zero-completion vibration/background-notification decision
-- active-session recovery system-notification UX decision
 - tech stack / architecture decision
 - launch-platform scope check
 - explicit Product Owner development authorization
