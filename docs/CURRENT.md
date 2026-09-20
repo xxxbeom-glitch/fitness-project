@@ -4,7 +4,7 @@
 
 ## Current mode
 
-`MVP 95 CONTENT/STATE FRAMES CANONICAL · 95-SCREEN BEHAVIOR MATRIX COMPLETE · VISUAL FIXES CLOSED · GROUP 00–01 PASS · GROUP 02 HOME PASS · GROUP 03 ROUTINE PASS · GROUP 04 EXERCISE LIBRARY / CUSTOM PASS · GROUP 05 ACTIVE WORKOUT PASS · GROUP 06–07 COMPLETION / HISTORY / ANALYSIS PASS · GROUP 08 SETTINGS / ACCOUNT / SUPPORT PASS · SEQUENTIAL PRODUCT/UX HANDOFF QA PASS · NEXT = CROSS-CUTTING ARCHITECTURE GATE — AWAITING PO APPROVAL · BOTTOM APP BAR PASS · WEEKDAY SCHEDULING REMOVED FROM MVP · NUMERIC-ONLY MVP SETS LOCKED · REST-TIMER RESTART RULE LOCKED · REST-TIMER CUSTOM SOUND SOURCE LOCKED · REST-TIMER SYSTEM ALERT LOCKED · REST-TIMER VIBRATION = SYSTEM SETTINGS · ACTIVE-WORKOUT SYSTEM NOTIFICATION UX LOCKED · DURATION ACTIVE-SET UX LOCKED · TECH STACK / ARCHITECTURE OPEN · IMPLEMENTATION NOT STARTED`
+`MVP 95 CONTENT/STATE FRAMES CANONICAL · SEQUENTIAL PRODUCT/UX HANDOFF QA PASS · PLATFORM = ANDROID+iOS SHARED · QA/RELEASE = ANDROID FIRST · APP STACK = REACT NATIVE + EXPO + TYPESCRIPT LOCKED · NEXT = DATA ARCHITECTURE GATE · LOCAL-FIRST VS SERVER-FIRST DECISION OPEN · DATA/BACKEND/SYNC ARCHITECTURE OPEN · IMPLEMENTATION NOT STARTED`
 
 ## Resume rule
 
@@ -38,7 +38,8 @@ The previous `98` count became `94` after the 2026-09-19 recommended-routine rem
 ### MVP design freeze / implementation handoff preparation
 - `docs/ux-decisions/2026-09-20-mvp-screen-design-freeze.md`
 - Group 06–07 sequential QA: `docs/ux-decisions/2026-09-20-group06-07-sequential-handoff-qa.md`
-- current Group 08 sequential QA: `docs/ux-decisions/2026-09-20-group08-sequential-handoff-qa.md`
+- Group 08 sequential QA: `docs/ux-decisions/2026-09-20-group08-sequential-handoff-qa.md`
+- current architecture checkpoint: `docs/ux-decisions/2026-09-20-platform-app-stack-architecture-gate.md`
 - `docs/implementation/README.md`
 - `docs/implementation/MVP_IMPLEMENTATION_HANDOFF.md`
 - `docs/implementation/MVP_SCREEN_INVENTORY.md`
@@ -716,10 +717,24 @@ Verdict: **PASS — Group 08 Settings / Account / Support sequential handoff QA 
 
 **STOP. Sequential Product/UX screen QA is complete. Do not begin architecture/development work until Product Owner explicitly approves the next phase.**
 
+## Current architecture gate
+
+Locked:
+- one shared Android + iOS codebase
+- Android-first runtime QA and production release
+- React Native + Expo + TypeScript
+- Expo Development Builds for production development
+- iOS release requires separate iOS real-device QA
+
+NEXT OPEN ITEM:
+- decide local-first vs server-first persistence for active workout / workout edits
+
+After that, decide local DB, backend/auth/storage, sync/conflict/recovery, then platform runtime details one item at a time.
+
 ## Other already-known open decisions
 
-- Technology stack / platform architecture
-- iOS launch scope / Apple sign-in alignment
+- data/backend/sync architecture
+- iOS Apple sign-in alignment before iOS release
 
 ## Active non-blocking side tracks
 
@@ -740,8 +755,8 @@ Current handoff verdict:
 - `DECISION NEEDED`
 
 Before development:
-- tech stack / architecture decision
-- launch-platform scope check
+- data/backend/sync architecture decisions
+- iOS provider alignment policy for eventual iOS release
 - explicit Product Owner development authorization
 
 After resolution, create the first scoped Issue and switch to Development mode.
