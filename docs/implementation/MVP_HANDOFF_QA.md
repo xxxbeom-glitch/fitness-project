@@ -563,11 +563,14 @@ Verified current Figma:
 - 07D delete-confirm copy matches the 2026-09-19 simplified dialog copy
 - sampled Group 07 canonical states have no missing main-component link
 
-New Product/UX decisions:
-1. 07A `전체 기록` has no approved destination because the former workout-history overview was removed.
-2. 07A `최근 기록 변화` lacks a complete runtime selection/comparison/representative-record algorithm.
+PO decisions resolved:
+1. restore a full saved-workout history list as `07C_Workout_History`; 07A `전체 기록` routes there, and list rows route to 07D
+2. 07A `최근 기록 변화` shows only exercises whose latest completed performance improved versus the immediately previous comparable completed performance; newest qualifying improvements first; max 3; native recording-type semantics only
 
-Verdict: **DECISION NEEDED — Group 06 is clear; Group 07 has two current handoff blockers.**
+Current blocker is now visual reflection, not Product/UX:
+- `07C_Workout_History` must be created in canonical Figma and then inventory/navigation/component QA must be re-run
+
+Verdict: **FIGMA FOLLOW-UP REQUIRED — Group 06 Product/UX is clear; Group 07 decisions are resolved.**
 
 ## 15. Final QA verdict
 
@@ -625,9 +628,10 @@ Verdict: **PASS — Group 04 Exercise Library / Custom Exercise sequential QA cl
 - none in the current frozen visual contract.
 
 ### DECISION NEEDED before production implementation
-1. 07A `전체 기록` destination / history-list policy
-2. 07A `최근 기록 변화` runtime selection/comparison policy
-3. technology stack / platform architecture
+1. technology stack / platform architecture
+
+### FIGMA FOLLOW-UP before Group 06–07 closure
+- create and verify `07C_Workout_History`
 
 
 ### CONDITIONAL
