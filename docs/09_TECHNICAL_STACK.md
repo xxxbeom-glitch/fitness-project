@@ -133,10 +133,26 @@ Confirmed:
 Canonical:
 - `docs/ux-decisions/2026-09-20-android-rest-timer-sound-runtime.md`
 
+## Crash / error reporting
+
+Confirmed:
+- provider = Sentry
+- purpose = crash/error diagnostics, not product analytics
+- JS/native Android failures + readable source-mapped stack traces
+- local development reporting off by default
+- internal/preview and production Sentry environments separated
+- Session Replay off
+- sensitive user/profile/workout values are not sent
+- only opaque internal user ID + version/build/OS/screen/high-level runtime context
+- Sentry failure is non-blocking and never affects SQLite/Supabase correctness
+
+Canonical:
+- `docs/ux-decisions/2026-09-20-sentry-crash-error-reporting.md`
+
 ## Still open
 
 - exact Android native implementation primitives where multiple options satisfy the locked behavior
-- analytics / crash reporting
+- product-usage analytics scope
 - deployment / Play release pipeline details
 
 Production implementation is not authorized until the Product Owner explicitly switches to Development mode.
