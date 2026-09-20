@@ -51,6 +51,18 @@ The previous `98` count became `94` after the 2026-09-19 recommended-routine rem
 
 ### Current active asset-prep checkpoint
 - `docs/ux-decisions/2026-09-18-exercise-thumbnail-production-crop-prep.md`
+- current source-catalog supersession: `docs/ux-decisions/2026-09-20-gym-visual-source-catalog-supersession.md`
+
+## Current exercise source catalog
+
+PO-approved current direction:
+- purchased Gym Visual / Gym Animations library is the source catalog
+- old 195/211 target-count plan is superseded and historical only
+- latest curated media inventory = FEMALE 3,011 video+thumbnail pairs / MALE 4,186 video+thumbnail pairs
+- total source media pairs = 7,197
+- source media count is not the final unique exercise count
+- final canonical exercise count is derived by normalization of the purchased source pool
+- next data/media task = normalize source filenames/identities → deduplicate true naming variants → classify exercise metadata/recording type → bind male/female media → generate Cloudflare production manifest
 
 ### Current consolidated maintenance
 - `docs/ux-decisions/2026-09-18-mvp-figma-maintenance-checkpoint.md`
