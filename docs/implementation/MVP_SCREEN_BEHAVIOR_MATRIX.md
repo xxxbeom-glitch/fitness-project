@@ -378,7 +378,7 @@ Recommendation-template duration language from older Group 03 history is superse
 | Screen | Purpose / Entry | Primary behavior / Exit | Implementation rule | QA |
 |---|---|---|---|---|
 | `08A_Settings_Home` | Settings root | profile / subscription stub / workout / units / notifications / language / legal / inquiry | Theme and FAQ are not current MVP rows. Subscription is not billing. | PASS |
-| `08D_Workout_Settings` | Workout preferences | default rest time; timer sound; vibration; keep-screen-on | Current Figma still exposes a timer-end vibration toggle, but the latest Group 05 notification policy says vibration follows platform/user notification settings. This needs one PO alignment decision before Group 08 sequential closure. | DECISION NEEDED |
+| `08D_Workout_Settings` | Workout preferences | default rest time; timer sound; keep-screen-on | No app-level timer-end vibration setting. Rest-end vibration follows platform/user notification/device settings; no custom vibration pattern. Timer sounds are app-owned assets. | PASS |
 | `08E_Notification_Settings` | Notification preferences | toggle rest-timer notification and updates/notices | Rest-timer notification toggle governs the approved rest-end system alert. Updates/notices remains a separate app-notification preference; do not invent extra notification categories or scheduling. | PASS |
 | `08D1_Default_Rest_Time_Sheet` | Set default rest duration | 5-second increments; Complete applies value | Current representative value 2:00. | PASS |
 | `08D2_Timer_End_Sound` | Timer sound selection | choose 기본 / 차임 / 벨 | All options are app-owned custom sounds. `기본` means the app's bundled default timer sound, not the device default notification/ringtone. Final production sound files/labels remain release follow-up. | PASS / asset follow-up |
@@ -441,7 +441,6 @@ Most static/state/detail/dialog/sheet screens in Groups 01, 04, 06, 07, 08, and 
 
 ### CONDITIONAL
 - Apple sign-in/account copy if iOS is included in launch scope.
-- notification runtime/delivery semantics beyond the current settings UI.
 - final timer sound assets.
 - Production exercise-thumbnail crop/mapping.
 
