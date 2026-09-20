@@ -17,7 +17,7 @@ Cursor가 canonical Figma의 각 top-level frame을 어떤 제품 상태로 구�
 
 ## Cross-screen findings
 
-### FIX-01 — Primary bottom navigation is missing from frozen Figma
+### FIX-01 — Primary bottom navigation component resolved; root placement remains
 
 Current product IA says the primary destinations are:
 - 홈
@@ -25,7 +25,18 @@ Current product IA says the primary destinations are:
 - 분석
 - 설정
 
-However, current canonical root frames do not contain a bottom app bar / bottom navigation instance, and no corresponding shared component exists on `Common_Component`.
+2026-09-20 targeted Figma maintenance resolved the shared-component gap:
+- local `BottomAppBar` component set = `2078:2401`
+- variants = `Active=홈 / 루틴 / 분석 / 설정`
+- Light container = `bg/surface` + existing `Elevation/Card`
+- active = `brand/primary`
+- inactive = `text/secondary`
+- reference = `REF_하단앱바_화면내배치예시` `2075:8536`
+- canonical checkpoint = `docs/ux-decisions/2026-09-20-bottom-app-bar-light-component-foundation.md`
+
+Still open:
+- current canonical root frames do not yet contain the shared BottomAppBar instance
+- bottom placement / content clearance must be applied and QA'd on the applicable roots
 
 Affected root surfaces:
 - `02A_Home_NoRoutine`
@@ -36,9 +47,9 @@ Affected root surfaces:
 - `07A_Analysis_Home`
 - `08A_Settings_Home`
 
-Cursor must not invent the navigation visual/interaction contract.
+Cursor must use the approved shared component and must not invent a separate bottom-navigation design.
 
-Verdict: **FIX before UI implementation of the primary shell.**
+Verdict: **FIX — component contract PASS; root-screen placement remains before primary-shell UI implementation.**
 
 ### DECISION-01 — Weekday scheduling conflicts with frozen Figma
 
