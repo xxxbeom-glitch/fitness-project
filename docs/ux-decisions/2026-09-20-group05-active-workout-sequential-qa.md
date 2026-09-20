@@ -22,9 +22,20 @@ When another set is completed while an automatic Rest Timer is already running:
 
 This resolves the previously open replace/restart/keep-current edge rule.
 
+## Decision 2 — Rest Timer end sound source
+
+Rest Timer completion sound uses app-owned custom sound assets only.
+
+- do not use the device default notification/ringtone sound as the product sound
+- do not open or depend on the OS system-sound picker
+- selectable timer-end sounds are packaged/provided by the app
+- Product Owner will provide the final Production sound files later
+- final asset filenames/labels may be finalized when those files are supplied
+- this decision locks the sound source only; vibration and background/system-notification behavior remain open
+
 ## Still open in Group 05
 
-- exact Rest Timer zero-completion feedback: sound / vibration / background notification
+- Rest Timer zero-completion vibration / background notification behavior
 - active-session recovery system-notification UX
 - `duration` Active Workout timed-set interaction
 
