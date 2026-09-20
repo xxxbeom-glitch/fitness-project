@@ -276,7 +276,7 @@ Approved direction:
 - both Quick Start cards use the approved `36 × 36` circular action with existing `Common_Component` `chevron-right`
 - action treatment = `brand/soft` circle + `action/primary` chevron
 - Quick Start shared `SectionHeader` uses `Trailing=None`
-- `내 루틴` section is persistent: 02A = header only, 02B = compact 2 × n grid; My Routine header = `Trailing=None`
+- `내 루틴` section is persistent: header copy = `내 루틴 (n)` using current saved-routine count; 02A = `내 루틴 (0)` header only, 02B = compact 2 × n grid; My Routine header = `Trailing=None`
 - `내 루틴` uses a `2 × n` grid when routines exist
 - grid width = `320`, gap = `8px`
 - current routine tiles = `156 × 88`
@@ -631,8 +631,8 @@ Completed:
 - canonical decision: `docs/ux-decisions/2026-09-20-group02-home-with-routine-simplification.md`
 
 Current canonical Group 02 structure:
-- `02A_Home_NoRoutine`: Quick Start = `빈 운동 / 내 루틴 만들기`; lower = `내 루틴` header only
-- `02B_Home_WithRoutine`: same Quick Start; lower = `내 루틴` 2 × n grid
+- `02A_Home_NoRoutine`: Quick Start = `빈 운동 / 내 루틴 만들기`; lower = `내 루틴 (0)` header only
+- `02B_Home_WithRoutine`: same Quick Start; lower = `내 루틴 (n)` 2 × n grid
 - `02D_Home_Active`: active workout resume is primary; lower = persistent `내 루틴` section; no Recent Workout section
 - weekday assignment / `오늘의 운동` / `다음 운동` / hidden selected routine = not in current MVP
 
