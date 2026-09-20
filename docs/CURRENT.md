@@ -886,9 +886,10 @@ Completed:
 - Block 09 — Active Workout Android runtime / process-death + reboot recovery boundary: **PASS**
 - Block 10 — Notification permission / channels / exact alarm / Rest Timer sound: **PASS**
 - Block 11 — Sentry crash/error reporting / privacy + source-map QA: **PASS**
+- Block 12 — PostHog product analytics / 24-event explicit taxonomy: **PASS**
 
 NEXT OPEN ITEM:
-- Block 12 — PostHog product analytics / event taxonomy
+- Block 13 — Google Play submission source-data / policy profile readiness
 
 ## Other already-known open decisions
 
