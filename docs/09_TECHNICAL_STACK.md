@@ -98,6 +98,17 @@ Confirmed:
 
 ## Android active-workout runtime
 
+### Ongoing workout notification
+
+Confirmed:
+- use a normal Android ongoing notification for the Active Workout
+- do not run a Foreground Service solely to keep elapsed workout time or the notification alive in the current MVP
+- notification elapsed time uses Android's system chronometer/time display with the persisted absolute workout start timestamp
+- React Native/JavaScript is not required to tick every second in background
+- SQLite remains authoritative for session state; the notification is only a system surface
+- Rest Timer completion remains separate through exact-alarm scheduling
+- if future continuous sensor/location/health tracking is added, re-evaluate Foreground Service architecture
+
 Confirmed product/runtime behavior:
 - workout elapsed time uses an absolute persisted start timestamp and continues across app termination and device reboot
 - a normal reboot does not end the Active Workout
