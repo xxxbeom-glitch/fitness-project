@@ -141,15 +141,28 @@ UI semantics:
 - no separate email/password MVP sign-up path
 
 After provider auth:
-- known linked identity -> sign in existing internal account
-- first-time identity -> create internal account -> first-run basic info
+- known completed identity -> sign in existing internal account
+- first-time identity -> create/resolve internal account in onboarding-incomplete state -> first-run basic info
+- same provider identity must resolve the same incomplete internal account after an interrupted first-run flow
 
 Legal/privacy:
-- Terms and Privacy links accessible at first entry
-- first-time account requires explicit Terms agreement before normal setup completes
+- Login keeps Terms and Privacy links accessible at first entry
+- Login provider continuation itself is not the explicit Terms agreement
+- the prior Login copy `계속하면 서비스 이용약관에 동의합니다.` is not used
+- first-time/incomplete account collects explicit Terms agreement on Basic Info through `TermsAgreementRow`
+- `시작하기` requires sex + valid DOB + Terms agreement
 - Privacy Policy remains separately viewable
 - do not invent a generic mandatory privacy-consent checkbox for normal service-required processing
-- existing users are not asked for the same agreement on every login
+- existing completed users are not asked for the same agreement on every login
+
+Basic Info Back:
+- return to Login
+- preserve onboarding-incomplete state
+- do not create a duplicate internal account for the same provider identity
+- next successful auth with that same provider identity resumes Basic Info until the required setup is completed
+
+Canonical decision:
+- `docs/ux-decisions/2026-09-20-group00-01-first-run-closure.md`
 
 Exact release legal copy / lawful-basis verification remains pre-release work.
 
