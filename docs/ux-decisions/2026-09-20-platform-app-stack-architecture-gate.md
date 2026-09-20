@@ -133,6 +133,16 @@ Summary:
 - active workout has one write-owner device until completion/discard
 - media upload queue is independent from core workout-data sync
 
+## Active-workout elapsed-time semantics — PO APPROVED
+
+Locked:
+- workout elapsed time continues across app termination and device reboot
+- persist an absolute workout start timestamp in SQLite
+- on restore, elapsed time is recalculated from current time minus the persisted start timestamp
+- powered-off/reboot time is included in workout elapsed time
+- the timer does not depend on a continuously running JavaScript interval
+- restoring an unfinished workout after reboot must preserve the same active session and elapsed duration
+
 ## Still open
 
 - analytics/crash reporting
