@@ -18,9 +18,8 @@ Top:
 
 Lower:
 - `내 루틴` section remains visible
-- zero routines → empty state
-- current empty copy: `아직 만든 루틴이 없어요` / `새 루틴을 만들어 운동을 구성해보세요.`
-- `새 루틴` action remains available
+- zero routines → section header only; no empty-state copy/body
+- section header has no right-side action
 
 ### 02B — Saved routine(s) exist
 `02B_Home_WithRoutine` — `1329:593`
@@ -35,10 +34,9 @@ Top:
 Lower:
 - `내 루틴`
 - 2 × n routine grid
-- `새 루틴` action remains
 
 The Home section structure is persistent:
-- 02A: Quick Start + My Routine empty state
+- 02A: Quick Start + My Routine header-only zero-routine state
 - 02B: the same Quick Start + My Routine 2 × n grid
 
 The My Routine section is not removed when the routine count is zero; only its content state changes.
@@ -52,9 +50,16 @@ Active Workout state remains the exception:
 - the current in-progress workout is the primary Home action
 - the same active session is resumed
 - My Routine remains below the active-workout section
-- My Routine uses populated grid or empty state according to saved-routine count
+- My Routine uses populated grid when routines exist; with zero routines, keep only the `내 루틴` header
 - no Recent Workout section is shown on Home
 - one-active-workout invariant remains
+
+## My Routine header rule
+
+Across 02A / 02B / 02D:
+- My Routine header = `SectionHeader / Trailing=None`
+- no `새 루틴` action on the right
+- routine creation remains available through the Quick Start `내 루틴 만들기` card
 
 ## Home recent-workout rule
 
@@ -101,14 +106,14 @@ Retained:
 `02A_Home_NoRoutine` now contains:
 - `StartChoiceSection`
 - `MyRoutineSection`
-- shared `EmptyState / Action=None` reused for the zero-routine body
-- current empty copy = `아직 만든 루틴이 없어요` / `새 루틴을 만들어 운동을 구성해보세요.`
+- `MyRoutineSection` contains only `SectionHeader / Trailing=None`
+- no empty-state body/copy is shown
 
 `02D_Home_Active` now contains:
 - `RoutineFocusSection`
 - `MyRoutineSection`
 - representative state shows populated routine tiles
-- runtime may render the same MyRoutineSection in the zero-routine empty state without a new top-level screen
+- runtime zero-routine state keeps only the `내 루틴` header; no empty-state copy/body
 
 ## Focused Figma QA
 
