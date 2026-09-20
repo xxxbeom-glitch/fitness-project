@@ -49,6 +49,8 @@ Future domains such as Gym, Body Composition, Watch, AI, and Community should re
 - SQLite is durable local application storage, not a cache
 - active session, sessions, set records, routines, custom exercises, and sync metadata use stable local identities
 - schema evolution uses explicit migrations
+- multi-row changes that must succeed/fail together use transactions
+- user-owned local rows are account-scoped so unsynced data cannot cross account boundaries
 - media files remain outside SQLite; database rows keep references/metadata
 
 ## Server persistence technology — CONFIRMED
