@@ -76,15 +76,16 @@ PO-approved current direction:
     - keep separate = **39**
   - current working identities = **5,648**
 - semantic normalization v3 = **GENERATED / MANUAL QA REMAINS**
-  - current MVP resistance/strength candidates = **3722**
-  - excluded non-MVP = **1476**
+  - current MVP resistance/strength candidates = **3,722**
+  - excluded non-MVP = **1,476**
   - excluded added-weight bodyweight/apparatus = **8**
   - excluded reserved-recording UI = **17**
   - general semantic review = **274**
   - home/context review = **151**
-  - AUTO_DRAFT_COMPLETE = **598**
-  - MANUAL_QA_REQUIRED = **3549**
-  - recording prepass: reps **2225** / weight_reps **1641** / duration **158** / assisted_weight_reps **5** / unresolved **1601**
+  - Korean naming drafts = **967**
+  - AUTO_DRAFT_COMPLETE = **893**
+  - MANUAL_QA_REQUIRED = **3,254**
+  - recording prepass: reps **2,225** / weight_reps **1,641** / duration **158** / assisted_weight_reps **5** / unresolved **1,601**
   - Resistance Band / Rings / Suspension recording semantics = **LOCKED FOR MVP**
 - all source media/provenance is preserved; identity merges/exclusions do not delete alternate media
 - raw purchased filename/path map is not committed to the public repo; only normalized derivative catalog data is committed
