@@ -168,6 +168,24 @@ Locked:
 - opening the app or a later relevant runtime event may reconstruct the ongoing workout notification when an Active Workout still exists
 - workout end/discard remains an explicit in-app action
 
+## Android Rest Timer delivery guarantee — PO APPROVED
+
+Applies to:
+- `05F_Workout_RestTimer` — automatic Rest Timer
+
+Locked behavior:
+- the rest-end alert should still be delivered when the screen is off
+- the rest-end alert should still be delivered while another app is in use
+- ordinary app backgrounding must not cancel the rest-end alert
+- removing Tampin from the recent-apps list must not be treated as ending the workout or canceling the scheduled rest-end alert
+- after a normal device reboot, if the persisted rest end time is still in the future, restore the remaining rest state and its future alert
+- if the persisted rest end time already passed while the device was unavailable/rebooting, do not replay a stale late sound/alert solely because the device came back later
+- Android user-initiated Force stop is the explicit platform exception: notification/background guarantees do not resume until the user launches the app again
+- notification delivery failure/OS restriction never mutates or deletes the SQLite workout/rest state
+- the existing `휴식 타이머 알림` setting still controls delivery of the rest-end alert
+
+The exact Android API/service mechanism remains an implementation detail and must satisfy this behavior without making the workout session dependent on a continuously running JS process.
+
 ## Still open
 
 - analytics/crash reporting
@@ -176,6 +194,6 @@ Locked:
 
 ## NEXT OPEN ITEM
 
-Define platform runtime / background execution architecture.
+Define iOS runtime / background execution equivalent after Android behavior lock.
 
 Do not begin production implementation yet.
