@@ -1,6 +1,6 @@
 # 03 TECH STACK
 
-**Status:** PARTIALLY FROZEN — PLATFORM / APP STACK / LOCAL-FIRST / SQLITE / SUPABASE / AUTH LOCKED · STORAGE OPEN
+**Status:** PARTIALLY FROZEN — PLATFORM / APP STACK / LOCAL-FIRST / SQLITE / SUPABASE / AUTH / STORAGE LOCKED · SYNC OPEN
 
 ## CONFIRMED PRODUCT CONSTRAINTS
 
@@ -64,11 +64,17 @@ Decision record:
 - Apple Sign in added for iOS release alignment
 - auth/session secrets must use secure platform storage, not plain SQLite
 
+## LOCKED — media storage
+
+- Supabase Storage
+- profile photos and support inquiry attachments use Supabase Storage
+- SQLite stores local/remote references and upload state, not large binary media
+- user-owned media is private/scoped by default
+
 ## TBD
 
 The following remain intentionally open:
 - sync trigger / retry / conflict policy
-- media/profile-image storage
 - analytics/crash reporting
 - exact background/runtime implementation
 - deployment/release pipeline details
@@ -88,8 +94,7 @@ Do not select infrastructure merely because it is fashionable or familiar.
 ## NEXT ARCHITECTURE WORK
 
 Proceed one decision at a time:
-1. media/profile-image storage boundary
-2. sync trigger / retry / conflict contract
-3. platform runtime implementation details
+1. sync trigger / retry / conflict contract
+2. platform runtime implementation details
 
 Future Watch implications remain non-MVP and must not drive MVP overengineering.
