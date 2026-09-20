@@ -118,7 +118,7 @@ Primary navigation:
 - 분석
 - 설정
 
-**Current design gap:** the frozen 94-frame Figma and `Common_Component` do not currently contain a primary bottom-navigation/app-bar component or live root-screen instances. Cursor must not invent this shell. Resolve `FIX-01` in `MVP_SCREEN_BEHAVIOR_MATRIX.md` before implementing the primary navigation UI.
+**Primary navigation design is now locked:** `Common_Component > BottomAppBar` (`2078:2401`) is the canonical shared component and is placed only on the seven approved root surfaces. Use `docs/ux-decisions/2026-09-20-bottom-app-bar-root-placement.md` for visibility, fixed-placement, active-variant, overlay, and root-switch behavior.
 
 Exercise library/search is contextual and is not a fifth primary tab.
 
@@ -790,7 +790,6 @@ Cursor must stop and report `DECISION NEEDED` rather than choosing product behav
 
 - technology stack / production architecture
 - launch platform priority
-- primary BottomAppBar root placement / safe-bottom application before primary-shell implementation
 - weekday scheduling / today-next semantics
 - routine duplicate semantics
 - W / D / F routine-set semantics
@@ -815,20 +814,6 @@ No current canonical production app technology stack was found in the reviewed a
 Do not choose framework, database, backend, navigation framework, DI/state architecture, or sync infrastructure merely to begin coding.
 
 Requires Product Owner decision before first implementation Issue.
-
-### BLOCKER B — primary BottomAppBar root placement
-
-The shared visual/component contract is now approved and local in canonical Figma:
-- `Common_Component > BottomAppBar` — `2078:2401`
-- variants = `Active=홈 / 루틴 / 분석 / 설정`
-- Light semantic bindings QA PASS
-- reference placement example = `2075:8536`
-
-Still open:
-- the applicable frozen root screens do not yet contain the shared BottomAppBar instance
-- root placement / bottom clearance / active-variant application must be completed and QA'd before primary-shell UI implementation
-
-Cursor must reuse this shared component and must not invent a separate bottom-navigation design.
 
 ### BLOCKER C — weekday scheduling conflict
 
@@ -955,15 +940,14 @@ Verified:
 - engineering/QA contracts aligned
 
 Not ready to start production implementation yet because:
-1. primary BottomAppBar shared component is ready, but canonical root-screen placement is not yet applied
-2. weekday scheduling policy conflicts with frozen Figma
-3. routine Duplicate semantics are undefined
-4. W / D / F routine-set semantics are undefined
-5. technology stack / architecture is not locked
-6. duration timed-set interaction is not locked
-7. automatic Rest Timer runtime edge/end-feedback policy is not locked
-8. active-session recovery system-notification UX is not locked
-9. launch-platform decision controls whether Apple-provider UI/copy alignment is required
+1. weekday scheduling policy conflicts with frozen Figma
+2. routine Duplicate semantics are undefined
+3. W / D / F routine-set semantics are undefined
+4. technology stack / architecture is not locked
+5. duration timed-set interaction is not locked
+6. automatic Rest Timer runtime edge/end-feedback policy is not locked
+7. active-session recovery system-notification UX is not locked
+8. launch-platform decision controls whether Apple-provider UI/copy alignment is required
 
 Current implementation-facing product brand is Tampin; the stale G Fit working-name text found during deep QA has been corrected in the current Product Direction / Project Brief.
 
