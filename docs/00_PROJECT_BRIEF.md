@@ -86,7 +86,7 @@ Active workout data must survive interruption/restart whenever technically feasi
 
 New account:
 
-`로그인 -> 성별 + 생년월일 -> Home`
+`로그인 -> 성별 + 생년월일 + 서비스 이용약관 명시적 동의 -> Home`
 
 The old recommendation questionnaire / result carousel is superseded.
 
