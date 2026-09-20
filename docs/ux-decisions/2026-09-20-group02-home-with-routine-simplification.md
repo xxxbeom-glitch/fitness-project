@@ -1,6 +1,6 @@
 # 2026-09-20 Group 02 Home With-Routine Simplification
 
-**Status:** PO APPROVED · FIGMA REFLECTED · FOCUSED QA PASS · WEEKDAY/TODAY-NEXT MVP SEMANTICS REMOVED
+**Status:** PO APPROVED · FIGMA REFLECTED · FOCUSED QA PASS · GROUP 02 CLOSED
 
 ## Decision
 
@@ -161,4 +161,23 @@ Related Routine create/edit read-back:
 This checkpoint supersedes the selected-routine Quick Start behavior in:
 - `docs/ux-decisions/2026-09-18-group02-home-routine-selected-compact-direction.md`
 
-It does not yet decide what a `내 루틴` tile tap should do. That interaction remains the next Group 02 behavior question.
+## Routine tile tap behavior — PO APPROVED 2026-09-20
+
+Home `내 루틴` routine tiles open the canonical Routine Detail screen for that routine.
+
+Flow:
+- `Home > 내 루틴 tile` → `03D_Routine_Detail`
+- Routine Detail remains the place where the user explicitly chooses `운동 시작`
+- tapping a Home routine tile must not create/start an Active Workout directly
+- preserve the same routine identity when navigating to detail
+
+Canonical destination:
+- `03D_Routine_Detail` — `34:1447`
+
+Representative Figma verification:
+- 02B routine tiles: `2039:9098`, `2039:9102`
+- canonical Routine Detail exists at `34:1447`
+
+## Group 02 result
+
+**PASS — Group 02 Home is closed.**
