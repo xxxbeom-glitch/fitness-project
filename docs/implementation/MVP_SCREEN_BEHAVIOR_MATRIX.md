@@ -416,7 +416,8 @@ Key routes:
 - 07A recent-progress exercise row → that exercise's canonical Group 04 detail
 - 07B contributor exercise row → that exercise's canonical Group 04 detail
 - 07A recent-workout row → matching 07D saved-session detail
-- 07A `전체 기록` → DECISION NEEDED; the former 07C history overview was removed and no current approved destination exists
+- 07A `전체 기록` → `07C_Workout_History` (new canonical screen to be reflected in Figma)
+- 07C history row → matching 07D saved-session detail
 - Settings legal rows → public external legal documents
 
 # Final screen-by-screen verdict
@@ -430,9 +431,11 @@ Most static/state/detail/dialog/sheet screens in Groups 01, 04, 06, 07, 08, and 
 - none in the current frozen visual contract.
 
 ### DECISION NEEDED
-1. 07A `전체 기록` destination / workout-history-list policy.
-2. 07A `최근 기록 변화` runtime selection/comparison policy.
-3. Production technology stack / platform architecture.
+1. Production technology stack / platform architecture.
+
+### FIGMA FOLLOW-UP
+- add `07C_Workout_History` as the approved full saved-workout history list
+- after creation, update inventory/matrix counts and re-run focused Group 07 navigation/component QA
 
 ### CONDITIONAL
 - Apple sign-in/account copy if iOS is included in launch scope.
