@@ -163,6 +163,21 @@ Canonical:
 
 Verdict: **PASS.**
 
+### RESOLVED-07 — Android notification channel scope
+
+PO-approved:
+- current MVP Android notification categories = `운동 진행` + `휴식 타이머` only
+- `운동 진행` = LOW importance, silent/non-vibrating ongoing Active Workout status
+- `휴식 타이머` = separate time-sensitive Rest Timer completion category
+- updates/notices are not planned for current MVP and no channel/push infrastructure is created
+- `08E_Notification_Settings` current Product scope = `휴식 타이머 알림` only
+- previous `업데이트/공지` row is superseded and requires only a focused Figma row removal, not a screen redesign
+
+Canonical:
+- `docs/ux-decisions/2026-09-20-android-notification-channel-scope.md`
+
+Verdict: **PASS for Product/behavior · focused Figma maintenance pending for 08E row removal.**
+
 ### RESOLVED-01 — Brand naming
 
 Deep QA found stale `G Fit` working-name text in current top-level product docs while canonical visual branding was already Tampin.
@@ -395,7 +410,7 @@ Recommendation-template duration language from older Group 03 history is superse
 |---|---|---|---|---|
 | `08A_Settings_Home` | Settings root | profile / subscription stub / workout / units / notifications / language / legal / inquiry | Theme and FAQ are not current MVP rows. Subscription is not billing. | PASS |
 | `08D_Workout_Settings` | Workout preferences | default rest time; timer sound; keep-screen-on | No app-level timer-end vibration setting. Rest-end vibration follows platform/user notification/device settings; no custom vibration pattern. Timer sounds are app-owned assets. | PASS |
-| `08E_Notification_Settings` | Notification preferences | toggle rest-timer notification and updates/notices | Rest-timer notification toggle governs the approved rest-end system alert. App-level toggles do not override Android `POST_NOTIFICATIONS`; when system permission is unavailable, request it if appropriate or route to Android app notification settings. Updates/notices remains a separate app-notification preference; do not invent extra notification categories or scheduling. | PASS |
+| `08E_Notification_Settings` | Rest Timer notification preference | toggle `휴식 타이머 알림` | This is the only current MVP app-level notification preference. It governs the approved Rest Timer system alert. App-level state does not override Android `POST_NOTIFICATIONS`; when system permission is unavailable, request it if appropriate or route to Android app notification settings. The prior `업데이트/공지` row is superseded and must be removed in focused Figma maintenance. | PASS for Product/behavior · FIGMA FOLLOW-UP |
 | `08D1_Default_Rest_Time_Sheet` | Set default rest duration | 5-second increments; Complete applies value | Current representative value 2:00. | PASS |
 | `08D2_Timer_End_Sound` | Timer sound selection | choose 기본 / 차임 / 벨 | All options are app-owned custom sounds. `기본` means the app's bundled default timer sound, not the device default notification/ringtone. Final production sound files/labels remain release follow-up. | PASS / asset follow-up |
 | `08C_Unit_Settings_Sheet` | Weight display unit | choose kg/lb; Save | Conversion must not progressively mutate source values. Current selection = kg. | PASS |
@@ -450,13 +465,13 @@ Most static/state/detail/dialog/sheet screens in Groups 01, 04, 06, 07, 08, and 
 1. Production technology stack / platform architecture.
 
 ### FIGMA FOLLOW-UP
+- `08E_Notification_Settings`: remove only the superseded `업데이트/공지` row; keep the existing screen structure and `휴식 타이머 알림` row
 - `07C_Workout_History` created and focused-QA PASS on 2026-09-20
 - canonical node = `2121:8457`
 - canonical total = `95`; Group 07 = `6`
 - shared-instance missing main-component links = `0`
 
 ### CONDITIONAL
-- Apple sign-in/account copy if iOS is included in launch scope.
 - final timer sound assets.
 - Production exercise-thumbnail crop/mapping.
 
