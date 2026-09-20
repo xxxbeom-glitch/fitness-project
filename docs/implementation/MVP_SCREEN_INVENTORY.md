@@ -7,7 +7,7 @@
 
 - Figma file: `W3lZurXCXbThP67rF2xk2b`
 - page: `MVP_전체_와이어프레임` — `34:1076`
-- top-level frames read back: `94`
+- top-level frames read back: `95`
 
 Group count:
 - 00: 1
@@ -17,7 +17,7 @@ Group count:
 - 04: 29
 - 05: 18
 - 06: 3
-- 07: 5
+- 07: 6
 - 08: 17
 
 ## Implementation interpretation
@@ -141,7 +141,7 @@ No My/Recommended tabs and no recommended-routine detail exist.
 | `1525:4014` | `05Q_ManualTimer_Running` | 360×780 |
 | `1547:3691` | `05Q_ManualTimer_Paused` | 360×780 |
 
-Blank-workout zero-exercise behavior reuses `05A_Workout_Weight` shell and is defined in `MVP_IMPLEMENTATION_HANDOFF.md`; it is intentionally not a 95th top-level frame.
+Blank-workout zero-exercise behavior reuses `05A_Workout_Weight` shell and is defined in `MVP_IMPLEMENTATION_HANDOFF.md`; it is intentionally not an additional top-level frame.
 
 ## 06 — Workout completion
 
@@ -161,6 +161,7 @@ Recommended-routine save dialogs were removed from the MVP.
 | `887:936` | `07A_Analysis_Home` | 360×1542 |
 | `887:1028` | `07B_BodyArea_Detail` | 360×890 |
 | `1057:593` | `07B_BodyArea_Detail_Empty` | 360×890 |
+| `2121:8457` | `07C_Workout_History` | 360×780 |
 | `1136:4054` | `07D_Workout_History_Detail_DeleteConfirm` | 360×780 |
 
 ## 08 — Settings / account / support
@@ -190,6 +191,6 @@ FAQ screens are not in the current MVP.
 ## Verification result
 
 Counted from the canonical page on 2026-09-20:
-- total = `94`
-- listed in this document = `94`
+- total = `95`
+- listed in this document = `95`
 - no recommended-routine top-level screen is included
