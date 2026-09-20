@@ -1,6 +1,6 @@
 # MVP Implementation Handoff
 
-**Status:** SCREEN DESIGN FROZEN · 94-SCREEN BEHAVIOR QA COMPLETE · FIX / DECISION NEEDED · IMPLEMENTATION NOT STARTED  
+**Status:** SCREEN DESIGN FROZEN · 95-SCREEN BEHAVIOR QA COMPLETE · FIX / DECISION NEEDED · IMPLEMENTATION NOT STARTED  
 **Updated:** 2026-09-20
 
 ## 1. Purpose
@@ -56,7 +56,7 @@ Cursor는 아래를 current requirement로 사용하지 않는다.
 - 추천 루틴 운동 완료 후 저장 다이얼로그
 - recommendation-heavy onboarding
 - `product/wireframe/*`의 오래된 추천 루틴 및 dark-theme 표현
-- 과거 Figma frame 이름/화면이 현재 94-frame inventory에 없을 경우 그 화면
+- 과거 Figma frame 이름/화면이 현재 95-frame inventory에 없을 경우 그 화면
 - radius exploration preview
 
 현재 MVP에는 **추천 루틴 기능이 없다**.
