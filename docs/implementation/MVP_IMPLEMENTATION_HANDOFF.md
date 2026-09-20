@@ -470,11 +470,17 @@ Current overlap rule — PO APPROVED 2026-09-20:
 - no confirmation, toast, or additional screen is required for the restart
 
 Rest Timer end-sound source — PO APPROVED 2026-09-20:
+- Rest Timer sound runtime is locked by `docs/ux-decisions/2026-09-20-android-rest-timer-sound-runtime.md`
 - use app-owned custom sound assets only
 - do not use the device default notification/ringtone sound as the product sound
 - do not depend on an OS system-sound picker
 - Product Owner will provide the final Production sound assets later
-- exact asset filenames/labels remain a later asset task
+- exact asset filenames remain a later asset task
+- Android `휴식 타이머` notification channel itself does not own these selectable sounds
+- at zero, post the approved system notification and separately play the selected bundled sound
+- background/screen-off sound playback uses a short-lived native `mediaPlayback` Foreground Service where Android requires it, then stops immediately
+- changing `기본 / 차임 / 벨` does not recreate notification channels
+- if the chosen asset fails, fall back to bundled `기본`, not device default sound
 
 Rest Timer completion system feedback — PO APPROVED 2026-09-20:
 - when the automatic Rest Timer reaches zero, surface a system notification alert
