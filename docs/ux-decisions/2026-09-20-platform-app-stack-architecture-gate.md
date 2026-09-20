@@ -240,6 +240,21 @@ Locked:
 - `08E_Notification_Settings` must respect Android system permission and route to runtime request/settings when needed
 - re-check permission before user-visible notification delivery because it may be revoked later
 
+## Android notification channel scope — PO APPROVED
+
+Canonical:
+- `docs/ux-decisions/2026-09-20-android-notification-channel-scope.md`
+
+Locked:
+- current MVP has two Android notification categories only: `운동 진행` and `휴식 타이머`
+- `운동 진행` uses a LOW-importance silent/non-vibrating channel for the ongoing Active Workout surface
+- `휴식 타이머` is a separate time-sensitive channel used for the approved rest-end alert
+- updates/notices/marketing/promotional notification channels are not part of the current MVP
+- do not add remote-push infrastructure merely for hypothetical updates/notices
+- `08E_Notification_Settings` current Product scope is `휴식 타이머 알림` only
+- the previous `업데이트/공지` setting is removed from current MVP scope
+- exact Android handling of the selectable app-owned Rest Timer sounds remains the next notification-runtime subdecision
+
 ## Still open
 
 - analytics/crash reporting
