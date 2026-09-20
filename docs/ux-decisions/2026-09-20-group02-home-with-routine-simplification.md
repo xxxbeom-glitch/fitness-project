@@ -17,7 +17,10 @@ Top:
 - `내 루틴 만들기`
 
 Lower:
-- no secondary section
+- `내 루틴` section remains visible
+- zero routines → empty state
+- current empty copy: `아직 만든 루틴이 없어요` / `새 루틴을 만들어 운동을 구성해보세요.`
+- `새 루틴` action remains available
 
 ### 02B — Saved routine(s) exist
 `02B_Home_WithRoutine` — `1329:593`
@@ -34,9 +37,11 @@ Lower:
 - 2 × n routine grid
 - `새 루틴` action remains
 
-The intended layout difference between 02A and 02B is:
-- 02A: Quick Start only
-- 02B: the same Quick Start + My Routine grid
+The Home section structure is persistent:
+- 02A: Quick Start + My Routine empty state
+- 02B: the same Quick Start + My Routine 2 × n grid
+
+The My Routine section is not removed when the routine count is zero; only its content state changes.
 
 Do not place a saved routine into Quick Start merely because routines exist.
 
@@ -46,12 +51,16 @@ Do not place a saved routine into Quick Start merely because routines exist.
 Active Workout state remains the exception:
 - the current in-progress workout is the primary Home action
 - the same active session is resumed
+- My Routine remains below the active-workout section
+- My Routine uses populated grid or empty state according to saved-routine count
 - no Recent Workout section is shown on Home
 - one-active-workout invariant remains
 
 ## Home recent-workout rule
 
 Home does not show a `최근 운동` / `전체 기록` section in any Group 02 state.
+
+The removed Recent Workout area is replaced by/preserved as the `내 루틴` section. The section remains present even when the saved-routine count is zero.
 
 Workout history remains available through the Analysis / history surfaces.
 
@@ -86,6 +95,20 @@ Retained:
 - shared `HomeRoutineTile`
 - 2 × n grid
 - BottomAppBar `Active=홈`
+
+## 02A empty-state reflection
+
+`02A_Home_NoRoutine` now contains:
+- `StartChoiceSection`
+- `MyRoutineSection`
+- shared `EmptyState / Action=None` reused for the zero-routine body
+- current empty copy = `아직 만든 루틴이 없어요` / `새 루틴을 만들어 운동을 구성해보세요.`
+
+`02D_Home_Active` now contains:
+- `RoutineFocusSection`
+- `MyRoutineSection`
+- representative state shows populated routine tiles
+- runtime may render the same MyRoutineSection in the zero-routine empty state without a new top-level screen
 
 ## Focused Figma QA
 
