@@ -1,7 +1,7 @@
 # Pre-release Architecture Re-audit
 
 **Date:** 2026-09-20  
-**Status:** ACTIVE · PO REQUESTED RE-AUDIT BEFORE ANDROID / GOOGLE PLAY RELEASE PIPELINE
+**Status:** COMPLETE · BLOCKS 01–14 PO PASS · DEVELOPMENT NOT AUTHORIZED
 
 ## Purpose
 
@@ -380,6 +380,43 @@ Locked operating rules:
 ### QA verdict
 **PASS**
 
-## NEXT OPEN ITEM
+## Block 14 — Android package / build / signing / Internal → Closed → Production release pipeline
 
-**Block 14 — Android package / build / signing / Internal → Closed → Production release pipeline.**
+### Re-audit result
+Lock the Android release identity and release artifact lineage.
+
+PO-approved package name:
+- `com.lumian.tampin`
+
+Locked release architecture:
+- Expo / EAS Build is the canonical release-build path
+- Google Play release artifact = AAB
+- Google Play App Signing is used; release secrets/private keys are not stored in GitHub
+- actual Play-distributed signing certificate fingerprints must be registered with Google/Kakao where required
+- each release candidate records git SHA ↔ EAS Build ID ↔ versionName ↔ versionCode ↔ exact AAB ↔ Play track
+- after Internal verification, promote the same verified artifact to Closed and then Production rather than rebuilding merely for track movement
+- first-release Production publish remains an explicit Product Owner gate; no unattended auto-publish
+- package registration/availability is read back when the Play app is created; rejection of the chosen package name reopens only that identity decision
+- current target API / tester-count / tester-duration / policy details are re-read from the actual Play Console at execution time instead of copying OnTalk values
+
+Canonical:
+- `docs/ux-decisions/2026-09-20-android-release-pipeline.md`
+- `docs/GOOGLE_PLAY_CONSOLE_TAMPIN_PROFILE.yaml`
+
+### OnTalk comparison
+- OnTalk reached Internal/Closed Test, but later had costly ambiguity between operational branch state, runtime branch state, versionCode, and the actual tested Play artifact.
+- Tampin therefore treats artifact lineage as a release invariant from the first RC and promotes verified artifacts without unnecessary rebuilds.
+
+### QA verdict
+**PASS**
+
+## Re-audit closure
+
+**PASS — Blocks 01–14 complete.**
+
+The pre-release architecture re-audit is closed.
+
+NEXT GATE:
+- Product Owner explicit Development-mode authorization before creating the first scoped production implementation Issue.
+
+Do not begin production implementation from this checkpoint alone.
