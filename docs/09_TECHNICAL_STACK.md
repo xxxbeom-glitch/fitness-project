@@ -53,3 +53,15 @@ This approach preserves one shared implementation path while matching the Androi
 
 Decision record:
 - `docs/ux-decisions/2026-09-20-platform-app-stack-architecture-gate.md`
+
+
+## Authentication
+
+Confirmed:
+- Supabase Auth
+- Google + Kakao for the current Android-first MVP
+- Apple Sign in for iOS release alignment
+- React Native / Expo client uses the Supabase JS auth flow
+- auth/session secrets must use secure device storage; SQLite remains for application data, not plain-text credentials
+
+Authentication service choice does not change the local-first workout persistence rule.
