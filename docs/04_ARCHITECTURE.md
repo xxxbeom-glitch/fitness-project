@@ -1,6 +1,6 @@
 # 04 ARCHITECTURE
 
-**Status:** PARTIALLY FROZEN — LOCAL-FIRST + SQLITE + SUPABASE + AUTH + STORAGE LOCKED
+**Status:** PARTIALLY FROZEN — LOCAL-FIRST + SQLITE + SUPABASE + AUTH + STORAGE + SYNC LOCKED
 
 ## Architecture goals
 
@@ -68,12 +68,28 @@ Future domains such as Gym, Body Composition, Watch, AI, and Community should re
 - user-owned media is private/scoped by default
 - exercise-library Production assets remain a separate distribution concern unless explicitly moved into the same storage architecture
 
+## Synchronization architecture — CONFIRMED
+
+Canonical:
+- `docs/ux-decisions/2026-09-20-local-first-sync-policy.md`
+
+Core invariants:
+- SQLite commit precedes all remote synchronization
+- durable outbox/dirty state survives restart
+- sync is batched/coalesced rather than per-input
+- active workout remote attempts are rate-limited to roughly once per 5 minutes while dirty and foreground
+- important commit points trigger immediate best-effort sync
+- retry uses exponential backoff with jitter
+- idempotent mutation IDs prevent duplicate effects
+- optimistic server revisions detect conflicts
+- active session has a single write-owner device until completion/discard
+- media upload failures cannot block workout-data synchronization
+
 ## TBD
 
 - server schema
-- sync trigger / retry / conflict strategy
 - event/state architecture
-- background sync
+- exact platform background/runtime implementation
 - migration strategy
 
 ## Anti-overengineering rule
