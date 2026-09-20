@@ -887,9 +887,10 @@ Completed:
 - Block 10 — Notification permission / channels / exact alarm / Rest Timer sound: **PASS**
 - Block 11 — Sentry crash/error reporting / privacy + source-map QA: **PASS**
 - Block 12 — PostHog product analytics / 24-event explicit taxonomy: **PASS**
+- Block 13 — Google Play submission source-data / Tampin Play profile readiness: **PASS**
 
 NEXT OPEN ITEM:
-- Block 13 — Google Play submission source-data / policy profile readiness
+- Block 14 — Android package / build / signing / Internal → Closed → Production release pipeline
 
 ## Other already-known open decisions
 
