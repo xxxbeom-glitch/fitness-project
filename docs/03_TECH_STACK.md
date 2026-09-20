@@ -1,6 +1,6 @@
 # 03 TECH STACK
 
-**Status:** PARTIALLY FROZEN — PLATFORM / APP STACK / LOCAL-FIRST PERSISTENCE LOCKED · LOCAL DB OPEN
+**Status:** PARTIALLY FROZEN — PLATFORM / APP STACK / LOCAL-FIRST / SQLITE LOCKED · BACKEND OPEN
 
 ## CONFIRMED PRODUCT CONSTRAINTS
 
@@ -42,10 +42,17 @@ Decision record:
 - unsynced local changes must survive interruption/restart
 - sync failure must never roll back locally saved workout data
 
+## LOCKED — local database
+
+- SQLite via `expo-sqlite`
+- durable local source for workout/session/routine/custom-exercise data
+- active-session recovery reads from SQLite
+- explicit schema migrations are required
+- large media binaries are not stored directly in SQLite
+
 ## TBD
 
 The following remain intentionally open:
-- local database technology
 - backend/database provider
 - auth implementation boundary
 - sync trigger / retry / conflict policy
@@ -69,8 +76,8 @@ Do not select infrastructure merely because it is fashionable or familiar.
 ## NEXT ARCHITECTURE WORK
 
 Proceed one decision at a time:
-1. local database choice
-2. backend/database/auth/storage choice
+1. backend/database provider
+2. auth/storage boundary
 3. sync trigger / retry / conflict contract
 4. platform runtime implementation details
 
