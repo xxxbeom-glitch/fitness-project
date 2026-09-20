@@ -437,7 +437,36 @@ Group 07:
 
 Verdict for these additions: **PASS — recovered approved rules, not new product behavior.**
 
-## 14. Final QA verdict
+## 14. Sequential QA — Group 00–01
+
+PO-approved first-run amendment was reflected and re-read from canonical Figma.
+
+Verified:
+- `00_Splash` unchanged: brand-primary background + white Tampin wordmark
+- Login keeps `서비스 이용약관` and `개인정보처리방침` links
+- Login implicit consent sentence `계속하면 서비스 이용약관에 동의합니다.` = removed
+- shared `TermsAgreementRow` = `2087:8664`
+- variants = `Agreed=False / True`
+- unchecked agreement reference is present on all five Basic Info state frames
+- `시작하기` validity contract = sex + valid DOB + Terms agreement
+- Basic Info Back = Login; onboarding remains incomplete; same provider identity resumes the same internal account
+- visible text overflow in Group 00–01 = `0`
+- Group 00–01 missing main-component links = `0`
+- Group 00–01 BottomAppBar count = `0`
+- whole-MVP instances after amendment = `1,872`
+- whole-MVP missing main-component links = `0`
+- whole-MVP non-`Common_Component` sources = `0`
+
+Canonical decision:
+- `docs/ux-decisions/2026-09-20-group00-01-first-run-closure.md`
+
+Verdict: **PASS — Group 00–01 closed.**
+
+Next sequential QA:
+- Group 02 Home
+- stop for PO decision before Group 03
+
+## 15. Final QA verdict
 
 ### PASS
 - 94 / 94 screen behavior rows mapped
@@ -450,6 +479,7 @@ Verdict for these additions: **PASS — recovered approved rules, not new produc
 - blank-workout runtime state specification
 - routine optional-name specification
 - dialog/logo current-state references
+- Group 00–01 first-run consent/resume alignment
 - stale planning artifact guardrails
 
 ### FIX before relevant UI implementation
