@@ -171,6 +171,21 @@ Core invariants:
 - Active Workout itself still does not run a continuous Foreground Service
 - notification-channel identity remains stable across sound-setting changes
 
+## Crash / error observability — CONFIRMED
+
+Canonical:
+- `docs/ux-decisions/2026-09-20-sentry-crash-error-reporting.md`
+
+- Sentry is the MVP crash/error diagnostics provider
+- Sentry is not a product database or product-analytics source
+- local development reporting is disabled by default
+- internal/preview and production environments are separated
+- source maps/release IDs must map to the actual Android build
+- Session Replay is disabled
+- sensitive/profile/workout-entered values are excluded from event payloads
+- only minimal opaque identity + build/OS/screen/high-level runtime context is allowed
+- Sentry failure never blocks launch, workout logging, SQLite persistence, or Supabase sync
+
 ## TBD
 
 - server schema
