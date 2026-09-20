@@ -1,6 +1,6 @@
 # 04 ARCHITECTURE
 
-**Status:** BOOTSTRAP — NOT YET FROZEN
+**Status:** PARTIALLY FROZEN — LOCAL-FIRST PERSISTENCE LOCKED
 
 ## Architecture goals
 
@@ -29,12 +29,16 @@ Future domains such as Gym, Body Composition, Watch, AI, and Community should re
 - Editing a routine must not silently rewrite past workout history.
 - A custom exercise should keep its own stable identity and history.
 - Active-session persistence must be designed before implementation.
+- Workout interaction is local-first: local persistence succeeds before server synchronization is required.
+- Weak/offline network state must not block set entry, set completion, active-session editing, or workout completion.
+- Unsynced local workout state must survive app interruption/restart.
+- Sync failure must not delete, roll back, or silently overwrite newer unsynced local workout data.
 
 ## TBD
 
 - local database technology
 - server schema
-- sync conflict strategy
+- sync trigger / retry / conflict strategy
 - authentication boundary
 - event/state architecture
 - background sync
