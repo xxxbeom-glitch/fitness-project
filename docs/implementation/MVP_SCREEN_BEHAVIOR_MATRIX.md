@@ -135,17 +135,33 @@ Still undefined:
 
 Verdict: **DECISION NEEDED before recovery-notification implementation.**
 
-### CONDITIONAL-01 — iOS Apple sign-in variant depends on platform decision
+### RESOLVED-05 — Android-only platform scope
 
-Policy:
-- Android = Google / Kakao
-- iOS = Google / Kakao / Apple
+Current MVP/production scope is Android only.
+- Login providers = Google / Kakao
+- no iOS / Apple Sign in requirement in the current MVP
+- future iOS work requires a separate Product/Architecture decision
 
-Frozen `01A_Login` only renders Google / Kakao. Account-deletion copy also currently references Google/Kakao.
+Canonical:
+- `docs/ux-decisions/2026-09-20-android-only-platform-scope.md`
 
-Verdict:
-- Android-first implementation: current Figma is sufficient for provider presentation
-- iOS launch scope: Apple provider state/copy requires implementation/design alignment
+Verdict: **PASS.**
+
+### RESOLVED-06 — Android notification permission timing
+
+PO-approved:
+- Android 13+ uses `POST_NOTIFICATIONS`
+- do not request at install/login/onboarding/Home
+- first request occurs contextually on the user's first Active Workout after local session persistence
+- use existing Dialog pattern for the one-time rationale; no new top-level canonical screen
+- denial/dismissal never blocks the workout
+- do not auto-prompt on every later workout
+- `08E_Notification_Settings` must respect Android system permission and request/route to Settings when needed
+
+Canonical:
+- `docs/ux-decisions/2026-09-20-android-notification-permission-policy.md`
+
+Verdict: **PASS.**
 
 ### RESOLVED-01 — Brand naming
 
@@ -169,7 +185,7 @@ Current implementation-facing brand = **Tampin**.
 
 | Screen | Purpose / Entry | Primary behavior / Exit | Implementation rule | QA |
 |---|---|---|---|---|
-| `01A_Login` | Signed-out entry | Google/Kakao continue; Terms/Privacy open public docs; 문의하기 opens support path | Unified sign-up/login semantics; no email/password path. Provider continuation is not Terms agreement. Existing-account vs first-time account branches after provider auth. | PASS for Android surface · CONDITIONAL Apple variant if iOS |
+| `01A_Login` | Signed-out entry | Google/Kakao continue; Terms/Privacy open public docs; 문의하기 opens support path | Unified sign-up/login semantics; no email/password path. Provider continuation is not Terms agreement. Existing-account vs first-time account branches after provider auth. Android-only MVP. | PASS |
 | `01C_Basic_Info` | First-time/incomplete onboarding account after auth | Select sex + enter DOB + explicitly agree to Terms; all required valid states enable `시작하기` → Home. Back → Login. | Sex + valid DOB + Terms agreement required. Back keeps onboarding incomplete; same provider identity resumes the same account at Basic Info on next auth. No duplicate account for interrupted onboarding. | PASS |
 | `01C1_Basic_Info_Error` | Invalid DOB | Correct field; CTA stays Disabled until sex + valid DOB + Terms agreement are all satisfied | Current inline error = `올바른 생년월일 8자리를 입력해주세요.` Terms agreement remains an independent required state. | PASS |
 | `01A1_Login_Error_Overlay_Cases` | Login failure reference board | General / network / service errors use DialogCard; retry or close | Not a separate navigation route. Use current 2026-09-19 dialog copy. | PASS |
@@ -287,7 +303,7 @@ Recommendation-template duration language from older Group 03 history is superse
 
 | Screen | Purpose / Entry | Primary behavior / Exit | Implementation rule | QA |
 |---|---|---|---|---|
-| `05A_Workout_Weight` | Core active workout shell | edit/complete sets; add/delete sets; exercise menu; add exercise; timer; end/cancel | Durable local state authoritative while active. Previous performance by stable exercise identity. Numeric sets only. Recording-type variants reuse the shared ExerciseCard; duration uses manual TIME value + manual completion, with header Manual Timer as optional unlinked reference. | PASS |
+| `05A_Workout_Weight` | Core active workout shell | edit/complete sets; add/delete sets; exercise menu; add exercise; timer; end/cancel | Durable local state authoritative while active. On the user's first Active Workout on Android 13+, persist the session first, then contextually request `POST_NOTIFICATIONS` through the approved one-time rationale flow. Denial/dismissal never blocks the workout. Previous performance by stable exercise identity. Numeric sets only. Recording-type variants reuse the shared ExerciseCard; duration uses manual TIME value + manual completion, with header Manual Timer as optional unlinked reference. | PASS |
 | `05I_Workout_Menu` | Current-exercise action sheet | replace / reorder / delete / close | Delete affects current session exercise only unless separately updating saved routine at completion. | PASS |
 | `05J_Reorder` | Exercise order editor | reorder; Complete returns to originating workout/routine context | Reorder must not alter historical exercise identity/data. | PASS |
 | `05K_End_Incomplete` | End with unfinished planned work | Continue workout / End and save | Save only completed work according to approved partial-completion semantics. | PASS |
@@ -301,7 +317,7 @@ Recommendation-template duration language from older Group 03 history is superse
 | `05G2_Exercise_Replace_SecondBatch` | Second replacement candidate group | select or `다른 운동 보기` cycles within already secured groups | No `전체 운동에서 찾기`; no 7th+ candidate. | PASS |
 | `05P_Exercise_Replace_DeleteConfirm` | Replacement after >=1 completed set in current exercise | Cancel or delete those current-session completed sets and replace | Never delete prior-date history. | PASS |
 | `05A_Workout_Weight_Scrolled_3rdExercise` | Scroll/pinned-shell reference | same active-workout actions at scrolled position | Implement as scroll state, not separate route. Preserve pinned/live elements. | PASS |
-| `05F_Workout_RestTimer` | Automatic Rest Timer active after set completion | Continue logging; completing another set restarts the automatic Rest Timer for that newly completed set; `휴식 종료` terminates countdown; zero removes bar and sends the approved system rest-end alert | Fixed-bottom RestLiveBar; one automatic Rest Timer at a time; no ±15/pause/reset. Manual Timer unavailable while rest is active. Ongoing system workout surface shows remaining rest time. | PASS |
+| `05F_Workout_RestTimer` | Automatic Rest Timer active after set completion | Continue logging; completing another set restarts the automatic Rest Timer for that newly completed set; `휴식 종료` terminates countdown; zero removes bar and sends the approved system rest-end alert | Fixed-bottom RestLiveBar; one automatic Rest Timer at a time; no ±15/pause/reset. Manual Timer unavailable while rest is active. Ongoing system workout surface shows remaining rest time when Android notification permission is available. Exact-alarm access does not override a denied notification permission. | PASS |
 | `05Q_ManualTimer_Idle` | Manual timer popup idle | ±15 sec; start; X dismiss | Default 01:30; no direct time typing. | PASS |
 | `05Q_ManualTimer_Running` | Manual timer counting down | ±15 sec; pause; X terminates timer | No simultaneous automatic Rest Timer. | PASS |
 | `05Q_ManualTimer_Paused` | Manual timer paused | reset / continue / X terminate | Reopen after close starts fresh Idle 01:30. | PASS |
@@ -379,15 +395,15 @@ Recommendation-template duration language from older Group 03 history is superse
 |---|---|---|---|---|
 | `08A_Settings_Home` | Settings root | profile / subscription stub / workout / units / notifications / language / legal / inquiry | Theme and FAQ are not current MVP rows. Subscription is not billing. | PASS |
 | `08D_Workout_Settings` | Workout preferences | default rest time; timer sound; keep-screen-on | No app-level timer-end vibration setting. Rest-end vibration follows platform/user notification/device settings; no custom vibration pattern. Timer sounds are app-owned assets. | PASS |
-| `08E_Notification_Settings` | Notification preferences | toggle rest-timer notification and updates/notices | Rest-timer notification toggle governs the approved rest-end system alert. Updates/notices remains a separate app-notification preference; do not invent extra notification categories or scheduling. | PASS |
+| `08E_Notification_Settings` | Notification preferences | toggle rest-timer notification and updates/notices | Rest-timer notification toggle governs the approved rest-end system alert. App-level toggles do not override Android `POST_NOTIFICATIONS`; when system permission is unavailable, request it if appropriate or route to Android app notification settings. Updates/notices remains a separate app-notification preference; do not invent extra notification categories or scheduling. | PASS |
 | `08D1_Default_Rest_Time_Sheet` | Set default rest duration | 5-second increments; Complete applies value | Current representative value 2:00. | PASS |
 | `08D2_Timer_End_Sound` | Timer sound selection | choose 기본 / 차임 / 벨 | All options are app-owned custom sounds. `기본` means the app's bundled default timer sound, not the device default notification/ringtone. Final production sound files/labels remain release follow-up. | PASS / asset follow-up |
 | `08C_Unit_Settings_Sheet` | Weight display unit | choose kg/lb; Save | Conversion must not progressively mutate source values. Current selection = kg. | PASS |
 | `08B1_Profile_Photo_Sheet` | Change profile photo | photo select / default image / cancel | Photo is optional profile presentation. | PASS |
 | `08B_Profile` | Profile edit | photo; nickname; Logout; Save; More → account sheet | Logout is plain centered action above Save. | PASS |
 | `08B2_Account_Management_Sheet` | Account actions from profile More | account deletion / cancel | Do not add unrelated account functions. | PASS |
-| `08B3_Account_Deletion` | Destructive pre-confirmation explanation | `계정 탈퇴하기` → final confirmation | No recovery/grace period after final confirm. Provider wording is Google/Kakao-oriented. | CONDITIONAL-01 |
-| `08B4_Account_Deletion_Confirm` | Final destructive confirmation | Cancel / 탈퇴하기 | Delete normal account product data; unlink linked providers; legal-retention exception only. | CONDITIONAL-01 |
+| `08B3_Account_Deletion` | Destructive pre-confirmation explanation | `계정 탈퇴하기` → final confirmation | No recovery/grace period after final confirm. Provider wording is Google/Kakao-oriented for the Android-only MVP. | PASS |
+| `08B4_Account_Deletion_Confirm` | Final destructive confirmation | Cancel / 탈퇴하기 | Delete normal account product data; unlink linked providers; legal-retention exception only. Android-only MVP. | PASS |
 | `08G_Support_Inquiry` | Support form | category / reply email / content / up to 3 images / send | Exact retention/disclosure is release follow-up. | PASS for UI |
 | `08G1_Inquiry_Category_Sheet` | Inquiry category selection | select category → form | Current options = app error / workout-record·routine / analysis·data / account·login / feature suggestion / other. | PASS |
 | `08G2_Inquiry_Submitted` | Send success | Confirm dismisses success | Current simplified dialog copy canonical. | PASS |
