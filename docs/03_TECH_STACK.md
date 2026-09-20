@@ -1,6 +1,6 @@
 # 03 TECH STACK
 
-**Status:** PARTIALLY FROZEN — PLATFORM / APP STACK LOCKED · DATA ARCHITECTURE OPEN
+**Status:** PARTIALLY FROZEN — PLATFORM / APP STACK / LOCAL-FIRST PERSISTENCE LOCKED · LOCAL DB OPEN
 
 ## CONFIRMED PRODUCT CONSTRAINTS
 
@@ -33,13 +33,22 @@ Application stack:
 Decision record:
 - `docs/ux-decisions/2026-09-20-platform-app-stack-architecture-gate.md`
 
+## LOCKED — persistence direction
+
+- workout interaction is local-first
+- active-session and workout edits persist locally before any server sync
+- network availability must not block workout recording
+- server sync is asynchronous and follows a separate policy
+- unsynced local changes must survive interruption/restart
+- sync failure must never roll back locally saved workout data
+
 ## TBD
 
 The following remain intentionally open:
 - local database technology
 - backend/database provider
 - auth implementation boundary
-- offline-first sync mechanics / conflict policy
+- sync trigger / retry / conflict policy
 - media/profile-image storage
 - analytics/crash reporting
 - exact background/runtime implementation
@@ -60,10 +69,9 @@ Do not select infrastructure merely because it is fashionable or familiar.
 ## NEXT ARCHITECTURE WORK
 
 Proceed one decision at a time:
-1. local-first vs server-first workout persistence
-2. local database choice
-3. backend/database/auth/storage choice
-4. sync/conflict/recovery contract
-5. platform runtime implementation details
+1. local database choice
+2. backend/database/auth/storage choice
+3. sync trigger / retry / conflict contract
+4. platform runtime implementation details
 
 Future Watch implications remain non-MVP and must not drive MVP overengineering.
