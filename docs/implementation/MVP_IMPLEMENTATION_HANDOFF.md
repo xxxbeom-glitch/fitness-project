@@ -368,20 +368,23 @@ Do not coerce unsupported semantics into another type.
 - first-use helper may explain:
   `보조 kg가 클수록 머신의 도움도 커집니다.`
 
-### Duration blocker
+### Duration Active Workout — resolved
 
-Storage meaning is approved: duration is stored in seconds.
+Storage meaning:
+- duration is stored in seconds
 
-However the Active Workout interaction is **not approved yet**:
-- countdown vs stopwatch
-- start/stop UI
-- target time vs actual time
-- finish signal
-- exact rest-timer start condition
+MVP interaction:
+- use shared `ExerciseCard / Mode=WorkoutDuration` (`651:3614`)
+- each set uses a TIME value plus manual completion control
+- no inline duration stopwatch/countdown/start-stop UI
+- the existing Nav Header Manual Timer may be used by the user as an optional reference
+- Manual Timer does not automatically write to the duration field
+- Manual Timer completion does not automatically complete a duration set
+- the user manually confirms/edits TIME and completes the set
+- completion stores the current TIME value as duration seconds
+- completing the duration set triggers the normal automatic Rest Timer behavior
 
-Cursor must not invent this behavior.
-
-Verdict for this component state: `DECISION NEEDED`.
+No additional top-level Figma state is required.
 
 ### MVP set-type rule — resolved
 
@@ -838,7 +841,6 @@ Cursor must stop and report `DECISION NEEDED` rather than choosing product behav
 
 - technology stack / production architecture
 - launch platform priority
-- `duration` Active Workout timed-set interaction
 - unapproved PR/progression formula
 - unresolved non-active multi-device conflict behavior
 - Rest Timer zero-completion vibration/background-notification behavior
@@ -865,11 +867,9 @@ The following former blockers are already resolved by `docs/ux-decisions/2026-09
 - Routine `복제`: creates an independent saved copy immediately, stays on/returns to the Routine List, and uses the approved duplicate naming/collision rule.
 - W / D / F: outside the current MVP; Routine and Active Workout use numeric sets only (`1, 2, 3 ... n`).
 
-### BLOCKER F — duration Active Workout interaction
+### Resolved — duration Active Workout interaction
 
-`recording_type = duration` is MVP-active at the data-policy level, but timed-set interaction remains explicitly deferred.
-
-Requires focused Product/UX decision before implementation of duration exercise logging.
+Duration uses the existing manual TIME-entry + set-completion pattern. The header Manual Timer is optional reference only and is not linked to the duration value or completion state.
 
 ### BLOCKER G — automatic Rest Timer remaining zero-completion feedback
 
