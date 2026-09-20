@@ -107,6 +107,38 @@ Reason:
 - actual package layout / config-plugin implementation is a Development-mode detail
 - generated native files must not become an undocumented second source of truth
 
+## Block 03 — Local-first persistence scope and semantics
+
+### Re-audit result
+Local-first remains correct for workout/product state that must survive poor connectivity:
+- Active Workout / workout records
+- saved routines
+- custom exercises
+- local app settings
+
+Server-confirmed actions are explicitly outside local-first completion:
+- authentication
+- account deletion
+- support inquiry submission
+- profile/media upload completion
+
+Network restoration may retry synchronization of state the user already accepted locally, but must not silently create a new user-visible action that previously failed.
+
+### OnTalk comparison
+OnTalk exposed two concrete network-behavior failure modes relevant here:
+- offline support could appear successfully submitted
+- a failed chat message could automatically send after reconnect without a fresh user action
+
+Tampin therefore separates:
+- replication of already-saved local product state → automatic retry allowed
+- new server-confirmed user action → server success / explicit retry required
+
+Canonical policy amended:
+- `docs/ux-decisions/2026-09-20-local-first-sync-policy.md`
+
+### QA verdict
+**PASS**
+
 ## NEXT OPEN ITEM
 
-**Block 03 — Local-first persistence scope and semantics.**
+**Block 04 — SQLite local database suitability and operating rules.**
