@@ -771,6 +771,11 @@ Locked:
 Canonical:
 - `docs/ux-decisions/2026-09-20-local-first-sync-policy.md`
 
+Locked:
+- workout elapsed time continues across device reboot
+- powered-off/reboot time is included
+- restore uses the persisted absolute workout start timestamp
+
 NEXT OPEN ITEM:
 - define platform runtime / background execution architecture
 
