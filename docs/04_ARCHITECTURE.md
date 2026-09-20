@@ -110,7 +110,8 @@ Core invariants:
 ## Android reboot recovery — CONFIRMED
 
 - an unfinished Active Workout survives a normal device reboot through persisted SQLite state
-- after Android boot completion, the app checks for the unfinished active session and reconstructs the ongoing workout notification
+- after Android boot completion, the app checks for the unfinished active session and reconstructs the ongoing workout notification when Android allows that boot/runtime delivery path
+- boot-time notification reconstruction can be delayed by Android background restrictions; such delay never changes the persisted workout
 - tapping the reconstructed notification resumes the same session
 - elapsed workout duration continues from the persisted absolute start timestamp
 - an active rest state is reconstructed from its persisted absolute end timestamp when still applicable
