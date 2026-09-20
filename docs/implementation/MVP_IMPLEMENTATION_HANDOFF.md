@@ -722,8 +722,11 @@ Notifications:
 - `휴식 타이머 알림` controls delivery of the approved Rest Timer zero system alert
 - approved alert copy = `휴식 시간이 끝났어요` / `다음 세트를 시작하세요.`
 - alert uses the selected app-owned timer-end sound
-- do not invent additional notification categories, scheduling, or workout-mutating notification quick actions
-- platform permission timing / exact framework/service remains architecture implementation work
+- Android Rest Timer completion uses exact-alarm scheduling with `SCHEDULE_EXACT_ALARM` when access is granted
+- request exact-alarm special access contextually when precise Rest Timer delivery is first needed; do not request it blindly at first launch
+- if access is denied/revoked, workout logging remains available and notification delivery falls back to best-effort timing
+- do not use restricted `USE_EXACT_ALARM`
+- do not invent additional notification categories or workout-mutating notification quick actions
 
 Subscription:
 - `구독 관리` is a stub
