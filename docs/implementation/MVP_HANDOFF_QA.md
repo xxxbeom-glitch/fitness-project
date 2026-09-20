@@ -540,6 +540,35 @@ Next sequential QA:
 - Group 05 Active Workout
 - stop for PO decision before Group 06–07
 
+## 14B. Sequential QA — Group 06–07
+
+Canonical Figma / behavior-matrix inventory:
+- Group 06 = `3 / 3`
+- Group 07 = `5 / 5`
+- no top-level inventory mismatch
+
+Recovered approved behavior added to the handoff:
+- Group 06 completion shows all valid session PR rows; older representative-PR-only rule is superseded
+- completion `올해 N번째 운동이에요` reuses the approved workout-count semantics over the user's local calendar year
+- 07A/07B exercise rows route to canonical Group 04 exercise detail
+- 07A recent-workout rows route to 07D saved-session detail
+- 07D performed-exercise table grouping/native-format rules
+
+Verified current Figma:
+- 06A = Default with shared multi-row PR card + 2×2 summary
+- 06 NoPR = no PR card
+- 06 VolumeNA = `총 볼륨 —`
+- 07B populated / empty states align; empty state contains no fake body-map activity
+- 07D contains shared multi-row PR card, 2×2 summary, body distribution, `운동 / 수행 / 세트` table
+- 07D delete-confirm copy matches the 2026-09-19 simplified dialog copy
+- sampled Group 07 canonical states have no missing main-component link
+
+New Product/UX decisions:
+1. 07A `전체 기록` has no approved destination because the former workout-history overview was removed.
+2. 07A `최근 기록 변화` lacks a complete runtime selection/comparison/representative-record algorithm.
+
+Verdict: **DECISION NEEDED — Group 06 is clear; Group 07 has two current handoff blockers.**
+
 ## 15. Final QA verdict
 
 ### PASS
@@ -596,8 +625,8 @@ Verdict: **PASS — Group 04 Exercise Library / Custom Exercise sequential QA cl
 - none in the current frozen visual contract.
 
 ### DECISION NEEDED before production implementation
-1. automatic Rest Timer zero-completion vibration/background-notification policy
-2. active-session recovery system-notification UX
+1. 07A `전체 기록` destination / history-list policy
+2. 07A `최근 기록 변화` runtime selection/comparison policy
 3. technology stack / platform architecture
 
 
