@@ -581,11 +581,11 @@ Verdict: **PASS — Group 06–07 sequential handoff QA closed.**
 ## 15. Final QA verdict
 
 ### PASS
-- 94 / 94 screen behavior rows mapped
+- 95 / 95 screen behavior rows mapped
 - current product scope alignment
 - recommendation removal
 - MVP screen freeze
-- 94-screen Figma/document 1:1 inventory
+- 95-screen Figma/document 1:1 inventory
 - Figma component linkage
 - Cursor-facing behavior/data/design contract
 - blank-workout runtime state specification
@@ -600,7 +600,7 @@ Verdict: **PASS — Group 06–07 sequential handoff QA closed.**
 - duplicate behavior resolved
 - W/D/F removed from current MVP
 - focused Group 03 Figma QA: overflow `0`, missing main-component links `0`
-- whole-MVP: 94 top-level frames, 1,820 instances, missing links `0`, non-Common sources `0`
+- whole-MVP current canonical state: 95 top-level frames, 1,843 instances, missing links `0`, non-Common sources `0`
 
 Verdict: **PASS — Group 03 Routine closed.**
 
@@ -640,6 +640,16 @@ Verdict: **PASS — Group 04 Exercise Library / Custom Exercise sequential QA cl
 - `07C_Workout_History` created and verified
 - Group 06–07 Product/UX / Figma handoff QA = PASS
 
+### Group 08 sequential closure
+- canonical Group 08 frames = `17 / 17`
+- app-owned timer-end sound policy aligned
+- Rest Timer system alert policy aligned
+- app-level `타이머 종료 진동` setting removed from Figma
+- vibration follows platform/user notification/device settings
+- Group 08 current instance links = `242`, missing = `0`, non-Common sources = `0`
+
+Verdict: **PASS — Group 08 Settings / Account / Support closed.**
+
 
 ### CONDITIONAL
 - iOS launch requires Apple sign-in/provider copy alignment
@@ -649,4 +659,4 @@ Verdict: **PASS — Group 04 Exercise Library / Custom Exercise sequential QA cl
 
 ## Final result
 
-**DECISION NEEDED — the 94 canonical screens are individually mapped and the current visual FIX list is closed, but the handoff is not a full PASS until the remaining Product/Runtime/Architecture decisions are resolved.**
+**DECISION NEEDED — the 95 canonical screens are individually mapped and sequential Product/UX handoff QA through Group 08 is PASS. The remaining blocking decision is the production technology/platform architecture gate.**
