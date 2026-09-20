@@ -192,7 +192,7 @@ Verdict: **PASS — Group 00–01 closed.**
 | Screen | Purpose / Entry | Primary behavior / Exit | Implementation rule | QA |
 |---|---|---|---|---|
 | `02A_Home_NoRoutine` | Home with no saved routine | `빈 운동` → zero-exercise Active Workout; top `내 루틴 만들기` or empty-card `루틴 만들기` → routine create | Quick Start + `내 루틴 (0)` + full-width empty card. Empty card reuses the established EmptyState/Compact pattern and Home card surface. Header has no right-side action. No Recent Workout section. | PASS |
-| `02B_Home_WithRoutine` | Home with one or more saved routines | `빈 운동` → blank workout; `내 루틴 만들기` → routine create; `내 루틴` renders saved routines in 2×n grid | My Routine header = `내 루틴 (n)` with no right-side action. Quick Start is identical to 02A. No weekday/today-next/selected-routine semantics. Exact routine-tile tap destination remains a Group 02 decision. | DECISION NEEDED — routine-tile tap |
+| `02B_Home_WithRoutine` | Home with one or more saved routines | `빈 운동` → blank workout; `내 루틴 만들기` → routine create; `내 루틴` routine tile → matching `03D_Routine_Detail` | My Routine header = `내 루틴 (n)` with no right-side action. Quick Start is identical to 02A. Routine tile opens detail and does not directly start an Active Workout. No weekday/today-next/selected-routine semantics. | PASS |
 | `02D_Home_Active` | Home while one active workout exists | active card → resume same session; `내 루틴` remains below | Active workout is the priority section; My Routine persists with `내 루틴 (n)` and uses cards when routines exist. This 02A empty-card amendment does not add a new 02D zero-routine visual state. No Recent Workout section. Never create a second active session silently. | PASS |
 
 # 03 — Routine
