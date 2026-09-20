@@ -19,7 +19,7 @@ Core product principle:
 
 ## Core user loop
 
-`오늘/다음 운동 확인 -> 운동 시작 -> 이전 기록 확인 -> 중량/횟수/세트 기록 -> 휴식 -> 운동 종료 -> 요약/성장 확인 -> 다음 운동`
+`운동 시작/복귀 -> 이전 기록 확인 -> 중량/횟수/세트 기록 -> 휴식 -> 운동 종료 -> 요약/성장 확인 -> 다음 운동`
 
 ## Core problems
 
@@ -105,7 +105,7 @@ Information priority:
 2. how did recent training go?
 3. am I progressing?
 
-For a user with routines, today's/next workout is more important than recommendation content.
+For a user with routines, direct workout entry and access to saved routines are more important than recommendation content.
 
 ## Exercise content direction
 
@@ -124,7 +124,7 @@ Current visual baseline:
 - add exercises
 - reorder exercises
 - configure basic set/rep prescription
-- optional weekday assignment
+- weekday assignment is not part of the current MVP
 
 ### Custom exercises
 - exercise name
