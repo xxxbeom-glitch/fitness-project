@@ -148,13 +148,14 @@ Locked:
 ## Android reboot notification recovery — PO APPROVED
 
 Locked:
-- if an Active Workout remains unfinished when the device reboots, Android restores the ongoing workout notification after boot completes
+- if an Active Workout remains unfinished when the device reboots, Tampin reconstructs the ongoing workout notification after boot when Android permits the boot/runtime delivery path
 - reboot does not end or discard the workout session
 - the restored ongoing notification represents the same persisted Active Workout
 - tapping it resumes that same session
 - elapsed workout time is recalculated from the persisted absolute start timestamp, so reboot/powered-off time remains included
 - if an automatic Rest Timer is still active at restore time, its remaining state is reconstructed from the persisted absolute rest-end timestamp
 - this is a reconstruction after boot, not an assumption that a notification itself survives the reboot
+- Android background restrictions may delay the reconstructed notification; workout recovery from SQLite remains intact
 
 Implementation boundary:
 - Android boot-completed handling checks SQLite for an unfinished active session and re-establishes the system notification/runtime surface
