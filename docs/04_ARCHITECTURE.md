@@ -142,6 +142,15 @@ Core invariants:
 - Rest Timer completion remains a separate exact-alarm concern
 - future continuous sensor/location/health tracking would trigger a new Foreground Service architecture decision
 
+## Android notification permission — CONFIRMED
+
+- Android 13+ `POST_NOTIFICATIONS` is requested contextually at first Active Workout, after SQLite session persistence
+- permission UI is not part of authentication/onboarding
+- permission denial/dismissal changes notification availability only; it never changes Active Workout/rest state
+- exact alarm access and notification permission are independent gates
+- notification permission is rechecked before posting ongoing/rest-end notifications
+- later Settings interaction may request permission again or route to Android app notification settings when needed
+
 ## TBD
 
 - server schema
