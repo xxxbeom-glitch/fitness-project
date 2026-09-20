@@ -125,6 +125,16 @@ Excluded:
 
 `08E_Notification_Settings` current scope is Rest Timer notification only.
 
+## LOCKED — Android Rest Timer sound playback
+
+- `휴식 타이머` notification channel does not own the selected Tampin sound
+- exact alarm completion posts the notification and separately plays the selected bundled `기본 / 차임 / 벨` sound
+- background/screen-off playback may use a short-lived native `mediaPlayback` Foreground Service started from the exact-alarm event
+- the temporary sound service stops immediately after playback; no persistent media service
+- this is independent from the no-continuous-FGS Active Workout decision
+- sound selection changes do not recreate notification channels
+- asset failure falls back to bundled `기본`, never device default ringtone/notification sound
+
 ## TBD
 
 The following remain intentionally open:
