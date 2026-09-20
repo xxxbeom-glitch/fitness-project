@@ -6,7 +6,7 @@
 
 The selected-routine Quick Start portion of this document is superseded by `docs/ux-decisions/2026-09-20-group02-home-with-routine-simplification.md`.
 
-Current 02B uses the same Quick Start as 02A (`빈 운동 / 내 루틴 만들기`) and keeps only the `내 루틴` 2×n grid as the with-routine lower section. Weekday/today-next/selected-routine Home semantics are not part of the current MVP.
+Current 02B uses the same Quick Start as 02A (`빈 운동 / 내 루틴 만들기`) and keeps only the `내 루틴` 2×n grid as the with-routine lower section. Weekday/today-next/selected-routine Home semantics are not part of the current MVP. The current `내 루틴` header uses `Trailing=None`; the historical `새 루틴` header action described below is superseded and must not be implemented.
 
 The historical visual exploration rationale remains for provenance only.
 
