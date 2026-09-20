@@ -1,7 +1,7 @@
 # Group 08 Settings / Account / Support — Sequential Handoff QA
 
 **Date:** 2026-09-20  
-**Status:** QA IN PROGRESS · ONE PO ALIGNMENT DECISION
+**Status:** SEQUENTIAL HANDOFF QA PASS · GROUP 08 CLOSED
 
 ## Current canonical inventory
 
@@ -74,22 +74,21 @@ No Figma change is required until final sound assets/labels are supplied.
 - no auto-open
 - no automatic set completion
 
-## Current blocker — timer-end vibration
+## PO decision — timer-end vibration
 
-Current Figma `08D_Workout_Settings` visibly contains:
-- `타이머 종료 진동` toggle
+PO APPROVED 2026-09-20:
+- remove the app-level `타이머 종료 진동` setting from MVP
+- Rest Timer completion vibration is not separately controlled inside the app
+- vibration follows the user's/platform notification and device settings
+- no custom vibration pattern is defined for MVP
 
-Latest Group 05 PO-approved notification rule currently states:
-- no custom MVP vibration pattern
-- vibration follows platform/user notification settings
-
-These two contracts are ambiguous together.
-
-PO must choose one:
-1. remove the app-level `타이머 종료 진동` setting and rely entirely on OS notification vibration settings, or
-2. keep an app-level vibration On/Off preference, while using only the platform default haptic/vibration behavior when enabled (no custom vibration pattern), subject to OS settings/permissions.
-
-Cursor must not invent which interpretation wins.
+Figma reflection:
+- shared `WorkoutSettingsContent` rest-timer card changed from 3 rows to 2 rows
+- retained rows = `기본 휴식 시간` / `타이머 종료음`
+- removed row = `타이머 종료 진동`
+- `08D_Workout_Settings` focused read-back: vibration row absent; default-rest-time and timer-sound rows present
+- `08D1_Default_Rest_Time_Sheet` background inherits the same corrected shared content
+- focused missing main-component links = `0`
 
 ## Conditional / release follow-ups
 
@@ -102,9 +101,11 @@ Not Group 08 Figma blockers:
 
 ## Current result
 
-- Group 08 inventory: PASS
-- component linkage: PASS
-- current visual/state coverage: PASS
-- current Product/UX blocker: `1` — timer-end vibration preference semantics
+- Group 08 inventory = `17 / 17` exact match
+- Group 08 current instance links = `242`
+- Group 08 missing main-component links = `0`
+- Group 08 sources outside `Common_Component` = `0`
+- current visual/state coverage = PASS
+- current Product/UX blocker = `0`
 
-**STOP for PO decision before marking Group 08 sequential QA PASS.**
+**PASS — Group 08 Settings / Account / Support sequential handoff QA is closed.**
