@@ -4,7 +4,7 @@
 
 ## Current mode
 
-`MVP 94 CONTENT/STATE FRAMES FROZEN · 94-SCREEN BEHAVIOR MATRIX COMPLETE · VISUAL FIXES CLOSED · GROUP 00–01 FIRST-RUN QA PASS · NEXT = GROUP 02 HOME QA · HANDOFF QA = DECISION NEEDED · BOTTOM APP BAR PASS · WEEKDAY SCHEDULING CONFLICT · ROUTINE DUPLICATE OPEN · W/D/F SET SEMANTICS OPEN · REST-TIMER EDGE POLICY OPEN · RECOVERY SYSTEM-NOTIFICATION UX OPEN · TECH STACK / ARCHITECTURE OPEN · DURATION ACTIVE-SET UX OPEN · IMPLEMENTATION NOT STARTED`
+`MVP 94 CONTENT/STATE FRAMES FROZEN · 94-SCREEN BEHAVIOR MATRIX COMPLETE · VISUAL FIXES CLOSED · GROUP 00–01 PASS · GROUP 02 HOME STRUCTURE PASS / ROUTINE-TILE TAP DECISION OPEN · HANDOFF QA = DECISION NEEDED · BOTTOM APP BAR PASS · WEEKDAY SCHEDULING REMOVED FROM MVP · ROUTINE DUPLICATE OPEN · W/D/F SET SEMANTICS OPEN · REST-TIMER EDGE POLICY OPEN · RECOVERY SYSTEM-NOTIFICATION UX OPEN · TECH STACK / ARCHITECTURE OPEN · DURATION ACTIVE-SET UX OPEN · IMPLEMENTATION NOT STARTED`
 
 ## Resume rule
 
@@ -263,19 +263,20 @@ Figma reflected:
 - current card copy: `빈 운동 / 루틴 없이 바로 기록`, `내 루틴 만들기 / 운동과 세트를 직접 구성`
 - `최근 운동` remains as state-specific secondary content
 
-## 02B routine-selected state — compact grid direction approved / canonical reflected
+## 02B with-routine state — simplified Home structure approved / canonical reflected
 
 Canonical screen:
-- `02B_Home_RoutineSelected` — `1329:593`
+- `02B_Home_WithRoutine` — `1329:593`
 
 Approved direction:
-- large selected-routine hero is replaced by compact quick-start cards
-- selected routine and blank workout use the same ~`320 × 80` white card language
-- both cards use a `36 × 36` circular action with existing `Common_Component` `chevron-right`
+- Quick Start is intentionally identical to 02A
+- Quick Start cards = `빈 운동` + `내 루틴 만들기`
+- no saved routine is promoted into Quick Start
+- no weekday / today-next / hidden selected-routine semantics
+- both Quick Start cards use the approved `36 × 36` circular action with existing `Common_Component` `chevron-right`
 - action treatment = `brand/soft` circle + `action/primary` chevron
 - Quick Start shared `SectionHeader` uses `Trailing=None`
-- `루틴 변경` header action is not used
-- Home `최근 운동` region is replaced by compact `내 루틴`
+- 02A lower `최근 운동` region is replaced by compact `내 루틴` only in 02B
 - `내 루틴` uses a `2 × n` grid
 - grid width = `320`, gap = `8px`
 - current routine tiles = `156 × 88`
@@ -339,9 +340,8 @@ Home component/binding state:
 - shared `HomeRoutineTile` — `2039:1953`
 - `HomeRoutineFocusCard / Ready / Active` = `320 × 80`
 - `HomeStartChoiceCard / BlankWorkout / BuildOwn` = `320 × 80`
-- 02B selected-routine, blank-workout, Pull Day, Leg Day cards are all Common_Component instances
+- 02B BlankWorkout / BuildOwn / Pull Day / Leg Day cards are all Common_Component instances
 - repeated manual Home-card frame count in canonical 02B = `0`
-- `HomeRoutineFocusCard` exposes `RoutineName / RoutineMeta` TEXT properties
 - `HomeRoutineTile` exposes `RoutineName / RoutineMeta` TEXT properties
 - Home scroll / section / grid spacing values are bound to existing spacing tokens
 - no new spacing/radius/color variables were created
@@ -624,28 +624,38 @@ Release follow-ups that are not Figma blockers:
 
 # NEXT OPEN ITEM
 
-**Sequential handoff QA is now proceeding one block at a time. Do not advance to the next block until the Product Owner resolves/approves the current block.**
+**Sequential handoff QA proceeds one block at a time. Do not advance to Group 03 until the remaining Group 02 behavior is approved.**
 
-Completed sequential block:
-- **Group 00–01 Splash / Authentication / First Run — PASS**
-- Login implicit Terms-consent copy removed; Terms/Privacy links retained
-- explicit required Terms agreement moved to Basic Info via shared `TermsAgreementRow`
-- Basic Info Back → Login while onboarding remains incomplete
-- same provider identity resumes the same incomplete internal account
-- focused Figma QA PASS
-- canonical record: `docs/ux-decisions/2026-09-20-group00-01-first-run-closure.md`
+Completed:
+- Group 00–01 Splash / Authentication / First Run — PASS
+- Group 02 Home weekday/today-next/selected-routine conflict — RESOLVED
+- canonical decision: `docs/ux-decisions/2026-09-20-group02-home-with-routine-simplification.md`
 
-## Current sequential QA block — Group 02 Home
+Current canonical Group 02 structure:
+- `02A_Home_NoRoutine`: Quick Start = `빈 운동 / 내 루틴 만들기`; lower = `최근 운동`
+- `02B_Home_WithRoutine`: same Quick Start; lower = `내 루틴` 2 × n grid
+- `02D_Home_Active`: active workout resume is primary
+- weekday assignment / `오늘의 운동` / `다음 운동` / hidden selected routine = not in current MVP
 
-Start with the existing unresolved product conflict:
+## Current Group 02 decision
 
-1. **Weekday scheduling / today-next semantics**
-   - older product text still allows optional weekday assignment and Home `오늘의 운동 / 다음 운동`
-   - current canonical Routine/Home Figma has no weekday assignment UI and current `02B` is a saved-routine quick-start surface
-   - decide whether weekday scheduling is removed/deferred from MVP or whether targeted design states must be reopened
-   - **STOP after presenting the Group 02 finding(s) and receiving PO decision; do not continue to Group 03 automatically**
+**`내 루틴` tile tap behavior**
 
-Later sequential blocks after explicit approval:
+Current visual:
+- routine tiles are compact `HomeRoutineTile`
+- no chevron
+- examples = Pull Day / Leg Day
+
+Need PO decision on tap:
+- open Routine Detail, or
+- immediately start that routine
+
+Do not invent this behavior.
+
+**STOP after resolving this one Group 02 question. Do not continue to Group 03 automatically.**
+
+## Later sequential blocks after explicit approval
+
 - Group 03 Routine
 - Group 04 Exercise Library / Custom Exercise
 - Group 05 Active Workout
@@ -653,7 +663,7 @@ Later sequential blocks after explicit approval:
 - Group 08 Settings / Account / Support
 - remaining cross-cutting runtime/architecture decisions
 
-## Still-open decisions already identified
+## Other already-known open decisions
 
 - Routine Duplicate behavior
 - W / D / F routine-set semantics
