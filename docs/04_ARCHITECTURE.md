@@ -124,6 +124,14 @@ Core invariants:
 - notification delivery state never owns or mutates workout/rest persistence
 - exact native Android scheduling primitive remains an implementation decision
 
+## Android exact Rest Timer alarm — CONFIRMED
+
+- automatic Rest Timer completion uses Android exact-alarm scheduling where permission is available
+- use `SCHEDULE_EXACT_ALARM`; do not use restricted `USE_EXACT_ALARM`
+- exact-alarm access is requested contextually when the user first needs precise Rest Timer delivery
+- denial/revocation does not alter workout/rest persistence; delivery falls back to best-effort timing
+- permission state must be rechecked before exact scheduling because the user/system can revoke access
+
 ## TBD
 
 - server schema
