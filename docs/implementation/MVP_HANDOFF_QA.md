@@ -298,16 +298,27 @@ Verdict: **PASS after correction**
 
 ### New DECISION NEEDED findings
 
-#### DECISION-01 — weekday scheduling conflict
+#### RESOLVED — Group 02 weekday / today-next / selected-routine conflict
 
-Current top-level product text still allows optional weekday assignment and today/next semantics.
+PO-approved 2026-09-20:
+- weekday assignment removed from current MVP scope
+- no `오늘의 운동 / 다음 운동` Home state
+- no hidden selected/default routine
+- `02B_Home_WithRoutine` uses the same Quick Start as 02A
+- 02B lower section = `내 루틴` 2 × n grid
+- Active Workout remains the only Home priority override
 
-Frozen Figma:
-- has no weekday assignment control in current Routine states
-- has no `오늘의 운동 / 다음 운동` Home state
-- uses a selected saved routine in `02B_Home_RoutineSelected`
+Figma read-back:
+- selected-routine Quick Start count = `0`
+- Blank Workout = `1`
+- Build Own = `1`
+- representative HomeRoutineTile count = `2`
+- missing main-component links in 02B = `0`
 
-Verdict: **DECISION NEEDED — remove/defer scheduling from MVP or reopen only the required affected states.**
+Canonical decision:
+- `docs/ux-decisions/2026-09-20-group02-home-with-routine-simplification.md`
+
+Verdict: **PASS — former DECISION-01 resolved.**
 
 #### DECISION-02 — routine Duplicate
 
@@ -486,7 +497,7 @@ Next sequential QA:
 - none in the current frozen visual contract.
 
 ### DECISION NEEDED before production implementation
-1. weekday scheduling / today-next semantics
+1. Group 02 `내 루틴` tile tap behavior
 2. routine Duplicate behavior
 3. W / D / F routine-set semantics
 4. automatic Rest Timer already-running / end-feedback policy
