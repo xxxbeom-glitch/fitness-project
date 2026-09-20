@@ -1,3 +1,5 @@
+> **CURRENT STATUS: SUPERSEDED** — The old 195/211 target-count catalog plan is historical only. Current exercise-data work uses the purchased Gym Visual / Gym Animations source catalog. See `docs/ux-decisions/2026-09-20-gym-visual-source-catalog-supersession.md`.
+
 # P0 16 / Production 211 — Promotion QA Result
 
 **Date:** 2026-09-05  
