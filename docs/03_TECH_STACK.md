@@ -161,10 +161,34 @@ Environment:
 Canonical:
 - `docs/ux-decisions/2026-09-20-sentry-crash-error-reporting.md`
 
+## LOCKED — product-usage analytics
+
+Provider:
+- PostHog
+
+Scope:
+- explicit MVP product events only
+- no Session Replay
+- no broad autocapture / form or input capture
+- no advertising attribution
+- PostHog does not replace Sentry or Supabase
+
+Privacy:
+- do not send DOB, sex/gender profile field, email, nickname, routine/exercise names, exact weight/reps/duration, support content, secrets, or raw DB rows
+- identity = opaque internal app user ID only
+- analytics identity resets on logout/account change
+
+Runtime:
+- local development off by default
+- preview / production distinguishable by `app_environment`
+- analytics is best-effort and never blocks app/workout/persistence/sync
+
+Canonical:
+- `docs/ux-decisions/2026-09-20-posthog-product-analytics.md`
+
 ## TBD
 
 The following remain intentionally open:
-- product-usage analytics scope
 - exact background/runtime implementation only if a concrete implementation conflict appears
 - deployment/release pipeline details
 
@@ -183,7 +207,6 @@ Do not select infrastructure merely because it is fashionable or familiar.
 ## NEXT ARCHITECTURE WORK
 
 Proceed one decision at a time:
-1. product-usage analytics scope
-2. deployment/release pipeline details
+1. deployment/release pipeline details
 
 Future iOS/Watch work remains outside the current MVP and must not drive Android overengineering.
