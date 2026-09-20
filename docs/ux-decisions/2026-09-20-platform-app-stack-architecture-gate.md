@@ -1,7 +1,7 @@
 # Platform / App Stack Architecture Gate
 
 **Date:** 2026-09-20
-**Status:** PO APPROVED · APP STACK / LOCAL-FIRST / SQLITE LOCKED · BACKEND NEXT
+**Status:** PO APPROVED · APP STACK / LOCAL-FIRST / SQLITE / SUPABASE LOCKED · AUTH NEXT
 
 ## Platform strategy
 
@@ -69,10 +69,21 @@ Rules:
 - server synchronization must map to stable local record identities rather than mutable display labels
 - do not store large image/media binaries inside SQLite; store references/metadata instead
 
+## Backend/database provider — PO APPROVED
+
+Locked:
+- Supabase
+- server relational database = Supabase Postgres
+
+Boundary:
+- Supabase is the canonical server-side persistence provider
+- local SQLite remains the immediate source of truth for workout interaction
+- server rows must use stable IDs that map safely to local records
+- server-side authorization must be enforced independently of client UI
+- exact Supabase Auth / Storage usage is a separate decision and is not implied by choosing Supabase Postgres
+
 ## Still open
 
-- backend/database provider
-- backend/database provider
 - auth implementation boundary
 - exact sync trigger / retry / conflict mechanics
 - media/profile-image storage
@@ -82,6 +93,6 @@ Rules:
 
 ## NEXT OPEN ITEM
 
-Choose the backend/database provider.
+Choose the authentication boundary/provider.
 
 Do not begin production implementation yet.
