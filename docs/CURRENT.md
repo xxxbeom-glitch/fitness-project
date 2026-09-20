@@ -883,9 +883,10 @@ Completed:
 - Block 06 — Supabase Auth / Google + Kakao / secure session / auth-restore state: **PASS**
 - Block 07 — Supabase Storage / private user media / canonical object reference: **PASS**
 - Block 08 — Sync / conflict / multi-device / idempotent retry: **PASS**
+- Block 09 — Active Workout Android runtime / process-death + reboot recovery boundary: **PASS**
 
 NEXT OPEN ITEM:
-- Block 09 — Active Workout Android runtime / process death / reboot / notification restoration
+- Block 10 — Notification permission / channels / exact alarm / Rest Timer sound
 
 ## Other already-known open decisions
 
