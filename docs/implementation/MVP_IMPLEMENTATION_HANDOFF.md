@@ -1,6 +1,6 @@
 # MVP Implementation Handoff
 
-**Status:** SCREEN DESIGN FROZEN · 95-SCREEN BEHAVIOR QA COMPLETE · FIX / DECISION NEEDED · IMPLEMENTATION NOT STARTED  
+**Status:** SCREEN DESIGN FROZEN · 95-SCREEN BEHAVIOR QA COMPLETE · ANDROID-ONLY ARCHITECTURE LOCKED · IMPLEMENTATION NOT STARTED  
 **Updated:** 2026-09-20
 
 ## 1. Purpose
@@ -132,9 +132,10 @@ When an active workout exists:
 
 Supported provider entry:
 - Android: Google / Kakao
-- iOS: Google / Kakao / Apple
 
-Current Figma `01A_Login` renders Google / Kakao only. This is sufficient for an Android-first launch surface. If iOS is in launch scope, Apple sign-in presentation and related provider copy must be aligned before that platform is implemented.
+Current Figma `01A_Login` renders Google / Kakao and matches the current Android-only product scope.
+
+iOS / Apple Sign in is outside the current MVP and production scope.
 
 UI semantics:
 - provider buttons use unified `계속하기`
@@ -754,9 +755,16 @@ Backend deletion mechanics/timing remain implementation detail requiring defined
 
 Active workout reliability is P0.
 
+Canonical architecture:
+- local database = SQLite via `expo-sqlite`
+- backend = Supabase Postgres
+- auth = Supabase Auth
+- media = Supabase Storage
+- sync policy = `docs/ux-decisions/2026-09-20-local-first-sync-policy.md`
+
 ### Local durability
 
-Workout/session changes are written to durable local storage immediately.
+Workout/session changes are written to SQLite immediately.
 
 Network availability must not be required to:
 - enter/edit kg
@@ -766,33 +774,24 @@ Network availability must not be required to:
 
 ### Sync
 
-Change-driven, not polling-driven.
+Use the locked durable outbox / dirty-state model.
 
-Ordinary edits:
-- coalesce with 3-second debounce after latest change
+Rules:
+- no per-keystroke or per-set remote request
+- while an Active Workout is dirty and foregrounded, coalesce changes and cap periodic remote attempts to roughly once per 5 minutes
+- workout completion and explicit low-frequency Save actions trigger an immediate best-effort sync attempt
+- app resume and connectivity restoration check pending sync
+- failed sync uses exponential backoff with jitter and never rolls back accepted SQLite data
+- stable record IDs + idempotent mutation IDs prevent duplicate retry effects
+- optimistic server versions detect conflicts instead of silently overwriting
+- the device that owns the Active Workout remains its write-owner until completion/discard
+- media upload queue is independent from core workout-data sync
 
-Immediate sync-attempt boundaries:
-- set completion
-- workout completion
-- app background
-- network reconnection
-
-Offline/failure:
-- pending changes remain durably queued
-- retry after connectivity returns
-- sync failure must not block the workout
-
-Authority:
-- while active, current active device durable local state is authoritative for newest unsynchronized workout edits
-- cloud must not overwrite newer pending local workout state with an older synchronized snapshot
-- after successful sync, cloud account record is long-term canonical for completed workouts/routines/custom exercises/profile/optional body data
-- local data remains offline working copy/recovery replica
-
-Exact simultaneous multi-device conflict policy for non-active records is not yet locked. Do not silently discard accepted local changes.
+SQLite remains authoritative for immediate active-workout interaction and recovery.
 
 ## 17. Implementation-neutral domain boundaries
 
-The storage/schema technology is not selected here, but implementation must keep these identities separable:
+The selected storage technologies must still keep these domain identities separable:
 
 - Account / provider identity
 - Profile
@@ -903,8 +902,6 @@ Exact platform accessibility APIs depend on the selected technology stack.
 
 Cursor must stop and report `DECISION NEEDED` rather than choosing product behavior when any of these are unclear:
 
-- technology stack / production architecture
-- launch platform priority
 - unapproved PR/progression formula
 - unresolved non-active multi-device conflict behavior
 
@@ -916,13 +913,19 @@ Cursor must stop and report `DECISION NEEDED` rather than choosing product behav
 
 ## 23. Current implementation blockers
 
-### BLOCKER A — production technology stack / architecture
+### Resolved — production technology stack / platform scope
 
-No current canonical production app technology stack was found in the reviewed authority docs.
+Locked:
+- platform = Android only
+- React Native + Expo + TypeScript
+- SQLite via `expo-sqlite`
+- Supabase Postgres / Auth / Storage
+- local-first durable outbox sync
 
-Do not choose framework, database, backend, navigation framework, DI/state architecture, or sync infrastructure merely to begin coding.
-
-Requires Product Owner decision before first implementation Issue.
+Canonical:
+- `docs/ux-decisions/2026-09-20-android-only-platform-scope.md`
+- `docs/ux-decisions/2026-09-20-platform-app-stack-architecture-gate.md`
+- `docs/ux-decisions/2026-09-20-local-first-sync-policy.md`
 
 ### Resolved before Group 05 handoff QA
 
@@ -942,13 +945,11 @@ The Rest Timer overlap, sound source, and system-notification behavior are Produ
 
 The ongoing Active Workout system surface, tap-to-resume behavior, recovery behavior, and no-quick-action MVP boundary are Product/UX locked. Exact platform implementation remains part of the technology/architecture gate.
 
-### Conditional platform alignment — iOS
+### Platform scope — Android only
 
-If iOS is part of launch scope:
-- add/align Apple sign-in presentation
-- align provider-specific account/deletion copy where necessary
+iOS / Apple Sign in / Live Activity / iPhone QA / App Store release are outside the current MVP and production scope.
 
-This is resolved together with launch-platform priority.
+Do not implement or preserve iOS parity unless a future Product/Architecture decision explicitly reopens it.
 
 ### Non-blocking early-development side track
 
@@ -1029,11 +1030,9 @@ Verified:
 - engineering/QA contracts aligned
 
 Not ready to start production implementation yet because:
-1. technology stack / architecture is not locked
-2. duration timed-set interaction is not locked
-3. automatic Rest Timer runtime edge/end-feedback policy is not locked
-4. active-session recovery system-notification UX is not locked
-5. launch-platform decision controls whether Apple-provider UI/copy alignment is required
+1. Product Owner has not explicitly authorized Development mode
+2. remaining Android runtime implementation details still need final architecture closure
+3. analytics/crash reporting and Android Play release pipeline remain open where needed for release hardening
 
 Current implementation-facing product brand is Tampin; the stale G Fit working-name text found during deep QA has been corrected in the current Product Direction / Project Brief.
 
