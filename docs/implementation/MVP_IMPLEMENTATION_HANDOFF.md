@@ -175,6 +175,7 @@ Primary actions:
 - `내 루틴 만들기`
 
 Home shows no Recent Workout / `전체 기록` section.
+`내 루틴` remains visible even when there are zero saved routines; render the approved empty state and keep the `새 루틴` action available.
 No recommendation entry.
 
 `빈 운동`:
@@ -196,6 +197,8 @@ No recommendation entry.
 
 - current workout is primary
 - tapping compact active card resumes the current active workout
+- `내 루틴` remains below the active-workout section
+- render populated grid or the same zero-routine empty state according to saved-routine count
 - no Recent Workout / `전체 기록` section on Home
 - no second active workout is silently created
 
