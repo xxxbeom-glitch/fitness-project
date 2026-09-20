@@ -182,12 +182,14 @@ No recommendation entry.
 - zero exercises initially
 - does not auto-create a routine
 
-### Routine selected — `02B_Home_RoutineSelected`
+### Saved routines exist — `02B_Home_WithRoutine`
 
-- quick start of the currently selected saved routine
-- blank-workout entry remains available
-- compact `내 루틴` grid provides saved-routine access
-- routine tiles are whole-card targets; no tile chevron
+- Quick Start is identical to `02A_Home_NoRoutine`: `빈 운동` + `내 루틴 만들기`
+- no saved routine is automatically promoted into Quick Start
+- compact `내 루틴` 2 × n grid provides saved-routine access
+- `새 루틴` remains a routine-creation entry
+- no weekday/today-next/selected-routine Home semantics
+- exact `내 루틴` tile tap destination remains unresolved; do not invent it
 
 ### Active workout — `02D_Home_Active`
 
@@ -208,7 +210,7 @@ Supported:
 - add/remove/reorder exercises
 - set configuration
 
-**Weekday/scheduling is not implementation-ready.** Older top-level policy still mentions optional weekday assignment / today-next semantics, but the frozen Home and Routine Figma contain no weekday controls or today/next Home state. Do not implement scheduling until Product Owner resolves `DECISION-01` in the screen behavior matrix.
+**Weekday/scheduling is outside the current MVP.** Do not implement routine weekday assignment, `오늘의 운동`, `다음 운동`, or hidden selected/default routine behavior. Canonical decision: `docs/ux-decisions/2026-09-20-group02-home-with-routine-simplification.md`.
 
 ### Routine name
 
@@ -803,7 +805,7 @@ Cursor must stop and report `DECISION NEEDED` rather than choosing product behav
 
 - technology stack / production architecture
 - launch platform priority
-- weekday scheduling / today-next semantics
+- Group 02 `내 루틴` tile tap destination
 - routine duplicate semantics
 - W / D / F routine-set semantics
 - `duration` Active Workout timed-set interaction
@@ -827,12 +829,6 @@ No current canonical production app technology stack was found in the reviewed a
 Do not choose framework, database, backend, navigation framework, DI/state architecture, or sync infrastructure merely to begin coding.
 
 Requires Product Owner decision before first implementation Issue.
-
-### BLOCKER C — weekday scheduling conflict
-
-Older policy still mentions optional weekday assignment and today/next Home semantics, while frozen Home/Routine Figma does not represent them.
-
-Requires PO decision: remove/defer scheduling from MVP or reopen the affected product/design states.
 
 ### BLOCKER D — routine Duplicate semantics
 
@@ -953,7 +949,7 @@ Verified:
 - engineering/QA contracts aligned
 
 Not ready to start production implementation yet because:
-1. weekday scheduling policy conflicts with frozen Figma
+1. Group 02 `내 루틴` tile tap behavior is not yet locked
 2. routine Duplicate semantics are undefined
 3. W / D / F routine-set semantics are undefined
 4. technology stack / architecture is not locked
