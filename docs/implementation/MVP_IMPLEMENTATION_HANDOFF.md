@@ -793,7 +793,7 @@ Cursor must stop and report `DECISION NEEDED` rather than choosing product behav
 - primary bottom-navigation visual/component contract
 - weekday scheduling / today-next semantics
 - routine duplicate semantics
-- W / D / F set-type semantics
+- W / D / F routine-set semantics
 - `duration` Active Workout timed-set interaction
 - unapproved PR/progression formula
 - unresolved non-active multi-device conflict behavior
@@ -834,9 +834,9 @@ The `복제` menu action exists visually, but exact copy/name/metadata/destinati
 
 Requires PO decision before implementation.
 
-### BLOCKER E — W / D / F set-type semantics
+### BLOCKER E — W / D / F routine-set semantics
 
-Set rows visibly contain W / D / F but their product/data/calculation meaning is not defined in current authority.
+Routine create/edit set rows visibly contain W / D / F, while the current 05A Active Workout representative screen shows numbered rows only. Their intended product/data/calculation meaning and whether they should carry into Active Workout are not defined in current authority.
 
 Requires PO decision before implementing these set types.
 
@@ -950,7 +950,7 @@ Not ready to start production implementation yet because:
 1. primary bottom-navigation visual/component contract is missing
 2. weekday scheduling policy conflicts with frozen Figma
 3. routine Duplicate semantics are undefined
-4. W / D / F set-type semantics are undefined
+4. W / D / F routine-set semantics are undefined
 5. technology stack / architecture is not locked
 6. duration timed-set interaction is not locked
 7. automatic Rest Timer runtime edge/end-feedback policy is not locked
