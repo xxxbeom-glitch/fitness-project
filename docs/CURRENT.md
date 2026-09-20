@@ -4,7 +4,7 @@
 
 ## Current mode
 
-`MVP 94 CONTENT/STATE FRAMES FROZEN · 94-SCREEN BEHAVIOR MATRIX COMPLETE · VISUAL FIXES CLOSED · GROUP 00–01 PASS · GROUP 02 HOME PASS · GROUP 03 ROUTINE PASS · GROUP 04 EXERCISE LIBRARY / CUSTOM PASS · NEXT = GROUP 05 ACTIVE WORKOUT QA · HANDOFF QA = DECISION NEEDED · BOTTOM APP BAR PASS · WEEKDAY SCHEDULING REMOVED FROM MVP · NUMERIC-ONLY MVP SETS LOCKED · REST-TIMER RESTART RULE LOCKED · REST-TIMER CUSTOM SOUND SOURCE LOCKED · REST-TIMER SYSTEM ALERT LOCKED · ACTIVE-WORKOUT SYSTEM NOTIFICATION UX LOCKED · TECH STACK / ARCHITECTURE OPEN · DURATION ACTIVE-SET UX LOCKED · IMPLEMENTATION NOT STARTED`
+`MVP 94 CONTENT/STATE FRAMES FROZEN · 94-SCREEN BEHAVIOR MATRIX COMPLETE · VISUAL FIXES CLOSED · GROUP 00–01 PASS · GROUP 02 HOME PASS · GROUP 03 ROUTINE PASS · GROUP 04 EXERCISE LIBRARY / CUSTOM PASS · GROUP 05 ACTIVE WORKOUT PASS · NEXT = GROUP 06–07 COMPLETION / HISTORY / ANALYSIS QA · HANDOFF QA = IN PROGRESS · BOTTOM APP BAR PASS · WEEKDAY SCHEDULING REMOVED FROM MVP · NUMERIC-ONLY MVP SETS LOCKED · REST-TIMER RESTART RULE LOCKED · REST-TIMER CUSTOM SOUND SOURCE LOCKED · REST-TIMER SYSTEM ALERT LOCKED · ACTIVE-WORKOUT SYSTEM NOTIFICATION UX LOCKED · DURATION ACTIVE-SET UX LOCKED · TECH STACK / ARCHITECTURE OPEN · IMPLEMENTATION NOT STARTED`
 
 ## Resume rule
 
@@ -654,37 +654,39 @@ Current verification:
 - exactly four active recording types exposed in custom recording-type selection
 - no new Group 04 Product/UX blocker found
 
-## Current sequential QA block — Group 05 Active Workout
+## Closed Group 05 sequential revalidation
 
-Review only Group 05 and directly required dependencies.
-
-Current Group 05 sequential findings:
-- Figma top-level frames = `18`
+Current verification:
+- canonical Group 05 top-level frames = `18`
 - behavior-matrix Group 05 entries = `18`
 - Figma ↔ matrix names = `18 / 18` exact match
 - no Group 05 screen omission found
-- automatic Rest Timer overlap rule PO APPROVED: completing another set replaces/restarts the current Rest Timer for the newly completed set
+- Rest Timer overlap/restart behavior locked
+- app-owned timer-end sound source locked
+- duration Active Workout interaction locked
+- ongoing Active Workout system notification/activity UX locked
+- Rest Timer zero system alert locked
+- remaining Group 05 Product/UX blocker = `0`
 
-Resolved in current Group 05 block:
-- `duration` Active Workout = existing WorkoutDuration TIME input + manual set completion; header Manual Timer is optional reference only and is not linked
-- automatic Rest Timer overlap = newly completed set replaces/restarts the current rest countdown
-- timer-end sound = app-owned custom sound assets
-- Rest Timer zero = system alert `휴식 시간이 끝났어요` / `다음 세트를 시작하세요.`
-- no custom MVP vibration pattern; vibration follows platform/user notification settings
-- Active Workout = one ongoing system notification/activity surface; tap resumes the same session; Rest Timer remaining time is reflected there
-- no workout-mutating notification quick actions in MVP
-- active-session recovery restores the same session/system surface; no in-app recovery banner
+Verdict: **PASS — Group 05 Active Workout sequential handoff QA closed.**
 
-Still open in Group 05 Product/UX:
-- none
+## Current sequential QA block — Group 06–07 Completion / History / Analysis
 
-Do not reopen already-PASS Group 05 replacement/menu/manual-timer behavior without a new conflict/regression trigger.
+Review only Group 06–07 and directly required dependencies.
 
-**STOP after presenting Group 05 finding(s) and receiving Product Owner decision. Do not continue to Group 06–07 automatically.**
+Start with:
+1. current canonical Group 06–07 Figma frame inventory ↔ behavior-matrix 1:1 mapping
+2. Completion behavior / PR / volume-N/A / destination rules
+3. History detail / delete semantics
+4. Analysis metrics / chart / body distribution / body-area detail
+5. only surface new conflicts, stale handoff rules, or implementation gaps
+
+Do not reopen already-PASS historical Group 06–07 visual behavior without a concrete current conflict/regression trigger.
+
+**STOP after presenting Group 06–07 finding(s) and receiving Product Owner decision. Do not continue to Group 08 automatically.**
 
 ## Later sequential blocks after explicit approval
 
-- Group 06–07 Completion / History / Analysis
 - Group 08 Settings / Account / Support
 - remaining cross-cutting runtime/architecture decisions
 
