@@ -4,7 +4,7 @@
 
 ## Current mode
 
-`MVP 95 CONTENT/STATE FRAMES CANONICAL · SEQUENTIAL PRODUCT/UX HANDOFF QA PASS · PLATFORM = ANDROID+iOS SHARED · QA/RELEASE = ANDROID FIRST · APP STACK = REACT NATIVE + EXPO + TYPESCRIPT LOCKED · PERSISTENCE = LOCAL-FIRST LOCKED · LOCAL DB = SQLITE / EXPO-SQLITE LOCKED · BACKEND = SUPABASE POSTGRES LOCKED · AUTH = SUPABASE AUTH LOCKED · STORAGE = SUPABASE STORAGE LOCKED · NEXT = SYNC TRIGGER/RETRY/CONFLICT DECISION · RUNTIME ARCHITECTURE OPEN · IMPLEMENTATION NOT STARTED`
+`MVP 95 CONTENT/STATE FRAMES CANONICAL · SEQUENTIAL PRODUCT/UX HANDOFF QA PASS · PLATFORM = ANDROID+iOS SHARED · QA/RELEASE = ANDROID FIRST · APP STACK = REACT NATIVE + EXPO + TYPESCRIPT LOCKED · PERSISTENCE = LOCAL-FIRST LOCKED · LOCAL DB = SQLITE / EXPO-SQLITE LOCKED · BACKEND = SUPABASE POSTGRES LOCKED · AUTH = SUPABASE AUTH LOCKED · STORAGE = SUPABASE STORAGE LOCKED · SYNC = OUTBOX/BATCH/IDEMPOTENT/OPTIMISTIC-VERSION LOCKED · NEXT = PLATFORM RUNTIME ARCHITECTURE · IMPLEMENTATION NOT STARTED`
 
 ## Resume rule
 
@@ -756,14 +756,29 @@ Locked:
 - SQLite keeps local/remote references and upload state rather than large binaries
 - user-owned media is private/scoped by default
 
-NEXT OPEN ITEM:
-- define sync trigger / retry / conflict behavior
+Locked:
+- synchronization policy = durable outbox / dirty-state model
+- no per-keystroke or per-set remote request
+- active-workout changes coalesce; while dirty/foreground remote attempts are capped around once per 5 minutes
+- workout completion and explicit low-frequency Save actions trigger immediate best-effort sync
+- app resume / connectivity restoration trigger pending sync
+- failed sync uses exponential backoff with jitter and never rolls back SQLite
+- stable IDs + idempotent mutation IDs prevent duplicate retries
+- optimistic server versions detect conflicts
+- active workout has a single write-owner device until completion/discard
+- media uploads are independent from core workout-data sync
 
-After that, decide platform runtime details one item at a time.
+Canonical:
+- `docs/ux-decisions/2026-09-20-local-first-sync-policy.md`
+
+NEXT OPEN ITEM:
+- define platform runtime / background execution architecture
 
 ## Other already-known open decisions
 
-- sync architecture
+- platform runtime/background architecture
+- analytics/crash reporting
+- deployment/release pipeline
 - iOS Apple Sign in implementation verification before iOS release
 
 ## Active non-blocking side tracks
