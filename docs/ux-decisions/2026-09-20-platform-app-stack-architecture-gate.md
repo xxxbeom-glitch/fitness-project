@@ -1,7 +1,7 @@
 # Platform / App Stack Architecture Gate
 
 **Date:** 2026-09-20
-**Status:** PO APPROVED · APP STACK / LOCAL-FIRST / SQLITE / SUPABASE / AUTH / STORAGE LOCKED · SYNC NEXT
+**Status:** PO APPROVED · APP STACK / LOCAL-FIRST / SQLITE / SUPABASE / AUTH / STORAGE / SYNC LOCKED · RUNTIME NEXT
 
 ## Platform strategy
 
@@ -115,15 +115,32 @@ Rules:
 - deletion/account-deletion flows must remove or invalidate the associated user-owned objects according to product policy
 - Production exercise-library media is a separate product asset distribution concern and is not automatically treated as user-uploaded Storage content
 
+## Synchronization — ARCHITECTURE LOCKED
+
+Canonical policy:
+- `docs/ux-decisions/2026-09-20-local-first-sync-policy.md`
+
+Summary:
+- local SQLite commit always precedes server sync
+- durable outbox / dirty-state queue
+- no per-keystroke or per-set network request
+- active-workout changes are coalesced; while dirty, foreground periodic sync is capped at roughly one attempt per 5 minutes
+- immediate attempt on workout completion and other low-frequency explicit Save actions
+- pending sync checked on app resume and connectivity restoration
+- exponential retry with jitter; local data is never rolled back
+- idempotent mutation IDs + stable record IDs prevent duplicate retries
+- optimistic server versions detect conflicts instead of silently overwriting
+- active workout has one write-owner device until completion/discard
+- media upload queue is independent from core workout-data sync
+
 ## Still open
 
-- exact sync trigger / retry / conflict mechanics
 - analytics/crash reporting
 - exact Android/iOS background/runtime implementation
 - release pipeline details
 
 ## NEXT OPEN ITEM
 
-Define the synchronization trigger / retry / conflict contract.
+Define platform runtime / background execution architecture.
 
 Do not begin production implementation yet.
