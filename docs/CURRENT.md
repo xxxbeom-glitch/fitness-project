@@ -37,6 +37,7 @@ The previous `98` screen count is superseded by the current `94` after the 2026-
 
 ### MVP design freeze / implementation handoff preparation
 - `docs/ux-decisions/2026-09-20-mvp-screen-design-freeze.md`
+- current Group 06–07 sequential QA: `docs/ux-decisions/2026-09-20-group06-07-sequential-handoff-qa.md`
 - `docs/implementation/README.md`
 - `docs/implementation/MVP_IMPLEMENTATION_HANDOFF.md`
 - `docs/implementation/MVP_SCREEN_INVENTORY.md`
@@ -672,18 +673,24 @@ Verdict: **PASS — Group 05 Active Workout sequential handoff QA closed.**
 
 ## Current sequential QA block — Group 06–07 Completion / History / Analysis
 
-Review only Group 06–07 and directly required dependencies.
+Current verification:
+- Group 06 Figma ↔ behavior matrix = `3 / 3` exact match
+- Group 07 Figma ↔ behavior matrix = `5 / 5` exact match
+- no top-level Group 06–07 inventory omission
+- Group 06 current PR behavior recovered: all valid session PR rows, not representative-only
+- Group 06 NoPR / Volume-N/A states align with current policy
+- completion annual workout count clarified by reusing the approved workout-count semantics
+- 07B populated/empty states align with current policy
+- 07D current PR / summary / body distribution / performed-exercise table / delete flow align
+- Group 07 sampled canonical states missing main-component links = `0`
 
-Start with:
-1. current canonical Group 06–07 Figma frame inventory ↔ behavior-matrix 1:1 mapping
-2. Completion behavior / PR / volume-N/A / destination rules
-3. History detail / delete semantics
-4. Analysis metrics / chart / body distribution / body-area detail
-5. only surface new conflicts, stale handoff rules, or implementation gaps
+Product/UX decisions still open:
+1. `07A_Analysis_Home > 최근 운동 > 전체 기록` has no approved destination after the former workout-history overview was removed.
+2. `07A_Analysis_Home > 최근 기록 변화` has presentation but no complete runtime exercise-selection / comparison / representative-record algorithm.
 
-Do not reopen already-PASS historical Group 06–07 visual behavior without a concrete current conflict/regression trigger.
+Do not reopen other already-PASS Group 06–07 visual behavior without a concrete conflict/regression trigger.
 
-**STOP after presenting Group 06–07 finding(s) and receiving Product Owner decision. Do not continue to Group 08 automatically.**
+**STOP for Product Owner decision on the two items above. Do not continue to Group 08 automatically.**
 
 ## Later sequential blocks after explicit approval
 
@@ -714,6 +721,8 @@ Current handoff verdict:
 - `DECISION NEEDED`
 
 Before development:
+- 07A `전체 기록` destination / history-list decision
+- 07A `최근 기록 변화` runtime calculation decision
 - tech stack / architecture decision
 - launch-platform scope check
 - explicit Product Owner development authorization
