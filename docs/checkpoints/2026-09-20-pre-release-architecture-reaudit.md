@@ -184,6 +184,29 @@ Locked operating rules:
 ### QA verdict
 **PASS**
 
+## Block 06 — Authentication: Google + Kakao / Supabase Auth / secure session storage
+
+### Re-audit result
+Keep Supabase Auth with Google + Kakao for the Android MVP.
+
+Locked operating rules:
+- Supabase Auth user ID is the canonical account identity; provider email/nickname is not the primary account key
+- first-time authenticated users remain onboarding-incomplete until Basic Info is completed
+- interrupted onboarding resumes for the same internal account instead of creating a duplicate
+- app startup distinguishes auth/session restore from confirmed signed-out state; do not route based on a transient restore gap
+- auth/session secrets are stored in secure platform storage, not SQLite or ordinary preferences
+- local SQLite data remains account-scoped; logging into Account B must never expose or sync Account A's unsynced records
+- logout clears the active auth/session context but does not silently destroy unsynced account-owned local workout data
+- no separate manual Google↔Kakao account-linking UI is added to MVP; Supabase-supported identity linking may be used where its verified identity conditions apply
+
+### OnTalk comparison
+- OnTalk had a real cold-start Auth restore race where persisted local credentials allowed navigation before Supabase session restoration completed.
+- A server chat room could then become incorrectly fixed to a local path until re-entry.
+- Tampin therefore treats auth restoration as an explicit startup state and never interprets a temporary missing session as a confirmed logout or different account.
+
+### QA verdict
+**PASS**
+
 ## NEXT OPEN ITEM
 
-**Block 06 — Authentication: Google + Kakao / Supabase Auth / secure session storage.**
+**Block 07 — Supabase Storage / user media.**
