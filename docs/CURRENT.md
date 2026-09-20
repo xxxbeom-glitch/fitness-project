@@ -804,8 +804,20 @@ Locked:
 - SQLite remains authoritative; Rest Timer completion remains a separate exact-alarm concern
 - future continuous sensor/location/health tracking requires a separate Foreground Service re-evaluation
 
+Locked:
+- Android 13+ `POST_NOTIFICATIONS` is requested contextually on the user's first Active Workout
+- the Active Workout is persisted locally before the permission flow
+- do not request notification permission at install/login/onboarding/Home
+- use the existing Dialog pattern for a one-time rationale; denial/dismissal never blocks or rolls back the workout
+- do not automatically re-prompt every workout
+- `08E_Notification_Settings` respects Android system permission and can request/route to system settings when needed
+- notification permission is independent from exact-alarm permission and may be revoked later
+
+Canonical:
+- `docs/ux-decisions/2026-09-20-android-notification-permission-policy.md`
+
 NEXT OPEN ITEM:
-- decide Android 13+ notification permission request timing
+- finish remaining Android runtime/background implementation decisions
 
 ## Other already-known open decisions
 
