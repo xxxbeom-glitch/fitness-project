@@ -4,7 +4,7 @@
 
 ## Current mode
 
-`MVP 94 CONTENT/STATE FRAMES FROZEN · 94-SCREEN BEHAVIOR MATRIX COMPLETE · VISUAL FIXES CLOSED · GROUP 00–01 PASS · GROUP 02 HOME PASS · GROUP 03 ROUTINE PASS · GROUP 04 EXERCISE LIBRARY / CUSTOM PASS · NEXT = GROUP 05 ACTIVE WORKOUT QA · HANDOFF QA = DECISION NEEDED · BOTTOM APP BAR PASS · WEEKDAY SCHEDULING REMOVED FROM MVP · NUMERIC-ONLY MVP SETS LOCKED · REST-TIMER RESTART RULE LOCKED · REST-TIMER END-FEEDBACK OPEN · RECOVERY SYSTEM-NOTIFICATION UX OPEN · TECH STACK / ARCHITECTURE OPEN · DURATION ACTIVE-SET UX OPEN · IMPLEMENTATION NOT STARTED`
+`MVP 94 CONTENT/STATE FRAMES FROZEN · 94-SCREEN BEHAVIOR MATRIX COMPLETE · VISUAL FIXES CLOSED · GROUP 00–01 PASS · GROUP 02 HOME PASS · GROUP 03 ROUTINE PASS · GROUP 04 EXERCISE LIBRARY / CUSTOM PASS · NEXT = GROUP 05 ACTIVE WORKOUT QA · HANDOFF QA = DECISION NEEDED · BOTTOM APP BAR PASS · WEEKDAY SCHEDULING REMOVED FROM MVP · NUMERIC-ONLY MVP SETS LOCKED · REST-TIMER RESTART RULE LOCKED · REST-TIMER CUSTOM SOUND SOURCE LOCKED · REST-TIMER VIBRATION/NOTIFICATION OPEN · RECOVERY SYSTEM-NOTIFICATION UX OPEN · TECH STACK / ARCHITECTURE OPEN · DURATION ACTIVE-SET UX OPEN · IMPLEMENTATION NOT STARTED`
 
 ## Resume rule
 
@@ -666,7 +666,7 @@ Current Group 05 sequential findings:
 - automatic Rest Timer overlap rule PO APPROVED: completing another set replaces/restarts the current Rest Timer for the newly completed set
 
 Still open:
-1. Automatic Rest Timer exact zero-completion feedback: sound / vibration / background notification
+1. Automatic Rest Timer zero-completion vibration / background-notification behavior
 2. Active-session recovery system-notification UX
 3. `duration` Active Workout timed-set interaction
 
@@ -688,7 +688,7 @@ Do not reopen already-PASS Group 05 replacement/menu/manual-timer behavior witho
 ## Active non-blocking side tracks
 
 - Production exercise-thumbnail full crop/mapping QA
-- final timer-end sound assets/labels
+- final app-owned timer-end sound assets/labels
 - public Terms/Privacy URLs and inquiry-retention disclosure before release
 
 ## Development authorization
@@ -704,7 +704,7 @@ Current handoff verdict:
 - `DECISION NEEDED`
 
 Before development:
-- automatic Rest Timer zero-completion feedback decision
+- automatic Rest Timer zero-completion vibration/background-notification decision
 - active-session recovery system-notification UX decision
 - tech stack / architecture decision
 - duration Active Workout interaction decision
