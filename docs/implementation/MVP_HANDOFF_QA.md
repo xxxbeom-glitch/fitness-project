@@ -279,6 +279,8 @@ Targeted Figma maintenance now provides both the shared component and canonical 
 - long Analysis/Settings frames use first-viewport fixed-navigation representation and require production scroll bottom inset
 - whole-MVP instances after placement = `1,862`
 - missing main-component links = `0`
+- whole-MVP instances after latest Home cleanup = `1,866`
+- whole-MVP non-`Common_Component` sources = `0`
 - non-`Common_Component` sources = `0`
 
 Canonical decision:
@@ -324,10 +326,13 @@ Additional PO-approved Home cleanup:
 - `최근 운동` / `전체 기록` removed from 02A and 02D
 - no Group 02 Home state shows Recent Workout
 - `내 루틴` remains present instead of removing the secondary section
-- 02A = Quick Start + My Routine empty state
+- 02A = Quick Start + `내 루틴` header only
 - 02B = Quick Start + My Routine populated 2 × n grid
 - 02D = Active Workout + My Routine
-- runtime 02D My Routine may be empty/populated by saved-routine count
+- all My Routine headers = `Trailing=None`
+- `새 루틴` header action = absent
+- zero-routine empty-state copy/body = absent
+- runtime 02D My Routine = populated cards when routines exist, header-only when none exist
 - workout history remains in Analysis/history surfaces
 - focused Figma read-back: recent-workout copy count = `0` across 02A/02B/02D
 - text overflow = `0`
