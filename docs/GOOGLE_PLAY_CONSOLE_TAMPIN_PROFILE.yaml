@@ -8,8 +8,7 @@ project:
 
 app:
   app_name: Tampin
-  package_name:
-    status: needs_po_decision
+  package_name: com.lumian.tampin
   default_language: ko-KR
   supported_languages:
     - ko-KR
@@ -188,10 +187,12 @@ implementation_evidence:
   app_access_review_account_verified: false
 
 submission_meta:
+  package_name_registration:
+    status: needs_play_console_readback
+    note: "PO-approved package name = com.lumian.tampin. Confirm successful app creation/package registration in Google Play before first release artifact is treated as canonical."
   console_readback_date: null
   profile_verified_by: null
   unknown_fields:
-    - package_name
     - support_email
     - target_audience_age_groups
     - release_countries
