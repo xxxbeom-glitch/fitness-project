@@ -255,6 +255,31 @@ Locked operating rules:
 ### QA verdict
 **PASS**
 
+## Block 09 — Active Workout Android runtime / process death / reboot / notification restoration
+
+### Re-audit result
+Keep the current Active Workout runtime architecture.
+
+Locked operating rules:
+- SQLite remains the authoritative Active Workout state
+- elapsed time is reconstructed from a persisted absolute start timestamp; no continuously running JavaScript timer is required
+- ordinary backgrounding / process death does not end or corrupt the workout
+- reopening Tampin restores the same persisted Active Workout rather than creating a replacement session
+- normal reboot reconstructs the ongoing notification from persisted state when Android allows the boot/runtime delivery path
+- boot-time notification reconstruction may be delayed by Android background restrictions; such delay never changes workout data
+- user Force stop is an Android delivery/runtime exception until the user launches Tampin again; the persisted workout itself is not deleted
+- notification visibility is presentation-only and never owns workout state
+- notification/deep-link entry restores auth/account context and validates the persisted session before navigating to the Active Workout
+- no continuous Foreground Service is introduced solely for the workout elapsed timer/ongoing notification
+
+### OnTalk comparison
+- OnTalk had real cold-start/lifecycle regressions where navigation or remote/local mode decisions were made before Auth restoration was complete.
+- Tampin therefore does not let a notification tap or cold start bypass account/session restoration before binding an Active Workout.
+- OnTalk's lifecycle/device history also reinforces that persisted state and runtime presentation must be treated as separate layers.
+
+### QA verdict
+**PASS**
+
 ## NEXT OPEN ITEM
 
-**Block 09 — Active Workout Android runtime / process death / reboot / notification restoration.**
+**Block 10 — Notification permission / channels / exact alarm / Rest Timer sound.**
