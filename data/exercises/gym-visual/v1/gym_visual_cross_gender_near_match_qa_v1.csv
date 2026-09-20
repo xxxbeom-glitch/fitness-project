@@ -1,0 +1,74 @@
+merge_key,candidate_count,candidate_ids,candidate_names,male_source_count,female_source_count,total_source_count,equipment,body_parts_ko,merge_reasons,qa_result
+45 side bend,2,gvc_15a79c96e3af;gvc_df184f2df237,45 Degree Side Bend | 45 Degrees Side Bend,1,1,2,,코어,normalized_exact,MERGE_IDENTITY
+alternate ankle tap under sit agains wall,2,gvc_d0c600edf739;gvc_06e1aac8171c,Alternate Ankle Tap Under Sit Agains Wall | Alternate Ankle Tap Under Sit Agains Wall H,1,1,2,,,truncated_suffix,MERGE_IDENTITY
+alternate knee cross over sit agains wall,2,gvc_c03c769f66de;gvc_9a3e937bdf95,Alternate Knee Cross Over Sit Agains Wall | Alternate Knee Cross Over Sit Agains Wall H,1,1,2,,,truncated_suffix,MERGE_IDENTITY
+alternate obliques pulse twist side reach,2,gvc_c9058aeea7a9;gvc_8c8da535b8fb,Alternate Obliques Pulse Twist Side Reach | Alternate Obliques Pulse Twist Side Reach W,1,1,2,,,truncated_suffix,MERGE_IDENTITY
+band biceps curl,2,gvc_922c1c62bfe6;gvc_47a89bc0819d,Band Biceps Curl | Resistance Band Biceps Curl,1,1,2,Resistance Band,팔,normalized_exact,MERGE_IDENTITY
+band hip thrust,2,gvc_cf1adbb71650;canon_gvr_bb02a66de209,Resistance Band Hip Thrusts | resistance band hip thrust,1,2,3,Resistance Band,하체,normalized_exact,MERGE_IDENTITY
+band horizontal pallof press,3,gvc_3733f2c720da;gvc_11a65c0ef1e7;gvc_7e7669b5755e,Band Horizontal Pallof Press | Resistance Band Horizontal Pallof Press | Resistance Band Horizontal Pallof Press W,2,1,3,Resistance Band,코어,truncated_suffix,MERGE_IDENTITY
+band overhead shoulder press,2,gvc_7dcae6d70ccf;canon_gvr_249e80ffe80c,Resistance Band Overhead Shoulder Press S | resistance band overhead shoulder press,2,1,3,Resistance Band,어깨,truncated_suffix,MERGE_IDENTITY
+band seated straight back row,3,gvc_94f8a5582233;gvc_2be93c52ba6c;gvc_5d37db45ed3a,Band Seated Straight Back Row | Band Straight Back Back Seated Row | Band Straight Back Seated Row,1,2,3,Resistance Band,등,normalized_exact;word_order_only,MERGE_IDENTITY
+band standing balance hip abduction,2,gvc_450b58e55bdd;gvc_451c54e55beb,Resistance Band Standing Balance Hip Abduction (fe | Resistance Band Standing Balance Hip Abduction (ma,1,1,2,Resistance Band,,normalized_exact,MERGE_IDENTITY
+barbell lying extension,2,gvc_449d7ac49f97;gvc_e8c9c1cd6c3a,Barbell Lying Extension | Barbell Lying Triceps Extension,1,1,2,Barbell,팔,redundant_target_muscle_term,MERGE_IDENTITY
+barbell standing military press without rack,2,gvc_0a154ee13d0d;gvc_f42af5c011d4,Barbell Standing Military Press (without Rack) | Barbell Standing Military Press (without Rack) (fe,1,1,2,Barbell,어깨,normalized_exact,MERGE_IDENTITY
+bodyweight standing alternate chest fly,2,gvc_ce7da3d4f005;gvc_6ac950fa4a5a,Bodyweight Standing Alternate Chest Fly | Bodyweight Standing Alternate Chest Fly C,1,1,2,,가슴,truncated_suffix,MERGE_IDENTITY
+bodyweight standing scapular external rotation,2,gvc_e97f4aa78df4;gvc_59362db600fa,Bodyweight Standing Scapular External Rotation (fe | Bodyweight Standing Scapular External Rotation (mal,1,1,2,,,normalized_exact,MERGE_IDENTITY
+bodyweight standing straight arm chest high fly,2,gvc_bf7e45b6510a;gvc_bf7e4eb6510a,Bodyweight Standing Straight Arm Chest High Fly (f | Bodyweight Standing Straight Arm Chest High Fly (m,1,1,2,,,normalized_exact,MERGE_IDENTITY
+bodyweight standing straight arm chest low fly,2,gvc_7bd513b4cf52;gvc_7baf2fb4cf31,Bodyweight Standing Straight Arm Chest Low Fly (fe | Bodyweight Standing Straight Arm Chest Low Fly (ma,1,1,2,,,normalized_exact,MERGE_IDENTITY
+bridge yoga pose setu bandha sarvangasana,2,gvc_c2b07e0b0091;gvc_a14f65686084,Bridge Yoga Pose Setu Bandha Sarvangasana | Bridge Yoga Pose Setu Bandha Sarvangasana S,1,2,3,,,truncated_suffix,MERGE_IDENTITY
+cable concentration extension on knee,2,gvc_34b8ad74cbc0;gvc_968578e2087c,Cable Concentration Extension (on Knee) | Cable Concentration Extension (on Knee) U,1,1,2,Cable,팔,truncated_suffix,MERGE_IDENTITY
+cable high pulley straight bar overhead triceps ex,2,gvc_b519b87cd9f1;gvc_a81fda4d3f5b,Cable High Pulley Straight Bar Overhead Triceps Ex | Cable High Pulley Straight Bar Overhead Triceps Extension,1,1,2,Cable,팔,truncated_final_word,MERGE_IDENTITY
+cable reverse grip triceps pushdown sz bar,2,gvc_c50ab55bcda3;gvc_8acb8ca234da,Cable Reverse Grip Triceps Pushdown (sz Bar) | Cable Reverse Grip Triceps Pushdown (sz Bar) (fema,1,1,2,Cable,팔,normalized_exact,MERGE_IDENTITY
+cable seated rear delt raise,2,gvc_888e309fa22c;gvc_09f69d03b5df,Cable Seated Rear Delt Raise | Cable Seated Rear Lateral Raise,1,1,2,Cable,어깨,rear_lateral_rear_delt_synonym,MERGE_IDENTITY
+cable triceps pushdown v bar,2,gvc_96a3dca2c1dd;gvc_d44a12daf0a3,Cable Triceps Pushdown (v Bar Attachment) | Cable Triceps Pushdown (v Bar),1,1,2,Cable,팔,normalized_exact,MERGE_IDENTITY
+calf raise from deficit with chair supported,2,gvc_c1bef62aad87;gvc_80d449e99e48,Calf Raise From Deficit With Chair Supported | Calf Raise From Deficit With Chair Supported (fema,1,1,2,,하체,normalized_exact,MERGE_IDENTITY
+cat stretch,2,gvc_f80bf8cf0b1e;gvc_25201742d9e3,Cat Stretch | Cat Stretch M,1,1,2,,코어;등,normalized_exact,MERGE_IDENTITY
+cossack squat,2,gvc_41710aa4579a;gvc_cd6fe040db48,Cossack Squat | Cossack Squats,1,1,2,,하체,normalized_exact,MERGE_IDENTITY
+decline kneeling push up,2,gvc_1f7ccb6799ee;gvc_ec017abd4821,Decline Kneeling Push Up | Decline Push Up (kneeling),1,1,2,,가슴,word_order_only,MERGE_IDENTITY
+dumbbell goblet split squat front foot elevanted,2,gvc_86661c35e74e;gvc_5e2ea75ac253,Dumbbell Goblet Split Squat Front Foot Elevanted | Dumbbell Goblet Split Squat Front Foot Elevanted T,1,2,3,Dumbbell,하체,truncated_suffix,MERGE_IDENTITY
+dumbbell lying external shoulder rotation,2,gvc_414e559314f9;gvc_76d6bc1a9108,Dumbbell Lying External Shoulder Rotation | Dumbbell Lying External Shoulder Rotation B,1,1,2,Dumbbell,,truncated_suffix,MERGE_IDENTITY
+dumbbell reverse grip biceps curl,2,gvc_a901b48019c9;gvc_05def1a9ec3e,Dumbbell Revers Grip Biceps Curl | Dumbbell Reverse Grip Biceps Curl,1,1,2,Dumbbell,팔,normalized_exact,MERGE_IDENTITY
+dumbbell single arm reverse wrist curl,2,gvc_081d935c722c;gvc_18d5604a6f21,Dumbbell One Arm Revers Wrist Curl | Dumbbell One Arm Reverse Wrist Curl,1,1,2,Dumbbell,팔,normalized_exact,MERGE_IDENTITY
+dumbbell single arm shoulder press,2,gvc_82c34a16b30a;gvc_cb8876fad337,Dumbbell One Arm Shoulder Press (version 2) | Dumbbell One Arm Shoulder Press (version 2) (femal,1,1,2,Dumbbell,어깨,normalized_exact,MERGE_IDENTITY
+dumbbell standing inner biceps curl,2,gvc_682333db0c6a;canon_gvr_db35b6f930bf,Dumbbell Standing Inner Biceps Curl (version 2) (f | dumbbell standing inner biceps curl,2,1,3,Dumbbell,팔,normalized_exact,MERGE_IDENTITY
+dumbbell standing single leg calf raise,2,gvc_c034550e5f8d;gvc_e3238022e856,Dumbbell Standing Single Leg Calf Raise | Dumbbell Standing Single Leg Calf Raise C,1,1,2,Dumbbell,하체,truncated_suffix,MERGE_IDENTITY
+dumbbell walking lunge,2,gvc_c8e5631af908;gvc_66262dd52939,Dumbbell Walking Lunge | Dumbbell Walking Lunges,1,1,2,Dumbbell,하체,normalized_exact,MERGE_IDENTITY
+ez bar seated close grip concentration curl,2,gvc_5dffb90bbdf3;gvc_0bc719634dc3,EZ Bar Seated Close Grip Concentration Curl | EZ Bar Seated Close Grip Concentration Curl (femal,1,1,2,EZ Bar,팔,normalized_exact,MERGE_IDENTITY
+front plank with arm and leg lift push up positio,2,gvc_3d9ed9dd26b7;gvc_6cd0f6c8ca79,Front Plank With Arm And Leg Lift (push Up Positio | Front Plank With Arm And Leg Lift (push Up Position),1,1,2,,,truncated_suffix;truncated_final_word,MERGE_IDENTITY
+knee and toes point out squat slide wall,2,gvc_7d6f253e0369;gvc_db938ec9463b,Knees And Toes Point Out Squat Slide Wall | Knees And Toes Point Out Squat Slide Wall H,1,1,2,,,truncated_suffix,MERGE_IDENTITY
+knee raise side jab,2,gvc_11b13add9d9a;gvc_aa51c192ccf6,Knee Raise Side Jab | Knee Raise Side Jabs,1,1,2,,,normalized_exact,MERGE_IDENTITY
+lateral raise side step,2,gvc_d7c0672a4ec3;gvc_f616cf3a8800,Lateral Raise Side Step | Side Step Lateral Raise,1,1,2,,,word_order_only,MERGE_IDENTITY
+lying alternate knee tuck,2,gvc_b7eebd4f046c;gvc_fc5ad79d08ef,Lying Alternate Knee Tuck | Lying Alternating Knee Tuck,1,1,2,,하체;코어,normalized_exact,MERGE_IDENTITY
+lying alternate leg extension,2,gvc_f6d6d9ae7490;gvc_3dc9a280d901,Lying Alternate Leg Extension | Lying Alternating Legs Extension,1,1,2,,하체,normalized_exact,MERGE_IDENTITY
+lying raised shoulder windshield wiper,2,gvc_8e141a3f0151;gvc_767d9be460e9,Lying Raised Shoulders Windshield Wiper | Lying Raised Shoulders Windshield Wiper W,1,1,2,,코어,truncated_suffix,MERGE_IDENTITY
+lying side quadriceps stretch,2,gvc_16c72310199f;gvc_3ec9f28d9abf,Lying (side) Quadriceps Stretch | Side Lying Quadriceps Stretch,1,1,2,,하체,word_order_only,MERGE_IDENTITY
+mid air lateral raise with switching palms,2,gvc_5488f10038c1;gvc_42e2103a3645,Mid Air Lateral Raises With Switching Palms | Mid Air Lateral Raises With Switching Palms (femal,1,1,2,,어깨,normalized_exact,MERGE_IDENTITY
+opposite arm and leg raise against wall,2,gvc_3f882b19b064;gvc_bb4a974e75b5,Opposite Arm And Leg Raise Against Wall | Opposite Arm And Leg Raise Against Wall H,1,1,2,,하체,truncated_suffix,MERGE_IDENTITY
+push up,2,gvc_a0c5e94bb1dc;gvc_ed8a70904a16,Push Up | Push Up M,1,1,2,,가슴,normalized_exact,MERGE_IDENTITY
+roll front shoulder and chest lying on floor,2,gvc_7986fc387180;gvc_8864845d272d,Roll Front Shoulder And Chest Lying On Floor | Roll Front Shoulder And Chest Lying On Floor (fema,1,1,2,,가슴,normalized_exact,MERGE_IDENTITY
+roll peroneal single leg side lying on floor,2,gvc_0d49f1f1b7bb;gvc_6974cabb41e9,Roll Peroneal (single Leg) Side Lying On Floor (fe | Roll Peroneal (single Leg) Side Lying On Floor Cal,1,1,2,,,truncated_suffix,MERGE_IDENTITY
+seated air twisting crunch on a padded stool,2,gvc_640101eee4b0;gvc_a2fd40f72eb9,Sitting Air Twisting Crunch On A Padded Stool | Sitting Air Twisting Crunch On A Padded Stool (fem,1,1,2,,코어,normalized_exact,MERGE_IDENTITY
+seated alternate abduction twist on a chair,2,gvc_2d01e90de679;gvc_c29115705bf3,Sitting Alternate Abduction Twist On A Chair ( | Sitting Alternate Abduction Twist On A Chair (fema,1,1,2,,,normalized_exact,MERGE_IDENTITY
+seated external rotation on a chair,2,gvc_2106188b388b;gvc_093ca4b8aba2,Seated External Rotation On A Chair | Sitting External Rotation On A Chair,1,1,2,,등,normalized_exact,MERGE_IDENTITY
+seated incline press step out on a padded stool,2,gvc_401e4a7c3235;gvc_e318dad3166d,Sitting Incline Press Stepout On A Padded Stool | Sitting Incline Press Stepout On A Padded Stool (f,1,1,2,,어깨,normalized_exact,MERGE_IDENTITY
+seated internal and external shoulder rotation,2,gvc_85bbc176ccc5;gvc_859dad76ccac,Seated Internal And External Shoulder Rotation (fe | Seated Internal And External Shoulder Rotation (ma,1,1,2,,,normalized_exact,MERGE_IDENTITY
+seated jack on a chair,2,gvc_f8ec1d99bd30;gvc_1b67d7f942cc,Seated Jack On A Chair | Sitting Jack On A Chair,1,1,2,,하체,normalized_exact,MERGE_IDENTITY
+seated lateral raise step out on a padded stool,2,gvc_4bceeda03ba0;gvc_238622ca0abe,Sitting Lateral Raise Stepout On A Padded Stool | Sitting Lateral Raise Stepout On A Padded Stool (f,1,1,2,,어깨,normalized_exact,MERGE_IDENTITY
+seated neck side stretch,2,gvc_af29e42005c6;canon_gvr_b4eaa77ce527,Seated Neck Side Stretch | sitting side neck stretch,1,2,3,,,word_order_only,MERGE_IDENTITY
+seated overhead stretch on a chair,2,gvc_1560e6d22047;gvc_a1556637f57d,Seated Overhead Stretch On A Chair | Sitting Overhead Stretch On A Chair,1,1,2,,,normalized_exact,MERGE_IDENTITY
+seated shoulder press on a chair,2,gvc_82e318d85b5a;gvc_c6670344760f,Seated Shoulder Press On A Chair | Sitting Shoulder Press On A Chair,1,1,2,,어깨,normalized_exact,MERGE_IDENTITY
+seated step out knee tuck on a padded stool,2,gvc_e510d6b21d09;gvc_e54178911a31,Sitting Stepout Knee Tuck On A Padded Stool | Sitting Stepout Knee Tuck On A Padded Stool (femal,1,1,2,,,normalized_exact,MERGE_IDENTITY
+side plank rotation a padded stool supported,2,gvc_d903d14bd718;gvc_37a17a494b37,Side Plank Rotation A Padded Stool Supported | Side Plank Rotation A Padded Stool Supported (fema,1,1,2,,코어,normalized_exact,MERGE_IDENTITY
+side squat walk,2,gvc_572d0ccca1f9;gvc_e33607e96ce5,Side Squat Walk | Side Walk Squat,1,1,2,,하체,word_order_only,MERGE_IDENTITY
+side step arm cross over,2,gvc_a469a99514ce;gvc_85f494a263a3,Side Step Arm Crossover | Side Step Crossover Arms,1,1,2,,,word_order_only,MERGE_IDENTITY
+single arm scapular push up to rotation,2,gvc_24a892ab4c0d;gvc_b4d37cfb48bf,Single Arm Scapular Push Up To Rotation | Single Arm Scapular Push Up To Rotation S,1,1,2,,,truncated_suffix,MERGE_IDENTITY
+single leg sliding floor bridge curl on towel,2,gvc_e63ce3c13a59;gvc_c935fa50b518,Single Leg Sliding Floor Bridge Curl On Towel | Single Leg Sliding Floor Bridge Curl On Towel (fem,1,1,2,,하체,normalized_exact,MERGE_IDENTITY
+single leg squat with support,2,gvc_0b8eefd928aa;gvc_060d0e857a61,Single Leg Squat With Support | Single Leg Squat With Support (pistol),1,1,2,,하체,parenthetical_synonym_pistol,MERGE_IDENTITY
+sled 45 narrow stance leg press,2,gvc_7f95ed389f0d;gvc_b40476f6227f,Sled 45 Degrees Narrow Stance Leg Press | Sled 45 Narrow Stance Leg Press,1,1,2,Sled,하체,normalized_exact,MERGE_IDENTITY
+split squat,2,gvc_606dea97d7df;gvc_b9d48e03d006,Split Squat | Split Squats,1,2,3,,하체,normalized_exact,MERGE_IDENTITY
+squat star jack,2,gvc_f95c4b9be867;gvc_3ab2ef8c7d93,Squat Star Jack | Star Squat Jack,1,1,2,,,word_order_only,MERGE_IDENTITY
+standing march with shoulder extension,2,gvc_269e04b7680d;gvc_298faebdbcf5,Standing March With Shoulders Extension | Standing March With Shoulders Extension P,1,1,2,,,truncated_suffix,MERGE_IDENTITY
+standing shoulder medial and lateral rotation,2,gvc_9718c7284b67;gvc_c27c79286400,Standing Shoulder Medial And Lateral Rotation (fem | Standing Shoulder Medial And Lateral Rotation (mal,1,1,2,,,normalized_exact,MERGE_IDENTITY
+suspender jump squat,2,gvc_1caa3b644e47;gvc_9f4982f3b589,Suspender Jump Squat | Suspender Squat Jump,1,1,2,,하체,word_order_only,MERGE_IDENTITY
+twisting crunch arm straight,2,gvc_10fc6374fd13;gvc_2ecddefe7311,Twisting Crunch (arms Straight) | Twisting Crunch (straight Arms),1,1,2,,코어,word_order_only,MERGE_IDENTITY
+wrist ulnar deviator and flexor stretch,2,gvc_50d21400c7b3;gvc_6a0d0a9c02dc,Wrist Ulnar Deviator And Flexor Stretch | Wrist Ulnar Deviator And Flexor Stretch F,1,1,2,,팔,normalized_exact,MERGE_IDENTITY
