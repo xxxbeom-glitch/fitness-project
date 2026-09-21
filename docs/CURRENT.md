@@ -75,16 +75,16 @@ PO-approved current direction:
     - additional merges = **6**
     - keep separate = **39**
   - current working identities = **5,648**
-- semantic normalization v5 = **GENERATED / MANUAL QA REMAINS**
+- semantic normalization v6 = **GENERATED / MANUAL QA REMAINS**
   - current MVP resistance/strength candidates = **3,722**
   - excluded non-MVP = **1,476**
   - excluded added-weight bodyweight/apparatus = **8**
   - excluded reserved-recording UI = **17**
   - general semantic review = **274**
   - home/context review = **151**
-  - Korean naming drafts = **1,044**
-  - AUTO_DRAFT_COMPLETE = **995**
-  - MANUAL_QA_REQUIRED = **3,152**
+  - Korean naming drafts = **1,096**
+  - AUTO_DRAFT_COMPLETE = **1,047**
+  - MANUAL_QA_REQUIRED = **3,100**
   - active MVP body/muscle conflict QA = **148 / 148 PASS**
   - recording prepass: reps **2,225** / weight_reps **1,641** / duration **158** / assisted_weight_reps **5** / unresolved **1,601**
   - Resistance Band / Rings / Suspension recording semantics = **LOCKED FOR MVP**
@@ -97,7 +97,7 @@ PO-approved current direction:
     - no catalog-status change or source deletion applied
 - all source media/provenance is preserved; identity merges/exclusions do not delete alternate media
 - raw purchased filename/path map is not committed to the public repo; only normalized derivative catalog data is committed
-- current data checkpoints: `docs/exercise-db/2026-09-20-gym-visual-auto-normalization-v1.md`, `docs/exercise-db/2026-09-20-gym-visual-duplicate-version-qa.md`, `docs/exercise-db/2026-09-20-gym-visual-cross-gender-near-match-qa.md`, `docs/exercise-db/2026-09-21-gym-visual-held-near-match-resolution.md`, `docs/exercise-db/2026-09-21-gym-visual-semantic-normalization-v5.md`, `docs/exercise-db/2026-09-21-gym-visual-bodyweight-relevance-audit-v1.md`
+- current data checkpoints: `docs/exercise-db/2026-09-20-gym-visual-auto-normalization-v1.md`, `docs/exercise-db/2026-09-20-gym-visual-duplicate-version-qa.md`, `docs/exercise-db/2026-09-20-gym-visual-cross-gender-near-match-qa.md`, `docs/exercise-db/2026-09-21-gym-visual-held-near-match-resolution.md`, `docs/exercise-db/2026-09-21-gym-visual-semantic-normalization-v6.md`, `docs/exercise-db/2026-09-21-gym-visual-bodyweight-relevance-audit-v1.md`
 - next data/media task = remaining semantic naming/metadata QA → app-facing catalog exposure decision using bodyweight relevance audit → final semantic row lock → default media selection → Cloudflare MP4 + in-app WebP manifest
 
 ### Current consolidated maintenance
