@@ -1,0 +1,94 @@
+---
+description: React Native + Expo + TypeScript UI implementation rules for Tampin
+alwaysApply: false
+globs:
+  - "**/*.ts"
+  - "**/*.tsx"
+  - "app.json"
+  - "app.config.*"
+  - "src/**"
+---
+
+# React Native / Expo UI Rules
+
+Tampin의 승인된 앱 스택:
+- Android only
+- React Native
+- Expo
+- TypeScript
+- Expo Development Build가 production-development runtime contract
+- Expo Go는 production runtime contract가 아님
+
+## 1. Figma implementation
+UI 구현 전 반드시 확인:
+- `docs/implementation/MVP_SCREEN_INVENTORY.md`
+- `docs/implementation/MVP_SCREEN_BEHAVIOR_MATRIX.md`
+- 관련 Decision/Policy
+- canonical Figma frame/node
+- 기존 구현된 design-system token/component
+
+Figma의 절대 좌표를 그대로 복제하지 않는다.
+정보 계층, 간격 관계, typography, color, shape, 상태 의미는 유지하면서 Android phone portrait에 안정적으로 구현한다.
+
+## 2. Design system first
+재사용 순서:
+`tokens → shared components → feature patterns → local implementation`
+
+- 같은 역할의 색/간격/타이포/컴포넌트를 화면별로 하드코딩하지 않는다.
+- 한 화면만을 위해 성급하게 global token/component를 추가하지 않는다.
+- Figma Common_Component의 역할을 코드에서도 가능한 한 shared component로 유지한다.
+- 공유 컴포넌트 변경은 소비 화면 영향 범위를 먼저 확인한다.
+
+## 3. Screen / orchestration separation
+주요 화면은 가능한 한 다음 책임을 분리한다.
+- Screen: 전달받은 state를 렌더링
+- Route/Controller: navigation, orchestration, data adapter 연결
+- State/Action: 화면에 필요한 명시적 상태와 사용자 액션
+
+Screen 내부에서 SQLite, Supabase, 파일 업로드, 네트워크 SDK를 직접 호출하지 않는다.
+
+## 4. Mock-first implementation phase
+현재 DB/Backend 연결이 후순위인 Development phase에서는:
+- 화면이 deterministic mock/fake state로 독립 실행 가능해야 한다.
+- mock 데이터와 실제 production data adapter를 분리한다.
+- core workout 기록의 임시 저장 수단으로 AsyncStorage나 임의 JSON persistence를 넣지 않는다.
+- Mock은 실제 SQLite/Supabase의 대체 production 저장소가 아니다.
+- persistence가 필요한 Acceptance Criteria는 SQLite 단계 전까지 `NOT VERIFIED` 또는 scope 밖으로 둔다.
+
+## 5. Layout / accessibility
+- 특정 한 기기 픽셀 너비에만 맞춘 layout을 만들지 않는다.
+- Android phone portrait를 기준으로 narrow width와 일반 width에서 핵심 UI가 깨지지 않게 한다.
+- Safe Area / keyboard / scroll / bottom navigation inset을 고려한다.
+- 주요 터치 타깃은 가능한 Android baseline 접근성을 만족한다.
+- 색상만으로 선택/오류/성공을 전달하지 않는다.
+- 텍스트 확대 시 핵심 정보와 CTA가 잘리지 않게 한다.
+
+## 6. States
+화면 성격상 실제로 발생하는 경우에만 구현한다:
+- Content
+- Loading
+- Empty
+- Error
+- Disabled
+- Permission required
+- Long content
+
+모든 상태를 기계적으로 추가하지 않는다.
+
+## 7. Debug UI Catalog
+새 canonical screen/state 구현은 `.cursor/skills/register-debug-screen/SKILL.md`와
+`agent/specs/DEBUG_SCREEN_CATALOG_GUIDE.md`를 따른다.
+
+목표:
+- 실제 로그인/DB/Supabase 없이 화면을 직접 열 수 있음
+- deterministic fake state로 시각/상태 QA 가능
+- production build에서 사용자에게 노출되지 않음
+
+## 8. Completion
+주요 화면 완료 최소 조건:
+- Issue AC 충족
+- canonical Figma 의도와 비교
+- 필요한 대표 상태 구현
+- Debug UI Catalog 등록 또는 명확한 N/A 사유
+- type/lint/test/build 중 현재 Issue가 요구하는 검증 실행
+- 의도하지 않은 Figma 차이 기록

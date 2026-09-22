@@ -4,6 +4,32 @@
 
 Canonical GitHub repository: `xxxbeom-glitch/tampin`
 
+## Cursor execution harness — prepared 2026-09-22
+
+Development-prep only; production implementation is still NOT STARTED.
+
+Prepared in GitHub:
+- `.cursor/rules/`
+- `.cursor/skills/`
+- `agent/TASK_CONTRACT.md`
+- `agent/SESSION_HANDOFF.md`
+- `agent/ERROR_LEDGER.md`
+- `agent/FIGMA_SCREEN_MAP.md` — canonical 96 rows
+- `agent/specs/DEBUG_SCREEN_CATALOG_GUIDE.md`
+- `.github/ISSUE_TEMPLATE/tampin-task.md`
+- `docs/implementation/CURSOR_BOOTSTRAP.md`
+- `scripts/verify-ui.ps1`
+
+Implementation staging:
+- first development phase may implement UI / navigation / deterministic mock-flow before production DB/media hookup
+- core workout persistence is not faked with AsyncStorage/file JSON
+- SQLite, Supabase/Auth/Storage/Sync remain separate later Issues
+- persistence/recovery claims remain NOT VERIFIED until their real architecture layer is connected
+
+NEXT remains: explicit Product Owner Development-mode authorization → first scoped implementation Issue.
+
+---
+
 ## Current mode
 
 `MVP 96 CONTENT/STATE FRAMES CANONICAL · SEQUENTIAL PRODUCT/UX HANDOFF QA PASS · PLATFORM = ANDROID ONLY · QA/RELEASE = ANDROID · APP STACK = REACT NATIVE + EXPO + TYPESCRIPT LOCKED · PERSISTENCE = LOCAL-FIRST LOCKED · LOCAL DB = SQLITE / EXPO-SQLITE LOCKED · BACKEND = SUPABASE POSTGRES LOCKED · AUTH = SUPABASE AUTH (GOOGLE+KAKAO) LOCKED · STORAGE = SUPABASE STORAGE LOCKED · SYNC = OUTBOX/BATCH/IDEMPOTENT/OPTIMISTIC-VERSION LOCKED · PRE-RELEASE ARCHITECTURE RE-AUDIT 01–14 PASS · PACKAGE = com.lumian.tampin · NEXT = PO DEVELOPMENT AUTHORIZATION · IMPLEMENTATION NOT STARTED`

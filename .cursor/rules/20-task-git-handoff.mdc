@@ -1,0 +1,77 @@
+---
+description: GitHub Issue execution, Git discipline, and ChatGPT handoff for Tampin
+alwaysApply: true
+---
+
+# Task / Git / Handoff Rules
+
+## 1. Task start
+사용자가 `GitHub 확인하고 진행해`, `Tampin 이어서`, 또는 지정 Issue 작업을 요청하면:
+
+1. `docs/CURRENT.md`
+2. 지정/current Issue
+3. Issue가 링크한 Decision/Spec
+4. `agent/TASK_CONTRACT.md`
+5. 관련 코드
+
+순서로 확인한다.
+
+Issue가 없거나 Development authorization이 없으면 production implementation을 추측해서 시작하지 않는다.
+
+## 2. One task, one goal
+- 한 Issue는 하나의 명확한 목표를 가진다.
+- 동시에 여러 Task를 진행하지 않는다. CURRENT가 병렬 작업을 명시한 경우만 예외다.
+- 작업 시작 시 Issue가 `status:ready` 또는 `status:fix-required`인지 확인한다.
+- 실행 시작 시 가능하면 `status:running`으로 갱신한다.
+
+## 3. TASK_CONTRACT
+코드/화면/아키텍처를 바꾸는 Issue라면 `agent/TASK_CONTRACT.md`를 현재 Issue 기준으로 갱신한다.
+
+포함:
+- Task / Issue
+- Goal
+- Required
+- Allowed Scope
+- Forbidden / Do Not Change
+- Figma refs
+- Risk
+- Affected invariants / regression packs
+- Verification
+- Done When
+
+## 4. Git rules
+- `main`은 buildable 상태를 유지한다.
+- Task가 있으면 branch/commit에 Task ID를 포함한다.
+- 한 Task = 한 branch를 기본으로 한다.
+- unrelated change를 한 commit에 섞지 않는다.
+- 의미 있는 work cycle마다 commit을 만든다.
+- dirty working tree가 있으면 현재 Task 소속인지 확인하고 진행한다.
+- force push / interactive rebase / destructive reset은 명시적 필요와 안전 근거 없이는 하지 않는다.
+- secrets를 commit하지 않는다.
+
+## 5. Completion handoff
+완료 전:
+1. AC 확인
+2. 관련 type/lint/test/build 실제 실행
+3. 요구된 runtime/device QA가 없으면 `NOT VERIFIED`로 남김
+4. Commit 생성
+5. Issue에 Result/Test/Commit/Risk/Blocker 기록
+6. `status:review`, Next Owner=ChatGPT
+7. 다음 세션에 필요한 경우에만 `agent/SESSION_HANDOFF.md` 갱신
+
+Cursor의 DONE 보고 자체는 최종 PASS가 아니다.
+
+## 6. Ambiguity
+Engineering detail이 repo/Issue/기존 패턴으로 안전하게 결정 가능하면 최소 구현으로 진행한다.
+
+Product/UX/policy/architecture 판단이 새로 필요하면:
+- 영향받는 구현만 멈춘다.
+- Issue에 `QUESTION FOR CHATGPT` 기록
+- 필요한 결정 1개
+- evidence/context
+- 가능한 옵션
+- 영향/위험
+- 현재 Branch/Commit
+을 남기고 Next Owner=ChatGPT로 둔다.
+
+사용자에게 기술/제품 번역 역할을 요구하지 않는다.

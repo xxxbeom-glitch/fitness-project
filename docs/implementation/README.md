@@ -81,3 +81,19 @@ Product Owner가 개발 시작을 명시하면:
 - 첫 implementation Issue를 만든다.
 - 해당 Issue의 범위만 Cursor에 전달한다.
 - 한 번에 전체 앱을 무경계로 구현하지 않는다.
+
+## Cursor execution harness
+
+Prepared 2026-09-22:
+- `.cursor/rules/`
+- `.cursor/skills/`
+- `agent/TASK_CONTRACT.md`
+- `agent/FIGMA_SCREEN_MAP.md`
+- `agent/specs/DEBUG_SCREEN_CATALOG_GUIDE.md`
+- `.github/ISSUE_TEMPLATE/tampin-task.md`
+- `docs/implementation/CURSOR_BOOTSTRAP.md`
+- `scripts/verify-ui.ps1`
+
+This is development preparation only. Production implementation remains gated by explicit Product Owner Development-mode authorization.
+
+The initial source-tree / mock-first boundary is defined in `CURSOR_BOOTSTRAP.md`. SQLite/Supabase are not to be replaced by ad-hoc temporary production persistence during the UI-first phase.

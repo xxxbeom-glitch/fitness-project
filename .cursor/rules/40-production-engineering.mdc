@@ -1,0 +1,91 @@
+---
+description: Tampin production engineering safety for persistence, auth, sync, Android runtime, privacy, and release
+alwaysApply: true
+---
+
+# Production Engineering Rules
+
+Canonical architecture:
+- Android only
+- React Native + Expo + TypeScript
+- local-first
+- SQLite / expo-sqlite
+- Supabase Postgres
+- Supabase Auth (Google + Kakao)
+- Supabase Storage
+- durable outbox/batch/idempotent/optimistic-version sync
+- EAS Build / AAB / Google Play App Signing
+
+정확한 현재 정책은 항상 최신 GitHub Decision을 확인한다.
+
+## 1. Phase boundary
+DB/backend 연결이 현재 Issue 범위가 아니면 임의로 추가하지 않는다.
+
+특히 UI/mock phase에서:
+- AsyncStorage를 core workout persistence의 임시 production substitute로 사용하지 않는다.
+- mock repository를 release fallback으로 만들지 않는다.
+- Supabase SDK를 화면 구현 편의를 위해 먼저 연결하지 않는다.
+- login/storage/sync가 필요한 기능은 adapter boundary까지만 두고 실제 연결은 후속 Issue로 둔다.
+
+## 2. Local-first invariants
+SQLite 단계에서는:
+- workout interaction local commit이 server sync보다 먼저다.
+- active workout/session state는 durable local state다.
+- sync 실패가 local data를 rollback/delete하면 안 된다.
+- stable IDs를 사용한다.
+- schema 변경은 migration으로 처리한다.
+- destructive migration은 명시적 승인 없이 금지한다.
+- app/process interruption에서 active workout 데이터가 조용히 사라지면 안 된다.
+
+## 3. Historical / identity / units
+반드시 `docs/11_GLOBAL_INVARIANTS.md`를 따른다.
+
+특히:
+- completed workout history를 routine/exercise edit가 rewrite하지 않음
+- exercise identity 안정성
+- custom exercise independent history
+- kg/lb source value 비파괴
+- blank/routine workout core semantics 호환
+
+## 4. Secrets / privacy
+- service-role key, private key, token, keystore secret, service account JSON 금지
+- 앱 포함 값은 추출 가능하다고 가정
+- auth/session secret은 SQLite plain text에 저장하지 않음
+- DOB, email, nickname, profile image, exact workout values, support content, auth secret, raw DB rows를 analytics/crash logs로 보내지 않음
+- Sentry/PostHog failure는 앱 핵심 흐름을 막지 않음
+
+## 5. Network / Supabase
+연결 시:
+- HTTPS / SDK 정상 검증을 우회하지 않는다.
+- retry 무한 반복 금지
+- idempotent mutation / stable IDs / optimistic conflict policy 유지
+- server authorization은 client UI와 독립적으로 강제
+- user-owned private media는 public default 금지
+- repo updated != runtime deployed
+
+## 6. Android runtime
+관련 Issue에서만 구현한다.
+- Active Workout elapsed = persisted absolute start timestamp 기반
+- Rest Timer = persisted absolute end timestamp 기반
+- JS interval 자체를 truth로 사용하지 않음
+- Active Workout notification은 presentation state
+- notification dismiss가 workout을 종료/변경하지 않음
+- exact-alarm/POST_NOTIFICATIONS/boot recovery는 승인된 Android Decision을 따름
+- Force stop은 일반 background/reboot와 동일하게 취급하지 않음
+
+## 7. Lifecycle / duplicate actions
+- duplicate tap/request 방지
+- unmount/navigation 이후 불필요한 async work 정리
+- 성공 이벤트가 rerender 때문에 중복 실행되지 않게 함
+- 저장/전송 실패를 성공으로 위장하지 않음
+- empty catch 금지
+
+## 8. Dependencies
+- 기존 의존성으로 해결 가능한지 먼저 확인
+- 유지보수 상태/라이선스/Expo compatibility 확인
+- 동일 역할 라이브러리 중복 금지
+- build 오류를 숨기기 위한 임의 version churn 금지
+
+## 9. Production readiness
+저장, auth, network, permission, personal data, migration, release 설정을 건드리면
+`.cursor/skills/review-production-readiness/SKILL.md`를 실행한다.

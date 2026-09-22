@@ -1,0 +1,62 @@
+---
+description: Verification, QA evidence, and failure recovery rules for Tampin
+alwaysApply: true
+---
+
+# Quality / Recovery Rules
+
+## 1. Verification order
+Task 범위에 해당하는 검증을 가능한 순서로 수행한다.
+
+1. Type / static validation
+2. Lint
+3. Unit tests
+4. Integration tests
+5. Android development build / runnable verification
+6. Debug UI Catalog representative states
+7. Figma comparison
+8. 필요한 regression pack
+
+존재하지 않는 검증을 임의로 PASS 처리하지 않는다.
+
+## 2. Evidence labels
+필요할 때 다음을 구분한다.
+- `Logic PASS`
+- `Integration PASS`
+- `Runtime/Device PASS`
+- `NOT VERIFIED`
+
+Logic PASS를 lifecycle/Android/runtime PASS로 확대 해석하지 않는다.
+
+## 3. Failure diagnosis
+- 긴 로그의 최초 근본 오류를 먼저 찾는다.
+- 연쇄 오류를 각각 독립 원인처럼 수정하지 않는다.
+- `agent/ERROR_LEDGER.md`에 같은 fingerprint가 있는지 먼저 확인한다.
+- 직접 관련된 최소 파일만 수정한다.
+- 오류를 숨기기 위한 테스트 삭제, broad suppression, 보안 우회, 데이터 초기화를 사용하지 않는다.
+
+## 4. Retry control
+- 1차 실패: 원인 확인 후 최소 수정
+- 2차 실패: 기존 가설/결과 기록 후 다른 접근
+- 3차 같은 원인 실패: `STOP` 또는 `BLOCKED`
+
+근거 없이 같은 해결책을 반복하지 않는다.
+
+## 5. UI QA
+Figma 비교 시 우선 확인:
+- 정보 계층/섹션 순서
+- alignment / spacing
+- typography / wrapping
+- color / shape / border / elevation
+- image ratio / crop
+- interaction feedback
+- empty/error/disabled 등 필요한 states
+- narrow Android width
+- keyboard/scroll/bottom inset
+- Debug UI Catalog 실행 가능성
+
+픽셀 고정 복제보다 approved visual intent와 device 안정성을 우선한다.
+
+## 6. Regression
+`docs/12_REGRESSION_MATRIX.md`에서 현재 영향 pack만 선택한다.
+이미 PASS된 unrelated 영역을 습관적으로 full-regression하지 않는다.
