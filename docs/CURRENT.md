@@ -26,7 +26,7 @@ Implementation staging:
 - SQLite, Supabase/Auth/Storage/Sync remain separate later Issues
 - persistence/recovery claims remain NOT VERIFIED until their real architecture layer is connected
 
-NEXT: resume canonical Figma redesign/revision with Product Owner; do not execute DEV-002 until Design/Figma is re-closed and PO explicitly resumes Development.
+NEXT: continue from `IDEA_Routine_Main_Jomo_01` (`2168:7614`) using `docs/ux-decisions/2026-09-22-routine-main-replaces-home-redesign-checkpoint.md`; reconcile Home removal with canonical IA/navigation/screen inventory, then promote and re-QA only affected design scope. Do not execute DEV-002 until Design/Figma is re-closed and PO explicitly resumes Development.
 
 ---
 
@@ -42,7 +42,7 @@ NEXT: resume canonical Figma redesign/revision with Product Owner; do not execut
 - Reason: Product Owner explicitly requested a substantial redesign before continuing development
 - Existing DEV-001 runtime scaffold remains accepted and is not rolled back
 - Do not execute DEV-002 or create a new implementation Issue until the revised canonical Figma is approved/QA-closed and Product Owner explicitly resumes Development
-- Current next action: redesign/revise canonical Figma, then re-run only the affected design QA and update implementation handoff if the approved design contract changes
+- Current next action: continue the Routine-first redesign from `IDEA_Routine_Main_Jomo_01` / `2168:7614`, preserve current PO-adjusted values, reconcile Home removal with canonical IA/navigation/screen inventory, then re-run only affected design QA and update implementation handoff if the approved design contract changes
 
 ---
 
@@ -74,6 +74,16 @@ The previous `98` count became `94` after the 2026-09-19 recommended-routine rem
 ---
 
 ## Latest active checkpoints
+
+### Active redesign checkpoint — 2026-09-22
+- `docs/ux-decisions/2026-09-22-routine-main-replaces-home-redesign-checkpoint.md`
+- PO decision: standalone Home is no longer the intended default/main entry; Routine becomes the default/main entry for the active redesign
+- active ideation Figma: `IDEA_Routine_Main_Jomo_01` — `2168:7614`
+- current ideation state includes quick actions `루틴 없이 시작` / `새 루틴 만들기`, routine folders/groups, compact Jomo-like routine cards, and PO manual overrides recorded in the checkpoint
+- this redesign is NOT yet promoted to canonical `MVP_전체_와이어프레임`; canonical independent-screen count remains 96 until promotion/remapping + focused QA
+- historical Group 02 Home decisions remain provenance/reference and are superseded for current IA only where this active checkpoint explicitly says so
+- Development remains paused; DEV-002 Issue #6 must not execute
+
 
 ### MVP design freeze / implementation handoff preparation
 - latest Group 08 profile-photo amendment: `docs/ux-decisions/2026-09-22-profile-photo-crop-screen.md`
