@@ -33,3 +33,7 @@
 - Group 08 screens 17 → 18
 
 This amendment changes only the Group 08 profile-photo flow. Prior Group 08 PASS decisions remain valid elsewhere.
+
+## Supersession note
+
+For the profile-photo flow and screen inventory, this decision is newer than the 2026-09-20 aggregate handoff documents. The canonical count for this approved amendment is **96 total / Group 08 = 18**.
