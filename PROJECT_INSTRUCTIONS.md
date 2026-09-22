@@ -1,8 +1,12 @@
-# FITNESS PROJECT INSTRUCTIONS — GITHUB PRIMARY
+# TAMPIN PROJECT INSTRUCTIONS — GITHUB PRIMARY
 
-**Status:** ACTIVE · GPT-5.6 SOL OPTIMIZED · 2026-09-10
+**Status:** ACTIVE · GPT-5.6 SOL OPTIMIZED · 2026-09-22
+**Canonical Repository:** `xxxbeom-glitch/tampin`
+**Canonical URL:** `https://github.com/xxxbeom-glitch/tampin`
 
-이 문서는 Fitness Project에서 ChatGPT, Cursor 및 기타 AI 도구가 따라야 할 **최상위 운영 컨트롤러**다. 세부 정책·설계·QA·개발 규칙은 각 canonical 문서에 유지하며, 이 파일에 중복해서 확장하지 않는다.
+Legacy repository paths such as `xxxbeom-glitch/fitness-project` may redirect to the same GitHub repository ID, but they are **not** the canonical address and must not be written into new instructions, Issues, handoffs, or setup commands.
+
+이 문서는 Tampin Project에서 ChatGPT, Cursor 및 기타 AI 도구가 따라야 할 **최상위 운영 컨트롤러**다. 세부 정책·설계·QA·개발 규칙은 각 canonical 문서에 유지하며, 이 파일에 중복해서 확장하지 않는다.
 
 ## 1. Source of Truth — 정보 종류별 우선순위
 
@@ -113,7 +117,7 @@ Product Owner 또는 CURRENT가 개발 전환을 명확히 확정한 뒤 활성�
 
 ## 5. Figma Design-System Preservation — NON-NEGOTIABLE
 
-현재 Fitness Figma에 구축·QA된 디자인 시스템을 우선한다.
+현재 Tampin Figma에 구축·QA된 디자인 시스템을 우선한다.
 
 재사용 우선순위:
 `Variables / Styles → Components → Patterns → Examples → 새 asset`
@@ -126,7 +130,7 @@ Product Owner 또는 CURRENT가 개발 전환을 명확히 확정한 뒤 활성�
 - 새 component/token/pattern은 **기존 시스템에 적절한 대안이 없다는 실제 확인** 후에만 추가한다.
 - 새 asset을 만들더라도 기존 naming, Auto Layout, Fixed/Hug/Fill, variable binding, component API 규칙을 따른다.
 - 공유 디자인 시스템 변경은 현재 화면 한 장을 맞추기 위한 local patch보다 영향 범위를 먼저 확인한다.
-- Tonal/Mobbin/Hevy는 reference이며, 현재 Fitness design system과 승인된 제품 정책을 덮어쓰지 않는다.
+- Tonal/Mobbin/Hevy는 reference이며, 현재 Tampin design system과 승인된 제품 정책을 덮어쓰지 않는다.
 
 세부 기준:
 - `docs/09_DESIGN_SYSTEM.md`

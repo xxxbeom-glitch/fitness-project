@@ -2,6 +2,10 @@
 
 **Status:** HARNESS PREPARED · RUNTIME IMPLEMENTATION NOT STARTED  
 **Updated:** 2026-09-22
+**Canonical Repository:** `xxxbeom-glitch/tampin`
+**Canonical URL:** `https://github.com/xxxbeom-glitch/tampin`
+
+Legacy aliases such as `xxxbeom-glitch/fitness-project` are not used for clone/pull/handoff instructions.
 
 ## Purpose
 Liftly의 UI/quality harness와 OnTalk의 GitHub Task/QA 운영 방식을 Tampin의 현재 architecture에 맞게 통합한다.

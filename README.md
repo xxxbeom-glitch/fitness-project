@@ -1,12 +1,19 @@
-# Fitness Project
+# Tampin
 
-AI-assisted product repository for a general-purpose weight-training tracker.
+AI-assisted product repository for Tampin, an Android-first weight-training tracker.
+
+**Canonical Repository:** `xxxbeom-glitch/tampin`  
+**Canonical URL:** `https://github.com/xxxbeom-glitch/tampin`
+
+Legacy repository paths such as `xxxbeom-glitch/fitness-project` may redirect here, but the canonical repository address is `xxxbeom-glitch/tampin`.
 
 ## Current mode
 
-`BOOTSTRAP MODE`
+`DEVELOPMENT READY · AWAITING PRODUCT OWNER AUTHORIZATION · IMPLEMENTATION NOT STARTED`
 
-The product direction is being frozen into Project OS v0.1 before implementation begins.
+The Product/UX/Figma handoff, Android architecture re-audit, and Cursor execution harness are prepared. Production implementation begins only after explicit Product Owner Development-mode authorization and creation of the first scoped GitHub Issue.
+
+The authoritative live status is always `docs/CURRENT.md`.
 
 ## Current product thesis
 
@@ -18,28 +25,44 @@ Build a weight-training tracker that does **not** assume one fixed training habi
 
 This GitHub repository is the canonical source for product decisions, execution tasks, implementation evidence, and current status.
 
-- Product memory -> `docs/`
-- Work memory -> Task / GitHub Issue
-- Implementation evidence -> Commit / Test
-- Current position -> `docs/CURRENT.md`
+- Product memory → `docs/`
+- Work memory → GitHub Issue
+- Implementation evidence → Commit / Test / Runtime evidence
+- Current position → `docs/CURRENT.md`
+- Approved visual artifact → canonical Figma identified by CURRENT
 
 ## Operating flow
 
 ```text
-BOOTSTRAP MODE
-Product / Policy / Business / Tech / Design / Operating Model
--> Cross-document QA
--> User approval
--> Project OS v0.1
+Product/UX/Design
+Decision / Spec / Figma
+→ Product Owner approval
+→ GitHub canonical docs
 
-EXECUTION MODE
-Decision / Spec
--> Task / GitHub Issue
--> Implementation
--> Commit / Test Evidence
--> Independent QA
--> PASS / FIX / DECISION NEEDED
--> CURRENT update
+Development
+CURRENT
+→ scoped GitHub Issue
+→ Cursor implementation
+→ Test / Build
+→ Commit / Push
+→ Issue evidence
+→ ChatGPT independent QA
+→ PASS / FIX / BLOCKED
+→ CURRENT update
 ```
 
-Start with `PROJECT_INSTRUCTIONS.md`, `PROJECT_BOOTSTRAP.md`, and `docs/CURRENT.md`.
+Normal human relay:
+- User → Cursor: `GitHub 확인하고 현재 Issue 진행해.`
+- User → ChatGPT: `커서 완료. GitHub 확인해.`
+
+The user does not need to copy long implementation prompts or Cursor completion reports between the two agents.
+
+## Start here
+
+1. `PROJECT_INSTRUCTIONS.md`
+2. `docs/CURRENT.md`
+3. current Issue when Development mode is active
+4. only the directly relevant Decision/Spec/Figma
+5. `docs/implementation/README.md` for implementation handoff
+
+`PROJECT_BOOTSTRAP.md` is historical bootstrap reference only and is not the current-mode authority.

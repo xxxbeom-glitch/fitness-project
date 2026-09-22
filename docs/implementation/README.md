@@ -2,6 +2,7 @@
 
 **Status:** HANDOFF PREPARED · 96-SCREEN CANONICAL · ANDROID-ONLY ARCHITECTURE LOCKED · AWAITING PO DEVELOPMENT AUTHORIZATION  
 **Updated:** 2026-09-22
+**Canonical Repository:** `xxxbeom-glitch/tampin`
 
 이 폴더는 Cursor가 MVP 구현을 시작하기 전에 읽는 **개발 진입점**이다.
 

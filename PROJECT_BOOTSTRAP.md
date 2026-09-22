@@ -1,4 +1,9 @@
-# FITNESS PROJECT BOOTSTRAP
+# TAMPIN PROJECT BOOTSTRAP — HISTORICAL REFERENCE
+
+**Status:** HISTORICAL · INITIAL PROJECT-OS BOOTSTRAP COMPLETED  
+**Canonical Repository:** `xxxbeom-glitch/tampin`
+
+This file records the original bootstrap framework. It is **not** the current-mode authority and must not be used to reopen superseded product/design decisions. Resume work from `PROJECT_INSTRUCTIONS.md` → `docs/CURRENT.md` → latest active checkpoint/current Issue.
 
 Goal: create the minimum stable Project OS v0.1 before implementation.
 

@@ -1,6 +1,10 @@
-# PROJECT FOLDER SETUP GUIDE
+# TAMPIN PROJECT FOLDER SETUP GUIDE
 
-This repository is the canonical source for the Fitness Project.
+This repository is the canonical source for Tampin.
+
+- Canonical repository: `xxxbeom-glitch/tampin`
+- Canonical URL: `https://github.com/xxxbeom-glitch/tampin`
+- Legacy aliases/redirects such as `xxxbeom-glitch/fitness-project` are not canonical and must not be used in new setup instructions.
 
 ## 1. One product, one project
 Do not mix unrelated products into this project workspace.
@@ -13,23 +17,28 @@ Do not mix unrelated products into this project workspace.
 
 If a snapshot or Figma screen conflicts with GitHub, GitHub wins unless the user has just made a newer explicit decision that still needs to be written back.
 
-## 3. Bootstrap first
-The project is currently in `BOOTSTRAP MODE`.
+## 3. Resume from the current state
+
+The project is no longer in Bootstrap mode. The authoritative current state is `docs/CURRENT.md`.
 
 Read in this order:
 1. `PROJECT_INSTRUCTIONS.md`
-2. `PROJECT_BOOTSTRAP.md`
-3. `docs/CURRENT.md`
-4. Only the relevant docs for the current decision
+2. `docs/CURRENT.md`
+3. current GitHub Issue when Development mode is active
+4. latest active checkpoint
+5. only the Decision/Spec/Figma directly relevant to the current task
 
-Do not treat TBD or research items as confirmed.
+`PROJECT_BOOTSTRAP.md` is historical reference only.
 
-## 4. Execution mode later
-After Project OS v0.1 is approved:
+## 4. Development execution
 
-`Decision / Spec -> Task / GitHub Issue -> Impact Gate -> Implementation -> Commit / Test Evidence -> QA -> CURRENT update`
+Production implementation starts only after explicit Product Owner Development-mode authorization.
 
-Code-changing work should normally have a GitHub Issue.
+Normal development loop:
+
+`CURRENT -> scoped GitHub Issue -> relevant Decision/Spec/Figma -> Impact Gate -> Cursor implementation -> Test/Build -> Commit/Push -> Issue evidence -> ChatGPT QA -> CURRENT update`
+
+Code-changing work should have a GitHub Issue. The Issue is the normal Cursor work instruction; do not duplicate it into a long copy-paste prompt unless GitHub is unavailable.
 
 ## 5. Role usage
 Roles are responsibilities, not specific tools and not mandatory sequential approvals.
@@ -84,5 +93,5 @@ This is a solo product project. Do not add process for its own sake.
 - Add heavier process only when it controls a real risk.
 - If the Project OS slows actual product work, simplify it.
 
-## 10. Current transition rule
+## 10. Historical-source rule
 Notion IDEA LAB, older Figma work, and Liftly contain earlier discovery/design/code/data assets. They may be used as research/provenance/reuse sources, but once a product decision is confirmed for execution, GitHub documents become the maintained source of truth.
