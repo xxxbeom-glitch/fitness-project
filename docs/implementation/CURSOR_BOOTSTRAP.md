@@ -1,6 +1,6 @@
 # Cursor Development Bootstrap — Tampin
 
-**Status:** DEVELOPMENT AUTHORIZED · DEV-001 ISSUE #5 READY · RUNTIME IMPLEMENTATION NOT YET EXECUTED  
+**Status:** DEVELOPMENT ACTIVE · DEV-001 PASS/MERGED · DEV-002 ISSUE #6 READY  
 **Updated:** 2026-09-22
 **Canonical Repository:** `xxxbeom-glitch/tampin`
 **Canonical URL:** `https://github.com/xxxbeom-glitch/tampin`
@@ -87,8 +87,8 @@ agent/
 ```
 
 ## Initial application source-tree contract
-아래는 첫 Expo bootstrap Issue에서 생성할 방향이다.
-현재 harness commit에서는 빈 runtime 폴더를 미리 만들지 않는다.
+아래 구조는 DEV-001에서 실제 runtime scaffold로 생성되었다.
+후속 Issue는 이 경계를 유지하고 실제 필요가 있을 때만 확장한다.
 
 ```text
 src/
@@ -172,9 +172,13 @@ UI Task는 추가로:
 ## Development gate
 이 harness가 repo에 존재하는 것은 **개발 시작 승인 자체가 아니다**.
 
-Product Owner가 2026-09-22 Development mode를 명시적으로 승인했고 첫 scoped Issue #5 / DEV-001이 생성되었다.
+Product Owner가 2026-09-22 Development mode를 명시적으로 승인했다.
+
+Completed:
+- Issue #5 / DEV-001 — Expo/RN/TS scaffold + Android compile PASS, merged to main
+- Runtime/Device launch remains NOT VERIFIED
 
 Current action:
-- Cursor reads CURRENT + Issue #5 + linked docs + TASK_CONTRACT
-- Cursor executes DEV-001 only
-- later product-screen/persistence/backend work requires separate Issues
+- Cursor reads CURRENT + Issue #6 + linked docs + TASK_CONTRACT
+- Cursor executes DEV-002 only: Expo/EAS link + Android runtime smoke
+- product-screen/persistence/backend work remains separate later Issues

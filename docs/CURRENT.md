@@ -6,7 +6,7 @@ Canonical GitHub repository: `xxxbeom-glitch/tampin`
 
 ## Cursor execution harness — prepared 2026-09-22
 
-Product Owner explicitly authorized Development mode on 2026-09-22. DEV-001 is READY; runtime implementation has not yet been executed.
+Product Owner explicitly authorized Development mode on 2026-09-22. DEV-001 bootstrap is PASS and merged to `main`. Android compile evidence exists; Runtime/Device launch remains NOT VERIFIED.
 
 Prepared in GitHub:
 - `.cursor/rules/`
@@ -26,21 +26,22 @@ Implementation staging:
 - SQLite, Supabase/Auth/Storage/Sync remain separate later Issues
 - persistence/recovery claims remain NOT VERIFIED until their real architecture layer is connected
 
-NEXT: Cursor executes GitHub Issue #5 — `[DEV-001] Expo app bootstrap + Android development foundation`.
+NEXT: Cursor executes GitHub Issue #6 — `[DEV-002] Expo/EAS link + Android runtime smoke`.
 
 ---
 
 ## Current mode
 
-`DEVELOPMENT MODE AUTHORIZED · DEV-001 ISSUE #5 READY · MVP 96 CONTENT/STATE FRAMES CANONICAL · PLATFORM = ANDROID ONLY · APP STACK = REACT NATIVE + EXPO + TYPESCRIPT LOCKED · PERSISTENCE = LOCAL-FIRST LOCKED · LOCAL DB = SQLITE / EXPO-SQLITE LOCKED · BACKEND = SUPABASE POSTGRES LOCKED · AUTH = SUPABASE AUTH (GOOGLE+KAKAO) LOCKED · STORAGE = SUPABASE STORAGE LOCKED · SYNC = OUTBOX/BATCH/IDEMPOTENT/OPTIMISTIC-VERSION LOCKED · PRE-RELEASE ARCHITECTURE RE-AUDIT 01–14 PASS · PACKAGE = com.lumian.tampin · NEXT = CURSOR EXECUTE ISSUE #5 · RUNTIME IMPLEMENTATION NOT YET EXECUTED`
+`DEVELOPMENT MODE ACTIVE · DEV-001 BOOTSTRAP PASS/MERGED · DEV-002 ISSUE #6 READY · MVP 96 CONTENT/STATE FRAMES CANONICAL · PLATFORM = ANDROID ONLY · APP STACK = REACT NATIVE + EXPO SDK 57 + TYPESCRIPT · PACKAGE = com.lumian.tampin · ANDROID COMPILE PASS · RUNTIME/DEVICE NOT VERIFIED · PERSISTENCE = LOCAL-FIRST LOCKED / NOT IMPLEMENTED · BACKEND/AUTH/STORAGE/SYNC LOCKED / NOT IMPLEMENTED · NEXT = CURSOR EXECUTE ISSUE #6`
 
 ## Active development task
 
-- Issue: #5 — `[DEV-001] Expo app bootstrap + Android development foundation`
+- Completed: Issue #5 / DEV-001 — **PASS · merged to main**
+- Active: Issue #6 — `[DEV-002] Expo/EAS link + Android runtime smoke`
 - Status: READY FOR CURSOR
-- Goal: initialize the Expo/RN/TypeScript Android development foundation only
-- No product screens, SQLite, Supabase/Auth/Sync, exercise DB/media, analytics, or notification runtime in DEV-001
-- Cursor completion must include real type/lint/test evidence, commit/push, Issue Result, and honest Android runtime evidence level
+- Goal: link the existing Expo app to EAS and obtain honest Android Runtime/Device smoke evidence before canonical Figma screen implementation
+- No product screens, SQLite, Supabase/Auth/Sync, exercise DB/media, analytics, notification runtime, Play submission, production build, or iOS work in DEV-002
+- A cloud EAS build is not part of this Issue unless the Product Owner separately approves it
 - Next Owner after Cursor completion: ChatGPT independent QA
 
 ---

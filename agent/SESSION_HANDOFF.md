@@ -4,33 +4,51 @@
 
 ## Current state
 
-- Status: DEV-001_REVIEW
-- Production implementation: BOOTSTRAP EXECUTED — awaiting ChatGPT independent QA
+- Status: DEV-002_READY
 - Development authorization: GRANTED 2026-09-22
-- Active Issue: #5 — `[DEV-001] Expo app bootstrap + Android development foundation`
-- Branch: `DEV-001-expo-bootstrap`
-- Next Owner: ChatGPT
+- DEV-001: PASS · merged to main
+- Active Issue: #6 — `[DEV-002] Expo/EAS link + Android runtime smoke`
+- Next Owner: Cursor
 
-## Completed in this session
+## DEV-001 accepted baseline
 
-- Expo SDK 57 + RN 0.86 + TypeScript scaffold
+- Expo SDK 57 + RN 0.86.3 + TypeScript
 - Android package `com.lumian.tampin`
-- `src/` boundaries + Debug UI Catalog shell (`__DEV__` only)
-- typecheck / lint / test / verify-ui.ps1 PASS
-- Android `assembleDebug` PASS (device install/run NOT VERIFIED)
-- Navigation baseline: local `RootShell` state (no Expo Router / React Navigation)
+- npm / one `package-lock.json`
+- `src/` boundaries + development-only Debug UI Catalog shell
+- typecheck / lint / deterministic tests / verify-ui PASS reported and diff-inspected
+- Android `assembleDebug` PASS reported
+- Runtime/Device launch remains NOT VERIFIED
+- main contains DEV-001 branch head `615c8a222d997249586ba8e08567f1d3970cbb4d`
+
+## Current Action
+
+Cursor:
+1. pull latest `main`
+2. read `PROJECT_INSTRUCTIONS.md`
+3. read `docs/CURRENT.md`
+4. read GitHub Issue #6
+5. read linked docs + `agent/TASK_CONTRACT.md`
+6. execute DEV-002 only
+7. Commit/Push + Issue evidence
+8. hand back to ChatGPT
 
 ## Boundaries
 
-- bootstrap only — no canonical MVP screens
+- Expo/EAS link + Android runtime smoke only
+- no canonical MVP screens
 - no SQLite/Supabase/Auth/Sync
-- no exercise production DB/media
+- no exercise DB/media
 - no analytics/notification runtime
-- do not start DEV-002 automatically
+- no Play submission or production build
+- no iOS work
+- do not start the next Task automatically
 
 ## After Cursor Completion
 
 Product Owner tells ChatGPT:
 `커서 완료. GitHub 확인해.`
 
-ChatGPT then performs independent QA on Issue #5 Commit/Diff/Test evidence.
+## Resume Command
+
+`GitHub 확인하고 현재 Issue 진행해.`
