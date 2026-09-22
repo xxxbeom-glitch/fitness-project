@@ -340,7 +340,8 @@ Canonical source/deployment/validation 정보는 Hub와 `product/wireframe/READM
 - 이미 확정된 내용을 장황하게 재설명하지 않는다.
 - 표/목록은 실제 비교나 절차에 도움이 될 때만 사용한다.
 - 개발 전환 전에는 습관적으로 `Cursor 전달`을 붙이지 않는다.
-- 개발 단계에서 실제 Cursor 작업이 필요할 때만 복사 가능한 handoff를 제공한다.
+- 개발 단계의 기본 handoff는 GitHub Issue + 한 줄 실행 트리거다. GitHub가 정상일 때 장문의 복사형 Cursor 프롬프트를 중복 제공하지 않는다.
+- GitHub 접근 장애 등 예외에서만 임시 복사형 handoff를 제공하고, 복구 후 Issue/CURRENT에 다시 동기화한다.
 
 ## 핵심 한 줄
 
