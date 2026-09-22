@@ -37,6 +37,23 @@ Product Owner approval
 → PASS / FIX / BLOCKED
 ```
 
+## Human relay protocol
+
+GitHub Issue가 Cursor의 실행 지시 원본이다. ChatGPT가 별도의 장문 구현 프롬프트를 반복 작성하지 않는다.
+
+Normal loop:
+
+```text
+ChatGPT: Issue/CURRENT 준비
+User → Cursor: "GitHub 확인하고 현재 Issue 진행해."
+Cursor: 구현 → Test/Build → Commit/Push → Issue evidence → review
+User → ChatGPT: "커서 완료. GitHub 확인해."
+ChatGPT: Commit/Diff/Test/Figma 독립 QA → PASS/FIX/BLOCKED
+```
+
+사용자는 두 에이전트 사이에서 구현 내용을 번역하거나 결과를 복사하는 역할을 맡지 않는다.
+GitHub 접근 장애가 있을 때만 예외적으로 복사형 handoff를 사용한다.
+
 ## Repository harness
 ```text
 .cursor/

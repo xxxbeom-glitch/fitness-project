@@ -18,6 +18,20 @@ alwaysApply: true
 
 Issue가 없거나 Development authorization이 없으면 production implementation을 추측해서 시작하지 않는다.
 
+## 1A. Default human relay
+
+정상 경로에서 사용자는 긴 Task 프롬프트를 Cursor에 복사하지 않는다.
+
+기본 실행 문구:
+- `GitHub 확인하고 현재 Issue 진행해.`
+- 특정 Task가 필요하면 Issue 번호만 추가한다.
+
+작업 완료 후 사용자가 ChatGPT에 결과 내용을 복사하도록 요구하지 않는다.
+Cursor가 GitHub Issue에 Result / Test / Commit / Risk / Blocker를 기록하고 `status:review`, `Next Owner=ChatGPT`로 넘긴다.
+
+GitHub Issue와 현재 canonical 문서가 실행 계약이다.
+GitHub가 일시적으로 사용할 수 없는 경우에만 복사형 Task prompt를 예외적으로 사용한다.
+
 ## 2. One task, one goal
 - 한 Issue는 하나의 명확한 목표를 가진다.
 - 동시에 여러 Task를 진행하지 않는다. CURRENT가 병렬 작업을 명시한 경우만 예외다.

@@ -260,6 +260,60 @@ Sol의 긴 문맥과 추론 능력을 이유로 모든 문서를 미리 읽거�
 
 ---
 
+## 10A. ChatGPT ↔ Cursor GitHub Collaboration Loop — DEFAULT
+
+Development mode에서 ChatGPT와 Cursor 사이의 기본 협업 매개체는 **GitHub CURRENT + Issue + Commit/Test evidence**다.
+
+사용자가 긴 구현 프롬프트를 두 에이전트 사이에서 복사해 전달하는 방식을 기본으로 사용하지 않는다.
+
+기본 루프:
+
+`PO 요청/승인 → ChatGPT가 GitHub Issue 준비 → 사용자가 Cursor에 한 줄 실행 → Cursor 구현/Test/Commit/Issue evidence → 사용자가 ChatGPT에 완료 한 줄 → ChatGPT 독립 QA → PASS/FIX/BLOCKED → CURRENT/Issue 갱신 → 다음 Task`
+
+### ChatGPT before Cursor
+- `docs/CURRENT.md`와 현재 canonical Decision/Spec/Figma를 확인한다.
+- 한 Issue에 하나의 명확한 목표를 둔다.
+- Issue에 Goal / Scope / Out of Scope / linked Decision·Spec·Figma / Acceptance Criteria / Risk / Regression / QA를 기록한다.
+- Cursor가 제품 판단 없이 실행 가능한 수준으로 Issue를 준비한다.
+- GitHub에 이미 기록한 내용을 다시 장문의 `Cursor 전달 프롬프트`로 중복 작성하지 않는다.
+
+### Default user trigger to Cursor
+GitHub가 정상 동작하면 사용자는 Cursor에 아래 정도만 전달한다.
+
+> `GitHub 확인하고 현재 Issue 진행해.`
+
+특정 Issue를 지정해야 할 때만 Task/Issue 번호를 함께 붙인다.
+
+### Cursor completion handoff
+Cursor는 구현과 실제 Test/Build 후:
+- Commit/Push
+- Issue Result / Test / Commit / Risk / Blocker
+- `status:review`
+- `Next Owner=ChatGPT`
+를 남긴다.
+
+Cursor의 DONE/PASS는 최종 판정이 아니다.
+
+### Default user trigger back to ChatGPT
+Cursor가 끝나면 사용자는:
+
+> `커서 완료. GitHub 확인해.`
+
+정도로만 알려도 된다.
+
+ChatGPT는 사용자가 Cursor 결과를 다시 복사해 설명하도록 요구하지 않고 GitHub Issue / Commit / Diff / Test evidence를 직접 확인한다.
+
+### QA result routing
+- `PASS` → Issue 완료/Close, CURRENT 갱신, 다음 Issue 준비
+- `FIX` → 같은 Issue를 `fix-required`로 유지하고 수정 조건 기록
+- `BLOCKED / DECISION NEEDED` → 필요한 제품 판단 후 Decision/Issue 갱신
+- Product Owner 직접 QA는 실제 기기에서만 판정 가능한 항목에 한정
+
+GitHub 접근 장애 등 예외에서만 임시 복사형 Cursor 프롬프트를 사용한다.
+새 채팅방에서도 Development mode라면 이 협업 루프를 기본값으로 간주하고 사용자가 과거 방식을 다시 설명하게 하지 않는다.
+
+---
+
 ## 11. Product Planning / Wireframe Hub
 
 기획·UX·웹 와이어프레임은 `product/README.md`를 공통 진입점으로 사용한다.
