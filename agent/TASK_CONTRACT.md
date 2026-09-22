@@ -7,13 +7,13 @@
 - Development authorization: GRANTED — 2026-09-22
 - Active implementation Issue: #5
 - Task ID: DEV-001
-- Status: READY
-- Next Owner: Cursor
+- Status: review
+- Next Owner: ChatGPT
 
 ## Task
 - Task ID: DEV-001
 - GitHub Issue: #5 — `[DEV-001] Expo app bootstrap + Android development foundation`
-- Branch: Cursor creates one task branch containing DEV-001 in the branch name
+- Branch: `DEV-001-expo-bootstrap`
 - Figma screen/state: N/A — bootstrap only
 - Figma node: N/A
 
@@ -45,12 +45,6 @@
 - minimal placeholder UI required to prove bootstrap/catalog rendering
 - bootstrap source-tree creation
 
-Navigation baseline is an implementation detail for DEV-001:
-- choose one current Expo-supported minimal approach
-- do not introduce multiple navigation systems
-- do not add a global state/data library without concrete need
-- record the choice and rationale in Issue Result
-
 ## Forbidden / Do Not Change
 
 - canonical Figma screen implementation
@@ -74,17 +68,17 @@ Navigation baseline is an implementation detail for DEV-001:
 
 ## Verification
 
-- [ ] Expo config resolves
-- [ ] Android package read-back = `com.lumian.tampin`
-- [ ] exactly one lockfile
-- [ ] Type/static validation
-- [ ] Lint
-- [ ] deterministic unit/smoke test
-- [ ] `scripts/verify-ui.ps1`
-- [ ] development-only Debug UI Catalog shell
-- [ ] Android compile/run at strongest practical evidence level
-- [ ] existing docs/harness/data preserved
-- [ ] no out-of-scope persistence/backend/product screen added
+- [x] Expo config resolves
+- [x] Android package read-back = `com.lumian.tampin`
+- [x] exactly one lockfile (`package-lock.json`)
+- [x] Type/static validation
+- [x] Lint
+- [x] deterministic unit/smoke test
+- [x] `scripts/verify-ui.ps1`
+- [x] development-only Debug UI Catalog shell
+- [x] Android compile (`assembleDebug`) PASS — device/runtime install NOT VERIFIED
+- [x] existing docs/harness/data preserved
+- [x] no out-of-scope persistence/backend/product screen added
 
 ## Done When
 
@@ -97,8 +91,12 @@ Navigation baseline is an implementation detail for DEV-001:
 
 ## Result
 
-- Status: NOT_STARTED
-- Evidence: pending Cursor execution
-- Not Verified: pending Cursor execution
-- Commit: pending
-- Notes: Product Owner authorized Development mode on 2026-09-22
+- Status: READY_FOR_REVIEW
+- Expo/tooling: Expo SDK 57 / RN 0.86.3 / TypeScript 5.9 / expo-dev-client 57.0.19
+- Package manager: npm (`package-lock.json` only)
+- Navigation baseline: local React state `RootShell` only (no Expo Router / React Navigation)
+- Android native project: generated via `expo prebuild`, gitignored (`/android`)
+- Evidence: typecheck/lint/test PASS; verify-ui.ps1 PASS; android assembleDebug PASS
+- Not Verified: device install/run, Expo Go path intentionally not used as runtime contract
+- Commit: pending push
+- Notes: Catalog entry gated by `__DEV__`
