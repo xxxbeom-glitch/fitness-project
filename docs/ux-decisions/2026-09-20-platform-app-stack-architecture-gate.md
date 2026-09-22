@@ -330,3 +330,17 @@ Locked:
 Explicit Product Owner Development-mode authorization.
 
 Do not begin production implementation yet.
+
+
+---
+
+## Post-gate execution amendment — 2026-09-22
+
+The architecture decisions above remain unchanged.
+
+Execution state update:
+- Product Owner explicitly authorized Development mode on 2026-09-22.
+- The former NEXT OPEN ITEM, "Explicit Product Owner Development-mode authorization", is complete.
+- First scoped implementation task: GitHub Issue #5 — `[DEV-001] Expo app bootstrap + Android development foundation`.
+- DEV-001 is bootstrap-only. It does not implement SQLite, Supabase/Auth/Sync, production exercise media, analytics, notification runtime, or canonical Figma screens.
+- Runtime implementation evidence begins with DEV-001 and must follow the existing evidence hierarchy.

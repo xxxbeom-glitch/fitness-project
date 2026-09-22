@@ -1,6 +1,6 @@
 # MVP Implementation Handoff — Start Here
 
-**Status:** HANDOFF PREPARED · 96-SCREEN CANONICAL · ANDROID-ONLY ARCHITECTURE LOCKED · AWAITING PO DEVELOPMENT AUTHORIZATION  
+**Status:** DEVELOPMENT AUTHORIZED · DEV-001 ISSUE #5 READY · 96-SCREEN CANONICAL · ANDROID-ONLY ARCHITECTURE LOCKED  
 **Updated:** 2026-09-22
 **Canonical Repository:** `xxxbeom-glitch/tampin`
 
@@ -60,12 +60,17 @@ Figma는 visual implementation artifact다. 행동/제품 의미가 GitHub의 �
 - Cursor-facing behavior/data/design contract
 - 2026-09-22 profile-photo 1:1 crop flow amendment
 
-현재 handoff verdict: **READY FOR PO DEVELOPMENT AUTHORIZATION**
+현재 handoff verdict: **DEVELOPMENT AUTHORIZED · DEV-001 READY FOR CURSOR**
 
 현재 Product/UX 또는 architecture blocker: **0**
 
-남은 구현 시작 Gate:
-1. Product Owner의 명시적 Development-mode 승인
+구현 시작 Gate:
+1. Product Owner의 명시적 Development-mode 승인 — **COMPLETE 2026-09-22**
+2. 첫 scoped GitHub Issue — **COMPLETE: Issue #5 / DEV-001**
+
+현재 실행 대상:
+- Issue #5 `[DEV-001] Expo app bootstrap + Android development foundation`
+- bootstrap 범위만 수행하며 canonical MVP screen 구현은 다음 Issue부터 진행
 
 별도 non-blocking side-track:
 - Production exercise-thumbnail full crop/mapping QA
@@ -78,9 +83,9 @@ Figma는 visual implementation artifact다. 행동/제품 의미가 GitHub의 �
 
 이 문서 세트의 존재는 자동으로 구현 시작을 승인하지 않는다.
 
-Product Owner가 개발 시작을 명시하면:
-- 첫 implementation Issue를 만든다.
-- 해당 Issue의 범위만 Cursor에 전달한다.
+Product Owner가 2026-09-22 Development mode를 승인했다.
+- 첫 implementation Issue = GitHub Issue #5 / DEV-001
+- Cursor는 현재 Issue 범위만 구현한다.
 - 한 번에 전체 앱을 무경계로 구현하지 않는다.
 
 ## Cursor execution harness

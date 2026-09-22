@@ -3,36 +3,43 @@
 다음 Cursor 세션이 현재 작업을 다시 추측하지 않도록 짧게 유지한다.
 
 ## Current state
-- Status: HARNESS_PREPARED
-- Production implementation: NOT STARTED
-- Development authorization: NOT YET GRANTED
 
-## Prepared
-- Tampin Cursor rules
-- implementation skills
-- Task Contract
-- Error Ledger
-- canonical 96-screen Figma map
-- Debug UI Catalog guide
-- GitHub Issue template
-- initial source-tree / bootstrap contract
+- Status: DEV-001_READY
+- Production implementation: AUTHORIZED / NOT YET EXECUTED
+- Development authorization: GRANTED 2026-09-22
+- Active Issue: #5 — `[DEV-001] Expo app bootstrap + Android development foundation`
+- Next Owner: Cursor
 
-## Next Action
-Product Owner가 Development mode를 명시적으로 승인하면 ChatGPT가 첫 scoped implementation Issue를 준비한다.
+## Current Action
 
-그 뒤 Cursor는:
-1. `PROJECT_INSTRUCTIONS.md`
-2. `docs/CURRENT.md`
-3. assigned Issue
-4. linked Decision/Spec
-5. `agent/TASK_CONTRACT.md`
+Cursor:
+1. read `PROJECT_INSTRUCTIONS.md`
+2. read `docs/CURRENT.md`
+3. read GitHub Issue #5
+4. read Issue-linked docs
+5. read `agent/TASK_CONTRACT.md`
+6. execute DEV-001 only
+7. run actual verification
+8. Commit/Push
+9. update Issue Result/Test/Commit/Risk/Not Verified
+10. hand back to ChatGPT
 
-순서로 읽고 시작한다.
+## Boundaries
 
-## Open Blockers
-- app implementation 자체의 Product/Architecture blocker: none
-- execution gate: explicit Product Owner Development authorization
-- exercise production DB/media completion: later track; initial UI/mock implementation blocker 아님
+- bootstrap only
+- no canonical MVP screens yet
+- no SQLite/Supabase/Auth/Sync
+- no exercise production DB/media
+- no analytics/notification runtime
+- do not start the next Task automatically
+
+## After Cursor Completion
+
+Product Owner tells ChatGPT:
+`커서 완료. GitHub 확인해.`
+
+ChatGPT independently inspects Issue/Commit/Diff/Test evidence and returns PASS/FIX/BLOCKED.
 
 ## Resume Command
-`GitHub 확인하고 현재 Issue부터 진행해.`
+
+`GitHub 확인하고 현재 Issue 진행해.`

@@ -1,6 +1,6 @@
 # Cursor Development Bootstrap — Tampin
 
-**Status:** HARNESS PREPARED · RUNTIME IMPLEMENTATION NOT STARTED  
+**Status:** DEVELOPMENT AUTHORIZED · DEV-001 ISSUE #5 READY · RUNTIME IMPLEMENTATION NOT YET EXECUTED  
 **Updated:** 2026-09-22
 **Canonical Repository:** `xxxbeom-glitch/tampin`
 **Canonical URL:** `https://github.com/xxxbeom-glitch/tampin`
@@ -172,4 +172,9 @@ UI Task는 추가로:
 ## Development gate
 이 harness가 repo에 존재하는 것은 **개발 시작 승인 자체가 아니다**.
 
-현재 production implementation은 Product Owner가 Development mode를 명시적으로 승인하고 첫 scoped GitHub Issue가 생성된 뒤 시작한다.
+Product Owner가 2026-09-22 Development mode를 명시적으로 승인했고 첫 scoped Issue #5 / DEV-001이 생성되었다.
+
+Current action:
+- Cursor reads CURRENT + Issue #5 + linked docs + TASK_CONTRACT
+- Cursor executes DEV-001 only
+- later product-screen/persistence/backend work requires separate Issues
