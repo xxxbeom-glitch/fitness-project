@@ -271,6 +271,68 @@ Routine-card selection direction from this redesign thread:
 
 This direction is compatible with the existing routine behavior but must be validated when the redesign is promoted to canonical screens.
 
+## 11A. Routine preview/detail ideation — current state
+
+PO approved continuing the Routine-first redesign into a concise routine preview/detail variation.
+
+Active ideation screen:
+- `IDEA_Routine_Detail_Jomo_01` — `2229:7652`
+- same Figma file / `ideation` working surface
+- ideation only; **not promoted to canonical Group 03**
+
+Reference interpretation:
+- the PO's `image 7` annotation is a **layout/composition reference**, not merely a content reference
+- the intended direction is an image-led landing/detail composition:
+  1. image/hero-dominant upper area
+  2. concise routine identity/summary
+  3. minimal lower-detail content
+  4. strong primary `운동 시작` CTA
+- Edit remains secondary
+
+### Current design-system alignment
+
+Header:
+- canonical shared component reused: `LeftAction=Back, RightAction=Edit` — `360:2215`
+- no custom back/edit controls
+- existing 44 × 44 action hit areas and 24px edit icon are preserved
+- header title = `루틴 상세`
+
+Color mode:
+- root `Colors` collection is explicitly set to existing `Light` mode
+
+Hero:
+- begins directly below the 56px shared header
+- current hero frame = `360 × 300`
+- `Push Day` remains the dominant title within the hero
+- current hero bitmap is a **temporary zoomed crop of the image-7 reference used only to validate layout/composition**
+- this temporary crop is **not an approved/final Tampin image asset** and must be replaced when the final hero-image source/policy is decided
+
+Lower content:
+- existing `Routine Summary` component — `637:3524`
+  - 예상 시간 = `45분`
+  - 운동 = `4개`
+  - 세트 = `12세트`
+- existing muscle `Tag` components reused for target areas
+- existing `Compact Button / Type=Secondary, State=Default` — `636:828` reused for `전체 구성 보기`
+- existing primary CTA — `635:794` reused for `운동 시작`
+
+Typography:
+- lower section headings bind to existing `heading/02` = SUIT Bold 14/20
+- preview/body copy binds to existing `body/01` = SUIT Medium 14/20
+- no new local text style was created for this lower-content structure
+
+Spacing:
+- horizontal content inset = `20`
+- lower section gap binds to existing `spacing/24`
+- heading → content gap binds to existing `spacing/8`
+- preview text → secondary button gap binds to existing `spacing/16`
+- muscle-tag gap binds to existing `spacing/6`
+
+Read-back:
+- shared Header / Routine Summary / Tag / Compact Button / Primary CTA links were read back
+- text-style IDs and spacing-variable bindings were read back after the latest refinement
+- no canonical screen, behavior matrix, screen inventory, or Development contract was changed
+
 ## 12. Superseded / historical items
 
 The following are no longer current for the redesigned main entry:
@@ -321,11 +383,14 @@ NOT VERIFIED / not yet done:
 Continue from the current Figma canvas, **without resetting PO-adjusted values**.
 
 Next design work:
-1. continue/refine the Routine main screen from `IDEA_Routine_Main_Jomo_01`
-2. decide only the still-open routine-folder management semantics and routine-icon policy when needed
-3. reconcile Home removal with canonical IA/navigation/screen inventory
-4. promote the approved redesign into `MVP_전체_와이어프레임`
-5. re-run only affected Design/Figma QA
-6. update implementation handoff only after the redesigned contract is closed
+1. review/refine the current Routine main + detail ideation pair:
+   - `IDEA_Routine_Main_Jomo_01` — `2168:7614`
+   - `IDEA_Routine_Detail_Jomo_01` — `2229:7652`
+2. replace the temporary image-7 hero crop only when the final hero-image source/policy is decided
+3. decide only the still-open routine-folder management semantics and routine-icon policy when needed
+4. reconcile Home removal with canonical IA/navigation/screen inventory
+5. promote the approved redesign into `MVP_전체_와이어프레임`
+6. re-run only affected Design/Figma QA
+7. update implementation handoff only after the redesigned contract is closed
 
 Development remains paused until PO explicitly resumes it.
