@@ -9,6 +9,17 @@
 - Active development task: NONE
 - Next Owner: ChatGPT + Product Owner
 
+## Active detached redesign workspace
+
+- checkpoint: `docs/ux-decisions/2026-09-22-version2-detached-redesign-workspace.md`
+- current PO direct-edit page: `version2` — `2237:7614`
+- source canonical page: `MVP_전체_와이어프레임` — `34:1076`
+- full source page was cloned: 104 top-level nodes / 96 MVP screen frames
+- clone-side links removed: Instances 0 / Components 0 / Style links 0 / Variable bindings 0 / Explicit modes 0 / Prototype reactions 0 / Flow starting points 0
+- version2 top-level FRAME count is 97 only because the former top-level `chevron-right` instance became a normal frame; MVP screen count remains 96
+- original canonical source was re-read after the operation and remains 104 top-level nodes / 96 screen frames / 1,845 instances
+- `version2` is not canonical; do not update inventory/behavior/implementation solely from PO exploration there
+
 ## Active redesign checkpoint
 
 - `docs/ux-decisions/2026-09-22-routine-main-replaces-home-redesign-checkpoint.md`
@@ -55,17 +66,19 @@
 - do not assume historical Group 02 Home remains the final IA
 - do not reset PO-adjusted Figma values to older assistant values
 - do not update canonical screen count before redesign promotion/remapping QA
+- do not re-bind or normalize PO's exploratory `version2` edits unless explicitly requested
+- do not modify `MVP_전체_와이어프레임` as a side effect of version2 exploration
 
 ## Next
 
 Resume from:
-`PROJECT_INSTRUCTIONS.md → docs/CURRENT.md → docs/ux-decisions/2026-09-22-routine-main-replaces-home-redesign-checkpoint.md → Figma 2168:7614 → NEXT OPEN ITEM`
+`PROJECT_INSTRUCTIONS.md → docs/CURRENT.md → docs/ux-decisions/2026-09-22-version2-detached-redesign-workspace.md → Figma version2 2237:7614 → NEXT OPEN ITEM`
 
 Next design step:
-1. review/refine the current Routine main + detail ideation pair
-2. replace the temporary detail hero crop only after final image source/policy is decided
-3. resolve still-open folder/icon policy only when needed
-4. reconcile Home removal with navigation / BottomAppBar / screen inventory / behavior matrix
-5. promote approved redesign to canonical Figma
+1. continue from PO edits on detached `version2`
+2. inspect/refine only the screens or patterns the PO asks to work on
+3. preserve canonical `MVP_전체_와이어프레임` until explicit PO promotion approval
+4. reconcile Home → Routine IA and other affected contracts only after the visual direction is sufficiently closed
+5. promote approved affected scope to canonical Figma
 6. run focused affected-scope QA
 7. only then refresh implementation handoff and wait for explicit PO Development resume

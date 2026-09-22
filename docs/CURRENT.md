@@ -26,7 +26,7 @@ Implementation staging:
 - SQLite, Supabase/Auth/Storage/Sync remain separate later Issues
 - persistence/recovery claims remain NOT VERIFIED until their real architecture layer is connected
 
-NEXT: continue from `IDEA_Routine_Main_Jomo_01` (`2168:7614`) using `docs/ux-decisions/2026-09-22-routine-main-replaces-home-redesign-checkpoint.md`; reconcile Home removal with canonical IA/navigation/screen inventory, then promote and re-QA only affected design scope. Do not execute DEV-002 until Design/Figma is re-closed and PO explicitly resumes Development.
+NEXT: continue Design/Figma work from the detached `version2` page (`2237:7614`) using `docs/ux-decisions/2026-09-22-version2-detached-redesign-workspace.md`; keep `MVP_전체_와이어프레임` canonical and untouched until explicit PO promotion approval. Do not execute DEV-002 until Design/Figma is re-closed and PO explicitly resumes Development.
 
 ---
 
@@ -42,7 +42,7 @@ NEXT: continue from `IDEA_Routine_Main_Jomo_01` (`2168:7614`) using `docs/ux-dec
 - Reason: Product Owner explicitly requested a substantial redesign before continuing development
 - Existing DEV-001 runtime scaffold remains accepted and is not rolled back
 - Do not execute DEV-002 or create a new implementation Issue until the revised canonical Figma is approved/QA-closed and Product Owner explicitly resumes Development
-- Current next action: continue the Routine-first redesign from `IDEA_Routine_Main_Jomo_01` / `2168:7614`, preserve current PO-adjusted values, reconcile Home removal with canonical IA/navigation/screen inventory, then re-run only affected design QA and update implementation handoff if the approved design contract changes
+- Current next action: continue the broad visual redesign on detached Figma page `version2` / `2237:7614`; preserve the canonical `MVP_전체_와이어프레임` baseline until explicit PO promotion approval, then reconcile only approved affected scope and re-run focused design QA
 
 ---
 
@@ -69,11 +69,31 @@ Whole-MVP component linkage read-back after the latest maintenance:
 - missing main-component links: `0`
 - live MVP instances whose source page is not `Common_Component`: `0`
 
+### Detached redesign workspace — active 2026-09-22
+
+- page: `version2` — `2237:7614`
+- cloned from the full `MVP_전체_와이어프레임` page for PO direct visual editing
+- contains the same 96 MVP screens plus existing page helper/label layers
+- all cloned component/style/variable/prototype linkages were removed
+- final version2 audit: Instances `0`, Components `0`, Style links `0`, Variable bindings `0`, Explicit modes `0`, Prototype reactions `0`, Flow starting points `0`
+- canonical source page remains unchanged and authoritative until explicit PO promotion
+- checkpoint: `docs/ux-decisions/2026-09-22-version2-detached-redesign-workspace.md`
+
 The previous `98` count became `94` after the 2026-09-19 recommended-routine removal, then `95` after the PO-approved `07C_Workout_History` full history list was added on 2026-09-20. The current canonical count is now `96` after the PO-approved `08B1A_Profile_Photo_Crop` screen was added and focused-QA PASSed on 2026-09-22.
 
 ---
 
 ## Latest active checkpoints
+
+
+### Active detached redesign workspace — 2026-09-22
+- `docs/ux-decisions/2026-09-22-version2-detached-redesign-workspace.md`
+- current PO direct-edit Figma page: `version2` — `2237:7614`
+- full canonical MVP page was cloned; all clone-side component/style/variable/prototype linkages were removed
+- `version2` is **not canonical** and must not update implementation contracts until explicit PO promotion
+- canonical `MVP_전체_와이어프레임` remains 96 screens and unchanged
+- Development remains paused; DEV-002 Issue #6 must not execute
+
 
 ### Active redesign checkpoint — 2026-09-22
 - `docs/ux-decisions/2026-09-22-routine-main-replaces-home-redesign-checkpoint.md`
