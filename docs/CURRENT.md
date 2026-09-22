@@ -6,7 +6,7 @@ Canonical GitHub repository: `xxxbeom-glitch/tampin`
 
 ## Cursor execution harness — prepared 2026-09-22
 
-Product Owner explicitly authorized Development mode on 2026-09-22. DEV-001 bootstrap is PASS and merged to `main`. Android compile evidence exists; Runtime/Device launch remains NOT VERIFIED.
+Product Owner paused Development mode on 2026-09-22 to reopen a major Design/Figma revision. DEV-001 bootstrap remains PASS and merged to `main`; no rollback. DEV-002 is paused before execution. Android compile evidence exists; Runtime/Device launch remains NOT VERIFIED.
 
 Prepared in GitHub:
 - `.cursor/rules/`
@@ -26,23 +26,23 @@ Implementation staging:
 - SQLite, Supabase/Auth/Storage/Sync remain separate later Issues
 - persistence/recovery claims remain NOT VERIFIED until their real architecture layer is connected
 
-NEXT: Cursor executes GitHub Issue #6 — `[DEV-002] Expo/EAS link + Android runtime smoke`.
+NEXT: resume canonical Figma redesign/revision with Product Owner; do not execute DEV-002 until Design/Figma is re-closed and PO explicitly resumes Development.
 
 ---
 
 ## Current mode
 
-`DEVELOPMENT MODE ACTIVE · DEV-001 BOOTSTRAP PASS/MERGED · DEV-002 ISSUE #6 READY · MVP 96 CONTENT/STATE FRAMES CANONICAL · PLATFORM = ANDROID ONLY · APP STACK = REACT NATIVE + EXPO SDK 57 + TYPESCRIPT · PACKAGE = com.lumian.tampin · ANDROID COMPILE PASS · RUNTIME/DEVICE NOT VERIFIED · PERSISTENCE = LOCAL-FIRST LOCKED / NOT IMPLEMENTED · BACKEND/AUTH/STORAGE/SYNC LOCKED / NOT IMPLEMENTED · NEXT = CURSOR EXECUTE ISSUE #6`
+`DESIGN / FIGMA MODE REOPENED BY PO · MAJOR VISUAL REVISION IN PROGRESS · DEV-001 BOOTSTRAP PASS/MERGED · DEV-002 ISSUE #6 PAUSED BEFORE EXECUTION · PLATFORM/STACK/ARCHITECTURE LOCKS REMAIN · PACKAGE = com.lumian.tampin · ANDROID COMPILE PASS · RUNTIME/DEVICE NOT VERIFIED · NEXT = FIGMA REDESIGN / RE-CLOSE DESIGN BEFORE DEV RESUME`
 
-## Active development task
+## Development pause / active design revision
 
 - Completed: Issue #5 / DEV-001 — **PASS · merged to main**
-- Active: Issue #6 — `[DEV-002] Expo/EAS link + Android runtime smoke`
-- Status: READY FOR CURSOR
-- Goal: link the existing Expo app to EAS and obtain honest Android Runtime/Device smoke evidence before canonical Figma screen implementation
-- No product screens, SQLite, Supabase/Auth/Sync, exercise DB/media, analytics, notification runtime, Play submission, production build, or iOS work in DEV-002
-- A cloud EAS build is not part of this Issue unless the Product Owner separately approves it
-- Next Owner after Cursor completion: ChatGPT independent QA
+- Paused: Issue #6 / DEV-002 — **PAUSED BEFORE EXECUTION**
+- Current mode: **DESIGN / FIGMA**
+- Reason: Product Owner explicitly requested a substantial redesign before continuing development
+- Existing DEV-001 runtime scaffold remains accepted and is not rolled back
+- Do not execute DEV-002 or create a new implementation Issue until the revised canonical Figma is approved/QA-closed and Product Owner explicitly resumes Development
+- Current next action: redesign/revise canonical Figma, then re-run only the affected design QA and update implementation handoff if the approved design contract changes
 
 ---
 

@@ -1,54 +1,35 @@
 # Session Handoff
 
-다음 Cursor 세션이 현재 작업을 다시 추측하지 않도록 짧게 유지한다.
-
 ## Current state
 
-- Status: DEV-002_READY
-- Development authorization: GRANTED 2026-09-22
+- Current mode: DESIGN / FIGMA
+- Development: PAUSED BY PRODUCT OWNER
 - DEV-001: PASS · merged to main
-- Active Issue: #6 — `[DEV-002] Expo/EAS link + Android runtime smoke`
-- Next Owner: Cursor
+- DEV-002 Issue #6: PAUSED BEFORE EXECUTION
+- Active development task: NONE
+- Next Owner: ChatGPT + Product Owner
 
-## DEV-001 accepted baseline
+## Why paused
 
-- Expo SDK 57 + RN 0.86.3 + TypeScript
+Product Owner가 현재 canonical 디자인이 마음에 들지 않아 큰 폭의 디자인 수정을 먼저 진행하기로 했다.
+
+## Preserve
+
+- DEV-001 Expo/RN/TS bootstrap
 - Android package `com.lumian.tampin`
-- npm / one `package-lock.json`
-- `src/` boundaries + development-only Debug UI Catalog shell
-- typecheck / lint / deterministic tests / verify-ui PASS reported and diff-inspected
-- Android `assembleDebug` PASS reported
-- Runtime/Device launch remains NOT VERIFIED
-- main contains DEV-001 branch head `615c8a222d997249586ba8e08567f1d3970cbb4d`
+- current architecture decisions unless redesign creates a real conflict
+- existing GitHub/Cursor collaboration loop
 
-## Current Action
+## Do not do now
 
-Cursor:
-1. pull latest `main`
-2. read `PROJECT_INSTRUCTIONS.md`
-3. read `docs/CURRENT.md`
-4. read GitHub Issue #6
-5. read linked docs + `agent/TASK_CONTRACT.md`
-6. execute DEV-002 only
-7. Commit/Push + Issue evidence
-8. hand back to ChatGPT
+- do not execute Issue #6
+- do not start implementation of canonical screens
+- do not add SQLite/Supabase/Auth/Sync
+- do not continue runtime/EAS work until Development is explicitly resumed
 
-## Boundaries
+## Next
 
-- Expo/EAS link + Android runtime smoke only
-- no canonical MVP screens
-- no SQLite/Supabase/Auth/Sync
-- no exercise DB/media
-- no analytics/notification runtime
-- no Play submission or production build
-- no iOS work
-- do not start the next Task automatically
+Resume from:
+`PROJECT_INSTRUCTIONS.md → docs/CURRENT.md → canonical Figma → affected Design/Decision docs`
 
-## After Cursor Completion
-
-Product Owner tells ChatGPT:
-`커서 완료. GitHub 확인해.`
-
-## Resume Command
-
-`GitHub 확인하고 현재 Issue 진행해.`
+Redesign the canonical Figma first. After approval and focused QA, update handoff docs as needed, then Product Owner can explicitly resume Development.
