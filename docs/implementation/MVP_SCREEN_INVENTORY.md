@@ -1,13 +1,13 @@
 # MVP Canonical Screen Inventory
 
 **Status:** FIGMA READ-BACK VERIFIED · SCREEN DESIGN FROZEN  
-**Updated:** 2026-09-20
+**Updated:** 2026-09-22
 
 ## Canonical source
 
 - Figma file: `W3lZurXCXbThP67rF2xk2b`
 - page: `MVP_전체_와이어프레임` — `34:1076`
-- top-level frames read back: `95`
+- top-level frames read back: `96`
 
 Group count:
 - 00: 1
@@ -18,7 +18,7 @@ Group count:
 - 05: 18
 - 06: 3
 - 07: 6
-- 08: 17
+- 08: 18
 
 ## Implementation interpretation
 
@@ -175,6 +175,7 @@ Recommended-routine save dialogs were removed from the MVP.
 | `1163:7296` | `08D2_Timer_End_Sound` | 360×780 |
 | `1175:709` | `08C_Unit_Settings_Sheet` | 360×780 |
 | `1181:724` | `08B1_Profile_Photo_Sheet` | 360×780 |
+| `2144:8195` | `08B1A_Profile_Photo_Crop` | 360×780 |
 | `1204:770` | `08B_Profile` | 360×780 |
 | `1207:799` | `08B2_Account_Management_Sheet` | 360×780 |
 | `1222:846` | `08B3_Account_Deletion` | 360×780 |
@@ -190,7 +191,7 @@ FAQ screens are not in the current MVP.
 
 ## Verification result
 
-Counted from the canonical page on 2026-09-20:
-- total = `95`
-- listed in this document = `95`
+Counted from the canonical page after the PO-approved profile-photo crop amendment on 2026-09-22:
+- total = `96`
+- listed in this document = `96`
 - no recommended-routine top-level screen is included

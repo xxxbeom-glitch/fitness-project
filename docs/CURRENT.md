@@ -1,12 +1,12 @@
 # CURRENT — Tampin
 
-**Updated:** 2026-09-21
+**Updated:** 2026-09-22
 
 Canonical GitHub repository: `xxxbeom-glitch/tampin`
 
 ## Current mode
 
-`MVP 95 CONTENT/STATE FRAMES CANONICAL · SEQUENTIAL PRODUCT/UX HANDOFF QA PASS · PLATFORM = ANDROID ONLY · QA/RELEASE = ANDROID · APP STACK = REACT NATIVE + EXPO + TYPESCRIPT LOCKED · PERSISTENCE = LOCAL-FIRST LOCKED · LOCAL DB = SQLITE / EXPO-SQLITE LOCKED · BACKEND = SUPABASE POSTGRES LOCKED · AUTH = SUPABASE AUTH (GOOGLE+KAKAO) LOCKED · STORAGE = SUPABASE STORAGE LOCKED · SYNC = OUTBOX/BATCH/IDEMPOTENT/OPTIMISTIC-VERSION LOCKED · PRE-RELEASE ARCHITECTURE RE-AUDIT 01–14 PASS · PACKAGE = com.lumian.tampin · NEXT = PO DEVELOPMENT AUTHORIZATION · IMPLEMENTATION NOT STARTED`
+`MVP 96 CONTENT/STATE FRAMES CANONICAL · SEQUENTIAL PRODUCT/UX HANDOFF QA PASS · PLATFORM = ANDROID ONLY · QA/RELEASE = ANDROID · APP STACK = REACT NATIVE + EXPO + TYPESCRIPT LOCKED · PERSISTENCE = LOCAL-FIRST LOCKED · LOCAL DB = SQLITE / EXPO-SQLITE LOCKED · BACKEND = SUPABASE POSTGRES LOCKED · AUTH = SUPABASE AUTH (GOOGLE+KAKAO) LOCKED · STORAGE = SUPABASE STORAGE LOCKED · SYNC = OUTBOX/BATCH/IDEMPOTENT/OPTIMISTIC-VERSION LOCKED · PRE-RELEASE ARCHITECTURE RE-AUDIT 01–14 PASS · PACKAGE = com.lumian.tampin · NEXT = PO DEVELOPMENT AUTHORIZATION · IMPLEMENTATION NOT STARTED`
 
 ## Resume rule
 
@@ -22,22 +22,23 @@ Current editing surface:
 - file `W3lZurXCXbThP67rF2xk2b`
 - page `MVP_전체_와이어프레임` — `34:1076`
 - shared component page `Common_Component`
-- current top-level independent screen frames: `95`
-- current Light roots: `95 / 95`
+- current top-level independent screen frames: `96`
+- current Light roots: `96 / 96`
 - group wrapper frames: `0`
 
 Whole-MVP component linkage read-back after the latest maintenance:
-- instance nodes: `1,843`
+- instance nodes: `1,844`
 - missing main-component links: `0`
 - live MVP instances whose source page is not `Common_Component`: `0`
 
-The previous `98` count became `94` after the 2026-09-19 recommended-routine removal. The current canonical count is now `95` after the PO-approved `07C_Workout_History` full history list was added and verified on 2026-09-20.
+The previous `98` count became `94` after the 2026-09-19 recommended-routine removal, then `95` after the PO-approved `07C_Workout_History` full history list was added on 2026-09-20. The current canonical count is now `96` after the PO-approved `08B1A_Profile_Photo_Crop` screen was added and focused-QA PASSed on 2026-09-22.
 
 ---
 
 ## Latest active checkpoints
 
 ### MVP design freeze / implementation handoff preparation
+- latest Group 08 profile-photo amendment: `docs/ux-decisions/2026-09-22-profile-photo-crop-screen.md`
 - `docs/ux-decisions/2026-09-20-mvp-screen-design-freeze.md`
 - Group 06–07 sequential QA: `docs/ux-decisions/2026-09-20-group06-07-sequential-handoff-qa.md`
 - Group 08 sequential QA: `docs/ux-decisions/2026-09-20-group08-sequential-handoff-qa.md`
@@ -225,7 +226,7 @@ Latest maintenance result:
 - Group 08: settings rows/cards, option lists, headers, and screen-content patterns consolidated into shared components
 
 Latest whole-MVP linkage verification:
-- `1,855 / 1,855` instances resolve to a main component
+- `1,844 / 1,844` instances resolve to a main component
 - all current MVP component sources resolve through `Common_Component`
 - detached/missing main-component instances: `0`
 
@@ -583,7 +584,7 @@ By explicit PO decision:
 - `08F1_FAQ_Expanded` removed
 - Settings Home `자주 묻는 질문` row removed
 
-Current Group 08 live screen count: `17`.
+Current Group 08 live screen count: `18`.
 
 FAQ is not part of the current MVP scope.
 
@@ -658,6 +659,21 @@ Shared nodes:
 - Filled `1255:1150`
 - `RemoveBadge` `1928:8903`
 - `SupportInquiryContent` `1882:9310`
+
+## Profile photo crop — PO approved 2026-09-22
+
+- `08B1_Profile_Photo_Sheet`의 사진 선택 → `08B1A_Profile_Photo_Crop`
+- crop target = fixed `1:1` square
+- selected photo can be repositioned and pinch-zoomed
+- Back cancels the current crop/edit
+- Save applies the crop and returns to the profile-photo/profile flow
+- persisted/uploaded profile-photo output is square; circular avatar is presentation-only masking
+- rotation / filters / general photo retouching are outside the current MVP
+- canonical Figma node = `2144:8195`
+- focused Figma QA = PASS
+
+Canonical:
+- `docs/ux-decisions/2026-09-22-profile-photo-crop-screen.md`
 
 ## Existing Group 08 behavior retained
 
@@ -736,8 +752,8 @@ Current verification:
 - partial sample visibly distinguished as `하체 B · 부분 기록`
 - `최근 기록 변화` = latest completed performance vs immediately previous comparable performance; improved only; newest first; max 3; recording-type-native comparison
 - 07C instance links = `29`, missing main-component links = `0`
-- whole-MVP top-level frames = `95`
-- whole-MVP instances = `1,849`
+- whole-MVP top-level frames at the 2026-09-20 Group 06–07 closure = `95` (current canonical = `96` after the 2026-09-22 Group 08 profile-photo crop amendment)
+- whole-MVP instances at that closure = `1,849`
 - whole-MVP missing main-component links = `0`
 - whole-MVP instance sources outside `Common_Component` = `0`
 
@@ -748,19 +764,20 @@ Product Owner approved continuing to Group 08 on 2026-09-20.
 ## Closed Group 08 sequential revalidation
 
 Current verification:
-- Figma Group 08 frames = `17`
-- behavior-matrix Group 08 rows = `17`
-- Figma ↔ matrix names = `17 / 17`
+- Figma Group 08 frames = `18`
+- behavior-matrix Group 08 rows = `18`
+- Figma ↔ matrix names = `18 / 18`
 - app-owned timer-end sound policy aligned with `기본 / 차임 / 벨`
 - `08E_Notification_Settings > 휴식 타이머 알림` aligned with the approved Rest Timer zero system alert
 - PO decision: remove app-level `타이머 종료 진동` setting
 - shared `WorkoutSettingsContent` now keeps only `기본 휴식 시간 / 타이머 종료음` under Rest Timer
 - Rest Timer vibration follows platform/user notification/device settings
 - `08D_Workout_Settings` and `08D1_Default_Rest_Time_Sheet` focused Figma QA PASS
-- Group 08 current instance links = `242`
+- `08B1A_Profile_Photo_Crop` = PO approved / focused Figma QA PASS
+- Group 08 current instance links = `244`
 - Group 08 missing main-component links = `0`
 - Group 08 sources outside `Common_Component` = `0`
-- whole-MVP current instance links = `1,843`
+- whole-MVP current instance links = `1,844`
 - whole-MVP missing main-component links = `0`
 - whole-MVP sources outside `Common_Component` = `0`
 

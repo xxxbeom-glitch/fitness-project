@@ -109,3 +109,29 @@ Not Group 08 Figma blockers:
 - current Product/UX blocker = `0`
 
 **PASS — Group 08 Settings / Account / Support sequential handoff QA is closed.**
+
+## 2026-09-22 approved profile-photo amendment
+
+The `17 / 17` figures above are the historical Group 08 closure baseline from 2026-09-20.
+
+Product Owner later approved one additional Group 08 state:
+- `08B1A_Profile_Photo_Crop` — `2144:8195`
+- fixed `1:1` crop
+- image reposition + pinch zoom
+- Back cancels the crop
+- Save applies the square crop and returns to the profile-photo/profile flow
+- rotation / filters / general retouching remain outside MVP
+
+Focused Figma read-back after the amendment:
+- Group 08 canonical frames = `18`
+- Group 08 behavior-matrix rows after planning sync = `18`
+- exact name coverage = `18 / 18`
+- Group 08 instance links = `244`
+- missing main-component links = `0`
+- sources outside `Common_Component` = `0`
+
+Canonical amendment:
+- `docs/ux-decisions/2026-09-22-profile-photo-crop-screen.md`
+
+**PASS — Group 08 remains closed with the approved profile-photo crop amendment incorporated.**
+

@@ -137,3 +137,19 @@ These include weekday scheduling, routine Duplicate semantics, and W/D/F set-typ
 **The 94 canonical content/state frames remain frozen. Primary app-shell navigation requires one targeted design FIX before UI implementation.**
 
 Development handoff documentation is prepared, but the deep-QA FIX / DECISION NEEDED items must be resolved before production implementation. See `docs/CURRENT.md`.
+
+## Post-freeze approved inventory amendments
+
+The `94`-screen count above is the historical freeze baseline from 2026-09-20.
+
+Later explicitly approved additions did not reopen unrelated frozen screen families:
+- 2026-09-20: `07C_Workout_History` added → canonical count `95`
+- 2026-09-22: `08B1A_Profile_Photo_Crop` added → canonical count `96`
+
+Current authority for the latest count:
+- `docs/CURRENT.md`
+- `docs/implementation/MVP_SCREEN_INVENTORY.md`
+- `docs/ux-decisions/2026-09-22-profile-photo-crop-screen.md`
+
+The original freeze remains valid for unaffected screens. The current canonical Figma inventory is `96`.
+

@@ -1,7 +1,7 @@
 # MVP Implementation Handoff — Start Here
 
-**Status:** HANDOFF PREPARED · SCREEN DESIGN FROZEN · ANDROID-ONLY ARCHITECTURE IN PROGRESS · IMPLEMENTATION NOT STARTED  
-**Updated:** 2026-09-20
+**Status:** HANDOFF PREPARED · 96-SCREEN CANONICAL · ANDROID-ONLY ARCHITECTURE LOCKED · AWAITING PO DEVELOPMENT AUTHORIZATION  
+**Updated:** 2026-09-22
 
 이 폴더는 Cursor가 MVP 구현을 시작하기 전에 읽는 **개발 진입점**이다.
 
@@ -29,7 +29,7 @@ Cursor는 아래 순서로 읽는다.
 - file: `W3lZurXCXbThP67rF2xk2b`
 - page: `MVP_전체_와이어프레임` — `34:1076`
 - shared component page: `Common_Component`
-- frozen top-level MVP frames: `94`
+- current canonical top-level MVP frames: `96`
 
 Figma는 visual implementation artifact다. 행동/제품 의미가 GitHub의 최신 Decision/Policy와 충돌하면 GitHub가 우선한다.
 
@@ -51,37 +51,33 @@ Figma는 visual implementation artifact다. 행동/제품 의미가 GitHub의 �
 ## Current readiness
 
 준비 완료:
-- MVP screen design freeze
-- canonical screen inventory
+- canonical 96-screen Figma inventory + Light roots
+- sequential Product/UX handoff QA through Group 08
 - current product/policy alignment
 - Figma component-linkage QA
+- Android-only architecture + pre-release architecture re-audit Blocks 01–14
 - Cursor-facing behavior/data/design contract
+- 2026-09-22 profile-photo 1:1 crop flow amendment
 
-현재 handoff verdict: **FIX / DECISION NEEDED**
+현재 handoff verdict: **READY FOR PO DEVELOPMENT AUTHORIZATION**
 
-구현 전 해결:
-1. primary bottom navigation visual/component contract
-2. weekday scheduling / today-next semantics
-3. routine Duplicate behavior
-4. W / D / F set-type semantics
-5. automatic Rest Timer already-running / end-feedback runtime policy
-6. active-session recovery system-notification UX
-7. remaining Android runtime implementation details
-8. Android analytics/crash reporting + Play release pipeline decisions
+현재 Product/UX 또는 architecture blocker: **0**
 
-문서 정리 완료:
-- current Product Direction / Project Brief의 브랜드 명칭을 Tampin으로 동기화
+남은 구현 시작 Gate:
+1. Product Owner의 명시적 Development-mode 승인
 
-별도 asset side-track:
+별도 non-blocking side-track:
 - Production exercise-thumbnail full crop/mapping QA
+- final app-owned timer-end sound assets/labels
+- public Terms/Privacy URLs + support-retention disclosure before release
 
-이 side-track은 초기 구조 개발을 막지는 않지만 최종 visual/release QA 전에는 완료되어야 한다.
+이 side-track들은 첫 scoped implementation Issue 생성을 위한 개발 승인 자체를 막지 않지만, 관련 기능의 최종 visual/release QA 전에는 완료되어야 한다.
 
 ## Development boundary
 
 이 문서 세트의 존재는 자동으로 구현 시작을 승인하지 않는다.
 
-Product Owner가 개발 시작을 명시하고 현재 blockers가 해소된 뒤:
+Product Owner가 개발 시작을 명시하면:
 - 첫 implementation Issue를 만든다.
 - 해당 Issue의 범위만 Cursor에 전달한다.
 - 한 번에 전체 앱을 무경계로 구현하지 않는다.

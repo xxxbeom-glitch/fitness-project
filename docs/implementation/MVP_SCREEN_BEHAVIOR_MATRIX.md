@@ -1,7 +1,7 @@
 # MVP Screen Behavior Matrix
 
-**Status:** SCREEN-BY-SCREEN QA · 95 / 95 MAPPED · FIX / DECISION NEEDED ITEMS EXPLICIT  
-**Verified:** 2026-09-20
+**Status:** SCREEN-BY-SCREEN QA · 96 / 96 MAPPED · PRODUCT/ARCHITECTURE BLOCKERS 0 · IMPLEMENTATION AWAITS PO AUTHORIZATION  
+**Verified:** 2026-09-22
 
 ## Purpose
 
@@ -13,7 +13,7 @@ Cursor가 canonical Figma의 각 top-level frame을 어떤 제품 상태로 구�
 - **Implementation rule** — Figma만 보고 임의 해석하면 안 되는 데이터/상태 규칙
 - **QA** — `PASS`, `FIX`, `DECISION NEEDED`, `CONDITIONAL`
 
-이 문서는 `MVP_SCREEN_INVENTORY.md`의 95개 canonical frame 전부를 포함한다.
+이 문서는 `MVP_SCREEN_INVENTORY.md`의 96개 canonical frame 전부를 포함한다.
 
 ## Cross-screen findings
 
@@ -107,33 +107,41 @@ Canonical decision:
 
 Verdict: **PASS.**
 
-### DECISION-04 — Automatic Rest Timer runtime edge policy
+### RESOLVED-08 — Automatic Rest Timer overlap / completion behavior
 
 Locked:
-- set completion automatically starts Rest Timer
-- RestLiveBar stays visible for the countdown
+- set completion automatically starts the Rest Timer
+- when another set is completed while the automatic Rest Timer is running, replace it and immediately start a fresh timer for the newly completed set
+- only one automatic Rest Timer exists at a time
 - `휴식 종료` terminates it
-- reaching zero removes the bar
+- reaching zero removes the RestLiveBar and uses the approved system rest-end alert
+- the Rest Timer channel itself stays free of the selectable app sound; Tampin separately plays the selected bundled `기본 / 차임 / 벨` sound
+- no app-level custom vibration pattern; vibration follows Android/user notification/device settings
 
-Still explicitly deferred:
-- another set completes while Rest Timer is already running → replace / restart / keep-current rule
-- exact zero-completion sound / vibration / background-notification behavior
+Canonical:
+- `docs/ux-decisions/2026-09-20-group05-active-workout-sequential-qa.md`
+- `docs/ux-decisions/2026-09-20-android-rest-timer-sound-runtime.md`
 
-Verdict: **DECISION NEEDED before full Rest Timer runtime implementation.**
+Verdict: **PASS.**
 
-### DECISION-05 — Active-session recovery system-notification UX
+### RESOLVED-09 — Active-session system-notification UX
 
 Locked:
 - active workout survives interruption/restart
 - normal recovery does not use a dedicated in-app recovery screen/banner
-- ongoing active session should be surfaced through the system notification area
+- one ongoing Android system notification represents the same Active Workout session
+- content includes workout name, elapsed time, and current exercise/set context when available; Rest Timer state can replace the context with remaining rest time
+- tapping the notification resumes the same persisted Active Workout
+- no workout-mutating notification quick actions in MVP
+- end/discard removes the ongoing notification; recovered sessions reconstruct it from persisted state
+- current Android architecture uses a normal ongoing notification and does not add a Foreground Service solely to keep workout elapsed time alive
 
-Still undefined:
-- notification copy
-- actions/controls
-- platform-specific persistent/ongoing behavior
+Canonical:
+- `docs/ux-decisions/2026-09-10-active-session-system-notification.md`
+- `docs/ux-decisions/2026-09-20-group05-active-workout-sequential-qa.md`
+- `docs/ux-decisions/2026-09-20-platform-app-stack-architecture-gate.md`
 
-Verdict: **DECISION NEEDED before recovery-notification implementation.**
+Verdict: **PASS.**
 
 ### RESOLVED-05 — Android-only platform scope
 
@@ -369,6 +377,7 @@ Recommendation-template duration language from older Group 03 history is superse
 | `07A_Analysis_Home` | Analysis root | `총 중량 / 세트 / 시간`; `4주 / 3개월 / 1년`; body-area/recent progress/history drilldown | Default = 총 중량 + 4주. 총 중량=eligible completed weight×reps; 세트=completed set count; 시간=saved session duration. Approved rolling/month buckets, adaptive zero-based scale, current Korean compact kg-axis labels, and point tooltip apply. | PASS |
 | `07B_BodyArea_Detail` | Selected body-area drilldown | period tabs; view contributor exercise list | Show all contributors; sort by muscle-exposure contribution + recency tie-break. Trailing aggregate is recording-type native: weight volume / reps total / duration total / assisted reps total. | PASS |
 | `07B_BodyArea_Detail_Empty` | Body-area/period has no records | change period/back | Keep section shell; no body-map fake activity. | PASS |
+| `07C_Workout_History` | Full saved-workout history from 07A `전체 기록` | Back → Analysis; history row → matching `07D_Workout_History_Detail` | Reverse chronological. Include completed sessions and saved-partial sessions with persisted performed work; exclude discard/no-performed-work sessions. Keep this as a simple history browser. | PASS |
 | `07D_Workout_History_Detail_DeleteConfirm` | Delete saved workout session | Cancel / Delete | Delete whole session; recalc derived analysis/PR/history; previous valid destination or Home fallback. | PASS |
 
 ## Group 07 data rules
@@ -414,7 +423,8 @@ Recommendation-template duration language from older Group 03 history is superse
 | `08D1_Default_Rest_Time_Sheet` | Set default rest duration | 5-second increments; Complete applies value | Current representative value 2:00. | PASS |
 | `08D2_Timer_End_Sound` | Timer sound selection | choose 기본 / 차임 / 벨 | All options are app-owned bundled sounds. Selection applies to the next Rest Timer completion without recreating Android notification channels. `휴식 타이머` channel itself stays free of the selectable app sound; Tampin plays the selected sound separately. `기본` is the bundled app default, never the device default. Final production files remain asset follow-up. | PASS / asset follow-up |
 | `08C_Unit_Settings_Sheet` | Weight display unit | choose kg/lb; Save | Conversion must not progressively mutate source values. Current selection = kg. | PASS |
-| `08B1_Profile_Photo_Sheet` | Change profile photo | photo select / default image / cancel | Photo is optional profile presentation. | PASS |
+| `08B1_Profile_Photo_Sheet` | Change profile photo | photo select → `08B1A_Profile_Photo_Crop`; default image / cancel | Photo is optional profile presentation. | PASS |
+| `08B1A_Profile_Photo_Crop` | Crop selected profile photo | drag/reposition; pinch zoom; Back cancels; Save applies crop and returns to the profile-photo/profile flow | Fixed 1:1 crop. Persist/upload square output; circular avatar is presentation-only masking. No rotation, filters, or general retouching in MVP. | PASS |
 | `08B_Profile` | Profile edit | photo; nickname; Logout; Save; More → account sheet | Logout is plain centered action above Save. | PASS |
 | `08B2_Account_Management_Sheet` | Account actions from profile More | account deletion / cancel | Do not add unrelated account functions. | PASS |
 | `08B3_Account_Deletion` | Destructive pre-confirmation explanation | `계정 탈퇴하기` → final confirmation | No recovery/grace period after final confirm. Provider wording is Google/Kakao-oriented for the Android-only MVP. | PASS |
@@ -450,10 +460,11 @@ Key routes:
 - 07A `전체 기록` → `07C_Workout_History`
 - 07C history row → matching 07D saved-session detail
 - Settings legal rows → public external legal documents
+- `08B1_Profile_Photo_Sheet` photo select → `08B1A_Profile_Photo_Crop`; crop Save → profile-photo/profile flow; Back → cancel current crop
 
 # Final screen-by-screen verdict
 
-Mapped canonical frames: **95 / 95**
+Mapped canonical frames: **96 / 96**
 
 ### PASS / adequately specified
 Most static/state/detail/dialog/sheet screens in Groups 01, 04, 06, 07, 08, and the locked parts of Groups 02/03/05.
@@ -461,18 +472,20 @@ Most static/state/detail/dialog/sheet screens in Groups 01, 04, 06, 07, 08, and 
 ### FIX
 - none in the current frozen visual contract.
 
-### DECISION NEEDED
-1. Production technology stack / platform architecture.
+### PRODUCT / ARCHITECTURE BLOCKERS
+- none. The pre-release architecture re-audit Blocks 01–14 are PASS.
+- production implementation still requires explicit Product Owner Development-mode authorization.
 
 ### FIGMA FOLLOW-UP
 - `08E_Notification_Settings`: remove only the superseded `업데이트/공지` row; keep the existing screen structure and `휴식 타이머 알림` row
 - `07C_Workout_History` created and focused-QA PASS on 2026-09-20
 - canonical node = `2121:8457`
-- canonical total = `95`; Group 07 = `6`
+- `08B1A_Profile_Photo_Crop` created and focused-QA PASS on 2026-09-22; canonical node = `2144:8195`
+- canonical total = `96`; Group 07 = `6`; Group 08 = `18`
 - shared-instance missing main-component links = `0`
 
 ### CONDITIONAL
 - final timer sound assets.
 - Production exercise-thumbnail crop/mapping.
 
-**Result: the 95 screens are now individually mapped, but the implementation handoff is NOT a full PASS until the DECISION NEEDED items above are resolved.**
+**Result: all 96 canonical screens are individually mapped. Product/UX and architecture blockers are closed; implementation remains gated only by explicit Product Owner Development-mode authorization.**

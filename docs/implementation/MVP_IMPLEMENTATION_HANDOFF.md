@@ -1,7 +1,7 @@
 # MVP Implementation Handoff
 
-**Status:** SCREEN DESIGN FROZEN · 95-SCREEN BEHAVIOR QA COMPLETE · ANDROID-ONLY ARCHITECTURE LOCKED · IMPLEMENTATION NOT STARTED  
-**Updated:** 2026-09-20
+**Status:** SCREEN DESIGN + APPROVED AMENDMENTS LOCKED · 96-SCREEN BEHAVIOR QA COMPLETE · ANDROID-ONLY ARCHITECTURE LOCKED · IMPLEMENTATION NOT STARTED  
+**Updated:** 2026-09-22
 
 ## 1. Purpose
 
@@ -56,7 +56,7 @@ Cursor는 아래를 current requirement로 사용하지 않는다.
 - 추천 루틴 운동 완료 후 저장 다이얼로그
 - recommendation-heavy onboarding
 - `product/wireframe/*`의 오래된 추천 루틴 및 dark-theme 표현
-- 과거 Figma frame 이름/화면이 현재 95-frame inventory에 없을 경우 그 화면
+- 과거 Figma frame 이름/화면이 현재 96-frame inventory에 없을 경우 그 화면
 - radius exploration preview
 
 현재 MVP에는 **추천 루틴 기능이 없다**.
@@ -705,6 +705,12 @@ Settings grouping follows canonical Group 08 Figma.
 
 Profile:
 - profile photo/nickname editable
+- photo selection opens `08B1A_Profile_Photo_Crop`
+- crop ratio is fixed 1:1; selected image can be repositioned and pinch-zoomed
+- Back cancels the current crop/edit; Save applies the square crop and returns to the profile-photo/profile flow
+- persisted/uploaded profile-photo output is square; circular avatar rendering is presentation-only masking
+- rotation / filters / general photo retouching are outside MVP
+- canonical decision: `docs/ux-decisions/2026-09-22-profile-photo-crop-screen.md`
 - Logout is a plain centered action above Save, not a grouped account-card row
 
 Units:
@@ -857,7 +863,7 @@ This section is a domain contract, not a mandated SQL/document schema.
 - Session Replay off
 - form/input capture off
 - advertising attribution off
-- initial 26-event taxonomy and allowed properties are defined in `docs/ux-decisions/2026-09-20-posthog-product-analytics.md`
+- initial 24-event taxonomy and allowed properties are defined in `docs/ux-decisions/2026-09-20-posthog-product-analytics.md`
 - primary launch funnel = onboarding completed → workout started → first set completed → workout completed → later workout return/start
 - do not send DOB, sex/gender profile field, email, nickname, routine/exercise names, exact weight/reps/duration, custom free text, support content, secrets, or raw DB rows
 - identity = opaque internal app user ID only; reset on logout/account change
@@ -1032,7 +1038,7 @@ Production exercise-thumbnail crop/mapping QA remains open.
 
 It blocks final visual/media completion, not initial app shell/domain implementation.
 
-## 24. Development sequencing after blockers are resolved
+## 24. Development sequencing after PO authorization
 
 Do not implement the entire app in one Cursor task.
 
@@ -1078,7 +1084,7 @@ Product:
 - one active workout invariant is preserved
 
 Design:
-- canonical 94-frame visual language is respected
+- canonical 96-frame visual language is respected
 - current shared-component relationships are translated into reusable production UI rather than duplicated one-off styling
 - current Light tokens/SUIT/logo/dialog copy are reflected
 - no preview-only radius rollout
@@ -1092,25 +1098,25 @@ QA:
 
 ## 26. Handoff verdict
 
-**FIX / DECISION NEEDED**
+**READY FOR PO DEVELOPMENT AUTHORIZATION**
 
 Verified:
-- all 94 canonical screens have screen-level behavior mapping in `MVP_SCREEN_BEHAVIOR_MATRIX.md`
-- product direction aligned
-- obsolete recommended-routine requirements removed from current core docs
-- MVP screen design frozen
-- canonical 94-frame inventory read back from Figma
-- component linkage baseline verified
-- major runtime-derived states documented
-- engineering/QA contracts aligned
+- all 96 canonical screens have screen-level behavior mapping in `MVP_SCREEN_BEHAVIOR_MATRIX.md`
+- current product direction and policy are aligned
+- obsolete recommended-routine requirements remain removed from current core docs
+- canonical 96-frame inventory is read back from Figma
+- current Figma read-back = 96 Light roots / 1,844 instances / missing main-component links 0 / non-`Common_Component` sources 0
+- Group 08 profile-photo crop amendment is reflected in Figma and implementation-facing docs
+- Android-only architecture and pre-release architecture re-audit Blocks 01–14 are locked/PASS
+- major runtime-derived states and notification/timer rules are documented
+- engineering/QA contracts are aligned
 
-Not ready to start production implementation yet because:
-1. Product Owner has not explicitly authorized Development mode
-2. Android Play release pipeline details remain open where needed for release hardening
+Production implementation has not started.
 
-Current implementation-facing product brand is Tampin; the stale G Fit working-name text found during deep QA has been corrected in the current Product Direction / Project Brief.
+Remaining gate:
+1. explicit Product Owner Development-mode authorization
 
-After the required FIX / DECISION NEEDED items and explicit PO development authorization:
+After authorization:
 - create the first scoped implementation Issue
 - hand only that Issue + this contract to Cursor
 - implement/test/QA incrementally

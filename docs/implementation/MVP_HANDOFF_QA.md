@@ -1,7 +1,7 @@
 # MVP Implementation Handoff QA
 
-**Status:** 95-SCREEN DEEP QA COMPLETE · VISUAL FIXES CLOSED · DECISION NEEDED · IMPLEMENTATION NOT STARTED  
-**Verified:** 2026-09-20
+**Status:** 96-SCREEN DEEP QA COMPLETE · PRODUCT/ARCHITECTURE GATES CLOSED · IMPLEMENTATION NOT STARTED  
+**Verified:** 2026-09-22
 
 ## QA purpose
 
@@ -52,8 +52,8 @@ Canonical:
 - file `W3lZurXCXbThP67rF2xk2b`
 - page `MVP_전체_와이어프레임` — `34:1076`
 
-Final current read-back after 07C addition:
-- top-level frames: `95`
+Final current read-back after the 2026-09-22 profile-photo crop amendment:
+- top-level frames: `96`
 - group counts:
   - 00 = 1
   - 01 = 7
@@ -63,8 +63,8 @@ Final current read-back after 07C addition:
   - 05 = 18
   - 06 = 3
   - 07 = 6
-  - 08 = 17
-- current instances: `1,849`
+  - 08 = 18
+- current instances: `1,844`
 - missing main-component links: `0`
 - component sources outside `Common_Component`: `0`
 
@@ -77,13 +77,13 @@ Compared:
 - all rows in `docs/implementation/MVP_SCREEN_INVENTORY.md`
 
 Result:
-- Figma count = `95`
-- document count = `95`
+- Figma count = `96`
+- document count = `96`
 - missing in document = `0`
 - extra in document = `0`
 - ID/name/size mismatch = `0`
 
-Verdict: **PASS — 95 / 95 exact match**
+Verdict: **PASS — 96 / 96 exact match**
 
 ## 4. Recommendation removal verification
 
@@ -134,7 +134,7 @@ Handoff:
 - ExerciseList empty
 - `운동 추가` remains available
 
-Verdict: **PASS — implementable state specified without a 95th top-level frame**
+Verdict: **PASS — implementable state specified without a dedicated extra top-level frame**
 
 ## 7. Dialog / logo consistency spot-check
 
@@ -249,7 +249,7 @@ New artifact:
 - `docs/implementation/MVP_SCREEN_BEHAVIOR_MATRIX.md`
 
 Coverage:
-- canonical frames mapped: `94 / 94`
+- historical deep-QA baseline before later approved 07C / profile-photo additions: `94 / 94`; current canonical mapping is `96 / 96`
 - each frame classified by purpose / entry / primary behavior / implementation rule / QA verdict
 - current Figma visible copy/state was read back for Groups 01–08
 - previously approved behavior not visible as a standalone frame was recovered into the implementation contract where supported
@@ -581,11 +581,11 @@ Verdict: **PASS — Group 06–07 sequential handoff QA closed.**
 ## 15. Final QA verdict
 
 ### PASS
-- 95 / 95 screen behavior rows mapped
+- 96 / 96 screen behavior rows mapped
 - current product scope alignment
 - recommendation removal
-- MVP screen freeze
-- 95-screen Figma/document 1:1 inventory
+- MVP screen freeze plus approved post-freeze amendments
+- 96-screen Figma/document 1:1 inventory
 - Figma component linkage
 - Cursor-facing behavior/data/design contract
 - blank-workout runtime state specification
@@ -600,7 +600,7 @@ Verdict: **PASS — Group 06–07 sequential handoff QA closed.**
 - duplicate behavior resolved
 - W/D/F removed from current MVP
 - focused Group 03 Figma QA: overflow `0`, missing main-component links `0`
-- whole-MVP current canonical state: 95 top-level frames, 1,843 instances, missing links `0`, non-Common sources `0`
+- current overall canonical read-back after later approved amendments: 96 top-level frames, 1,844 instances, missing links `0`, non-Common sources `0`
 
 Verdict: **PASS — Group 03 Routine closed.**
 
@@ -633,20 +633,23 @@ Verdict: **PASS — Group 04 Exercise Library / Custom Exercise sequential QA cl
 ### FIX before relevant UI implementation
 - none in the current frozen visual contract.
 
-### DECISION NEEDED before production implementation
-1. technology stack / platform architecture
+### Product / architecture blockers
+- none. The pre-release architecture re-audit Blocks 01–14 are PASS.
+- remaining implementation gate = explicit Product Owner Development-mode authorization.
 
 ### Group 06–07 closure
 - `07C_Workout_History` created and verified
 - Group 06–07 Product/UX / Figma handoff QA = PASS
 
-### Group 08 sequential closure
-- canonical Group 08 frames = `17 / 17`
+### Group 08 sequential closure + 2026-09-22 profile-photo amendment
+- canonical Group 08 frames = `18 / 18`
+- `08B1A_Profile_Photo_Crop` added, PO approved, focused Figma QA PASS
+- fixed 1:1 crop + reposition/pinch zoom + Back cancel / Save apply behavior mapped
 - app-owned timer-end sound policy aligned
 - Rest Timer system alert policy aligned
 - app-level `타이머 종료 진동` setting removed from Figma
 - vibration follows platform/user notification/device settings
-- Group 08 current instance links = `242`, missing = `0`, non-Common sources = `0`
+- Group 08 current instance links = `244`, missing = `0`, non-Common sources = `0`
 
 Verdict: **PASS — Group 08 Settings / Account / Support closed.**
 
@@ -659,4 +662,4 @@ Verdict: **PASS — Group 08 Settings / Account / Support closed.**
 
 ## Final result
 
-**DECISION NEEDED — the 95 canonical screens are individually mapped and sequential Product/UX handoff QA through Group 08 is PASS. The remaining blocking decision is the production technology/platform architecture gate.**
+**READY FOR PO DEVELOPMENT AUTHORIZATION — all 96 canonical screens are individually mapped, sequential Product/UX handoff QA through Group 08 is PASS, and the pre-release architecture re-audit is complete. Production implementation has not started.**
